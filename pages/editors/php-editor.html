@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live PHP Editor - CareerPath</title>
+    <link rel="stylesheet" href="../../assets/css/editor.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+    
+    <nav class="editor-nav">
+        <div class="logo-area">
+            <img class="logo-icon" src="../../assets/images/path4career-icon.png" alt="Path4Career" style="width:32px;height:32px;border-radius:8px;">
+            <div class="logo-text">Path4Career</div>
+            <div class="title-badge">🐘 PHP Workspace</div>
+        </div>
+        <button class="run-btn" id="runBtn" onclick="executePhp()">▶ Run Code</button>
+    </nav>
+
+    <div class="workspace">
+        <div class="editor-pane">
+            <p class="pane-label">
+                <span>script.php</span>
+                <span class="status-text">PHP Simulation Engine</span>
+            </p>
+            <textarea id="phpInput" spellcheck="false" aria-label="PHP Input"></textarea>
+        </div>
+        
+        <div class="result-pane">
+            <p class="pane-label">Terminal Output</p>
+            <div id="consoleDiv">
+                <span class="log-system">✔ PHP Simulation Engine Ready. Click "Run Code" to execute.</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+const phpInput = document.getElementById('phpInput');
+        const consoleDiv = document.getElementById('consoleDiv');
+        const runBtn = document.getElementById('runBtn');
+
+        // 1. Fetch saved code or use default PHP template
+        const savedCode = localStorage.getItem('careerPathPhpCode');
+        const defaultCode = `<?php
+// Welcome to CareerPath PHP!
+
+$name = "Developer";
+$skills = ["PHP", "MySQL", "JavaScript"];
+
+echo "Hello, " . $name . "!\\n";
+echo "Your top skill is " . $skills[0] . ".\\n\\n";
+
+// A quick loop test
+for ($i = 1; $i <= 3; $i++) {
+    echo "Processing cycle " . $i . "...\\n";
+}
+?>`;
+
+        phpInput.value = savedCode ? savedCode : defaultCode;
+
+        // 2. Smart Indentation Engine (Upgraded for PHP '{' Brackets)
+        phpInput.addEventListener('keydown', function(e) {
+            
+            // Handle the 'Tab' Key
+            if (e.key === 'Tab') {
+                e.preventDefault(); 
+                const start = this.selectionStart;
+                const end = this.selectionEnd;
+                const spaces = "    "; // 4 spaces
+                
+                this.value = this.value.substring(0, start) + spaces + this.value.substring(end);
+                this.selectionStart = this.selectionEnd = start + spaces.length;
+                this.dispatchEvent(new Event('input'));
+            }
+            
+            // Handle the 'Enter' Key
+            if (e.key === 'Enter') {
+                e.preventDefault(); 
+                
+                const start = this.selectionStart;
+                const end = this.selectionEnd;
+                
+                const textBeforeCursor = this.value.substring(0, start);
+                const lines = textBeforeCursor.split(/\r?\n/);
+                const currentLine = lines[lines.length - 1] || "";
+                
+                const leadingSpacesMatch = currentLine.match(/^(\s*)/);
+                let indentSpaces = leadingSpacesMatch ? leadingSpacesMatch[1] : '';
+                
+                // MAGIC: If the line ends with an opening bracket '{', add 4 MORE spaces!
+                if (currentLine.trim().endsWith('{')) {
+                    indentSpaces += "    ";
+                }
+                
+                const insertText = "\n" + indentSpaces;
+                
+                this.value = this.value.substring(0, start) + insertText + this.value.substring(end);
+                this.selectionStart = this.selectionEnd = start + insertText.length;
+                this.dispatchEvent(new Event('input'));
+            }
+        });
+
+        // 3. Auto-Save
+        phpInput.addEventListener('input', () => {
+            localStorage.setItem('careerPathPhpCode', phpInput.value);
+        });
+
+        // Helper to format output safely
+        function appendToConsole(text, className) {
+            const span = document.createElement('span');
+            span.className = className;
+            span.textContent = text + '\n';
+            consoleDiv.appendChild(span);
+            consoleDiv.scrollTop = consoleDiv.scrollHeight;
+        }
+
+        // 4. The Engine: Serverless PHP-to-JS Transpiler
+        function executePhp() {
+            const rawCode = phpInput.value.trim();
+            
+            if (!rawCode) {
+                consoleDiv.innerHTML = '<span class="log-error">Please enter some PHP code.</span>';
+                return;
+            }
+
+            consoleDiv.innerHTML = '<span class="log-loading">>>> Executing PHP...</span>\n';
+
+            try {
+                // Strip <?php and ?> tags
+                let code = rawCode
+                    .replace(/<\?php/gi, '')
+                    .replace(/\?>/gi, '');
+
+                // Remove single-line comments (but not inside strings)
+                code = code.replace(/\/\/.*$/gm, '');
+                // Remove multi-line comments
+                code = code.replace(/\/\*[\s\S]*?\*\//g, '');
+
+                // --- PHP SYNTAX TRANSPILER --- //
+
+                // 1. Transpile echo statements
+                // echo "text"; → console.log("text");
+                code = code.replace(/\becho\s+(.*?)\s*;/g, function(match, content) {
+                    // PHP string concatenation with '.' → JS '+'
+                    let jsContent = content.replace(/\s*\.\s*/g, ' + ');
+                    return 'console.log(' + jsContent + ');';
+                });
+
+                // 2. Transpile print statements
+                code = code.replace(/\bprint\s+(.*?)\s*;/g, function(match, content) {
+                    let jsContent = content.replace(/\s*\.\s*/g, ' + ');
+                    return 'console.log(' + jsContent + ');';
+                });
+
+                // 3. Transpile variable declarations ($var → let var)
+                // First pass: $var = value;
+                code = code.replace(/\$([a-zA-Z_][a-zA-Z0-9_]*)\s*=\s*/g, function(match, varName) {
+                    return 'let ' + varName + ' = ';
+                });
+
+                // Fix subsequent uses of $ — just remove the $ sign for variable references
+                code = code.replace(/\$([a-zA-Z_][a-zA-Z0-9_]*)/g, '$1');
+
+                // Fix duplicate 'let' declarations (variable used multiple times)
+                const declaredVars = new Set();
+                code = code.replace(/\blet\s+([a-zA-Z_][a-zA-Z0-9_]*)\s*=/g, function(match, varName) {
+                    if (declaredVars.has(varName)) {
+                        return varName + ' =';
+                    }
+                    declaredVars.add(varName);
+                    return 'let ' + varName + ' =';
+                });
+
+                // 4. Transpile PHP arrays: array(...) → [...]
+                code = code.replace(/\barray\s*\((.*?)\)/g, '[$1]');
+
+                // 5. Transpile string methods
+                code = code.replace(/\bstrlen\s*\(\s*([^)]+)\s*\)/g, '$1.length');
+                code = code.replace(/\bstrtoupper\s*\(\s*([^)]+)\s*\)/g, '$1.toUpperCase()');
+                code = code.replace(/\bstrtolower\s*\(\s*([^)]+)\s*\)/g, '$1.toLowerCase()');
+                code = code.replace(/\bstr_replace\s*\(\s*([^,]+)\s*,\s*([^,]+)\s*,\s*([^)]+)\s*\)/g, '$3.replace($1, $2)');
+                code = code.replace(/\bexplode\s*\(\s*([^,]+)\s*,\s*([^)]+)\s*\)/g, '$2.split($1)');
+                code = code.replace(/\bimplode\s*\(\s*([^,]+)\s*,\s*([^)]+)\s*\)/g, '$2.join($1)');
+                code = code.replace(/\bsubstr\s*\(\s*([^,]+)\s*,\s*([^,)]+)\s*(?:,\s*([^)]+))?\s*\)/g, function(m, str, start, len) {
+                    if (len) return str + '.substring(' + start + ', ' + start + ' + ' + len + ')';
+                    return str + '.substring(' + start + ')';
+                });
+
+                // 6. Transpile array functions
+                code = code.replace(/\bcount\s*\(\s*([^)]+)\s*\)/g, '$1.length');
+                code = code.replace(/\barray_push\s*\(\s*([^,]+)\s*,\s*([^)]+)\s*\)/g, '$1.push($2)');
+                code = code.replace(/\bin_array\s*\(\s*([^,]+)\s*,\s*([^)]+)\s*\)/g, '$2.includes($1)');
+                code = code.replace(/\barray_merge\s*\(\s*([^,]+)\s*,\s*([^)]+)\s*\)/g, '[...$1, ...$2]');
+                code = code.replace(/\bsort\s*\(\s*([^)]+)\s*\)/g, '$1.sort()');
+                code = code.replace(/\barray_reverse\s*\(\s*([^)]+)\s*\)/g, '$1.reverse()');
+
+                // 7. Transpile math functions
+                code = code.replace(/\babs\s*\(/g, 'Math.abs(');
+                code = code.replace(/\bsqrt\s*\(/g, 'Math.sqrt(');
+                code = code.replace(/\bround\s*\(/g, 'Math.round(');
+                code = code.replace(/\bceil\s*\(/g, 'Math.ceil(');
+                code = code.replace(/\bfloor\s*\(/g, 'Math.floor(');
+                code = code.replace(/\bmax\s*\(/g, 'Math.max(');
+                code = code.replace(/\bmin\s*\(/g, 'Math.min(');
+                code = code.replace(/\brand\s*\(\s*([^,]+)\s*,\s*([^)]+)\s*\)/g, 'Math.floor(Math.random() * ($2 - $1 + 1)) + $1');
+
+                // 8. Transpile type casting/checking
+                code = code.replace(/\bis_string\s*\(\s*([^)]+)\s*\)/g, '(typeof $1 === "string")');
+                code = code.replace(/\bis_int\s*\(\s*([^)]+)\s*\)/g, 'Number.isInteger($1)');
+                code = code.replace(/\bis_array\s*\(\s*([^)]+)\s*\)/g, 'Array.isArray($1)');
+                code = code.replace(/\bintval\s*\(\s*([^)]+)\s*\)/g, 'parseInt($1)');
+                code = code.replace(/\bfloatval\s*\(\s*([^)]+)\s*\)/g, 'parseFloat($1)');
+                code = code.replace(/\bstrval\s*\(\s*([^)]+)\s*\)/g, 'String($1)');
+
+                // 9. Transpile foreach → for...of
+                code = code.replace(/\bforeach\s*\(\s*([a-zA-Z_][a-zA-Z0-9_]*)\s+as\s+([a-zA-Z_][a-zA-Z0-9_]*)\s*=>\s*([a-zA-Z_][a-zA-Z0-9_]*)\s*\)/g, 
+                    'for (let [$2, $3] of Object.entries($1))');
+                code = code.replace(/\bforeach\s*\(\s*([a-zA-Z_][a-zA-Z0-9_]*)\s+as\s+([a-zA-Z_][a-zA-Z0-9_]*)\s*\)/g, 
+                    'for (let $2 of $1)');
+
+                // 10. Transpile function keyword (PHP and JS share the same syntax, mostly fine)
+                // Just need to handle type hints in params
+                code = code.replace(/function\s+([a-zA-Z_]+)\s*\(([^)]*)\)\s*:\s*\w+/g, 'function $1($2)');
+
+                // 11. Transpile PHP string interpolation: "Hello $name" → "Hello " + name
+                // This is a simplified version
+                code = code.replace(/"([^"]*?)"/g, function(match, content) {
+                    if (!content.includes('$')) return match;
+                    // Already handled by $ removal above
+                    return match;
+                });
+
+                // 12. Create a safe console interceptor
+                const customConsole = {
+                    log: function(...args) {
+                        const message = args.map(arg => {
+                            if (typeof arg === 'object') return JSON.stringify(arg, null, 2);
+                            return String(arg);
+                        }).join(' ');
+                        // Handle \\n as actual newlines for display
+                        const lines = message.split('\\n');
+                        lines.forEach(line => appendToConsole(line, 'log-normal'));
+                    }
+                };
+
+                // 13. Execute the transpiled code
+                const executeFn = new Function('console', `"use strict";\n${code}`);
+                executeFn(customConsole);
+                
+                appendToConsole('\n--- Execution Finished ---', 'log-system');
+
+            } catch (err) {
+                appendToConsole('\n' + err.message, 'log-error');
+            }
+        }
+</script>
+</body>
+</html>

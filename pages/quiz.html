@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Module Quiz | Path4Career</title>
+    <meta name="description" content="Test your knowledge with timed quizzes on Path4Career learning platform">
+    <link rel="stylesheet" href="../assets/css/navbar.css">
+    <link rel="stylesheet" href="../assets/css/quiz.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- SHARED NAVBAR -->
+    <div id="navbar-root"></div>
+
+    <div class="quiz-container">
+
+        <!-- ═══════════════════════════════════════
+             VIEW 1: START
+             ═══════════════════════════════════════ -->
+        <div id="startView" class="view">
+            <div class="quiz-hero">
+                <div class="quiz-hero-icon">📝</div>
+                <h1 id="startModuleName">Module Quiz</h1>
+                <p id="startModuleLabel">Module Quiz</p>
+            </div>
+
+            <!-- Module Gate / Previous Score -->
+            <div class="module-gate" id="quizAccessGate" style="display: none;">
+                <div class="gate-header">
+                    <span class="label" id="gateLabel">Status</span>
+                    <span id="gatePercentage" class="percentage">--</span>
+                </div>
+                <!-- Dynamic Content Container -->
+                <div id="gateMessage" class="gate-message">
+                    Loading status...
+                </div>
+            </div>
+
+            <!-- Quiz Rules -->
+            <div class="rules-card">
+                <h3>📋 Quiz Rules</h3>
+                <div class="rules-grid">
+                    <div class="rule-item">
+                        <div class="rule-icon blue">📝</div>
+                        <div class="rule-text">
+                            <div class="rule-label">Questions</div>
+                            <div class="rule-value" id="ruleQuestionCount">20 MCQs</div>
+                        </div>
+                    </div>
+                    <div class="rule-item">
+                        <div class="rule-icon green">⏱️</div>
+                        <div class="rule-text">
+                            <div class="rule-label">Time Limit</div>
+                            <div class="rule-value" id="ruleTimeLimit">30 Minutes</div>
+                        </div>
+                    </div>
+                    <div class="rule-item">
+                        <div class="rule-icon orange">🎯</div>
+                        <div class="rule-text">
+                            <div class="rule-label">Pass Score</div>
+                            <div class="rule-value">60%</div>
+                        </div>
+                    </div>
+                    <div class="rule-item">
+                        <div class="rule-icon red">🔒</div>
+                        <div class="rule-text">
+                            <div class="rule-label">Attempts</div>
+                            <div class="rule-value">1 Per Session</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tips -->
+            <div class="rules-card">
+                <h3>💡 Tips</h3>
+                <div class="rules-grid">
+                    <div class="rule-item">
+                        <div class="rule-icon blue">⌨️</div>
+                        <div class="rule-text">
+                            <div class="rule-label">Keyboard Shortcuts</div>
+                            <div class="rule-value">1-4 for options, ←→ to navigate</div>
+                        </div>
+                    </div>
+                    <div class="rule-item">
+                        <div class="rule-icon green">📊</div>
+                        <div class="rule-text">
+                            <div class="rule-label">Question Tracker</div>
+                            <div class="rule-value">Click any number to jump</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="start-actions">
+                <button id="btnStartQuiz" class="btn-start unlocked" onclick="startQuiz()">
+                    🚀 Start Quiz
+                </button>
+            </div>
+        </div>
+
+        <!-- ═══════════════════════════════════════
+             VIEW 2: QUIZ
+             ═══════════════════════════════════════ -->
+        <div id="quizView" class="view">
+
+            <!-- Top Bar -->
+            <div class="quiz-top-bar">
+                <div class="quiz-info">
+                    <span class="module-badge" id="quizModuleBadge">HTML</span>
+                    <span class="question-counter" id="questionCounter">Question 1 <span>of 20</span></span>
+                </div>
+                <div class="timer-wrap">
+                    <div class="timer" id="timer">
+                        <span class="timer-icon">⏱️</span>
+                        <span id="timerDisplay">30:00</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Question Tracker -->
+            <div class="question-tracker">
+                <div class="tracker-title">Question Navigator</div>
+                <div class="tracker-grid" id="trackerGrid"></div>
+                <div class="tracker-legend">
+                    <div class="legend-item">
+                        <div class="legend-dot current"></div> Current
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-dot answered"></div> Answered
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-dot unanswered"></div> Unanswered
+                    </div>
+                </div>
+            </div>
+
+            <!-- Question Card -->
+            <div class="question-card">
+                <div class="question-number" id="questionNumber">Question 1</div>
+                <div class="question-text" id="questionText"></div>
+                <div class="options-list" id="optionsList"></div>
+            </div>
+
+            <!-- Navigation -->
+            <div class="quiz-nav">
+                <button class="btn-nav" id="btnPrev" onclick="prevQuestion()">
+                    ❮ Previous
+                </button>
+                <button class="btn-submit-quiz" onclick="confirmSubmit()">
+                    Submit Quiz ✓
+                </button>
+                <button class="btn-nav" id="btnNext" onclick="nextQuestion()">
+                    Next ❯
+                </button>
+            </div>
+        </div>
+
+        <!-- ═══════════════════════════════════════
+             VIEW 3: RESULT
+             ═══════════════════════════════════════ -->
+        <div id="resultView" class="view">
+
+            <!-- Hero -->
+            <div class="result-hero">
+                <div id="resultIcon" class="result-icon pass">🎉</div>
+                <h2 id="resultTitle" class="pass">Congratulations!</h2>
+                <p id="resultSubtitle" class="result-subtitle">You've demonstrated strong knowledge</p>
+            </div>
+
+            <!-- Score Ring -->
+            <div class="result-ring-wrap">
+                <div class="result-ring">
+                    <svg viewBox="0 0 160 160">
+                        <circle class="ring-bg" cx="80" cy="80" r="65"></circle>
+                        <circle id="ringFill" class="ring-fill pass" cx="80" cy="80" r="65" stroke-dasharray="408.41"
+                            stroke-dashoffset="408.41"></circle>
+                    </svg>
+                    <div class="ring-text">
+                        <span id="ringPercent" class="ring-percent">0%</span>
+                        <span class="ring-label">Score</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Score Cards -->
+            <div class="score-cards">
+                <div class="score-card">
+                    <div class="score-label">Correct</div>
+                    <div id="scoreCorrect" class="score-value green">0</div>
+                </div>
+                <div class="score-card">
+                    <div class="score-label">Wrong</div>
+                    <div id="scoreWrong" class="score-value red">0</div>
+                </div>
+                <div class="score-card">
+                    <div class="score-label">Skipped</div>
+                    <div id="scoreUnanswered" class="score-value orange">0</div>
+                </div>
+                <div class="score-card">
+                    <div class="score-label">Time Taken</div>
+                    <div id="scoreTime" class="score-value primary">0m 0s</div>
+                </div>
+            </div>
+
+            <!-- Review Answers Button -->
+            <div class="result-actions" style="margin-bottom: 20px;">
+                <button class="btn-result review-btn" onclick="showReviewView()">
+                    📋 Review Answers
+                </button>
+            </div>
+
+            <!-- Certificate Button (shown when passed module quiz) -->
+            <div class="result-actions" id="certActionWrap" style="display:none; margin-bottom: 20px;">
+                <button class="btn-result primary" id="btnViewCert" onclick="goToCertificate()" style="background: linear-gradient(135deg, #C9A84C, #8B6914); border-color: #C9A84C;">
+                    🎓 View Certificate
+                </button>
+            </div>
+
+            <!-- Actions -->
+            <div class="result-actions">
+                <button class="btn-result primary" onclick="retakeQuiz()">🔄 Retake Quiz</button>
+                <button class="btn-result secondary" onclick="goBackToQuizzes()">← Back to Quizzes</button>
+            </div>
+        </div>
+
+        <!-- ═══════════════════════════════════════
+             VIEW 4: REVIEW ANSWERS
+             ═══════════════════════════════════════ -->
+        <div id="reviewView" class="view">
+            <div class="review-back-bar">
+                <button class="btn-back-results" onclick="backToResults()">
+                    ⬅️ Back to Results
+                </button>
+            </div>
+
+            <div class="review-section">
+                <h3 class="review-title">📋 Answer Review — <span id="reviewModuleName"></span></h3>
+                <div id="reviewContainer"></div>
+            </div>
+
+            <div class="review-back-bar bottom">
+                <button class="btn-back-results" onclick="backToResults()">
+                    ⬅️ Back to Results
+                </button>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- ═══ SUBMIT CONFIRMATION MODAL ═══ -->
+    <div id="submitModal" class="modal-overlay">
+        <div class="modal-box">
+            <h3>📤 Submit Quiz?</h3>
+            <p id="modalMessage">Are you sure you want to submit your quiz?</p>
+            <div class="modal-actions">
+                <button class="btn-cancel" onclick="closeModal()">Cancel</button>
+                <button class="btn-confirm" onclick="submitQuiz()">Submit</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast"></div>
+
+    <!-- ═══ FAQ CHATBOT ═══ -->
+    <button class="chatbot-toggle" id="chatbotToggle" onclick="toggleChatbot()" aria-label="Open FAQ Chat">
+        <span class="chatbot-toggle-icon">💬</span>
+        <span class="chatbot-toggle-pulse"></span>
+    </button>
+
+    <div class="chatbot-widget" id="chatbotWidget">
+        <div class="chatbot-header">
+            <div class="chatbot-header-info">
+                <span class="chatbot-avatar">🤖</span>
+                <div>
+                    <div class="chatbot-title">Quiz Helper</div>
+                    <div class="chatbot-subtitle">FAQ • Always Online</div>
+                </div>
+            </div>
+            <button class="chatbot-close" onclick="toggleChatbot()" aria-label="Close Chat">✕</button>
+        </div>
+        <div class="chatbot-messages" id="chatbotMessages">
+            <!-- Messages rendered by JS -->
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="../assets/js/navbar.js"></script>
+    <script src="../assets/js/quiz.js"></script>
+
+</body>
+
+</html>

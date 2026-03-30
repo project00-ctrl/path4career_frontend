@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live Power BI (DAX) Editor - CareerPath</title>
+    <link rel="stylesheet" href="../../assets/css/editor.css">
+    <style>
+        :root {
+            --pbi-yellow: #f2c811;
+            --pbi-black: #333333;
+            --pbi-bg: #111111;
+        }
+
+        .header {
+            border-bottom: 2px solid var(--pbi-yellow);
+        }
+
+        .run-btn {
+            background-color: var(--pbi-yellow);
+        }
+
+        .run-btn:hover {
+            background-color: #d4ae0f;
+        }
+
+        #excelInput { 
+            color: var(--pbi-yellow); 
+            background: transparent;
+        }
+
+        .pbi-workspace {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            background-color: var(--pbi-bg);
+        }
+
+        .formula-bar {
+            display: flex;
+            align-items: center;
+            padding: 10px 20px;
+            background-color: #1e1e2f;
+            border-bottom: 1px solid #333;
+        }
+
+        .formula-label {
+            color: var(--pbi-yellow);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-size: 14px;
+            margin-right: 10px;
+            font-weight: bold;
+        }
+
+        #formulaInput {
+            flex: 1;
+            background-color: #0a0a23;
+            color: #fff;
+            font-family: 'Consolas', 'Courier New', monospace;
+            font-size: 14px;
+            padding: 8px 12px;
+            border: 1px solid #333;
+            border-radius: 4px;
+            outline: none;
+        }
+
+        #formulaInput:focus {
+            border-color: var(--pbi-yellow);
+        }
+
+        .view-tabs {
+            display: flex;
+            background-color: #252526;
+            padding: 0 20px;
+        }
+
+        .view-tab {
+            padding: 10px 20px;
+            color: #ccc;
+            cursor: pointer;
+            font-size: 13px;
+        }
+
+        .view-tab.active {
+            background-color: var(--pbi-bg);
+            color: var(--pbi-yellow);
+            border-top: 2px solid var(--pbi-yellow);
+        }
+
+        .spreadsheet-container {
+            flex: 3;
+            overflow: auto;
+            padding: 20px;
+            background-color: var(--pbi-bg);
+        }
+
+        .spreadsheet {
+            display: grid;
+            grid-template-columns: 40px repeat(10, 120px);
+            border: 1px solid #333;
+        }
+
+        .cell-header {
+            background-color: #252526;
+            color: #aaa;
+            padding: 8px;
+            text-align: center;
+            font-size: 12px;
+            font-weight: bold;
+            border-right: 1px solid #333;
+            border-bottom: 1px solid #333;
+        }
+
+        .cell {
+            background-color: #1e1e1e;
+            border-right: 1px solid #333;
+            border-bottom: 1px solid #333;
+            min-height: 30px;
+            color: #fff;
+            padding: 4px 8px;
+            font-size: 13px;
+        }
+
+        .cell.selected {
+            box-shadow: inset 0 0 0 2px var(--pbi-yellow);
+        }
+
+        .viz-pane {
+            flex: 2;
+            background-color: #fff;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-top: 2px solid #333;
+        }
+
+        .chart-mock {
+            width: 80%;
+            height: 80%;
+            border: 1px dashed #ccc;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: #666;
+        }
+
+        .results-pane {
+            background-color: #1e1e2f;
+            border-top: 2px solid #333;
+            padding: 15px 20px;
+            max-height: 150px;
+            overflow-y: auto;
+        }
+
+        .results-pane h4 {
+            margin: 0 0 10px 0;
+            color: var(--pbi-yellow);
+            font-size: 12px;
+            text-transform: uppercase;
+        }
+
+        .log-entry {
+            font-family: 'Consolas', monospace;
+            font-size: 13px;
+            color: #cbd5e1;
+            padding: 4px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h2><span style="color: var(--pbi-yellow);">📊</span> Power BI DAX Studio</h2>
+        <button class="run-btn" id="runBtn">Evaluate DAX</button>
+    </div>
+    
+    <div class="pbi-workspace">
+        <div class="formula-bar">
+            <span class="formula-label">DAX =</span>
+            <input type="text" id="formulaInput" placeholder="Enter DAX expression (e.g., Total Sales = SUM(Sales[Amount]))" />
+        </div>
+
+        <div class="view-tabs">
+            <div class="view-tab active" id="dataTab">Data View</div>
+            <div class="view-tab" id="reportTab">Report View</div>
+        </div>
+        
+        <div class="spreadsheet-container" id="dataView">
+            <div class="spreadsheet" id="spreadsheet">
+                <!-- Headers and data will be generated by JavaScript -->
+            </div>
+        </div>
+
+        <div class="spreadsheet-container" id="reportView" style="display: none; background-color: #f3f3f3;">
+            <div style="padding: 20px; height: 100%; display: flex; flex-direction: column; gap: 20px;">
+                <div style="display: flex; gap: 20px; height: 200px;">
+                    <div style="flex: 1; background: white; border-radius: 4px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); padding: 15px; display: flex; flex-direction: column;">
+                        <h5 style="margin: 0 0 10px 0; color: #333; font-size: 14px;">Sales by Category</h5>
+                        <div style="flex: 1; display: flex; align-items: flex-end; gap: 10px; padding-bottom: 10px;">
+                            <div style="flex: 1; background: #f2c811; height: 100%; position: relative;" title="Tech: 2450">
+                                <span style="position: absolute; bottom: -20px; width: 100%; text-align: center; font-size: 10px; color: #666;">Tech</span>
+                            </div>
+                            <div style="flex: 1; background: #333; height: 45%; position: relative;" title="Office: 450">
+                                <span style="position: absolute; bottom: -20px; width: 100%; text-align: center; font-size: 10px; color: #666;">Office</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="flex: 1; background: white; border-radius: 4px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); padding: 15px; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                        <h5 style="margin: 0 0 10px 0; color: #333; font-size: 14px; width: 100%;">Total Sales (KPI)</h5>
+                        <div style="font-size: 36px; font-weight: bold; color: #f2c811;">$2,900</div>
+                        <div style="font-size: 12px; color: #888;">Current Period</div>
+                    </div>
+                </div>
+                <div style="flex: 1; background: white; border-radius: 4px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); padding: 15px;">
+                    <h5 style="margin: 0 0 10px 0; color: #333; font-size: 14px;">Product Performance Table</h5>
+                    <table style="width: 100%; border-collapse: collapse; font-size: 12px;">
+                        <thead>
+                            <tr style="border-bottom: 1px solid #eee; text-align: left; color: #888;">
+                                <th style="padding: 8px;">Product</th>
+                                <th style="padding: 8px;">Sales</th>
+                                <th style="padding: 8px;">Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td style="padding: 8px;">Laptop</td><td style="padding: 8px;">$1,200</td><td style="padding: 8px; color: green;">● High</td></tr>
+                            <tr><td style="padding: 8px;">Phone</td><td style="padding: 8px;">$800</td><td style="padding: 8px; color: green;">● High</td></tr>
+                            <tr><td style="padding: 8px;">Monitor</td><td style="padding: 8px;">$450</td><td style="padding: 8px; color: orange;">● Mid</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="results-pane" id="resultsPane">
+            <h4>DAX Measure Results</h4>
+            <div id="logEntries"></div>
+        </div>
+    </div>
+
+    <script>
+const tableData = [
+            { id: 1, Product: 'Laptop', Category: 'Tech', Sales: 1200, Date: '2023-01-01' },
+            { id: 2, Product: 'Phone', Category: 'Tech', Sales: 800, Date: '2023-01-02' },
+            { id: 3, Product: 'Desk', Category: 'Office', Sales: 300, Date: '2023-01-03' },
+            { id: 4, Product: 'Chair', Category: 'Office', Sales: 150, Date: '2023-01-04' },
+            { id: 5, Product: 'Monitor', Category: 'Tech', Sales: 450, Date: '2023-01-05' },
+        ];
+
+        const spreadsheet = document.getElementById('spreadsheet');
+        const formulaInput = document.getElementById('formulaInput');
+        const logEntries = document.getElementById('logEntries');
+        const runBtn = document.getElementById('runBtn');
+
+        function initDataView() {
+            spreadsheet.innerHTML = '';
+            const columns = Object.keys(tableData[0]);
+            
+            // Grid columns style
+            spreadsheet.style.gridTemplateColumns = `40px repeat(${columns.length}, 150px)`;
+
+            // Corner
+            const corner = document.createElement('div');
+            corner.className = 'cell-header';
+            spreadsheet.appendChild(corner);
+
+            // Column Headers
+            columns.forEach(col => {
+                const header = document.createElement('div');
+                header.className = 'cell-header';
+                header.textContent = col;
+                spreadsheet.appendChild(header);
+            });
+
+            // Rows
+            tableData.forEach((row, idx) => {
+                const rowHeader = document.createElement('div');
+                rowHeader.className = 'cell-header';
+                rowHeader.textContent = idx + 1;
+                spreadsheet.appendChild(rowHeader);
+
+                columns.forEach(col => {
+                    const cell = document.createElement('div');
+                    cell.className = 'cell';
+                    cell.textContent = row[col];
+                    spreadsheet.appendChild(cell);
+                });
+            });
+        }
+
+        function evaluateDAX() {
+            logEntries.innerHTML = '';
+            const expression = formulaInput.value.trim();
+            
+            if (!expression) {
+                addLog('Please enter a DAX expression.', 'error');
+                return;
+            }
+
+            try {
+                // Mock DAX engine
+                let result = '';
+                
+                if (expression.toUpperCase().includes('SUM(SALES[AMOUNT])') || expression.toUpperCase().includes('SUM(SALES)')) {
+                    const total = tableData.reduce((acc, current) => acc + current.Sales, 0);
+                    result = `Measure [Total Sales] = ${total}`;
+                } 
+                else if (expression.toUpperCase().includes('AVERAGE(SALES[AMOUNT])')) {
+                    const avg = tableData.reduce((acc, current) => acc + current.Sales, 0) / tableData.length;
+                    result = `Measure [Avg Sales] = ${avg}`;
+                }
+                else if (expression.toUpperCase().includes('COUNT(SALES)')) {
+                    result = `Measure [Transactions] = ${tableData.length}`;
+                }
+                else {
+                    // Try to evaluate basic math or unknown measures
+                    result = `Expression evaluated. (Mock Result: 2900)`;
+                }
+
+                addLog(result, 'success');
+                addLog('Note: This is a simulated DAX environment for tutorial purposes.', '');
+            } catch (e) {
+                addLog('Error evaluating DAX: ' + e.message, 'error');
+            }
+        }
+
+        function addLog(message, type) {
+            const entry = document.createElement('div');
+            entry.className = `log-entry ${type}`;
+            entry.textContent = message;
+            logEntries.appendChild(entry);
+        }
+
+        runBtn.addEventListener('click', evaluateDAX);
+
+        formulaInput.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') evaluateDAX();
+        });
+
+        // Load saved code from localStorage
+        function loadSavedCode() {
+            const savedCode = localStorage.getItem('careerPathPowerBICode');
+            if (savedCode) {
+                formulaInput.value = savedCode;
+                evaluateDAX();
+            }
+        }
+
+        const dataTab = document.getElementById('dataTab');
+        const reportTab = document.getElementById('reportTab');
+        const dataView = document.getElementById('dataView');
+        const reportView = document.getElementById('reportView');
+
+        function switchView(viewName) {
+            if (viewName === 'data') {
+                dataTab.classList.add('active');
+                reportTab.classList.remove('active');
+                dataView.style.display = 'block';
+                reportView.style.display = 'none';
+            } else {
+                dataTab.classList.remove('active');
+                reportTab.classList.add('active');
+                dataView.style.display = 'none';
+                reportView.style.display = 'block';
+            }
+        }
+
+        dataTab.addEventListener('click', () => switchView('data'));
+        reportTab.addEventListener('click', () => switchView('report'));
+
+        initDataView();
+        loadSavedCode();
+</script>
+</body>
+</html>

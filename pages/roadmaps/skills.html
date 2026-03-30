@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skill Map | Path4Career</title>
+    <link rel="stylesheet" href="../../assets/css/navbar.css">
+    <link rel="stylesheet" href="../../assets/css/skills.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- SHARED NAVBAR (injected by navbar.js) -->
+    <div id="navbar-root"></div>
+
+    <!-- SKILLS CONTENT -->
+    <section class="modules-section">
+        <h1 id="courseTitle" class="title"></h1>
+        <div id="courseMeta"></div>
+        <div id="progressBar"></div>
+        <div id="quizPrompt"></div>
+        <div id="skillTimeline" class="skill-timeline"></div>
+    </section>
+
+    <script src="../../assets/js/navbar.js"></script>
+    <script>
+        // ===========================
+        // CONFIG
+        // ===========================
+        const API_BASE = "https://path4career-backend.onrender.com";
+        let tutorialFileMap = {};
+
+        async function loadTutorialConfig() {
+            try {
+                const res = await fetch("../../assets/data/tutorials-config.json");
+                if (!res.ok) throw new Error("Config not found");
+                const config = await res.json();
+                config.tutorials.forEach(t => {
+                    tutorialFileMap[t.name.toLowerCase()] = t.file;
+                });
+            } catch (err) {
+                console.warn("Could not load tutorials-config.json:", err);
+            }
+        }
+
+        // ===========================
+        // AUTH HELPER
+        // ===========================
+        function getAuthToken() {
+            const cookies = document.cookie.split(';');
+            for (const cookie of cookies) {
+                const [name, value] = cookie.trim().split('=');
+                if (name === 'AUTH_TOKEN') return value;
+            }
+            return localStorage.getItem('AUTH_TOKEN') || localStorage.getItem('token');
+        }
+
+        // ===========================
+        // STATE
+        // ===========================
+        const params = new URLSearchParams(window.location.search);
+        const courseId = params.get("courseId");
+        const titleEl = document.getElementById("courseTitle");
+        const metaEl = document.getElementById("courseMeta");
+        const progressEl = document.getElementById("progressBar");
+        const timeline = document.getElementById("skillTimeline");
+
+        let allSkills = [];
+        let completedSkillIds = [];
+
+        if (!courseId) {
+            titleEl.textContent = "No Course Selected";
+            timeline.innerHTML = "<p class='skill-empty'>Go back to <a href='roadmaps.html' style='color:#4A6CF7'>Courses</a> and select one.</p>";
+        } else {
+            init();
+        }
+
+        async function init() {
+            await loadTutorialConfig();
+            await loadCompletedSkills();
+            await loadCourseSkills();
+        }
+
+        // ===========================
+        // FETCH COMPLETED SKILLS FROM API
+        // ===========================
+        async function loadCompletedSkills() {
+            const token = getAuthToken();
+            if (!token) {
+                // Not logged in — fall back to localStorage
+                completedSkillIds = [];
+                return;
+            }
+            try {
+                const res = await fetch(`${API_BASE}/api/v1/tutorials/completed`, {
+                    headers: { 'Authorization': `Bearer ${token}` }
+                });
+                if (res.ok) {
+                    completedSkillIds = await res.json();
+                } else {
+                    completedSkillIds = [];
+                }
+            } catch (err) {
+                console.warn("Could not load completed skills from API:", err);
+                completedSkillIds = [];
+            }
+        }
+
+        // ===========================
+        // COMPLETION HELPERS
+        // ===========================
+        function isSkillCompleted(skillId) {
+            return completedSkillIds.includes(skillId);
+        }
+
+        // ===========================
+        // PROGRESS BAR
+        // ===========================
+        function renderProgressBar() {
+            const total = allSkills.length;
+            if (total === 0) { progressEl.innerHTML = ""; return; }
+
+            const done = allSkills.filter(s => isSkillCompleted(s.id)).length;
+            const pct = Math.round((done / total) * 100);
+
+            progressEl.innerHTML = `
+                <div class="skill-progress-summary">
+                    <div class="skill-progress-bar-bg">
+                        <div class="skill-progress-bar-fill" id="progressFill"></div>
+                    </div>
+                    <span class="skill-progress-text">${done} / ${total} completed</span>
+                </div>
+            `;
+
+            requestAnimationFrame(() => {
+                const fill = document.getElementById("progressFill");
+                if (fill) fill.style.width = pct + "%";
+            });
+
+            // Show quiz prompt when 100% completed
+            renderQuizPrompt(pct);
+        }
+
+        async function renderQuizPrompt(pct) {
+            const quizPromptEl = document.getElementById('quizPrompt');
+            if (!quizPromptEl) return;
+
+            if (pct < 100) {
+                quizPromptEl.innerHTML = '';
+                return;
+            }
+
+            const token = getAuthToken();
+            let hasPassed = false;
+            let bestScore = null;
+
+            if (token && courseId) {
+                try {
+                    const res = await fetch(`${API_BASE}/api/v1/modules/${courseId}/quiz-eligibility`, {
+                        headers: { 'Authorization': 'Bearer ' + token }
+                    });
+                    if (res.ok) {
+                        const data = await res.json();
+                        hasPassed = data.bestPassed || false;
+                        bestScore = data.bestScore || null;
+                    }
+                } catch (err) {
+                    console.warn('Could not check quiz eligibility:', err);
+                }
+            }
+
+            let buttonText = '🎓 Take Certification Quiz';
+            let subtitleText = 'You\'ve completed all skills! Take the quiz to earn your certificate.';
+
+            if (hasPassed) {
+                buttonText = '🔄 Retake Certification Quiz';
+                subtitleText = `You passed with ${bestScore}%! Want to try for a higher score?`;
+            } else if (bestScore !== null) {
+                buttonText = '🔄 Retake Certification Quiz';
+                subtitleText = `Previous best: ${bestScore}%. You need 60% to pass.`;
+            }
+
+            // Certificate download button (only shown when passed)
+            const certButton = hasPassed
+                ? `<a href="../certificate.html?moduleId=${courseId}" class="quiz-prompt-btn cert-download-btn" style="background: linear-gradient(135deg, #C9A84C, #8B6914); border-color: #C9A84C;">
+                       📜 Download Certificate
+                   </a>`
+                : '';
+
+            quizPromptEl.innerHTML = `
+                <div class="quiz-prompt-card">
+                    <div class="quiz-prompt-icon">🏆</div>
+                    <div class="quiz-prompt-content">
+                        <h3>Module Certification Quiz</h3>
+                        <p>${subtitleText}</p>
+                    </div>
+                    <div class="quiz-prompt-actions" style="display:flex; gap:10px; flex-wrap:wrap;">
+                        ${certButton}
+                        <a href="../quiz.html?moduleId=${courseId}" class="quiz-prompt-btn">
+                            ${buttonText}
+                        </a>
+                    </div>
+                </div>
+            `;
+        }
+
+        // ===========================
+        // REFRESH UI ON COMPLETION
+        // ===========================
+        function refreshCompletionUI() {
+            allSkills.forEach(skill => {
+                const row = document.getElementById(`skill-row-${skill.id}`);
+                const cb = document.getElementById(`skill-cb-${skill.id}`);
+                if (!row || !cb) return;
+                const done = isSkillCompleted(skill.id);
+                cb.checked = done;
+                row.classList.toggle("completed", done);
+            });
+            renderProgressBar();
+        }
+
+        // ===========================
+        // LOAD & RENDER
+        // ===========================
+        async function loadCourseSkills() {
+            try {
+                const res = await fetch(`${API_BASE}/api/user/modules/${courseId}`);
+                if (!res.ok) throw new Error("Course not found");
+                const data = await res.json();
+
+                titleEl.textContent = data.name + " — Skill Map";
+
+                const duration = data.durationValue
+                    ? `${data.durationValue} ${(data.durationUnit || "").toLowerCase()}`
+                    : "-";
+
+                metaEl.innerHTML = `
+                    <div class="course-meta">
+                        <p><strong>Difficulty:</strong> ${data.difficulty || "-"}</p>
+                        <p><strong>Duration:</strong> ${duration}</p>
+                    </div>
+                `;
+
+                if (!data.skills || data.skills.length === 0) {
+                    timeline.innerHTML = "<p class='skill-empty'>No skills in this module yet.</p>";
+                    return;
+                }
+
+                allSkills = data.skills.map((s, i) => ({ ...s, _index: i }));
+                renderProgressBar();
+
+                data.skills.forEach((skill, index) => {
+                    const tutorialFile = skill.tutorialId ? tutorialFileMap[skill.tutorialId] : null;
+                    const completed = isSkillCompleted(skill.id);
+                    const levelClass = (skill.level || "").toLowerCase().replace(/\s/g, "");
+
+                    // Tutorial button or fallback
+                    const tutorialBtn = tutorialFile
+                        ? `<a href="../tutorial.html?course=${tutorialFile}&skillId=${skill.id}&moduleId=${courseId}"
+                             class="skill-tutorial-btn"
+                             onclick="handleTutorialOpen(event, ${skill.id}, '${tutorialFile}')">
+                             📖 Open Tutorial
+                           </a>`
+                        : `<span class="skill-no-tutorial">No tutorial linked</span>`;
+
+                    const row = document.createElement("div");
+                    row.className = `skill-row${completed ? " completed" : ""}`;
+                    row.id = `skill-row-${skill.id}`;
+                    row.style.animationDelay = `${index * 0.06}s`;
+
+                    row.innerHTML = `
+                        <div class="skill-checkbox-wrap" title="${completed ? 'Completed' : 'Complete the tutorial to check this off'}">
+                            <input type="checkbox" id="skill-cb-${skill.id}"
+                                   ${completed ? "checked" : ""}
+                                   onclick="return false;" />
+                        </div>
+
+                        <div class="skill-info">
+                            <div class="skill-name-row">
+                                <h3>${skill.name}</h3>
+                                ${skill.level ? `<span class="skill-level-badge ${levelClass}">${skill.level}</span>` : ""}
+                            </div>
+                            ${skill.category ? `<p class="skill-category-tag">${skill.category}</p>` : ""}
+                            ${skill.description ? `<p class="skill-desc">${skill.description}</p>` : ""}
+                        </div>
+
+                        ${tutorialBtn}
+                    `;
+
+                    timeline.appendChild(row);
+                });
+
+            } catch (err) {
+                console.error(err);
+                titleEl.textContent = "Course Not Found";
+                timeline.innerHTML = "<p class='skill-empty' style='color:#f66;'>Failed to load course. Is the backend running?</p>";
+            }
+        }
+
+        // ===========================
+        // TUTORIAL OPEN HANDLER
+        // ===========================
+        function handleTutorialOpen(event, skillId, tutorialFile) {
+            // Store that this skill's tutorial was opened
+            localStorage.setItem(`skill_started_${courseId}_${skillId}`, "true");
+        }
+
+        // ===========================
+        // DETECT COMPLETION ON RETURN
+        // ===========================
+        // When user returns from tutorial tab, re-fetch from API
+        document.addEventListener("visibilitychange", async () => {
+            if (document.visibilityState === "visible") {
+                await loadCompletedSkills();
+                refreshCompletionUI();
+            }
+        });
+
+        // Also listen for storage events (cross-tab, backward compatibility)
+        window.addEventListener("storage", async (e) => {
+            if (e.key && e.key.startsWith("skill_completed_")) {
+                await loadCompletedSkills();
+                refreshCompletionUI();
+            }
+        });
+    </script>
+</body>
+
+</html>

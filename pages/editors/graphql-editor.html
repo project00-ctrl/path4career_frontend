@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GraphQL Playground - CareerPath</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../../assets/css/editor.css">
+    <style>
+        :root {
+            --gql-primary: #e10098;
+            --gql-bg: #0b0e14;
+            --gql-surface: #171c24;
+            --gql-text: #f8fafc;
+        }
+
+        .gql-playground {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            padding: 20px;
+            height: calc(100vh - 80px);
+            background-color: var(--gql-bg);
+            color: var(--gql-text);
+        }
+
+        .editor-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            flex: 1;
+            min-height: 0;
+        }
+
+        .pane {
+            background-color: var(--gql-surface);
+            border-radius: 12px;
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+        }
+
+        .pane-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+            padding-bottom: 5px;
+            border-bottom: 1px solid #2d3748;
+        }
+
+        .pane-title {
+            font-weight: bold;
+            color: #94a3b8;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .run-btn {
+            background: linear-gradient(135deg, #e10098, #ff00ba);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s;
+            box-shadow: 0 4px 6px rgba(225, 0, 152, 0.3);
+        }
+
+        .run-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 15px rgba(225, 0, 152, 0.5);
+        }
+
+        .editor-split {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            height: 100%;
+        }
+
+        textarea {
+            width: 100%;
+            background-color: #0b0e14;
+            color: #ff9800;
+            border: 1px solid #2d3748;
+            border-radius: 6px;
+            padding: 12px;
+            font-family: 'Fira Code', 'Courier New', Courier, monospace;
+            font-size: 14px;
+            resize: none;
+            outline: none;
+        }
+
+        #queryInput { flex: 2; color: #00e5ff; }
+        #variablesInput { flex: 1; color: #a5d6a7; }
+
+        .result-area {
+            flex: 1;
+            background-color: #0b0e14;
+            border-radius: 6px;
+            padding: 15px;
+            overflow-y: auto;
+            font-family: 'Fira Code', 'Courier New', Courier, monospace;
+            white-space: pre-wrap;
+            color: #cbd5e1;
+            border: 1px solid #2d3748;
+        }
+
+        .header h2 span { color: var(--gql-primary) !important; }
+        
+        .hint {
+            font-size: 0.8rem;
+            color: #64748b;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div style="display: flex; align-items: center; gap: 15px;">
+            <a href="../index.html" style="color: var(--gql-primary); text-decoration: none; font-size: 14px;">← Back</a>
+            <h2><span>◈</span> GraphQL Playground</h2>
+        </div>
+    </div>
+
+    <div class="gql-playground">
+        <div class="editor-container">
+            <div class="editor-split">
+                <div class="pane" style="height: 100%;">
+                    <div class="pane-header">
+                        <span class="pane-title">Query / Mutation</span>
+                        <button class="run-btn" id="runBtn" title="Execute Query">▶</button>
+                    </div>
+                    <textarea id="queryInput" spellcheck="false" placeholder="# Write your query here..."></textarea>
+                    
+                    <div class="pane-header" style="margin-top: 15px;">
+                        <span class="pane-title">Variables (JSON)</span>
+                    </div>
+                    <textarea id="variablesInput" spellcheck="false" placeholder="{}"></textarea>
+                </div>
+            </div>
+
+            <div class="pane">
+                <div class="pane-header">
+                    <span class="pane-title">Response</span>
+                </div>
+                <div class="result-area" id="resultArea">{
+  "data": {}
+}</div>
+                <div class="hint">Simulation: Use the queries from the tutorial to see mock results.</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+const queryInput = document.getElementById('queryInput');
+        const variablesInput = document.getElementById('variablesInput');
+        const runBtn = document.getElementById('runBtn');
+        const resultArea = document.getElementById('resultArea');
+
+        // Load passed code from local storage
+        const savedCode = localStorage.getItem('careerPathGraphQLCode');
+        if (savedCode) {
+            if (savedCode.trim().startsWith('{')) {
+                // If it looks like JSON/Result, maybe it was a variable or result
+                resultArea.textContent = savedCode;
+            } else {
+                queryInput.value = savedCode;
+            }
+        }
+
+        runBtn.addEventListener('click', () => {
+            const query = queryInput.value.trim();
+            let variables = {};
+            
+            try {
+                if (variablesInput.value.trim()) {
+                    variables = JSON.parse(variablesInput.value);
+                }
+            } catch (e) {
+                resultArea.textContent = JSON.stringify({ errors: [{ message: "Invalid JSON in Variables" }] }, null, 2);
+                return;
+            }
+
+            resultArea.innerHTML = '<span style="color: #e10098">Executing query...</span>';
+
+            setTimeout(() => {
+                let response = { data: {} };
+                
+                // Simple Mock Logic
+                if (query.includes('...')) {
+                    // Fragment usage detected
+                    response.text = "Fragment detected! Returning object fields...";
+                }
+
+                if (query.includes('user') || query.includes('GetUser')) {
+                    response.data.user = {
+                        id: variables.userId || (variables.input ? variables.input.id : "123"),
+                        username: variables.input ? (variables.input.name || "CareerPathUser") : "CareerPathUser",
+                        email: variables.input ? variables.input.email : "user@careerpath.com",
+                        role: "Student"
+                    };
+                } else if (query.includes('hero')) {
+                    response.data.hero = {
+                        name: "R2-D2",
+                        friends: [{ name: "Luke Skywalker" }, { name: "Han Solo" }]
+                    };
+                } else if (query.includes('__schema')) {
+                    response.data.__schema = {
+                        types: [
+                            { name: "Query", kind: "OBJECT" },
+                            { name: "User", kind: "OBJECT" },
+                            { name: "Product", kind: "OBJECT" },
+                            { name: "UserRole", kind: "ENUM" }
+                        ]
+                    };
+                } else if (query.includes('products')) {
+                    response.data.products = [
+                        { name: "GraphQL Book", price: 45 },
+                        { name: "Apollo Shirt", price: 20 }
+                    ];
+                } else if (query.includes('subscription')) {
+                    response.data = {
+                        message: "Subscription started successfully! Listening for updates...",
+                        channel: "WebSocket/Realtime"
+                    };
+                } else if (query.includes('mutation') || query.includes('createUser')) {
+                    response.data.createUser = {
+                        id: Math.floor(Math.random() * 1000).toString(),
+                        name: (variables.input && variables.input.name) || variables.name || "New User",
+                        createdAt: new Date().toISOString()
+                    };
+                } else {
+                    response.data = {
+                        message: "GraphQL query received!",
+                        timestamp: new Date().toISOString()
+                    };
+                }
+
+                resultArea.textContent = JSON.stringify(response, null, 2);
+            }, 500);
+        });
+</script>
+</body>
+</html>

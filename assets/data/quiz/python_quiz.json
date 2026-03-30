@@ -1,0 +1,362 @@
+[
+    {
+        "id": "python-1",
+        "question": "What is Python?",
+        "options": [
+            "A species of large snakes.",
+            "A high-level, general-purpose programming language known for its simple, readable syntax.",
+            "A web browser developed by Google.",
+            "An archaic low-level machine code compiler."
+        ],
+        "correctAnswer": 1,
+        "explanation": "Python is famously designed to read almost like plain English, allowing you to build everything from background scripts to highly complex Machine Learning architectures."
+    },
+    {
+        "id": "python-2",
+        "question": "Which of the following describes Python's structural block definition mechanism?",
+        "options": [
+            "Strictly curly braces {}",
+            "Parentheses ()",
+            "Mandatory indentation (spaces/tabs)",
+            "Begin and End keywords"
+        ],
+        "correctAnswer": 2,
+        "explanation": "Unlike Java or JavaScript, Python enforces severe indentation discipline to group blocks of code safely together (like loops or condition statements)."
+    },
+    {
+        "id": "python-3",
+        "question": "How do you designate a line strictly as a single-line comment in Python?",
+        "options": [
+            "// This is a comment",
+            "/* This is a comment */",
+            "# This is a comment",
+            "-- This is a comment"
+        ],
+        "correctAnswer": 2,
+        "explanation": "The hash (#) symbol renders the remainder of the line entirely invisible to the Python compiler."
+    },
+    {
+        "id": "python-4",
+        "question": "Python relies on 'Dynamic Typing'. What does this mean fundamentally?",
+        "options": [
+            "You cannot change variable values after creating them.",
+            "You do NOT have to explicitly declare a variable's type (like string or int) before dynamically assigning it a value.",
+            "You must write code incredibly fast.",
+            "Python automatically generates keyboards dynamically."
+        ],
+        "correctAnswer": 1,
+        "explanation": "Python intercepts variables dynamically upon assignment, allowing you to instantly swap variables from an integer (x = 5) to a string (x = 'hello')."
+    },
+    {
+        "id": "python-5",
+        "question": "Which Python native Data Type would logically store a decimal value exactly like '3.14'?",
+        "options": [
+            "int",
+            "str",
+            "bool",
+            "float"
+        ],
+        "correctAnswer": 3,
+        "explanation": "A float represents real numbers written forcefully with a decimal point dividing the integer and fractional structural parts."
+    },
+    {
+        "id": "python-6",
+        "question": "Which of the following is extremely NOT a standard built-in logical operator in Python?",
+        "options": [
+            "and",
+            "or",
+            "xor",
+            "not"
+        ],
+        "correctAnswer": 2,
+        "explanation": "Python favors English-based logical keywords (and, or, not) over symbolic ones (&&, ||). 'xor' requires bitwise logic (^), not basic conditionals."
+    },
+    {
+        "id": "python-7",
+        "question": "What is fundamentally distinct about a Python Tuple compared to a Python List?",
+        "options": [
+            "Tuples are dramatically slower.",
+            "Lists use parentheses () while Tuples use brackets [].",
+            "Tuples are brutally immutable (cannot be altered once initialized).",
+            "Tuples can only desperately hold numbers."
+        ],
+        "correctAnswer": 2,
+        "explanation": "Lists allow infinite appending and removing. Tuples lock data entirely, preventing accidental alteration within complex architectures."
+    },
+    {
+        "id": "python-8",
+        "question": "What happens if you violently attempt to insert a completely duplicate key natively into a standard Python Dictionary?",
+        "options": [
+            "It generates a duplicate entry.",
+            "It quietly updates and fiercely overrides the value associated with the pre-existing key.",
+            "It violently crashes the Python interpreter.",
+            "It alerts the user immediately."
+        ],
+        "correctAnswer": 1,
+        "explanation": "Dictionaries strictly require rigorously unique keys. Reusing a key simply mutates the old stored object dynamically."
+    },
+    {
+        "id": "python-9",
+        "question": "Which structural keyword functions exclusively as an 'else if' condition statement in Python?",
+        "options": [
+            "elseif",
+            "else if",
+            "elif",
+            "if_else"
+        ],
+        "correctAnswer": 2,
+        "explanation": "If the initial 'if' triggers false, the code systematically evaluates chained 'elif' statements securely before falling sequentially to the 'else' block."
+    },
+    {
+        "id": "python-10",
+        "question": "Which loop actively relies comprehensively on a Boolean equation forcefully evaluating directly to True?",
+        "options": [
+            "For Loop",
+            "ForEach Loop",
+            "Do-While Loop",
+            "While Loop"
+        ],
+        "correctAnswer": 3,
+        "explanation": "The 'while' loop executes infinite logical blocks systematically until the controlling variable conditions actively degrade to False."
+    },
+    {
+        "id": "python-11",
+        "question": "Which keyword acts aggressively to build a reusable, custom functional logic block natively in Python?",
+        "options": [
+            "function",
+            "fun",
+            "build",
+            "def"
+        ],
+        "correctAnswer": 3,
+        "explanation": "You explicitly 'define' logic execution blocks using 'def', sequentially wrapping repetitive routines cleanly for modular injection."
+    },
+    {
+        "id": "python-12",
+        "question": "When forcefully reading an external .txt document natively, what command gracefully acquires the entire file contents?",
+        "options": [
+            "f.readline()",
+            "f.pull()",
+            "f.read()",
+            "f.execute()"
+        ],
+        "correctAnswer": 2,
+        "explanation": "The f.read() syntax aggressively swallows the entire raw opened file sequentially acting into a single memory-mapped string."
+    },
+    {
+        "id": "python-13",
+        "question": "When systematically importing an external massive library securely into your active file, what keyword functions natively?",
+        "options": [
+            "require",
+            "include",
+            "import",
+            "using"
+        ],
+        "correctAnswer": 2,
+        "explanation": "Like most modern interpreted architectures, 'import math' dynamically connects the Python module completely seamlessly into the localized operating scope."
+    },
+    {
+        "id": "python-14",
+        "question": "Which aggressively unique data structure explicitly refuses strictly duplicate numeric or string entries natively?",
+        "options": [
+            "List",
+            "Set",
+            "Tuple",
+            "Dictionary"
+        ],
+        "correctAnswer": 1,
+        "explanation": "Mathematical Sets intrinsically filter duplicate entries aggressively at insertion, acting perfectly for sweeping massive data-deduplication logic."
+    },
+    {
+        "id": "python-15",
+        "question": "Which string method systematically fragments a long sentence directly into an Array (List) cleanly utilizing spaces?",
+        "options": [
+            "string.break()",
+            "string.split()",
+            "string.tear()",
+            "string.divide()"
+        ],
+        "correctAnswer": 1,
+        "explanation": "The split() operator defaults specifically to whitespace, neatly cleanly chunking sequential lines iteratively into traversable parsed Strings."
+    },
+    {
+        "id": "python-16",
+        "question": "What is incredibly notable fundamentally about List Comprehensions globally?",
+        "options": [
+            "They strictly combine traditional for-loops elegantly with if-condition filtering compactly across a singular legible line.",
+            "They calculate math infinitely rapidly.",
+            "They compress raw local files seamlessly.",
+            "They parse JSON text fiercely into backend memory."
+        ],
+        "correctAnswer": 0,
+        "explanation": "List Comprehensions explicitly convert multi-line chaotic looping iterations efficiently into dense, expressive inline brackets []."
+    },
+    {
+        "id": "python-17",
+        "question": "What unique sequential function completely steps gracefully through iterative data exactly piece by piece?",
+        "options": [
+            "push()",
+            "move()",
+            "shift()",
+            "next()"
+        ],
+        "correctAnswer": 3,
+        "explanation": "Passing an initialized active IterObject fiercely to next() mechanically extracts the trailing immediate node forcefully."
+    },
+    {
+        "id": "python-18",
+        "question": "Which module explicitly manipulates active date timestamps accurately spanning sequential multi-year parameters?",
+        "options": [
+            "chrono",
+            "clock",
+            "time",
+            "datetime"
+        ],
+        "correctAnswer": 3,
+        "explanation": "The datetime package calculates precise exact time diffs iteratively across years, rigorously managing localized offsets dynamically."
+    },
+    {
+        "id": "python-19",
+        "question": "When parsing backend REST APIs natively, which built-in function cleanly transforms raw JSON strings directly into active internal Python Dictionaries?",
+        "options": [
+            "json.loads()",
+            "json.parse()",
+            "json.dumps()",
+            "json.build()"
+        ],
+        "correctAnswer": 0,
+        "explanation": "Strictly defined: Loads structurally 'Load-String' converts serialized logic gracefully natively into an explicit Python key-value dictionary."
+    },
+    {
+        "id": "python-20",
+        "question": "What built-in architecture strictly allows graceful recovery natively from disastrous code injection crashes?",
+        "options": [
+            "Try...Except blocks",
+            "If...Else walls",
+            "Break...Continue flags",
+            "Reset...Fail locks"
+        ],
+        "correctAnswer": 0,
+        "explanation": "Attempting violently risky network execution seamlessly within the 'try' parameter mechanically passes control iteratively to the 'except' boundary seamlessly."
+    },
+    {
+        "id": "python-21",
+        "question": "When strictly requesting active local interactive shell execution specifically from a human, which function operates?",
+        "options": [
+            "prompt()",
+            "input()",
+            "ask()",
+            "get()"
+        ],
+        "correctAnswer": 1,
+        "explanation": "Execution definitively halts natively at the input() function relentlessly until an Enter keystroke precisely captures string data locally."
+    },
+    {
+        "id": "python-22",
+        "question": "What structural feature intrinsically generates a closed sandbox cleanly preventing wildly conflicting PIP application libraries?",
+        "options": [
+            "Docker Modules",
+            "Pip Lockfiles",
+            "Git Branches",
+            "Virtual Environments (venv)"
+        ],
+        "correctAnswer": 3,
+        "explanation": "Configuring explicit isolated VEnvs firmly guarantees dependency requirements natively operate fiercely independently ignoring overall OS structural mismatches."
+    },
+    {
+        "id": "python-23",
+        "question": "Which Python keyword gracefully extracts exactly the numerical count fiercely detailing list length immediately?",
+        "options": [
+            "size()",
+            "len()",
+            "count()",
+            "length()"
+        ],
+        "correctAnswer": 1,
+        "explanation": "The ultra-compact len() wrapper explicitly queries arrays iteratively extracting structural depth firmly dynamically."
+    },
+    {
+        "id": "python-24",
+        "question": "Which foundational architecture strictly outlines isolated custom variables cleanly inside Object Oriented programming instances?",
+        "options": [
+            "Functions",
+            "Modules",
+            "Classes",
+            "Dictionaries"
+        ],
+        "correctAnswer": 2,
+        "explanation": "Classes rigorously define distinct blueprint attributes structurally enabling repetitive complex instantiation natively across deep logic bases."
+    },
+    {
+        "id": "python-25",
+        "question": "Which core internal OS structural library forcefully navigates and forcefully traverses local terminal directories inherently?",
+        "options": [
+            "dir",
+            "path",
+            "sys",
+            "os"
+        ],
+        "correctAnswer": 3,
+        "explanation": "Importing 'os' grants explicit local backend permission natively exposing mkdir(), listdir(), and getcwd() rigorously deeply."
+    },
+    {
+        "id": "python-26",
+        "question": "Which explicit Standard Module explicitly executes precise mathematical Pi and precise fractional Ceiling structural operations natively?",
+        "options": [
+            "compute",
+            "calc",
+            "math",
+            "numbers"
+        ],
+        "correctAnswer": 2,
+        "explanation": "The strictly embedded 'math' block completely manages absolute high-tolerance scientific computational routines firmly locally."
+    },
+    {
+        "id": "python-27",
+        "question": "If dynamically operating purely randomized logic routines natively, which library distinctly shuffles sequential deck array parameters seamlessly?",
+        "options": [
+            "mix",
+            "random",
+            "sort",
+            "shuffle"
+        ],
+        "correctAnswer": 1,
+        "explanation": "The 'random' structural module explicitly provides integer extraction fiercely handling pseudo-chaos routines elegantly seamlessly."
+    },
+    {
+        "id": "python-28",
+        "question": "What distinct terminal installation tool accurately downloads explicitly massive third-party package libraries flawlessly?",
+        "options": [
+            "Bower",
+            "APT",
+            "PIP",
+            "NPM"
+        ],
+        "correctAnswer": 2,
+        "explanation": "PIP explicitly handles native HTTP PyPI registry downloads flawlessly extracting massive external code configurations iteratively seamlessly."
+    },
+    {
+        "id": "python-29",
+        "question": "Which universally beloved, ubiquitous third-party explicitly handles HTTP Request calls precisely gracefully?",
+        "options": [
+            "urllib",
+            "requests",
+            "fetch",
+            "axios"
+        ],
+        "correctAnswer": 1,
+        "explanation": "The 'requests' PIP library distinctly radically simplifies massively clunky natively embedded HTTP web handlers fiercely perfectly."
+    },
+    {
+        "id": "python-30",
+        "question": "What exceptionally common explicit method specifically aids heavily inside explicit local terminal code structure debugging dynamically?",
+        "options": [
+            "Setting explicit try blocks.",
+            "Adding print() precisely frequently.",
+            "Querying json.dumps().",
+            "Exporting to CSV natively."
+        ],
+        "correctAnswer": 1,
+        "explanation": "The classic, ultra-rapid print() tracing cleanly distinctly illuminates active deep nested pipeline states aggressively actively explicitly."
+    }
+]

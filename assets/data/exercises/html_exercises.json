@@ -1,0 +1,172 @@
+{
+    "language": "HTML",
+    "icon": "&lt;/&gt;",
+    "color": "#E44D26",
+    "exercises": [
+        {
+            "id": 1,
+            "title": "Hello World Heading",
+            "difficulty": "basic",
+            "description": "Create an <code>h1</code> element that displays the text <strong>Hello World</strong>.",
+            "starterCode": "<!-- Write your HTML below -->\n",
+            "expectedOutput": "<h1>Hello World</h1>",
+            "validationType": "contains",
+            "validationValue": "<h1>Hello World</h1>",
+            "hint": "Use the <h1> tag to create a top-level heading.",
+            "solutionCode": "<h1>Hello World</h1>"
+        },
+        {
+            "id": 2,
+            "title": "Paragraph Text",
+            "difficulty": "basic",
+            "description": "Create a <code>p</code> element with the text <strong>This is a paragraph.</strong>",
+            "starterCode": "<!-- Create a paragraph element -->\n",
+            "expectedOutput": "<p>This is a paragraph.</p>",
+            "validationType": "contains",
+            "validationValue": "<p>This is a paragraph.</p>",
+            "hint": "Use the <p> tag for paragraph text.",
+            "solutionCode": "<p>This is a paragraph.</p>"
+        },
+        {
+            "id": 3,
+            "title": "Create a Link",
+            "difficulty": "basic",
+            "description": "Create an anchor (<code>a</code>) tag that links to <strong>https://google.com</strong> with the text <strong>Visit Google</strong>.",
+            "starterCode": "<!-- Create a link -->\n",
+            "expectedOutput": "<a href=\"https://google.com\">Visit Google</a>",
+            "validationType": "contains",
+            "validationValue": "href=\"https://google.com\"",
+            "hint": "Use <a href=\"URL\">Text</a> to create links.",
+            "solutionCode": "<a href=\"https://google.com\">Visit Google</a>"
+        },
+        {
+            "id": 4,
+            "title": "Image Tag",
+            "difficulty": "basic",
+            "description": "Create an <code>img</code> tag with <code>src=\"photo.jpg\"</code> and <code>alt=\"My Photo\"</code>.",
+            "starterCode": "<!-- Add an image tag -->\n",
+            "expectedOutput": "<img src=\"photo.jpg\" alt=\"My Photo\">",
+            "validationType": "containsAll",
+            "validationValue": [
+                "<img",
+                "src=\"photo.jpg\"",
+                "alt=\"My Photo\""
+            ],
+            "hint": "Images use the self-closing <img> tag with src and alt attributes.",
+            "solutionCode": "<img src=\"photo.jpg\" alt=\"My Photo\">"
+        },
+        {
+            "id": 5,
+            "title": "Unordered List",
+            "difficulty": "basic",
+            "description": "Create an unordered list (<code>ul</code>) with three items: <strong>Apple</strong>, <strong>Banana</strong>, <strong>Cherry</strong>.",
+            "starterCode": "<!-- Create an unordered list with 3 items -->\n",
+            "expectedOutput": "<ul><li>Apple</li><li>Banana</li><li>Cherry</li></ul>",
+            "validationType": "containsAll",
+            "validationValue": [
+                "<ul>",
+                "<li>Apple</li>",
+                "<li>Banana</li>",
+                "<li>Cherry</li>",
+                "</ul>"
+            ],
+            "hint": "Use <ul> for the list container and <li> for each item.",
+            "solutionCode": "<ul><li>Apple</li><li>Banana</li><li>Cherry</li></ul>"
+        },
+        {
+            "id": 6,
+            "title": "HTML Table",
+            "difficulty": "basic",
+            "description": "Create a table with one header row containing <strong>Name</strong> and <strong>Age</strong>, and one data row with <strong>Alice</strong> and <strong>25</strong>.",
+            "starterCode": "<!-- Create a table -->\n",
+            "expectedOutput": "<table>...</table>",
+            "validationType": "containsAll",
+            "validationValue": [
+                "<table>",
+                "<th>Name</th>",
+                "<th>Age</th>",
+                "<td>Alice</td>",
+                "<td>25</td>",
+                "</table>"
+            ],
+            "hint": "Use <table>, <tr>, <th> for headers, and <td> for data cells.",
+            "solutionCode": "<table><tr><th>Name</th><th>Age</th></tr><tr><td>Alice</td><td>25</td></tr></table>"
+        },
+        {
+            "id": 7,
+            "title": "HTML Form",
+            "difficulty": "basic",
+            "description": "Create a form with a text input with <code>name=\"username\"</code> and a submit button.",
+            "starterCode": "<!-- Create a form -->\n",
+            "expectedOutput": "<form>...</form>",
+            "validationType": "containsAll",
+            "validationValue": [
+                "<form",
+                "<input",
+                "name=\"username\"",
+                "type=\"submit\""
+            ],
+            "hint": "Use <form>, <input type=\"text\">, and <input type=\"submit\"> or <button type=\"submit\">.",
+            "solutionCode": "<form><input type=\"text\" name=\"username\"><input type=\"submit\" value=\"Submit\"></form>"
+        },
+        {
+            "id": 8,
+            "title": "Semantic Layout",
+            "difficulty": "intermediate",
+            "description": "Create a semantic HTML layout with <code>header</code>, <code>main</code>, and <code>footer</code> elements. The header should contain an <code>h1</code> with text <strong>My Website</strong>.",
+            "starterCode": "<!-- Create a semantic layout -->\n",
+            "expectedOutput": "<header>...<main>...<footer>...",
+            "validationType": "containsAll",
+            "validationValue": [
+                "<header>",
+                "<main>",
+                "<footer>",
+                "<h1>My Website</h1>",
+                "</header>",
+                "</main>",
+                "</footer>"
+            ],
+            "hint": "Use semantic HTML5 elements: <header>, <main>, <footer>.",
+            "solutionCode": "<header><h1>My Website</h1></header><main>Content</main><footer>Footer pt</footer>"
+        },
+        {
+            "id": 9,
+            "title": "Div with Class and ID",
+            "difficulty": "intermediate",
+            "description": "Create a <code>div</code> with <code>class=\"container\"</code> and <code>id=\"main-content\"</code>. Inside it, place an <code>h2</code> with text <strong>Welcome</strong> and a <code>p</code> with text <strong>Hello there!</strong>.",
+            "starterCode": "<!-- Create a div with attributes -->\n",
+            "expectedOutput": "<div class=\"container\" id=\"main-content\">...</div>",
+            "validationType": "containsAll",
+            "validationValue": [
+                "class=\"container\"",
+                "id=\"main-content\"",
+                "<h2>Welcome</h2>",
+                "<p>Hello there!</p>"
+            ],
+            "hint": "Add class and id attributes to the div tag.",
+            "solutionCode": "<div class=\"container\" id=\"main-content\">\n  <h2>Welcome</h2>\n  <p>Hello there!</p>\n</div>"
+        },
+        {
+            "id": 10,
+            "title": "Complete Webpage",
+            "difficulty": "intermediate",
+            "description": "Build a complete HTML page with <code>DOCTYPE</code>, <code>html</code>, <code>head</code> (with a <code>title</code> of <strong>My Page</strong>), and <code>body</code> containing an <code>h1</code> saying <strong>Hello!</strong>.",
+            "starterCode": "<!-- Build a complete HTML page -->\n",
+            "expectedOutput": "<!DOCTYPE html><html>...<head><title>My Page</title></head><body><h1>Hello!</h1></body></html>",
+            "validationType": "containsAll",
+            "validationValue": [
+                "<!DOCTYPE html>",
+                "<html>",
+                "<head>",
+                "<title>My Page</title>",
+                "</head>",
+                "<body>",
+                "<h1>Hello!</h1>",
+                "</body>",
+                "</html>"
+            ],
+            "hint": "Every HTML page needs <!DOCTYPE html>, <html>, <head>, <title>, and <body>.",
+            "solutionCode": "<!DOCTYPE html>\n<html>\n<head>\n  <title>My Page</title>\n</head>\n<body>\n  <h1>Hello!</h1>\n</body>\n</html>"
+        }
+    ]
+}

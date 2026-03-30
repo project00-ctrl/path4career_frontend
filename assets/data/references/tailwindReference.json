@@ -1,0 +1,39 @@
+{
+  "title": "Tailwind CSS Reference",
+  "description": "Complete Tailwind CSS utility classes and responsive design reference.",
+  "sections": [
+    {
+      "title": "Layout",
+      "items": [
+        { "name": "Container", "description": "Centers content with responsive max-width.", "code": "<div class=\"container mx-auto\">...</div>" },
+        { "name": "Flexbox", "description": "Flex layout utilities.", "code": "<div class=\"flex items-center justify-between gap-4\">\n  <div>Left</div>\n  <div>Right</div>\n</div>" },
+        { "name": "Grid", "description": "CSS Grid layout utilities.", "code": "<div class=\"grid grid-cols-3 gap-4\">\n  <div>1</div><div>2</div><div>3</div>\n</div>" },
+        { "name": "Display", "description": "Control display property.", "code": "block, inline-block, flex, grid, hidden" }
+      ]
+    },
+    {
+      "title": "Spacing",
+      "items": [
+        { "name": "Padding", "description": "Add padding with p-{size}, px-{size}, py-{size}.", "code": "<div class=\"p-4 px-6 py-2\">Padded</div>" },
+        { "name": "Margin", "description": "Add margin with m-{size}, mx-{size}, my-{size}.", "code": "<div class=\"m-4 mt-8 mb-2\">Margined</div>" },
+        { "name": "Space Between", "description": "Add space between child elements.", "code": "<div class=\"flex space-x-4\">...</div>" }
+      ]
+    },
+    {
+      "title": "Typography",
+      "items": [
+        { "name": "Font Size", "description": "Control text size.", "code": "text-xs, text-sm, text-base, text-lg, text-xl, text-2xl" },
+        { "name": "Font Weight", "description": "Control text weight.", "code": "font-thin, font-normal, font-medium, font-bold" },
+        { "name": "Text Color", "description": "Set text color.", "code": "<p class=\"text-blue-500\">Blue text</p>" },
+        { "name": "Text Align", "description": "Control text alignment.", "code": "text-left, text-center, text-right, text-justify" }
+      ]
+    },
+    {
+      "title": "Responsive Design",
+      "items": [
+        { "name": "Breakpoints", "description": "Apply styles at specific breakpoints.", "code": "sm:640px, md:768px, lg:1024px, xl:1280px, 2xl:1536px" },
+        { "name": "Responsive Example", "description": "Stack on mobile, side-by-side on desktop.", "code": "<div class=\"flex flex-col md:flex-row gap-4\">...</div>" }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,149 @@
+{
+    "language": "PHP",
+    "icon": "PHP",
+    "color": "#777BB4",
+    "exercises": [
+        {
+            "id": 1,
+            "title": "Hello World",
+            "difficulty": "basic",
+            "description": "Print <strong>Hello, World!</strong> using <code>echo</code>.",
+            "starterCode": "<?php\n// Print Hello, World!\n?>",
+            "expectedOutput": "Hello, World!",
+            "validationType": "outputContains",
+            "validationValue": "Hello, World!",
+            "hint": "echo \"Hello, World!\";",
+            "solutionCode": "<?php echo 'Hello, World!'; ?>"
+        },
+        {
+            "id": 2,
+            "title": "Variables",
+            "difficulty": "basic",
+            "description": "Create <code>$name = \"PHP\"</code> and <code>$version = 8</code>. Print both.",
+            "starterCode": "<?php\n// Declare and print variables\n?>",
+            "expectedOutput": "PHP",
+            "validationType": "outputContainsAll",
+            "validationValue": [
+                "PHP",
+                "8"
+            ],
+            "hint": "echo $name . \"\\n\"; echo $version;",
+            "solutionCode": "<?php $x = 10; $y = 5; echo $x + $y; ?>"
+        },
+        {
+            "id": 3,
+            "title": "If-Else",
+            "difficulty": "basic",
+            "description": "Given <code>$age = 20</code>, print <strong>Adult</strong> if >= 18, else <strong>Minor</strong>.",
+            "starterCode": "<?php\n$age = 20;\n// Write if-else\n?>",
+            "expectedOutput": "Adult",
+            "validationType": "outputContains",
+            "validationValue": "Adult",
+            "hint": "if ($age >= 18) { echo \"Adult\"; }",
+            "solutionCode": "<?php $n = 4; if ($n % 2 == 0) echo 'Even'; else echo 'Odd'; ?>"
+        },
+        {
+            "id": 4,
+            "title": "For Loop",
+            "difficulty": "basic",
+            "description": "Print numbers <strong>1 to 5</strong> using a for loop.",
+            "starterCode": "<?php\n// Print 1 to 5\n?>",
+            "expectedOutput": "1",
+            "validationType": "outputContainsAll",
+            "validationValue": [
+                "1",
+                "2",
+                "3",
+                "4",
+                "5"
+            ],
+            "hint": "for ($i = 1; $i <= 5; $i++) { echo $i . \"\\n\"; }",
+            "solutionCode": "<?php for ($i = 1; $i <= 5; $i++) echo $i . '\\n'; ?>"
+        },
+        {
+            "id": 5,
+            "title": "Arrays",
+            "difficulty": "basic",
+            "description": "Create <code>$fruits = [\"Apple\", \"Banana\", \"Cherry\"]</code>. Print each using foreach.",
+            "starterCode": "<?php\n// Create array and print\n?>",
+            "expectedOutput": "Apple",
+            "validationType": "outputContainsAll",
+            "validationValue": [
+                "Apple",
+                "Banana",
+                "Cherry"
+            ],
+            "hint": "foreach ($fruits as $f) { echo $f . \"\\n\"; }",
+            "solutionCode": "<?php $arr = [1, 2, 3, 4, 5]; echo array_sum($arr); ?>"
+        },
+        {
+            "id": 6,
+            "title": "Functions",
+            "difficulty": "basic",
+            "description": "Create a function <code>greet()</code> that prints <strong>Hello from PHP!</strong>. Call it.",
+            "starterCode": "<?php\n// Define and call function\n?>",
+            "expectedOutput": "Hello from PHP!",
+            "validationType": "outputContains",
+            "validationValue": "Hello from PHP!",
+            "hint": "function greet() { echo \"Hello from PHP!\"; } greet();",
+            "solutionCode": "<?php function greet($name) { return 'Hello, ' . $name; } echo greet('Alice'); ?>"
+        },
+        {
+            "id": 7,
+            "title": "Associative Arrays",
+            "difficulty": "basic",
+            "description": "Create <code>$person = [\"name\" => \"John\", \"age\" => 30]</code>. Print name and age.",
+            "starterCode": "<?php\n// Create and print associative array\n?>",
+            "expectedOutput": "John",
+            "validationType": "outputContainsAll",
+            "validationValue": [
+                "John",
+                "30"
+            ],
+            "hint": "echo $person[\"name\"] . \"\\n\" . $person[\"age\"];",
+            "solutionCode": "<?php class Dog { public $name; function bark() { return 'Woof!'; } } $d = new Dog(); $d->name = 'Buddy'; echo $d->bark(); ?>"
+        },
+        {
+            "id": 8,
+            "title": "String Functions",
+            "difficulty": "intermediate",
+            "description": "Given <code>$str = \"Hello, PHP!\"</code>, print its length and uppercase version.",
+            "starterCode": "<?php\n$str = \"Hello, PHP!\";\n// Print length and uppercase\n?>",
+            "expectedOutput": "11",
+            "validationType": "outputContainsAll",
+            "validationValue": [
+                "11",
+                "HELLO, PHP!"
+            ],
+            "hint": "echo strlen($str) . \"\\n\"; echo strtoupper($str);",
+            "solutionCode": "<?php $arr = ['apple', 'banana']; array_push($arr, 'cherry'); print_r($arr); ?>"
+        },
+        {
+            "id": 9,
+            "title": "Classes",
+            "difficulty": "intermediate",
+            "description": "Create a <code>Car</code> class with <code>$brand</code> property. Set to <strong>Toyota</strong> and print it.",
+            "starterCode": "<?php\n// Define Car class\n// Create object and print\n?>",
+            "expectedOutput": "Toyota",
+            "validationType": "outputContains",
+            "validationValue": "Toyota",
+            "hint": "class Car { public $brand; } $c = new Car(); $c->brand = \"Toyota\"; echo $c->brand;",
+            "solutionCode": "<?php $str = 'Hello PHP'; echo strlen($str); ?>"
+        },
+        {
+            "id": 10,
+            "title": "Math Functions",
+            "difficulty": "intermediate",
+            "description": "Print the square root of <strong>144</strong> and the value of <strong>2^10</strong> (1024).",
+            "starterCode": "<?php\n// Use sqrt() and pow()\n?>",
+            "expectedOutput": "12",
+            "validationType": "outputContainsAll",
+            "validationValue": [
+                "12",
+                "1024"
+            ],
+            "hint": "echo sqrt(144) . \"\\n\"; echo pow(2, 10);",
+            "solutionCode": "<?php try { throw new Exception('Error occurred'); } catch(Exception $e) { echo $e->getMessage(); } ?>"
+        }
+    ]
+}

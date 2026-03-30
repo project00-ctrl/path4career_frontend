@@ -1,0 +1,1284 @@
+{
+  "sections": [
+    {
+      "title": "Setup & Config",
+      "desc": "",
+      "type": "table",
+      "columns": [
+        "Command",
+        "Description",
+        "Version"
+      ],
+      "rows": [
+        {
+          "prop": "git config --global user.name",
+          "desc": "Sets the name that will be attached to all commits globally on your machine",
+          "ver": "All"
+        },
+        {
+          "prop": "git config --global user.email",
+          "desc": "Sets the email address that will be attached to all commits globally",
+          "ver": "All"
+        },
+        {
+          "prop": "git config --global core.editor",
+          "desc": "Sets the default text editor used by Git for commit messages and interactive commands",
+          "ver": "All"
+        },
+        {
+          "prop": "git config --global color.ui",
+          "desc": "Enables colorized output in the terminal for easier reading of Git responses",
+          "ver": "All"
+        },
+        {
+          "prop": "git config --list",
+          "desc": "Displays all current Git configuration settings from system, global, and local levels",
+          "ver": "All"
+        },
+        {
+          "prop": "git config --global alias",
+          "desc": "Creates a shortcut alias for a longer Git command to speed up workflow",
+          "ver": "All"
+        },
+        {
+          "prop": "git config --global core.autocrlf",
+          "desc": "Configures how Git handles line endings between different operating systems",
+          "ver": "All"
+        },
+        {
+          "prop": "git config --global pull.rebase",
+          "desc": "Sets the default behavior when pulling; true makes pull use rebase instead of merge",
+          "ver": "All"
+        },
+        {
+          "prop": "git config --global init.defaultBranch",
+          "desc": "Sets the default branch name (e.g., main) when initializing a new repository",
+          "ver": "Git 2.28+"
+        },
+        {
+          "prop": "git config --system",
+          "desc": "Applies configuration at the system level affecting all users on the machine",
+          "ver": "All"
+        },
+        {
+          "prop": "git config --local",
+          "desc": "Applies configuration only to the current repository, overriding global settings",
+          "ver": "All"
+        },
+        {
+          "prop": ".gitconfig file",
+          "desc": "User-level configuration file stored in the home directory containing global Git settings",
+          "ver": "All"
+        }
+      ]
+    },
+    {
+      "title": "Init & Clone",
+      "desc": "",
+      "type": "table",
+      "columns": [
+        "Command",
+        "Description",
+        "Version"
+      ],
+      "rows": [
+        {
+          "prop": "git init",
+          "desc": "Initializes a new empty Git repository in the current directory, creating a .git folder",
+          "ver": "All"
+        },
+        {
+          "prop": "git init <directory>",
+          "desc": "Creates a new Git repository inside a specified directory",
+          "ver": "All"
+        },
+        {
+          "prop": "git init --bare",
+          "desc": "Creates a bare repository with no working directory; used as a central remote repository",
+          "ver": "All"
+        },
+        {
+          "prop": "git clone <url>",
+          "desc": "Downloads a remote repository to your local machine including all branches and history",
+          "ver": "All"
+        },
+        {
+          "prop": "git clone <url> <directory>",
+          "desc": "Clones a remote repository into a specifically named local directory",
+          "ver": "All"
+        },
+        {
+          "prop": "git clone --depth <n>",
+          "desc": "Creates a shallow clone with only the last n commits, reducing download size",
+          "ver": "All"
+        },
+        {
+          "prop": "git clone --branch <name>",
+          "desc": "Clones the repository and checks out a specific branch instead of the default",
+          "ver": "All"
+        },
+        {
+          "prop": "git clone --single-branch",
+          "desc": "Clones only the specified branch without fetching other branches",
+          "ver": "All"
+        },
+        {
+          "prop": "git clone --recurse-submodules",
+          "desc": "Clones the repository along with all nested submodules recursively",
+          "ver": "Git 2.13+"
+        }
+      ]
+    },
+    {
+      "title": "Staging & Snapshots",
+      "desc": "",
+      "type": "table",
+      "columns": [
+        "Command",
+        "Description",
+        "Version"
+      ],
+      "rows": [
+        {
+          "prop": "git status",
+          "desc": "Shows the current state of the working directory and staging area with tracked/untracked files",
+          "ver": "All"
+        },
+        {
+          "prop": "git add <file>",
+          "desc": "Stages a specific file's changes to be included in the next commit",
+          "ver": "All"
+        },
+        {
+          "prop": "git add .",
+          "desc": "Stages all modified and new files in the current directory and subdirectories",
+          "ver": "All"
+        },
+        {
+          "prop": "git add -A",
+          "desc": "Stages all changes including modifications, additions, and deletions across entire repo",
+          "ver": "All"
+        },
+        {
+          "prop": "git add -p",
+          "desc": "Interactively stages portions (hunks) of files, allowing partial staging of changes",
+          "ver": "All"
+        },
+        {
+          "prop": "git add -u",
+          "desc": "Stages modifications and deletions of tracked files only; does not add new untracked files",
+          "ver": "All"
+        },
+        {
+          "prop": "git rm <file>",
+          "desc": "Removes a file from the working directory and stages its deletion for the next commit",
+          "ver": "All"
+        },
+        {
+          "prop": "git rm --cached <file>",
+          "desc": "Removes a file from the staging area only, keeping it in the working directory (untrack it)",
+          "ver": "All"
+        },
+        {
+          "prop": "git mv <old> <new>",
+          "desc": "Renames or moves a file and stages the change in one command",
+          "ver": "All"
+        },
+        {
+          "prop": "git restore <file>",
+          "desc": "Discards unstaged changes in a file, restoring it to the last committed state",
+          "ver": "Git 2.23+"
+        },
+        {
+          "prop": "git restore --staged <file>",
+          "desc": "Unstages a file from the staging area without discarding its working directory changes",
+          "ver": "Git 2.23+"
+        },
+        {
+          "prop": "git clean -fd",
+          "desc": "Removes untracked files and directories from the working directory forcefully",
+          "ver": "All"
+        },
+        {
+          "prop": ".gitignore",
+          "desc": "File listing patterns of files and directories Git should ignore and not track",
+          "ver": "All"
+        }
+      ]
+    },
+    {
+      "title": "Committing",
+      "desc": "",
+      "type": "table",
+      "columns": [
+        "Command",
+        "Description",
+        "Version"
+      ],
+      "rows": [
+        {
+          "prop": "git commit",
+          "desc": "Opens editor to write a commit message and creates a snapshot of staged changes",
+          "ver": "All"
+        },
+        {
+          "prop": "git commit -m \"message\"",
+          "desc": "Creates a commit with the given message inline without opening an editor",
+          "ver": "All"
+        },
+        {
+          "prop": "git commit -am \"message\"",
+          "desc": "Stages all tracked modified files and commits them in a single command",
+          "ver": "All"
+        },
+        {
+          "prop": "git commit --amend",
+          "desc": "Modifies the most recent commit by changing its message or adding new staged changes",
+          "ver": "All"
+        },
+        {
+          "prop": "git commit --amend --no-edit",
+          "desc": "Adds staged changes to the last commit without changing the commit message",
+          "ver": "All"
+        },
+        {
+          "prop": "git commit --allow-empty",
+          "desc": "Creates a commit even when there are no staged changes; useful for triggering CI/CD",
+          "ver": "All"
+        },
+        {
+          "prop": "git commit -S",
+          "desc": "Creates a GPG-signed commit to verify the identity of the author",
+          "ver": "All"
+        },
+        {
+          "prop": "Conventional Commits",
+          "desc": "Standard commit message format: type(scope): description — e.g., feat, fix, docs, chore",
+          "ver": "Convention"
+        },
+        {
+          "prop": "git commit --fixup",
+          "desc": "Creates a fixup commit to be automatically squashed into a previous commit during rebase",
+          "ver": "All"
+        }
+      ]
+    },
+    {
+      "title": "Branching",
+      "desc": "",
+      "type": "table",
+      "columns": [
+        "Command",
+        "Description",
+        "Version"
+      ],
+      "rows": [
+        {
+          "prop": "git branch",
+          "desc": "Lists all local branches; the current branch is highlighted with an asterisk",
+          "ver": "All"
+        },
+        {
+          "prop": "git branch <name>",
+          "desc": "Creates a new branch at the current commit without switching to it",
+          "ver": "All"
+        },
+        {
+          "prop": "git branch -d <name>",
+          "desc": "Deletes a branch that has already been merged; prevents accidental data loss",
+          "ver": "All"
+        },
+        {
+          "prop": "git branch -D <name>",
+          "desc": "Force deletes a branch regardless of its merge status",
+          "ver": "All"
+        },
+        {
+          "prop": "git branch -m <old> <new>",
+          "desc": "Renames a branch from old name to new name",
+          "ver": "All"
+        },
+        {
+          "prop": "git branch -a",
+          "desc": "Lists all local and remote tracking branches",
+          "ver": "All"
+        },
+        {
+          "prop": "git branch -r",
+          "desc": "Lists all remote tracking branches fetched from the remote",
+          "ver": "All"
+        },
+        {
+          "prop": "git branch --merged",
+          "desc": "Lists branches that have been merged into the current branch",
+          "ver": "All"
+        },
+        {
+          "prop": "git branch --no-merged",
+          "desc": "Lists branches that have NOT been merged into the current branch",
+          "ver": "All"
+        },
+        {
+          "prop": "git branch --set-upstream-to",
+          "desc": "Sets the upstream (tracking) remote branch for the current local branch",
+          "ver": "All"
+        },
+        {
+          "prop": "git switch <branch>",
+          "desc": "Switches to an existing branch; modern replacement for checkout for branch switching",
+          "ver": "Git 2.23+"
+        },
+        {
+          "prop": "git switch -c <name>",
+          "desc": "Creates a new branch and immediately switches to it",
+          "ver": "Git 2.23+"
+        }
+      ]
+    },
+    {
+      "title": "Checkout",
+      "desc": "",
+      "type": "table",
+      "columns": [
+        "Command",
+        "Description",
+        "Version"
+      ],
+      "rows": [
+        {
+          "prop": "git checkout <branch>",
+          "desc": "Switches to an existing branch and updates the working directory",
+          "ver": "All"
+        },
+        {
+          "prop": "git checkout -b <name>",
+          "desc": "Creates a new branch and switches to it in one command",
+          "ver": "All"
+        },
+        {
+          "prop": "git checkout <commit>",
+          "desc": "Moves HEAD to a specific commit, entering detached HEAD state",
+          "ver": "All"
+        },
+        {
+          "prop": "git checkout <tag>",
+          "desc": "Checks out the commit a tag points to, entering detached HEAD state",
+          "ver": "All"
+        },
+        {
+          "prop": "git checkout -- <file>",
+          "desc": "Discards uncommitted changes in a specific file, restoring it from last commit",
+          "ver": "All"
+        },
+        {
+          "prop": "git checkout <branch> -- <file>",
+          "desc": "Checks out a specific file from another branch into the current working directory",
+          "ver": "All"
+        },
+        {
+          "prop": "git checkout --orphan <name>",
+          "desc": "Creates a new branch with no commit history, starting fresh with a clean slate",
+          "ver": "All"
+        },
+        {
+          "prop": "Detached HEAD",
+          "desc": "State where HEAD points directly to a commit instead of a branch; commits may be lost",
+          "ver": "Concept"
+        }
+      ]
+    },
+    {
+      "title": "Merging",
+      "desc": "",
+      "type": "table",
+      "columns": [
+        "Command",
+        "Description",
+        "Version"
+      ],
+      "rows": [
+        {
+          "prop": "git merge <branch>",
+          "desc": "Integrates changes from the specified branch into the current branch",
+          "ver": "All"
+        },
+        {
+          "prop": "Fast-Forward Merge",
+          "desc": "Moves the branch pointer forward when no diverging commits exist; no merge commit created",
+          "ver": "Concept"
+        },
+        {
+          "prop": "3-Way Merge",
+          "desc": "Creates a merge commit when branches have diverged, combining two histories",
+          "ver": "Concept"
+        },
+        {
+          "prop": "git merge --no-ff",
+          "desc": "Forces creation of a merge commit even when a fast-forward is possible",
+          "ver": "All"
+        },
+        {
+          "prop": "git merge --squash",
+          "desc": "Combines all commits from a branch into one staged change without creating a merge commit",
+          "ver": "All"
+        },
+        {
+          "prop": "git merge --abort",
+          "desc": "Cancels an in-progress merge and restores the pre-merge state",
+          "ver": "All"
+        },
+        {
+          "prop": "Merge Conflict",
+          "desc": "Occurs when the same lines are changed differently in two branches being merged",
+          "ver": "Concept"
+        },
+        {
+          "prop": "git mergetool",
+          "desc": "Opens a visual merge tool to resolve conflicts interactively",
+          "ver": "All"
+        },
+        {
+          "prop": "git merge --strategy",
+          "desc": "Specifies a merge strategy such as ours, theirs, or recursive",
+          "ver": "All"
+        },
+        {
+          "prop": "Octopus Merge",
+          "desc": "Merging more than two branches simultaneously in a single merge commit",
+          "ver": "Concept"
+        }
+      ]
+    },
+    {
+      "title": "Rebasing",
+      "desc": "",
+      "type": "table",
+      "columns": [
+        "Command",
+        "Description",
+        "Version"
+      ],
+      "rows": [
+        {
+          "prop": "git rebase <branch>",
+          "desc": "Re-applies commits from the current branch on top of another branch for a linear history",
+          "ver": "All"
+        },
+        {
+          "prop": "git rebase -i HEAD~n",
+          "desc": "Interactive rebase to edit, reorder, squash, or drop the last n commits",
+          "ver": "All"
+        },
+        {
+          "prop": "git rebase --continue",
+          "desc": "Continues the rebase process after resolving conflicts in the current commit",
+          "ver": "All"
+        },
+        {
+          "prop": "git rebase --abort",
+          "desc": "Cancels an in-progress rebase and returns to the original branch state",
+          "ver": "All"
+        },
+        {
+          "prop": "git rebase --skip",
+          "desc": "Skips the current conflicting commit and continues with the next one",
+          "ver": "All"
+        },
+        {
+          "prop": "git rebase --onto",
+          "desc": "Rebases a range of commits onto a different base commit",
+          "ver": "All"
+        },
+        {
+          "prop": "Squash Commits",
+          "desc": "Combining multiple commits into one during interactive rebase using the squash option",
+          "ver": "Concept"
+        },
+        {
+          "prop": "git pull --rebase",
+          "desc": "Fetches remote changes and replays local commits on top instead of creating a merge commit",
+          "ver": "All"
+        },
+        {
+          "prop": "Golden Rule of Rebase",
+          "desc": "Never rebase commits that have been pushed to a shared public branch",
+          "ver": "Best Practice"
+        }
+      ]
+    },
+    {
+      "title": "Remote Repositories",
+      "desc": "",
+      "type": "table",
+      "columns": [
+        "Command",
+        "Description",
+        "Version"
+      ],
+      "rows": [
+        {
+          "prop": "git remote",
+          "desc": "Lists all remote connections configured for the current repository",
+          "ver": "All"
+        },
+        {
+          "prop": "git remote -v",
+          "desc": "Lists all remotes with their fetch and push URLs",
+          "ver": "All"
+        },
+        {
+          "prop": "git remote add <name> <url>",
+          "desc": "Adds a new remote connection with a given name and URL",
+          "ver": "All"
+        },
+        {
+          "prop": "git remote remove <name>",
+          "desc": "Removes a remote connection from the repository",
+          "ver": "All"
+        },
+        {
+          "prop": "git remote rename <old> <new>",
+          "desc": "Renames an existing remote connection",
+          "ver": "All"
+        },
+        {
+          "prop": "git remote set-url <name> <url>",
+          "desc": "Changes the URL of an existing remote connection",
+          "ver": "All"
+        },
+        {
+          "prop": "git remote show <name>",
+          "desc": "Displays detailed information about a remote including tracked branches",
+          "ver": "All"
+        },
+        {
+          "prop": "git remote prune <name>",
+          "desc": "Removes stale remote-tracking branches that no longer exist on the remote",
+          "ver": "All"
+        },
+        {
+          "prop": "origin",
+          "desc": "Default name Git gives to the remote a repository was cloned from",
+          "ver": "Convention"
+        },
+        {
+          "prop": "upstream",
+          "desc": "Conventional name for the original repository when working with forks",
+          "ver": "Convention"
+        }
+      ]
+    },
+    {
+      "title": "Fetch, Pull & Push",
+      "desc": "",
+      "type": "table",
+      "columns": [
+        "Command",
+        "Description",
+        "Version"
+      ],
+      "rows": [
+        {
+          "prop": "git fetch",
+          "desc": "Downloads new commits and branches from the remote without merging into local branches",
+          "ver": "All"
+        },
+        {
+          "prop": "git fetch <remote>",
+          "desc": "Fetches all updates from a specific remote repository",
+          "ver": "All"
+        },
+        {
+          "prop": "git fetch --all",
+          "desc": "Fetches updates from all configured remote repositories",
+          "ver": "All"
+        },
+        {
+          "prop": "git fetch --prune",
+          "desc": "Fetches and removes stale remote-tracking branches that no longer exist on the remote",
+          "ver": "All"
+        },
+        {
+          "prop": "git pull",
+          "desc": "Fetches from the tracked remote branch and merges into the current local branch",
+          "ver": "All"
+        },
+        {
+          "prop": "git pull <remote> <branch>",
+          "desc": "Fetches and merges a specific remote branch into the current branch",
+          "ver": "All"
+        },
+        {
+          "prop": "git push",
+          "desc": "Uploads local commits from the current branch to its tracked remote branch",
+          "ver": "All"
+        },
+        {
+          "prop": "git push <remote> <branch>",
+          "desc": "Pushes a local branch to a specific remote repository",
+          "ver": "All"
+        },
+        {
+          "prop": "git push -u <remote> <branch>",
+          "desc": "Pushes branch and sets it as the tracking upstream for future push/pull",
+          "ver": "All"
+        },
+        {
+          "prop": "git push --force",
+          "desc": "Overwrites remote branch history with local history; use with caution on shared branches",
+          "ver": "All"
+        },
+        {
+          "prop": "git push --force-with-lease",
+          "desc": "Safer force push that fails if someone else has pushed since your last fetch",
+          "ver": "All"
+        },
+        {
+          "prop": "git push --tags",
+          "desc": "Pushes all local tags to the remote repository",
+          "ver": "All"
+        },
+        {
+          "prop": "git push --delete <remote> <branch>",
+          "desc": "Deletes a branch on the remote repository",
+          "ver": "All"
+        }
+      ]
+    },
+    {
+      "title": "Stashing",
+      "desc": "",
+      "type": "table",
+      "columns": [
+        "Command",
+        "Description",
+        "Version"
+      ],
+      "rows": [
+        {
+          "prop": "git stash",
+          "desc": "Temporarily saves uncommitted changes and reverts the working directory to a clean state",
+          "ver": "All"
+        },
+        {
+          "prop": "git stash push -m \"message\"",
+          "desc": "Creates a stash with a descriptive message for easier identification later",
+          "ver": "All"
+        },
+        {
+          "prop": "git stash list",
+          "desc": "Shows all stashed entries with their index and description",
+          "ver": "All"
+        },
+        {
+          "prop": "git stash pop",
+          "desc": "Applies the most recent stash and removes it from the stash list",
+          "ver": "All"
+        },
+        {
+          "prop": "git stash apply",
+          "desc": "Applies the most recent stash without removing it from the stash list",
+          "ver": "All"
+        },
+        {
+          "prop": "git stash apply stash@{n}",
+          "desc": "Applies a specific stash by its index without removing it",
+          "ver": "All"
+        },
+        {
+          "prop": "git stash drop stash@{n}",
+          "desc": "Deletes a specific stash entry from the stash list",
+          "ver": "All"
+        },
+        {
+          "prop": "git stash clear",
+          "desc": "Removes all stash entries permanently",
+          "ver": "All"
+        },
+        {
+          "prop": "git stash branch <name>",
+          "desc": "Creates a new branch from the stash and applies the stash to it",
+          "ver": "All"
+        },
+        {
+          "prop": "git stash --include-untracked",
+          "desc": "Stashes untracked files along with modified tracked files",
+          "ver": "All"
+        },
+        {
+          "prop": "git stash --all",
+          "desc": "Stashes all files including untracked and ignored files",
+          "ver": "All"
+        }
+      ]
+    },
+    {
+      "title": "Viewing History",
+      "desc": "",
+      "type": "table",
+      "columns": [
+        "Command",
+        "Description",
+        "Version"
+      ],
+      "rows": [
+        {
+          "prop": "git log",
+          "desc": "Shows the full commit history with hash, author, date, and message",
+          "ver": "All"
+        },
+        {
+          "prop": "git log --oneline",
+          "desc": "Displays a compact log with one line per commit showing short hash and message",
+          "ver": "All"
+        },
+        {
+          "prop": "git log --graph",
+          "desc": "Draws a text-based graph of branch and merge history alongside the log",
+          "ver": "All"
+        },
+        {
+          "prop": "git log --all",
+          "desc": "Shows commits from all branches not just the current one",
+          "ver": "All"
+        },
+        {
+          "prop": "git log -n <number>",
+          "desc": "Limits the log output to the specified number of most recent commits",
+          "ver": "All"
+        },
+        {
+          "prop": "git log --author=\"name\"",
+          "desc": "Filters commits to show only those made by a specific author",
+          "ver": "All"
+        },
+        {
+          "prop": "git log --since / --until",
+          "desc": "Filters commits within a specific date range",
+          "ver": "All"
+        },
+        {
+          "prop": "git log --grep=\"pattern\"",
+          "desc": "Shows commits whose messages match a given search pattern",
+          "ver": "All"
+        },
+        {
+          "prop": "git log -S \"string\"",
+          "desc": "Shows commits that added or removed a specific string (pickaxe search)",
+          "ver": "All"
+        },
+        {
+          "prop": "git log -- <file>",
+          "desc": "Shows only commits that modified a specific file",
+          "ver": "All"
+        },
+        {
+          "prop": "git diff",
+          "desc": "Shows unstaged differences between the working directory and the staging area",
+          "ver": "All"
+        },
+        {
+          "prop": "git diff --staged",
+          "desc": "Shows differences between the staging area and the last commit",
+          "ver": "All"
+        },
+        {
+          "prop": "git diff <branch1>..<branch2>",
+          "desc": "Compares the tips of two branches showing what is different",
+          "ver": "All"
+        },
+        {
+          "prop": "git show <commit>",
+          "desc": "Displays the changes introduced by a specific commit along with its metadata",
+          "ver": "All"
+        },
+        {
+          "prop": "git blame <file>",
+          "desc": "Shows who last modified each line of a file and which commit made the change",
+          "ver": "All"
+        },
+        {
+          "prop": "git shortlog",
+          "desc": "Summarizes git log output grouped by author with commit counts",
+          "ver": "All"
+        }
+      ]
+    },
+    {
+      "title": "Undoing Changes",
+      "desc": "",
+      "type": "table",
+      "columns": [
+        "Command",
+        "Description",
+        "Version"
+      ],
+      "rows": [
+        {
+          "prop": "git revert <commit>",
+          "desc": "Creates a new commit that undoes changes from a specific commit; safe for public branches",
+          "ver": "All"
+        },
+        {
+          "prop": "git revert --no-commit",
+          "desc": "Applies the revert changes to working directory without immediately committing",
+          "ver": "All"
+        },
+        {
+          "prop": "git reset --soft HEAD~n",
+          "desc": "Moves HEAD back n commits but keeps all changes staged in the index",
+          "ver": "All"
+        },
+        {
+          "prop": "git reset --mixed HEAD~n",
+          "desc": "Moves HEAD back n commits and unstages changes but keeps them in working directory (default)",
+          "ver": "All"
+        },
+        {
+          "prop": "git reset --hard HEAD~n",
+          "desc": "Moves HEAD back n commits and discards all changes permanently in working directory",
+          "ver": "All"
+        },
+        {
+          "prop": "git reset <file>",
+          "desc": "Removes a file from the staging area without discarding its working directory changes",
+          "ver": "All"
+        },
+        {
+          "prop": "git restore <file>",
+          "desc": "Discards unstaged changes in a file restoring it from the index or last commit",
+          "ver": "Git 2.23+"
+        },
+        {
+          "prop": "git reflog",
+          "desc": "Records all movements of HEAD allowing recovery of lost commits after reset or rebase",
+          "ver": "All"
+        },
+        {
+          "prop": "git cherry-pick <commit>",
+          "desc": "Applies a specific commit from another branch onto the current branch",
+          "ver": "All"
+        },
+        {
+          "prop": "git cherry-pick <c1>..<c2>",
+          "desc": "Applies a range of commits from one branch onto the current branch",
+          "ver": "All"
+        },
+        {
+          "prop": "git cherry-pick --abort",
+          "desc": "Cancels an in-progress cherry-pick and restores the previous state",
+          "ver": "All"
+        }
+      ]
+    },
+    {
+      "title": "Tagging",
+      "desc": "",
+      "type": "table",
+      "columns": [
+        "Command",
+        "Description",
+        "Version"
+      ],
+      "rows": [
+        {
+          "prop": "git tag",
+          "desc": "Lists all existing tags in the repository",
+          "ver": "All"
+        },
+        {
+          "prop": "git tag <name>",
+          "desc": "Creates a lightweight tag pointing to the current commit",
+          "ver": "All"
+        },
+        {
+          "prop": "git tag -a <name> -m \"msg\"",
+          "desc": "Creates an annotated tag with a message, tagger name, email, and date",
+          "ver": "All"
+        },
+        {
+          "prop": "git tag <name> <commit>",
+          "desc": "Creates a tag pointing to a specific past commit",
+          "ver": "All"
+        },
+        {
+          "prop": "git tag -d <name>",
+          "desc": "Deletes a local tag by name",
+          "ver": "All"
+        },
+        {
+          "prop": "git push <remote> <tag>",
+          "desc": "Pushes a specific tag to the remote repository",
+          "ver": "All"
+        },
+        {
+          "prop": "git push --tags",
+          "desc": "Pushes all local tags to the remote at once",
+          "ver": "All"
+        },
+        {
+          "prop": "git push --delete <remote> <tag>",
+          "desc": "Removes a tag from the remote repository",
+          "ver": "All"
+        },
+        {
+          "prop": "Lightweight Tag",
+          "desc": "A simple pointer to a commit with no extra metadata; just a name and a commit hash",
+          "ver": "Concept"
+        },
+        {
+          "prop": "Annotated Tag",
+          "desc": "A full Git object with message, tagger info, and date; recommended for releases",
+          "ver": "Concept"
+        },
+        {
+          "prop": "Semantic Versioning",
+          "desc": "Tag naming convention: v<major>.<minor>.<patch> e.g., v1.4.2 used in releases",
+          "ver": "Convention"
+        }
+      ]
+    },
+    {
+      "title": "Bisect & Debug",
+      "desc": "",
+      "type": "table",
+      "columns": [
+        "Command",
+        "Description",
+        "Version"
+      ],
+      "rows": [
+        {
+          "prop": "git bisect start",
+          "desc": "Begins a binary search through commit history to find the commit that introduced a bug",
+          "ver": "All"
+        },
+        {
+          "prop": "git bisect good <commit>",
+          "desc": "Marks a commit as good (bug not present) to narrow the bisect range",
+          "ver": "All"
+        },
+        {
+          "prop": "git bisect bad <commit>",
+          "desc": "Marks a commit as bad (bug present) to narrow the bisect range",
+          "ver": "All"
+        },
+        {
+          "prop": "git bisect reset",
+          "desc": "Ends the bisect session and returns to the original branch",
+          "ver": "All"
+        },
+        {
+          "prop": "git bisect run <script>",
+          "desc": "Automates bisecting by running a script that returns 0 for good and non-zero for bad",
+          "ver": "All"
+        },
+        {
+          "prop": "git grep <pattern>",
+          "desc": "Searches for a pattern in tracked files across the repository",
+          "ver": "All"
+        },
+        {
+          "prop": "git grep -n <pattern>",
+          "desc": "Searches for a pattern and shows matching line numbers",
+          "ver": "All"
+        },
+        {
+          "prop": "git log -S \"code\"",
+          "desc": "Finds commits that introduced or removed a specific string in the codebase",
+          "ver": "All"
+        },
+        {
+          "prop": "git blame -L <start>,<end> <file>",
+          "desc": "Shows blame for a specific range of lines in a file",
+          "ver": "All"
+        }
+      ]
+    },
+    {
+      "title": "Submodules",
+      "desc": "",
+      "type": "table",
+      "columns": [
+        "Command",
+        "Description",
+        "Version"
+      ],
+      "rows": [
+        {
+          "prop": "git submodule add <url>",
+          "desc": "Adds an external repository as a submodule inside the current repository",
+          "ver": "All"
+        },
+        {
+          "prop": "git submodule init",
+          "desc": "Initializes submodule configuration from .gitmodules into .git/config",
+          "ver": "All"
+        },
+        {
+          "prop": "git submodule update",
+          "desc": "Clones and checks out submodules to the commit recorded in the parent repository",
+          "ver": "All"
+        },
+        {
+          "prop": "git submodule update --remote",
+          "desc": "Updates submodules to the latest commit on their tracking branches",
+          "ver": "All"
+        },
+        {
+          "prop": "git submodule foreach <cmd>",
+          "desc": "Runs a shell command in each submodule directory",
+          "ver": "All"
+        },
+        {
+          "prop": "git clone --recurse-submodules",
+          "desc": "Clones a repo and automatically initializes and updates all its submodules",
+          "ver": "Git 2.13+"
+        },
+        {
+          "prop": "git submodule deinit <path>",
+          "desc": "Unregisters a submodule, removing its entry from .git/config",
+          "ver": "All"
+        },
+        {
+          "prop": ".gitmodules",
+          "desc": "Configuration file that lists submodule paths and their remote URLs",
+          "ver": "All"
+        }
+      ]
+    },
+    {
+      "title": "Worktrees",
+      "desc": "",
+      "type": "table",
+      "columns": [
+        "Command",
+        "Description",
+        "Version"
+      ],
+      "rows": [
+        {
+          "prop": "git worktree add <path> <branch>",
+          "desc": "Creates a new working directory linked to the same repository for a different branch",
+          "ver": "Git 2.5+"
+        },
+        {
+          "prop": "git worktree list",
+          "desc": "Lists all working trees associated with the current repository",
+          "ver": "Git 2.5+"
+        },
+        {
+          "prop": "git worktree remove <path>",
+          "desc": "Removes a worktree directory and its reference from the repository",
+          "ver": "Git 2.17+"
+        },
+        {
+          "prop": "git worktree prune",
+          "desc": "Cleans up stale worktree references that no longer exist on disk",
+          "ver": "Git 2.5+"
+        },
+        {
+          "prop": "git worktree lock",
+          "desc": "Prevents a worktree from being pruned if it is on a removable device",
+          "ver": "Git 2.10+"
+        }
+      ]
+    },
+    {
+      "title": "Git Hooks",
+      "desc": "",
+      "type": "table",
+      "columns": [
+        "Command",
+        "Description",
+        "Version"
+      ],
+      "rows": [
+        {
+          "prop": "pre-commit",
+          "desc": "Hook that runs before a commit is created; used for linting, formatting, or tests",
+          "ver": "Client-side"
+        },
+        {
+          "prop": "commit-msg",
+          "desc": "Hook that validates the commit message format before the commit is finalized",
+          "ver": "Client-side"
+        },
+        {
+          "prop": "prepare-commit-msg",
+          "desc": "Hook that modifies the default commit message before the editor opens",
+          "ver": "Client-side"
+        },
+        {
+          "prop": "post-commit",
+          "desc": "Hook that runs after a commit is created; used for notifications or logging",
+          "ver": "Client-side"
+        },
+        {
+          "prop": "pre-push",
+          "desc": "Hook that runs before git push; used to run tests or block pushes of certain branches",
+          "ver": "Client-side"
+        },
+        {
+          "prop": "pre-receive",
+          "desc": "Server-side hook that runs before refs are updated; used to enforce policies",
+          "ver": "Server-side"
+        },
+        {
+          "prop": "post-receive",
+          "desc": "Server-side hook that runs after a push is accepted; used to trigger deployments",
+          "ver": "Server-side"
+        },
+        {
+          "prop": "post-merge",
+          "desc": "Hook that runs after a successful merge; useful for installing dependencies automatically",
+          "ver": "Client-side"
+        },
+        {
+          "prop": "pre-rebase",
+          "desc": "Hook that runs before a rebase begins; can be used to prevent rebasing certain branches",
+          "ver": "Client-side"
+        },
+        {
+          "prop": "Husky",
+          "desc": "Popular npm tool to manage Git hooks in JavaScript projects via package.json",
+          "ver": "Tool"
+        }
+      ]
+    },
+    {
+      "title": "Git Workflows",
+      "desc": "",
+      "type": "table",
+      "columns": [
+        "Command",
+        "Description",
+        "Version"
+      ],
+      "rows": [
+        {
+          "prop": "Centralized Workflow",
+          "desc": "All developers commit directly to a single main branch similar to SVN workflow",
+          "ver": "Workflow"
+        },
+        {
+          "prop": "Feature Branch Workflow",
+          "desc": "Each feature is developed in a dedicated branch and merged to main when complete",
+          "ver": "Workflow"
+        },
+        {
+          "prop": "Gitflow Workflow",
+          "desc": "Uses main, develop, feature, release, and hotfix branches for structured release management",
+          "ver": "Workflow"
+        },
+        {
+          "prop": "Forking Workflow",
+          "desc": "Each developer forks the official repo and submits pull requests to contribute",
+          "ver": "Workflow"
+        },
+        {
+          "prop": "Trunk-Based Development",
+          "desc": "All developers integrate small changes directly to the main branch multiple times per day",
+          "ver": "Workflow"
+        },
+        {
+          "prop": "Pull Request (PR)",
+          "desc": "Request to merge a branch into another; enables code review before integration",
+          "ver": "Platform"
+        },
+        {
+          "prop": "Code Review",
+          "desc": "Process of examining pull request changes by peers before merging to ensure quality",
+          "ver": "Practice"
+        },
+        {
+          "prop": "Branch Protection Rules",
+          "desc": "Repository settings requiring PR approvals and status checks before merging to protected branches",
+          "ver": "Platform"
+        },
+        {
+          "prop": "CODEOWNERS",
+          "desc": "File specifying which users or teams own specific files and must review PRs affecting them",
+          "ver": "Platform"
+        }
+      ]
+    },
+    {
+      "title": "Git Internals",
+      "desc": "",
+      "type": "table",
+      "columns": [
+        "Command",
+        "Description",
+        "Version"
+      ],
+      "rows": [
+        {
+          "prop": "Blob Object",
+          "desc": "Git object that stores the raw contents of a file without the filename or metadata",
+          "ver": "Concept"
+        },
+        {
+          "prop": "Tree Object",
+          "desc": "Git object that represents a directory, mapping filenames to blob or other tree objects",
+          "ver": "Concept"
+        },
+        {
+          "prop": "Commit Object",
+          "desc": "Git object pointing to a tree with metadata including author, date, message, and parent commits",
+          "ver": "Concept"
+        },
+        {
+          "prop": "Tag Object",
+          "desc": "Git object for annotated tags, storing the tag name, message, and reference to a commit",
+          "ver": "Concept"
+        },
+        {
+          "prop": "SHA-1 Hash",
+          "desc": "40-character hash uniquely identifying every Git object; Git 2.29+ supports SHA-256",
+          "ver": "Concept"
+        },
+        {
+          "prop": "HEAD",
+          "desc": "A pointer to the currently checked-out branch or commit in the repository",
+          "ver": "Concept"
+        },
+        {
+          "prop": "Index (Staging Area)",
+          "desc": "Intermediate area where changes are prepared before being committed to the repository",
+          "ver": "Concept"
+        },
+        {
+          "prop": ".git directory",
+          "desc": "Hidden directory containing all repository data including objects, refs, config, and hooks",
+          "ver": "Concept"
+        },
+        {
+          "prop": "Pack Files",
+          "desc": "Compressed collection of Git objects that reduces storage size and speeds up transfers",
+          "ver": "Concept"
+        },
+        {
+          "prop": "git gc",
+          "desc": "Runs garbage collection to clean up unnecessary files and optimize the local repository",
+          "ver": "All"
+        },
+        {
+          "prop": "git cat-file",
+          "desc": "Inspects the type and content of any Git object by its hash",
+          "ver": "All"
+        },
+        {
+          "prop": "git ls-tree",
+          "desc": "Lists the contents of a tree object showing blobs and subtrees with their hashes",
+          "ver": "All"
+        },
+        {
+          "prop": "git hash-object",
+          "desc": "Computes the SHA-1 hash of a file and optionally writes it as a Git object",
+          "ver": "All"
+        }
+      ]
+    }
+  ]
+}

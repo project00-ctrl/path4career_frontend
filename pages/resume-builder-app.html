@@ -1,0 +1,803 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Path4Career - Resume Template Builder</title>
+<link href="../assets/icon.png" rel="icon">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link rel="stylesheet" href="../assets/css/navbar.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.6.0/mammoth.browser.min.js"></script>
+<style>
+:root{--P:#214EA5;--A:#00B894;--bg:#f1f5f9;--bg2:#e2e8f0;--card:#FFFFFF;--bdr:rgba(0,0,0,.08);--t1:#0B192C;--t2:#64748B;--t3:#94A3B8}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html,body{min-height:100%;font-family:'Inter',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;background:var(--bg);color:var(--t1)}
+::-webkit-scrollbar{width:8px}::-webkit-scrollbar-track{background:var(--bg)}::-webkit-scrollbar-thumb{background:#CBD5E1;border-radius:10px;border:2px solid var(--bg)}::-webkit-scrollbar-thumb:hover{background:#94A3B8}
+.hero{text-align:center;padding:3rem 2rem 1.2rem;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 50% at 50% 0%,rgba(33,78,165,.07),transparent);pointer-events:none}
+.hero h1{font-size:2.5rem;font-weight:800;margin-bottom:.65rem;line-height:1.15;letter-spacing:-1px}
+.hero h1 .gt{background:linear-gradient(135deg,var(--P),var(--A));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero p{color:var(--t2);font-size:1rem;max-width:580px;margin:0 auto;line-height:1.65}
+.stats{display:flex;justify-content:center;gap:3rem;padding:.9rem;margin:.9rem auto;max-width:500px}
+.stat .n{font-size:2rem;font-weight:800;background:linear-gradient(135deg,var(--P),var(--A));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.stat .l{color:var(--t3);font-size:.75rem;text-transform:uppercase;letter-spacing:.08em}
+.tabs{display:flex;justify-content:center;gap:.35rem;margin:1.2rem auto .8rem;padding:.35rem;background:var(--card);border:1px solid var(--bdr);border-radius:12px;max-width:560px}
+.tab{flex:1;padding:10px 14px;border:none;border-radius:8px;background:transparent;color:var(--t2);font-size:.88rem;font-weight:500;cursor:pointer;transition:all .3s;display:flex;align-items:center;justify-content:center;gap:5px;font-family:inherit}
+.tab:hover{color:var(--P);background:rgba(33,78,165,.06)}
+.tab.active{background:linear-gradient(135deg,var(--P),var(--A));color:#fff;box-shadow:0 4px 15px rgba(33,78,165,.25)}
+.tab .badge{background:rgba(255,255,255,.2);padding:1px 7px;border-radius:10px;font-size:.62rem}
+.cat-sec{padding:.6rem 1.6rem 3rem;display:none}
+.cat-sec.active{display:block}
+.cat-hdr{text-align:center;margin-bottom:1.6rem}
+.cat-hdr h2{font-size:1.4rem;font-weight:700;margin-bottom:.25rem}
+.cat-hdr p{color:var(--t2);font-size:.85rem}
+.tgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(265px,1fr));gap:1.3rem;max-width:1400px;margin:0 auto}
+.tcard{background:var(--card);border:1px solid var(--bdr);border-radius:14px;overflow:hidden;transition:all .35s;cursor:pointer}
+.tcard:hover{border-color:var(--A);box-shadow:0 10px 34px rgba(0,184,148,.12);transform:translateY(-5px)}
+.tcard:hover .tprev::before{content:'Click to Preview';position:absolute;inset:0;background:rgba(33,78,165,.1);display:flex;align-items:center;justify-content:center;color:var(--P);font-size:.85rem;font-weight:600;z-index:3;backdrop-filter:blur(2px)}
+.tprev{height:225px;position:relative;overflow:hidden;border-bottom:1px solid var(--bdr);background:#fff;display:flex;align-items:flex-start;justify-content:center}
+.tprev::after{content:'';position:absolute;bottom:0;left:0;right:0;height:52px;background:linear-gradient(to bottom,transparent,rgba(255,255,255,.9));pointer-events:none;z-index:2}
+.scw{transform:scale(0.33);transform-origin:top center;width:794px;flex-shrink:0;pointer-events:none}
+.tbadge{position:absolute;top:8px;right:8px;padding:2px 9px;border-radius:20px;font-size:.6rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;z-index:5}
+.bb{background:rgba(100,116,139,.1);color:#64748B;border:1px solid rgba(100,116,139,.2)}
+.bi{background:rgba(33,78,165,.08);color:var(--P);border:1px solid rgba(33,78,165,.2)}
+.bp{background:linear-gradient(135deg,rgba(255,215,0,.12),rgba(255,140,0,.12));color:#D4AF37;border:1px solid rgba(255,215,0,.2)}
+.tcbody{padding:.85rem 1.05rem}
+.tcbody h3{font-size:.9rem;font-weight:700;margin-bottom:.2rem}
+.tdesc{color:var(--t3);font-size:.72rem;margin-bottom:.72rem;line-height:1.4}
+
+/* ═══ RESUME BASE ═══ */
+.rr{width:794px;min-height:auto;background:#fff;color:#333;font-family:Arial,sans-serif;font-size:12px;line-height:1.5;box-sizing:border-box}
+.rr h1{margin-top:0;line-height:1.2}
+.rr h2{margin-top:0}
+.rr h3{margin-top:0;color:#333;font-size:12px;margin-bottom:2px}
+.rr p,.rr li{font-size:11px;color:#444;line-height:1.5}
+.rr .ci{font-size:10px;color:#666;margin-bottom:10px}
+.rr .sec{margin-bottom:12px}
+.rr ul{padding-left:15px;margin:3px 0}
+.rr .jt{display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap}
+.rr .dt{color:#888;font-size:10px;font-style:italic}
+.rphoto{width:70px;height:70px;border-radius:50%;object-fit:cover;flex-shrink:0}
+.pph{width:70px;height:70px;border-radius:50%;background:rgba(0,0,0,.07);display:flex;align-items:center;justify-content:center;border:2px dashed rgba(0,0,0,.18);cursor:pointer;flex-shrink:0}
+.pph i{color:rgba(0,0,0,.28);font-size:.95rem}
+.pph-dark{width:70px;height:70px;border-radius:50%;background:rgba(255,255,255,.1);display:flex;align-items:center;justify-content:center;border:2px dashed rgba(255,255,255,.35);cursor:pointer;flex-shrink:0}
+.pph-dark i{color:rgba(255,255,255,.5);font-size:.95rem}
+
+/* ══ BASIC Templates ══ */
+.b1{padding:36px}.b1 h1{color:#111;font-size:24px}.b1 h2{color:#111;border-bottom:1.5px solid #111;font-size:12px;padding-bottom:3px;margin-bottom:8px;text-transform:uppercase;letter-spacing:.05em}
+.b2{padding:36px;font-family:'Georgia',serif}.b2 h1{color:#222;font-size:24px;font-family:'Georgia',serif}.b2 h2{color:#222;border-bottom:1px solid #bbb;font-size:12px;padding-bottom:3px;margin-bottom:8px;font-style:italic}
+.b3{padding:44px}.b3 h1{color:#111;font-weight:300;font-size:28px;letter-spacing:2px}.b3 h2{color:#555;font-size:10px;text-transform:uppercase;letter-spacing:4px;border-bottom:1px solid #ddd;padding-bottom:3px;margin-bottom:8px}
+.b4{padding:36px}.b4 h1{color:#111;font-size:24px;border-bottom:2px solid #111;padding-bottom:6px;margin-bottom:10px}.b4 h2{color:#555;font-size:11px;text-transform:uppercase;letter-spacing:2px;margin-bottom:8px}
+.b5{padding:36px;font-family:'Georgia',serif}.b5 h1{color:#111;font-size:22px;text-transform:uppercase;letter-spacing:3px;font-family:'Georgia',serif;text-align:center}.b5 h2{color:#111;font-size:11px;border-top:1px solid #ccc;border-bottom:1px solid #ccc;padding:3px 0;margin-bottom:8px;text-align:center;letter-spacing:2px;text-transform:uppercase}
+.b6{padding:36px;border-top:3px solid #111}.b6 h1{color:#111;font-size:24px}.b6 h2{color:#111;border-bottom:1.5px solid #ddd;font-size:12px;padding-bottom:3px;margin-bottom:8px}
+.b7{padding:36px}.b7 h1{color:#333;font-weight:400;font-size:25px}.b7 h2{color:#333;font-size:11px;background:#f5f5f5;padding:3px 8px;margin-bottom:8px;text-transform:uppercase;letter-spacing:2px}
+.b8{padding:36px}.b8 h1{color:#222;font-size:24px;font-weight:300}.b8 h2{color:#222;border-left:3px solid #888;padding-left:7px;font-size:12px;margin-bottom:8px}
+.b9{padding:0;display:flex;min-height:700px}.b9 .sl{background:#f0f0f0;width:32%;padding:24px 16px}.b9 .sl h1{color:#111;font-size:17px}.b9 .sl h2{color:#333;border-bottom:1px solid #ccc;font-size:11px;padding-bottom:2px;margin-bottom:6px;margin-top:10px}.b9 .sl p,.b9 .sl li{color:#444;font-size:10px}.b9 .mr{padding:24px;width:68%}.b9 .mr h2{color:#111;border-bottom:1.5px solid #ccc;font-size:12px;padding-bottom:3px;margin-bottom:8px}
+.b10{padding:36px}.b10 h1{color:#111;font-size:22px;font-weight:900}.b10 h2{font-size:10px;text-transform:uppercase;letter-spacing:3px;color:#111;padding-bottom:3px;border-bottom:1px solid #ddd;margin-bottom:8px}
+.b11{padding:36px}.b11 h1{font-size:24px;color:#111;font-style:italic;font-family:'Georgia',serif}.b11 h2{color:#111;font-size:12px;border-bottom:1px dotted #bbb;padding-bottom:3px;margin-bottom:8px;font-family:'Georgia',serif}
+.b12{padding:24px}.b12 h1{color:#222;font-size:21px}.b12 h2{color:#333;font-size:10px;text-transform:uppercase;letter-spacing:2px;border-bottom:1px solid #ccc;padding-bottom:2px;margin-bottom:6px}
+.b13{padding:36px;background:#f9f9f9}.b13 h1{color:#111;font-size:24px;font-weight:300;letter-spacing:1px}.b13 h2{color:#333;border-bottom:2px solid #333;font-size:12px;padding-bottom:3px;margin-bottom:8px}
+.b14{padding:36px}.b14 h1{color:#111;font-size:22px;text-align:center;border-bottom:1px solid #ccc;padding-bottom:8px}.b14 h2{color:#333;text-align:center;font-size:10px;letter-spacing:3px;text-transform:uppercase;margin-bottom:8px}
+.b15{padding:36px}.b15 h1{color:#111;font-size:24px}.b15 h2{color:#111;font-size:10px;text-transform:uppercase;letter-spacing:2px;background:#efefef;padding:3px 7px;margin-bottom:8px}
+.b16{padding:0}.b16 .hd{background:#ececec;padding:22px 36px}.b16 .hd h1{color:#111;font-size:22px}.b16 .hd .ci{color:#555}.b16 .bd{padding:22px 36px}.b16 h2{color:#111;border-bottom:1.5px solid #aaa;font-size:12px;padding-bottom:3px;margin-bottom:8px}
+.b17{padding:36px}.b17 h1{color:#111;font-size:24px;font-weight:900}.b17 h2{color:#222;font-size:10px;text-transform:uppercase;letter-spacing:3px;margin-bottom:8px}
+.b18{padding:36px;border-left:4px solid #888}.b18 h1{color:#111;font-size:23px}.b18 h2{color:#111;font-size:12px;border-bottom:1px solid #ccc;padding-bottom:3px;margin-bottom:8px}
+.b19{padding:36px;background:#faf8f4}.b19 h1{color:#111;font-size:24px;font-weight:300;font-family:'Georgia',serif}.b19 h2{color:#555;font-size:10px;text-transform:uppercase;letter-spacing:4px;border-bottom:1px solid #ccc;padding-bottom:3px;margin-bottom:8px;font-family:'Georgia',serif}
+.b20{padding:36px}.b20 h1{color:#111;font-size:24px;letter-spacing:1px}.b20 h2{color:#111;font-size:11px;background:#efefef;padding:3px 8px;margin-bottom:8px}
+.b21{padding:0}.b21 .hd{background:#2a2a2a;padding:22px 36px;color:#eee}.b21 .hd h1{color:#eee;font-size:22px}.b21 .hd .ci{color:#aaa}.b21 .bd{padding:22px 36px}.b21 h2{color:#222;border-bottom:1.5px solid #222;font-size:12px;padding-bottom:3px;margin-bottom:8px}
+.b22{padding:36px}.b22 h1{color:#111;font-size:22px;border-bottom:3px double #111;padding-bottom:6px}.b22 h2{color:#333;font-size:10px;letter-spacing:2px;text-transform:uppercase;margin-bottom:8px}
+.b23{padding:36px;font-family:'Courier New',monospace}.b23 h1{color:#111;font-size:21px;font-family:'Courier New',monospace}.b23 h2{color:#111;border-bottom:1px solid #999;font-size:10px;font-family:'Courier New',monospace;padding-bottom:3px;margin-bottom:8px}
+.b24{padding:36px;background:#fafaf8}.b24 h1{color:#111;font-size:24px;font-weight:300;letter-spacing:2px}.b24 h2{color:#444;font-size:10px;text-transform:uppercase;letter-spacing:5px;padding-bottom:3px;border-bottom:1px solid #ddd;margin-bottom:8px}
+.b25{padding:36px}.b25 h1{color:#111;font-size:24px}.b25 h2{color:#111;border-left:3px solid #333;padding-left:7px;font-size:12px;margin-bottom:8px}
+.b26{padding:36px;border-bottom:3px solid #111}.b26 h1{color:#111;font-size:22px;text-transform:uppercase;letter-spacing:4px}.b26 h2{color:#333;border-bottom:1px dashed #999;font-size:11px;padding-bottom:3px;margin-bottom:8px;letter-spacing:1px}
+.b27{padding:36px}.b27 h1{color:#111;font-size:24px}.b27 h2{color:#111;border-top:2px solid #111;padding-top:4px;font-size:12px;margin-bottom:8px}
+.b28{padding:36px;background:#fefefe;border:1px solid #e5e5e5}.b28 h1{color:#111;font-size:24px;text-align:center;border-bottom:2px solid #111;padding-bottom:8px}.b28 h2{color:#444;font-size:10px;text-transform:uppercase;letter-spacing:3px;text-align:center;margin-bottom:8px}
+.b29{padding:36px}.b29 h1{color:#222;font-size:26px;font-weight:300}.b29 h2{color:#222;font-size:12px;padding:3px 0;border-bottom:1px solid #ccc;margin-bottom:8px}
+.b30{padding:0;display:flex;min-height:700px}.b30 .sl{background:#e6e6e6;width:30%;padding:22px 15px}.b30 .sl h1{color:#111;font-size:16px}.b30 .sl h2{color:#222;border-bottom:1px solid #bbb;font-size:10px;text-transform:uppercase;letter-spacing:2px;padding-bottom:2px;margin-bottom:5px;margin-top:9px}.b30 .sl p,.b30 .sl li{color:#444;font-size:10px}.b30 .mr{padding:22px;width:70%}.b30 .mr h2{color:#111;border-bottom:1.5px solid #ccc;font-size:11px;text-transform:uppercase;letter-spacing:2px;padding-bottom:2px;margin-bottom:6px}
+
+/* ══ INTERMEDIATE Templates ══ */
+.i1{padding:36px;border-top:4px solid #2563eb}.i1 h1{color:#1e3a5f;font-size:24px}.i1 h2{color:#2563eb;border-bottom:2px solid #2563eb;font-size:12px;padding-bottom:3px;margin-bottom:8px}
+.i2{padding:36px;border-left:5px solid #16a34a}.i2 h1{color:#14532d;font-size:24px}.i2 h2{color:#16a34a;border-bottom:1.5px solid #16a34a;font-size:12px;padding-bottom:3px;margin-bottom:8px}
+.i3{padding:36px}.i3 h1{color:#b45309;font-size:24px}.i3 h2{color:#d97706;border-bottom:2px solid #fbbf24;font-size:12px;padding-bottom:3px;margin-bottom:8px}
+.i4{padding:36px}.i4 h1{color:#7c3aed;font-size:24px}.i4 h2{color:#7c3aed;background:#f5f3ff;padding:3px 8px;font-size:12px;margin-bottom:8px;border-radius:3px}
+.i5{padding:36px;border-top:4px solid #dc2626}.i5 h1{color:#7f1d1d;font-size:24px}.i5 h2{color:#dc2626;border-bottom:2px solid #dc2626;font-size:12px;padding-bottom:3px;margin-bottom:8px}
+.i6{padding:36px}.i6 h1{color:#0369a1;font-size:24px}.i6 h2{color:#0369a1;background:#e0f2fe;padding:3px 8px;font-size:12px;margin-bottom:8px}
+.i7{padding:36px}.i7 h1{color:#065f46;font-size:24px}.i7 h2{color:#059669;border-left:4px solid #059669;padding-left:7px;font-size:12px;margin-bottom:8px}
+.i8{padding:36px;background:#f8fafc}.i8 h1{color:#1e293b;font-size:24px}.i8 h2{color:#334155;background:#e2e8f0;padding:3px 8px;font-size:12px;margin-bottom:8px}
+.i9{padding:0}.i9 .hd{background:#1e3a5f;color:#fff;padding:24px 36px}.i9 .hd h1{color:#fff;font-size:22px}.i9 .hd .ci{color:#93c5fd}.i9 .bd{padding:24px 36px}.i9 h2{color:#1e3a5f;border-bottom:2px solid #3b82f6;font-size:12px;padding-bottom:3px;margin-bottom:8px}
+.i10{padding:0;display:flex;min-height:700px}.i10 .sl{background:#1e3a5f;color:#fff;padding:24px 16px;width:32%}.i10 .sl h1{color:#fff;font-size:17px}.i10 .sl h2{color:#93c5fd;border-bottom:1px solid #3b82f6;font-size:11px;padding-bottom:2px;margin-bottom:6px;margin-top:9px}.i10 .sl p,.i10 .sl li{color:#bfdbfe;font-size:10px}.i10 .sl .ci{color:#93c5fd}.i10 .mr{padding:24px;width:68%}.i10 .mr h2{color:#1e3a5f;border-bottom:2px solid #2563eb;font-size:12px;padding-bottom:3px;margin-bottom:8px}
+.i11{padding:36px}.i11 h1{color:#166534;font-size:24px}.i11 h2{color:#16a34a;border-top:3px solid #16a34a;padding-top:4px;font-size:12px;margin-bottom:8px}
+.i12{padding:36px}.i12 h1{color:#1e40af;font-size:24px;border-bottom:3px double #1e40af;padding-bottom:5px}.i12 h2{color:#2563eb;font-size:11px;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px}
+.i13{padding:36px}.i13 h1{color:#9a3412;font-size:24px}.i13 h2{color:#ea580c;border-left:5px solid #ea580c;padding-left:7px;font-size:12px;margin-bottom:8px;background:#fff7ed;padding-top:2px;padding-bottom:2px}
+.i14{padding:36px;background:#f0fdf4}.i14 h1{color:#14532d;font-size:24px}.i14 h2{color:#15803d;border-bottom:2px solid #4ade80;font-size:12px;padding-bottom:3px;margin-bottom:8px}
+.i15{padding:0}.i15 .rb{background:#7c3aed;height:6px}.i15 .bd{padding:30px 36px}.i15 h1{color:#4c1d95;font-size:24px}.i15 h2{color:#7c3aed;border-bottom:2px solid #c4b5fd;font-size:12px;padding-bottom:3px;margin-bottom:8px}
+.i16{padding:36px;background:#fffbeb}.i16 h1{color:#78350f;font-size:24px}.i16 h2{color:#b45309;border-bottom:2px solid #fcd34d;font-size:12px;padding-bottom:3px;margin-bottom:8px}
+.i17{padding:36px}.i17 h1{color:#0c4a6e;font-size:24px;letter-spacing:1px}.i17 h2{color:#0369a1;font-size:10px;text-transform:uppercase;letter-spacing:2px;border-bottom:2px solid #0369a1;padding-bottom:3px;margin-bottom:8px}
+.i18{padding:36px;background:#fdf2f8}.i18 h1{color:#831843;font-size:24px}.i18 h2{color:#be185d;border-bottom:2px dotted #f9a8d4;font-size:12px;padding-bottom:3px;margin-bottom:8px}
+.i19{padding:36px}.i19 h1{color:#1e293b;font-size:24px;position:relative}.i19 h1::before{content:'';display:block;width:34px;height:4px;background:#f59e0b;margin-bottom:7px}.i19 h2{color:#f59e0b;border-bottom:2px solid #fde68a;font-size:12px;padding-bottom:3px;margin-bottom:8px}
+.i20{padding:0}.i20 .hd{background:#14532d;color:#fff;padding:24px 36px}.i20 .hd h1{color:#fff;font-size:22px}.i20 .hd .ci{color:#a7f3d0}.i20 .bd{padding:24px 36px}.i20 h2{color:#15803d;border-left:4px solid #22c55e;padding-left:7px;font-size:12px;margin-bottom:8px}
+.i21{padding:36px;border-left:5px solid #9333ea}.i21 h1{color:#6b21a8;font-size:24px}.i21 h2{color:#7c3aed;border-bottom:1.5px solid #a78bfa;font-size:12px;padding-bottom:3px;margin-bottom:8px}
+.i22{padding:36px}.i22 h1{font-size:22px;color:#0f172a;font-weight:900;text-transform:uppercase;letter-spacing:3px}.i22 h2{color:#fff;background:#0f172a;padding:4px 9px;font-size:10px;letter-spacing:1px;text-transform:uppercase;margin-bottom:8px}
+.i23{padding:36px;background:#f0f9ff}.i23 h1{color:#0c4a6e;font-size:24px}.i23 h2{color:#0284c7;border-left:4px solid #0ea5e9;padding-left:7px;font-size:12px;margin-bottom:8px}
+.i24{padding:36px}.i24 h1{background:linear-gradient(135deg,#0284c7,#7c3aed);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-size:24px}.i24 h2{color:#0284c7;border-bottom:2px solid #a5f3fc;font-size:12px;padding-bottom:3px;margin-bottom:8px}
+.i25{padding:0;display:flex;min-height:700px}.i25 .sl{background:#166534;width:32%;padding:24px 16px;color:#fff}.i25 .sl h1{color:#fff;font-size:17px}.i25 .sl h2{color:#86efac;border-bottom:1px solid #4ade80;font-size:11px;padding-bottom:2px;margin-bottom:6px;margin-top:9px}.i25 .sl p,.i25 .sl li{color:#bbf7d0;font-size:10px}.i25 .sl .ci{color:#86efac}.i25 .mr{padding:24px;width:68%}.i25 .mr h2{color:#14532d;border-bottom:2px solid #16a34a;font-size:12px;padding-bottom:3px;margin-bottom:8px}
+.i26{padding:36px;background:#fefce8}.i26 h1{color:#713f12;font-size:24px}.i26 h2{color:#ca8a04;border-bottom:2px solid #fde047;font-size:12px;padding-bottom:3px;margin-bottom:8px}
+.i27{padding:36px}.i27 h1{color:#881337;font-size:24px}.i27 h2{color:#be123c;background:#ffe4e6;padding:3px 7px;font-size:12px;margin-bottom:8px;border-radius:3px;border-left:4px solid #be123c}
+.i28{padding:36px}.i28 h1{color:#155e75;font-size:24px}.i28 h2{color:#0891b2;border-bottom:2px solid #a5f3fc;font-size:12px;padding-bottom:3px;margin-bottom:8px}
+.i29{padding:36px;background:#f8fafc}.i29 h1{color:#0f172a;font-size:24px;font-weight:300;letter-spacing:2px}.i29 h2{color:#64748b;text-transform:uppercase;font-size:10px;letter-spacing:4px;border-bottom:1px solid #cbd5e1;padding-bottom:3px;margin-bottom:8px}
+.i30{padding:36px}.i30 h1{color:#5b21b6;font-size:24px}.i30 h2{color:#7c3aed;border-top:3px solid #7c3aed;padding-top:4px;font-size:12px;margin-bottom:8px}
+
+/* ══ PREMIUM Templates ══ */
+.p1{padding:0}.p1 .ph{background:linear-gradient(135deg,#4f46e5,#7c3aed);padding:26px 36px;display:flex;align-items:center;gap:16px;color:#fff}.p1 .ph h1{color:#fff;font-size:22px}.p1 .ph .ci{color:rgba(255,255,255,.8)}.p1 .pb{padding:24px 36px}.p1 h2{color:#4f46e5;border-bottom:2px solid #4f46e5;font-size:12px;padding-bottom:3px;margin-bottom:8px}
+.p2{padding:0;display:flex;min-height:700px}.p2 .sl{background:linear-gradient(180deg,#0f172a,#1e293b);width:32%;padding:24px 16px;color:#fff;text-align:center}.p2 .sl h1{color:#fff;font-size:16px;margin-top:9px}.p2 .sl h2{color:#f472b6;border-bottom:1px solid #f472b6;font-size:10px;padding-bottom:2px;margin-bottom:6px}.p2 .sl p,.p2 .sl li{color:#cbd5e1;font-size:10px}.p2 .mr{padding:24px;width:68%}.p2 .mr h2{color:#0f172a;border-bottom:2px solid #f472b6;font-size:12px;padding-bottom:3px;margin-bottom:8px}
+.p3{padding:0}.p3 .ph{background:linear-gradient(135deg,#b91c1c,#ef4444);padding:26px 36px;display:flex;align-items:center;gap:16px;color:#fff}.p3 .ph h1{color:#fff;font-size:22px}.p3 .ph .ci{color:rgba(255,255,255,.8)}.p3 .pb{padding:24px 36px}.p3 h2{color:#dc2626;border-bottom:2px solid #fca5a5;font-size:12px;padding-bottom:3px;margin-bottom:8px}
+.p4{padding:0;background:#060610}.p4 .cy-head{background:linear-gradient(135deg,#060610 0%,#0d1b3e 50%,#060610 100%);border-bottom:2px solid #00d4ff;padding:28px 36px;display:flex;align-items:center;gap:18px;position:relative;overflow:hidden}.p4 .cy-head::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(90deg,transparent,transparent 60px,rgba(0,212,255,.04) 60px,rgba(0,212,255,.04) 61px),repeating-linear-gradient(0deg,transparent,transparent 60px,rgba(0,212,255,.04) 60px,rgba(0,212,255,.04) 61px);pointer-events:none}.p4 .cy-head h1{color:#00d4ff;font-size:22px;text-shadow:0 0 18px rgba(0,212,255,.6);font-family:'Courier New',monospace;position:relative;z-index:1}.p4 .cy-head .ci{color:#7dd3fc;font-size:10px;position:relative;z-index:1}.p4 .cy-head .cy-info{position:relative;z-index:1}.p4 .cy-body{padding:22px 36px;background:#07080f}.p4 h2{color:#00d4ff;border-left:3px solid #00d4ff;padding-left:8px;font-size:12px;margin-bottom:8px;font-family:'Courier New',monospace;text-transform:uppercase;letter-spacing:.1em}.p4 h3{color:#c7d2fe;font-size:12px}.p4 p,.p4 li{color:#94a3b8;font-size:11px}.p4 .dt{color:#4b5563}.p4 .pph-cyber{width:72px;height:72px;border-radius:4px;background:rgba(0,212,255,.08);display:flex;align-items:center;justify-content:center;border:1px solid rgba(0,212,255,.4);cursor:pointer;flex-shrink:0;position:relative;z-index:1}.p4 .pph-cyber i{color:rgba(0,212,255,.6);font-size:1rem}.p4 .rphoto-cyber{width:72px;height:72px;border-radius:4px;object-fit:cover;border:1px solid #00d4ff;flex-shrink:0;position:relative;z-index:1}
+.p5{padding:0}.p5 .ph{background:linear-gradient(135deg,#0369a1,#0ea5e9);padding:26px 36px;display:flex;align-items:center;gap:16px;color:#fff}.p5 .ph h1{color:#fff;font-size:22px}.p5 .ph .ci{color:rgba(255,255,255,.8)}.p5 .pb{padding:24px 36px}.p5 h2{color:#0369a1;border-bottom:2px solid #38bdf8;font-size:12px;padding-bottom:3px;margin-bottom:8px}
+.p6{padding:0;display:flex;min-height:700px}.p6 .sl{background:linear-gradient(180deg,#92400e,#b45309);width:32%;padding:24px 16px;color:#fff}.p6 .sl h1{color:#fff;font-size:16px;margin-top:9px}.p6 .sl h2{color:#fef9c3;border-bottom:1px solid rgba(255,255,255,.35);font-size:10px;padding-bottom:2px;margin-bottom:6px}.p6 .sl p,.p6 .sl li{color:#fefce8;font-size:10px}.p6 .mr{padding:24px;width:68%}.p6 .mr h2{color:#92400e;border-bottom:2px solid #fcd34d;font-size:12px;padding-bottom:3px;margin-bottom:8px}
+.p7{padding:0}.p7 .ph{background:linear-gradient(135deg,#166534,#15803d);padding:26px 36px;display:flex;align-items:center;gap:16px;color:#fff}.p7 .ph h1{color:#fff;font-size:22px}.p7 .ph .ci{color:rgba(255,255,255,.8)}.p7 .pb{padding:24px 36px}.p7 h2{color:#15803d;border-bottom:2px solid #4ade80;font-size:12px;padding-bottom:3px;margin-bottom:8px}
+.p8{padding:0}.p8 .ph{background:linear-gradient(135deg,#431407,#9a3412);padding:26px 36px;display:flex;align-items:center;gap:16px;color:#fff}.p8 .ph h1{color:#fed7aa;font-size:22px}.p8 .ph .ci{color:rgba(254,215,170,.7)}.p8 .pb{padding:24px 36px}.p8 h2{color:#7c2d12;border-left:4px solid #c2410c;padding-left:7px;font-size:12px;margin-bottom:8px}
+.p9{padding:0}.p9 .ph{background:linear-gradient(90deg,#f97316,#eab308,#84cc16);padding:26px 36px;display:flex;align-items:center;gap:16px;color:#fff}.p9 .ph h1{color:#fff;font-size:22px;text-shadow:0 1px 4px rgba(0,0,0,.28)}.p9 .ph .ci{color:rgba(255,255,255,.85)}.p9 .pb{padding:24px 36px}.p9 h2{color:#ea580c;border-bottom:2px solid #fed7aa;font-size:12px;padding-bottom:3px;margin-bottom:8px}
+.p10{padding:0;background:#05050a}.p10 .ne-head{background:linear-gradient(135deg,#05050a 0%,#0a0a18 100%);padding:28px 36px;display:flex;align-items:center;gap:18px;border-bottom:1px solid rgba(0,255,136,.3);position:relative;overflow:hidden}.p10 .ne-head::after{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,#00ff88,#00ffff,#ff00ff,transparent)}.p10 .ne-head h1{color:#00ff88;font-size:22px;text-shadow:0 0 20px rgba(0,255,136,.7),0 0 40px rgba(0,255,136,.3);position:relative;z-index:1}.p10 .ne-head .ci{color:#6ee7b7;font-size:10px;position:relative;z-index:1}.p10 .ne-head .ne-info{position:relative;z-index:1}.p10 .ne-body{padding:22px 36px;background:#07070e}.p10 h2{color:#00ff88;border-bottom:1px solid rgba(0,255,136,.35);font-size:12px;padding-bottom:3px;margin-bottom:8px;text-shadow:0 0 10px rgba(0,255,136,.4)}.p10 h3{color:#c7d2fe;font-size:12px}.p10 p,.p10 li{color:#6b7280;font-size:11px}.p10 .dt{color:#374151}.p10 .pph-neon{width:72px;height:72px;border-radius:50%;background:rgba(0,255,136,.07);display:flex;align-items:center;justify-content:center;border:2px solid rgba(0,255,136,.4);cursor:pointer;flex-shrink:0;box-shadow:0 0 12px rgba(0,255,136,.2);position:relative;z-index:1}.p10 .pph-neon i{color:rgba(0,255,136,.6);font-size:1rem}.p10 .rphoto-neon{width:72px;height:72px;border-radius:50%;object-fit:cover;border:2px solid #00ff88;flex-shrink:0;box-shadow:0 0 14px rgba(0,255,136,.4);position:relative;z-index:1}
+.p11{padding:0;display:flex;min-height:700px}.p11 .sl{background:linear-gradient(180deg,#4c1d95,#6d28d9);width:32%;padding:24px 16px;color:#fff}.p11 .sl h1{color:#fff;font-size:16px;margin-top:9px}.p11 .sl h2{color:#c4b5fd;border-bottom:1px solid #a78bfa;font-size:10px;padding-bottom:2px;margin-bottom:6px}.p11 .sl p,.p11 .sl li{color:#ddd6fe;font-size:10px}.p11 .mr{padding:24px;width:68%}.p11 .mr h2{color:#4c1d95;border-bottom:2px solid #a78bfa;font-size:12px;padding-bottom:3px;margin-bottom:8px}
+.p12{padding:0}.p12 .ph{background:linear-gradient(135deg,#6d28d9,#a855f7);padding:26px 36px;display:flex;align-items:center;gap:16px;color:#fff}.p12 .ph h1{color:#fff;font-size:22px}.p12 .ph .ci{color:rgba(255,255,255,.8)}.p12 .pb{padding:24px 36px}.p12 h2{color:#7c3aed;border-bottom:2px solid #c4b5fd;font-size:12px;padding-bottom:3px;margin-bottom:8px}
+.p13{padding:0}.p13 .ph{background:linear-gradient(135deg,#9f1239,#e11d48);padding:26px 36px;display:flex;align-items:center;gap:16px;color:#fff}.p13 .ph h1{color:#fff;font-size:22px}.p13 .ph .ci{color:rgba(255,255,255,.8)}.p13 .pb{padding:24px 36px}.p13 h2{color:#be123c;border-bottom:2px solid #fda4af;font-size:12px;padding-bottom:3px;margin-bottom:8px}
+.p14{padding:0;background:#100500}.p14 .fi-head{background:linear-gradient(135deg,#1a0500,#3d0f00,#1a0500);padding:28px 36px;display:flex;align-items:center;gap:18px;border-bottom:2px solid #ff4500;position:relative;overflow:hidden}.p14 .fi-head::before{content:'';position:absolute;bottom:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#ff4500,#ff8c00,#ffd700,#ff8c00,#ff4500);background-size:200% 100%;animation:fireSlide 3s linear infinite}.p14 .fi-head h1{background:linear-gradient(135deg,#ff6b35,#ffd700);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-size:22px;position:relative;z-index:1}.p14 .fi-head .ci{color:#fb923c;font-size:10px;position:relative;z-index:1}.p14 .fi-head .fi-info{position:relative;z-index:1}.p14 .fi-body{padding:22px 36px;background:#0d0400}.p14 h2{color:#fb923c;border-left:3px solid #ff4500;padding-left:8px;font-size:12px;margin-bottom:8px;text-transform:uppercase;letter-spacing:.05em}.p14 h3{color:#fcd9bd;font-size:12px}.p14 p,.p14 li{color:#a36a40;font-size:11px}.p14 .dt{color:#7c4500}.p14 .pph-fire{width:72px;height:72px;border-radius:50%;background:rgba(255,69,0,.1);display:flex;align-items:center;justify-content:center;border:2px dashed rgba(255,140,0,.5);cursor:pointer;flex-shrink:0;position:relative;z-index:1}.p14 .pph-fire i{color:rgba(255,140,0,.6);font-size:1rem}.p14 .rphoto-fire{width:72px;height:72px;border-radius:50%;object-fit:cover;border:2px solid #ff4500;flex-shrink:0;box-shadow:0 0 14px rgba(255,69,0,.4);position:relative;z-index:1}
+.p15{padding:0;display:flex;min-height:700px}.p15 .sl{background:linear-gradient(180deg,#0369a1,#0284c7);width:32%;padding:24px 16px;color:#fff}.p15 .sl h1{color:#fff;font-size:16px;margin-top:9px}.p15 .sl h2{color:#7dd3fc;border-bottom:1px solid #38bdf8;font-size:10px;padding-bottom:2px;margin-bottom:6px}.p15 .sl p,.p15 .sl li{color:#bae6fd;font-size:10px}.p15 .sl .ci{color:#7dd3fc}.p15 .mr{padding:24px;width:68%}.p15 .mr h2{color:#0369a1;border-bottom:2px solid #38bdf8;font-size:12px;padding-bottom:3px;margin-bottom:8px}
+.p16{padding:0}.p16 .ph{background:linear-gradient(135deg,#92400e,#d97706);padding:26px 36px;display:flex;align-items:center;gap:16px;color:#fff}.p16 .ph h1{color:#fff;font-size:22px}.p16 .ph .ci{color:rgba(255,255,255,.8)}.p16 .pb{padding:24px 36px;background:#fffdf0}.p16 h2{color:#92400e;border-bottom:2px solid #fcd34d;font-size:12px;padding-bottom:3px;margin-bottom:8px}
+.p17{padding:0}.p17 .ph{background:linear-gradient(135deg,#0c4a6e,#155e75);padding:26px 36px;display:flex;align-items:center;gap:16px;color:#fff}.p17 .ph h1{color:#fff;font-size:22px}.p17 .ph .ci{color:rgba(255,255,255,.8)}.p17 .pb{padding:24px 36px}.p17 h2{color:#0e7490;border-bottom:2px solid #67e8f9;font-size:12px;padding-bottom:3px;margin-bottom:8px}
+.p18{padding:0;display:flex;min-height:700px}.p18 .sl{background:linear-gradient(180deg,#18181b,#27272a);width:32%;padding:24px 16px;color:#fff}.p18 .sl h1{color:#fafafa;font-size:16px;margin-top:9px}.p18 .sl h2{color:#facc15;border-bottom:1px solid #facc15;font-size:10px;padding-bottom:2px;margin-bottom:6px}.p18 .sl p,.p18 .sl li{color:#a1a1aa;font-size:10px}.p18 .mr{padding:24px;width:68%}.p18 .mr h2{color:#18181b;border-bottom:2px solid #facc15;font-size:12px;padding-bottom:3px;margin-bottom:8px}
+.p19{padding:0}.p19 .ph{background:linear-gradient(135deg,#022c22,#065f46);padding:26px 36px;display:flex;align-items:center;gap:16px;color:#fff}.p19 .ph h1{color:#6ee7b7;font-size:22px}.p19 .ph .ci{color:rgba(110,231,183,.8)}.p19 .pb{padding:24px 36px}.p19 h2{color:#047857;border-bottom:2px solid #34d399;font-size:12px;padding-bottom:3px;margin-bottom:8px}
+.p20{padding:0}.p20 .ph{background:linear-gradient(135deg,#0ea5e9,#6366f1,#a855f7);padding:26px 36px;display:flex;align-items:center;gap:16px;color:#fff}.p20 .ph h1{color:#fff;font-size:22px}.p20 .ph .ci{color:rgba(255,255,255,.8)}.p20 .pb{padding:24px 36px}.p20 h2{color:#6366f1;border-bottom:2px solid #a5b4fc;font-size:12px;padding-bottom:3px;margin-bottom:8px}
+.p21{padding:0;background:#040d1a}.p21 .mt-head{background:linear-gradient(135deg,#040d1a 0%,#071428 60%,#040d1a 100%);padding:28px 36px;display:flex;align-items:center;gap:18px;border-bottom:1px solid #1e40af;position:relative}.p21 .mt-head::after{content:'';position:absolute;bottom:0;left:0;width:40%;height:1px;background:linear-gradient(90deg,#3b82f6,transparent)}.p21 .mt-head h1{color:#e2e8f0;font-size:22px;position:relative;z-index:1}.p21 .mt-head .ci{color:#60a5fa;font-size:10px;position:relative;z-index:1}.p21 .mt-head .mt-info{position:relative;z-index:1}.p21 .mt-body{padding:22px 36px;background:#050f20}.p21 h2{color:#38bdf8;border-bottom:1px solid rgba(56,189,248,.3);font-size:12px;padding-bottom:3px;margin-bottom:8px}.p21 h3{color:#cbd5e1;font-size:12px}.p21 p,.p21 li{color:#475569;font-size:11px}.p21 .dt{color:#1e3a5f}.p21 .pph-mid{width:72px;height:72px;border-radius:50%;background:rgba(56,189,248,.07);display:flex;align-items:center;justify-content:center;border:2px dashed rgba(56,189,248,.35);cursor:pointer;flex-shrink:0;position:relative;z-index:1}.p21 .pph-mid i{color:rgba(56,189,248,.5);font-size:1rem}.p21 .rphoto-mid{width:72px;height:72px;border-radius:50%;object-fit:cover;border:2px solid #38bdf8;flex-shrink:0;box-shadow:0 0 10px rgba(56,189,248,.3);position:relative;z-index:1}
+.p22{padding:0;background:#fafaf8}.p22 .ma-head{background:linear-gradient(135deg,#f5f5f0,#ebebeb,#f0f0eb);padding:30px 36px;display:flex;align-items:center;gap:18px;border-bottom:2px solid #c8b89a;position:relative;overflow:hidden}.p22 .ma-head::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 20% 50%,rgba(200,184,154,.18),transparent 60%),radial-gradient(ellipse at 80% 50%,rgba(180,160,130,.12),transparent 60%)}.p22 .ma-head h1{color:#2c2416;font-size:22px;letter-spacing:2px;font-weight:300;font-family:'Georgia',serif;position:relative;z-index:1}.p22 .ma-head .ci{color:#6b5d4a;font-size:10px;position:relative;z-index:1}.p22 .ma-head .ma-info{position:relative;z-index:1}.p22 .ma-body{padding:22px 36px;background:#faf9f6}.p22 h2{color:#4a3f32;text-transform:uppercase;letter-spacing:3px;font-size:10px;border-bottom:1px solid #c8b89a;padding-bottom:4px;margin-bottom:8px}.p22 h3{color:#3d322a;font-size:12px}.p22 p,.p22 li{color:#6b5d4a;font-size:11px}.p22 .dt{color:#9c8470}.p22 .pph-marble{width:72px;height:72px;border-radius:50%;background:rgba(200,184,154,.15);display:flex;align-items:center;justify-content:center;border:2px dashed rgba(100,80,50,.3);cursor:pointer;flex-shrink:0;position:relative;z-index:1}.p22 .pph-marble i{color:rgba(100,80,50,.4);font-size:1rem}.p22 .rphoto-marble{width:72px;height:72px;border-radius:50%;object-fit:cover;border:2px solid #c8b89a;flex-shrink:0;position:relative;z-index:1}
+.p23{padding:0;display:flex;min-height:700px}.p23 .sl{background:linear-gradient(180deg,#020617,#0f172a);border-right:2px solid #7c3aed;width:32%;padding:24px 16px;color:#fff}.p23 .sl h1{color:#a78bfa;font-size:16px;margin-top:9px}.p23 .sl h2{color:#7c3aed;border-bottom:1px solid #7c3aed;font-size:10px;padding-bottom:2px;margin-bottom:6px}.p23 .sl p,.p23 .sl li{color:#8b5cf6;font-size:10px}.p23 .mr{padding:24px;width:68%;background:#f8f9ff}.p23 .mr h2{color:#4f46e5;border-bottom:2px solid #a78bfa;font-size:12px;padding-bottom:3px;margin-bottom:8px}
+.p24{padding:0}.p24 .ph{background:linear-gradient(135deg,#431407,#7c2d12);padding:26px 36px;display:flex;align-items:center;gap:16px;color:#fff}.p24 .ph h1{color:#fed7aa;font-size:22px}.p24 .ph .ci{color:rgba(254,215,170,.7)}.p24 .pb{padding:24px 36px;background:#fffdf9}.p24 h2{color:#7c2d12;border-left:4px solid #c2410c;padding-left:7px;font-size:12px;margin-bottom:8px}
+.p25{padding:0;background:#f0f8ff}.p25 .ic-head{background:linear-gradient(135deg,#bfdbfe,#e0f2fe,#bae6fd);padding:28px 36px;display:flex;align-items:center;gap:18px;border-bottom:2px solid #7dd3fc;position:relative;overflow:hidden}.p25 .ic-head::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 30% 50%,rgba(255,255,255,.6),transparent 60%)}.p25 .ic-head h1{color:#0c4a6e;font-size:22px;letter-spacing:1px;position:relative;z-index:1}.p25 .ic-head .ci{color:#0369a1;font-size:10px;position:relative;z-index:1}.p25 .ic-head .ic-info{position:relative;z-index:1}.p25 .ic-body{padding:22px 36px;background:#f7fbff}.p25 h2{color:#0369a1;background:#e0f2fe;padding:3px 9px;font-size:12px;margin-bottom:8px;border-radius:4px;border-left:3px solid #0ea5e9}.p25 h3{color:#0c4a6e;font-size:12px}.p25 p,.p25 li{color:#334155;font-size:11px}.p25 .dt{color:#64748b}.p25 .pph-ice{width:72px;height:72px;border-radius:50%;background:rgba(255,255,255,.7);display:flex;align-items:center;justify-content:center;border:2px dashed rgba(3,105,161,.35);cursor:pointer;flex-shrink:0;position:relative;z-index:1}.p25 .pph-ice i{color:rgba(3,105,161,.45);font-size:1rem}.p25 .rphoto-ice{width:72px;height:72px;border-radius:50%;object-fit:cover;border:2px solid #0ea5e9;flex-shrink:0;position:relative;z-index:1}
+.p26{padding:0}.p26 .ph{background:linear-gradient(135deg,#1e1b4b,#3730a3);padding:26px 36px;display:flex;align-items:center;gap:16px;color:#fff}.p26 .ph h1{color:#e0e7ff;font-size:22px}.p26 .ph .ci{color:rgba(224,231,255,.8)}.p26 .pb{padding:24px 36px}.p26 h2{color:#3730a3;border-bottom:2px solid #818cf8;font-size:12px;padding-bottom:3px;margin-bottom:8px}
+.p27{padding:0}.p27 .ph{background:linear-gradient(135deg,#064e3b,#047857);padding:26px 36px;display:flex;align-items:center;gap:16px;color:#fff}.p27 .ph h1{color:#a7f3d0;font-size:22px}.p27 .ph .ci{color:rgba(167,243,208,.8)}.p27 .pb{padding:24px 36px}.p27 h2{color:#065f46;border-bottom:2px solid #6ee7b7;font-size:12px;padding-bottom:3px;margin-bottom:8px}
+.p28{padding:0;background:#0e0500}.p28 .em-head{background:linear-gradient(135deg,#180a00,#2d1200,#180a00);padding:28px 36px;display:flex;align-items:center;gap:18px;border-bottom:1px solid rgba(251,146,60,.3);position:relative;overflow:hidden}.p28 .em-head::before{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,#fb923c,#fbbf24,#fb923c,transparent)}.p28 .em-head h1{color:#fb923c;font-size:22px;text-shadow:0 0 12px rgba(251,146,60,.4);position:relative;z-index:1}.p28 .em-head .ci{color:#c2956a;font-size:10px;position:relative;z-index:1}.p28 .em-head .em-info{position:relative;z-index:1}.p28 .em-body{padding:22px 36px;background:#0b0400}.p28 h2{color:#fb923c;border-top:1px solid rgba(251,146,60,.3);border-bottom:1px solid rgba(251,146,60,.3);font-size:10px;letter-spacing:3px;text-transform:uppercase;padding:4px 0;margin-bottom:8px}.p28 h3{color:#fcd9bd;font-size:12px}.p28 p,.p28 li{color:#7c4a1e;font-size:11px}.p28 .dt{color:#5c3310}.p28 .pph-ember{width:72px;height:72px;border-radius:50%;background:rgba(251,146,60,.08);display:flex;align-items:center;justify-content:center;border:2px dashed rgba(251,146,60,.4);cursor:pointer;flex-shrink:0;position:relative;z-index:1}.p28 .pph-ember i{color:rgba(251,146,60,.55);font-size:1rem}.p28 .rphoto-ember{width:72px;height:72px;border-radius:50%;object-fit:cover;border:2px solid #fb923c;flex-shrink:0;box-shadow:0 0 10px rgba(251,146,60,.3);position:relative;z-index:1}
+.p29{padding:0;display:flex;min-height:700px}.p29 .sl{background:linear-gradient(180deg,#1e3a5f,#1d4ed8);width:32%;padding:24px 16px;color:#fff}.p29 .sl h1{color:#fff;font-size:16px;margin-top:9px}.p29 .sl h2{color:#93c5fd;border-bottom:1px solid #60a5fa;font-size:10px;padding-bottom:2px;margin-bottom:6px}.p29 .sl p,.p29 .sl li{color:#bfdbfe;font-size:10px}.p29 .sl .ci{color:#93c5fd}.p29 .mr{padding:24px;width:68%}.p29 .mr h2{color:#1e40af;border-bottom:2px solid #3b82f6;font-size:12px;padding-bottom:3px;margin-bottom:8px}
+.p30{padding:0}.p30 .ph{background:linear-gradient(135deg,#92400e,#d4ac0d,#92400e);padding:26px 36px;display:flex;align-items:center;gap:16px}.p30 .ph h1{color:#1a1200;font-size:22px;text-transform:uppercase;letter-spacing:2px}.p30 .ph .ci{color:#4a3800}.p30 .pb{padding:24px 36px}.p30 h2{color:#92400e;border-bottom:2px solid #fcd34d;font-size:12px;padding-bottom:3px;margin-bottom:8px}
+
+@keyframes fireSlide{0%{background-position:0% 0}100%{background-position:200% 0}}
+
+/* ════ MODAL SYSTEM ════ */
+.mo{display:none;position:fixed;inset:0;background:rgba(15,23,42,.7);z-index:1000;justify-content:center;align-items:center;padding:1.4rem;backdrop-filter:blur(8px)}
+.mo.active{display:flex}
+.mc{background:var(--bg);border:1px solid var(--bdr);border-radius:15px;width:100%;max-width:920px;max-height:92vh;overflow-y:auto;box-shadow:0 24px 55px rgba(0,0,0,.12);animation:ms .3s ease;display:flex;flex-direction:column}
+@keyframes ms{from{transform:translateY(22px);opacity:0}to{transform:translateY(0);opacity:1}}
+.mh{display:flex;justify-content:space-between;align-items:center;padding:.95rem 1.4rem;border-bottom:1px solid var(--bdr);position:sticky;top:0;background:var(--card);z-index:10;border-radius:15px 15px 0 0;gap:7px;flex-wrap:wrap}
+.mh h2{font-size:.97rem;font-weight:700;flex:1;min-width:0}
+.mhr{display:flex;align-items:center;gap:5px;flex-wrap:wrap}
+.mbb{display:flex;align-items:center;gap:4px;padding:6px 13px;border-radius:7px;border:none;font-size:.76rem;font-weight:600;cursor:pointer;transition:all .3s;font-family:inherit;white-space:nowrap}
+.be{background:rgba(0,201,133,.1);color:var(--A);border:1px solid rgba(0,201,133,.32)!important}
+.be:hover{background:var(--A);color:#fff}
+.be.on{background:rgba(239,68,68,.11);color:#ef4444;border-color:rgba(239,68,68,.32)!important}
+.be.on:hover{background:#ef4444;color:#fff}
+.bas{background:rgba(74,108,247,.1);color:var(--P);border:1px solid rgba(74,108,247,.28)!important;display:none}
+.bas:hover{background:var(--P);color:#fff}
+.bas.vis{display:flex}
+.bsv{background:linear-gradient(135deg,var(--P),var(--A));color:#fff;border:none!important;display:flex}
+.bsv:hover{opacity:.88}
+.bcn{background:rgba(239,68,68,.11);color:#ef4444;border:1px solid rgba(239,68,68,.28)!important}
+.bcn:hover{background:#ef4444;color:#fff}
+.bdl{background:rgba(255,165,0,.1);color:#FFA500;border:1px solid rgba(255,165,0,.28)!important}
+.bdl:hover{background:#FFA500;color:#fff}
+.mcl{width:30px;height:30px;border-radius:50%;background:var(--bg2);border:none;color:var(--t1);font-size:.95rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:.3s}
+.mcl:hover{background:#ef4444;color:#fff}
+.mb{padding:1.4rem;overflow-x:auto}
+.etb{display:none;background:linear-gradient(135deg,rgba(74,108,247,.07),rgba(0,201,133,.07));border:1px solid rgba(0,201,133,.2);border-radius:9px;padding:9px 13px;margin-bottom:.9rem;align-items:center;gap:8px;flex-wrap:wrap}
+.etb.on{display:flex}
+.etb i{color:var(--A)}
+.etb span{color:var(--A);font-size:.78rem;font-weight:600}
+.etb small{color:var(--t3);font-size:.68rem}
+.asp{display:none;background:var(--card);border:1px solid var(--bdr);border-radius:9px;padding:.9rem;margin-bottom:.9rem}
+.asp.on{display:block}
+.asp h4{font-size:.82rem;font-weight:600;margin-bottom:.6rem;color:var(--t2)}
+.stypes{display:flex;flex-wrap:wrap;gap:.35rem}
+.stb{padding:4px 10px;background:var(--bg);border:1px solid var(--bdr);border-radius:5px;color:var(--t2);font-size:.68rem;cursor:pointer;transition:all .2s;font-family:inherit}
+.stb:hover{background:var(--P);color:#fff;border-color:var(--P)}
+.usb{display:none;background:linear-gradient(135deg,rgba(0,201,133,.09),rgba(74,108,247,.06));border:1px solid rgba(0,201,133,.26);border-radius:8px;padding:9px 13px;margin-bottom:.85rem;align-items:center;gap:7px}
+.usb.on{display:flex}
+.usb i{color:var(--A)}
+.usb strong{color:var(--A);display:block;font-size:.8rem}
+.usb small{color:var(--t3);font-size:.68rem}
+.rr.em [contenteditable="true"]{outline:none;border-bottom:2px dashed rgba(0,201,133,.38);padding-bottom:1px;cursor:text}
+.rr.em [contenteditable="true"]:focus{border-bottom-color:var(--A);background:rgba(0,201,133,.045)}
+.rr .rsb{display:none;position:absolute;right:3px;top:3px;width:18px;height:18px;border-radius:50%;background:rgba(239,68,68,.8);border:none;color:#fff;font-size:.58rem;cursor:pointer;align-items:center;justify-content:center;z-index:10}
+.rr.em .sw{position:relative}
+.rr.em .sw:hover .rsb{display:flex}
+.upo{display:none;position:fixed;inset:0;background:rgba(15,23,42,.7);z-index:3000;justify-content:center;align-items:center;backdrop-filter:blur(8px)}
+.upo.active{display:flex}
+.upc{background:var(--card);border:1px solid var(--bdr);border-radius:13px;padding:2rem;text-align:center;max-width:340px;width:90%;box-shadow:0 20px 50px rgba(0,0,0,.12)}
+.upi{width:58px;height:58px;border-radius:50%;background:linear-gradient(135deg,rgba(0,184,148,.12),rgba(33,78,165,.12));display:flex;align-items:center;justify-content:center;margin:0 auto .9rem}
+.upi i{font-size:1.5rem;color:var(--A)}
+.upc h3{font-size:.96rem;font-weight:700;margin-bottom:.35rem}
+.upc p{color:var(--t3);font-size:.8rem;margin-bottom:1.1rem}
+.ubw{background:var(--bg2);border-radius:5px;height:6px;overflow:hidden;margin-bottom:.55rem}
+.ubf{height:100%;background:linear-gradient(90deg,var(--P),var(--A));border-radius:5px;width:0%;transition:width .4s}
+.ust{color:var(--t2);font-size:.73rem}
+.lpo{display:none;position:fixed;inset:0;background:rgba(15,23,42,.7);z-index:2000;justify-content:center;align-items:center;backdrop-filter:blur(8px)}
+.lpo.active{display:flex}
+.lpc{background:var(--card);border:1px solid var(--bdr);border-radius:15px;padding:2rem;text-align:center;max-width:380px;width:90%;animation:ms .3s;position:relative;box-shadow:0 20px 50px rgba(0,0,0,.12)}
+.lpi{width:58px;height:58px;border-radius:50%;background:linear-gradient(135deg,rgba(33,78,165,.1),rgba(0,184,148,.1));display:flex;align-items:center;justify-content:center;margin:0 auto .9rem}
+.lpi i{font-size:1.5rem;background:linear-gradient(135deg,var(--P),var(--A));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.lpc h2{font-size:1.25rem;font-weight:700;margin-bottom:.45rem}
+.lpc p{color:var(--t2);font-size:.84rem;margin-bottom:1.2rem;line-height:1.5}
+.lpa{display:flex;gap:.65rem;justify-content:center}
+.btn-gli{background:linear-gradient(135deg,var(--P),var(--A));color:#fff;border:none;padding:9px 22px;border-radius:7px;font-size:.84rem;font-weight:600;cursor:pointer;transition:all .3s;display:flex;align-items:center;gap:5px;font-family:inherit}
+.btn-gli:hover{transform:translateY(-2px);box-shadow:0 7px 22px rgba(33,78,165,.35)}
+.btn-clp{background:var(--bg);color:var(--t2);border:1px solid var(--bdr);padding:9px 18px;border-radius:7px;font-size:.84rem;cursor:pointer;transition:.3s;font-family:inherit}
+.btn-clp:hover{background:var(--bg2);color:var(--t1)}
+.lpc-x{position:absolute;top:9px;right:9px;width:26px;height:26px;border-radius:50%;background:var(--bg2);border:none;color:var(--t3);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:.78rem;transition:.3s}
+.lpc-x:hover{background:#ef4444;color:#fff}
+.dfo{display:none;position:fixed;inset:0;background:rgba(15,23,42,.7);z-index:2500;justify-content:center;align-items:center;backdrop-filter:blur(8px)}
+.dfo.active{display:flex}
+.dfc{background:var(--card);border:1px solid var(--bdr);border-radius:15px;padding:1.7rem;text-align:center;max-width:400px;width:90%;animation:ms .3s;position:relative;box-shadow:0 20px 50px rgba(0,0,0,.12)}
+.dfc h2{font-size:1.15rem;font-weight:700;margin-bottom:.3rem}
+.dfc p{color:var(--t3);font-size:.75rem;margin-bottom:1.1rem}
+.dfog{display:grid;grid-template-columns:1fr 1fr;gap:.55rem;margin-bottom:1.1rem}
+.dfb{padding:11px 9px;border-radius:8px;cursor:pointer;transition:all .3s;border:2px solid var(--bdr);background:var(--card)}
+.dfb:hover{border-color:var(--A);background:rgba(0,184,148,.05);transform:translateY(-2px)}
+.dfb i{font-size:1.2rem;display:block;margin-bottom:5px}
+.dfb .fn{font-size:.82rem;font-weight:600;color:var(--t1);display:block}
+.dfb .fd{font-size:.62rem;color:var(--t3);display:block;margin-top:1px}
+.dfb.pdf i{color:#ef4444}.dfb.doc i{color:#3b82f6}.dfb.docx i{color:#2563eb}.dfb.txt i{color:#8b5cf6}
+.dfc-x{position:absolute;top:9px;right:9px;width:25px;height:25px;border-radius:50%;background:var(--bg2);border:none;color:var(--t3);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:.76rem;transition:.3s}
+.dfc-x:hover{background:#ef4444;color:#fff}
+.dfp{display:none;align-items:center;justify-content:center;gap:7px;padding:.7rem;color:var(--A);font-size:.82rem}
+.dfp.active{display:flex}
+.sp{width:17px;height:17px;border:2.5px solid rgba(0,184,148,.2);border-top-color:var(--A);border-radius:50%;animation:spin .8s linear infinite}
+.dfc-can{background:var(--bg);color:var(--t2);border:1px solid var(--bdr);padding:7px 18px;border-radius:7px;font-size:.8rem;cursor:pointer;transition:.3s;font-family:inherit}
+.dfc-can:hover{background:var(--bg2);color:var(--t1)}
+@keyframes spin{to{transform:rotate(360deg)}}
+.toast{position:fixed;bottom:25px;right:25px;padding:11px 18px;border-radius:8px;font-size:.82rem;font-weight:500;z-index:9999;transform:translateY(80px);opacity:0;transition:all .38s;display:flex;align-items:center;gap:6px}
+.toast.show{transform:translateY(0);opacity:1}
+.ts{background:rgba(0,184,148,.95);color:#fff;box-shadow:0 5px 18px rgba(0,184,148,.25)}
+.tw{background:rgba(255,165,0,.95);color:#fff;box-shadow:0 5px 18px rgba(255,165,0,.2)}
+.ti{background:rgba(33,78,165,.95);color:#fff;box-shadow:0 5px 18px rgba(33,78,165,.2)}
+.sf{background:var(--P);border-top:1px solid rgba(255,255,255,.1);padding:2rem;text-align:center;margin-top:2rem}
+.sf p{color:rgba(255,255,255,.7);font-size:.85rem}
+.fb{color:#fff;font-weight:700}
+@media(max-width:768px){.hero h1{font-size:1.75rem}.tgrid{grid-template-columns:repeat(auto-fill,minmax(210px,1fr))}.tabs{flex-wrap:wrap;max-width:300px}.mhr{gap:3px}.mbb{padding:5px 8px;font-size:.68rem}}
+</style>
+</head>
+<body>
+
+<!-- Path4Career SHARED NAVBAR -->
+<div id="navbar-root"></div>
+
+<section class="hero">
+  <h1>Build Your <span class="gt">Perfect Resume</span></h1>
+  <p>90 professionally designed templates. Upload your resume and watch it transform instantly.</p>
+  <div class="stats">
+    <div class="stat"><div class="n">90</div><div class="l">Templates</div></div>
+    <div class="stat"><div class="n">3</div><div class="l">Categories</div></div>
+    <div class="stat"><div class="n">∞</div><div class="l">Possibilities</div></div>
+  </div>
+</section>
+<div class="tabs">
+  <button class="tab active" onclick="switchCat('basic',this)"><i class="fas fa-file-alt"></i>Basic<span class="badge">30</span></button>
+  <button class="tab" onclick="switchCat('intermediate',this)"><i class="fas fa-palette"></i>Intermediate<span class="badge">30</span></button>
+  <button class="tab" onclick="switchCat('premium',this)"><i class="fas fa-crown"></i>Premium<span class="badge">30</span></button>
+</div>
+<section id="basic" class="cat-sec active">
+  <div class="cat-hdr"><h2><i class="fas fa-file-alt" style="color:var(--t3);margin-right:6px"></i>Basic Templates</h2><p>Plain, monochrome &amp; ATS-friendly — no colour, clean and professional</p></div>
+  <div class="tgrid" id="bg"></div>
+</section>
+<section id="intermediate" class="cat-sec">
+  <div class="cat-hdr"><h2><i class="fas fa-palette" style="color:#60a5fa;margin-right:6px"></i>Intermediate Templates</h2><p>Subtle colour accents — a touch of personality, still business-appropriate</p></div>
+  <div class="tgrid" id="ig"></div>
+</section>
+<section id="premium" class="cat-sec">
+  <div class="cat-hdr"><h2><i class="fas fa-crown" style="color:#FFD700;margin-right:6px"></i>Premium Templates</h2><p>Rich colours + photo support — every template now includes a photo slot</p></div>
+  <div class="tgrid" id="pg"></div>
+</section>
+<footer class="sf"><p>&copy; 2025 <span class="fb">Path4Career</span>. All rights reserved.</p></footer>
+
+<!-- PREVIEW MODAL -->
+<div class="mo" id="previewModal">
+  <div class="mc">
+    <div class="mh">
+      <h2 id="mTitle">Template Preview</h2>
+      <div class="mhr">
+        <button class="mbb bsv" id="bSave" onclick="saveEdits()"><i class="fas fa-save"></i>Save</button>
+        <button class="mbb bcn" id="bCancel" onclick="cancelTemplate()"><i class="fas fa-undo"></i>Cancel</button>
+        <button class="mbb be" id="bEdit" onclick="toggleEM()"><i class="fas fa-edit"></i>Edit</button>
+        <button class="mbb bas" id="bAS" onclick="toggleASP()"><i class="fas fa-plus"></i>Add Section</button>
+        <button class="mbb bub" id="bUpload" onclick="trigUpload()"><i class="fas fa-upload"></i>Upload Resume</button>
+        <button class="mbb bdl" onclick="openDL()"><i class="fas fa-download"></i>Download</button>
+        <button class="mcl" onclick="closeModal()"><i class="fas fa-times"></i></button>
+      </div>
+    </div>
+    <div class="mb" id="mBody"></div>
+  </div>
+</div>
+<!-- LOGIN PROMPT -->
+<div class="lpo" id="lpo">
+  <div class="lpc">
+    <button class="lpc-x" onclick="closeLp()"><i class="fas fa-times"></i></button>
+    <div class="lpi"><i class="fas fa-lock"></i></div>
+    <h2>Login Required</h2>
+    <p id="lpMsg">Please sign in to continue.</p>
+    <div class="lpa">
+      <button class="btn-clp" onclick="closeLp()">Cancel</button>
+      <button class="btn-gli" onclick="goLogin()"><i class="fas fa-sign-in-alt"></i>Sign In</button>
+    </div>
+  </div>
+</div>
+<!-- DOWNLOAD MODAL -->
+<div class="dfo" id="dlModal">
+  <div class="dfc">
+    <button class="dfc-x" onclick="closeDL()"><i class="fas fa-times"></i></button>
+    <h2>Download Resume</h2>
+    <p id="dlN">Choose your preferred format</p>
+    <div class="dfog" id="dfog">
+      <div class="dfb pdf" onclick="doDL('pdf')"><i class="fas fa-file-pdf"></i><span class="fn">PDF</span><span class="fd">Best for printing</span></div>
+      <div class="dfb doc" onclick="doDL('doc')"><i class="fas fa-file-word"></i><span class="fn">DOC</span><span class="fd">Word compatible</span></div>
+      <div class="dfb docx" onclick="doDL('docx')"><i class="fas fa-file-word"></i><span class="fn">DOCX</span><span class="fd">Modern Word</span></div>
+      <div class="dfb txt" onclick="doDL('txt')"><i class="fas fa-file-alt"></i><span class="fn">TXT</span><span class="fd">Plain ATS text</span></div>
+    </div>
+    <div class="dfp" id="dfp"><div class="sp"></div><span>Generating…</span></div>
+    <button class="dfc-can" onclick="closeDL()">Cancel</button>
+  </div>
+</div>
+<!-- UPLOAD PROGRESS -->
+<div class="upo" id="upo">
+  <div class="upc">
+    <div class="upi"><i class="fas fa-file-import"></i></div>
+    <h3>Reading Your Resume</h3>
+    <p id="upm">Extracting content…</p>
+    <div class="ubw"><div class="ubf" id="ubf"></div></div>
+    <div class="ust" id="ust">Processing…</div>
+  </div>
+</div>
+<div class="toast" id="toast"></div>
+<input type="file" id="ruF" accept=".txt,.pdf,.doc,.docx" style="display:none">
+<input type="file" id="phF" accept="image/*" style="display:none">
+
+<script>
+document.addEventListener('DOMContentLoaded',()=>{
+  if(typeof pdfjsLib!=='undefined')pdfjsLib.GlobalWorkerOptions.workerSrc='https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+});
+
+let isEM=false,curTid=null,curCat=null,pendLP=null,dlTid=null,dlCat=null,ufName='',uPhoto=null,uPhotoMap={},curUT=null,RDMap={},ufNameMap={};
+
+const iLI=()=>!!(localStorage.getItem('isLoggedIn')==='true'||localStorage.getItem('AUTH_TOKEN'));
+const gEmail=()=>localStorage.getItem('loggedInEmail')||'User';
+// Header managed by shared navbar.js — no updHdr/logout needed here
+function goLogin(){if(pendLP){localStorage.setItem('redirectAfterLogin',location.href);localStorage.setItem('pendingAction',JSON.stringify(pendLP));closeLp();location.href='./auth/login.html';}else{localStorage.setItem('redirectAfterLogin',location.href);location.href='./auth/login.html';}}
+function showLp(msg,a){pendLP=a||null;document.getElementById('lpMsg').textContent=msg||'Sign in to continue.';document.getElementById('lpo').classList.add('active');}
+function closeLp(){document.getElementById('lpo').classList.remove('active');pendLP=null;}
+function showT(msg,type='s'){const t=document.getElementById('toast');const ic={s:'fa-check-circle',w:'fa-exclamation-triangle',i:'fa-info-circle'};t.className=`toast t${type}`;t.innerHTML=`<i class="fas ${ic[type]||ic.i}"></i>${msg}`;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),3000);}
+function showUP(m){document.getElementById('upm').textContent=m||'…';document.getElementById('ubf').style.width='0%';document.getElementById('ust').textContent='Starting…';document.getElementById('upo').classList.add('active');}
+function setUP(p,t){document.getElementById('ubf').style.width=p+'%';document.getElementById('ust').textContent=t||'';}
+function hideUP(){document.getElementById('upo').classList.remove('active');}
+
+const PERSONAS=[
+  {name:'Alex Johnson',title:'Senior Software Engineer',email:'alex@techcorp.com',phone:'(555) 234-5678',location:'San Francisco, CA',linkedin:'linkedin.com/in/alexjohnson',summary:'Results-driven software engineer with 8+ years building scalable web applications. Expert in JavaScript, Python and cloud infrastructure with a track record of delivering high-impact solutions.',experience:[{company:'TechCorp Inc.',role:'Senior Software Engineer',dates:'2021 – Present',bullets:['Led microservices architecture serving 2M+ daily users','Mentored 5 junior developers improving velocity by 40%','Built CI/CD pipelines reducing deployment time by 60%']},{company:'WebDev Co.',role:'Full Stack Developer',dates:'2018 – 2021',bullets:['Built React + Node.js apps used by 500K users','Optimised SQL queries cutting load times by 35%']},{company:'StartupXYZ',role:'Junior Developer',dates:'2016 – 2018',bullets:['Built REST APIs with Python/Flask','Participated in agile development cycles']}],education:[{school:'UC Berkeley',degree:'B.S. Computer Science',dates:'2012 – 2016'}],skills:['JavaScript','TypeScript','Python','React','Node.js','AWS','Docker','PostgreSQL'],certifications:['AWS Solutions Architect','Google Cloud Professional'],extraSections:[]},
+  {name:'Priya Sharma',title:'Senior UX Designer',email:'priya@designco.io',phone:'(415) 867-5309',location:'Austin, TX',linkedin:'linkedin.com/in/priyasharma',summary:'Creative UX designer with 7 years crafting intuitive digital experiences for fintech and health-tech products. Passionate about human-centred design, accessibility and data-driven iteration.',experience:[{company:'Finova Labs',role:'Senior UX Designer',dates:'2020 – Present',bullets:['Redesigned onboarding flow increasing conversion by 38%','Led design for mobile app with 1.2M downloads','Built company-wide design system reducing handoff time by 50%']},{company:'Healthwise Digital',role:'UX Designer',dates:'2017 – 2020',bullets:['Conducted 60+ user research sessions','Delivered wireframes and prototypes for 12 product features']},{company:'Creative Studio',role:'Junior Designer',dates:'2015 – 2017',bullets:['Produced visual assets for web and print','Collaborated on brand identity projects']}],education:[{school:'Parsons School of Design',degree:'B.F.A. Communication Design',dates:'2011 – 2015'}],skills:['Figma','Adobe XD','Prototyping','User Research','Design Systems','Accessibility','Usability Testing'],certifications:['Google UX Design Certificate','Nielsen Norman UX Certification'],extraSections:[]},
+  {name:'Marcus Williams',title:'Lead Data Scientist',email:'marcus@dataworks.io',phone:'(212) 555-0192',location:'New York, NY',linkedin:'linkedin.com/in/marcuswilliams',summary:'Data scientist with 9 years transforming complex datasets into actionable business intelligence. Expertise in machine learning, statistical modelling and building production ML pipelines at scale.',experience:[{company:'DataWorks Analytics',role:'Lead Data Scientist',dates:'2019 – Present',bullets:['Built fraud detection model saving $4.2M annually','Managed team of 6 data scientists and ML engineers','Deployed recommendation engine handling 10M events per day']},{company:'Insight Corp',role:'Data Scientist',dates:'2016 – 2019',bullets:['Developed NLP pipeline analysing 50M customer reviews','Reduced churn by 22% via predictive modelling']},{company:'RetailAI',role:'Junior Analyst',dates:'2014 – 2016',bullets:['Built Tableau dashboards for C-suite reporting','Wrote SQL queries for business intelligence requests']}],education:[{school:'Columbia University',degree:'M.S. Data Science',dates:'2012 – 2014'},{school:'Howard University',degree:'B.S. Mathematics',dates:'2008 – 2012'}],skills:['Python','R','SQL','TensorFlow','PyTorch','Scikit-learn','Spark','Tableau','BigQuery','NLP'],certifications:['Google Professional Data Engineer','Databricks Certified ML Associate'],extraSections:[]},
+  {name:'Sofia Reyes',title:'Digital Marketing Manager',email:'sofia@marketiq.com',phone:'(310) 444-7821',location:'Los Angeles, CA',linkedin:'linkedin.com/in/sofiareyes',summary:'Strategic digital marketer with 6 years driving brand growth through integrated campaigns. Skilled in performance marketing, content strategy and cross-functional team leadership.',experience:[{company:'MarketIQ Agency',role:'Digital Marketing Manager',dates:'2021 – Present',bullets:['Grew organic traffic by 180% in 18 months','Managed $2.5M ad budget across Google and Meta','Led 4-person content team producing 40 assets per month']},{company:'BrandBridge',role:'Marketing Specialist',dates:'2018 – 2021',bullets:['Email campaigns achieving 28% open rate vs 18% industry average','Produced weekly analytics reports informing campaign strategy']},{company:'AdVenture Co.',role:'Marketing Coordinator',dates:'2016 – 2018',bullets:['Grew social media following by 35K','Assisted event planning for 10+ brand activations']}],education:[{school:'UCLA',degree:'B.A. Marketing & Communications',dates:'2012 – 2016'}],skills:['SEO/SEM','Google Ads','Meta Ads','HubSpot','Content Strategy','Email Marketing','Analytics','Copywriting'],certifications:['Google Analytics 4 Certified','HubSpot Content Marketing Certified'],extraSections:[]},
+  {name:'James Okafor',title:'Senior Project Manager PMP',email:'james@pmglobal.net',phone:'(713) 555-3847',location:'Houston, TX',linkedin:'linkedin.com/in/jamesokafor',summary:'Certified PMP with 10 years delivering complex technology and infrastructure projects on time and under budget. Expert in Agile, Scrum and stakeholder management across global teams.',experience:[{company:'GlobalTech Solutions',role:'Senior Project Manager',dates:'2020 – Present',bullets:['Delivered $18M ERP migration 3 weeks ahead of schedule','Managed cross-functional teams across 4 time zones','Reduced project risk incidents by 45% through improved governance']},{company:'Nexus Infrastructure',role:'Project Manager',dates:'2016 – 2020',bullets:['Oversaw 12 concurrent infrastructure upgrade projects','Implemented Agile methodology increasing sprint velocity by 30%']},{company:'BuildRight Consulting',role:'Project Coordinator',dates:'2013 – 2016',bullets:['Coordinated scheduling for 20+ contractors','Maintained project documentation and progress reports']}],education:[{school:'Texas A&M University',degree:'B.S. Industrial Engineering',dates:'2009 – 2013'}],skills:['PMP Certified','Agile/Scrum','MS Project','JIRA','Risk Management','Budget Control','Stakeholder Communication'],certifications:['PMP – PMI','Certified Scrum Master (CSM)','PRINCE2 Practitioner'],extraSections:[]},
+  {name:'Rachel Chen',title:'Senior Financial Analyst CFA',email:'rachel@capitalgroup.com',phone:'(646) 555-2019',location:'New York, NY',linkedin:'linkedin.com/in/rachelchen',summary:'CFA-certified financial analyst with 8 years in investment banking and corporate finance. Adept at financial modelling, equity research and communicating complex insights to executive stakeholders.',experience:[{company:'Capital Group Partners',role:'Senior Financial Analyst',dates:'2020 – Present',bullets:['Built DCF and LBO models supporting $500M+ M&A transactions','Authored equity research covering 15 technology stocks','Reduced monthly close from 5 days to 2 days through automation']},{company:'Goldman Advisory',role:'Financial Analyst',dates:'2017 – 2020',bullets:['Supported IPO due diligence for 4 technology companies','Built interactive dashboards for portfolio performance tracking']},{company:'First National Bank',role:'Junior Analyst',dates:'2015 – 2017',bullets:['Prepared credit memos for commercial lending decisions','Reconciled general ledger accounts monthly']}],education:[{school:'NYU Stern',degree:'M.B.A. Finance',dates:'2013 – 2015'},{school:'Cornell University',degree:'B.S. Economics',dates:'2009 – 2013'}],skills:['Financial Modelling','DCF','LBO','Bloomberg Terminal','Excel VBA','SQL','Equity Research','M&A'],certifications:['CFA Charterholder','Series 7 & 63'],extraSections:[]},
+  {name:'David Chen',title:'Senior DevOps Engineer',email:'david@cloudops.dev',phone:'(669) 204-5573',location:'Austin, TX',linkedin:'linkedin.com/in/davidchendevops',summary:'DevOps engineer with 8 years automating infrastructure and building CI/CD pipelines for mission-critical systems. Passionate about platform engineering, SRE practices and cloud-native architecture.',experience:[{company:'Netflix',role:'Senior DevOps Engineer',dates:'2021 – Present',bullets:['Maintained infrastructure serving 230M+ global subscribers','Reduced mean time to recovery from 45 min to 8 min','Migrated 200 microservices to Kubernetes saving $1.2M annually']},{company:'Cloudflare',role:'DevOps Engineer',dates:'2017 – 2021',bullets:['Built Terraform IaC managing 3,000+ cloud resources','Implemented GitOps workflow changing deployments from weekly to hourly']},{company:'StartCloud',role:'Junior SRE',dates:'2015 – 2017',bullets:['Managed Linux server fleet of 400 nodes','Automated backup and monitoring routines with Bash and Python']}],education:[{school:'University of Texas at Austin',degree:'B.S. Computer Engineering',dates:'2011 – 2015'}],skills:['Kubernetes','Terraform','AWS','GCP','Docker','Jenkins','Prometheus','Grafana','Ansible','Linux'],certifications:['CKA – Certified Kubernetes Administrator','AWS DevOps Professional'],extraSections:[]},
+  {name:'Elena Rodriguez',title:'Structural Engineer PE',email:'elena@structuralgroup.com',phone:'(503) 555-8821',location:'Portland, OR',linkedin:'linkedin.com/in/elenarodriguez',summary:'Licensed structural engineer with 9 years designing steel and concrete structures for commercial and civic projects. Skilled in seismic design, BIM coordination and leading multidisciplinary project teams.',experience:[{company:'KPFF Consulting',role:'Project Structural Engineer',dates:'2019 – Present',bullets:['Led structural design for $95M mixed-use tower — LEED Gold','Managed team of 4 engineers and 2 CAD technicians','Produced seismic upgrade study for 12 school buildings']},{company:'AECOM',role:'Structural Engineer',dates:'2015 – 2019',bullets:['Designed lateral system for 24-storey reinforced concrete tower','Prepared structural drawings and specifications for 8 projects']},{company:'Walter P Moore',role:'Junior Engineer',dates:'2013 – 2015',bullets:['Performed structural analysis using ETABS and RAM','Assisted with site observation and construction RFIs']}],education:[{school:'Oregon State University',degree:'M.S. Structural Engineering',dates:'2011 – 2013'},{school:'UC Davis',degree:'B.S. Civil Engineering',dates:'2007 – 2011'}],skills:['ETABS','SAP2000','AutoCAD','Revit','Steel Design (AISC)','Concrete Design (ACI)','Seismic Engineering','BIM'],certifications:['PE – Professional Engineer (OR & WA)','LEED Green Associate'],extraSections:[]},
+  {name:'Amara Osei',title:'HR Business Partner',email:'amara@hrpro.co',phone:'(404) 555-6612',location:'Atlanta, GA',linkedin:'linkedin.com/in/amaraosei',summary:'Strategic HR professional with 8 years partnering with senior leadership to align people strategy with business objectives. Expert in talent acquisition, employee engagement and organisational development.',experience:[{company:'Momentum Corp',role:'Senior HR Business Partner',dates:'2020 – Present',bullets:['Partnered with 6 VPs across 350-person division on workforce planning','Reduced voluntary turnover by 18% through enhanced engagement','Led company-wide DEIB programme reaching 1,200 employees globally']},{company:'PeopleFirst Solutions',role:'HR Manager',dates:'2017 – 2020',bullets:['Managed full-cycle recruitment filling 80+ roles per year','Designed leadership development programme for 40 managers']},{company:'TalentBridge Agency',role:'HR Generalist',dates:'2015 – 2017',bullets:['Administered benefits and payroll for 200-person workforce','Handled employee relations and performance improvement plans']}],education:[{school:'Spelman College',degree:'B.A. Psychology',dates:'2011 – 2015'}],skills:['Talent Acquisition','Workday HRIS','Performance Management','DEIB','Organisational Development','Benefits Administration'],certifications:['SHRM-SCP Certified','PHR – HRCI Certified'],extraSections:[]},
+  {name:'Luca Ferrari',title:'Senior Brand & Graphic Designer',email:'luca@creativeluca.com',phone:'(305) 555-4491',location:'Miami, FL',linkedin:'linkedin.com/in/lucaferrari',summary:'Award-winning graphic designer with 8 years building memorable brand identities for startups and Fortune 500 clients. Equally comfortable leading brand strategy and executing pixel-perfect visuals.',experience:[{company:'Vibe Creative Agency',role:'Senior Brand Designer',dates:'2020 – Present',bullets:['Developed brand identities for 30+ clients across tech, fashion and hospitality','Won 3 industry awards including a Cannes Lions Bronze','Managed junior designers on concurrent campaigns']},{company:'Studio Norte',role:'Graphic Designer',dates:'2017 – 2020',bullets:['Produced print and digital collateral for national retail campaigns','Created motion graphics for social media with 4M+ cumulative views']},{company:'Freelance',role:'Junior Graphic Designer',dates:'2015 – 2017',bullets:['Designed logos, brochures and social templates for 20+ SME clients','Built portfolio attracting agency recruitment']}],education:[{school:'Rhode Island School of Design',degree:'B.F.A. Graphic Design',dates:'2011 – 2015'}],skills:['Adobe Creative Suite','Figma','Brand Identity','Typography','Motion Graphics','Packaging Design','Print Production'],certifications:['Adobe Certified Professional','Cannes Lions Bronze 2023'],extraSections:[]},
+  {name:'Raj Krishnamurthy',title:'Supply Chain Manager',email:'raj@logisticspro.com',phone:'(832) 345-1178',location:'Houston, TX',linkedin:'linkedin.com/in/rajkrishna',summary:'Supply chain professional with 10 years optimising global procurement, inventory and logistics across manufacturing and retail. Skilled at reducing costs while improving service levels.',experience:[{company:'Chevron',role:'Supply Chain Manager',dates:'2019 – Present',bullets:['Managed $120M annual procurement portfolio across 14 categories','Reduced inventory carrying costs by $8.4M through demand-sensing analytics','Negotiated contracts with 12 strategic suppliers saving 14%']},{company:'ExxonMobil',role:'Senior Procurement Analyst',dates:'2014 – 2019',bullets:['Sourced MRO materials for 4 Gulf Coast refineries','Implemented SAP Ariba reducing PO cycle time by 60%']},{company:'Shell',role:'Procurement Coordinator',dates:'2012 – 2014',bullets:['Managed vendor onboarding and contract compliance','Supported strategic sourcing events for 6 commodity categories']}],education:[{school:'Rice University',degree:'M.B.A. Operations',dates:'2010 – 2012'},{school:'Anna University',degree:'B.E. Industrial Engineering',dates:'2006 – 2010'}],skills:['SAP ERP','Demand Planning','Supplier Negotiation','Lean Six Sigma','S&OP','Logistics','Procurement'],certifications:['CSCP – APICS Certified','Six Sigma Black Belt'],extraSections:[]},
+  {name:'Noah Kim',title:'Senior Cybersecurity Analyst',email:'noah@secureops.net',phone:'(206) 489-1123',location:'Washington D.C.',linkedin:'linkedin.com/in/noahkimsec',summary:'Cybersecurity analyst with 6 years protecting enterprise environments from advanced persistent threats. Expert in threat hunting, SIEM operations and incident response for regulated industries.',experience:[{company:'Booz Allen Hamilton',role:'Senior Cybersecurity Analyst',dates:'2021 – Present',bullets:['Monitored 80,000-endpoint environment for Fortune 100 federal client','Investigated and contained 3 zero-day attacks with zero data loss','Built custom SIEM detection rules reducing alert noise by 55%']},{company:'CrowdStrike',role:'Threat Intelligence Analyst',dates:'2018 – 2021',bullets:['Tracked 12 nation-state threat actor groups','Produced 200+ intelligence reports for government and enterprise clients']},{company:'Leidos',role:'SOC Analyst',dates:'2016 – 2018',bullets:['Triaged security events across 24/7 SOC operation','Performed malware analysis and forensic investigation']}],education:[{school:'George Mason University',degree:'M.S. Information Security',dates:'2014 – 2016'}],skills:['SIEM (Splunk)','Threat Hunting','Penetration Testing','MITRE ATT&CK','Python','Wireshark','Incident Response'],certifications:['CISSP','CEH – Certified Ethical Hacker','CompTIA Security+'],extraSections:[]},
+  {name:'Fatima Al-Hassan',title:'Registered Nurse – ICU',email:'fatima@healthcare.org',phone:'(832) 910-3347',location:'Houston, TX',linkedin:'linkedin.com/in/fatimaalhassan',summary:'Dedicated ICU nurse with 10 years of critical care experience. Skilled in complex patient assessment, ventilator management and multidisciplinary team coordination in high-acuity settings.',experience:[{company:'Texas Medical Center',role:'ICU Charge Nurse',dates:'2020 – Present',bullets:['Managed 8-bed ICU serving cardiac, neuro and surgical patients','Trained 15 newly hired nurses on ICU protocols and EHR workflows','Implemented fall-prevention bundle reducing incidents by 40%']},{company:'Memorial Hermann Hospital',role:'Staff RN ICU',dates:'2014 – 2020',bullets:['Managed ventilator-dependent patients with ARDS and septic shock','Served as Code Blue team lead for cardiac arrests']},{company:'St. Luke Health System',role:'Med-Surg RN',dates:'2012 – 2014',bullets:['Cared for post-operative and medical-surgical patients','Mentored new graduate nurses through hospital orientation']}],education:[{school:'University of Houston',degree:'B.S.N. Nursing',dates:'2008 – 2012'}],skills:['Critical Care','Ventilator Management','ACLS','PALS','Epic EHR','IV Therapy','Hemodynamic Monitoring'],certifications:['CCRN – Critical Care RN','BLS Instructor','TNCC'],extraSections:[]},
+  {name:'Zoe Laurent',title:'Content Strategist',email:'zoe@contentlab.co',phone:'(323) 819-7741',location:'Los Angeles, CA',linkedin:'linkedin.com/in/zoelaurent',summary:'Content strategist and editorial leader with 7 years building content programmes that grow audiences and convert readers into customers. Deep expertise in SEO, brand storytelling and content operations.',experience:[{company:'NYT T Brand Studio',role:'Senior Content Strategist',dates:'2021 – Present',bullets:['Led 12-person editorial team producing branded content for Fortune 500 clients','Grew client content hub from 5K to 280K monthly visitors in 14 months','Launched newsletter series achieving 58% open rate in travel vertical']},{company:'Conde Nast',role:'Digital Content Manager',dates:'2018 – 2021',bullets:['Managed editorial calendar for 3 publications, 60+ pieces per month','Improved page dwell time by 44% through content restructuring']},{company:'BuzzFeed',role:'Content Producer',dates:'2016 – 2018',bullets:['Wrote long-form features averaging 120K page views per article','Built social strategy growing newsletter to 85K subscribers']}],education:[{school:'Northwestern University',degree:'B.A. Journalism',dates:'2012 – 2016'}],skills:['Content Strategy','SEO','Editorial Planning','WordPress','Ahrefs','HubSpot','Copywriting','Brand Voice'],certifications:['HubSpot Content Marketing Certified','SEMrush SEO Fundamentals'],extraSections:[]},
+  {name:'Liam Thompson',title:'Civil Engineer PE',email:'liam@infragroup.com',phone:'(720) 538-8821',location:'Denver, CO',linkedin:'linkedin.com/in/liamthompson',summary:'Licensed civil engineer with 7 years of infrastructure and transportation project experience. Strong track record delivering large-scale projects on time and under budget.',experience:[{company:'AECOM',role:'Project Engineer',dates:'2021 – Present',bullets:['Led design of $180M highway interchange project across 3 counties','Managed team of 12 engineers and 4 subconsultants','Reduced material costs by 9% through value engineering']},{company:'HDR Engineering',role:'Civil Engineer II',dates:'2017 – 2021',bullets:['Designed storm-water systems for 6 municipal drainage projects','Prepared NEPA environmental impact assessments for CDOT']},{company:'Tetra Tech',role:'Staff Engineer',dates:'2015 – 2017',bullets:['Performed hydraulic and hydrologic analysis using HEC-RAS','Produced grading and utility plans for residential subdivisions']}],education:[{school:'Colorado State University',degree:'B.S. Civil Engineering',dates:'2011 – 2015'}],skills:['AutoCAD Civil 3D','HEC-RAS','MicroStation','STAAD Pro','MS Project','NEPA','Surveying'],certifications:['PE – Professional Engineer (CO)','LEED Green Associate'],extraSections:[]},
+  {name:'Aisha Patel',title:'Senior Product Manager',email:'aisha@producthq.com',phone:'(415) 776-2230',location:'San Francisco, CA',linkedin:'linkedin.com/in/aishapatel',summary:'Strategic product manager with 7 years launching consumer and enterprise products from 0 to scale. Skilled in roadmapping, user research and cross-functional team leadership.',experience:[{company:'Stripe',role:'Senior Product Manager',dates:'2022 – Present',bullets:['Launched payments API adopted by 18,000+ merchants globally','Reduced onboarding drop-off by 38% through UX revamp','Drove $12M ARR growth by identifying underserved SMB segment']},{company:'Intuit',role:'Product Manager',dates:'2019 – 2022',bullets:['Owned QuickBooks invoicing feature serving 3M small businesses','Ran 60+ A/B tests improving conversion by 22%']},{company:'Salesforce',role:'Associate Product Manager',dates:'2017 – 2019',bullets:['Gathered requirements through 80+ customer interviews','Wrote PRDs and acceptance criteria for 3 feature launches']}],education:[{school:'Columbia University',degree:'M.B.A.',dates:'2015 – 2017'},{school:'Delhi University',degree:'B.S. Economics',dates:'2011 – 2015'}],skills:['Product Roadmapping','User Research','SQL','Figma','JIRA','Agile','OKRs','Stakeholder Management'],certifications:['Certified Scrum Product Owner','Google Analytics Certified'],extraSections:[]},
+  {name:'Ethan Brooks',title:'Senior Mechanical Engineer',email:'ethan@mechpro.com',phone:'(617) 554-3312',location:'Detroit, MI',linkedin:'linkedin.com/in/ethanbrooks',summary:'Mechanical engineer with 7 years designing electromechanical systems for automotive and industrial applications. Expert in CAD design, FEA simulation and bringing complex products from prototype to production.',experience:[{company:'Ford Motor Company',role:'Senior Mechanical Engineer',dates:'2020 – Present',bullets:['Designed EV drivetrain cooling system reducing thermal events by 67%','Led DFMEA review cutting warranty claims by $4.2M annually','Managed supplier qualification for 6 Tier-1 component programmes']},{company:'Bosch Automotive',role:'Mechanical Engineer',dates:'2017 – 2020',bullets:['Developed actuator assembly reducing BOM cost by 12%','Supported NPI process from concept through SOP for brake systems']},{company:'Dana Inc.',role:'Design Engineer',dates:'2015 – 2017',bullets:['Created SolidWorks models and drawings for drivetrain components','Conducted tolerance analysis and DFM reviews']}],education:[{school:'Michigan State University',degree:'B.S. Mechanical Engineering',dates:'2011 – 2015'}],skills:['SolidWorks','ANSYS FEA','CATIA','GD&T','DFMEA','PFMEA','Lean Manufacturing','NPI'],certifications:['PE – Professional Engineer (MI)','SolidWorks Certified Professional'],extraSections:[]},
+  {name:'Maya Patel',title:'Project Architect AIA',email:'maya@designbuild.co',phone:'(213) 229-8876',location:'Los Angeles, CA',linkedin:'linkedin.com/in/mayapatelarch',summary:'Licensed architect with 9 years of experience in sustainable commercial and mixed-use design. Skilled in BIM, design development and project delivery from schematic design through construction administration.',experience:[{company:'Gensler',role:'Project Architect',dates:'2020 – Present',bullets:['Led design of 42-storey mixed-use tower — LEED Gold','Coordinated MEP, structural and landscape consultants','Produced full construction document set for $180M commercial project']},{company:'HOK',role:'Architect',dates:'2015 – 2020',bullets:['Designed civic library serving 150,000 residents — AIA award winner','Managed client relationship and weekly design progress meetings']},{company:'Perkins&Will',role:'Architectural Designer',dates:'2013 – 2015',bullets:['Produced schematic design and design development drawings','Prepared 3D Revit models and rendered presentation packages']}],education:[{school:'USC School of Architecture',degree:'M.Arch.',dates:'2011 – 2013'},{school:'UCLA',degree:'B.S. Architecture',dates:'2007 – 2011'}],skills:['Revit','AutoCAD','Rhino','SketchUp','LEED','BIM Coordination','Construction Admin','Specifications'],certifications:['AIA Licensed Architect','LEED AP BD+C'],extraSections:[]},
+  {name:'Carlos Mendoza',title:'Regional Sales Director',email:'carlos@salespro.com',phone:'(469) 887-5504',location:'Dallas, TX',linkedin:'linkedin.com/in/carlosmendoza',summary:'High-performing sales director with 11 years building and scaling enterprise sales teams. Consistent top-5% performer known for complex deal management and territory expansion in SaaS markets.',experience:[{company:'Salesforce',role:'Regional Sales Director',dates:'2020 – Present',bullets:['Exceeded quota 3 consecutive years averaging 127% of target','Grew territory revenue from $8M to $22M in 3 years','Recruited and led team of 14 AEs across Southwest region']},{company:'Oracle',role:'Senior Account Executive',dates:'2015 – 2020',bullets:['Closed $3.4M enterprise ERP deal — largest in Q3 2018','Developed channel partner programme adding $1.1M pipeline']},{company:'SAP',role:'Account Executive',dates:'2012 – 2015',bullets:['Managed 40-account territory generating $6M annual revenue','Won Presidents Club award for 2 consecutive years']}],education:[{school:'University of Texas at Dallas',degree:'B.B.A. Business Administration',dates:'2008 – 2012'}],skills:['Enterprise Sales','Salesforce CRM','Pipeline Management','Negotiation','Team Leadership','SaaS','Channel Sales'],certifications:['Certified Sales Professional (CSP)','Challenger Sale Certified'],extraSections:[]},
+  {name:'Hannah Fischer',title:'Doctor of Physical Therapy',email:'hannah@rehabclinic.com',phone:'(414) 622-8839',location:'Milwaukee, WI',linkedin:'linkedin.com/in/hannahfischer',summary:'Doctor of Physical Therapy with 6 years of orthopaedic and sports rehabilitation experience. Passionate about evidence-based practice, patient education and helping athletes return to peak performance.',experience:[{company:'Froedtert & MCW Sports Medicine',role:'Physical Therapist',dates:'2020 – Present',bullets:['Treated 30+ patients per week with musculoskeletal and post-surgical needs','Implemented ACL return-to-sport protocol reducing re-injury rate by 35%','Served as clinical supervisor for 4 DPT students per year']},{company:'Aurora Health Care',role:'Staff Physical Therapist',dates:'2018 – 2020',bullets:['Provided outpatient orthopaedic PT to diverse patient population','Collaborated with orthopaedic surgeons on post-op rehabilitation plans']},{company:'ProHealth Care',role:'PT Aide',dates:'2016 – 2018',bullets:['Assisted licensed PTs with patient treatment and exercise instruction','Managed clinic scheduling and patient intake documentation']}],education:[{school:'Marquette University',degree:'Doctor of Physical Therapy (DPT)',dates:'2013 – 2016'}],skills:['Manual Therapy','Sports Rehabilitation','Dry Needling','Kinesio Taping','Functional Movement Assessment','EMR'],certifications:['CSCS – Certified Strength & Conditioning Specialist','Dry Needling Certified'],extraSections:[]},
+  {name:'Lucas Ferreira',title:'Principal Software Architect',email:'lucas@archcraft.dev',phone:'(415) 309-7723',location:'San Jose, CA',linkedin:'linkedin.com/in/lucasferreira',summary:'Software architect with 12 years designing distributed systems, microservices platforms and cloud-native architectures. Trusted technical advisor to CTO-level stakeholders at scale-up and enterprise organisations.',experience:[{company:'LinkedIn',role:'Principal Software Architect',dates:'2020 – Present',bullets:['Architected real-time messaging platform serving 950M members','Reduced p99 API latency by 68% through caching layer redesign','Defined engineering standards adopted by 400+ engineer organisation']},{company:'Uber',role:'Staff Software Engineer',dates:'2015 – 2020',bullets:['Designed event-driven dispatch system processing 12M rides daily','Led microservices migration from Rails monolith over 18 months']},{company:'Palantir',role:'Senior Software Engineer',dates:'2012 – 2015',bullets:['Built data pipeline processing 5TB daily ingestion from government sources','Designed RESTful APIs consumed by 40+ internal services']}],education:[{school:'Carnegie Mellon University',degree:'M.S. Software Engineering',dates:'2010 – 2012'}],skills:['System Design','Java','Go','Kafka','Redis','Kubernetes','GraphQL','Microservices','Domain-Driven Design'],certifications:['AWS Solutions Architect Professional','Google Cloud Architect'],extraSections:[]},
+  {name:'Sara Lindqvist',title:'Senior Environmental Scientist',email:'sara@envirotech.com',phone:'(612) 904-4481',location:'Minneapolis, MN',linkedin:'linkedin.com/in/saralindqvist',summary:'Environmental scientist with 7 years in environmental impact assessment, remediation project management and sustainability programme development for industrial and municipal clients.',experience:[{company:'Arcadis',role:'Senior Environmental Scientist',dates:'2021 – Present',bullets:['Managed Phase I/II ESAs for 30+ commercial real estate transactions','Oversaw $4.5M soil and groundwater remediation project to regulatory closure','Developed sustainability reporting framework adopted by 3 Fortune 500 clients']},{company:'AECOM',role:'Environmental Scientist',dates:'2017 – 2021',bullets:['Conducted NEPA EIS studies for energy infrastructure projects','Sampled and analysed soil, water and air quality at Superfund sites']},{company:'Tetra Tech',role:'Environmental Analyst',dates:'2015 – 2017',bullets:['Compiled Phase I ESA reports for bank and lender due diligence','Performed ecological surveys and wetland delineations']}],education:[{school:'University of Minnesota',degree:'M.S. Environmental Science',dates:'2013 – 2015'}],skills:['Phase I/II ESA','Remediation Design','NEPA','GIS (ArcGIS)','Air Quality Modelling','Field Sampling','Report Writing'],certifications:['CHMM – Hazardous Materials Manager','OSHA 40-HR HAZWOPER'],extraSections:[]},
+  {name:'Arjun Kapoor',title:'Investment Banking Associate',email:'arjun@capitalgroup.com',phone:'(212) 557-3392',location:'New York, NY',linkedin:'linkedin.com/in/arjunkapoor',summary:'Investment banking professional with 4 years advising technology and media clients on M&A, equity offerings and debt financings. Strong modelling skills and ability to synthesise complex financial narratives.',experience:[{company:'Morgan Stanley',role:'Associate – Technology M&A',dates:'2022 – Present',bullets:['Executed $1.8B SaaS company acquisition — led due diligence workstream','Built integrated LBO and DCF models for 12 live deal processes','Coordinated cross-border deal teams across NY, London and Hong Kong']},{company:'Lazard',role:'Analyst – TMT Investment Banking',dates:'2020 – 2022',bullets:['Supported $4.2B IPO of leading cybersecurity firm','Prepared management presentations and investor roadshow materials']},{company:'Deutsche Bank',role:'Summer Analyst',dates:'2019',bullets:['Modelled 3 precedent transaction analyses for healthcare M&A deals','Built comparable company analysis for technology pitch book']}],education:[{school:'NYU Stern School of Business',degree:'B.S. Finance & Economics',dates:'2016 – 2020'}],skills:['Financial Modelling','LBO Analysis','DCF','Comparable Analysis','PowerPoint','Bloomberg','Capital IQ'],certifications:['Series 79','Series 63'],extraSections:[]},
+  {name:'Rachel Kim',title:'Elementary School Teacher',email:'rachel@schooldistrict.edu',phone:'(206) 881-6645',location:'Seattle, WA',linkedin:'linkedin.com/in/rachelkim',summary:'Dedicated elementary educator with 8 years creating engaging, differentiated learning environments for K-5 students. Skilled in project-based learning, social-emotional development and family engagement.',experience:[{company:'Seattle Public Schools',role:'3rd Grade Teacher',dates:'2019 – Present',bullets:['Improved class reading proficiency from 61% to 84% in 2 years','Designed maker-space programme reaching 300+ students district-wide','Mentored 3 student teachers as cooperating teacher for UW School of Ed']},{company:'Bellevue School District',role:'1st Grade Teacher',dates:'2016 – 2019',bullets:['Implemented readers workshop model improving ELA scores by 18%','Created bilingual family literacy nights serving 120 households']},{company:'Renton School District',role:'Instructional Aide',dates:'2014 – 2016',bullets:['Supported students with IEPs in inclusive classroom settings','Led small-group reading and math intervention sessions']}],education:[{school:'University of Washington',degree:'M.Ed. Elementary Education',dates:'2012 – 2014'}],skills:['Differentiated Instruction','Project-Based Learning','Google Classroom','IEP Collaboration','Positive Behaviour Support','Assessment Design'],certifications:['WA State Teaching Certificate','Reading Endorsement','ESL Endorsement'],extraSections:[]},
+  {name:'Thomas Muller',title:'Senior BI Developer',email:'thomas@datainsights.com',phone:'(415) 773-8820',location:'San Francisco, CA',linkedin:'linkedin.com/in/thomasmuller',summary:'BI developer with 7 years building data warehouses, ETL pipelines and executive dashboards that turn raw data into strategic insight. Expert in cloud data platforms and self-service analytics.',experience:[{company:'Snowflake',role:'Senior BI Developer',dates:'2021 – Present',bullets:['Built enterprise data warehouse consolidating 14 source systems','Designed 35 Tableau dashboards used daily by 600+ business users','Reduced ETL pipeline runtime by 72% through query optimisation']},{company:'Looker (Google)',role:'BI Developer',dates:'2018 – 2021',bullets:['Implemented LookML data models for 22 enterprise clients','Led migration from SQL Server to BigQuery for media company']},{company:'Accenture Analytics',role:'Data Analyst',dates:'2016 – 2018',bullets:['Delivered weekly executive performance scorecards for 5 clients','Built automated data quality checks saving 8 hours of manual review per week']}],education:[{school:'Technical University of Munich',degree:'B.S. Information Systems',dates:'2012 – 2016'}],skills:['SQL','Snowflake','dbt','Tableau','Power BI','BigQuery','Python','ETL','Data Modelling','LookML'],certifications:['Tableau Desktop Certified','dbt Analytics Engineer'],extraSections:[]},
+  {name:'Amelia Osei',title:'Licensed Clinical Social Worker',email:'amelia@socialservices.org',phone:'(312) 489-0077',location:'Chicago, IL',linkedin:'linkedin.com/in/ameliaosei',summary:'Licensed Clinical Social Worker with 9 years providing trauma-informed counselling, case management and advocacy for youth, refugees and survivors of domestic violence.',experience:[{company:'Chicago Family Services',role:'Senior Clinical Social Worker',dates:'2020 – Present',bullets:['Carried active caseload of 45 clients across crisis intervention and long-term therapy','Trained 20 staff members in trauma-informed care and motivational interviewing','Reduced 30-day psychiatric re-admission rate by 24% through discharge planning']},{company:'Cook County DCFS',role:'Child Welfare Case Manager',dates:'2015 – 2020',bullets:['Managed 60 child welfare cases ensuring safety and permanency planning','Testified in 40+ juvenile court hearings on behalf of clients']},{company:'Heartland Alliance',role:'Case Manager',dates:'2013 – 2015',bullets:['Coordinated housing, employment and healthcare services for refugee families','Conducted intake assessments and developed individualised service plans']}],education:[{school:'Loyola University Chicago',degree:'M.S.W. Clinical Social Work',dates:'2011 – 2013'}],skills:['Clinical Assessment','CBT','Trauma-Informed Care','Crisis Intervention','Case Management','Motivational Interviewing'],certifications:['LCSW – Licensed Clinical Social Worker','CADC – Certified Alcohol/Drug Counsellor'],extraSections:[]},
+  {name:'Derek Okafor',title:'IT Project Manager PMP',email:'derek@techpm.com',phone:'(240) 564-9903',location:'Washington D.C.',linkedin:'linkedin.com/in/derekokafor',summary:'PMP-certified IT project manager with 8 years delivering complex enterprise technology implementations across federal government and financial services on schedule and in scope.',experience:[{company:'Accenture Federal Services',role:'Senior IT Project Manager',dates:'2020 – Present',bullets:['Managed $22M ERP modernisation for federal agency — delivered 2 weeks early','Led cross-functional team of 35 across 3 time zones and 2 vendors','Established PMO governance framework adopted across 6 concurrent programmes']},{company:'Leidos',role:'IT Project Manager',dates:'2016 – 2020',bullets:['Delivered cloud migration for DoD agency moving 800 TB of data','Maintained 98% sprint velocity using hybrid Agile/waterfall methodology']},{company:'SAIC',role:'IT Project Coordinator',dates:'2014 – 2016',bullets:['Maintained project schedules for 8 concurrent work streams','Facilitated weekly status meetings with government contracting officers']}],education:[{school:'Howard University',degree:'B.S. Information Systems',dates:'2010 – 2014'}],skills:['PMP','Agile/Scrum','MS Project','Jira','Risk Management','Budget Control','ERP','Stakeholder Communication'],certifications:['PMP – Project Management Professional','CSM – Certified Scrum Master'],extraSections:[]},
+  {name:'Mei-Ling Zhou',title:'Senior Research Scientist',email:'mei@biolab.edu',phone:'(617) 448-0092',location:'Cambridge, MA',linkedin:'linkedin.com/in/meilingzhou',summary:'Biomedical researcher with 8 years of translational research experience in oncology and immunotherapy. Published 18 peer-reviewed papers and presented at international conferences.',experience:[{company:'Dana-Farber Cancer Institute',role:'Senior Research Scientist',dates:'2020 – Present',bullets:['Led CAR-T cell therapy preclinical programme in solid tumours','Secured $2.1M NIH R01 grant as co-investigator','Managed multidisciplinary lab team of 7 researchers and 3 postdocs']},{company:'Broad Institute',role:'Research Scientist',dates:'2016 – 2020',bullets:['Developed novel CRISPR screening assay published in Nature Methods','Analysed single-cell RNA-seq data from 200,000+ tumour cells']},{company:'MIT Koch Institute',role:'Postdoctoral Researcher',dates:'2014 – 2016',bullets:['Investigated tumour microenvironment using flow cytometry','Co-authored 4 publications in high-impact oncology journals']}],education:[{school:'Harvard University',degree:'Ph.D. Biological Sciences',dates:'2010 – 2014'},{school:'Peking University',degree:'B.S. Biochemistry',dates:'2006 – 2010'}],skills:['CRISPR','Flow Cytometry','scRNA-seq','Python','R Bioconductor','Western Blot','Cell Culture','ELISA'],certifications:['NIH Responsible Conduct of Research','IACUC Animal Research Protocol'],extraSections:[]},
+  {name:'Valeria Santos',title:'Corporate Attorney',email:'valeria@lawfirm.com',phone:'(212) 440-8812',location:'New York, NY',linkedin:'linkedin.com/in/valeriasantos',summary:'Corporate attorney with 8 years advising technology and private equity clients on M&A transactions, venture financings and commercial contracts. Admitted to the New York and California bars.',experience:[{company:'Latham & Watkins LLP',role:'Senior Associate – Corporate',dates:'2021 – Present',bullets:['Led legal workstream on $2.3B leveraged buyout of SaaS company','Drafted and negotiated 40+ commercial and technology licensing agreements','Supervised team of 4 associates on cross-border M&A due diligence']},{company:'Wilson Sonsini',role:'Associate – Corporate',dates:'2016 – 2021',bullets:['Advised venture-backed startups on Series A through D financings totalling $380M','Prepared SEC registration statements and handled IPO documentation']},{company:'Skadden Arps',role:'Summer Associate',dates:'2015',bullets:['Researched regulatory frameworks for cross-border transactions','Drafted client memos on Delaware corporate governance issues']}],education:[{school:'Columbia Law School',degree:'J.D.',dates:'2013 – 2016'},{school:'Yale University',degree:'B.A. Political Science',dates:'2009 – 2013'}],skills:['M&A','Venture Financing','Commercial Contracts','Due Diligence','SEC Filings','Negotiation','Term Sheets'],certifications:['NY Bar Admitted','CA Bar Admitted'],extraSections:[]},
+  {name:'James Carter',title:'Operations Manager',email:'james@opsleader.com',phone:'(614) 204-6612',location:'Columbus, OH',linkedin:'linkedin.com/in/jamescarter',summary:'Operations manager with 10 years streamlining manufacturing and distribution workflows. Proven expertise in lean process improvement, workforce management and KPI-driven continuous improvement.',experience:[{company:'Procter & Gamble',role:'Operations Manager',dates:'2019 – Present',bullets:['Oversaw 3-shift production line with 120 hourly employees','Improved OEE from 71% to 88% through targeted downtime analysis','Led $3.2M capital project to automate packaging line on time and budget']},{company:'Whirlpool Corporation',role:'Production Supervisor',dates:'2014 – 2019',bullets:['Supervised 45-person assembly team achieving 99.2% on-time delivery','Implemented 5S programme reducing material handling time by 22%']},{company:'General Electric',role:'Manufacturing Engineer',dates:'2012 – 2014',bullets:['Optimised production cell layouts reducing scrap rate by 18%','Developed standardised work documentation for 24 assembly processes']}],education:[{school:'Ohio State University',degree:'B.S. Industrial & Systems Engineering',dates:'2008 – 2012'}],skills:['Lean Manufacturing','Six Sigma','ERP (SAP)','KPI Dashboards','5S','APQP','Workforce Planning'],certifications:['Six Sigma Black Belt','PMP – Project Management Professional'],extraSections:[]}
+];
+
+const DEF=PERSONAS[0];
+let RD=JSON.parse(JSON.stringify(DEF));
+
+function personaFor(globalIdx){return PERSONAS[globalIdx%PERSONAS.length];}
+
+const BT=[{id:'b1',name:'Classic Clean',desc:'Traditional black/white, ultra professional',cls:'b1'},{id:'b2',name:'Serif Formal',desc:'Georgia serif, timeless editorial style',cls:'b2'},{id:'b3',name:'Ultra Minimal',desc:'Wide spacing, whisper-light dividers',cls:'b3'},{id:'b4',name:'Bold Title Line',desc:'Name with strong underline rule',cls:'b4'},{id:'b5',name:'Centred Formal',desc:'Centred headers, double-border style',cls:'b5'},{id:'b6',name:'Top Rule',desc:'Thin top border, crisp hierarchy',cls:'b6'},{id:'b7',name:'Grey Block',desc:'Light-grey section backgrounds',cls:'b7'},{id:'b8',name:'Left Accent',desc:'Subtle 3px left grey bar',cls:'b8'},{id:'b9',name:'Two Column',desc:'Grey sidebar + main content pane',cls:'b9'},{id:'b10',name:'Ultra Bold',desc:'900-weight name, spaced uppercase',cls:'b10'},{id:'b11',name:'Italic Serif',desc:'Italic Georgia, dotted dividers',cls:'b11'},{id:'b12',name:'Compact Pro',desc:'Tight spacing, maximum on one page',cls:'b12'},{id:'b13',name:'Light Grey Bg',desc:'Off-white background, bold rules',cls:'b13'},{id:'b14',name:'Centred Layout',desc:'Centred name and section labels',cls:'b14'},{id:'b15',name:'Pill Headers',desc:'Grey pill background section labels',cls:'b15'},{id:'b16',name:'Grey Header Block',desc:'Light grey top block for contact info',cls:'b16'},{id:'b17',name:'Heavy Weight',desc:'Maximum font weight, minimal decor',cls:'b17'},{id:'b18',name:'Left Border Strip',desc:'4px left accent strip, clean body',cls:'b18'},{id:'b19',name:'Linen Serif',desc:'Warm off-white paper, serif elegance',cls:'b19'},{id:'b20',name:'Square Badges',desc:'Square grey badge section labels',cls:'b20'},{id:'b21',name:'Dark Cap Header',desc:'Dark top block, clean white body',cls:'b21'},{id:'b22',name:'Double Line',desc:'Double-ruled name line, spaced headers',cls:'b22'},{id:'b23',name:'Monospace Dev',desc:'Courier font throughout, developer look',cls:'b23'},{id:'b24',name:'Refined Sparse',desc:'Ultra-spaced uppercase, pristine feel',cls:'b24'},{id:'b25',name:'Section Rules',desc:'Left rule beside each section title',cls:'b25'},{id:'b26',name:'Bottom Anchor',desc:'Bottom border emphasis below name',cls:'b26'},{id:'b27',name:'Top Section Rule',desc:'Rule above each section title',cls:'b27'},{id:'b28',name:'Box Frame',desc:'Outer thin border, centred name',cls:'b28'},{id:'b29',name:'Light Weight',desc:'300-weight name, hairline dividers',cls:'b29'},{id:'b30',name:'Split Simple',desc:'Light grey sidebar, zero colour',cls:'b30'}];
+const IT=[{id:'i1',name:'Blue Stripe',desc:'Blue top border + blue headings',cls:'i1'},{id:'i2',name:'Green Left Bar',desc:'Green left border + section headings',cls:'i2'},{id:'i3',name:'Amber Accent',desc:'Warm amber/gold heading underlines',cls:'i3'},{id:'i4',name:'Purple Pill',desc:'Violet headings with pill backgrounds',cls:'i4'},{id:'i5',name:'Red Bold',desc:'Red top bar, crimson section headers',cls:'i5'},{id:'i6',name:'Sky Blue Block',desc:'Sky-blue section backgrounds',cls:'i6'},{id:'i7',name:'Emerald Left',desc:'Green left accent on section headings',cls:'i7'},{id:'i8',name:'Slate Badge',desc:'Slate-grey badge section headers',cls:'i8'},{id:'i9',name:'Navy Banner',desc:'Dark navy top info block + blue text',cls:'i9'},{id:'i10',name:'Blue Sidebar',desc:'Navy left panel, white text',cls:'i10'},{id:'i11',name:'Forest Rule',desc:'Green top rule on each heading',cls:'i11'},{id:'i12',name:'Cobalt Double',desc:'Double-ruled cobalt name line',cls:'i12'},{id:'i13',name:'Orange Edge',desc:'Orange left-border section headings',cls:'i13'},{id:'i14',name:'Mint Sheet',desc:'Mint-green background, soft headings',cls:'i14'},{id:'i15',name:'Royal Purple Bar',desc:'Purple accent bar, violet headings',cls:'i15'},{id:'i16',name:'Honey Amber',desc:'Amber highlights on warm cream bg',cls:'i16'},{id:'i17',name:'Ocean Classic',desc:'Deep ocean blue, uppercase style',cls:'i17'},{id:'i18',name:'Petal Pink',desc:'Pink dotted dividers, petal bg',cls:'i18'},{id:'i19',name:'Gold Strike',desc:'Gold accent bar above name',cls:'i19'},{id:'i20',name:'Green Banner',desc:'Forest green top banner block',cls:'i20'},{id:'i21',name:'Violet Edge',desc:'Purple left border + headings',cls:'i21'},{id:'i22',name:'Executive Dark',desc:'Uppercase name, dark-fill headers',cls:'i22'},{id:'i23',name:'Arctic Sky',desc:'Ice-blue background, sky accents',cls:'i23'},{id:'i24',name:'Gradient Title',desc:'Blue-purple gradient name text',cls:'i24'},{id:'i25',name:'Green Sidebar',desc:'Forest green side panel, white text',cls:'i25'},{id:'i26',name:'Sunburst Yellow',desc:'Yellow accent on warm cream',cls:'i26'},{id:'i27',name:'Wine Red',desc:'Deep wine badge headings',cls:'i27'},{id:'i28',name:'Teal Lines',desc:'Teal underlines on white background',cls:'i28'},{id:'i29',name:'Nordic Muted',desc:'Muted Scandinavian colour spacing',cls:'i29'},{id:'i30',name:'Plum Top Rule',desc:'Plum rule above each section heading',cls:'i30'}];
+const PT=[{id:'p1',name:'Violet Header + Photo',desc:'Gradient purple header with photo',cls:'p1'},{id:'p2',name:'Dark Sidebar + Photo',desc:'Dark sidebar, pink accents, photo',cls:'p2'},{id:'p3',name:'Red Header + Photo',desc:'Crimson gradient header with photo',cls:'p3'},{id:'p4',name:'Cyber Dark + Photo',desc:'Futuristic grid bg, cyan glow, photo',cls:'p4'},{id:'p5',name:'Blue Header + Photo',desc:'Ocean blue gradient header with photo',cls:'p5'},{id:'p6',name:'Gold Sidebar + Photo',desc:'Amber gold sidebar with photo',cls:'p6'},{id:'p7',name:'Forest Header + Photo',desc:'Forest green gradient header',cls:'p7'},{id:'p8',name:'Mahogany + Photo',desc:'Rich dark-red mahogany header',cls:'p8'},{id:'p9',name:'Solar Burst + Photo',desc:'Orange-green multi-colour header',cls:'p9'},{id:'p10',name:'Neon Night + Photo',desc:'Neon green glow, dark bg, photo',cls:'p10'},{id:'p11',name:'Violet Sidebar + Photo',desc:'Purple sidebar with photo',cls:'p11'},{id:'p12',name:'Amethyst Header',desc:'Indigo-purple gradient header',cls:'p12'},{id:'p13',name:'Rose Header + Photo',desc:'Deep rose gradient header with photo',cls:'p13'},{id:'p14',name:'Fire Dark + Photo',desc:'Animated fire accent, dark, photo',cls:'p14'},{id:'p15',name:'Ocean Sidebar + Photo',desc:'Deep ocean blue sidebar',cls:'p15'},{id:'p16',name:'Gold Header + Photo',desc:'Amber/gold gradient header',cls:'p16'},{id:'p17',name:'Teal Header + Photo',desc:'Deep teal gradient header',cls:'p17'},{id:'p18',name:'Obsidian + Photo',desc:'Black sidebar with gold accents',cls:'p18'},{id:'p19',name:'Jade Header + Photo',desc:'Deep emerald green header',cls:'p19'},{id:'p20',name:'Crystal Spectrum',desc:'Sky-indigo-violet gradient header',cls:'p20'},{id:'p21',name:'Midnight Tech + Photo',desc:'Dark navy tech header with photo',cls:'p21'},{id:'p22',name:'Marble Luxury + Photo',desc:'Marble texture header with photo',cls:'p22'},{id:'p23',name:'Galaxy Sidebar',desc:'Space-dark sidebar, violet glow',cls:'p23'},{id:'p24',name:'Terra + Photo',desc:'Deep terracotta header with photo',cls:'p24'},{id:'p25',name:'Ice Blue + Photo',desc:'Icy blue gradient header with photo',cls:'p25'},{id:'p26',name:'Indigo Header + Photo',desc:'Deep indigo header with photo',cls:'p26'},{id:'p27',name:'Emerald Header + Photo',desc:'Emerald green gradient header',cls:'p27'},{id:'p28',name:'Ember Dark + Photo',desc:'Ember glow dark header with photo',cls:'p28'},{id:'p29',name:'Royal Blue Sidebar',desc:'Rich royal blue sidebar with photo',cls:'p29'},{id:'p30',name:'Gold Prestige + Photo',desc:'Metallic gold prestige header',cls:'p30'}];
+
+const sideIds=new Set(['b9','b30','i10','i25','p2','p6','p11','p15','p18','p23','p29']);
+const hdrBdyIds=new Set(['b16','b21','i9','i20','p1','p3','p5','p7','p8','p9','p12','p13','p16','p17','p19','p20','p24','p26','p27','p30']);
+const photoIds=new Set(['p1','p2','p3','p4','p5','p6','p7','p8','p9','p10','p11','p12','p13','p14','p15','p16','p17','p18','p19','p20','p21','p22','p23','p24','p25','p26','p27','p28','p29','p30']);
+
+function getPhoto(tid){return uPhotoMap[tid]||null;}
+function ph(tid){const p=getPhoto(tid);return p?`<img src="${p}" class="rphoto" alt="Photo">`:`<div class="pph" onclick="trigPh('${tid}')"><i class="fas fa-camera"></i></div>`;}
+function phDark(tid){const p=getPhoto(tid);return p?`<img src="${p}" class="rphoto" alt="Photo" style="border:2px solid rgba(255,255,255,.3)">`:`<div class="pph-dark" onclick="trigPh('${tid}')"><i class="fas fa-camera"></i></div>`;}
+function phCyber(tid){const p=getPhoto(tid);return p?`<img src="${p}" class="rphoto-cyber" alt="Photo">`:`<div class="pph-cyber" onclick="trigPh('${tid}')"><i class="fas fa-camera"></i></div>`;}
+function phNeon(tid){const p=getPhoto(tid);return p?`<img src="${p}" class="rphoto-neon" alt="Photo">`:`<div class="pph-neon" onclick="trigPh('${tid}')"><i class="fas fa-camera"></i></div>`;}
+function phFire(tid){const p=getPhoto(tid);return p?`<img src="${p}" class="rphoto-fire" alt="Photo">`:`<div class="pph-fire" onclick="trigPh('${tid}')"><i class="fas fa-camera"></i></div>`;}
+function phMid(tid){const p=getPhoto(tid);return p?`<img src="${p}" class="rphoto-mid" alt="Photo">`:`<div class="pph-mid" onclick="trigPh('${tid}')"><i class="fas fa-camera"></i></div>`;}
+function phMarble(tid){const p=getPhoto(tid);return p?`<img src="${p}" class="rphoto-marble" alt="Photo">`:`<div class="pph-marble" onclick="trigPh('${tid}')"><i class="fas fa-camera"></i></div>`;}
+function phIce(tid){const p=getPhoto(tid);return p?`<img src="${p}" class="rphoto-ice" alt="Photo">`:`<div class="pph-ice" onclick="trigPh('${tid}')"><i class="fas fa-camera"></i></div>`;}
+function phEmber(tid){const p=getPhoto(tid);return p?`<img src="${p}" class="rphoto-ember" alt="Photo">`:`<div class="pph-ember" onclick="trigPh('${tid}')"><i class="fas fa-camera"></i></div>`;}
+
+function expH(d){return d.experience.map(e=>`<div style="margin-bottom:10px"><div class="jt"><h3>${e.role} — ${e.company}</h3><span class="dt">${e.dates}</span></div><ul>${e.bullets.map(b=>`<li>${b}</li>`).join('')}</ul></div>`).join('');}
+function eduH(d){return d.education.map(e=>`<div class="jt"><h3>${e.degree} — ${e.school}</h3><span class="dt">${e.dates}</span></div>`).join('');}
+function extraH(d){if(!d.extraSections||!d.extraSections.length)return '';return d.extraSections.map(es=>`<div class="sw"><div class="sec"><h2>${es.title}</h2><p>${es.content}</p></div></div>`).join('');}
+function mainSecs(d){
+  let s=`<div class="sw"><div class="sec"><h2>Professional Summary</h2><p>${d.summary}</p></div></div>
+<div class="sw"><div class="sec"><h2>Experience</h2>${expH(d)}</div></div>
+<div class="sw"><div class="sec"><h2>Education</h2>${eduH(d)}</div></div>
+<div class="sw"><div class="sec"><h2>Skills</h2><p>${d.skills.join(' • ')}</p></div></div>`;
+  if(d.certifications&&d.certifications.length)s+=`<div class="sw"><div class="sec"><h2>Certifications</h2><p>${d.certifications.join(' • ')}</p></div></div>`;
+  s+=extraH(d);return s;
+}
+function stdH(d){return `<h1>${d.name}</h1><div class="ci">${d.email} | ${d.phone} | ${d.location}${d.linkedin?'<br>'+d.linkedin:''}</div>${mainSecs(d)}`;}
+function sideH(d,tid){
+  const sk=`<ul style="list-style:none;padding:0">${d.skills.map(s=>`<li>• ${s}</li>`).join('')}</ul>`;
+  const phtml=photoIds.has(tid)?`<div style="margin-bottom:10px;text-align:center">${phDark(tid)}</div>`:'';
+  return `<div class="sl">${phtml}<h1>${d.name}</h1><div class="ci" style="margin-top:5px">${d.email}<br>${d.phone}<br>${d.location}</div>
+<div class="sec" style="margin-top:10px"><h2>Skills</h2>${sk}</div>
+${d.certifications&&d.certifications.length?`<div class="sec"><h2>Certifications</h2>${d.certifications.map(c=>`<p>• ${c}</p>`).join('')}</div>`:''}
+${d.extraSections&&d.extraSections.length?d.extraSections.map(es=>`<div class="sec"><h2>${es.title}</h2><p>${es.content}</p></div>`).join(''):''}
+</div>
+<div class="mr">
+<div class="sw"><div class="sec"><h2>Summary</h2><p>${d.summary}</p></div></div>
+<div class="sw"><div class="sec"><h2>Experience</h2>${expH(d)}</div></div>
+<div class="sw"><div class="sec"><h2>Education</h2>${eduH(d)}</div></div>
+${extraH(d)}</div>`;
+}
+function hdrbH(d,tid,hC,bC){
+  return `<div class="${hC}">${ph(tid)}<div><h1>${d.name}</h1><p style="font-size:10px;opacity:.82;margin-bottom:2px">${d.title||''}</p><div class="ci">${d.email} | ${d.phone} | ${d.location}</div></div></div><div class="${bC}">${mainSecs(d)}</div>`;
+}
+function i15H(d){return `<div class="rb"></div><div class="bd"><h1>${d.name}</h1><div class="ci">${d.email} | ${d.phone} | ${d.location}${d.linkedin?'<br>'+d.linkedin:''}</div>${mainSecs(d)}</div>`;}
+function p4H(d,tid){return `<div class="cy-head">${phCyber(tid)}<div class="cy-info"><h1>${d.name}</h1><p style="color:#7dd3fc;font-size:10px;margin-bottom:2px;font-family:'Courier New',monospace">${d.title||''}</p><div class="ci">${d.email} | ${d.phone} | ${d.location}</div></div></div><div class="cy-body">${mainSecs(d)}</div>`;}
+function p10H(d,tid){return `<div class="ne-head">${phNeon(tid)}<div class="ne-info"><h1>${d.name}</h1><p style="color:#4ade80;font-size:10px;margin-bottom:2px">${d.title||''}</p><div class="ci">${d.email} | ${d.phone} | ${d.location}</div></div></div><div class="ne-body">${mainSecs(d)}</div>`;}
+function p14H(d,tid){return `<div class="fi-head">${phFire(tid)}<div class="fi-info"><h1>${d.name}</h1><p style="color:#fb923c;font-size:10px;margin-bottom:2px">${d.title||''}</p><div class="ci">${d.email} | ${d.phone} | ${d.location}</div></div></div><div class="fi-body">${mainSecs(d)}</div>`;}
+function p21H(d,tid){return `<div class="mt-head">${phMid(tid)}<div class="mt-info"><h1>${d.name}</h1><p style="color:#60a5fa;font-size:10px;margin-bottom:2px">${d.title||''}</p><div class="ci">${d.email} | ${d.phone} | ${d.location}</div></div></div><div class="mt-body">${mainSecs(d)}</div>`;}
+function p22H(d,tid){return `<div class="ma-head">${phMarble(tid)}<div class="ma-info"><h1>${d.name}</h1><p style="color:#6b5d4a;font-size:10px;margin-bottom:2px;font-family:'Georgia',serif">${d.title||''}</p><div class="ci">${d.email} | ${d.phone} | ${d.location}</div></div></div><div class="ma-body">${mainSecs(d)}</div>`;}
+function p25H(d,tid){return `<div class="ic-head">${phIce(tid)}<div class="ic-info"><h1>${d.name}</h1><p style="color:#0369a1;font-size:10px;margin-bottom:2px">${d.title||''}</p><div class="ci">${d.email} | ${d.phone} | ${d.location}</div></div></div><div class="ic-body">${mainSecs(d)}</div>`;}
+function p28H(d,tid){return `<div class="em-head">${phEmber(tid)}<div class="em-info"><h1>${d.name}</h1><p style="color:#fb923c;font-size:10px;margin-bottom:2px">${d.title||''}</p><div class="ci">${d.email} | ${d.phone} | ${d.location}</div></div></div><div class="em-body">${mainSecs(d)}</div>`;}
+
+function getHTML(tid,d){
+  if(sideIds.has(tid))return sideH(d,tid);
+  if(tid==='b16'||tid==='b21'||tid==='i9'||tid==='i20')return `<div class="hd"><h1>${d.name}</h1><div class="ci">${d.email} | ${d.phone} | ${d.location}</div></div><div class="bd">${mainSecs(d)}</div>`;
+  if(tid==='i15')return i15H(d);
+  if(tid==='p4')return p4H(d,tid);
+  if(tid==='p10')return p10H(d,tid);
+  if(tid==='p14')return p14H(d,tid);
+  if(tid==='p21')return p21H(d,tid);
+  if(tid==='p22')return p22H(d,tid);
+  if(tid==='p25')return p25H(d,tid);
+  if(tid==='p28')return p28H(d,tid);
+  if(hdrBdyIds.has(tid))return hdrbH(d,tid,'ph','pb');
+  return stdH(d);
+}
+
+function fTpl(id,cat){if(cat==='basic')return BT.find(t=>t.id===id);if(cat==='intermediate')return IT.find(t=>t.id===id);return PT.find(t=>t.id===id);}
+function bcls(cat){return cat==='basic'?'bb':cat==='intermediate'?'bi':'bp';}
+
+function mkCard(t,cat,globalIdx){
+  const previewData=RDMap[t.id]?RDMap[t.id]:personaFor(globalIdx);
+  const html=getHTML(t.id,previewData),bc=bcls(cat),isPr=cat==='premium';
+  return `<div class="tcard" onclick="openPrev('${t.id}','${cat}')"><div class="tprev"><span class="tbadge ${bc}">${cat}</span><div class="scw"><div class="rr ${t.cls}">${html}</div></div></div><div class="tcbody"><h3>${t.name}${isPr?' <i class="fas fa-crown" style="color:#FFD700;font-size:.62rem"></i>':''}</h3><p class="tdesc">${t.desc}</p></div></div>`;
+}
+
+function renderAll(){
+  document.getElementById('bg').innerHTML=BT.map((t,i)=>mkCard(t,'basic',i%10)).join('');
+  document.getElementById('ig').innerHTML=IT.map((t,i)=>mkCard(t,'intermediate',i%10+10)).join('');
+  document.getElementById('pg').innerHTML=PT.map((t,i)=>mkCard(t,'premium',i%10+20)).join('');
+}
+function switchCat(cat,btn){document.querySelectorAll('.cat-sec').forEach(s=>s.classList.remove('active'));document.querySelectorAll('.tab').forEach(b=>b.classList.remove('active'));document.getElementById(cat).classList.add('active');btn.classList.add('active');}
+
+function openPrev(tid,cat){
+  const t=fTpl(tid,cat);if(!t)return;
+  curTid=tid;curCat=cat;isEM=false;
+  // Restore photo, resume data and filename for this specific template only
+  uPhoto=uPhotoMap[tid]||null;
+  RD=RDMap[tid]?JSON.parse(JSON.stringify(RDMap[tid])):JSON.parse(JSON.stringify(DEF));
+  ufName=ufNameMap[tid]||'';
+  const be=document.getElementById('bEdit'),ba=document.getElementById('bAS');
+  be.innerHTML='<i class="fas fa-edit"></i>Edit';be.classList.remove('on');ba.classList.remove('vis');
+  document.getElementById('mTitle').textContent=`Preview: ${t.name}`;
+  const thisFn=ufNameMap[tid]||null;const ub=thisFn?`<div class="usb on"><i class="fas fa-check-circle"></i><div><strong>Loaded: ${thisFn}</strong><small>Your resume content has been applied to this template</small></div></div>`:'';
+  document.getElementById('mBody').innerHTML=`${ub}
+<div class="etb" id="etb"><i class="fas fa-pencil-alt"></i><div><span>Edit Mode Active</span><small>Click any text to edit directly. Use "Add Section" to insert new sections. Press Save when done.</small></div></div>
+<div class="asp" id="asp">
+  <h4><i class="fas fa-plus-circle" style="color:var(--P);margin-right:5px"></i>Add a New Section</h4>
+  <div class="stypes">${['Languages','Projects','Volunteer Work','Publications','Awards & Honours','References','Interests & Hobbies','Professional Memberships','Achievements','Training & Courses','Custom Section'].map(s=>`<button class="stb" onclick="addSec('${s}')">${s}</button>`).join('')}</div>
+</div>
+<div class="rr ${t.cls}" id="rra">${getHTML(tid,RD)}</div>`;
+  document.getElementById('previewModal').classList.add('active');
+  document.body.style.overflow='hidden';
+}
+function closeModal(){
+  if(isEM)disEM();
+  document.getElementById('previewModal').classList.remove('active');
+  document.body.style.overflow='auto';
+  curTid=null;curCat=null;
+}
+
+function toggleEM(){isEM?disEM():enEM();}
+function enEM(){
+  isEM=true;
+  const r=document.getElementById('rra'),be=document.getElementById('bEdit'),ba=document.getElementById('bAS'),et=document.getElementById('etb');
+  et.classList.add('on');r.classList.add('em');
+  r.querySelectorAll('h1,h2,h3,p,li,span.dt,.ci').forEach(el=>{el.setAttribute('contenteditable','true');el.setAttribute('spellcheck','false');});
+  r.querySelectorAll('.sw').forEach(sw=>{
+    if(!sw.querySelector('.rsb')){const btn=document.createElement('button');btn.className='rsb';btn.innerHTML='<i class="fas fa-times"></i>';btn.title='Remove section';btn.onclick=e=>{e.stopPropagation();if(confirm('Remove this section?'))sw.remove();};sw.appendChild(btn);}
+  });
+  be.innerHTML='<i class="fas fa-check"></i>Done';be.classList.add('on');ba.classList.add('vis');
+  showT('Edit mode on — click any text to change it','s');
+}
+function disEM(){
+  isEM=false;
+  const r=document.getElementById('rra'),be=document.getElementById('bEdit'),ba=document.getElementById('bAS'),et=document.getElementById('etb'),asp=document.getElementById('asp');
+  if(r){r.querySelectorAll('[contenteditable]').forEach(el=>{el.removeAttribute('contenteditable');el.removeAttribute('spellcheck');});r.classList.remove('em');}
+  r&&r.querySelectorAll('.rsb').forEach(b=>b.remove());
+  et&&et.classList.remove('on');asp&&asp.classList.remove('on');
+  be.innerHTML='<i class="fas fa-edit"></i>Edit';be.classList.remove('on');ba.classList.remove('vis');
+}
+function saveEdits(){
+  const r=document.getElementById('rra');if(!r)return;
+  const h1=r.querySelector('h1');if(h1)RD.name=h1.textContent.trim();
+  const ci=r.querySelector('.ci');if(ci){const p=ci.innerText.split(/[|\n]/).map(s=>s.trim()).filter(Boolean);if(p[0])RD.email=p[0];if(p[1])RD.phone=p[1];if(p[2])RD.location=p[2];}
+  RD.extraSections=[];
+  r.querySelectorAll('.sw .sec').forEach(sec=>{
+    const h=sec.querySelector('h2');if(!h)return;const ht=h.textContent.toLowerCase().trim();
+    if(ht.includes('summary')){const p=sec.querySelector('p');if(p)RD.summary=p.textContent.trim();}
+    else if(ht.includes('skill')){const p=sec.querySelector('p');if(p)RD.skills=p.textContent.split('•').map(s=>s.trim()).filter(Boolean);}
+    else if(ht.includes('certif')){const p=sec.querySelector('p');if(p)RD.certifications=p.textContent.split('•').map(s=>s.trim()).filter(Boolean);}
+    else if(!ht.includes('experience')&&!ht.includes('education')){const p=sec.querySelector('p');RD.extraSections.push({title:h.textContent.trim(),content:p?p.textContent.trim():''});}
+  });
+  const uls=r.querySelectorAll('ul');uls.forEach((ul,i)=>{if(RD.experience[i]){const b=[];ul.querySelectorAll('li').forEach(li=>{const t=li.textContent.trim();if(t)b.push(t);});if(b.length)RD.experience[i].bullets=b;}});
+  // Keep photo map in sync
+  if(curTid&&uPhoto) uPhotoMap[curTid]=uPhoto;
+  // Save resume data for this specific template only
+  if(curTid) RDMap[curTid]=JSON.parse(JSON.stringify(RD));
+  if(isEM) disEM();
+  showT('Changes saved!','s');renderAll();
+}
+function cancelTemplate(){
+  if(!curTid)return;
+  if(!confirm('This will remove all uploaded content, edits and photo for this template and reset it to default. Continue?'))return;
+  // Clear this template's data
+  delete RDMap[curTid];
+  delete uPhotoMap[curTid];
+  delete ufNameMap[curTid];
+  // Reset globals for current template
+  uPhoto=null;
+  ufName='';
+  RD=JSON.parse(JSON.stringify(DEF));
+  // Exit edit mode if active
+  if(isEM) disEM();
+  // Re-render the modal with default content
+  const t=fTpl(curTid,curCat);
+  if(t){
+    document.getElementById('mBody').innerHTML=`
+<div class="etb" id="etb"><i class="fas fa-pencil-alt"></i><div><span>Edit Mode Active</span><small>Click any text to edit directly. Use "Add Section" to insert new sections. Press Save when done.</small></div></div>
+<div class="asp" id="asp">
+  <h4><i class="fas fa-plus-circle" style="color:var(--P);margin-right:5px"></i>Add a New Section</h4>
+  <div class="stypes">${['Languages','Projects','Volunteer Work','Publications','Awards & Honours','References','Interests & Hobbies','Professional Memberships','Achievements','Training & Courses','Custom Section'].map(s=>`<button class="stb" onclick="addSec('${s}')">${s}</button>`).join('')}</div>
+</div>
+<div class="rr ${t.cls}" id="rra">${getHTML(curTid,RD)}</div>`;
+  }
+  renderAll();
+  showT('Template reset to default','i');
+}
+function toggleASP(){const p=document.getElementById('asp');p.classList.toggle('on');}
+function addSec(title){
+  if(!isEM)enEM();const r=document.getElementById('rra');if(!r)return;
+  const ns=document.createElement('div');ns.className='sw';
+  ns.innerHTML=`<div class="sec"><h2 contenteditable="true" spellcheck="false">${title}</h2><p contenteditable="true" spellcheck="false">Click here to add content for this section.</p></div>`;
+  const rb=document.createElement('button');rb.className='rsb';rb.innerHTML='<i class="fas fa-times"></i>';rb.onclick=e=>{e.stopPropagation();if(confirm('Remove?'))ns.remove();};ns.appendChild(rb);
+  const mr=r.querySelector('.mr')||r.querySelector('.bd')||r.querySelector('.pb')||r.querySelector('.cy-body')||r.querySelector('.ne-body')||r.querySelector('.fi-body')||r.querySelector('.mt-body')||r.querySelector('.ma-body')||r.querySelector('.ic-body')||r.querySelector('.em-body')||r;
+  mr.appendChild(ns);document.getElementById('asp').classList.remove('on');showT(`"${title}" section added!`,'s');ns.scrollIntoView({behavior:'smooth',block:'center'});
+}
+
+function doUpload(tid,cat){curUT={templateId:tid,category:cat};document.getElementById('ruF').click();}
+function trigUpload(){
+  if(curTid&&curCat){curUT={templateId:curTid,category:curCat};document.getElementById('ruF').click();}
+}
+function doSave(tid,cat){
+  if(!iLI()){showLp('Sign in to download your resume.',{type:'download',templateId:tid,category:cat});return;}
+  dlTid=tid;dlCat=cat;const t=fTpl(tid,cat);
+  document.getElementById('dlN').textContent=`Format for: ${t?t.name:'Resume'}`;
+  document.getElementById('dfog').style.display='grid';document.getElementById('dfp').classList.remove('active');
+  document.getElementById('dlModal').classList.add('active');
+}
+function openDL(){if(!iLI()){showLp('Sign in to download.');return;}if(!curTid)return;doSave(curTid,curCat);}
+function closeDL(){document.getElementById('dlModal').classList.remove('active');dlTid=null;dlCat=null;}
+async function doDL(fmt){
+  const tid=dlTid,cat=dlCat;if(!tid||!cat)return;const t=fTpl(tid,cat);if(!t)return;
+  const fn=`Resume_${Math.floor(10000+Math.random()*90000)}`;
+  document.getElementById('dfog').style.display='none';document.getElementById('dfp').classList.add('active');
+  try{
+    if(fmt==='pdf')await dlPDF(tid,t,fn);
+    else if(fmt==='doc'||fmt==='docx')dlDOC(tid,t,fn,fmt);
+    else if(fmt==='txt')dlTXT(fn);
+    setTimeout(()=>{closeDL();showT(`${fn}.${fmt} downloaded!`,'s');},600);
+  }catch(e){console.error(e);closeDL();showT('Download failed – try again','w');}
+}
+
+/* ════════════════════════════════════════════════════════════
+   FIXED dlPDF — Proper A4 PDF with no content cutoff
+   
+   Root cause of the left-side cutoff in the original:
+   1. Element was positioned at left:-9999px causing html2canvas
+      to capture from wrong x-origin → left content clipped.
+   2. html2pdf margin:[12,12,12,18] shrunk the rendered area,
+      scaling content down and misaligning left edge.
+   3. windowWidth mismatch caused scaling artifacts.
+
+   Fix strategy:
+   - Host at top:-9999px, left:0 (no horizontal offset)
+   - margin:0 in html2pdf (padding is inside the wrapper CSS)
+   - Wrapper width = 794px (A4 @ 96dpi), windowWidth = 794
+   - Inner resume width = 794 - 2*padding for proper margins
+   - Multi-page support via canvas slicing
+════════════════════════════════════════════════════════════ */
+async function dlPDF(tid,tpl,fn){
+  const PAGE_W=794;
+  const host=document.createElement('div');
+  host.style.cssText='position:fixed;top:-99999px;left:0;width:'+PAGE_W+'px;margin:0;padding:0;background:#fff;overflow:visible;z-index:-9999;';
+  document.body.appendChild(host);
+  const css=Array.from(document.querySelectorAll('style')).map(s=>s.textContent).join('');
+  const st=document.createElement('style');
+  st.textContent=css+`
+    .rr-pw{width:${PAGE_W}px!important;padding:40px 48px!important;margin:0!important;background:#fff!important;box-sizing:border-box!important;}
+    .rr-pw .rr{width:${PAGE_W-96}px!important;min-height:auto!important;margin:0!important;box-sizing:border-box!important;}
+    .rr-pw .pph,.rr-pw .pph-dark,.rr-pw .pph-cyber,.rr-pw .pph-neon,.rr-pw .pph-fire,.rr-pw .pph-mid,.rr-pw .pph-marble,.rr-pw .pph-ice,.rr-pw .pph-ember,.rr-pw .rsb{display:none!important}
+    .rr-pw .rr.b9,.rr-pw .rr.b30,.rr-pw .rr.i10,.rr-pw .rr.i25,.rr-pw .rr.p2,.rr-pw .rr.p6,.rr-pw .rr.p11,.rr-pw .rr.p15,.rr-pw .rr.p18,.rr-pw .rr.p23,.rr-pw .rr.p29{display:flex!important;min-height:500px!important}
+  `;
+  host.appendChild(st);
+  const wrap=document.createElement('div');
+  wrap.className='rr-pw';
+  const rEl=document.createElement('div');
+  rEl.className=`rr ${tpl.cls}`;
+  rEl.innerHTML=getHTML(tid,RDMap[tid]||RD);
+  wrap.appendChild(rEl);
+  host.appendChild(wrap);
+  await new Promise(r=>setTimeout(r,600));
+  try{
+    await html2pdf().set({
+      margin:0,
+      filename:`${fn}.pdf`,
+      image:{type:'jpeg',quality:0.97},
+      html2canvas:{scale:2,useCORS:true,logging:false,backgroundColor:'#ffffff',scrollX:0,scrollY:0,windowWidth:PAGE_W,width:PAGE_W,x:0,y:0},
+      jsPDF:{unit:'mm',format:[210,297],orientation:'portrait',compress:true},
+      pagebreak:{mode:['avoid-all']}
+    }).from(wrap).save();
+  }finally{
+    document.body.removeChild(host);
+  }
+}
+
+
+function dlDOC(tid,tpl,fn,fmt){
+  const html=getHTML(tid,RDMap[tid]||RD),css=Array.from(document.querySelectorAll('style')).map(s=>s.textContent).join('');
+  const content=`<!DOCTYPE html><html><head><meta charset="utf-8"><style>body{margin:0;font-family:Calibri,Arial,sans-serif;}${css}.rr{min-height:auto!important;}.pph,.pph-dark,.pph-cyber,.pph-neon,.pph-fire,.pph-mid,.pph-marble,.pph-ice,.pph-ember{display:none;}.rsb{display:none!important;}\x3C/style>\x3C/head><body><div class="rr ${tpl.cls}">${html}\x3C/div>\x3C/body>\x3C/html>`;
+  const b=new Blob(['\ufeff',content],{type:fmt==='docx'?'application/vnd.openxmlformats-officedocument.wordprocessingml.document':'application/msword'});
+  const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download=`${fn}.${fmt}`;document.body.appendChild(a);a.click();document.body.removeChild(a);URL.revokeObjectURL(a.href);
+}
+function dlTXT(fn){
+  const d=RDMap[dlTid]||RD;let txt=`${d.name}\n${d.title||''}\n${d.email} | ${d.phone} | ${d.location}\n`;
+  if(d.linkedin)txt+=d.linkedin+'\n';
+  txt+=`\n== PROFESSIONAL SUMMARY ==\n${d.summary}\n\n== EXPERIENCE ==\n`;
+  d.experience.forEach(e=>{txt+=`${e.role} — ${e.company}\n${e.dates}\n`;e.bullets.forEach(b=>{txt+=`  • ${b}\n`;});txt+='\n';});
+  txt+=`== EDUCATION ==\n`;d.education.forEach(e=>{txt+=`${e.degree} — ${e.school}\n${e.dates}\n\n`;});
+  txt+=`== SKILLS ==\n${d.skills.join(', ')}\n\n`;
+  if(d.certifications&&d.certifications.length)txt+=`== CERTIFICATIONS ==\n${d.certifications.join(', ')}\n`;
+  if(d.extraSections&&d.extraSections.length)d.extraSections.forEach(es=>{txt+=`\n== ${es.title.toUpperCase()} ==\n${es.content}\n`;});
+  const b=new Blob([txt],{type:'text/plain;charset=utf-8'});
+  const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download=`${fn}.txt`;document.body.appendChild(a);a.click();document.body.removeChild(a);URL.revokeObjectURL(a.href);
+}
+
+function trigPh(tid){curUT={templateId:tid,category:'premium',photoOnly:true};document.getElementById('phF').click();}
+document.getElementById('phF').addEventListener('change',function(e){
+  const f=e.target.files[0];if(!f)return;
+  const r=new FileReader();
+  r.onload=ev=>{
+    const photoData=ev.target.result;
+    if(curUT&&curUT.templateId){
+      // Store photo ONLY for this specific template
+      uPhotoMap[curUT.templateId]=photoData;
+      // Keep uPhoto in sync for the currently open template only
+      if(curTid===curUT.templateId) uPhoto=photoData;
+      showT('Photo saved for this template!','s');
+      if(curUT)openPrev(curUT.templateId,curUT.category);
+    }
+  };
+  r.readAsDataURL(f);this.value='';
+});
+
+document.getElementById('ruF').addEventListener('change',async function(e){
+  const f=e.target.files[0];if(!f)return;this.value='';const fn=f.name.toLowerCase();
+  // Store filename only for the chosen template
+  if(curUT&&curUT.templateId) ufNameMap[curUT.templateId]=f.name;
+  ufName=f.name; // keep global for backward compat within same session
+  try{
+    if(fn.endsWith('.txt'))await doTXT(f);
+    else if(fn.endsWith('.pdf'))await doPDF(f);
+    else if(fn.endsWith('.docx'))await doDOCX(f);
+    else if(fn.endsWith('.doc'))await doDOC_(f);
+    else{showT('Use PDF, DOCX, DOC, or TXT','w');return;}
+  }catch(err){console.error(err);hideUP();showT('Could not read file – try TXT or DOCX','w');}
+});
+async function doTXT(f){showUP('Reading TXT…');setUP(30,'Parsing…');return new Promise((res,rej)=>{const r=new FileReader();r.onload=ev=>{setUP(70,'Extracting…');parseR(ev.target.result);setUP(100,'Done!');setTimeout(()=>{hideUP();showT('Resume loaded!','s');if(curUT)openPrev(curUT.templateId,curUT.category);renderAll();res();},350);};r.onerror=rej;r.readAsText(f);});}
+async function doPDF(f){
+  showUP('Reading PDF…');setUP(15,'Loading…');
+  if(typeof pdfjsLib==='undefined'){hideUP();showT('PDF library unavailable','w');return;}
+  const ab=await f.arrayBuffer();setUP(35,'Parsing…');
+  try{const pdf=await pdfjsLib.getDocument({data:new Uint8Array(ab)}).promise;let txt='';setUP(50,`Extracting ${pdf.numPages} pages…`);for(let i=1;i<=pdf.numPages;i++){setUP(50+Math.round((i/pdf.numPages)*35),`Page ${i}/${pdf.numPages}…`);const pg=await pdf.getPage(i);const tc=await pg.getTextContent();let ly=null,pt='';for(const item of tc.items){const y=item.transform?item.transform[5]:null;if(ly!==null&&y!==null&&Math.abs(y-ly)>5)pt+='\n';pt+=item.str;ly=y;}txt+=pt+'\n';}setUP(90,'Parsing…');parseR(txt);setUP(100,'Done!');setTimeout(()=>{hideUP();showT('PDF loaded!','s');if(curUT)openPrev(curUT.templateId,curUT.category);renderAll();},350);}catch(e){console.error(e);hideUP();showT('Could not parse PDF – try DOCX','w');}
+}
+async function doDOCX(f){showUP('Reading DOCX…');setUP(25,'Loading…');const ab=await f.arrayBuffer();setUP(55,'Extracting…');if(typeof mammoth==='undefined'){hideUP();showT('DOCX lib unavailable','w');return;}const r=await mammoth.extractRawText({arrayBuffer:ab});setUP(85,'Parsing…');parseR(r.value);setUP(100,'Done!');setTimeout(()=>{hideUP();showT('DOCX loaded!','s');if(curUT)openPrev(curUT.templateId,curUT.category);renderAll();},350);}
+async function doDOC_(f){showUP('Reading DOC…');setUP(30,'Extracting…');return new Promise((res,rej)=>{const r=new FileReader();r.onload=ev=>{let txt='';const arr=new Uint8Array(ev.target.result);for(let i=0;i<arr.length;i++){const c=arr[i];if((c>=32&&c<=126)||c===10||c===13)txt+=String.fromCharCode(c);}txt=txt.split('\n').map(l=>l.replace(/[^\x20-\x7E]/g,' ').replace(/\s{3,}/g,' ').trim()).filter(l=>l.length>2).join('\n');setUP(80,'Parsing…');if(txt.trim().length>50)parseR(txt);else showT('Limited DOC support – use DOCX','w');setUP(100,'Done!');setTimeout(()=>{hideUP();showT('DOC loaded!','s');if(curUT)openPrev(curUT.templateId,curUT.category);renderAll();res();},350);};r.onerror=rej;r.readAsArrayBuffer(f);});}
+
+function parseR(text){
+  const lines=text.split('\n').map(l=>l.trim()).filter(l=>l.length>1);
+  let d={name:'',title:'',email:'',phone:'',location:'',linkedin:'',summary:'',experience:[],education:[],skills:[],certifications:[],extraSections:[]};
+  const SK={summary:['summary','objective','profile','about me','professional summary','career objective','career summary'],experience:['experience','work history','employment','professional experience','career history','work experience'],education:['education','academic','qualification','academics','academic background'],skills:['skills','technical skills','competencies','key skills','core competencies','technologies','tools','technical expertise'],certifications:['certification','certifications','licenses','awards','achievements','certificate','licenses & certifications']};
+  function dSec(line){const l=line.toLowerCase().replace(/[^a-z\s]/g,'').trim();if(l.length>60)return null;for(const[s,kws]of Object.entries(SK)){for(const kw of kws){if(l===kw||l.startsWith(kw+' ')||l.endsWith(' '+kw))return s;}}return null;}
+  const dp=/(\b(?:jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)\w*\s+)?\d{4}\s*[-–—to]+\s*(?:present|current|now|\d{4})/gi;
+  for(let i=0;i<Math.min(12,lines.length);i++){const l=lines[i];const em=l.match(/[\w.+-]+@[\w-]+\.[a-zA-Z]{2,}/);if(em&&!d.email)d.email=em[0];const pm=l.match(/(?:\+?\d{1,3}[\s.-]?)?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}/);if(pm&&!d.phone)d.phone=pm[0];if(l.toLowerCase().includes('linkedin')){const lm=l.match(/linkedin\.com\/[\w\/%-]+/i);if(lm)d.linkedin=lm[0];}const lm2=l.match(/[A-Z][a-zA-Z\s]+,\s*(?:[A-Z]{2}|[A-Za-z]+)/);if(lm2&&!d.location&&!em&&!pm)d.location=lm2[0].trim();}
+  for(let i=0;i<Math.min(5,lines.length);i++){const l=lines[i];if(!/[@\d]/.test(l)&&!/https?:|www\.|linkedin/i.test(l)&&!dSec(l)&&l.length>1&&l.length<60){if(!d.name){d.name=l;continue;}if(!d.title&&l.length<80&&!/\d{4}/.test(l)){d.title=l;break;}}}
+  let curSec='',curExp=null,sumLines=[];
+  for(let i=0;i<lines.length;i++){const line=lines[i];const det=dSec(line);if(det){if(curExp&&curSec==='experience'){d.experience.push(curExp);curExp=null;}curSec=det;continue;}if(/[@]/.test(line)||/linkedin\.com/i.test(line))continue;
+    switch(curSec){
+      case 'summary':sumLines.push(line);break;
+      case 'experience':{const isD=dp.test(line);dp.lastIndex=0;const isB=/^[•\-\*\u2022]/.test(line)||/^\d+\.\s/.test(line);if(isB){if(curExp)curExp.bullets.push(line.replace(/^[•\-\*\u2022\d+\.]\s*/,'').trim());}else if(isD){if(curExp)d.experience.push(curExp);const dm=line.match(dp);dp.lastIndex=0;const ds=dm?dm[0]:'';const rest=line.replace(ds,'').replace(/[\|\-,]+/g,' ').trim();curExp={role:rest||'Role',company:'',dates:ds,bullets:[]};if(i+1<lines.length&&!dSec(lines[i+1])&&!dp.test(lines[i+1])){dp.lastIndex=0;const nl=lines[i+1].replace(/^[•\-\*]/,'').trim();if(nl&&nl.length<80&&!/^[•\-\*]/.test(lines[i+1])){curExp.company=nl;i++;}}}else{if(!curExp)curExp={role:line,company:'',dates:'',bullets:[]};else if(!curExp.company&&line.length<80)curExp.company=line;else if(line.length>20)curExp.bullets.push(line);}break;}
+      case 'education':{const dm=line.match(dp);dp.lastIndex=0;const ds=dm?dm[0]:'';if(ds&&d.education.length>0&&!d.education[d.education.length-1].dates){d.education[d.education.length-1].dates=ds;}else{const rest=line.replace(ds,'').replace(/[|,]+$/,'').trim();if(rest.length>2){const dk=/\b(b\.?s|b\.?a|m\.?s|m\.?a|m\.?b\.?a|ph\.?d|bachelor|master|associate|doctor|diploma|certificate|b\.?tech|m\.?tech)\b/i;if(dk.test(rest))d.education.push({degree:rest,school:'',dates:ds});else if(d.education.length>0&&!d.education[d.education.length-1].school){d.education[d.education.length-1].school=rest;if(ds)d.education[d.education.length-1].dates=ds;}else d.education.push({degree:'',school:rest,dates:ds});}}break;}
+      case 'skills':{const c=line.replace(/^[•\-\*\u2022]\s*/,'');const p=c.split(/[,|•·;\/]/).map(s=>s.trim()).filter(s=>s.length>0&&s.length<40);if(p.length>1)d.skills.push(...p);else if(c.length>0&&c.length<40)d.skills.push(c);break;}
+      case 'certifications':{const cert=line.replace(/^[•\-\*\u2022]\s*/,'').trim();if(cert.length>2&&cert.length<100)d.certifications.push(cert);break;}
+    }
+  }
+  if(curExp&&curSec==='experience')d.experience.push(curExp);
+  if(sumLines.length)d.summary=sumLines.join(' ').replace(/\s+/g,' ').trim();
+  if(!d.name||d.name.length<2)d.name=DEF.name;if(!d.email)d.email=DEF.email;if(!d.phone)d.phone=DEF.phone;if(!d.location)d.location=DEF.location;if(!d.summary||d.summary.length<20)d.summary=DEF.summary;if(!d.experience.length)d.experience=DEF.experience;if(!d.education.length)d.education=DEF.education;if(!d.skills.length)d.skills=DEF.skills;
+  d.skills=[...new Set(d.skills.map(s=>s.trim()).filter(s=>s.length>0&&s.length<35))];
+  d.education=d.education.filter(e=>e.school||e.degree).map(e=>({school:e.school||e.degree||'',degree:e.degree||'',dates:e.dates||''}));
+  d.experience=d.experience.filter(e=>e.role||e.company).map(e=>({role:e.role||'Professional Role',company:e.company||'Company',dates:e.dates||'',bullets:e.bullets&&e.bullets.length?e.bullets:['Key contributions in this role']}));
+  // Save parsed resume ONLY to the chosen template, not globally
+  if(curTid){
+    RDMap[curTid]=JSON.parse(JSON.stringify(d));
+    RD=d; // also set global so preview of current template works immediately
+  } else {
+    RD=d;
+  }
+}
+
+document.getElementById('previewModal').addEventListener('click',e=>{if(e.target===document.getElementById('previewModal'))closeModal();});
+document.getElementById('lpo').addEventListener('click',e=>{if(e.target===document.getElementById('lpo'))closeLp();});
+document.getElementById('dlModal').addEventListener('click',e=>{if(e.target===document.getElementById('dlModal'))closeDL();});
+document.addEventListener('keydown',e=>{
+  if(e.key==='Escape'){
+    if(document.getElementById('dlModal').classList.contains('active'))closeDL();
+    else if(document.getElementById('lpo').classList.contains('active'))closeLp();
+    else if(document.getElementById('previewModal').classList.contains('active'))closeModal();
+  }
+});
+function handlePending(){
+  if(!iLI())return;const s=localStorage.getItem('pendingAction');if(!s)return;
+  let a;try{a=JSON.parse(s);}catch{localStorage.removeItem('pendingAction');return;}
+  localStorage.removeItem('pendingAction');
+  if(a&&a.type==='download'&&a.templateId&&a.category)setTimeout(()=>doSave(a.templateId,a.category),500);
+}
+renderAll();handlePending();
+</script>
+<script src="../assets/js/navbar.js"></script>
+</body>
+</html>

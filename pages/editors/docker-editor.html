@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live Docker Editor - CareerPath</title>
+
+    <link rel="stylesheet" href="../../assets/css/editor.css">
+    <style>
+        /* Docker Blue Theme Overrides */
+        .header h2 span {
+            color: #0db7ed !important;
+        }
+
+        .run-btn {
+            background-color: #0db7ed !important;
+            color: #fff !important;
+        }
+
+        .run-btn:hover {
+            background-color: #0091e2 !important;
+        }
+
+        .docker-badge {
+            background-color: #1e1e3f;
+            color: #0db7ed;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            margin-left: 10px;
+            font-weight: bold;
+            border: 1px solid #0db7ed;
+        }
+
+        .code-box:first-child {
+            border-bottom: 2px solid #333;
+        }
+
+        #dockerfileInput {
+            color: #c3e88d;
+        }
+
+        #cliInput {
+            color: #ffb86c;
+        }
+
+        /* Result pane styling */
+        .result-pane {
+            background-color: #1e1e1e !important;
+            color: #d4d4d4 !important;
+        }
+
+        .console-output {
+            flex: 1;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 14px;
+            padding: 20px;
+            overflow-y: auto;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+
+        .line {
+            margin-bottom: 4px;
+            line-height: 1.6;
+        }
+
+        .line-success { color: #4ec9b0; }
+        .line-error { color: #f44747; }
+        .line-warn { color: #dcdcaa; }
+        .line-info { color: #569cd6; }
+        .line-output { color: #d4d4d4; }
+        .prompt { color: #608b4e; }
+    </style>
+</head>
+
+<body>
+    <div class="header">
+        <div style="display: flex; align-items: center; gap: 15px;">
+            <a href="../index.html" style="color: #0db7ed; text-decoration: none; font-size: 14px;">← Back</a>
+            <h2><span>🐳</span> Docker Workspace <span class="docker-badge">Dockerfile / CLI</span></h2>
+        </div>
+        <button class="run-btn" id="runBtn">Build / Run ❯</button>
+    </div>
+    <div class="workspace">
+        <div class="editor-pane">
+            <div class="code-box" style="flex: 1; display: flex; flex-direction: column; padding: 15px;">
+                <p class="pane-label">Dockerfile / docker-compose.yml (YAML)</p>
+                <textarea id="dockerfileInput" spellcheck="false" aria-label="Dockerfile Input"></textarea>
+            </div>
+            <div class="code-box" style="flex: 1; display: flex; flex-direction: column; padding: 15px;">
+                <p class="pane-label">Docker CLI Commands</p>
+                <textarea id="cliInput" spellcheck="false" aria-label="CLI Input"></textarea>
+            </div>
+        </div>
+        <div class="result-pane">
+            <p class="pane-label" style="padding: 15px 20px 0; margin-bottom: 0;">Docker Engine Logs / Console</p>
+            <div class="console-output" id="consoleOutput">
+                <div class="line line-info">// Docker Engine Ready. Click "Build / Run" to execute commands or build images.</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+const dockerfileInput = document.getElementById('dockerfileInput');
+        const cliInput = document.getElementById('cliInput');
+        const consoleOutput = document.getElementById('consoleOutput');
+        const runBtn = document.getElementById('runBtn');
+
+        // Load saved code or defaults
+        const savedCode = localStorage.getItem('careerPathDockerCode');
+        
+        // Initial values based on common Docker tasks
+        if (savedCode) {
+            if (savedCode.includes('FROM') || savedCode.includes('version:')) {
+                dockerfileInput.value = savedCode;
+                cliInput.value = "docker build -t my-app .\ndocker run -d -p 8080:80 my-app";
+            } else {
+                dockerfileInput.value = "FROM nginx:alpine\nCOPY index.html /usr/share/nginx/html/";
+                cliInput.value = savedCode;
+            }
+        } else {
+            dockerfileInput.value = "FROM node:18-alpine\nWORKDIR /app\nCOPY . .\nRUN npm install\nCMD [\"npm\", \"start\"]";
+            cliInput.value = "docker build -t my-node-app .\ndocker run -p 3000:3000 my-node-app";
+        }
+
+        function simulateDocker() {
+            const dockerCode = dockerfileInput.value.trim();
+            const cliCode = cliInput.value.trim();
+            
+            consoleOutput.innerHTML = '';
+
+            // Simulate Docker Build if Dockerfile is present
+            if (dockerCode.includes('FROM') || dockerCode.includes('version:')) {
+                addLog('Sending build context to Docker daemon...', 'info');
+                setTimeout(() => {
+                    addLog('Step 1/5 : FROM ' + (dockerCode.match(/FROM\s+(\S+)/i)?.[1] || 'base-image'), 'output');
+                    addLog('---> Using cache', 'success');
+                }, 400);
+                
+                setTimeout(() => {
+                    addLog('Successfully built image!', 'success');
+                    addLog('Successfully tagged my-app:latest', 'info');
+                }, 1200);
+            }
+
+            // Simulate CLI commands
+            setTimeout(() => {
+                if (cliCode.includes('docker ps')) {
+                    addLog('CONTAINER ID   IMAGE      COMMAND                  CREATED          STATUS          PORTS                  NAMES', 'info');
+                    addLog('a1b2c3d4e5f6   my-app     "docker-entrypoint.s…"   2 minutes ago    Up 2 minutes    0.0.0.0:80->80/tcp     boring_curie', 'output');
+                } else if (cliCode.includes('docker pull')) {
+                    addLog('Using default tag: latest', 'info');
+                    addLog('Pulling from library/nginx', 'output');
+                    addLog('Digest: sha256:47ae43cd6658e4695c6... (simulated)', 'info');
+                    addLog('Status: Downloaded newer image for nginx:latest', 'success');
+                } else if (cliCode.includes('docker images')) {
+                    addLog('REPOSITORY   TAG       IMAGE ID       CREATED        SIZE', 'info');
+                    addLog('nginx        latest    605c77e624dd   2 weeks ago    141MB', 'output');
+                    addLog('node         18        c9745e656d0d   3 weeks ago    900MB', 'output');
+                } else if (cliCode.length > 0) {
+                    addLog('Command executed: ' + cliCode.split('\n')[0], 'info');
+                    addLog('Operation completed successfully.', 'success');
+                }
+            }, 1800);
+
+            // Save state
+            localStorage.setItem('careerPathDockerCode', cliCode); // script.js expects this key for the first pre block usually
+        }
+
+        function addLog(text, type) {
+            const div = document.createElement('div');
+            div.className = `line line-${type}`;
+            if (type === 'prompt') {
+                div.innerHTML = `<span class="prompt">${text}</span>`;
+            } else {
+                div.textContent = text;
+            }
+            consoleOutput.appendChild(div);
+            consoleOutput.scrollTop = consoleOutput.scrollHeight;
+        }
+
+        runBtn.addEventListener('click', simulateDocker);
+
+        // Keyboard shortcuts
+        const handleKeyDown = function (e) {
+            if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
+                simulateDocker();
+            }
+            if (e.key === 'Tab') {
+                e.preventDefault();
+                const start = this.selectionStart;
+                const end = this.selectionEnd;
+                this.value = this.value.substring(0, start) + '    ' + this.value.substring(end);
+                this.selectionStart = this.selectionEnd = start + 4;
+            }
+        };
+
+        dockerfileInput.addEventListener('keydown', handleKeyDown);
+        cliInput.addEventListener('keydown', handleKeyDown);
+
+        // Initial run if code is present
+        if (savedCode) {
+            simulateDocker();
+        }
+</script>
+</body>
+</html>

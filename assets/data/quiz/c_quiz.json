@@ -1,0 +1,362 @@
+[
+    {
+        "id": "c-1",
+        "question": "Who created the C programming language?",
+        "options": [
+            "Bjarne Stroustrup",
+            "James Gosling",
+            "Dennis Ritchie",
+            "Guido van Rossum"
+        ],
+        "correctAnswer": 2,
+        "explanation": "C was created by Dennis Ritchie at Bell Labs in 1972."
+    },
+    {
+        "id": "c-2",
+        "question": "Which function is strictly required for a C program to execute?",
+        "options": [
+            "start()",
+            "main()",
+            "init()",
+            "run()"
+        ],
+        "correctAnswer": 1,
+        "explanation": "Every C program must have a main() function; this is where execution begins."
+    },
+    {
+        "id": "c-3",
+        "question": "What must every statement in C end with?",
+        "options": [
+            "A period (.)",
+            "A colon (:)",
+            "A semicolon (;)",
+            "A comma (,)"
+        ],
+        "correctAnswer": 2,
+        "explanation": "C is a strict language where every single statement must be terminated by a semicolon."
+    },
+    {
+        "id": "c-4",
+        "question": "Which header file is required for using printf() and scanf()?",
+        "options": [
+            "<iostream>",
+            "<math.h>",
+            "<stdlib.h>",
+            "<stdio.h>"
+        ],
+        "correctAnswer": 3,
+        "explanation": "The Standard Input/Output library (<stdio.h>) must be included to use printf and scanf."
+    },
+    {
+        "id": "c-5",
+        "question": "If you want to read an integer from the user using scanf(), which format specifier do you use?",
+        "options": [
+            "%i",
+            "%d",
+            "%f",
+            "%c"
+        ],
+        "correctAnswer": 1,
+        "explanation": "The %d format specifier tells scanf to look for an integer (decimal integer)."
+    },
+    {
+        "id": "c-6",
+        "question": "When using scanf() to read into an integer variable 'age', how should it be written?",
+        "options": [
+            "scanf(\"%d\", age);",
+            "scanf(\"%d\", &age);",
+            "scanf(\"%d\", *age);",
+            "scanf(\"%d\", age[]);"
+        ],
+        "correctAnswer": 1,
+        "explanation": "You must use the reference operator (&) to tell scanf the exact memory address to store the input value."
+    },
+    {
+        "id": "c-7",
+        "question": "Which data type would you use to store highly precise decimals (8 bytes)?",
+        "options": [
+            "float",
+            "int",
+            "double",
+            "long"
+        ],
+        "correctAnswer": 2,
+        "explanation": "A 'double' is used for highly precise floating-point numbers and typically takes up 8 bytes of memory."
+    },
+    {
+        "id": "c-8",
+        "question": "What happens if a basic 'for' loop condition is always true?",
+        "options": [
+            "The program crashes immediately.",
+            "The loop skips execution.",
+            "The program enters an infinite loop.",
+            "The compiler fails to build the code."
+        ],
+        "correctAnswer": 2,
+        "explanation": "If a loop condition never becomes false, it will execute endlessly, resulting in an infinite loop."
+    },
+    {
+        "id": "c-9",
+        "question": "In C, standard arrays are ____ in size.",
+        "options": [
+            "Dynamic",
+            "Fixed",
+            "Infinite",
+            "Virtual"
+        ],
+        "correctAnswer": 1,
+        "explanation": "In C, standard arrays have a fixed size; once declared, their length cannot be modified."
+    },
+    {
+        "id": "c-10",
+        "question": "How are strings represented in C?",
+        "options": [
+            "Using the built-in String object.",
+            "As an array of integers.",
+            "Using the text data type.",
+            "As an array of char variables ending with a null terminator (\\0)."
+        ],
+        "correctAnswer": 3,
+        "explanation": "C lacks a native String type. Strings are simply arrays of characters that are terminated by the special '\\0' character."
+    },
+    {
+        "id": "c-11",
+        "question": "What is a pointer in C?",
+        "options": [
+            "A visual cursor on the screen.",
+            "A variable that stores the physical memory address of another variable.",
+            "A function that returns a void data type.",
+            "An array that can grow dynamically."
+        ],
+        "correctAnswer": 1,
+        "explanation": "A pointer is a powerful variable type that stores the memory address of another variable, allowing direct memory manipulation."
+    },
+    {
+        "id": "c-12",
+        "question": "Which operator is used to get the memory address of a variable?",
+        "options": [
+            "*",
+            "->",
+            "&",
+            "%"
+        ],
+        "correctAnswer": 2,
+        "explanation": "The reference operator (&) retrieves the physical memory address of a variable."
+    },
+    {
+        "id": "c-13",
+        "question": "Which operator is used to dereference a pointer (access the actual value at the address)?",
+        "options": [
+            "&",
+            "*",
+            "->",
+            "#"
+        ],
+        "correctAnswer": 1,
+        "explanation": "The dereference operator (*) accesses or modifies the value held at the memory address the pointer is pointing to."
+    },
+    {
+        "id": "c-14",
+        "question": "How do you group different data types (like an int and a char array) together under a single name in C?",
+        "options": [
+            "Using a class",
+            "Using a dictionary",
+            "Using an interface",
+            "Using a struct"
+        ],
+        "correctAnswer": 3,
+        "explanation": "Structures (structs) allow you to group related variables of different data types into a single custom unit."
+    },
+    {
+        "id": "c-15",
+        "question": "When accessing the members of a struct through a pointer, which operator must you use?",
+        "options": [
+            ". (dot)",
+            ":: (scope resolution)",
+            "-> (arrow)",
+            "& (ampersand)"
+        ],
+        "correctAnswer": 2,
+        "explanation": "When working with a pointer to a struct, you use the arrow operator (->) to access its members, not the standard dot (.) operator."
+    },
+    {
+        "id": "c-16",
+        "question": "Which function is used to allocate exact memory dynamically on the Heap?",
+        "options": [
+            "alloc()",
+            "new()",
+            "malloc()",
+            "create()"
+        ],
+        "correctAnswer": 2,
+        "explanation": "malloc() (Memory Allocation) is used to dynamically allocate a single large block of memory at runtime."
+    },
+    {
+        "id": "c-17",
+        "question": "What must you invariably do after you are finished using dynamically allocated memory?",
+        "options": [
+            "Call the garbage collector.",
+            "Return 0 in the main function.",
+            "Close the compiler.",
+            "Use the free() function to release it."
+        ],
+        "correctAnswer": 3,
+        "explanation": "Because C lacks a garbage collector, you are fully responsible for releasing dynamically allocated memory using the free() function to prevent leaks."
+    },
+    {
+        "id": "c-18",
+        "question": "Which function dynamically allocates memory AND initializes it all to zero?",
+        "options": [
+            "malloc()",
+            "calloc()",
+            "realloc()",
+            "memalloc()"
+        ],
+        "correctAnswer": 1,
+        "explanation": "While malloc leaves memory with 'garbage' values, calloc() allocates multiple blocks and strictly initializes every byte to zero."
+    },
+    {
+        "id": "c-19",
+        "question": "What is the purpose of realloc()?",
+        "options": [
+            "To free memory that was previously allocated.",
+            "To reset all allocated memory back to zero.",
+            "To change the size of an already previously dynamically allocated memory block.",
+            "To move memory from the Heap to the Stack."
+        ],
+        "correctAnswer": 2,
+        "explanation": "realloc() allows you to shrink or expand an existing dynamic memory block without losing the data currently stored inside it."
+    },
+    {
+        "id": "c-20",
+        "question": "What will adding '1' to an integer pointer (p++) actually do?",
+        "options": [
+            "It adds 1 to the integer value.",
+            "It moves the pointer address forward by 1 byte.",
+            "It crashes the program.",
+            "It moves the pointer forward by the exact byte size of an integer (usually 4 bytes)."
+        ],
+        "correctAnswer": 3,
+        "explanation": "Pointer arithmetic works based on the underlying data type. Moving an 'int' pointer forward shifts it by sizeof(int)."
+    },
+    {
+        "id": "c-21",
+        "question": "What does a double pointer (**) store?",
+        "options": [
+            "A highly precise decimal value.",
+            "An array of strings.",
+            "The memory address of another pointer.",
+            "Two distinct variables at once."
+        ],
+        "correctAnswer": 2,
+        "explanation": "A double pointer (int **pp) holds the memory address of a regular pointer, creating multiple levels of indirection."
+    },
+    {
+        "id": "c-22",
+        "question": "What is the primary benefit of C Enums?",
+        "options": [
+            "They allocate memory automatically.",
+            "They define custom data types to replace confusing magic numbers with human-readable words.",
+            "They allow you to store massive arrays.",
+            "They encrypt data automatically."
+        ],
+        "correctAnswer": 1,
+        "explanation": "Enums act as a collection of named integer constants, drastically improving code readability (e.g., using 'Mon' instead of the number 1)."
+    },
+    {
+        "id": "c-23",
+        "question": "Which file mode is used to open a file strictly for writing (overwriting if it exists)?",
+        "options": [
+            "\"r\"",
+            "\"a\"",
+            "\"w\"",
+            "\"rw\""
+        ],
+        "correctAnswer": 2,
+        "explanation": "The \"w\" mode opens a file for writing. If the file exists, its contents are destroyed; if it does not, a new file is created."
+    },
+    {
+        "id": "c-24",
+        "question": "What must you do after finishing reading or writing to a file?",
+        "options": [
+            "Delete the FILE pointer.",
+            "Use fclose() to close the stream.",
+            "Restart the program.",
+            "Flush the memory cache."
+        ],
+        "correctAnswer": 1,
+        "explanation": "You must always call fclose(fptr) to release the resource back to the operating system and ensure data is committed."
+    },
+    {
+        "id": "c-25",
+        "question": "Which bitwise operator performs a Left Shift (multiplying by powers of 2)?",
+        "options": [
+            "&",
+            "~",
+            ">>",
+            "<<"
+        ],
+        "correctAnswer": 3,
+        "explanation": "The << operator shifts binary bits to the left, which is a highly efficient way to multiply an integer by 2."
+    },
+    {
+        "id": "c-26",
+        "question": "What does the C Preprocessor do?",
+        "options": [
+            "It executes the program after it is compiled.",
+            "It transforms the code (like resolving #include and #define) before the compiler sees it.",
+            "It links standard libraries into the executable.",
+            "It cleans up memory leaks."
+        ],
+        "correctAnswer": 1,
+        "explanation": "The preprocessor runs first. It pastes header file contents and resolves Macros before handing the raw text over to the actual compiler."
+    },
+    {
+        "id": "c-27",
+        "question": "What is the primary advantage of a Macro defined with #define?",
+        "options": [
+            "It prevents syntax errors.",
+            "It creates safer code than pure functions.",
+            "It executes slightly faster because the preprocessor physically pastes the code, preventing function-call overhead.",
+            "It inherently protects against segmentation faults."
+        ],
+        "correctAnswer": 2,
+        "explanation": "Because a Macro physically substitutes text, the CPU doesn't have to pause to jump memory addresses like a traditional function call requires."
+    },
+    {
+        "id": "c-28",
+        "question": "Which Storage Class instructs that a local variable should persist in memory across multiple function calls?",
+        "options": [
+            "auto",
+            "extern",
+            "register",
+            "static"
+        ],
+        "correctAnswer": 3,
+        "explanation": "A 'static' local variable retains its value between function calls instead of being destroyed and recreated."
+    },
+    {
+        "id": "c-29",
+        "question": "What enables you to pass a C function as an argument to another function (a Callback)?",
+        "options": [
+            "A Struct Pointer",
+            "A Function Pointer",
+            "A Macro",
+            "A Double Pointer"
+        ],
+        "correctAnswer": 1,
+        "explanation": "A Function Pointer stores the memory address of a function, allowing you to pass the function itself just like a regular variable."
+    },
+    {
+        "id": "c-30",
+        "question": "What causes a 'Segmentation Fault'?",
+        "options": [
+            "Forgetting to include a header file.",
+            "A typo in a variable name.",
+            "Accessing memory that the program is not allowed to touch (like a null pointer or buffer overflow).",
+            "Failing to compile the code."
+        ],
+        "correctAnswer": 2,
+        "explanation": "A Segmentation Fault is an operating system error triggered when a program attempts to read or write to restricted or invalid memory."
+    }
+]

@@ -1,0 +1,133 @@
+{
+    "language": "C++",
+    "icon": "C++",
+    "color": "#00599C",
+    "exercises": [
+        {
+            "id": 1,
+            "title": "Hello World",
+            "difficulty": "basic",
+            "description": "Print <strong>Hello World!</strong> using <code>cout</code>.",
+            "starterCode": "#include <iostream>\nusing namespace std;\n\nint main() {\n    // Print Hello World!\n    return 0;\n}",
+            "expectedOutput": "Hello World!",
+            "validationType": "outputContains",
+            "validationValue": "Hello World!",
+            "hint": "Use cout << \"Hello World!\" << endl;",
+            "solutionCode": "#include <iostream>\nusing namespace std;\nint main() { cout << \"Hello, World!\" << endl; return 0; }"
+        },
+        {
+            "id": 2,
+            "title": "Variables",
+            "difficulty": "basic",
+            "description": "Declare <code>int age = 20</code> and <code>double price = 99.99</code>. Print the price.",
+            "starterCode": "#include <iostream>\nusing namespace std;\n\nint main() {\n    // Declare and print\n    return 0;\n}",
+            "expectedOutput": "99.99",
+            "validationType": "outputContains",
+            "validationValue": "99.99",
+            "hint": "Use cout << price << endl;",
+            "solutionCode": "#include <iostream>\nusing namespace std;\nint main() {\n    int age = 20;\n    double price = 99.99;\n    cout << price << endl;\n    return 0;\n}"
+        },
+        {
+            "id": 3,
+            "title": "Strings",
+            "difficulty": "basic",
+            "description": "Create a <code>string greeting = \"Hello, Sanji!\"</code> and print it.",
+            "starterCode": "#include <iostream>\n#include <string>\nusing namespace std;\n\nint main() {\n    // Create and print string\n    return 0;\n}",
+            "expectedOutput": "Hello, Sanji!",
+            "validationType": "outputContains",
+            "validationValue": "Hello, Sanji!",
+            "hint": "Include <string> and use cout << greeting;",
+            "solutionCode": "#include <iostream>\n#include <string>\nusing namespace std;\nint main() {\n    string greeting = \"Hello, Sanji!\";\n    cout << greeting << endl;\n    return 0;\n}"
+        },
+        {
+            "id": 4,
+            "title": "If-Else",
+            "difficulty": "basic",
+            "description": "Given <code>int x = 20</code>, print <strong>Greater than 10</strong> if true, else <strong>10 or less</strong>.",
+            "starterCode": "#include <iostream>\nusing namespace std;\n\nint main() {\n    int x = 20;\n    // Write if-else\n    return 0;\n}",
+            "expectedOutput": "Greater than 10",
+            "validationType": "outputContains",
+            "validationValue": "Greater than 10",
+            "hint": "Use if (x > 10) { cout << \"Greater than 10\"; }",
+            "solutionCode": "#include <iostream>\nusing namespace std;\nint main() {\n    int x = 20;\n    if (x > 10) {\n        cout << \"Greater than 10\" << endl;\n    } else {\n        cout << \"10 or less\" << endl;\n    }\n    return 0;\n}"
+        },
+        {
+            "id": 5,
+            "title": "For Loop",
+            "difficulty": "basic",
+            "description": "Print <strong>Iteration: 0</strong> through <strong>Iteration: 4</strong> using a for loop.",
+            "starterCode": "#include <iostream>\nusing namespace std;\n\nint main() {\n    // Print iterations\n    return 0;\n}",
+            "expectedOutput": "Iteration: 0",
+            "validationType": "outputContainsAll",
+            "validationValue": [
+                "Iteration: 0",
+                "Iteration: 4"
+            ],
+            "hint": "Use for (int i = 0; i < 5; i++) { cout << \"Iteration: \" << i << \"\\n\"; }",
+            "solutionCode": "#include <iostream>\nusing namespace std;\nint main() {\n    for (int i = 0; i < 5; i++) {\n        cout << \"Iteration: \" << i << endl;\n    }\n    return 0;\n}"
+        },
+        {
+            "id": 6,
+            "title": "Functions",
+            "difficulty": "basic",
+            "description": "Create a <code>void greet()</code> function that prints <strong>Hello from inside a function!</strong>. Call it.",
+            "starterCode": "#include <iostream>\nusing namespace std;\n\n// Define greet()\n\nint main() {\n    // Call greet()\n    return 0;\n}",
+            "expectedOutput": "Hello from inside a function!",
+            "validationType": "outputContains",
+            "validationValue": "Hello from inside a function!",
+            "hint": "void greet() { cout << \"Hello from inside a function!\" << endl; }",
+            "solutionCode": "#include <iostream>\nusing namespace std;\nvoid greet() {\n    cout << \"Hello from inside a function!\" << endl;\n}\nint main() {\n    greet();\n    return 0;\n}"
+        },
+        {
+            "id": 7,
+            "title": "Arrays",
+            "difficulty": "basic",
+            "description": "Declare <code>int nums[5] = {10, 20, 30, 40, 50}</code> and print the first element.",
+            "starterCode": "#include <iostream>\nusing namespace std;\n\nint main() {\n    // Declare array and print first element\n    return 0;\n}",
+            "expectedOutput": "10",
+            "validationType": "outputContains",
+            "validationValue": "10",
+            "hint": "cout << nums[0] << endl;",
+            "solutionCode": "#include <iostream>\nusing namespace std;\nint main() {\n    int nums[5] = {10, 20, 30, 40, 50};\n    cout << nums[0] << endl;\n    return 0;\n}"
+        },
+        {
+            "id": 8,
+            "title": "Classes & Objects",
+            "difficulty": "intermediate",
+            "description": "Create a <code>Car</code> class with a public <code>string brand</code>. Set it to <strong>Toyota</strong> and print it.",
+            "starterCode": "#include <iostream>\n#include <string>\nusing namespace std;\n\n// Define Car class\n\nint main() {\n    // Create Car object and print brand\n    return 0;\n}",
+            "expectedOutput": "Toyota",
+            "validationType": "outputContains",
+            "validationValue": "Toyota",
+            "hint": "class Car { public: string brand; }; Car c; c.brand = \"Toyota\";",
+            "solutionCode": "#include <iostream>\n#include <string>\nusing namespace std;\nclass Car {\npublic:\n    string brand;\n};\nint main() {\n    Car c;\n    c.brand = \"Toyota\";\n    cout << c.brand << endl;\n    return 0;\n}"
+        },
+        {
+            "id": 9,
+            "title": "Inheritance",
+            "difficulty": "intermediate",
+            "description": "Create a <code>Vehicle</code> class with <code>honk()</code> that prints <strong>Beep beep!</strong>. Create <code>Car</code> inheriting from Vehicle. Call honk().",
+            "starterCode": "#include <iostream>\nusing namespace std;\n\n// Define Vehicle and Car classes\n\nint main() {\n    // Create Car and honk\n    return 0;\n}",
+            "expectedOutput": "Beep beep!",
+            "validationType": "outputContains",
+            "validationValue": "Beep beep!",
+            "hint": "class Vehicle { public: void honk() { cout << \"Beep beep!\\n\"; } }; class Car : public Vehicle {};",
+            "solutionCode": "#include <iostream>\nusing namespace std;\nclass Vehicle {\npublic:\n    void honk() { cout << \"Beep beep!\" << endl; }\n};\nclass Car : public Vehicle {};\nint main() {\n    Car c;\n    c.honk();\n    return 0;\n}"
+        },
+        {
+            "id": 10,
+            "title": "Vectors",
+            "difficulty": "intermediate",
+            "description": "Create a <code>vector&lt;int&gt;</code> with {1,2,3}, push_back 4 and 5, then print all elements.",
+            "starterCode": "#include <iostream>\n#include <vector>\nusing namespace std;\n\nint main() {\n    // Create vector and print\n    return 0;\n}",
+            "expectedOutput": "1 2 3 4 5",
+            "validationType": "outputContainsAll",
+            "validationValue": [
+                "1",
+                "5"
+            ],
+            "hint": "Use push_back(4); push_back(5); and a range-based for loop.",
+            "solutionCode": "#include <iostream>\n#include <vector>\nusing namespace std;\nint main() {\n    vector<int> v = {1, 2, 3};\n    v.push_back(4);\n    v.push_back(5);\n    for (int i : v) {\n        cout << i << \" \";\n    }\n    cout << endl;\n    return 0;\n}"
+        }
+    ]
+}

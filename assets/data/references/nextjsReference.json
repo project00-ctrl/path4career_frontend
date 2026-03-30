@@ -1,0 +1,210 @@
+{
+  "sections": [
+    {
+      "title": "App Router & File Conventions",
+      "desc": "Next.js App Router file-based routing system and special file conventions.",
+      "type": "table",
+      "columns": ["FILE / CONVENTION", "DESCRIPTION", "EXAMPLE"],
+      "rows": [
+        { "property": "page.tsx", "desc": "Defines a route segment's UI — makes the route publicly accessible", "version": "app/dashboard/page.tsx" },
+        { "property": "layout.tsx", "desc": "Shared layout wrapping child pages — preserves state across navigations", "version": "app/layout.tsx" },
+        { "property": "loading.tsx", "desc": "Loading UI shown while route segment content loads (uses Suspense)", "version": "app/dashboard/loading.tsx" },
+        { "property": "error.tsx", "desc": "Error boundary UI for a route segment", "version": "app/dashboard/error.tsx" },
+        { "property": "not-found.tsx", "desc": "UI shown when notFound() is called in a route segment", "version": "app/not-found.tsx" },
+        { "property": "template.tsx", "desc": "Like layout but creates new instance on navigation (no state preserved)", "version": "app/template.tsx" },
+        { "property": "default.tsx", "desc": "Fallback UI for parallel routes when no match exists", "version": "app/@modal/default.tsx" },
+        { "property": "route.ts", "desc": "Server-side API endpoint (Route Handler) — replaces API routes", "version": "app/api/users/route.ts" },
+        { "property": "middleware.ts", "desc": "Runs before requests — for auth, redirects, headers", "version": "middleware.ts (project root)" },
+        { "property": "global-error.tsx", "desc": "Global error boundary for the entire app (replaces root error.tsx)", "version": "app/global-error.tsx" },
+        { "property": "[slug]", "desc": "Dynamic route segment — accessed via params.slug", "version": "app/blog/[slug]/page.tsx" },
+        { "property": "[...slug]", "desc": "Catch-all route segment — matches any depth", "version": "app/docs/[...slug]/page.tsx" },
+        { "property": "[[...slug]]", "desc": "Optional catch-all — also matches the parent route", "version": "app/shop/[[...slug]]/page.tsx" },
+        { "property": "(group)", "desc": "Route group — organises routes without affecting URL path", "version": "app/(marketing)/about/page.tsx" },
+        { "property": "@parallel", "desc": "Named slot for parallel routes — renders multiple pages simultaneously", "version": "app/@modal/login/page.tsx" }
+      ]
+    },
+    {
+      "title": "Data Fetching",
+      "desc": "Server-side and client-side data fetching patterns in Next.js.",
+      "type": "grouped-list",
+      "groups": [
+        {
+          "title": "Server Components (default)",
+          "items": [
+            { "code": "async function Page() { const data = await fetch(url); }", "desc": "Fetch data directly in Server Components — no useEffect needed" },
+            { "code": "fetch(url, { cache: 'force-cache' })", "desc": "Default caching — data is cached and reused across requests" },
+            { "code": "fetch(url, { cache: 'no-store' })", "desc": "Disable caching — fetch fresh data on every request" },
+            { "code": "fetch(url, { next: { revalidate: 3600 } })", "desc": "Time-based revalidation — refetch after specified seconds" },
+            { "code": "fetch(url, { next: { tags: ['posts'] } })", "desc": "Tag-based caching — revalidate by tag name" },
+            { "code": "revalidateTag('posts')", "desc": "On-demand revalidation — purge cache for specific tag" },
+            { "code": "revalidatePath('/blog')", "desc": "On-demand revalidation — purge cache for specific path" }
+          ]
+        },
+        {
+          "title": "Server Actions",
+          "items": [
+            { "code": "'use server'", "desc": "Directive marking a function as a Server Action" },
+            { "code": "async function createPost(formData: FormData) { 'use server'; }", "desc": "Server Action defined inline in a Server Component" },
+            { "code": "<form action={createPost}>", "desc": "Bind Server Action to form submission" },
+            { "code": "useFormStatus()", "desc": "Hook to get pending state of parent form's Server Action" },
+            { "code": "useFormState(action, initialState)", "desc": "Hook to manage form state with Server Actions" }
+          ]
+        },
+        {
+          "title": "Client Components",
+          "items": [
+            { "code": "'use client'", "desc": "Directive marking a component as Client Component — enables hooks" },
+            { "code": "useEffect(() => { fetch(url) }, [])", "desc": "Client-side data fetching with useEffect" },
+            { "code": "useSWR(key, fetcher)", "desc": "SWR hook for client-side data fetching with caching" },
+            { "code": "useRouter()", "desc": "Client-side router hook for programmatic navigation" }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Rendering Strategies",
+      "desc": "Static, dynamic, and streaming rendering approaches in Next.js.",
+      "type": "table",
+      "columns": ["STRATEGY", "DESCRIPTION", "WHEN TO USE"],
+      "rows": [
+        { "property": "Static Rendering (default)", "desc": "Pages pre-rendered at build time — cached on CDN", "version": "Marketing pages, blog posts, docs" },
+        { "property": "Dynamic Rendering", "desc": "Pages rendered on each request — auto-triggered by dynamic functions", "version": "Personalised content, real-time data" },
+        { "property": "Streaming", "desc": "Progressive UI rendering — sends chunks as they become ready", "version": "Slow data sources, complex pages" },
+        { "property": "ISR (Incremental Static Regen)", "desc": "Static pages revalidated after specified time interval", "version": "Content that updates periodically" },
+        { "property": "PPR (Partial Prerendering)", "desc": "Static shell with dynamic holes — best of both worlds", "version": "Pages with mix of static and dynamic" },
+        { "property": "generateStaticParams()", "desc": "Pre-generates static pages for dynamic routes at build time", "version": "Blog posts, product pages" },
+        { "property": "cookies()", "desc": "Dynamic function — reads cookies (opts into dynamic rendering)", "version": "Auth-dependent pages" },
+        { "property": "headers()", "desc": "Dynamic function — reads request headers", "version": "Locale detection, auth" },
+        { "property": "searchParams", "desc": "Dynamic prop — accessing search params opts into dynamic rendering", "version": "Search results, filtered lists" },
+        { "property": "unstable_noStore()", "desc": "Opts a component into dynamic rendering explicitly", "version": "Real-time dashboards" }
+      ]
+    },
+    {
+      "title": "Route Handlers (API)",
+      "desc": "Server-side API endpoints using the App Router route handlers.",
+      "type": "table",
+      "columns": ["METHOD / FEATURE", "DESCRIPTION", "EXAMPLE"],
+      "rows": [
+        { "property": "export async function GET(request)", "desc": "Handle GET requests", "version": "app/api/users/route.ts" },
+        { "property": "export async function POST(request)", "desc": "Handle POST requests", "version": "app/api/users/route.ts" },
+        { "property": "export async function PUT(request)", "desc": "Handle PUT requests", "version": "app/api/users/[id]/route.ts" },
+        { "property": "export async function DELETE(request)", "desc": "Handle DELETE requests", "version": "app/api/users/[id]/route.ts" },
+        { "property": "export async function PATCH(request)", "desc": "Handle PATCH requests", "version": "app/api/users/[id]/route.ts" },
+        { "property": "NextRequest", "desc": "Extended Request with cookies, nextUrl, geo, ip", "version": "import { NextRequest } from 'next/server'" },
+        { "property": "NextResponse.json(data)", "desc": "Return JSON response from Route Handler", "version": "return NextResponse.json({ users })" },
+        { "property": "NextResponse.redirect(url)", "desc": "Redirect to another URL", "version": "return NextResponse.redirect(new URL('/login', req.url))" },
+        { "property": "request.json()", "desc": "Parse JSON body from request", "version": "const body = await request.json()" },
+        { "property": "request.nextUrl.searchParams", "desc": "Access query parameters", "version": "request.nextUrl.searchParams.get('q')" }
+      ]
+    },
+    {
+      "title": "Navigation & Linking",
+      "desc": "Client-side navigation components and hooks.",
+      "type": "table",
+      "columns": ["COMPONENT / HOOK", "DESCRIPTION", "EXAMPLE"],
+      "rows": [
+        { "property": "<Link href='/path'>", "desc": "Client-side navigation with prefetching", "version": "import Link from 'next/link'" },
+        { "property": "Link prefetch={false}", "desc": "Disable automatic prefetching for a link", "version": "<Link href='/heavy' prefetch={false}>" },
+        { "property": "Link replace", "desc": "Replace current history entry instead of pushing", "version": "<Link href='/new' replace>" },
+        { "property": "useRouter()", "desc": "Programmatic navigation hook (client components only)", "version": "const router = useRouter()" },
+        { "property": "router.push('/path')", "desc": "Navigate to a new route", "version": "router.push('/dashboard')" },
+        { "property": "router.replace('/path')", "desc": "Navigate without adding to history", "version": "router.replace('/login')" },
+        { "property": "router.back()", "desc": "Go back in browser history", "version": "router.back()" },
+        { "property": "router.refresh()", "desc": "Refresh current route — refetches server data", "version": "router.refresh()" },
+        { "property": "usePathname()", "desc": "Returns current pathname string", "version": "const pathname = usePathname()" },
+        { "property": "useSearchParams()", "desc": "Returns read-only URLSearchParams", "version": "const searchParams = useSearchParams()" },
+        { "property": "useParams()", "desc": "Returns dynamic route parameters", "version": "const { slug } = useParams()" },
+        { "property": "redirect('/path')", "desc": "Server-side redirect (Server Components & Actions)", "version": "import { redirect } from 'next/navigation'" },
+        { "property": "permanentRedirect('/path')", "desc": "Server-side permanent (308) redirect", "version": "import { permanentRedirect } from 'next/navigation'" }
+      ]
+    },
+    {
+      "title": "Image & Font Optimization",
+      "desc": "Built-in image optimization and font loading utilities.",
+      "type": "table",
+      "columns": ["COMPONENT / FUNCTION", "DESCRIPTION", "EXAMPLE"],
+      "rows": [
+        { "property": "<Image src={} alt={} />", "desc": "Optimised image component with lazy loading, resizing, WebP", "version": "import Image from 'next/image'" },
+        { "property": "Image width / height", "desc": "Required dimensions (or fill) to prevent layout shift", "version": "<Image src='/img.jpg' width={800} height={600} alt='' />" },
+        { "property": "Image fill", "desc": "Image fills parent container (requires relative parent)", "version": "<Image src='/bg.jpg' fill alt='' />" },
+        { "property": "Image priority", "desc": "Preload image — use for above-the-fold LCP images", "version": "<Image src='/hero.jpg' priority alt='' />" },
+        { "property": "Image placeholder='blur'", "desc": "Show blur placeholder while image loads", "version": "<Image placeholder='blur' blurDataURL='...' />" },
+        { "property": "Image sizes", "desc": "Media query hints for responsive images", "version": "sizes='(max-width: 768px) 100vw, 50vw'" },
+        { "property": "next/font/google", "desc": "Auto-hosted Google Fonts with zero layout shift", "version": "import { Inter } from 'next/font/google'" },
+        { "property": "next/font/local", "desc": "Load local font files with optimisation", "version": "import localFont from 'next/font/local'" },
+        { "property": "font.className", "desc": "Apply loaded font to elements via className", "version": "<div className={inter.className}>" },
+        { "property": "font variable", "desc": "CSS variable for font — use with Tailwind or CSS", "version": "const inter = Inter({ variable: '--font-inter' })" }
+      ]
+    },
+    {
+      "title": "Metadata & SEO",
+      "desc": "Static and dynamic metadata for SEO optimization.",
+      "type": "table",
+      "columns": ["API / EXPORT", "DESCRIPTION", "EXAMPLE"],
+      "rows": [
+        { "property": "export const metadata = {}", "desc": "Static metadata object — title, description, openGraph", "version": "export const metadata = { title: 'Home' }" },
+        { "property": "export async function generateMetadata()", "desc": "Dynamic metadata based on params or fetched data", "version": "generateMetadata({ params }) { ... }" },
+        { "property": "metadata.title", "desc": "Page title — string or template object", "version": "title: { template: '%s | Site', default: 'Home' }" },
+        { "property": "metadata.description", "desc": "Meta description for search engines", "version": "description: 'Learn Next.js'" },
+        { "property": "metadata.openGraph", "desc": "Open Graph metadata for social sharing", "version": "openGraph: { title, description, images }" },
+        { "property": "metadata.twitter", "desc": "Twitter card metadata", "version": "twitter: { card: 'summary_large_image' }" },
+        { "property": "metadata.robots", "desc": "Search engine crawling directives", "version": "robots: { index: true, follow: true }" },
+        { "property": "metadata.icons", "desc": "Favicon and app icon configuration", "version": "icons: { icon: '/favicon.ico' }" },
+        { "property": "viewport export", "desc": "Viewport configuration for responsive design", "version": "export const viewport = { width: 'device-width' }" },
+        { "property": "generateStaticParams()", "desc": "Generate params for static generation of dynamic routes", "version": "returns array of { slug } objects" },
+        { "property": "sitemap.ts", "desc": "Generate dynamic sitemap.xml", "version": "app/sitemap.ts" },
+        { "property": "robots.ts", "desc": "Generate dynamic robots.txt", "version": "app/robots.ts" }
+      ]
+    },
+    {
+      "title": "Middleware",
+      "desc": "Request interception for authentication, redirects, and headers.",
+      "type": "table",
+      "columns": ["API / FEATURE", "DESCRIPTION", "EXAMPLE"],
+      "rows": [
+        { "property": "middleware.ts", "desc": "File placed at project root — runs before every matched request", "version": "export function middleware(request) { }" },
+        { "property": "NextResponse.next()", "desc": "Continue to the next middleware or route handler", "version": "return NextResponse.next()" },
+        { "property": "NextResponse.redirect()", "desc": "Redirect the request to a different URL", "version": "return NextResponse.redirect(new URL('/login', req.url))" },
+        { "property": "NextResponse.rewrite()", "desc": "Rewrite the request to a different URL (URL stays same)", "version": "return NextResponse.rewrite(new URL('/proxy', req.url))" },
+        { "property": "request.cookies", "desc": "Read, set, or delete cookies in middleware", "version": "request.cookies.get('token')" },
+        { "property": "request.nextUrl", "desc": "Parsed URL with pathname, search, locale", "version": "request.nextUrl.pathname" },
+        { "property": "config.matcher", "desc": "Define which paths middleware runs on", "version": "export const config = { matcher: ['/dashboard/:path*'] }" },
+        { "property": "response.headers.set()", "desc": "Set custom response headers", "version": "response.headers.set('x-custom', 'value')" }
+      ]
+    },
+    {
+      "title": "Configuration",
+      "desc": "next.config.js configuration options.",
+      "type": "table",
+      "columns": ["OPTION", "DESCRIPTION", "EXAMPLE"],
+      "rows": [
+        { "property": "images.remotePatterns", "desc": "Allow external image domains for next/image", "version": "remotePatterns: [{ hostname: 'cdn.example.com' }]" },
+        { "property": "experimental.serverActions", "desc": "Enable Server Actions (stable in Next.js 14+)", "version": "experimental: { serverActions: true }" },
+        { "property": "env", "desc": "Expose environment variables to the browser", "version": "env: { API_URL: process.env.API_URL }" },
+        { "property": "redirects()", "desc": "Define URL redirects at build time", "version": "async redirects() { return [{ source, destination, permanent }] }" },
+        { "property": "rewrites()", "desc": "Define URL rewrites (proxy) at build time", "version": "async rewrites() { return [{ source, destination }] }" },
+        { "property": "headers()", "desc": "Set custom HTTP headers for routes", "version": "async headers() { return [{ source, headers }] }" },
+        { "property": "basePath", "desc": "Set a path prefix for the entire application", "version": "basePath: '/app'" },
+        { "property": "trailingSlash", "desc": "Enable or disable trailing slashes in URLs", "version": "trailingSlash: true" },
+        { "property": "output: 'standalone'", "desc": "Generate standalone output for Docker deployment", "version": "output: 'standalone'" },
+        { "property": "webpack(config)", "desc": "Customise webpack configuration", "version": "webpack: (config) => { return config }" }
+      ]
+    },
+    {
+      "title": "CLI Commands",
+      "desc": "Next.js command-line interface commands for development and deployment.",
+      "type": "table",
+      "columns": ["COMMAND", "DESCRIPTION", "EXAMPLE"],
+      "rows": [
+        { "property": "npx create-next-app@latest", "desc": "Create a new Next.js project with interactive setup", "version": "npx create-next-app@latest my-app" },
+        { "property": "next dev", "desc": "Start development server with hot reload", "version": "npm run dev (port 3000)" },
+        { "property": "next build", "desc": "Build optimised production bundle", "version": "npm run build" },
+        { "property": "next start", "desc": "Start production server (after build)", "version": "npm run start" },
+        { "property": "next lint", "desc": "Run ESLint with Next.js configuration", "version": "npm run lint" },
+        { "property": "next info", "desc": "Print system info for bug reports", "version": "npx next info" },
+        { "property": "next dev --turbo", "desc": "Start dev server with Turbopack (faster builds)", "version": "next dev --turbo" },
+        { "property": "next dev -p 4000", "desc": "Start dev server on custom port", "version": "next dev -p 4000" }
+      ]
+    }
+  ]
+}

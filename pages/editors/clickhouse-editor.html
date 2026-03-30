@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live ClickHouse Editor - CareerPath</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.8.0/sql-wasm.js"></script>
+    
+    <link rel="stylesheet" href="../../assets/css/editor.css">
+    <style>
+    .result-pane { padding: 20px; }
+    .result-header { margin-top: 0; margin-bottom: 15px; color: #222; border-bottom: 1px solid #ccc; padding-bottom: 10px; }
+    table { width: 100%; border-collapse: collapse; margin-bottom: 20px; }
+    th, td { border: 1px solid #ddd; padding: 10px 12px; text-align: left; }
+    th { background-color: #e9ecef; font-weight: bold; color: #333; }
+    .status-success { color: #28a745; font-weight: bold; margin-top: 10px; }
+    .status-error { color: #dc3545; font-weight: bold; }
+    .loading { color: #666; font-style: italic; }
+    .ch-badge { background: #ffcc00; color: #000; padding: 2px 6px; border-radius: 4px; font-size: 12px; font-weight: bold; vertical-align: middle; }
+</style>
+</head>
+<body>
+    <div class="header">
+        <h2><span style="color: #00ffb3;">&lt;/&gt;</span> ClickHouse Playground <span class="ch-badge">OLAP</span></h2>
+        <button class="run-btn" id="runBtn" disabled>Loading Engine...</button>
+    </div>
+    <div class="workspace">
+        <div class="editor-pane">
+            <textarea id="sqlInput" spellcheck="false" aria-label="ClickHouse SQL Input"></textarea>
+        </div>
+        <div class="result-pane" id="sqlOutput">
+            <h3 class="result-header">Analytical Result</h3>
+            <div id="outputContent">
+                <p class="loading">Initializing ClickHouse-compatible SQL Engine...</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+const sqlInput = document.getElementById('sqlInput');
+        const outputContent = document.getElementById('outputContent');
+        const runBtn = document.getElementById('runBtn');
+        let db = null;
+
+        // 1. Fetch the code passed from the main app
+        try {
+            const savedCode = localStorage.getItem('careerPathClickHouseCode');
+            sqlInput.value = savedCode ? savedCode : "SELECT toStartOfHour(timestamp) as hour, avg(value) FROM sensors GROUP BY hour;";
+        } catch (e) {
+            console.warn("LocalStorage access failed:", e);
+            sqlInput.value = "SELECT toStartOfHour(timestamp) as hour, avg(value) FROM sensors GROUP BY hour;";
+        }
+
+        // 2. Initialize the engine
+        const config = {
+            locateFile: filename => `https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.8.0/${filename}`
+        };
+
+        try {
+            outputContent.innerHTML = '<p class="loading">Loading ClickHouse simulation engine (sql.js)...</p>';
+            initSqlJs(config).then(function(SQL) {
+                try {
+                    db = new SQL.Database();
+                    outputContent.innerHTML = '<p class="loading">Preparing analytical sandbox...</p>';
+                    
+                    // Pre-fill with analytical data
+                    db.run(`
+                        CREATE TABLE IF NOT EXISTS sensors (id INTEGER, timestamp DATETIME, value FLOAT);
+                        INSERT INTO sensors VALUES (1, '2023-10-01 10:05:00', 25.5);
+                        INSERT INTO sensors VALUES (1, '2023-10-01 10:15:00', 26.0);
+                        INSERT INTO sensors VALUES (2, '2023-10-01 10:05:00', 22.1);
+                        INSERT INTO sensors VALUES (2, '2023-10-01 11:05:00', 23.5);
+                        INSERT INTO sensors VALUES (1, '2023-10-01 11:15:00', 27.2);
+                    `);
+                    
+                    runBtn.innerText = "Execute Query ❯";
+                    runBtn.disabled = false;
+                    outputContent.innerHTML = '<p class="status-success">ClickHouse Engine Ready. Running initial query...</p>';
+                    executeSQL();
+                } catch (innerErr) {
+                    console.error("Internal simulation error:", innerErr);
+                    outputContent.innerHTML = `<p class="status-error">Simulation Error: ${innerErr.message}</p>`;
+                }
+            }).catch(err => {
+                console.error("WASMLoad error:", err);
+                outputContent.innerHTML = `<p class="status-error">Engine failed to load: ${err.message}. Please check your internet connection.</p>`;
+            });
+        } catch (outerErr) {
+            console.error("Fatal initialization error:", outerErr);
+            outputContent.innerHTML = `<p class="status-error">Initialization Error: ${outerErr.message}</p>`;
+        }
+
+
+        function executeSQL() {
+            if (!db) return;
+            const originalQuery = sqlInput.value.trim();
+            outputContent.innerHTML = '';
+            outputContent.style.opacity = '0.5';
+
+            if (originalQuery === '') {
+                outputContent.innerHTML = '<p class="status-error">Please enter a SQL query.</p>';
+                outputContent.style.opacity = '1';
+                return;
+            }
+
+            // Split and shim
+            const statements = originalQuery.split(';').map(s => s.trim()).filter(s => s !== '');
+            let lastTable = null;
+            
+            let shimmedStatements = statements.map(stmt => {
+                let s = stmt;
+                // Capture table names for auto-preview
+                const createMatch = s.match(/CREATE\s+TABLE\s+(?:IF\s+NOT\s+EXISTS\s+)?(\w+)/i);
+                const insertMatch = s.match(/INSERT\s+INTO\s+(\w+)/i);
+                if (createMatch) lastTable = createMatch[1];
+                else if (insertMatch) lastTable = insertMatch[1];
+
+                s = s.replace(/toStartOfHour\((.*?)\)/gi, "strftime('%Y-%m-%d %H:00:00', $1)");
+                s = s.replace(/toYYYYMM\((.*?)\)/gi, "strftime('%Y%m', $1)");
+                s = s.replace(/now\(\)/gi, "strftime('%Y-%m-%d %H:%M:%S', 'now')");
+                s = s.replace(/LowCardinality\((.*?)\)/gi, "$1")
+                     .replace(/Array\((.*?)\)/gi, "TEXT")
+                     .replace(/UInt\d+|Int\d+/gi, "INTEGER")
+                     .replace(/Float\d+/gi, "REAL")
+                     .replace(/DateTime|Date/gi, "DATETIME");
+
+                if (/^\s*create\s+table/i.test(s)) {
+                    if (!s.toLowerCase().includes('if not exists')) {
+                        s = s.replace(/CREATE\s+TABLE\s+(\w+)/gi, "CREATE TABLE IF NOT EXISTS $1");
+                    }
+                    s = s.replace(/ENGINE\s*=\s*\w+/gi, "").replace(/ORDER\s+BY\s+[\w\s,()]{2,}/gi, "").replace(/PARTITION\s+BY\s+[\w\s,()]+/gi, "").replace(/TTL\s+.*?(?=;|$)/gi, "").replace(/CODEC\s*\(.*?\)/gi, "");
+                }
+                return s;
+            });
+
+            const finalQuery = shimmedStatements.join('; ') + ';';
+
+            setTimeout(() => {
+                try {
+                    const allResults = db.exec(finalQuery);
+                    outputContent.style.opacity = '1';
+
+                    let fullHTML = '';
+                    if (allResults.length > 0) {
+                        allResults.forEach((res, idx) => {
+                            if (res.columns && res.columns.length > 0) {
+                                let tableHTML = '<table><thead><tr>';
+                                res.columns.forEach(col => { tableHTML += `<th>${col}</th>`; });
+                                tableHTML += '</tr></thead><tbody>';
+                                if (res.values && res.values.length > 0) {
+                                    res.values.forEach(row => {
+                                        tableHTML += '<tr>';
+                                        row.forEach(val => { tableHTML += `<td>${val !== null ? val : '<em>NULL</em>'}</td>`; });
+                                        tableHTML += '</tr>';
+                                    });
+                                } else { tableHTML += `<tr><td colspan="${res.columns.length}" style="text-align:center;"><em>No rows returned</em></td></tr>`; }
+                                tableHTML += '</tbody></table>';
+                                tableHTML += `<p class="status-success" style="font-size:12px; margin-bottom:15px;">✔ Result Set #${idx+1}: ${res.values.length} rows</p>`;
+                                fullHTML += tableHTML;
+                            }
+                        });
+                    }
+
+                    // If no data returned but a table was touched, SHOW A PREVIEW
+                    if (fullHTML === '' && lastTable) {
+                        try {
+                            const preview = db.exec(`SELECT * FROM ${lastTable} LIMIT 10;`);
+                            if (preview.length > 0) {
+                                fullHTML = `<h4 style="margin: 20px 0 10px 0;">Preview: Table '${lastTable}'</h4>`;
+                                let tableHTML = '<table><thead><tr>';
+                                preview[0].columns.forEach(col => { tableHTML += `<th>${col}</th>`; });
+                                tableHTML += '</tr></thead><tbody>';
+                                preview[0].values.forEach(row => {
+                                    tableHTML += '<tr>';
+                                    row.forEach(val => { tableHTML += `<td>${val !== null ? val : '<em>NULL</em>'}</td>`; });
+                                    tableHTML += '</tr>';
+                                });
+                                tableHTML += '</tbody></table>';
+                                tableHTML += `<p class="status-success">✔ Table ${lastTable} updated. Showing first 10 rows.</p>`;
+                                fullHTML += tableHTML;
+                            } else {
+                                fullHTML = `<p class="status-success">✔ Table '${lastTable}' created/updated successfully.</p>`;
+                            }
+                        } catch (e) {
+                             fullHTML = `<p class="status-success">✔ Command executed successfully.</p>`;
+                        }
+                    } else if (fullHTML === '') {
+                        fullHTML = '<p class="status-success">✔ Query executed successfully.</p>';
+                    }
+
+                    outputContent.innerHTML = fullHTML;
+                    if (originalQuery.toLowerCase().includes('engine') || originalQuery.toLowerCase().includes('lowcardinality')) {
+                        outputContent.innerHTML += '<div style="font-size: 11px; color: #777; font-style: italic; margin-top: 15px; border-top: 1px dashed #ccc; padding-top: 8px;">Simulation Notice: ClickHouse syntax shimmed for demo.</div>';
+                    }
+
+                } catch (err) {
+                    outputContent.style.opacity = '1';
+                    outputContent.innerHTML = `<p class="status-error">✖ SQL Error: ${err.message}</p>`;
+                }
+            }, 60);
+        }
+
+        runBtn.addEventListener('click', executeSQL);
+        sqlInput.addEventListener('keydown', (e) => {
+            if (e.ctrlKey && e.key === 'Enter') executeSQL();
+        });
+</script>
+</body>
+</html>

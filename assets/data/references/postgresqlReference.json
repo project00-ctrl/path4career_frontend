@@ -1,0 +1,175 @@
+{
+  "sections": [
+    {
+      "title": "Data Types",
+      "desc": "PostgreSQL built-in data types for columns and variables.",
+      "type": "table",
+      "columns": ["TYPE", "DESCRIPTION", "EXAMPLE"],
+      "rows": [
+        { "property": "INTEGER / INT", "desc": "Signed 4-byte integer (-2B to 2B)", "version": "age INTEGER" },
+        { "property": "BIGINT", "desc": "Signed 8-byte integer for large numbers", "version": "population BIGINT" },
+        { "property": "SMALLINT", "desc": "Signed 2-byte integer (-32768 to 32767)", "version": "qty SMALLINT" },
+        { "property": "SERIAL", "desc": "Auto-incrementing 4-byte integer", "version": "id SERIAL PRIMARY KEY" },
+        { "property": "BIGSERIAL", "desc": "Auto-incrementing 8-byte integer", "version": "id BIGSERIAL PRIMARY KEY" },
+        { "property": "NUMERIC(p, s)", "desc": "Exact decimal with precision and scale", "version": "price NUMERIC(10, 2)" },
+        { "property": "REAL", "desc": "4-byte floating point", "version": "score REAL" },
+        { "property": "DOUBLE PRECISION", "desc": "8-byte floating point", "version": "measurement DOUBLE PRECISION" },
+        { "property": "VARCHAR(n)", "desc": "Variable-length string with max length", "version": "name VARCHAR(100)" },
+        { "property": "TEXT", "desc": "Variable-length string with no max", "version": "content TEXT" },
+        { "property": "CHAR(n)", "desc": "Fixed-length string padded with spaces", "version": "code CHAR(5)" },
+        { "property": "BOOLEAN", "desc": "True/false value", "version": "active BOOLEAN DEFAULT true" },
+        { "property": "DATE", "desc": "Calendar date (year, month, day)", "version": "birth_date DATE" },
+        { "property": "TIMESTAMP", "desc": "Date and time without timezone", "version": "created_at TIMESTAMP" },
+        { "property": "TIMESTAMPTZ", "desc": "Date and time with timezone", "version": "created_at TIMESTAMPTZ DEFAULT NOW()" },
+        { "property": "UUID", "desc": "Universally unique identifier (128-bit)", "version": "id UUID DEFAULT gen_random_uuid()" },
+        { "property": "JSON", "desc": "JSON data stored as text", "version": "data JSON" },
+        { "property": "JSONB", "desc": "Binary JSON — indexable, faster queries", "version": "metadata JSONB" },
+        { "property": "ARRAY", "desc": "Array of any data type", "version": "tags TEXT[]" },
+        { "property": "BYTEA", "desc": "Binary data (byte array)", "version": "file_data BYTEA" },
+        { "property": "INTERVAL", "desc": "Time span (days, hours, minutes, etc.)", "version": "duration INTERVAL" },
+        { "property": "INET", "desc": "IPv4 or IPv6 host address", "version": "ip_address INET" },
+        { "property": "ENUM", "desc": "Custom enumeration type", "version": "CREATE TYPE mood AS ENUM ('happy', 'sad')" }
+      ]
+    },
+    {
+      "title": "DDL Commands",
+      "desc": "Data Definition Language — create, alter, and drop database objects.",
+      "type": "table",
+      "columns": ["COMMAND", "DESCRIPTION", "EXAMPLE"],
+      "rows": [
+        { "property": "CREATE DATABASE name", "desc": "Create a new database", "version": "CREATE DATABASE myapp;" },
+        { "property": "DROP DATABASE name", "desc": "Delete a database permanently", "version": "DROP DATABASE IF EXISTS myapp;" },
+        { "property": "CREATE TABLE", "desc": "Create a new table with columns", "version": "CREATE TABLE users (id SERIAL PRIMARY KEY, name VARCHAR(100));" },
+        { "property": "DROP TABLE name", "desc": "Delete a table permanently", "version": "DROP TABLE IF EXISTS users CASCADE;" },
+        { "property": "ALTER TABLE ADD COLUMN", "desc": "Add a new column to existing table", "version": "ALTER TABLE users ADD COLUMN email VARCHAR(255);" },
+        { "property": "ALTER TABLE DROP COLUMN", "desc": "Remove a column from table", "version": "ALTER TABLE users DROP COLUMN email;" },
+        { "property": "ALTER TABLE RENAME COLUMN", "desc": "Rename an existing column", "version": "ALTER TABLE users RENAME COLUMN name TO full_name;" },
+        { "property": "ALTER TABLE ALTER COLUMN TYPE", "desc": "Change a column's data type", "version": "ALTER TABLE users ALTER COLUMN age TYPE BIGINT;" },
+        { "property": "ALTER TABLE ADD CONSTRAINT", "desc": "Add a constraint to table", "version": "ALTER TABLE users ADD CONSTRAINT email_unique UNIQUE (email);" },
+        { "property": "CREATE INDEX", "desc": "Create an index for faster queries", "version": "CREATE INDEX idx_name ON users (name);" },
+        { "property": "CREATE UNIQUE INDEX", "desc": "Create unique index (enforces uniqueness)", "version": "CREATE UNIQUE INDEX idx_email ON users (email);" },
+        { "property": "DROP INDEX", "desc": "Remove an index", "version": "DROP INDEX idx_name;" },
+        { "property": "TRUNCATE TABLE", "desc": "Remove all rows from table (fast)", "version": "TRUNCATE TABLE logs RESTART IDENTITY;" },
+        { "property": "CREATE SCHEMA", "desc": "Create a new schema namespace", "version": "CREATE SCHEMA IF NOT EXISTS app;" }
+      ]
+    },
+    {
+      "title": "DML Commands",
+      "desc": "Data Manipulation Language — insert, update, delete, and query data.",
+      "type": "table",
+      "columns": ["COMMAND", "DESCRIPTION", "EXAMPLE"],
+      "rows": [
+        { "property": "INSERT INTO ... VALUES", "desc": "Insert a new row", "version": "INSERT INTO users (name, email) VALUES ('John', 'j@mail.com');" },
+        { "property": "INSERT INTO ... RETURNING", "desc": "Insert and return inserted row", "version": "INSERT INTO users (name) VALUES ('Jane') RETURNING id;" },
+        { "property": "INSERT INTO ... ON CONFLICT", "desc": "Upsert — insert or update on conflict", "version": "INSERT INTO users (email) VALUES ('x') ON CONFLICT (email) DO UPDATE SET name='x';" },
+        { "property": "UPDATE ... SET ... WHERE", "desc": "Update existing rows", "version": "UPDATE users SET name='John' WHERE id=1;" },
+        { "property": "UPDATE ... RETURNING", "desc": "Update and return updated rows", "version": "UPDATE users SET active=true RETURNING *;" },
+        { "property": "DELETE FROM ... WHERE", "desc": "Delete specific rows", "version": "DELETE FROM users WHERE id=1;" },
+        { "property": "DELETE FROM ... RETURNING", "desc": "Delete and return deleted rows", "version": "DELETE FROM users WHERE active=false RETURNING *;" },
+        { "property": "SELECT ... FROM ... WHERE", "desc": "Query data with conditions", "version": "SELECT * FROM users WHERE active=true;" },
+        { "property": "SELECT DISTINCT", "desc": "Return only unique rows", "version": "SELECT DISTINCT city FROM users;" },
+        { "property": "ORDER BY col ASC/DESC", "desc": "Sort results", "version": "SELECT * FROM users ORDER BY name ASC;" },
+        { "property": "LIMIT n OFFSET m", "desc": "Paginate results", "version": "SELECT * FROM users LIMIT 10 OFFSET 20;" },
+        { "property": "GROUP BY col", "desc": "Group rows for aggregate functions", "version": "SELECT city, COUNT(*) FROM users GROUP BY city;" },
+        { "property": "HAVING condition", "desc": "Filter grouped results", "version": "SELECT city, COUNT(*) FROM users GROUP BY city HAVING COUNT(*)>5;" }
+      ]
+    },
+    {
+      "title": "Joins & Subqueries",
+      "desc": "Table joins and subquery patterns.",
+      "type": "table",
+      "columns": ["TYPE", "DESCRIPTION", "EXAMPLE"],
+      "rows": [
+        { "property": "INNER JOIN", "desc": "Returns rows with matching values in both tables", "version": "SELECT * FROM orders INNER JOIN users ON orders.user_id = users.id;" },
+        { "property": "LEFT JOIN", "desc": "Returns all left rows + matching right rows", "version": "SELECT * FROM users LEFT JOIN orders ON users.id = orders.user_id;" },
+        { "property": "RIGHT JOIN", "desc": "Returns all right rows + matching left rows", "version": "SELECT * FROM orders RIGHT JOIN users ON orders.user_id = users.id;" },
+        { "property": "FULL OUTER JOIN", "desc": "Returns all rows from both tables", "version": "SELECT * FROM a FULL OUTER JOIN b ON a.id = b.a_id;" },
+        { "property": "CROSS JOIN", "desc": "Cartesian product of both tables", "version": "SELECT * FROM colors CROSS JOIN sizes;" },
+        { "property": "SELF JOIN", "desc": "Join a table with itself", "version": "SELECT a.name, b.name FROM employees a JOIN employees b ON a.mgr_id = b.id;" },
+        { "property": "Subquery in WHERE", "desc": "Use query result as filter condition", "version": "SELECT * FROM users WHERE id IN (SELECT user_id FROM orders);" },
+        { "property": "Subquery in FROM", "desc": "Use query result as derived table", "version": "SELECT * FROM (SELECT city, COUNT(*) as cnt FROM users GROUP BY city) sub;" },
+        { "property": "EXISTS subquery", "desc": "Check if subquery returns any rows", "version": "SELECT * FROM users WHERE EXISTS (SELECT 1 FROM orders WHERE orders.user_id = users.id);" },
+        { "property": "LATERAL JOIN", "desc": "Subquery that references preceding tables", "version": "SELECT * FROM users, LATERAL (SELECT * FROM orders WHERE user_id=users.id LIMIT 3) o;" }
+      ]
+    },
+    {
+      "title": "Aggregate & Window Functions",
+      "desc": "Aggregate calculations and window function patterns.",
+      "type": "table",
+      "columns": ["FUNCTION", "DESCRIPTION", "EXAMPLE"],
+      "rows": [
+        { "property": "COUNT(*)", "desc": "Count number of rows", "version": "SELECT COUNT(*) FROM users;" },
+        { "property": "SUM(col)", "desc": "Sum of column values", "version": "SELECT SUM(amount) FROM orders;" },
+        { "property": "AVG(col)", "desc": "Average of column values", "version": "SELECT AVG(price) FROM products;" },
+        { "property": "MIN(col) / MAX(col)", "desc": "Minimum / maximum value", "version": "SELECT MIN(price), MAX(price) FROM products;" },
+        { "property": "STRING_AGG(col, ',')", "desc": "Concatenate strings with delimiter", "version": "SELECT STRING_AGG(name, ', ') FROM users;" },
+        { "property": "ARRAY_AGG(col)", "desc": "Aggregate values into an array", "version": "SELECT ARRAY_AGG(tag) FROM post_tags;" },
+        { "property": "ROW_NUMBER() OVER(...)", "desc": "Assign sequential row numbers", "version": "SELECT *, ROW_NUMBER() OVER (ORDER BY created_at) FROM users;" },
+        { "property": "RANK() OVER(...)", "desc": "Rank with gaps for ties", "version": "SELECT *, RANK() OVER (ORDER BY score DESC) FROM students;" },
+        { "property": "DENSE_RANK() OVER(...)", "desc": "Rank without gaps for ties", "version": "SELECT *, DENSE_RANK() OVER (ORDER BY score DESC) FROM students;" },
+        { "property": "LAG(col, n) OVER(...)", "desc": "Access value from n rows before", "version": "SELECT *, LAG(price, 1) OVER (ORDER BY date) FROM prices;" },
+        { "property": "LEAD(col, n) OVER(...)", "desc": "Access value from n rows after", "version": "SELECT *, LEAD(price, 1) OVER (ORDER BY date) FROM prices;" },
+        { "property": "PARTITION BY col", "desc": "Divide rows into groups for window function", "version": "ROW_NUMBER() OVER (PARTITION BY dept ORDER BY salary DESC)" }
+      ]
+    },
+    {
+      "title": "JSONB Operations",
+      "desc": "JSONB data manipulation and querying operators.",
+      "type": "table",
+      "columns": ["OPERATOR / FUNCTION", "DESCRIPTION", "EXAMPLE"],
+      "rows": [
+        { "property": "->", "desc": "Get JSON object field by key (as JSON)", "version": "data->'name'" },
+        { "property": "->>", "desc": "Get JSON object field as text", "version": "data->>'name'" },
+        { "property": "#>", "desc": "Get nested JSON value by path (as JSON)", "version": "data#>'{address,city}'" },
+        { "property": "#>>", "desc": "Get nested JSON value as text", "version": "data#>>'{address,city}'" },
+        { "property": "@>", "desc": "Contains operator (left contains right)", "version": "data @> '{\"role\": \"admin\"}'" },
+        { "property": "?", "desc": "Check if key exists in JSON object", "version": "data ? 'email'" },
+        { "property": "?|", "desc": "Check if any key exists", "version": "data ?| array['email', 'phone']" },
+        { "property": "?&", "desc": "Check if all keys exist", "version": "data ?& array['email', 'phone']" },
+        { "property": "||", "desc": "Concatenate (merge) two JSONB values", "version": "data || '{\"role\": \"admin\"}'" },
+        { "property": "jsonb_set(target, path, value)", "desc": "Set value at path in JSONB", "version": "jsonb_set(data, '{name}', '\"John\"')" },
+        { "property": "jsonb_each(jsonb)", "desc": "Expand JSON object to rows of key-value", "version": "SELECT * FROM jsonb_each(data)" },
+        { "property": "jsonb_array_elements(jsonb)", "desc": "Expand JSON array to rows", "version": "SELECT * FROM jsonb_array_elements(data->'tags')" }
+      ]
+    },
+    {
+      "title": "Indexes & Performance",
+      "desc": "Index types and performance optimization techniques.",
+      "type": "table",
+      "columns": ["FEATURE", "DESCRIPTION", "EXAMPLE"],
+      "rows": [
+        { "property": "B-tree Index (default)", "desc": "Standard index for equality and range queries", "version": "CREATE INDEX idx ON users (email);" },
+        { "property": "GIN Index", "desc": "Generalized Inverted Index — for JSONB, arrays, full-text", "version": "CREATE INDEX idx ON docs USING GIN (data);" },
+        { "property": "GiST Index", "desc": "Generalized Search Tree — for geometric, full-text", "version": "CREATE INDEX idx ON places USING GiST (location);" },
+        { "property": "Hash Index", "desc": "Hash-based — only for equality comparisons", "version": "CREATE INDEX idx ON users USING HASH (email);" },
+        { "property": "Partial Index", "desc": "Index only rows matching a condition", "version": "CREATE INDEX idx ON orders (status) WHERE status='active';" },
+        { "property": "Expression Index", "desc": "Index on computed expression", "version": "CREATE INDEX idx ON users (LOWER(email));" },
+        { "property": "EXPLAIN ANALYZE", "desc": "Show query execution plan with timing", "version": "EXPLAIN ANALYZE SELECT * FROM users WHERE email='x';" },
+        { "property": "VACUUM", "desc": "Reclaim storage from dead tuples", "version": "VACUUM ANALYZE users;" },
+        { "property": "ANALYZE", "desc": "Update table statistics for query planner", "version": "ANALYZE users;" },
+        { "property": "pg_stat_statements", "desc": "Extension to track query performance statistics", "version": "CREATE EXTENSION pg_stat_statements;" }
+      ]
+    },
+    {
+      "title": "Admin & CLI Commands",
+      "desc": "PostgreSQL administration and psql CLI commands.",
+      "type": "table",
+      "columns": ["COMMAND", "DESCRIPTION", "EXAMPLE"],
+      "rows": [
+        { "property": "psql -U user -d db", "desc": "Connect to database via psql CLI", "version": "psql -U postgres -d myapp" },
+        { "property": "\\l", "desc": "List all databases", "version": "\\l" },
+        { "property": "\\dt", "desc": "List all tables in current schema", "version": "\\dt" },
+        { "property": "\\d table_name", "desc": "Describe table structure", "version": "\\d users" },
+        { "property": "\\dn", "desc": "List all schemas", "version": "\\dn" },
+        { "property": "\\du", "desc": "List all roles/users", "version": "\\du" },
+        { "property": "\\c database", "desc": "Switch to another database", "version": "\\c myapp" },
+        { "property": "\\i file.sql", "desc": "Execute SQL from file", "version": "\\i /path/to/setup.sql" },
+        { "property": "\\q", "desc": "Quit psql", "version": "\\q" },
+        { "property": "pg_dump db > file.sql", "desc": "Export database to SQL file", "version": "pg_dump myapp > backup.sql" },
+        { "property": "psql db < file.sql", "desc": "Import SQL file into database", "version": "psql myapp < backup.sql" },
+        { "property": "CREATE ROLE name WITH LOGIN PASSWORD", "desc": "Create a new user/role", "version": "CREATE ROLE appuser WITH LOGIN PASSWORD 'pass';" },
+        { "property": "GRANT ALL ON TABLE ... TO ...", "desc": "Grant permissions to role", "version": "GRANT ALL ON TABLE users TO appuser;" }
+      ]
+    }
+  ]
+}

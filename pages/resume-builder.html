@@ -1,0 +1,831 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Path4Career — Build Your Perfect Resume</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link rel="stylesheet" href="../assets/css/navbar.css">
+<style>
+:root {
+  --primary: #214EA5;
+  --primary-hover: #1B3F85;
+  --accent: #00B894;
+  --bg-main: #f1f5f9;
+  --bg-secondary: #e2e8f0;
+  --bg-section: #f1f5f9;
+  --card-bg: #FFFFFF;
+  --surface: #F8FAFC;
+  --border: rgba(0, 0, 0, 0.08);
+  --text-main: #0B192C;
+  --text-secondary: #64748B;
+  --text-muted: #94A3B8;
+  --text-disabled: #64748B;
+  --gradient: linear-gradient(135deg, #214EA5, #00B894);
+}
+
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { min-height: 100%; font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif; background: var(--bg-main); color: var(--text-main); position: relative; overflow-x: hidden; }
+
+/* Custom Scrollbar */
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: var(--bg-main); }
+::-webkit-scrollbar-thumb { background: #CBD5E1; border-radius: 10px; border: 3px solid var(--bg-main); }
+::-webkit-scrollbar-thumb:hover { background: #94A3B8; }
+
+body::before { content: ''; position: fixed; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E"); pointer-events: none; z-index: 0; opacity: 0.4; }
+
+.mesh-bg { position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; opacity: 0.6; }
+.mesh-orb { position: absolute; border-radius: 50%; filter: blur(140px); animation: orbFloat 15s ease-in-out infinite; }
+.mesh-orb-1 { width: 700px; height: 700px; background: rgba(33, 78, 165, 0.08); top: -250px; left: -150px; animation-delay: 0s; }
+.mesh-orb-2 { width: 600px; height: 600px; background: rgba(21, 128, 61, 0.05); top: 35%; right: -200px; animation-delay: -5s; }
+.mesh-orb-3 { width: 500px; height: 500px; background: rgba(33, 78, 165, 0.07); bottom: 10%; left: 25%; animation-delay: -9s; }
+@keyframes orbFloat { 0%, 100% { transform: translateY(0) scale(1); } 50% { transform: translateY(-40px) scale(1.05); } }
+
+.main-header { position: sticky; top: 0; z-index: 200; background: rgba(241, 245, 249, 0.85); border-bottom: 1px solid var(--border); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); padding: 0 2rem; height: 68px; display: flex; justify-content: space-between; align-items: center; transition: all 0.3s ease; }
+.logo { font-size: 1.55rem; font-weight: 800; background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; display: flex; align-items: center; gap: 8px; text-decoration: none; letter-spacing: -0.5px; }
+.logo i { font-size: 1.3rem; }
+.logo span { font-weight: 300; letter-spacing: 0; }
+nav { display: flex; align-items: center; gap: 0.3rem; }
+nav a { color: var(--text-secondary); font-size: 0.875rem; font-weight: 500; text-decoration: none; padding: 8px 14px; border-radius: 8px; transition: all 0.25s ease; }
+nav a:hover { color: var(--text-main); background: rgba(255, 255, 255, 0.06); }
+nav a.active { color: var(--accent); }
+.header-right { display: flex; align-items: center; gap: 12px; }
+.header-cta { background: var(--gradient); color: white; border: none; padding: 9px 22px; border-radius: 8px; font-size: 0.85rem; font-weight: 600; cursor: pointer; transition: all 0.3s ease; text-decoration: none; display: flex; align-items: center; gap: 6px; }
+.header-cta:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(74, 108, 247, 0.4); }
+.header-user-info { display: flex; align-items: center; gap: 10px; color: var(--text-secondary); font-size: 0.85rem; }
+.header-user-info .user-avatar { width: 32px; height: 32px; border-radius: 50%; background: linear-gradient(135deg, var(--primary), var(--accent)); display: flex; align-items: center; justify-content: center; color: white; font-weight: 600; font-size: 0.8rem; }
+.btn-login-header { background: var(--gradient); color: white; border: none; padding: 9px 22px; border-radius: 8px; cursor: pointer; font-size: 0.85rem; font-weight: 500; transition: all 0.3s ease; display: flex; align-items: center; gap: 6px; text-decoration: none; }
+.btn-login-header:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(33, 78, 165, 0.3); }
+.btn-logout-header { background: rgba(239, 68, 68, 0.08); color: #ef4444; border: 1px solid rgba(239, 68, 68, 0.2); padding: 8px 18px; border-radius: 8px; cursor: pointer; font-size: 0.82rem; font-weight: 500; transition: all 0.3s ease; display: flex; align-items: center; gap: 6px; }
+.btn-logout-header:hover { background: #ef4444; color: white; transform: translateY(-2px); }
+.mobile-menu-btn { display: none; background: none; border: none; color: var(--text-main); font-size: 1.3rem; cursor: pointer; }
+
+.hero { position: relative; z-index: 1; padding: 7rem 2rem 5rem; text-align: center; display: flex; flex-direction: column; align-items: center; }
+.hero-eyebrow { display: inline-flex; align-items: center; gap: 8px; background: rgba(33, 78, 165, 0.08); border: 1px solid rgba(33, 78, 165, 0.2); color: var(--primary); font-size: 0.78rem; font-weight: 600; padding: 6px 16px; border-radius: 100px; margin-bottom: 1.8rem; text-transform: uppercase; letter-spacing: 1.5px; animation: fadeUp 0.6s ease both; }
+.hero-eyebrow::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--accent); animation: pulse 2s infinite; }
+@keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+.hero h1 { font-size: clamp(2.4rem, 6vw, 4.2rem); font-weight: 800; line-height: 1.1; letter-spacing: -2px; margin-bottom: 1.4rem; animation: fadeUp 0.6s ease 0.1s both; }
+.gradient-text { background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+.hero p { color: var(--text-secondary); font-size: 1.15rem; max-width: 600px; line-height: 1.7; margin-bottom: 2.5rem; font-weight: 400; animation: fadeUp 0.6s ease 0.2s both; }
+.hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; margin-bottom: 4rem; animation: fadeUp 0.6s ease 0.3s both; }
+.btn-primary { background: var(--gradient); color: white; border: none; padding: 14px 32px; border-radius: 10px; font-size: 1rem; font-weight: 600; cursor: pointer; transition: all 0.3s ease; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; }
+.btn-primary:hover { transform: translateY(-3px); box-shadow: 0 12px 32px rgba(33, 78, 165, 0.3); }
+.btn-outline { background: transparent; color: var(--text-main); border: 1px solid var(--border); padding: 14px 32px; border-radius: 10px; font-size: 1rem; font-weight: 500; cursor: pointer; transition: all 0.3s ease; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; }
+.btn-outline:hover { border-color: var(--accent); color: var(--accent); background: rgba(21, 128, 61, 0.05); transform: translateY(-2px); }
+.hero-stats { display: flex; gap: 2.5rem; flex-wrap: wrap; justify-content: center; animation: fadeUp 0.6s ease 0.4s both; }
+.hero-stat { text-align: center; }
+.hero-stat .num { font-size: 2.2rem; font-weight: 800; background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; line-height: 1; }
+.hero-stat .lbl { color: var(--text-muted); font-size: 0.8rem; margin-top: 4px; }
+.stat-divider { width: 1px; background: var(--border); align-self: stretch; }
+
+section { position: relative; z-index: 1; }
+.section-tag { display: inline-flex; align-items: center; gap: 6px; font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; color: var(--accent); margin-bottom: 0.8rem; }
+.section-tag::before { content: '—'; opacity: 0.5; }
+.section-title { font-size: clamp(1.8rem, 4vw, 2.6rem); font-weight: 800; letter-spacing: -1.5px; line-height: 1.15; margin-bottom: 1rem; }
+.section-sub { color: var(--text-secondary); font-size: 1rem; line-height: 1.7; max-width: 560px; }
+
+.why-section { padding: 6rem 2rem; background: linear-gradient(180deg, var(--bg-main) 0%, var(--bg-section) 100%); }
+.why-inner { max-width: 1200px; margin: 0 auto; }
+.why-header { text-align: center; margin-bottom: 4rem; }
+.why-header .section-sub { margin: 0 auto; }
+.why-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
+.why-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 16px; padding: 2rem; transition: all 0.4s ease; position: relative; overflow: hidden; }
+.why-card::before { content: ''; position: absolute; inset: 0; opacity: 0; background: linear-gradient(135deg, rgba(33, 78, 165, 0.05), rgba(0, 184, 148, 0.05)); transition: opacity 0.4s; }
+.why-card:hover { border-color: rgba(33, 78, 165, 0.3); transform: translateY(-4px); box-shadow: 0 12px 32px rgba(33, 78, 165, 0.15); }
+.why-card:hover::before { opacity: 1; }
+.why-icon { width: 52px; height: 52px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; margin-bottom: 1.2rem; }
+.why-card h3 { font-size: 1.05rem; font-weight: 700; margin-bottom: 0.5rem; }
+.why-card p { color: var(--text-secondary); font-size: 0.875rem; line-height: 1.65; }
+
+.how-section { padding: 6rem 2rem; background: var(--bg-section); }
+.how-inner { max-width: 1100px; margin: 0 auto; }
+.how-header { text-align: center; margin-bottom: 4rem; }
+.how-header .section-sub { margin: 0 auto; }
+.steps-timeline { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 0; position: relative; }
+.steps-timeline::before { content: ''; position: absolute; top: 36px; left: 10%; right: 10%; height: 2px; background: linear-gradient(90deg, transparent, var(--primary), var(--primary), transparent); z-index: 0; opacity: 0.3; }
+.step-item { text-align: center; padding: 0 1.5rem; position: relative; z-index: 1; opacity: 0; transform: translateY(30px); transition: all 0.5s ease; }
+.step-item.visible { opacity: 1; transform: translateY(0); }
+.step-num { width: 72px; height: 72px; border-radius: 50%; background: var(--card-bg); border: 2px solid var(--border); display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem; font-size: 1.5rem; position: relative; transition: all 0.4s ease; }
+.step-item:hover .step-num { border-color: var(--primary); background: rgba(33, 78, 165, 0.08); box-shadow: 0 0 30px rgba(33, 78, 165, 0.15); transform: scale(1.1); }
+.step-num .step-badge { position: absolute; top: -6px; right: -6px; width: 22px; height: 22px; border-radius: 50%; background: var(--gradient); color: white; font-size: 0.65rem; font-weight: 700; display: flex; align-items: center; justify-content: center; }
+.step-item h3 { font-size: 1rem; font-weight: 700; margin-bottom: 0.5rem; }
+.step-item p { color: var(--text-secondary); font-size: 0.82rem; line-height: 1.6; }
+
+.tiers-section { padding: 6rem 2rem; background: linear-gradient(180deg, var(--bg-section) 0%, var(--bg-main) 100%); }
+.tiers-inner { max-width: 1200px; margin: 0 auto; }
+.tiers-header { text-align: center; margin-bottom: 4rem; }
+.tiers-header .section-sub { margin: 0 auto; }
+.tiers-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5rem; }
+.tier-card { border-radius: 20px; overflow: hidden; border: 1px solid var(--border); transition: all 0.4s ease; position: relative; }
+.tier-card:hover { transform: translateY(-6px); }
+.tier-card.basic { background: var(--card-bg); }
+.tier-card.basic:hover { border-color: var(--primary); box-shadow: 0 16px 48px rgba(74, 108, 247, 0.2); }
+.tier-card.intermediate { background: var(--card-bg); }
+.tier-card.intermediate:hover { border-color: #FFA500; box-shadow: 0 16px 48px rgba(255, 165, 0, 0.2); }
+.tier-card.premium { background: linear-gradient(135deg, rgba(33, 78, 165, 0.1), rgba(0, 184, 148, 0.08)); }
+.tier-card.premium:hover { border-color: #FFD700; box-shadow: 0 16px 48px rgba(255, 215, 0, 0.2); }
+.tier-card.premium::before { content: ''; position: absolute; top: -2px; left: -2px; right: -2px; bottom: -2px; background: linear-gradient(135deg, #FFD700, #FFA500, #FFD700); border-radius: 21px; z-index: -1; opacity: 0; transition: opacity 0.4s; }
+.tier-card.premium:hover::before { opacity: 0.5; }
+.tier-header { padding: 2rem 2rem 1.5rem; }
+.tier-badge { display: inline-flex; align-items: center; gap: 6px; padding: 5px 14px; border-radius: 100px; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 1.2rem; }
+.badge-basic-t { background: rgba(74, 108, 247, 0.15); color: var(--primary); border: 1px solid rgba(74, 108, 247, 0.3); }
+.badge-inter-t { background: rgba(255, 165, 0, 0.12); color: #FFA500; border: 1px solid rgba(255, 165, 0, 0.3); }
+.badge-prem-t { background: linear-gradient(135deg, rgba(255, 215, 0, 0.2), rgba(255, 140, 0, 0.15)); color: #FFD700; border: 1px solid rgba(255, 215, 0, 0.3); }
+.tier-card h3 { font-size: 1.4rem; font-weight: 800; margin-bottom: 0.5rem; letter-spacing: -0.5px; }
+.tier-card .tier-sub { color: var(--text-secondary); font-size: 0.875rem; line-height: 1.6; margin-bottom: 1.2rem; }
+.tier-count { display: flex; align-items: center; gap: 8px; font-size: 0.8rem; color: var(--text-muted); margin-bottom: 1.5rem; }
+.tier-count span { font-weight: 700; font-size: 1.5rem; background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+.tier-features { padding: 0 2rem 2rem; }
+.tier-feature { display: flex; align-items: flex-start; gap: 10px; padding: 8px 0; border-bottom: 1px solid rgba(255, 255, 255, 0.05); font-size: 0.85rem; color: var(--text-secondary); }
+.tier-feature:last-child { border-bottom: none; }
+.tier-feature i { margin-top: 2px; flex-shrink: 0; }
+.tier-footer { padding: 1.5rem 2rem; border-top: 1px solid var(--border); }
+.tier-btn { width: 100%; padding: 12px; border-radius: 10px; font-size: 0.9rem; font-weight: 600; cursor: pointer; transition: all 0.3s ease; display: flex; align-items: center; justify-content: center; gap: 8px; text-decoration: none; }
+.tier-btn-basic { background: rgba(74, 108, 247, 0.15); color: var(--primary); border: 1px solid rgba(74, 108, 247, 0.3); }
+.tier-btn-basic:hover { background: var(--primary); color: white; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(74, 108, 247, 0.4); }
+.tier-btn-inter { background: rgba(255, 165, 0, 0.12); color: #FFA500; border: 1px solid rgba(255, 165, 0, 0.3); }
+.tier-btn-inter:hover { background: #FFA500; color: #000; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(255, 165, 0, 0.35); }
+.tier-btn-prem { background: var(--gradient); color: white; border: none; }
+.tier-btn-prem:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(33, 78, 165, 0.3); }
+.tier-preview { margin: 0 2rem 1.5rem; border-radius: 10px; overflow: hidden; border: 1px solid rgba(255, 255, 255, 0.08); height: 140px; position: relative; }
+.tier-preview-inner { background: white; width: 200%; height: 200%; transform: scale(0.5) translate(-50%, -50%); transform-origin: top left; padding: 1.2rem; font-family: 'Inter', sans-serif; }
+.mock-line { height: 8px; border-radius: 3px; margin-bottom: 5px; }
+.mock-line.name { width: 45%; background: #1a1a2e; }
+.mock-line.contact { width: 65%; height: 5px; background: #ccc; }
+.mock-line.section-head { width: 30%; height: 6px; margin-top: 12px; margin-bottom: 8px; }
+.mock-line.body { height: 4px; background: #e8e8e8; }
+.mock-line.body.w-80 { width: 80%; }
+.mock-line.body.w-65 { width: 65%; }
+.mock-line.body.w-90 { width: 90%; }
+
+.features-section { padding: 6rem 2rem; background: var(--bg-section); }
+.features-inner { max-width: 1200px; margin: 0 auto; }
+.features-header { text-align: center; margin-bottom: 4rem; }
+.features-header .section-sub { margin: 0 auto; }
+.features-showcase { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+.feature-big { grid-row: span 2; background: var(--card-bg); border: 1px solid var(--border); border-radius: 20px; padding: 2.5rem; display: flex; flex-direction: column; transition: all 0.4s ease; }
+.feature-big:hover { border-color: var(--primary); box-shadow: 0 12px 40px rgba(33, 78, 165, 0.12); }
+.feature-small { background: var(--card-bg); border: 1px solid var(--border); border-radius: 20px; padding: 2rem; transition: all 0.4s ease; }
+.feature-small:hover { border-color: rgba(74, 108, 247, 0.4); transform: translateY(-3px); box-shadow: 0 8px 24px rgba(74, 108, 247, 0.1); }
+.feature-icon { width: 56px; height: 56px; border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 1.4rem; margin-bottom: 1.5rem; }
+.feature-big h3 { font-size: 1.3rem; font-weight: 800; margin-bottom: 0.8rem; letter-spacing: -0.5px; }
+.feature-big p { color: var(--text-secondary); font-size: 0.9rem; line-height: 1.7; flex: 1; }
+.feature-small h3 { font-size: 1rem; font-weight: 700; margin-bottom: 0.5rem; }
+.feature-small p { color: var(--text-secondary); font-size: 0.82rem; line-height: 1.6; }
+.feature-visual { margin-top: 1.5rem; border-radius: 12px; overflow: hidden; background: var(--bg-section); border: 1px solid var(--border); padding: 1.2rem; flex: 1; }
+.fv-formats { display: flex; flex-wrap: wrap; gap: 8px; }
+.fv-fmt { padding: 6px 14px; border-radius: 6px; font-size: 0.75rem; font-weight: 700; display: flex; align-items: center; gap: 5px; }
+.fv-fmt.pdf { background: rgba(239, 68, 68, 0.15); color: #ef4444; border: 1px solid rgba(239, 68, 68, 0.3); }
+.fv-fmt.doc { background: rgba(59, 130, 246, 0.15); color: #3b82f6; border: 1px solid rgba(59, 130, 246, 0.3); }
+.fv-fmt.docx { background: rgba(37, 99, 235, 0.15); color: #6ea8fe; border: 1px solid rgba(37, 99, 235, 0.3); }
+.fv-fmt.txt { background: rgba(139, 92, 246, 0.15); color: #a78bfa; border: 1px solid rgba(139, 92, 246, 0.3); }
+
+.testimonials-section { padding: 6rem 2rem; background: linear-gradient(180deg, var(--bg-section) 0%, var(--bg-main) 100%); }
+.testimonials-inner { max-width: 1100px; margin: 0 auto; }
+.testimonials-header { text-align: center; margin-bottom: 1.5rem; }
+.testimonials-subrow { display: flex; align-items: center; justify-content: center; gap: 1.2rem; margin-bottom: 3rem; flex-wrap: wrap; }
+.testimonials-count-badge { display: inline-flex; align-items: center; gap: 6px; background: rgba(21, 128, 61, 0.1); border: 1px solid rgba(21, 128, 61, 0.25); color: var(--accent); font-size: 0.75rem; font-weight: 600; padding: 5px 14px; border-radius: 100px; }
+.btn-share-story { display: inline-flex; align-items: center; gap: 8px; background: var(--gradient); color: white; border: none; padding: 10px 22px; border-radius: 10px; font-size: 0.875rem; font-weight: 600; cursor: pointer; transition: all 0.3s ease; text-decoration: none; }
+.btn-share-story:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(74, 108, 247, 0.4); }
+.btn-share-story i { font-size: 0.85rem; }
+.testimonials-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.5rem; }
+.testimonial-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 16px; padding: 1.8rem; transition: all 0.4s ease; position: relative; }
+.testimonial-card:hover { border-color: rgba(21, 128, 61, 0.3); transform: translateY(-4px); box-shadow: 0 12px 32px rgba(21, 128, 61, 0.1); }
+.testimonial-card::before { content: '"'; position: absolute; top: 1rem; right: 1.5rem; font-size: 4rem; font-weight: 900; color: rgba(74, 108, 247, 0.15); line-height: 1; font-family: Georgia, serif; }
+.testimonial-card.user-submitted { border-color: rgba(21, 128, 61, 0.2); }
+.testimonial-card.user-submitted::after { content: 'Community'; position: absolute; top: 1rem; left: 1.5rem; font-size: 0.62rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; background: rgba(21, 128, 61, 0.12); color: var(--accent); border: 1px solid rgba(21, 128, 61, 0.25); padding: 2px 8px; border-radius: 100px; }
+.stars { color: #FFD700; font-size: 0.8rem; margin-bottom: 1rem; letter-spacing: 2px; }
+.stars-interactive { display: flex; gap: 4px; margin-bottom: 0; }
+.stars-interactive .star-btn { background: none; border: none; cursor: pointer; font-size: 1.4rem; color: rgba(255, 255, 255, 0.2); transition: color 0.15s, transform 0.15s; padding: 0; line-height: 1; }
+.stars-interactive .star-btn:hover, .stars-interactive .star-btn.active { color: #FFD700; transform: scale(1.15); }
+.testimonial-card p { color: var(--text-secondary); font-size: 0.875rem; line-height: 1.7; margin-bottom: 1.5rem; font-style: italic; }
+.testimonial-author { display: flex; align-items: center; gap: 12px; }
+.author-avatar { width: 42px; height: 42px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 1rem; flex-shrink: 0; }
+.author-name { font-size: 0.9rem; font-weight: 600; }
+.author-role { font-size: 0.75rem; color: var(--text-muted); margin-top: 1px; }
+.btn-delete-story { position: absolute; bottom: 1rem; right: 1rem; background: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.2); color: rgba(239, 68, 68, 0.6); width: 26px; height: 26px; border-radius: 50%; cursor: pointer; font-size: 0.65rem; display: flex; align-items: center; justify-content: center; transition: all 0.2s; opacity: 0; }
+.testimonial-card:hover .btn-delete-story { opacity: 1; }
+.btn-delete-story:hover { background: #ef4444; border-color: #ef4444; color: white; transform: scale(1.1); }
+.testimonials-empty { grid-column: 1/-1; text-align: center; padding: 3rem 2rem; background: var(--card-bg); border: 1px dashed rgba(255,255,255,0.1); border-radius: 16px; color: var(--text-muted); font-size: 0.9rem; }
+.testimonials-empty i { font-size: 2rem; margin-bottom: 0.8rem; opacity: 0.3; display: block; }
+
+.modal-overlay { position: fixed; inset: 0; background: rgba(2, 6, 23, 0.88); z-index: 1000; display: flex; align-items: center; justify-content: center; padding: 1rem; backdrop-filter: blur(12px); opacity: 0; pointer-events: none; transition: opacity 0.3s ease; }
+.modal-overlay.open { opacity: 1; pointer-events: all; }
+.modal-box { background: var(--card-bg); border: 1px solid rgba(33, 78, 165, 0.2); border-radius: 20px; width: 100%; max-width: 520px; padding: 2.5rem; position: relative; transform: translateY(30px) scale(0.97); transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1); box-shadow: 0 32px 80px rgba(0,0,0,0.15), 0 0 0 1px rgba(33, 78, 165, 0.05); }
+.modal-overlay.open .modal-box { transform: translateY(0) scale(1); }
+.modal-close { position: absolute; top: 1.2rem; right: 1.2rem; background: rgba(255,255,255,0.06); border: 1px solid var(--border); color: var(--text-muted); width: 34px; height: 34px; border-radius: 50%; cursor: pointer; font-size: 0.85rem; display: flex; align-items: center; justify-content: center; transition: all 0.2s; }
+.modal-close:hover { background: rgba(239,68,68,0.15); color: #ef4444; border-color: rgba(239,68,68,0.3); }
+.modal-header { margin-bottom: 2rem; }
+.modal-header h3 { font-size: 1.35rem; font-weight: 800; letter-spacing: -0.5px; margin-bottom: 0.4rem; }
+.modal-header p { color: var(--text-secondary); font-size: 0.875rem; line-height: 1.6; }
+.modal-header .modal-icon { width: 48px; height: 48px; border-radius: 12px; background: linear-gradient(135deg, rgba(74,108,247,0.2), rgba(21, 128, 61,0.15)); border: 1px solid rgba(74,108,247,0.3); display: flex; align-items: center; justify-content: center; font-size: 1.3rem; margin-bottom: 1.2rem; }
+.form-group { margin-bottom: 1.2rem; }
+.form-group label { display: block; font-size: 0.8rem; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0.5rem; }
+.form-group label span { color: #ef4444; margin-left: 2px; }
+.form-input, .form-textarea, .form-select { width: 100%; background: rgba(255,255,255,0.04); border: 1px solid var(--border); border-radius: 10px; color: var(--text-main); font-family: inherit; font-size: 0.9rem; padding: 12px 14px; transition: border-color 0.2s, box-shadow 0.2s; outline: none; resize: none; }
+.form-input:focus, .form-textarea:focus, .form-select:focus { border-color: var(--primary); box-shadow: 0 0 0 3px rgba(74,108,247,0.1); }
+.form-input::placeholder, .form-textarea::placeholder { color: var(--text-disabled); }
+.form-textarea { min-height: 100px; line-height: 1.6; }
+.form-select option { background: #0F172A; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+.star-rating-group { display: flex; flex-direction: column; gap: 0.5rem; }
+.star-rating-label { font-size: 0.8rem; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; }
+.star-rating-label span { color: #ef4444; margin-left: 2px; }
+.modal-footer { display: flex; gap: 0.8rem; margin-top: 1.8rem; }
+.btn-modal-cancel { flex: 1; padding: 12px; border-radius: 10px; font-size: 0.9rem; font-weight: 600; background: rgba(255,255,255,0.05); color: var(--text-secondary); border: 1px solid var(--border); cursor: pointer; transition: all 0.2s; }
+.btn-modal-cancel:hover { background: rgba(255,255,255,0.08); color: var(--text-main); }
+.btn-modal-submit { flex: 2; padding: 12px; border-radius: 10px; font-size: 0.9rem; font-weight: 700; background: var(--gradient); color: white; border: none; cursor: pointer; transition: all 0.3s; display: flex; align-items: center; justify-content: center; gap: 8px; }
+.btn-modal-submit:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(74,108,247,0.4); }
+.btn-modal-submit:disabled { opacity: 0.5; cursor: not-allowed; transform: none; box-shadow: none; }
+.char-counter { text-align: right; font-size: 0.72rem; color: var(--text-disabled); margin-top: 4px; }
+.char-counter.warn { color: #FFA500; }
+.char-counter.over { color: #ef4444; }
+
+.ats-section { padding: 6rem 2rem; background: var(--bg-main); }
+.ats-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
+.ats-content .section-sub { max-width: 100%; }
+.ats-checklist { margin-top: 2rem; display: flex; flex-direction: column; gap: 1rem; }
+.ats-item { display: flex; align-items: flex-start; gap: 12px; padding: 1rem 1.2rem; border-radius: 10px; background: var(--card-bg); border: 1px solid var(--border); transition: all 0.3s ease; }
+.ats-item:hover { border-color: var(--accent); transform: translateX(4px); }
+.ats-item i { color: var(--accent); margin-top: 2px; flex-shrink: 0; }
+.ats-item h4 { font-size: 0.9rem; font-weight: 700; margin-bottom: 2px; }
+.ats-item p { font-size: 0.8rem; color: var(--text-muted); line-height: 1.5; }
+.ats-visual { background: var(--card-bg); border: 1px solid var(--border); border-radius: 20px; padding: 2rem; position: relative; overflow: hidden; }
+.ats-visual::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at top right, rgba(21, 128, 61, 0.06), transparent 60%); }
+.ats-score-ring { width: 140px; height: 140px; margin: 0 auto 2rem; position: relative; display: flex; align-items: center; justify-content: center; }
+.ats-score-ring svg { position: absolute; inset: 0; transform: rotate(-90deg); }
+.ats-score-ring .score-text { text-align: center; z-index: 1; }
+.ats-score-ring .score-num { font-size: 2rem; font-weight: 800; background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; display: block; }
+.ats-score-ring .score-lbl { font-size: 0.65rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; }
+.ats-bars { display: flex; flex-direction: column; gap: 1rem; }
+.ats-bar-row { display: flex; flex-direction: column; gap: 5px; }
+.ats-bar-label { display: flex; justify-content: space-between; font-size: 0.78rem; }
+.ats-bar-label span:last-child { color: var(--accent); font-weight: 600; }
+.ats-bar-track { height: 6px; background: rgba(255, 255, 255, 0.06); border-radius: 10px; overflow: hidden; }
+.ats-bar-fill { height: 100%; border-radius: 10px; background: var(--gradient); transform: scaleX(0); transform-origin: left; animation: barGrow 1.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards; }
+@keyframes barGrow { to { transform: scaleX(1); } }
+
+.faq-section { padding: 6rem 2rem; background: var(--bg-section); }
+.faq-inner { max-width: 760px; margin: 0 auto; }
+.faq-header { text-align: center; margin-bottom: 3.5rem; }
+.faq-list { display: flex; flex-direction: column; gap: 0.8rem; }
+.faq-item { background: var(--card-bg); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; transition: all 0.3s ease; }
+.faq-item.open { border-color: rgba(74, 108, 247, 0.3); }
+.faq-q { padding: 1.2rem 1.5rem; cursor: pointer; display: flex; justify-content: space-between; align-items: center; font-size: 0.95rem; font-weight: 600; user-select: none; }
+.faq-q:hover { color: var(--accent); }
+.faq-q i { transition: transform 0.3s ease; color: var(--text-muted); font-size: 0.85rem; }
+.faq-item.open .faq-q i { transform: rotate(180deg); color: var(--accent); }
+.faq-a { max-height: 0; overflow: hidden; transition: max-height 0.4s ease, padding 0.3s ease; padding: 0 1.5rem; }
+.faq-a.open { max-height: 300px; padding: 0 1.5rem 1.2rem; }
+.faq-a p { color: var(--text-secondary); font-size: 0.875rem; line-height: 1.7; }
+
+.cta-section { padding: 6rem 2rem; background: var(--bg-main); }
+.cta-inner { max-width: 900px; margin: 0 auto; background: linear-gradient(135deg, rgba(33, 78, 165, 0.08), rgba(21, 128, 61, 0.05)); border: 1px solid rgba(33, 78, 165, 0.15); border-radius: 24px; padding: 4rem 3rem; text-align: center; position: relative; overflow: hidden; }
+.cta-inner::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at center, rgba(74, 108, 247, 0.08), transparent 70%); pointer-events: none; }
+.cta-inner h2 { font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 800; letter-spacing: -1.5px; margin-bottom: 1rem; }
+.cta-inner p { color: var(--text-secondary); font-size: 1rem; margin-bottom: 2.5rem; line-height: 1.7; }
+.cta-actions { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+.cta-trust { display: flex; align-items: center; justify-content: center; gap: 1.5rem; margin-top: 2rem; flex-wrap: wrap; }
+.cta-trust-item { display: flex; align-items: center; gap: 6px; font-size: 0.78rem; color: var(--text-muted); }
+.cta-trust-item i { color: var(--accent); }
+
+.site-footer { background: var(--primary); border-top: 1px solid rgba(255, 255, 255, 0.1); color: white; }
+.footer-main { max-width: 1200px; margin: 0 auto; padding: 4rem 2rem 3rem; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem; }
+.footer-brand .logo { font-size: 1.4rem; margin-bottom: 1rem; -webkit-text-fill-color: white; background: none; color: white !important; }
+.footer-brand p { color: rgba(255, 255, 255, 0.7); line-height: 1.7; margin-top: 1.2rem; font-size: 0.95rem; }
+.footer-social { display: flex; gap: 1rem; margin-top: 2rem; }
+.footer-social a { width: 40px; height: 40px; border-radius: 50%; background: rgba(255, 255, 255, 0.1); display: flex; align-items: center; justify-content: center; color: white; transition: all 0.3s ease; text-decoration: none; }
+.footer-social a:hover { background: white; color: var(--primary); transform: translateY(-3px); }
+.footer-col h4 { color: white; font-size: 1.1rem; font-weight: 700; margin-bottom: 1.8rem; }
+.footer-col a { display: block; color: rgba(255, 255, 255, 0.7); text-decoration: none; margin-bottom: 0.8rem; font-size: 0.9rem; transition: all 0.2s; }
+.footer-col a:hover { color: white; padding-left: 4px; }
+.footer-bottom { max-width: 1200px; margin: 0 auto; padding: 2rem 0; border-top: 1px solid rgba(255, 255, 255, 0.1); display: flex; justify-content: space-between; align-items: center; }
+.footer-bottom p { color: rgba(255, 255, 255, 0.5); font-size: 0.85rem; }
+.footer-brand-name { color: white; font-weight: 700; }
+.footer-badges { display: flex; gap: 1.5rem; }
+.footer-badge { display: flex; align-items: center; gap: 8px; font-size: 0.75rem; color: rgba(255, 255, 255, 0.8); background: rgba(255, 255, 255, 0.1); padding: 6px 12px; border-radius: 100px; }
+
+.reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.6s ease, transform 0.6s ease; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+@keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+
+.floating-badge { position: fixed; bottom: 2rem; left: 50%; transform: translateX(-50%); background: rgba(15, 23, 42, 0.92); border: 1px solid var(--border); backdrop-filter: blur(20px); border-radius: 100px; padding: 10px 20px; display: flex; align-items: center; gap: 10px; z-index: 50; transition: all 0.3s; opacity: 0; pointer-events: none; animation: badgeAppear 0.5s ease 2s forwards; }
+@keyframes badgeAppear { to { opacity: 1; pointer-events: auto; } }
+.floating-badge span { font-size: 0.8rem; color: var(--text-secondary); }
+.floating-badge strong { color: var(--text-main); }
+.floating-badge .fb-btn { background: var(--gradient); color: white; border: none; padding: 6px 16px; border-radius: 100px; font-size: 0.78rem; font-weight: 600; cursor: pointer; text-decoration: none; }
+
+.mobile-nav { display: none; position: fixed; inset: 0; z-index: 300; background: rgba(2, 6, 23, 0.97); flex-direction: column; align-items: center; justify-content: center; gap: 1.5rem; backdrop-filter: blur(20px); }
+.mobile-nav.open { display: flex; }
+.mobile-nav a { color: var(--text-main); font-size: 1.4rem; font-weight: 600; text-decoration: none; transition: color 0.2s; }
+.mobile-nav a:hover { color: var(--accent); }
+.mobile-nav-close { position: absolute; top: 1.5rem; right: 1.5rem; background: none; border: none; color: var(--text-muted); font-size: 1.5rem; cursor: pointer; }
+
+.toast { position: fixed; bottom: 30px; right: 30px; padding: 14px 24px; border-radius: 10px; font-size: 0.88rem; font-weight: 500; z-index: 3000; transform: translateY(100px); opacity: 0; transition: all 0.4s ease; display: flex; align-items: center; gap: 8px; }
+.toast.show { transform: translateY(0); opacity: 1; }
+.toast-success { background: rgba(21, 128, 61, 0.95); color: white; box-shadow: 0 8px 25px rgba(21, 128, 61, 0.3); }
+.toast-info { background: rgba(74, 108, 247, 0.95); color: white; box-shadow: 0 8px 25px rgba(74, 108, 247, 0.3); }
+.toast-warning { background: rgba(255, 165, 0, 0.95); color: white; box-shadow: 0 8px 25px rgba(255, 165, 0, 0.3); }
+.toast-error { background: rgba(239, 68, 68, 0.95); color: white; box-shadow: 0 8px 25px rgba(239, 68, 68, 0.3); }
+
+@keyframes cardPop { from { opacity: 0; transform: translateY(20px) scale(0.97); } to { opacity: 1; transform: translateY(0) scale(1); } }
+.testimonial-card.animate-in { animation: cardPop 0.45s cubic-bezier(0.34, 1.56, 0.64, 1) both; }
+
+@media (max-width: 1024px) {
+  .footer-main { grid-template-columns: 1fr 1fr; }
+  .footer-brand { grid-column: 1/-1; }
+  .ats-inner { grid-template-columns: 1fr; gap: 3rem; }
+  .features-showcase { grid-template-columns: 1fr; }
+  .feature-big { grid-row: span 1; }
+}
+@media (max-width: 768px) {
+  nav { display: none; }
+  .mobile-menu-btn { display: block; }
+  .hero { padding: 5rem 1.5rem 4rem; }
+  .hero h1 { letter-spacing: -1px; }
+  .steps-timeline::before { display: none; }
+  .steps-timeline { grid-template-columns: 1fr; gap: 1.5rem; }
+  .tiers-grid { grid-template-columns: 1fr; }
+  .footer-main { grid-template-columns: 1fr; gap: 2rem; }
+  .footer-bottom { flex-direction: column; text-align: center; }
+  .cta-inner { padding: 2.5rem 1.5rem; }
+  .floating-badge { display: none; }
+  .why-grid { grid-template-columns: 1fr; }
+  .form-row { grid-template-columns: 1fr; }
+  .modal-box { padding: 1.8rem 1.4rem; }
+}
+</style>
+</head>
+<body>
+
+<div class="mesh-bg">
+  <div class="mesh-orb mesh-orb-1"></div>
+  <div class="mesh-orb mesh-orb-2"></div>
+  <div class="mesh-orb mesh-orb-3"></div>
+</div>
+
+<!-- Path4Career SHARED NAVBAR -->
+<div id="navbar-root"></div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-eyebrow">Trusted by 50,000+ Job Seekers</div>
+  <h1>Land Your Dream Job<br> With a <span class="gradient-text">Standout Resume</span></h1>
+  <p>Path4Career gives you 90 professionally crafted templates, AI-powered editing, and one-click downloads in PDF, DOCX &amp; TXT — built to beat every ATS scanner.</p>
+  <div class="hero-actions">
+    <a href="./resume-builder-app.html" class="btn-primary"><i class="fas fa-rocket"></i> Build My Resume Free</a>
+    <a href="#templates" class="btn-outline"><i class="fas fa-eye"></i> Browse Templates</a>
+  </div>
+  <div class="hero-stats">
+    <div class="hero-stat"><div class="num">90</div><div class="lbl">Pro Templates</div></div>
+    <div class="stat-divider"></div>
+    <div class="hero-stat"><div class="num">4</div><div class="lbl">Export Formats</div></div>
+    <div class="stat-divider"></div>
+    <div class="hero-stat"><div class="num">3x</div><div class="lbl">More Interviews</div></div>
+    <div class="stat-divider"></div>
+    <div class="hero-stat"><div class="num">100%</div><div class="lbl">ATS Friendly</div></div>
+  </div>
+</section>
+
+<!-- WHY Path4Career -->
+<section class="why-section" id="why">
+  <div class="why-inner">
+    <div class="why-header reveal">
+      <div class="section-tag">Why Choose Us</div>
+      <h2 class="section-title">The Smartest Way to<br> <span class="gradient-text">Build Your Resume</span></h2>
+      <p class="section-sub">Recruiters spend just 6 seconds on a resume. Path4Career helps you make every second count.</p>
+    </div>
+    <div class="why-grid">
+      <div class="why-card reveal reveal-delay-1">
+        <div class="why-icon" style="background: rgba(33, 78, 165, 0.12); color: var(--primary);"><i class="fas fa-bolt"></i></div>
+        <h3>Ready in Minutes</h3>
+        <p>Upload your existing resume or start fresh. Our smart parser extracts your data from PDF, DOCX, DOC and TXT files automatically.</p>
+      </div>
+      <div class="why-card reveal reveal-delay-2">
+        <div class="why-icon" style="background: rgba(0, 184, 148, 0.12); color: var(--accent);"><i class="fas fa-shield-alt"></i></div>
+        <h3>ATS-Optimised</h3>
+        <p>All 90 templates are built to pass Applicant Tracking Systems used by 98% of Fortune 500 companies.</p>
+      </div>
+      <div class="why-card reveal reveal-delay-3">
+        <div class="why-icon" style="background: rgba(255, 165, 0, 0.15); color: #FFA500;"><i class="fas fa-paint-brush"></i></div>
+        <h3>Professional Designs</h3>
+        <p>Crafted by professional UI designers — every tier has a distinct, memorable visual identity.</p>
+      </div>
+      <div class="why-card reveal reveal-delay-1">
+        <div class="why-icon" style="background: rgba(239, 68, 68, 0.15); color: #ef4444;"><i class="fas fa-pencil-alt"></i></div>
+        <h3>Edit In-Browser</h3>
+        <p>Click any text in the live preview to edit it directly. Changes are saved instantly to your template.</p>
+      </div>
+      <div class="why-card reveal reveal-delay-2">
+        <div class="why-icon" style="background: rgba(139, 92, 246, 0.15); color: #a78bfa;"><i class="fas fa-download"></i></div>
+        <h3>4 Export Formats</h3>
+        <p>Download your finished resume as PDF, DOC/DOCX for Word, or plain-text TXT for maximum ATS compatibility.</p>
+      </div>
+      <div class="why-card reveal reveal-delay-3">
+        <div class="why-icon" style="background: rgba(20, 184, 166, 0.15); color: #2dd4bf;"><i class="fas fa-camera"></i></div>
+        <h3>Photo Support</h3>
+        <p>Premium templates include a dedicated photo upload area — perfect for markets where a professional photo is expected.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how-section" id="how">
+  <div class="how-inner">
+    <div class="how-header reveal">
+      <div class="section-tag">The Process</div>
+      <h2 class="section-title">From Blank Page to<br> <span class="gradient-text">Downloaded Resume</span> in 4 Steps</h2>
+      <p class="section-sub">Our streamlined workflow removes every bottleneck between you and your perfect resume.</p>
+    </div>
+    <div class="steps-timeline">
+      <div class="step-item">
+        <div class="step-num"><span class="step-badge">1</span><i class="fas fa-upload" style="color: var(--primary); font-size: 1.4rem;"></i></div>
+        <h3>Upload or Start Fresh</h3>
+        <p>Import your existing resume or begin with our polished default sample.</p>
+      </div>
+      <div class="step-item">
+        <div class="step-num"><span class="step-badge">2</span><i class="fas fa-th-large" style="color: var(--accent); font-size: 1.4rem;"></i></div>
+        <h3>Choose Your Template</h3>
+        <p>Browse 90 templates across Basic, Intermediate and Premium tiers.</p>
+      </div>
+      <div class="step-item">
+        <div class="step-num"><span class="step-badge">3</span><i class="fas fa-edit" style="color: #FFA500; font-size: 1.4rem;"></i></div>
+        <h3>Edit &amp; Personalise</h3>
+        <p>Click any text element in the live preview to edit it inline.</p>
+      </div>
+      <div class="step-item">
+        <div class="step-num"><span class="step-badge">4</span><i class="fas fa-file-download" style="color: #a78bfa; font-size: 1.4rem;"></i></div>
+        <h3>Download &amp; Apply</h3>
+        <p>Export as PDF, DOCX, DOC or TXT. Your resume is ready in seconds.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TEMPLATE TIERS -->
+<section class="tiers-section" id="templates">
+  <div class="tiers-inner">
+    <div class="tiers-header reveal">
+      <div class="section-tag">Template Tiers</div>
+      <h2 class="section-title">Every Career Stage,<br> <span class="gradient-text">Perfectly Covered</span></h2>
+      <p class="section-sub">Whether you're a fresh graduate or a seasoned executive, we have the right template.</p>
+    </div>
+    <div class="tiers-grid">
+      <!-- BASIC -->
+      <div class="tier-card basic reveal reveal-delay-1">
+        <div class="tier-header">
+          <div class="tier-badge badge-basic-t"><i class="fas fa-star"></i> Basic</div>
+          <h3>Clean &amp; Timeless</h3>
+          <p class="tier-sub">30 classic layouts optimised for clarity and universal readability.</p>
+          <div class="tier-count"><span>30</span> templates included</div>
+        </div>
+        <div class="tier-preview">
+          <div class="tier-preview-inner">
+            <div class="mock-line name"></div>
+            <div class="mock-line contact" style="background:#ccc;height:5px;width:60%;margin-bottom:12px;"></div>
+            <div class="mock-line section-head" style="background:#2c3e50;"></div>
+            <div class="mock-line body w-80"></div><div class="mock-line body w-65"></div><div class="mock-line body w-90"></div>
+            <div class="mock-line section-head" style="background:#2c3e50;"></div>
+            <div class="mock-line body w-80"></div><div class="mock-line body w-65"></div>
+          </div>
+        </div>
+        <div class="tier-features">
+          <div class="tier-feature"><i class="fas fa-check-circle" style="color:var(--accent);"></i><span>Single-column &amp; sidebar layouts</span></div>
+          <div class="tier-feature"><i class="fas fa-check-circle" style="color:var(--accent);"></i><span>Classic, Minimal, Elegant, Bold Dark styles</span></div>
+          <div class="tier-feature"><i class="fas fa-check-circle" style="color:var(--accent);"></i><span>High ATS compatibility</span></div>
+          <div class="tier-feature"><i class="fas fa-check-circle" style="color:var(--accent);"></i><span>Best for: entry-level, corporate roles</span></div>
+        </div>
+        <div class="tier-footer">
+          <a href="./resume-builder-app.html" class="tier-btn tier-btn-basic" onclick="goToCategory('basic')">
+            <i class="fas fa-star"></i> Explore Basic Templates
+          </a>
+        </div>
+      </div>
+
+      <!-- INTERMEDIATE -->
+      <div class="tier-card intermediate reveal reveal-delay-2">
+        <div class="tier-header">
+          <div class="tier-badge badge-inter-t"><i class="fas fa-gem"></i> Intermediate</div>
+          <h3>Modern &amp; Distinctive</h3>
+          <p class="tier-sub">30 enhanced layouts with stronger visual hierarchy and accent colours.</p>
+          <div class="tier-count"><span>30</span> templates included</div>
+        </div>
+        <div class="tier-preview">
+          <div class="tier-preview-inner">
+            <div style="border-left:5px solid #2980b9;padding-left:12px;">
+              <div class="mock-line name" style="background:#2980b9;width:50%;"></div>
+              <div class="mock-line contact" style="background:#ccc;height:5px;width:65%;margin-bottom:12px;"></div>
+            </div>
+            <div class="mock-line section-head" style="background:#2980b9;"></div>
+            <div class="mock-line body w-80"></div><div class="mock-line body w-65"></div>
+            <div class="mock-line section-head" style="background:#2980b9;"></div>
+            <div class="mock-line body w-90"></div>
+          </div>
+        </div>
+        <div class="tier-features">
+          <div class="tier-feature"><i class="fas fa-check-circle" style="color:#FFA500;"></i><span>Professional, Creative, Executive, Tech styles</span></div>
+          <div class="tier-feature"><i class="fas fa-check-circle" style="color:#FFA500;"></i><span>Timeline, Grid, Sleek &amp; Corporate layouts</span></div>
+          <div class="tier-feature"><i class="fas fa-check-circle" style="color:#FFA500;"></i><span>Colour-coded sections &amp; border accents</span></div>
+          <div class="tier-feature"><i class="fas fa-check-circle" style="color:#FFA500;"></i><span>Best for: tech, design, marketing roles</span></div>
+        </div>
+        <div class="tier-footer">
+          <a href="./resume-builder-app.html" class="tier-btn tier-btn-inter" onclick="goToCategory('intermediate')">
+            <i class="fas fa-gem"></i> Explore Intermediate Templates
+          </a>
+        </div>
+      </div>
+
+      <!-- PREMIUM -->
+      <div class="tier-card premium reveal reveal-delay-3">
+        <div class="tier-header">
+          <div class="tier-badge badge-prem-t"><i class="fas fa-crown"></i> Premium</div>
+          <h3>Stunning &amp; Unforgettable</h3>
+          <p class="tier-sub">30 high-impact designs with gradient headers, dark side bars, and photo upload support.</p>
+          <div class="tier-count"><span>30</span> templates included</div>
+        </div>
+        <div class="tier-preview">
+          <div class="tier-preview-inner" style="padding:0;overflow:hidden;">
+            <div style="background:linear-gradient(135deg,#667eea,#764ba2);padding:18px;display:flex;align-items:center;gap:12px;">
+              <div style="width:32px;height:32px;border-radius:50%;background:rgba(255,255,255,0.3);flex-shrink:0;"></div>
+              <div>
+                <div class="mock-line" style="background:rgba(255,255,255,0.9);width:100px;height:7px;border-radius:3px;margin-bottom:5px;"></div>
+                <div class="mock-line" style="background:rgba(255,255,255,0.4);width:70px;height:4px;border-radius:3px;"></div>
+              </div>
+            </div>
+            <div style="padding:14px 16px;">
+              <div class="mock-line section-head" style="background:#764ba2;"></div>
+              <div class="mock-line body w-80"></div><div class="mock-line body w-65"></div>
+            </div>
+          </div>
+        </div>
+        <div class="tier-features">
+          <div class="tier-feature"><i class="fas fa-check-circle" style="color:#FFD700;"></i><span>Photo upload for head shot integration</span></div>
+          <div class="tier-feature"><i class="fas fa-check-circle" style="color:#FFD700;"></i><span>Gradient headers, dark themes, split layouts</span></div>
+          <div class="tier-feature"><i class="fas fa-check-circle" style="color:#FFD700;"></i><span>Cyber Dark, Banner, Warm Sunset &amp; more</span></div>
+          <div class="tier-feature"><i class="fas fa-check-circle" style="color:#FFD700;"></i><span>Best for: executives, creative, senior leaders</span></div>
+        </div>
+        <div class="tier-footer">
+          <a href="./resume-builder-app.html" class="tier-btn tier-btn-prem" onclick="goToCategory('premium')">
+            <i class="fas fa-crown"></i> Explore Premium Templates
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="features-section" id="features">
+  <div class="features-inner">
+    <div class="features-header reveal">
+      <div class="section-tag">Key Features</div>
+      <h2 class="section-title">Everything You Need,<br> <span class="gradient-text">Nothing You Don't</span></h2>
+      <p class="section-sub">Purpose-built tools that remove friction from every step of the resume-building process.</p>
+    </div>
+    <div class="features-showcase">
+      <div class="feature-big reveal">
+        <div class="feature-icon" style="background:rgba(74,108,247,0.15);color:var(--primary);font-size:1.6rem;"><i class="fas fa-file-import"></i></div>
+        <h3>Smart Multi-Format Upload</h3>
+        <p>Stop re-typing everything. Upload your current resume in any common format and Path4Career automatically extracts your data.</p>
+        <div class="feature-visual">
+          <p style="font-size:0.75rem;color:var(--text-muted);margin-bottom:10px;font-weight:600;text-transform:uppercase;letter-spacing:1px;">Accepted upload formats</p>
+          <div class="fv-formats">
+            <div class="fv-fmt pdf"><i class="fas fa-file-pdf"></i> PDF</div>
+            <div class="fv-fmt docx"><i class="fas fa-file-word"></i> DOCX</div>
+            <div class="fv-fmt doc"><i class="fas fa-file-word"></i> DOC</div>
+            <div class="fv-fmt txt"><i class="fas fa-file-alt"></i> TXT</div>
+          </div>
+          <div style="margin-top:14px;padding:10px 14px;background:rgba(21, 128, 61,0.06);border:1px solid rgba(21, 128, 61,0.15);border-radius:8px;display:flex;align-items:center;gap:8px;">
+            <i class="fas fa-check-circle" style="color:var(--accent);"></i>
+            <span style="font-size:0.78rem;color:var(--text-secondary);">Automatically extracts: Name, Email, Phone, Location, Summary, Experience, Education, Skills</span>
+          </div>
+        </div>
+      </div>
+      <div class="feature-small reveal reveal-delay-1">
+        <div class="feature-icon" style="background:rgba(21, 128, 61,0.15);color:var(--accent);"><i class="fas fa-pencil-alt"></i></div>
+        <h3>Live In-Browser Editing</h3>
+        <p>Click the Edit button in any preview to make every text element content editable. Edit directly on the styled resume.</p>
+      </div>
+      <div class="feature-small reveal reveal-delay-2">
+        <div class="feature-icon" style="background:rgba(255,165,0,0.15);color:#FFA500;"><i class="fas fa-save"></i></div>
+        <h3>Per-Template Save State</h3>
+        <p>Every template independently saves its own version of your content. Experiment with multiple layouts freely.</p>
+      </div>
+      <div class="feature-big reveal reveal-delay-1">
+        <div class="feature-icon" style="background:rgba(139,92,246,0.15);color:#a78bfa;font-size:1.6rem;"><i class="fas fa-download"></i></div>
+        <h3>4-Format Download Engine</h3>
+        <p>Choose the format that fits your application: PDF, DOCX/DOC, or plain TXT for maximum ATS compatibility.</p>
+        <div class="feature-visual">
+          <div style="display:flex;flex-direction:column;gap:8px;">
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 12px;background:rgba(239,68,68,0.08);border:1px solid rgba(239,68,68,0.2);border-radius:8px;">
+              <span style="display:flex;align-items:center;gap:8px;font-size:0.82rem;"><i class="fas fa-file-pdf" style="color:#ef4444;"></i> <strong>PDF</strong></span>
+              <span style="font-size:0.72rem;color:var(--text-muted);">Best for printing &amp; applications</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 12px;background:rgba(59,130,246,0.08);border:1px solid rgba(59,130,246,0.2);border-radius:8px;">
+              <span style="display:flex;align-items:center;gap:8px;font-size:0.82rem;"><i class="fas fa-file-word" style="color:#3b82f6;"></i> <strong>DOC / DOCX</strong></span>
+              <span style="font-size:0.72rem;color:var(--text-muted);">For Word-compatible recruiters</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 12px;background:rgba(139,92,246,0.08);border:1px solid rgba(139,92,246,0.2);border-radius:8px;">
+              <span style="display:flex;align-items:center;gap:8px;font-size:0.82rem;"><i class="fas fa-file-alt" style="color:#a78bfa;"></i> <strong>TXT</strong></span>
+              <span style="font-size:0.72rem;color:var(--text-muted);">Plain text — ATS safe</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ATS SECTION -->
+<section class="ats-section">
+  <div class="ats-inner">
+    <div class="ats-content reveal">
+      <div class="section-tag">ATS Compatibility</div>
+      <h2 class="section-title">Built to Beat<br> <span class="gradient-text">Every Algorithm</span></h2>
+      <p class="section-sub">Over 75% of resumes are rejected by ATS before a human reads them. Every Path4Career template is engineered to pass these filters.</p>
+      <div class="ats-checklist">
+        <div class="ats-item"><i class="fas fa-heading"></i><div><h4>Semantic HTML Headings</h4><p>Correct h1/h2/h3 hierarchy ensures ATS parsers correctly identify sections.</p></div></div>
+        <div class="ats-item"><i class="fas fa-font"></i><div><h4>Standard, Readable Fonts</h4><p>System-safe fonts only — no icon fonts or decorative typefaces.</p></div></div>
+        <div class="ats-item"><i class="fas fa-list-ul"></i><div><h4>Clean Bullet-Point Structure</h4><p>Properly marked-up elements that parse cleanly into every ATS database.</p></div></div>
+        <div class="ats-item"><i class="fas fa-table"></i><div><h4>No Tables or Text Boxes</h4><p>Zero use of CSS tables, frames or positioned text boxes.</p></div></div>
+      </div>
+    </div>
+    <div class="ats-visual reveal reveal-delay-2">
+      <p style="font-size:0.72rem;text-transform:uppercase;letter-spacing:1.5px;color:var(--text-muted);text-align:center;margin-bottom:1.5rem;font-weight:700;">ATS Compatibility Score</p>
+      <div class="ats-score-ring">
+        <svg viewBox="0 0 140 140" fill="none">
+          <circle cx="70" cy="70" r="58" stroke="rgba(255,255,255,0.06)" stroke-width="12"/>
+          <circle cx="70" cy="70" r="58" stroke="url(#g1)" stroke-width="12" stroke-linecap="round" stroke-dasharray="364" stroke-dashoffset="36" style="animation:drawRing 1.5s ease 0.3s both;"/>
+          <defs><linearGradient id="g1" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#4A6CF7"/><stop offset="100%" stop-color="#15803D"/></linearGradient></defs>
+        </svg>
+        <div class="score-text"><span class="score-num">98%</span><span class="score-lbl">ATS Pass Rate</span></div>
+      </div>
+      <div class="ats-bars">
+        <div class="ats-bar-row"><div class="ats-bar-label"><span>Keyword Recognition</span><span>97%</span></div><div class="ats-bar-track"><div class="ats-bar-fill" style="width:97%;animation-delay:0.4s;"></div></div></div>
+        <div class="ats-bar-row"><div class="ats-bar-label"><span>Section Parsing</span><span>99%</span></div><div class="ats-bar-track"><div class="ats-bar-fill" style="width:99%;animation-delay:0.6s;"></div></div></div>
+        <div class="ats-bar-row"><div class="ats-bar-label"><span>Contact Extraction</span><span>100%</span></div><div class="ats-bar-track"><div class="ats-bar-fill" style="width:100%;animation-delay:0.8s;"></div></div></div>
+        <div class="ats-bar-row"><div class="ats-bar-label"><span>Format Compatibility</span><span>95%</span></div><div class="ats-bar-track"><div class="ats-bar-fill" style="width:95%;animation-delay:1s;"></div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- FAQ -->
+<section class="faq-section" id="faq">
+  <div class="faq-inner">
+    <div class="faq-header reveal">
+      <div class="section-tag">FAQ</div>
+      <h2 class="section-title">Questions <span class="gradient-text">Answered</span></h2>
+      <p class="section-sub" style="margin:0 auto;">Everything you need to know about building your resume with Path4Career.</p>
+    </div>
+    <div class="faq-list">
+      <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">Is Path4Career completely free to use?<i class="fas fa-chevron-down"></i></div><div class="faq-a"><p>Yes — all 90 templates, the in-browser editor, file upload, and all 4 download formats are free to use.</p></div></div>
+      <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">What file formats can I upload?<i class="fas fa-chevron-down"></i></div><div class="faq-a"><p>Path4Career accepts PDF (text-based), DOCX, DOC and plain TXT files. Our smart parser extracts your data automatically.</p></div></div>
+      <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">What is the difference between template tiers?<i class="fas fa-chevron-down"></i></div><div class="faq-a"><p>Basic (30) — clean traditional layouts. Intermediate (30) — stronger visual identity with colour accents. Premium (30) — gradient headers, dark sidebars and photo upload support.</p></div></div>
+      <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">How does inline editing work?<i class="fas fa-chevron-down"></i></div><div class="faq-a"><p>Click the Edit button in any template preview. Every text element becomes directly editable. Click Save when done.</p></div></div>
+      <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">Which download format should I use?<i class="fas fa-chevron-down"></i></div><div class="faq-a"><p>PDF for visually perfect copies, DOCX/DOC for editable Word documents, TXT for large ATS portals that strip formatting.</p></div></div>
+      <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">Can I add a professional photo?<i class="fas fa-chevron-down"></i></div><div class="faq-a"><p>Yes — all 30 Premium templates include a photo upload area. Click the camera placeholder to upload your headshot.</p></div></div>
+      <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">Do I need to create an account?<i class="fas fa-chevron-down"></i></div><div class="faq-a"><p>You can preview all templates without an account. Sign in to unlock editing, upload, and download features.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BANNER -->
+<section class="cta-section">
+  <div class="cta-inner reveal">
+    <div class="section-tag" style="justify-content:center;">Ready to Get Started</div>
+    <h2>Your Next Job is One<br> <span class="gradient-text">Perfect Resume Away</span></h2>
+    <p>Join thousands of professionals who've already upgraded their resume with Path4Career.</p>
+    <div class="cta-actions">
+      <a href="./resume-builder-app.html" class="btn-primary" style="font-size:1.05rem;padding:15px 36px;"><i class="fas fa-rocket"></i> Build My Resume Now — Free</a>
+      <a href="./resume-builder-app.html" class="btn-outline" style="font-size:1.05rem;padding:15px 32px;"><i class="fas fa-th-large"></i> See All 90 Templates</a>
+    </div>
+    <div class="cta-trust">
+      <div class="cta-trust-item"><i class="fas fa-check-circle"></i> No credit card required</div>
+      <div class="cta-trust-item"><i class="fas fa-check-circle"></i> Instant access to all templates</div>
+      <div class="cta-trust-item"><i class="fas fa-check-circle"></i> Download in 4 formats</div>
+      <div class="cta-trust-item"><i class="fas fa-check-circle"></i> ATS-optimised templates</div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div class="footer-main">
+    <div class="footer-brand">
+      <a href="../index.html" class="logo" style="display:inline-flex;margin-bottom:1rem;"><img src="../assets/images/path4career-icon.png" alt="Path4Career" style="width: 32px; height: 32px; margin-right: 8px;"> Path<span>4Career</span></a>
+      <p>The smartest way to build, customise and download a professional resume. 90 templates, 4 export formats, 100% ATS compatibility.</p>
+      <div class="footer-social">
+        <a href="#"><i class="fab fa-twitter"></i></a>
+        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+        <a href="#"><i class="fab fa-github"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Templates</h4>
+      <a href="./resume-builder-app.html" onclick="goToCategory('basic')">Basic (30)</a>
+      <a href="./resume-builder-app.html" onclick="goToCategory('intermediate')">Intermediate (30)</a>
+      <a href="./resume-builder-app.html" onclick="goToCategory('premium')">Premium (30)</a>
+      <a href="./resume-builder-app.html">All Templates</a>
+    </div>
+    <div class="footer-col">
+      <h4>Features</h4>
+      <a href="#features">Resume Upload</a>
+      <a href="#features">Inline Editing</a>
+      <a href="#features">PDF Download</a>
+      <a href="#features">ATS Checker</a>
+    </div>
+    <div class="footer-col">
+      <h4>Company</h4>
+      <a href="#">About Us</a>
+      <a href="#">Blog</a>
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms of Service</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 <span class="footer-brand-name">Path4Career</span>. All rights reserved.</p>
+    <div class="footer-badges">
+      <div class="footer-badge"><i class="fas fa-shield-alt"></i> ATS Safe</div>
+      <div class="footer-badge"><i class="fas fa-lock"></i> Secure</div>
+      <div class="footer-badge"><i class="fas fa-star"></i> Free</div>
+    </div>
+  </div>
+</footer>
+
+
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+
+
+<script src="../assets/js/navbar.js"></script>
+<script>
+// ==========================================
+// CATEGORY REDIRECT HELPER
+// ==========================================
+function goToCategory(cat) {
+  localStorage.setItem('openCategory', cat);
+}
+
+// ==========================================
+// TOAST
+// ==========================================
+function showToast(message, type = "success") {
+  const toast = document.getElementById("toast");
+  toast.className = `toast toast-${type}`;
+  const icons = { success:"fa-check-circle", warning:"fa-exclamation-triangle", info:"fa-info-circle", error:"fa-times-circle" };
+  toast.innerHTML = `<i class="fas ${icons[type]||icons.info}"></i> ${message}`;
+  toast.classList.add("show");
+  setTimeout(() => toast.classList.remove("show"), 3800);
+}
+
+// ==========================================
+// SCROLL REVEAL
+// ==========================================
+const revealObs = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('visible'); revealObs.unobserve(e.target); }});
+}, { threshold: 0.12 });
+document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
+
+const stepObs = new IntersectionObserver((entries) => {
+  entries.forEach((e,i) => { if(e.isIntersecting){ setTimeout(()=>e.target.classList.add('visible'),i*120); stepObs.unobserve(e.target);}});
+}, { threshold: 0.15 });
+document.querySelectorAll('.step-item').forEach((el,i) => { el.style.transitionDelay=`s`; stepObs.observe(el); });
+
+// ==========================================
+// FAQ
+// ==========================================
+function toggleFaq(el) {
+  const item = el.parentElement;
+  const answer = item.querySelector('.faq-a');
+  const isOpen = item.classList.contains('open');
+  document.querySelectorAll('.faq-item').forEach(i=>{ i.classList.remove('open'); i.querySelector('.faq-a').classList.remove('open'); });
+  if(!isOpen){ item.classList.add('open'); answer.classList.add('open'); }
+}
+
+// ==========================================
+// SMOOTH ANCHOR SCROLL
+// ==========================================
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const href = a.getAttribute('href');
+    if(href==='#') return;
+    const target = document.querySelector(href);
+    if(target){ e.preventDefault(); target.scrollIntoView({behavior:'smooth',block:'start'}); }
+  });
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,631 @@
+/* ==========================================
+   UNIVERSAL EDITOR UI (editor.css)
+   Synced with Tutorial Page Theme
+   ========================================== */
+
+:root {
+    /* === Editor Theme Variables (Tutorial-Matched) === */
+    --editor-bg: #FDFAF6;
+    --editor-header-bg: #F8FAFC;
+    --editor-header-border: #15803D;
+    --editor-pane-bg: #FFFFFF;
+    --editor-pane-alt-bg: #F8FAFC;
+    --editor-label-bg: #F1F5F9;
+    --editor-label-text: #64748B;
+    --editor-label-border: rgba(0, 0, 0, 0.08);
+    --editor-border: rgba(0, 0, 0, 0.08);
+    --editor-border-strong: #E2E8F0;
+    --editor-text: #334155;
+    --editor-text-heading: #020617;
+    --editor-code-text: #1e293b;
+    --editor-btn-bg: #15803D;
+    --editor-btn-hover: #15803D;
+    --editor-btn-text: #FFFFFF;
+    --editor-accent: #15803D;
+    --editor-primary: #214EA5;
+    --editor-primary-hover: #1c4491;
+
+    /* === Syntax Highlighting Token Colors === */
+    --syntax-default: #1e293b;
+    --syntax-keyword: #214EA5;
+    --syntax-string: #15803D;
+    --syntax-number: #9333ea;
+    --syntax-function: #ea580c;
+    --syntax-comment: #64748b;
+    --syntax-tag: #0ea5e9;
+    --syntax-attribute: #f59e0b;
+    --syntax-property: #0284c7;
+    --syntax-value: #15803D;
+
+    /* Console/Terminal (kept slightly dark for authenticity) */
+    --editor-console-bg: #1a1a2e;
+    --editor-console-text: #e2e8f0;
+
+    /* Badge / secondary accent */
+    --editor-badge-bg: rgba(22, 101, 52, 0.1);
+    --editor-badge-text: #15803D;
+    --editor-badge-border: #15803D;
+
+    /* Logo */
+    --editor-logo-bg: #15803D;
+    --editor-logo-text: #FFFFFF;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    font-family: 'Inter', sans-serif;
+    background-color: var(--editor-bg);
+    color: var(--editor-text);
+}
+
+/* --- NAVBAR / HEADER --- */
+.editor-nav,
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 30px;
+    background-color: var(--editor-header-bg);
+    border-bottom: 2px solid var(--editor-header-border);
+    color: var(--editor-text-heading);
+}
+
+.editor-nav h2,
+.header h2 {
+    margin: 0;
+    font-size: 24px;
+    color: var(--editor-text-heading);
+}
+
+/* Logo Area */
+.logo-area {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.logo-icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    object-fit: contain;
+    display: block;
+}
+
+.logo-text {
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--editor-text-heading);
+}
+
+.title-badge {
+    background: var(--editor-badge-bg);
+    color: var(--editor-badge-text);
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 14px;
+    border: 1px solid var(--editor-badge-border);
+}
+
+/* --- RUN BUTTON --- */
+.run-btn {
+    background-color: var(--editor-btn-bg);
+    color: var(--editor-btn-text);
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(16, 185, 129, 0.2);
+}
+
+.run-btn:hover:not(:disabled) {
+    background-color: var(--editor-btn-hover);
+    box-shadow: 0 4px 16px rgba(16, 185, 129, 0.3);
+    transform: translateY(-1px);
+}
+
+.run-btn:disabled {
+    background-color: #CBD5E1;
+    color: #94A3B8;
+    cursor: not-allowed;
+    box-shadow: none;
+    transform: none;
+}
+
+/* --- WORKSPACE & PANES --- */
+.workspace {
+    display: flex;
+    flex: 1;
+    height: 100%;
+    overflow: hidden;
+}
+
+/* Left Pane (Code) */
+.editor-pane {
+    flex: 1;
+    background-color: var(--editor-pane-bg);
+    padding: 20px;
+    border-right: 1px solid var(--editor-border-strong);
+    display: flex;
+    flex-direction: column;
+    min-width: 300px;
+}
+
+/* Stacked code boxes (CSS editor, etc.) */
+.code-box {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.code-box:first-child {
+    border-bottom: 1px solid var(--editor-border-strong);
+}
+
+.pane-label {
+    background-color: var(--editor-label-bg);
+    padding: 10px 20px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--editor-label-text);
+    border-bottom: 1px solid var(--editor-label-border);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Shared Textarea Styling */
+textarea {
+    flex: 1;
+    width: 100%;
+    background-color: var(--editor-pane-alt-bg);
+    color: var(--syntax-default);
+    font-family: 'Fira Code', 'Courier New', Courier, monospace;
+    font-size: 15px;
+    padding: 20px;
+    border: none;
+    resize: none;
+    outline: none;
+    line-height: 1.6;
+    tab-size: 4;
+    caret-color: var(--syntax-keyword);
+}
+
+/* Right Pane (Results) */
+.result-pane {
+    flex: 1;
+    background-color: #FFFFFF;
+    display: flex;
+    flex-direction: column;
+    color: #000;
+    overflow-y: auto;
+    min-width: 300px;
+}
+
+.result-pane .pane-label {
+    background-color: #EFF6FF;
+    color: var(--editor-primary);
+    border-bottom: 1px solid #DBEAFE;
+}
+
+/* Shared iFrame Styling */
+iframe {
+    flex: 1;
+    width: 100%;
+    height: 100%;
+    border: none;
+    background-color: #FFFFFF;
+}
+
+/* --- CONSOLE OUTPUT PANEL --- */
+.console-output {
+    flex: 1;
+    background-color: var(--editor-console-bg);
+    display: flex;
+    flex-direction: column;
+}
+
+.console-output .pane-label {
+    background-color: #0f172a;
+    color: #94a3b8;
+    border-bottom: 1px solid #334155;
+}
+
+#consoleDiv {
+    flex: 1;
+    padding: 10px 20px;
+    font-family: 'Fira Code', 'Courier New', Courier, monospace;
+    overflow-y: auto;
+    color: var(--editor-console-text);
+    font-size: 14px;
+    white-space: pre-wrap;
+    background-color: var(--editor-console-bg);
+}
+
+/* --- LOG LINE COLORS --- */
+.log-line { padding: 4px 0; border-bottom: 1px solid rgba(255,255,255,0.08); }
+.log-error { color: #EF4444; }
+.log-normal { color: #15803D; }
+.log-loading { color: #214EA5; font-style: italic; }
+.log-info { color: #F59E0B; }
+.log-warn, .log-warning { color: #F59E0B; }
+.log-command { color: #8B5CF6; }
+.log-output { color: #e2e8f0; }
+.log-success { color: #15803D; }
+.log-table { color: #8B5CF6; }
+.log-column { color: #EC4899; }
+.log-system { color: #214EA5; font-style: italic; }
+.log-input-echo { color: #15803D; font-weight: bold; }
+
+/* --- VISUAL OUTPUT (split pane editors like JS) --- */
+.visual-output {
+    flex: 1;
+    background-color: #FFFFFF;
+    display: flex;
+    flex-direction: column;
+    border-bottom: 1px solid var(--editor-border-strong);
+}
+
+.visual-output .pane-label {
+    background-color: #EFF6FF;
+    color: var(--editor-primary);
+    border-bottom: 1px solid #DBEAFE;
+}
+
+/* --- PREVIEW FRAME (jQuery, Django, Bootstrap) --- */
+.preview-frame {
+    flex: 1;
+    width: 100%;
+    height: 100%;
+    border: none;
+    background-color: #FFFFFF;
+}
+
+/* --- OUTPUT LABEL --- */
+.output-label {
+    padding: 10px 20px 0;
+    color: var(--editor-label-text);
+    text-transform: uppercase;
+    font-size: 11px;
+    letter-spacing: 1px;
+    font-weight: bold;
+    background-color: var(--editor-label-bg);
+    margin: 0;
+}
+
+/* --- OUTPUT FRAME (Bootstrap) --- */
+.output-frame {
+    flex: 1;
+    background-color: #FFFFFF;
+    display: flex;
+    flex-direction: column;
+}
+
+/* --- XML-SPECIFIC OUTPUT --- */
+.xml-output {
+    flex: 1;
+    background-color: var(--editor-console-bg);
+    display: flex;
+    flex-direction: column;
+}
+
+#outputDiv {
+    flex: 1;
+    padding: 10px 20px;
+    font-family: 'Fira Code', 'Courier New', Courier, monospace;
+    overflow-y: auto;
+    color: var(--editor-console-text);
+    font-size: 14px;
+    white-space: pre-wrap;
+}
+
+.xml-tag { color: #EC4899; }
+.xml-attr { color: #15803D; }
+.xml-value { color: #F59E0B; }
+.xml-text { color: #e2e8f0; }
+.xml-error { color: #EF4444; }
+.xml-success { color: #15803D; }
+
+/* --- TERMINAL HEADER (Git) --- */
+.terminal-header {
+    background-color: #0f172a;
+    padding: 8px 20px;
+    border-bottom: 1px solid #334155;
+    color: #e2e8f0;
+    font-size: 12px;
+}
+
+/* --- NODE.JS BADGE --- */
+.node-badge {
+    background-color: #15803D;
+    color: #FFFFFF;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    margin-left: 10px;
+}
+
+/* --- TERMINAL INPUT (Python) --- */
+.terminal-input {
+    background: transparent;
+    border: none;
+    outline: none;
+    color: #15803D;
+    font-family: 'Fira Code', monospace;
+    font-size: 15px;
+    font-weight: bold;
+    width: 60%;
+    padding: 0;
+    margin: 0;
+}
+
+.terminal-input:focus {
+    outline: none;
+}
+
+/* --- STATUS INDICATOR --- */
+.status-dot {
+    color: var(--editor-accent);
+    font-size: 11px;
+}
+
+/* --- MOBILE: CODE / OUTPUT TABS --- */
+@media (max-width: 768px) {
+    .workspace {
+        flex-direction: column;
+        overflow-y: auto;
+    }
+
+    .editor-nav,
+    .header {
+        padding: 10px 16px;
+        flex-direction: column;
+        gap: 12px;
+        text-align: center;
+    }
+
+    .editor-nav h2,
+    .header h2 {
+        font-size: 18px;
+    }
+
+    .run-btn {
+        padding: 8px 14px;
+        font-size: 14px;
+        width: 100%;
+    }
+
+    .editor-pane {
+        padding: 12px;
+        border-right: none;
+        border-bottom: 1px solid var(--editor-border-strong);
+        flex: none;
+        height: 50vh;
+        min-width: unset;
+    }
+
+    .result-pane {
+        flex: none;
+        height: 50vh;
+        min-width: unset;
+    }
+
+    .pane-label {
+        font-size: 11px;
+        margin-bottom: 6px;
+    }
+
+    textarea {
+        font-size: 14px;
+    }
+
+    .mobile-editor-tabs {
+        display: flex;
+        border-bottom: 1px solid var(--editor-border-strong);
+    }
+
+    .mobile-editor-tab-btn {
+        flex: 1;
+        padding: 10px 12px;
+        background: var(--editor-label-bg);
+        border: none;
+        color: var(--editor-label-text);
+        font-size: 13px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        cursor: pointer;
+        transition: all 0.2s;
+    }
+
+    .mobile-editor-tab-btn.active {
+        background: var(--editor-pane-bg);
+        color: var(--editor-text-heading);
+        border-bottom: 2px solid var(--editor-accent);
+    }
+
+    .mobile-hidden {
+        display: none !important;
+    }
+
+    /* Console / output adjustments */
+    #consoleDiv,
+    #outputDiv {
+        font-size: 13px;
+        padding: 8px 14px;
+    }
+}
+
+/* --- VERY SMALL MOBILE (≤480px) --- */
+@media (max-width: 480px) {
+    .editor-nav,
+    .header {
+        padding: 8px 12px;
+    }
+
+    .editor-nav h2,
+    .header h2 {
+        font-size: 15px;
+    }
+
+    .run-btn {
+        padding: 6px 10px;
+        font-size: 13px;
+    }
+
+    .editor-pane {
+        padding: 8px;
+    }
+
+    textarea {
+        font-size: 13px;
+    }
+
+    .mobile-editor-tab-btn {
+        padding: 8px 8px;
+        font-size: 12px;
+    }
+}
+
+/* === SYNTAX HIGHLIGHTING TOKEN COLORS === */
+/* For pre/code blocks, CodeMirror, Monaco, and any syntax-highlighted output */
+
+pre code,
+.code-editor pre,
+.example-code pre {
+    color: var(--syntax-default);
+}
+
+/* --- Generic Token Classes --- */
+.token-keyword, .cm-keyword, .mtk6  { color: var(--syntax-keyword) !important; }
+.token-string, .cm-string, .mtk5   { color: var(--syntax-string) !important; }
+.token-number, .cm-number, .mtk7   { color: var(--syntax-number) !important; }
+.token-function, .cm-def, .mtk12   { color: var(--syntax-function) !important; }
+.token-comment, .cm-comment, .mtk1 { color: var(--syntax-comment) !important; font-style: italic; }
+.token-tag, .cm-tag, .mtk4         { color: var(--syntax-tag) !important; }
+.token-attribute, .cm-attribute, .mtk3 { color: var(--syntax-attribute) !important; }
+.token-property, .cm-property, .mtk10 { color: var(--syntax-property) !important; }
+.token-value, .cm-atom, .mtk11     { color: var(--syntax-value) !important; }
+.token-operator, .cm-operator       { color: var(--syntax-keyword) !important; }
+.token-punctuation, .cm-bracket      { color: var(--syntax-default) !important; }
+.token-type, .cm-type, .cm-builtin   { color: var(--syntax-tag) !important; }
+.token-variable, .cm-variable        { color: var(--syntax-default) !important; }
+.token-variable-2, .cm-variable-2    { color: var(--syntax-property) !important; }
+
+/* --- CodeMirror Editor Override (if used) --- */
+.CodeMirror {
+    color: var(--syntax-default) !important;
+}
+
+/* --- Monaco Editor Override (if used) --- */
+.monaco-editor,
+.monaco-editor .view-lines {
+    color: var(--syntax-default) !important;
+}
+
+/* === SPECIAL COMPONENT STYLES === */
+
+/* --- Nav Actions (Git, etc.) --- */
+.nav-actions {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+/* --- Reset Button (Git, SQL) --- */
+.reset-btn,
+.reset-db-btn {
+    background: transparent;
+    border: 1px solid #EF4444;
+    color: #EF4444;
+    padding: 6px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 600;
+    transition: all 0.2s ease;
+}
+
+.reset-btn:hover,
+.reset-db-btn:hover {
+    background: #EF4444;
+    color: #FFFFFF;
+}
+
+/* --- SQL Table Styles --- */
+.sql-table-container {
+    overflow-x: auto;
+    margin-bottom: 25px;
+    border-radius: 8px;
+    border: 1px solid var(--editor-border-strong);
+}
+
+.sql-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+    text-align: left;
+    background: var(--editor-pane-bg);
+}
+
+.sql-table th {
+    background: var(--editor-label-bg);
+    color: var(--editor-accent);
+    padding: 12px 15px;
+    border-bottom: 2px solid var(--editor-accent);
+    font-weight: 600;
+}
+
+.sql-table td {
+    padding: 10px 15px;
+    border-bottom: 1px solid var(--editor-border-strong);
+    color: var(--editor-text);
+}
+
+.sql-table tr:hover {
+    background: rgba(16, 185, 129, 0.05);
+}
+
+.table-title {
+    color: var(--editor-text-heading);
+    margin-top: 15px;
+    margin-bottom: 10px;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+/* --- Status Text (in pane-label spans) --- */
+.pane-label .status-text {
+    color: var(--editor-accent);
+    font-size: 11px;
+    font-weight: 500;
+}
+
+/* --- Mobile: Nav Actions --- */
+@media (max-width: 768px) {
+    .nav-actions {
+        width: 100%;
+        flex-direction: column;
+    }
+
+    .nav-actions .run-btn,
+    .nav-actions .reset-btn {
+        width: 100%;
+    }
+}

@@ -1,0 +1,2253 @@
+{
+  "sections": [
+    {
+      "id": "data-types",
+      "columns": [
+        "TYPE",
+        "DESCRIPTION",
+        "SIZE / HEADER"
+      ],
+      "rows": [
+        {
+          "property": "bool",
+          "desc": "Boolean type; true or false",
+          "version": "1 byte"
+        },
+        {
+          "property": "char",
+          "desc": "Single character / small integer (signed or unsigned)",
+          "version": "1 byte"
+        },
+        {
+          "property": "wchar_t",
+          "desc": "Wide character for Unicode (platform-dependent size)",
+          "version": "2–4 bytes"
+        },
+        {
+          "property": "char8_t",
+          "desc": "UTF-8 character type (C++20)",
+          "version": "1 byte / C++20"
+        },
+        {
+          "property": "char16_t",
+          "desc": "UTF-16 character type (C++11)",
+          "version": "2 bytes / C++11"
+        },
+        {
+          "property": "char32_t",
+          "desc": "UTF-32 character type (C++11)",
+          "version": "4 bytes / C++11"
+        },
+        {
+          "property": "short",
+          "desc": "Short signed integer",
+          "version": "2 bytes"
+        },
+        {
+          "property": "int",
+          "desc": "Standard signed integer",
+          "version": "4 bytes"
+        },
+        {
+          "property": "long",
+          "desc": "Long signed integer",
+          "version": "4 or 8 bytes"
+        },
+        {
+          "property": "long long",
+          "desc": "64-bit signed integer (C++11)",
+          "version": "8 bytes"
+        },
+        {
+          "property": "unsigned int",
+          "desc": "Unsigned integer; range 0 to 4294967295",
+          "version": "4 bytes"
+        },
+        {
+          "property": "float",
+          "desc": "Single precision floating point",
+          "version": "4 bytes"
+        },
+        {
+          "property": "double",
+          "desc": "Double precision floating point",
+          "version": "8 bytes"
+        },
+        {
+          "property": "long double",
+          "desc": "Extended precision floating point",
+          "version": "10–16 bytes"
+        },
+        {
+          "property": "void",
+          "desc": "No type — used for generic pointers and functions returning nothing",
+          "version": "—"
+        },
+        {
+          "property": "auto",
+          "desc": "Type deduced automatically by compiler from initialiser (C++11)",
+          "version": "C++11"
+        },
+        {
+          "property": "decltype(expr)",
+          "desc": "Deduces type of expression without evaluating it (C++11)",
+          "version": "C++11"
+        },
+        {
+          "property": "std::string",
+          "desc": "Dynamic string class from standard library",
+          "version": "<string>"
+        },
+        {
+          "property": "std::string_view",
+          "desc": "Non-owning read-only view of string (C++17)",
+          "version": "<string_view>"
+        },
+        {
+          "property": "size_t",
+          "desc": "Unsigned type for sizes; returned by sizeof",
+          "version": "<cstddef>"
+        },
+        {
+          "property": "ptrdiff_t",
+          "desc": "Signed type for pointer differences",
+          "version": "<cstddef>"
+        },
+        {
+          "property": "int8_t",
+          "desc": "Exact 8-bit signed integer (C++11)",
+          "version": "<cstdint>"
+        },
+        {
+          "property": "uint8_t",
+          "desc": "Exact 8-bit unsigned integer (C++11)",
+          "version": "<cstdint>"
+        },
+        {
+          "property": "int32_t",
+          "desc": "Exact 32-bit signed integer (C++11)",
+          "version": "<cstdint>"
+        },
+        {
+          "property": "int64_t",
+          "desc": "Exact 64-bit signed integer (C++11)",
+          "version": "<cstdint>"
+        },
+        {
+          "property": "nullptr_t",
+          "desc": "Type of nullptr constant (C++11)",
+          "version": "<cstddef>"
+        },
+        {
+          "property": "std::byte",
+          "desc": "Type representing a raw byte, not a character or integer (C++17)",
+          "version": "<cstddef>"
+        }
+      ],
+      "title": "Data Types",
+      "type": "table"
+    },
+    {
+      "id": "operators",
+      "columns": [
+        "OPERATOR",
+        "DESCRIPTION",
+        "EXAMPLE"
+      ],
+      "rows": [
+        {
+          "property": "+",
+          "desc": "Addition",
+          "version": "a + b"
+        },
+        {
+          "property": "-",
+          "desc": "Subtraction",
+          "version": "a - b"
+        },
+        {
+          "property": "*",
+          "desc": "Multiplication / pointer dereference",
+          "version": "a * b / *ptr"
+        },
+        {
+          "property": "/",
+          "desc": "Division (integer division if both operands are int)",
+          "version": "a / b"
+        },
+        {
+          "property": "%",
+          "desc": "Modulus — remainder after integer division",
+          "version": "a % b"
+        },
+        {
+          "property": "++",
+          "desc": "Increment by 1 (prefix ++a or postfix a++)",
+          "version": "++a / a++"
+        },
+        {
+          "property": "--",
+          "desc": "Decrement by 1 (prefix --a or postfix a--)",
+          "version": "--a / a--"
+        },
+        {
+          "property": "==",
+          "desc": "Equality comparison",
+          "version": "a == b"
+        },
+        {
+          "property": "!=",
+          "desc": "Inequality comparison",
+          "version": "a != b"
+        },
+        {
+          "property": "<=>",
+          "desc": "Three-way (spaceship) comparison; returns ordering (C++20)",
+          "version": "a <=> b"
+        },
+        {
+          "property": ">",
+          "desc": "Greater than",
+          "version": "a > b"
+        },
+        {
+          "property": "<",
+          "desc": "Less than",
+          "version": "a < b"
+        },
+        {
+          "property": ">=",
+          "desc": "Greater than or equal to",
+          "version": "a >= b"
+        },
+        {
+          "property": "<=",
+          "desc": "Less than or equal to",
+          "version": "a <= b"
+        },
+        {
+          "property": "&&",
+          "desc": "Logical AND (short-circuit)",
+          "version": "a && b"
+        },
+        {
+          "property": "||",
+          "desc": "Logical OR (short-circuit)",
+          "version": "a || b"
+        },
+        {
+          "property": "!",
+          "desc": "Logical NOT",
+          "version": "!a"
+        },
+        {
+          "property": "&",
+          "desc": "Bitwise AND / address-of",
+          "version": "a & b / &x"
+        },
+        {
+          "property": "|",
+          "desc": "Bitwise OR",
+          "version": "a | b"
+        },
+        {
+          "property": "^",
+          "desc": "Bitwise XOR",
+          "version": "a ^ b"
+        },
+        {
+          "property": "~",
+          "desc": "Bitwise NOT (one's complement)",
+          "version": "~a"
+        },
+        {
+          "property": "<<",
+          "desc": "Left bit shift / stream insertion operator",
+          "version": "a << 2 / cout << x"
+        },
+        {
+          "property": ">>",
+          "desc": "Right bit shift / stream extraction operator",
+          "version": "a >> 2 / cin >> x"
+        },
+        {
+          "property": "=",
+          "desc": "Assignment",
+          "version": "a = 5"
+        },
+        {
+          "property": "+=",
+          "desc": "Add and assign",
+          "version": "a += 3"
+        },
+        {
+          "property": "-=",
+          "desc": "Subtract and assign",
+          "version": "a -= 3"
+        },
+        {
+          "property": "*=",
+          "desc": "Multiply and assign",
+          "version": "a *= 3"
+        },
+        {
+          "property": "/=",
+          "desc": "Divide and assign",
+          "version": "a /= 3"
+        },
+        {
+          "property": "%=",
+          "desc": "Modulus and assign",
+          "version": "a %= 3"
+        },
+        {
+          "property": "? :",
+          "desc": "Ternary conditional operator",
+          "version": "a > b ? a : b"
+        },
+        {
+          "property": "&",
+          "desc": "Address-of — returns address of variable",
+          "version": "&var"
+        },
+        {
+          "property": "->",
+          "desc": "Member access through pointer",
+          "version": "ptr->x"
+        },
+        {
+          "property": ".",
+          "desc": "Member access on object directly",
+          "version": "obj.x"
+        },
+        {
+          "property": "[]",
+          "desc": "Subscript — array index or operator overload",
+          "version": "arr[i]"
+        },
+        {
+          "property": "sizeof",
+          "desc": "Size in bytes of type or expression (compile-time)",
+          "version": "sizeof(int)"
+        },
+        {
+          "property": "sizeof...",
+          "desc": "Size of parameter pack (C++11)",
+          "version": "sizeof...(Args)"
+        },
+        {
+          "property": "new",
+          "desc": "Allocates memory on heap; calls constructor",
+          "version": "new int(5)"
+        },
+        {
+          "property": "delete",
+          "desc": "Frees heap memory; calls destructor",
+          "version": "delete ptr"
+        },
+        {
+          "property": "delete[]",
+          "desc": "Frees heap array; calls destructors",
+          "version": "delete[] arr"
+        },
+        {
+          "property": "typeid",
+          "desc": "Returns type_info of expression at runtime",
+          "version": "typeid(x).name()"
+        },
+        {
+          "property": "dynamic_cast<T>",
+          "desc": "Safe runtime downcast for polymorphic types",
+          "version": "dynamic_cast<Derived*>(ptr)"
+        },
+        {
+          "property": "static_cast<T>",
+          "desc": "Compile-time type conversion",
+          "version": "static_cast<int>(3.7)"
+        },
+        {
+          "property": "reinterpret_cast<T>",
+          "desc": "Reinterprets bit pattern as another type",
+          "version": "reinterpret_cast<char*>(ptr)"
+        },
+        {
+          "property": "const_cast<T>",
+          "desc": "Adds or removes const qualifier",
+          "version": "const_cast<int*>(cptr)"
+        },
+        {
+          "property": "::",
+          "desc": "Scope resolution operator",
+          "version": "std::cout"
+        }
+      ],
+      "title": "Operators",
+      "type": "table"
+    },
+    {
+      "id": "control-flow",
+      "columns": [
+        "STATEMENT",
+        "DESCRIPTION",
+        "STANDARD"
+      ],
+      "rows": [
+        {
+          "property": "if",
+          "desc": "Executes block if condition is true",
+          "version": "C++98"
+        },
+        {
+          "property": "if...else",
+          "desc": "Executes else block when condition is false",
+          "version": "C++98"
+        },
+        {
+          "property": "else if",
+          "desc": "Chains additional conditions",
+          "version": "C++98"
+        },
+        {
+          "property": "if constexpr (cond)",
+          "desc": "Compile-time conditional — branch discarded if false (C++17)",
+          "version": "C++17"
+        },
+        {
+          "property": "if (init; cond)",
+          "desc": "If with initialiser in condition scope (C++17)",
+          "version": "C++17"
+        },
+        {
+          "property": "switch",
+          "desc": "Multi-way branch on integer or enum expression",
+          "version": "C++98"
+        },
+        {
+          "property": "[[fallthrough]]",
+          "desc": "Attribute: intentional fall-through in switch (C++17)",
+          "version": "C++17"
+        },
+        {
+          "property": "for",
+          "desc": "Loop with initialiser, condition, and increment",
+          "version": "C++98"
+        },
+        {
+          "property": "range-based for",
+          "desc": "for (auto& x : container) — iterate over range (C++11)",
+          "version": "C++11"
+        },
+        {
+          "property": "while",
+          "desc": "Repeats block while condition is true",
+          "version": "C++98"
+        },
+        {
+          "property": "do...while",
+          "desc": "Executes block at least once then checks condition",
+          "version": "C++98"
+        },
+        {
+          "property": "break",
+          "desc": "Exits innermost loop or switch",
+          "version": "C++98"
+        },
+        {
+          "property": "continue",
+          "desc": "Skips to next loop iteration",
+          "version": "C++98"
+        },
+        {
+          "property": "return",
+          "desc": "Exits function and optionally returns a value",
+          "version": "C++98"
+        },
+        {
+          "property": "goto",
+          "desc": "Unconditional jump to labelled statement (avoid in C++)",
+          "version": "C++98"
+        },
+        {
+          "property": "[[likely]] / [[unlikely]]",
+          "desc": "Branch prediction hints for optimiser (C++20)",
+          "version": "C++20"
+        }
+      ],
+      "title": "Control Flow",
+      "type": "table"
+    },
+    {
+      "id": "arrays-strings",
+      "columns": [
+        "SYNTAX / METHOD",
+        "DESCRIPTION",
+        "HEADER"
+      ],
+      "rows": [
+        {
+          "property": "int arr[5]",
+          "desc": "C-style array of 5 integers (avoid in modern C++)",
+          "version": "—"
+        },
+        {
+          "property": "std::array<int,5> arr",
+          "desc": "Fixed-size stack array with bounds checking (C++11)",
+          "version": "<array>"
+        },
+        {
+          "property": "arr.size()",
+          "desc": "Returns number of elements",
+          "version": "<array>"
+        },
+        {
+          "property": "arr.at(i)",
+          "desc": "Bounds-checked element access; throws std::out_of_range",
+          "version": "<array>"
+        },
+        {
+          "property": "arr.fill(val)",
+          "desc": "Fills all elements with val",
+          "version": "<array>"
+        },
+        {
+          "property": "std::string s = \"hello\"",
+          "desc": "Construct string from string literal",
+          "version": "<string>"
+        },
+        {
+          "property": "s.length() / s.size()",
+          "desc": "Returns number of characters in string",
+          "version": "<string>"
+        },
+        {
+          "property": "s.empty()",
+          "desc": "Returns true if string is empty",
+          "version": "<string>"
+        },
+        {
+          "property": "s.clear()",
+          "desc": "Erases all characters",
+          "version": "<string>"
+        },
+        {
+          "property": "s.append(str)",
+          "desc": "Appends str to end of string",
+          "version": "<string>"
+        },
+        {
+          "property": "s += str",
+          "desc": "Concatenate and assign",
+          "version": "<string>"
+        },
+        {
+          "property": "s.substr(pos, len)",
+          "desc": "Returns substring of len chars starting at pos",
+          "version": "<string>"
+        },
+        {
+          "property": "s.find(str)",
+          "desc": "Returns index of first occurrence; string::npos if not found",
+          "version": "<string>"
+        },
+        {
+          "property": "s.rfind(str)",
+          "desc": "Returns index of last occurrence",
+          "version": "<string>"
+        },
+        {
+          "property": "s.replace(pos, len, str)",
+          "desc": "Replaces len chars from pos with str",
+          "version": "<string>"
+        },
+        {
+          "property": "s.erase(pos, len)",
+          "desc": "Removes len characters starting at pos",
+          "version": "<string>"
+        },
+        {
+          "property": "s.insert(pos, str)",
+          "desc": "Inserts str at position pos",
+          "version": "<string>"
+        },
+        {
+          "property": "s.compare(str)",
+          "desc": "Lexicographic compare; 0=equal, <0 or >0 otherwise",
+          "version": "<string>"
+        },
+        {
+          "property": "s.c_str()",
+          "desc": "Returns const char* (C-style null-terminated string)",
+          "version": "<string>"
+        },
+        {
+          "property": "s.at(i)",
+          "desc": "Bounds-checked character access",
+          "version": "<string>"
+        },
+        {
+          "property": "s[i]",
+          "desc": "Unchecked character access",
+          "version": "<string>"
+        },
+        {
+          "property": "s.front() / s.back()",
+          "desc": "First / last character reference",
+          "version": "<string>"
+        },
+        {
+          "property": "s.push_back(c)",
+          "desc": "Appends character to end",
+          "version": "<string>"
+        },
+        {
+          "property": "s.pop_back()",
+          "desc": "Removes last character (C++11)",
+          "version": "<string>"
+        },
+        {
+          "property": "std::to_string(val)",
+          "desc": "Converts numeric value to string",
+          "version": "<string>"
+        },
+        {
+          "property": "std::stoi(str)",
+          "desc": "Converts string to int",
+          "version": "<string>"
+        },
+        {
+          "property": "std::stod(str)",
+          "desc": "Converts string to double",
+          "version": "<string>"
+        },
+        {
+          "property": "std::stol(str)",
+          "desc": "Converts string to long",
+          "version": "<string>"
+        },
+        {
+          "property": "std::getline(cin, str)",
+          "desc": "Reads entire line including spaces into string",
+          "version": "<string>"
+        },
+        {
+          "property": "std::string_view sv = s",
+          "desc": "Non-owning view into string — no allocation (C++17)",
+          "version": "<string_view>"
+        }
+      ],
+      "title": "Arrays & Strings",
+      "type": "table"
+    },
+    {
+      "id": "pointers-refs",
+      "columns": [
+        "SYNTAX / CONCEPT",
+        "DESCRIPTION",
+        "EXAMPLE"
+      ],
+      "rows": [
+        {
+          "property": "int *ptr",
+          "desc": "Raw pointer to int",
+          "version": "int *p = &x;"
+        },
+        {
+          "property": "&variable",
+          "desc": "Address-of operator",
+          "version": "ptr = &x;"
+        },
+        {
+          "property": "*ptr",
+          "desc": "Dereference pointer — access value at address",
+          "version": "*ptr = 10;"
+        },
+        {
+          "property": "nullptr",
+          "desc": "Null pointer constant (C++11); prefer over NULL",
+          "version": "ptr = nullptr;"
+        },
+        {
+          "property": "int &ref",
+          "desc": "Lvalue reference — alias for an existing variable",
+          "version": "int &r = x;"
+        },
+        {
+          "property": "int &&rref",
+          "desc": "Rvalue reference — binds to temporary (C++11)",
+          "version": "int &&r = 5;"
+        },
+        {
+          "property": "const int &ref",
+          "desc": "Const reference — read-only alias; can bind to temporary",
+          "version": "const int &r = x;"
+        },
+        {
+          "property": "std::unique_ptr<T>",
+          "desc": "Exclusive-ownership smart pointer; auto-deletes on scope exit",
+          "version": "<memory>"
+        },
+        {
+          "property": "std::make_unique<T>()",
+          "desc": "Safely creates unique_ptr (C++14)",
+          "version": "<memory>"
+        },
+        {
+          "property": "std::shared_ptr<T>",
+          "desc": "Shared-ownership smart pointer with reference counting",
+          "version": "<memory>"
+        },
+        {
+          "property": "std::make_shared<T>()",
+          "desc": "Efficiently creates shared_ptr",
+          "version": "<memory>"
+        },
+        {
+          "property": "std::weak_ptr<T>",
+          "desc": "Non-owning observer of shared_ptr; prevents circular refs",
+          "version": "<memory>"
+        },
+        {
+          "property": "ptr.get()",
+          "desc": "Returns raw pointer from smart pointer",
+          "version": "<memory>"
+        },
+        {
+          "property": "ptr.reset()",
+          "desc": "Releases ownership; deletes object if unique",
+          "version": "<memory>"
+        },
+        {
+          "property": "ptr.release()",
+          "desc": "Releases ownership without deleting; returns raw pointer",
+          "version": "<memory>"
+        },
+        {
+          "property": "std::move(x)",
+          "desc": "Casts to rvalue reference to enable move semantics (C++11)",
+          "version": "<utility>"
+        },
+        {
+          "property": "std::forward<T>(x)",
+          "desc": "Perfect forwarding in templates (C++11)",
+          "version": "<utility>"
+        },
+        {
+          "property": "void *ptr",
+          "desc": "Generic pointer to any type; must cast before use",
+          "version": "void *p = &x;"
+        }
+      ],
+      "title": "Pointers & References",
+      "type": "table"
+    },
+    {
+      "id": "functions",
+      "columns": [
+        "SYNTAX / CONCEPT",
+        "DESCRIPTION",
+        "STANDARD"
+      ],
+      "rows": [
+        {
+          "property": "RetType name(params)",
+          "desc": "Function definition",
+          "version": "C++98"
+        },
+        {
+          "property": "RetType name(params);",
+          "desc": "Function declaration / prototype",
+          "version": "C++98"
+        },
+        {
+          "property": "auto name(params) -> RetType",
+          "desc": "Trailing return type syntax (C++11)",
+          "version": "C++11"
+        },
+        {
+          "property": "void name() = delete",
+          "desc": "Explicitly deletes function — disables generation",
+          "version": "C++11"
+        },
+        {
+          "property": "void name() = default",
+          "desc": "Explicitly requests compiler-generated default",
+          "version": "C++11"
+        },
+        {
+          "property": "inline",
+          "desc": "Hints compiler to inline function body",
+          "version": "C++98"
+        },
+        {
+          "property": "constexpr",
+          "desc": "Evaluates function at compile time if possible (C++11)",
+          "version": "C++11"
+        },
+        {
+          "property": "consteval",
+          "desc": "Guarantees compile-time evaluation only (C++20)",
+          "version": "C++20"
+        },
+        {
+          "property": "[[nodiscard]]",
+          "desc": "Warns if return value is discarded (C++17)",
+          "version": "C++17"
+        },
+        {
+          "property": "[[noreturn]]",
+          "desc": "Declares function never returns to caller (C++11)",
+          "version": "C++11"
+        },
+        {
+          "property": "Default argument",
+          "desc": "void f(int x = 10) — used when arg not provided",
+          "version": "C++98"
+        },
+        {
+          "property": "Function overloading",
+          "desc": "Multiple functions with same name, different signatures",
+          "version": "C++98"
+        },
+        {
+          "property": "Pass by value",
+          "desc": "Copy of argument passed; original unchanged",
+          "version": "C++98"
+        },
+        {
+          "property": "Pass by reference",
+          "desc": "void f(int &x) — original variable modified directly",
+          "version": "C++98"
+        },
+        {
+          "property": "Pass by const ref",
+          "desc": "void f(const T &x) — no copy, no modification",
+          "version": "C++98"
+        },
+        {
+          "property": "Lambda expression",
+          "desc": "[capture](params) -> ret { body } (C++11)",
+          "version": "C++11"
+        },
+        {
+          "property": "[=] capture",
+          "desc": "Capture all local vars by value",
+          "version": "C++11"
+        },
+        {
+          "property": "[&] capture",
+          "desc": "Capture all local vars by reference",
+          "version": "C++11"
+        },
+        {
+          "property": "std::function<R(Args)>",
+          "desc": "Type-erased callable wrapper (C++11)",
+          "version": "<functional>"
+        },
+        {
+          "property": "Template function",
+          "desc": "template<typename T> T max(T a, T b)",
+          "version": "C++98"
+        },
+        {
+          "property": "Variadic template",
+          "desc": "template<typename... Args> void f(Args... args)",
+          "version": "C++11"
+        },
+        {
+          "property": "Recursive function",
+          "desc": "Function that calls itself; needs base case",
+          "version": "C++98"
+        }
+      ],
+      "title": "Functions",
+      "type": "table"
+    },
+    {
+      "id": "oop",
+      "columns": [
+        "KEYWORD / CONCEPT",
+        "DESCRIPTION",
+        "STANDARD"
+      ],
+      "rows": [
+        {
+          "property": "class",
+          "desc": "Declares class; members private by default",
+          "version": "C++98"
+        },
+        {
+          "property": "struct",
+          "desc": "Like class but members public by default",
+          "version": "C++98"
+        },
+        {
+          "property": "public",
+          "desc": "Member accessible from anywhere",
+          "version": "C++98"
+        },
+        {
+          "property": "private",
+          "desc": "Member accessible only within class",
+          "version": "C++98"
+        },
+        {
+          "property": "protected",
+          "desc": "Member accessible within class and subclasses",
+          "version": "C++98"
+        },
+        {
+          "property": "this",
+          "desc": "Pointer to current object instance",
+          "version": "C++98"
+        },
+        {
+          "property": "new",
+          "desc": "Allocates on heap and calls constructor",
+          "version": "C++98"
+        },
+        {
+          "property": "delete",
+          "desc": "Calls destructor and frees heap memory",
+          "version": "C++98"
+        },
+        {
+          "property": "Constructor",
+          "desc": "ClassName() — called when object is created",
+          "version": "C++98"
+        },
+        {
+          "property": "Destructor",
+          "desc": "~ClassName() — called when object is destroyed",
+          "version": "C++98"
+        },
+        {
+          "property": "Copy constructor",
+          "desc": "ClassName(const ClassName &) — copies another object",
+          "version": "C++98"
+        },
+        {
+          "property": "Move constructor",
+          "desc": "ClassName(ClassName &&) — transfers resources (C++11)",
+          "version": "C++11"
+        },
+        {
+          "property": "Copy assignment",
+          "desc": "operator=(const ClassName &) — copy-assigns object",
+          "version": "C++98"
+        },
+        {
+          "property": "Move assignment",
+          "desc": "operator=(ClassName &&) — move-assigns object (C++11)",
+          "version": "C++11"
+        },
+        {
+          "property": "Rule of Five",
+          "desc": "Define destructor, copy/move constructor, copy/move assignment together",
+          "version": "C++11"
+        },
+        {
+          "property": "Rule of Zero",
+          "desc": "Use smart pointers/RAII; let compiler generate all five",
+          "version": "C++11"
+        },
+        {
+          "property": "Operator overloading",
+          "desc": "operator+(const T&) — redefine operator behaviour",
+          "version": "C++98"
+        },
+        {
+          "property": "friend",
+          "desc": "Grants another class/function access to private members",
+          "version": "C++98"
+        },
+        {
+          "property": "static member",
+          "desc": "Belongs to class not instances; shared across all objects",
+          "version": "C++98"
+        },
+        {
+          "property": "const member function",
+          "desc": "void f() const — does not modify object state",
+          "version": "C++98"
+        },
+        {
+          "property": "mutable",
+          "desc": "Allows member to be modified even in const function",
+          "version": "C++98"
+        },
+        {
+          "property": "virtual",
+          "desc": "Enables runtime polymorphism via vtable dispatch",
+          "version": "C++98"
+        },
+        {
+          "property": "pure virtual",
+          "desc": "virtual void f() = 0 — makes class abstract",
+          "version": "C++98"
+        },
+        {
+          "property": "override",
+          "desc": "Verifies method overrides a virtual function (C++11)",
+          "version": "C++11"
+        },
+        {
+          "property": "final",
+          "desc": "Prevents further overriding or inheritance (C++11)",
+          "version": "C++11"
+        },
+        {
+          "property": "abstract class",
+          "desc": "Class with at least one pure virtual method; cannot instantiate",
+          "version": "C++98"
+        },
+        {
+          "property": "Inheritance",
+          "desc": "class Derived : public Base",
+          "version": "C++98"
+        },
+        {
+          "property": "Multiple inheritance",
+          "desc": "class C : public A, public B",
+          "version": "C++98"
+        },
+        {
+          "property": "virtual inheritance",
+          "desc": "Resolves diamond problem in multiple inheritance",
+          "version": "C++98"
+        },
+        {
+          "property": "Polymorphism",
+          "desc": "Base* ptr = new Derived() — runtime dispatch via virtual",
+          "version": "C++98"
+        },
+        {
+          "property": "RAII",
+          "desc": "Resource Acquisition Is Initialisation — tie resource to object lifetime",
+          "version": "C++98"
+        },
+        {
+          "property": "explicit",
+          "desc": "Prevents implicit conversion of constructor",
+          "version": "C++98"
+        },
+        {
+          "property": "namespace",
+          "desc": "Groups related identifiers to avoid name collisions",
+          "version": "C++98"
+        },
+        {
+          "property": "using namespace std",
+          "desc": "Imports all std names into current scope",
+          "version": "C++98"
+        },
+        {
+          "property": "template<typename T>",
+          "desc": "Generic class or function parameterised by type",
+          "version": "C++98"
+        },
+        {
+          "property": "enum class",
+          "desc": "Scoped enum — values not implicitly converted to int (C++11)",
+          "version": "C++11"
+        }
+      ],
+      "title": "OOP Keywords & Concepts",
+      "type": "table"
+    },
+    {
+      "id": "stl-containers",
+      "columns": [
+        "CONTAINER / METHOD",
+        "DESCRIPTION",
+        "HEADER"
+      ],
+      "rows": [
+        {
+          "property": "std::vector<T>",
+          "desc": "Dynamic array; contiguous memory; O(1) amortised push_back",
+          "version": "<vector>"
+        },
+        {
+          "property": "v.push_back(val)",
+          "desc": "Appends element to end",
+          "version": "<vector>"
+        },
+        {
+          "property": "v.pop_back()",
+          "desc": "Removes last element",
+          "version": "<vector>"
+        },
+        {
+          "property": "v.emplace_back(args)",
+          "desc": "Constructs element in-place at end (C++11)",
+          "version": "<vector>"
+        },
+        {
+          "property": "v.insert(it, val)",
+          "desc": "Inserts val before iterator position",
+          "version": "<vector>"
+        },
+        {
+          "property": "v.erase(it)",
+          "desc": "Removes element at iterator position",
+          "version": "<vector>"
+        },
+        {
+          "property": "v.size()",
+          "desc": "Returns number of elements",
+          "version": "<vector>"
+        },
+        {
+          "property": "v.capacity()",
+          "desc": "Returns allocated storage capacity",
+          "version": "<vector>"
+        },
+        {
+          "property": "v.reserve(n)",
+          "desc": "Pre-allocates memory for n elements",
+          "version": "<vector>"
+        },
+        {
+          "property": "v.resize(n)",
+          "desc": "Resizes to n elements",
+          "version": "<vector>"
+        },
+        {
+          "property": "v.clear()",
+          "desc": "Removes all elements",
+          "version": "<vector>"
+        },
+        {
+          "property": "v.at(i)",
+          "desc": "Bounds-checked element access",
+          "version": "<vector>"
+        },
+        {
+          "property": "v.front() / v.back()",
+          "desc": "First / last element reference",
+          "version": "<vector>"
+        },
+        {
+          "property": "std::list<T>",
+          "desc": "Doubly-linked list; O(1) insert/erase anywhere",
+          "version": "<list>"
+        },
+        {
+          "property": "std::deque<T>",
+          "desc": "Double-ended queue; O(1) push/pop at both ends",
+          "version": "<deque>"
+        },
+        {
+          "property": "std::stack<T>",
+          "desc": "LIFO container adaptor (default: deque)",
+          "version": "<stack>"
+        },
+        {
+          "property": "s.push(val)",
+          "desc": "Pushes element onto stack",
+          "version": "<stack>"
+        },
+        {
+          "property": "s.pop()",
+          "desc": "Removes top element",
+          "version": "<stack>"
+        },
+        {
+          "property": "s.top()",
+          "desc": "Returns reference to top element",
+          "version": "<stack>"
+        },
+        {
+          "property": "std::queue<T>",
+          "desc": "FIFO container adaptor",
+          "version": "<queue>"
+        },
+        {
+          "property": "q.push(val)",
+          "desc": "Enqueues element at back",
+          "version": "<queue>"
+        },
+        {
+          "property": "q.pop()",
+          "desc": "Removes front element",
+          "version": "<queue>"
+        },
+        {
+          "property": "q.front() / q.back()",
+          "desc": "Front / back element reference",
+          "version": "<queue>"
+        },
+        {
+          "property": "std::priority_queue<T>",
+          "desc": "Max-heap priority queue by default",
+          "version": "<queue>"
+        },
+        {
+          "property": "std::map<K,V>",
+          "desc": "Ordered key-value pairs (red-black tree); O(log n) ops",
+          "version": "<map>"
+        },
+        {
+          "property": "std::unordered_map<K,V>",
+          "desc": "Hash table map; O(1) average get/put (C++11)",
+          "version": "<unordered_map>"
+        },
+        {
+          "property": "m.insert({key, val})",
+          "desc": "Inserts key-value pair",
+          "version": "<map>"
+        },
+        {
+          "property": "m[key]",
+          "desc": "Access or insert element at key",
+          "version": "<map>"
+        },
+        {
+          "property": "m.at(key)",
+          "desc": "Bounds-checked access; throws if key not found",
+          "version": "<map>"
+        },
+        {
+          "property": "m.find(key)",
+          "desc": "Returns iterator to key or end() if not found",
+          "version": "<map>"
+        },
+        {
+          "property": "m.count(key)",
+          "desc": "Returns 1 if key exists (map), or count (multimap)",
+          "version": "<map>"
+        },
+        {
+          "property": "m.erase(key)",
+          "desc": "Removes element by key",
+          "version": "<map>"
+        },
+        {
+          "property": "m.contains(key)",
+          "desc": "Returns true if key exists (C++20)",
+          "version": "C++20"
+        },
+        {
+          "property": "std::set<T>",
+          "desc": "Ordered unique elements (red-black tree)",
+          "version": "<set>"
+        },
+        {
+          "property": "std::unordered_set<T>",
+          "desc": "Hash set; O(1) average lookup (C++11)",
+          "version": "<unordered_set>"
+        },
+        {
+          "property": "std::pair<T1,T2>",
+          "desc": "Holds two values of potentially different types",
+          "version": "<utility>"
+        },
+        {
+          "property": "std::make_pair(a, b)",
+          "desc": "Constructs pair from two values",
+          "version": "<utility>"
+        },
+        {
+          "property": "std::tuple<T1,T2,T3>",
+          "desc": "Holds fixed number of heterogeneous values (C++11)",
+          "version": "<tuple>"
+        },
+        {
+          "property": "std::get<i>(tuple)",
+          "desc": "Accesses i-th element of tuple",
+          "version": "<tuple>"
+        },
+        {
+          "property": "std::optional<T>",
+          "desc": "May or may not hold a value (C++17)",
+          "version": "<optional>"
+        },
+        {
+          "property": "std::variant<T1,T2>",
+          "desc": "Type-safe union — holds one of several types (C++17)",
+          "version": "<variant>"
+        },
+        {
+          "property": "std::any",
+          "desc": "Type-safe container for single value of any type (C++17)",
+          "version": "<any>"
+        },
+        {
+          "property": "std::span<T>",
+          "desc": "Non-owning view over contiguous sequence (C++20)",
+          "version": "<span>"
+        }
+      ],
+      "title": "STL Containers",
+      "type": "table"
+    },
+    {
+      "id": "stl-algorithms",
+      "columns": [
+        "ALGORITHM",
+        "DESCRIPTION",
+        "HEADER"
+      ],
+      "rows": [
+        {
+          "property": "std::sort(first, last)",
+          "desc": "Sorts range in ascending order (introsort)",
+          "version": "<algorithm>"
+        },
+        {
+          "property": "std::sort(first, last, comp)",
+          "desc": "Sorts with custom comparator",
+          "version": "<algorithm>"
+        },
+        {
+          "property": "std::stable_sort(first, last)",
+          "desc": "Sorts preserving relative order of equal elements",
+          "version": "<algorithm>"
+        },
+        {
+          "property": "std::partial_sort(first, mid, last)",
+          "desc": "Sorts first (mid-first) elements",
+          "version": "<algorithm>"
+        },
+        {
+          "property": "std::binary_search(first, last, val)",
+          "desc": "Returns true if val found in sorted range",
+          "version": "<algorithm>"
+        },
+        {
+          "property": "std::lower_bound(first, last, val)",
+          "desc": "Iterator to first element >= val in sorted range",
+          "version": "<algorithm>"
+        },
+        {
+          "property": "std::upper_bound(first, last, val)",
+          "desc": "Iterator to first element > val in sorted range",
+          "version": "<algorithm>"
+        },
+        {
+          "property": "std::find(first, last, val)",
+          "desc": "Returns iterator to first occurrence of val",
+          "version": "<algorithm>"
+        },
+        {
+          "property": "std::find_if(first, last, pred)",
+          "desc": "Returns iterator to first element matching predicate",
+          "version": "<algorithm>"
+        },
+        {
+          "property": "std::count(first, last, val)",
+          "desc": "Counts occurrences of val in range",
+          "version": "<algorithm>"
+        },
+        {
+          "property": "std::count_if(first, last, pred)",
+          "desc": "Counts elements satisfying predicate",
+          "version": "<algorithm>"
+        },
+        {
+          "property": "std::for_each(first, last, fn)",
+          "desc": "Applies function to each element",
+          "version": "<algorithm>"
+        },
+        {
+          "property": "std::transform(f,l, out, fn)",
+          "desc": "Applies fn to each element; writes result to out",
+          "version": "<algorithm>"
+        },
+        {
+          "property": "std::copy(first, last, out)",
+          "desc": "Copies range to output iterator",
+          "version": "<algorithm>"
+        },
+        {
+          "property": "std::move(first, last, out)",
+          "desc": "Moves range to output iterator",
+          "version": "<algorithm>"
+        },
+        {
+          "property": "std::fill(first, last, val)",
+          "desc": "Assigns val to all elements in range",
+          "version": "<algorithm>"
+        },
+        {
+          "property": "std::generate(first, last, fn)",
+          "desc": "Assigns return value of fn to each element",
+          "version": "<algorithm>"
+        },
+        {
+          "property": "std::remove(first, last, val)",
+          "desc": "Moves non-val elements forward; returns new end",
+          "version": "<algorithm>"
+        },
+        {
+          "property": "std::remove_if(first, last, pred)",
+          "desc": "Removes elements matching predicate (erase-remove idiom)",
+          "version": "<algorithm>"
+        },
+        {
+          "property": "std::unique(first, last)",
+          "desc": "Removes consecutive duplicates; returns new end",
+          "version": "<algorithm>"
+        },
+        {
+          "property": "std::reverse(first, last)",
+          "desc": "Reverses order of elements in range",
+          "version": "<algorithm>"
+        },
+        {
+          "property": "std::rotate(first, mid, last)",
+          "desc": "Rotates elements so mid becomes new first",
+          "version": "<algorithm>"
+        },
+        {
+          "property": "std::shuffle(first, last, rng)",
+          "desc": "Randomly permutes range using random engine (C++11)",
+          "version": "<algorithm>"
+        },
+        {
+          "property": "std::min_element(first, last)",
+          "desc": "Iterator to minimum element",
+          "version": "<algorithm>"
+        },
+        {
+          "property": "std::max_element(first, last)",
+          "desc": "Iterator to maximum element",
+          "version": "<algorithm>"
+        },
+        {
+          "property": "std::accumulate(first, last, init)",
+          "desc": "Computes sum (or fold) of range starting from init",
+          "version": "<numeric>"
+        },
+        {
+          "property": "std::reduce(first, last)",
+          "desc": "Like accumulate but may execute in parallel (C++17)",
+          "version": "<numeric>"
+        },
+        {
+          "property": "std::inner_product(f1,l1,f2,init)",
+          "desc": "Computes inner product of two ranges",
+          "version": "<numeric>"
+        },
+        {
+          "property": "std::iota(first, last, start)",
+          "desc": "Fills range with sequentially increasing values",
+          "version": "<numeric>"
+        },
+        {
+          "property": "std::next_permutation(first, last)",
+          "desc": "Rearranges to next lexicographic permutation",
+          "version": "<algorithm>"
+        },
+        {
+          "property": "std::includes(f1,l1,f2,l2)",
+          "desc": "Returns true if sorted range 2 is subset of range 1",
+          "version": "<algorithm>"
+        },
+        {
+          "property": "std::merge(f1,l1,f2,l2,out)",
+          "desc": "Merges two sorted ranges into output",
+          "version": "<algorithm>"
+        },
+        {
+          "property": "std::set_intersection(f1,l1,f2,l2,out)",
+          "desc": "Outputs intersection of two sorted ranges",
+          "version": "<algorithm>"
+        },
+        {
+          "property": "std::set_union(f1,l1,f2,l2,out)",
+          "desc": "Outputs union of two sorted ranges",
+          "version": "<algorithm>"
+        }
+      ],
+      "title": "STL Algorithms",
+      "type": "table"
+    },
+    {
+      "id": "math-funcs",
+      "columns": [
+        "FUNCTION",
+        "DESCRIPTION",
+        "HEADER"
+      ],
+      "rows": [
+        {
+          "property": "std::abs(x)",
+          "desc": "Absolute value (int overload)",
+          "version": "<cstdlib> / <cmath>"
+        },
+        {
+          "property": "std::fabs(x)",
+          "desc": "Absolute value for floating point",
+          "version": "<cmath>"
+        },
+        {
+          "property": "std::ceil(x)",
+          "desc": "Rounds up to nearest integer",
+          "version": "<cmath>"
+        },
+        {
+          "property": "std::floor(x)",
+          "desc": "Rounds down to nearest integer",
+          "version": "<cmath>"
+        },
+        {
+          "property": "std::round(x)",
+          "desc": "Rounds to nearest integer; halfway rounds away from zero",
+          "version": "<cmath>"
+        },
+        {
+          "property": "std::trunc(x)",
+          "desc": "Truncates decimal part toward zero",
+          "version": "<cmath>"
+        },
+        {
+          "property": "std::sqrt(x)",
+          "desc": "Square root of x",
+          "version": "<cmath>"
+        },
+        {
+          "property": "std::cbrt(x)",
+          "desc": "Cube root of x",
+          "version": "<cmath>"
+        },
+        {
+          "property": "std::pow(base, exp)",
+          "desc": "Returns base raised to power exp",
+          "version": "<cmath>"
+        },
+        {
+          "property": "std::exp(x)",
+          "desc": "Returns e raised to power x",
+          "version": "<cmath>"
+        },
+        {
+          "property": "std::log(x)",
+          "desc": "Natural logarithm (base e) of x",
+          "version": "<cmath>"
+        },
+        {
+          "property": "std::log2(x)",
+          "desc": "Base-2 logarithm of x",
+          "version": "<cmath>"
+        },
+        {
+          "property": "std::log10(x)",
+          "desc": "Base-10 logarithm of x",
+          "version": "<cmath>"
+        },
+        {
+          "property": "std::sin(x)",
+          "desc": "Sine of x in radians",
+          "version": "<cmath>"
+        },
+        {
+          "property": "std::cos(x)",
+          "desc": "Cosine of x in radians",
+          "version": "<cmath>"
+        },
+        {
+          "property": "std::tan(x)",
+          "desc": "Tangent of x in radians",
+          "version": "<cmath>"
+        },
+        {
+          "property": "std::asin(x)",
+          "desc": "Arc sine; result in radians",
+          "version": "<cmath>"
+        },
+        {
+          "property": "std::acos(x)",
+          "desc": "Arc cosine; result in radians",
+          "version": "<cmath>"
+        },
+        {
+          "property": "std::atan(x)",
+          "desc": "Arc tangent; result in radians",
+          "version": "<cmath>"
+        },
+        {
+          "property": "std::atan2(y, x)",
+          "desc": "Arc tangent of y/x using quadrant signs",
+          "version": "<cmath>"
+        },
+        {
+          "property": "std::hypot(x, y)",
+          "desc": "Returns sqrt(x²+y²) without overflow",
+          "version": "<cmath>"
+        },
+        {
+          "property": "std::fmod(x, y)",
+          "desc": "Floating-point remainder of x/y",
+          "version": "<cmath>"
+        },
+        {
+          "property": "std::fmax(x, y)",
+          "desc": "Returns larger of x and y (handles NaN)",
+          "version": "<cmath>"
+        },
+        {
+          "property": "std::fmin(x, y)",
+          "desc": "Returns smaller of x and y (handles NaN)",
+          "version": "<cmath>"
+        },
+        {
+          "property": "std::clamp(v,lo,hi)",
+          "desc": "Returns v clamped to [lo, hi] range (C++17)",
+          "version": "<algorithm>"
+        },
+        {
+          "property": "std::gcd(a, b)",
+          "desc": "Greatest common divisor of a and b (C++17)",
+          "version": "<numeric>"
+        },
+        {
+          "property": "std::lcm(a, b)",
+          "desc": "Least common multiple of a and b (C++17)",
+          "version": "<numeric>"
+        },
+        {
+          "property": "std::numbers::pi",
+          "desc": "Pi constant (C++20)",
+          "version": "<numbers>"
+        },
+        {
+          "property": "std::numbers::e",
+          "desc": "Euler's number constant (C++20)",
+          "version": "<numbers>"
+        },
+        {
+          "property": "std::mt19937 rng",
+          "desc": "Mersenne Twister random engine (C++11)",
+          "version": "<random>"
+        },
+        {
+          "property": "std::uniform_int_distribution<int>(a,b)",
+          "desc": "Uniform random integers in [a,b] (C++11)",
+          "version": "<random>"
+        }
+      ],
+      "title": "Math Functions",
+      "type": "table"
+    },
+    {
+      "id": "exceptions",
+      "columns": [
+        "KEYWORD / CLASS",
+        "DESCRIPTION",
+        "HEADER"
+      ],
+      "rows": [
+        {
+          "property": "try",
+          "desc": "Block of code monitored for exceptions",
+          "version": "C++98"
+        },
+        {
+          "property": "catch (const T &e)",
+          "desc": "Catches exception of type T by const reference",
+          "version": "C++98"
+        },
+        {
+          "property": "catch (...)",
+          "desc": "Catch-all handler — catches any exception",
+          "version": "C++98"
+        },
+        {
+          "property": "throw expr",
+          "desc": "Throws an exception object",
+          "version": "C++98"
+        },
+        {
+          "property": "throw",
+          "desc": "Re-throws currently handled exception",
+          "version": "C++98"
+        },
+        {
+          "property": "noexcept",
+          "desc": "Specifies function does not throw exceptions (C++11)",
+          "version": "C++11"
+        },
+        {
+          "property": "noexcept(expr)",
+          "desc": "Returns true at compile-time if expr won't throw",
+          "version": "C++11"
+        },
+        {
+          "property": "std::exception",
+          "desc": "Base class for all standard exceptions",
+          "version": "<exception>"
+        },
+        {
+          "property": "e.what()",
+          "desc": "Returns C-string description of exception",
+          "version": "<exception>"
+        },
+        {
+          "property": "std::runtime_error",
+          "desc": "Errors detectable only at runtime",
+          "version": "<stdexcept>"
+        },
+        {
+          "property": "std::logic_error",
+          "desc": "Errors in program logic (precondition violations)",
+          "version": "<stdexcept>"
+        },
+        {
+          "property": "std::out_of_range",
+          "desc": "Thrown when accessing element outside valid range",
+          "version": "<stdexcept>"
+        },
+        {
+          "property": "std::invalid_argument",
+          "desc": "Thrown when argument has invalid value",
+          "version": "<stdexcept>"
+        },
+        {
+          "property": "std::overflow_error",
+          "desc": "Thrown on arithmetic overflow",
+          "version": "<stdexcept>"
+        },
+        {
+          "property": "std::underflow_error",
+          "desc": "Thrown on arithmetic underflow",
+          "version": "<stdexcept>"
+        },
+        {
+          "property": "std::length_error",
+          "desc": "Thrown when length exceeds maximum allowed",
+          "version": "<stdexcept>"
+        },
+        {
+          "property": "std::bad_alloc",
+          "desc": "Thrown when new fails to allocate memory",
+          "version": "<new>"
+        },
+        {
+          "property": "std::bad_cast",
+          "desc": "Thrown by failed dynamic_cast on reference type",
+          "version": "<typeinfo>"
+        },
+        {
+          "property": "std::bad_typeid",
+          "desc": "Thrown by typeid on null pointer",
+          "version": "<typeinfo>"
+        },
+        {
+          "property": "std::terminate()",
+          "desc": "Called when exception handling fails; calls abort by default",
+          "version": "<exception>"
+        },
+        {
+          "property": "std::exception_ptr",
+          "desc": "Shared pointer to exception object (C++11)",
+          "version": "<exception>"
+        },
+        {
+          "property": "std::current_exception()",
+          "desc": "Returns exception_ptr to current exception (C++11)",
+          "version": "<exception>"
+        },
+        {
+          "property": "std::rethrow_exception(p)",
+          "desc": "Re-throws exception held in exception_ptr (C++11)",
+          "version": "<exception>"
+        }
+      ],
+      "title": "Exception Handling",
+      "type": "table"
+    },
+    {
+      "id": "cpp-keywords",
+      "columns": [
+        "KEYWORD",
+        "DESCRIPTION",
+        "STANDARD"
+      ],
+      "rows": [
+        {
+          "property": "alignas",
+          "desc": "Specifies alignment requirement of type or variable",
+          "version": "C++11"
+        },
+        {
+          "property": "alignof",
+          "desc": "Returns alignment requirement of type",
+          "version": "C++11"
+        },
+        {
+          "property": "and",
+          "desc": "Alternative token for && operator",
+          "version": "C++98"
+        },
+        {
+          "property": "and_eq",
+          "desc": "Alternative token for &= operator",
+          "version": "C++98"
+        },
+        {
+          "property": "asm",
+          "desc": "Embeds assembly language instructions",
+          "version": "C++98"
+        },
+        {
+          "property": "auto",
+          "desc": "Type deduction from initialiser; or function return type (C++14)",
+          "version": "C++11"
+        },
+        {
+          "property": "bitand",
+          "desc": "Alternative token for & (bitwise AND)",
+          "version": "C++98"
+        },
+        {
+          "property": "bitor",
+          "desc": "Alternative token for | (bitwise OR)",
+          "version": "C++98"
+        },
+        {
+          "property": "bool",
+          "desc": "Boolean type; values true or false",
+          "version": "C++98"
+        },
+        {
+          "property": "break",
+          "desc": "Exits innermost loop or switch",
+          "version": "C++98"
+        },
+        {
+          "property": "case",
+          "desc": "Label in switch statement",
+          "version": "C++98"
+        },
+        {
+          "property": "catch",
+          "desc": "Handles exception from try block",
+          "version": "C++98"
+        },
+        {
+          "property": "char",
+          "desc": "Character type (1 byte)",
+          "version": "C++98"
+        },
+        {
+          "property": "char8_t",
+          "desc": "UTF-8 character type",
+          "version": "C++20"
+        },
+        {
+          "property": "char16_t",
+          "desc": "UTF-16 character type",
+          "version": "C++11"
+        },
+        {
+          "property": "char32_t",
+          "desc": "UTF-32 character type",
+          "version": "C++11"
+        },
+        {
+          "property": "class",
+          "desc": "Declares class type (members private by default)",
+          "version": "C++98"
+        },
+        {
+          "property": "compl",
+          "desc": "Alternative token for ~ (bitwise NOT)",
+          "version": "C++98"
+        },
+        {
+          "property": "concept",
+          "desc": "Defines named constraint on template parameters (C++20)",
+          "version": "C++20"
+        },
+        {
+          "property": "const",
+          "desc": "Declares variable or method as read-only",
+          "version": "C++98"
+        },
+        {
+          "property": "consteval",
+          "desc": "Guarantees compile-time evaluation (immediate function)",
+          "version": "C++20"
+        },
+        {
+          "property": "constexpr",
+          "desc": "Evaluates expression at compile time if possible",
+          "version": "C++11"
+        },
+        {
+          "property": "constinit",
+          "desc": "Ensures variable is initialised at compile time (C++20)",
+          "version": "C++20"
+        },
+        {
+          "property": "const_cast",
+          "desc": "Cast to add or remove const qualifier",
+          "version": "C++98"
+        },
+        {
+          "property": "continue",
+          "desc": "Skips rest of current loop iteration",
+          "version": "C++98"
+        },
+        {
+          "property": "co_await",
+          "desc": "Suspends coroutine until awaitable completes (C++20)",
+          "version": "C++20"
+        },
+        {
+          "property": "co_return",
+          "desc": "Returns value or terminates coroutine (C++20)",
+          "version": "C++20"
+        },
+        {
+          "property": "co_yield",
+          "desc": "Yields value from coroutine (C++20)",
+          "version": "C++20"
+        },
+        {
+          "property": "decltype",
+          "desc": "Deduces type of expression",
+          "version": "C++11"
+        },
+        {
+          "property": "default",
+          "desc": "Default case in switch; default special member function",
+          "version": "C++98"
+        },
+        {
+          "property": "delete",
+          "desc": "Frees heap memory; or disables function generation",
+          "version": "C++98"
+        },
+        {
+          "property": "do",
+          "desc": "Starts do-while loop",
+          "version": "C++98"
+        },
+        {
+          "property": "double",
+          "desc": "Double precision floating point type",
+          "version": "C++98"
+        },
+        {
+          "property": "dynamic_cast",
+          "desc": "Runtime-checked downcast for polymorphic types",
+          "version": "C++98"
+        },
+        {
+          "property": "else",
+          "desc": "Alternative branch in if statement",
+          "version": "C++98"
+        },
+        {
+          "property": "enum",
+          "desc": "Declares enumeration type",
+          "version": "C++98"
+        },
+        {
+          "property": "explicit",
+          "desc": "Prevents implicit constructor conversion",
+          "version": "C++98"
+        },
+        {
+          "property": "export",
+          "desc": "Exports module or template (C++20)",
+          "version": "C++20"
+        },
+        {
+          "property": "extern",
+          "desc": "Declares variable/function defined elsewhere",
+          "version": "C++98"
+        },
+        {
+          "property": "false",
+          "desc": "Boolean literal false",
+          "version": "C++98"
+        },
+        {
+          "property": "final",
+          "desc": "Prevents class inheritance or method override",
+          "version": "C++11"
+        },
+        {
+          "property": "float",
+          "desc": "Single precision floating point type",
+          "version": "C++98"
+        },
+        {
+          "property": "for",
+          "desc": "For loop",
+          "version": "C++98"
+        },
+        {
+          "property": "friend",
+          "desc": "Grants access to private/protected members",
+          "version": "C++98"
+        },
+        {
+          "property": "goto",
+          "desc": "Unconditional jump to labelled statement",
+          "version": "C++98"
+        },
+        {
+          "property": "if",
+          "desc": "Conditional statement",
+          "version": "C++98"
+        },
+        {
+          "property": "import",
+          "desc": "Imports module (C++20)",
+          "version": "C++20"
+        },
+        {
+          "property": "inline",
+          "desc": "Hints inline expansion; or inline variable/namespace",
+          "version": "C++98"
+        },
+        {
+          "property": "int",
+          "desc": "Standard integer type",
+          "version": "C++98"
+        },
+        {
+          "property": "long",
+          "desc": "Long integer type modifier",
+          "version": "C++98"
+        },
+        {
+          "property": "module",
+          "desc": "Declares a module unit (C++20)",
+          "version": "C++20"
+        },
+        {
+          "property": "mutable",
+          "desc": "Allows member modification in const method",
+          "version": "C++98"
+        },
+        {
+          "property": "namespace",
+          "desc": "Groups identifiers to avoid name conflicts",
+          "version": "C++98"
+        },
+        {
+          "property": "new",
+          "desc": "Allocates heap memory and calls constructor",
+          "version": "C++98"
+        },
+        {
+          "property": "noexcept",
+          "desc": "Specifies function will not throw",
+          "version": "C++11"
+        },
+        {
+          "property": "not",
+          "desc": "Alternative token for ! (logical NOT)",
+          "version": "C++98"
+        },
+        {
+          "property": "not_eq",
+          "desc": "Alternative token for != operator",
+          "version": "C++98"
+        },
+        {
+          "property": "nullptr",
+          "desc": "Null pointer constant; type-safe replacement for NULL",
+          "version": "C++11"
+        },
+        {
+          "property": "operator",
+          "desc": "Declares operator overload function",
+          "version": "C++98"
+        },
+        {
+          "property": "or",
+          "desc": "Alternative token for || (logical OR)",
+          "version": "C++98"
+        },
+        {
+          "property": "or_eq",
+          "desc": "Alternative token for |= operator",
+          "version": "C++98"
+        },
+        {
+          "property": "override",
+          "desc": "Verifies method overrides a virtual function",
+          "version": "C++11"
+        },
+        {
+          "property": "private",
+          "desc": "Access specifier: class-only access",
+          "version": "C++98"
+        },
+        {
+          "property": "protected",
+          "desc": "Access specifier: class and subclass access",
+          "version": "C++98"
+        },
+        {
+          "property": "public",
+          "desc": "Access specifier: accessible from anywhere",
+          "version": "C++98"
+        },
+        {
+          "property": "register",
+          "desc": "Storage hint (deprecated C++11; removed C++17)",
+          "version": "C++98"
+        },
+        {
+          "property": "reinterpret_cast",
+          "desc": "Reinterprets bit pattern as another type",
+          "version": "C++98"
+        },
+        {
+          "property": "requires",
+          "desc": "Introduces requirements on template parameters (C++20)",
+          "version": "C++20"
+        },
+        {
+          "property": "return",
+          "desc": "Exits function and returns value",
+          "version": "C++98"
+        },
+        {
+          "property": "short",
+          "desc": "Short integer type",
+          "version": "C++98"
+        },
+        {
+          "property": "signed",
+          "desc": "Signed integer type modifier",
+          "version": "C++98"
+        },
+        {
+          "property": "sizeof",
+          "desc": "Size in bytes of type or expression",
+          "version": "C++98"
+        },
+        {
+          "property": "static",
+          "desc": "File/class scope; persistent local; static member",
+          "version": "C++98"
+        },
+        {
+          "property": "static_assert",
+          "desc": "Compile-time assertion",
+          "version": "C++11"
+        },
+        {
+          "property": "static_cast",
+          "desc": "Compile-time checked type conversion",
+          "version": "C++98"
+        },
+        {
+          "property": "struct",
+          "desc": "Declares struct type (members public by default)",
+          "version": "C++98"
+        },
+        {
+          "property": "switch",
+          "desc": "Multi-way branch on integral expression",
+          "version": "C++98"
+        },
+        {
+          "property": "template",
+          "desc": "Declares generic function, class, or variable",
+          "version": "C++98"
+        },
+        {
+          "property": "this",
+          "desc": "Pointer to current object instance",
+          "version": "C++98"
+        },
+        {
+          "property": "thread_local",
+          "desc": "Variable has thread-local storage duration (C++11)",
+          "version": "C++11"
+        },
+        {
+          "property": "throw",
+          "desc": "Throws an exception",
+          "version": "C++98"
+        },
+        {
+          "property": "true",
+          "desc": "Boolean literal true",
+          "version": "C++98"
+        },
+        {
+          "property": "try",
+          "desc": "Starts exception-handling block",
+          "version": "C++98"
+        },
+        {
+          "property": "typedef",
+          "desc": "Creates type alias (prefer using in C++11)",
+          "version": "C++98"
+        },
+        {
+          "property": "typeid",
+          "desc": "Returns runtime type information",
+          "version": "C++98"
+        },
+        {
+          "property": "typename",
+          "desc": "Introduces type parameter; disambiguates dependent names",
+          "version": "C++98"
+        },
+        {
+          "property": "union",
+          "desc": "Members share same memory location",
+          "version": "C++98"
+        },
+        {
+          "property": "unsigned",
+          "desc": "Unsigned integer type modifier",
+          "version": "C++98"
+        },
+        {
+          "property": "using",
+          "desc": "Type alias, using directive, or using declaration",
+          "version": "C++98"
+        },
+        {
+          "property": "virtual",
+          "desc": "Enables runtime polymorphism via vtable",
+          "version": "C++98"
+        },
+        {
+          "property": "void",
+          "desc": "No type; generic pointer or void function",
+          "version": "C++98"
+        },
+        {
+          "property": "volatile",
+          "desc": "Prevents optimisation of variable reads/writes",
+          "version": "C++98"
+        },
+        {
+          "property": "wchar_t",
+          "desc": "Wide character type",
+          "version": "C++98"
+        },
+        {
+          "property": "while",
+          "desc": "While loop",
+          "version": "C++98"
+        },
+        {
+          "property": "xor",
+          "desc": "Alternative token for ^ (bitwise XOR)",
+          "version": "C++98"
+        },
+        {
+          "property": "xor_eq",
+          "desc": "Alternative token for ^= operator",
+          "version": "C++98"
+        }
+      ],
+      "title": "C++ Keywords",
+      "type": "table"
+    }
+  ]
+}

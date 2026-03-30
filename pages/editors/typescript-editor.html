@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live TypeScript Editor - CareerPath</title>
+    <link rel="stylesheet" href="../../assets/css/editor.css">
+</head>
+<body>
+    <div class="header">
+        <h2><span style="color: #3178c6;">📜</span> Real TypeScript Workspace</h2>
+        <button class="run-btn" id="runBtn" disabled>Loading TypeScript...</button>
+    </div>
+    <div class="workspace">
+        <div class="editor-pane">
+            <p class="pane-label">main.ts</p>
+            <textarea id="typescriptInput" spellcheck="false" aria-label="TypeScript Input"></textarea>
+        </div>
+
+        <div class="result-pane">
+            <div class="console-output">
+                <p class="pane-label" style="padding:10px 20px 0;">Terminal Output</p>
+                <div id="consoleDiv">
+                    <span class="log-loading">Initializing TypeScript Compiler...</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/typescript@5.3.3/lib/typescript.min.js"></script>
+
+    <script>
+const typescriptInput = document.getElementById('typescriptInput');
+        const consoleDiv = document.getElementById('consoleDiv');
+        const runBtn = document.getElementById('runBtn');
+
+        const savedCode = localStorage.getItem('careerPathTypeScriptCode');
+        typescriptInput.value = savedCode ? savedCode : `// Write your TypeScript code here!
+function greet(name: string): string {
+    return "Hello, " + name + "!";
+}
+
+interface User {
+    name: string;
+    age: number;
+    email: string;
+}
+
+const user: User = {
+    name: "John Doe",
+    age: 25,
+    email: "john@example.com"
+};
+
+console.log(greet(user.name));
+console.log("User Details:", JSON.stringify(user));
+
+function identity<T>(arg: T): T {
+    return arg;
+}
+
+console.log(identity<string>("TypeScript"));
+console.log(identity<number>(42));`;
+
+        function appendToConsole(text, className) {
+            const span = document.createElement('span');
+            span.className = className;
+            span.textContent = text + '\n';
+            consoleDiv.appendChild(span);
+            consoleDiv.scrollTop = consoleDiv.scrollHeight;
+        }
+
+        function clearConsole() {
+            consoleDiv.innerHTML = '';
+        }
+
+        function executeTypeScript() {
+            const code = typescriptInput.value.trim();
+
+            if (!code) {
+                appendToConsole('Please enter some TypeScript code.', 'log-error');
+                return;
+            }
+
+            clearConsole();
+            appendToConsole('>>> Compiling TypeScript...', 'log-loading');
+            runBtn.disabled = true;
+
+            try {
+                if (typeof ts === 'undefined') {
+                    appendToConsole('TypeScript compiler not loaded. Please refresh the page.', 'log-error');
+                    runBtn.disabled = false;
+                    return;
+                }
+
+                const compiledJS = ts.transpileModule(code, {
+                    compilerOptions: {
+                        module: ts.ModuleKind.CommonJS,
+                        target: ts.ScriptTarget.ES2020,
+                        strict: true,
+                        esModuleInterop: true
+                    }
+                });
+
+                appendToConsole('✔ Compilation successful!', 'log-normal');
+                appendToConsole('--- Output ---', 'log-info');
+
+                try {
+                    const logs = [];
+                    const customConsole = {
+                        log: function(...args) {
+                            logs.push({ type: 'normal', content: args.map(a =>
+                                typeof a === 'object' ? JSON.stringify(a, null, 2) : String(a)
+                            ).join(' ') });
+                        },
+                        error: function(...args) {
+                            logs.push({ type: 'error', content: args.join(' ') });
+                        },
+                        warn: function(...args) {
+                            logs.push({ type: 'warning', content: args.join(' ') });
+                        },
+                        info: function(...args) {
+                            logs.push({ type: 'info', content: args.join(' ') });
+                        }
+                    };
+
+                    const executeCode = new Function('console', compiledJS.outputText);
+                    executeCode(customConsole);
+
+                    logs.forEach(log => {
+                        let className = 'log-normal';
+                        if (log.type === 'error') className = 'log-error';
+                        else if (log.type === 'warning') className = 'log-warning';
+                        else if (log.type === 'info') className = 'log-info';
+                        appendToConsole(log.content, className);
+                    });
+
+                    if (logs.length === 0) {
+                        appendToConsole('(No output)', 'log-info');
+                    }
+
+                } catch (execError) {
+                    appendToConsole('Runtime Error: ' + execError.message, 'log-error');
+                }
+
+            } catch (err) {
+                appendToConsole('Compilation Error:', 'log-error');
+                appendToConsole(err.message, 'log-error');
+            } finally {
+                runBtn.disabled = false;
+            }
+        }
+
+        function initTypeScript() {
+            if (typeof ts !== 'undefined') {
+                consoleDiv.innerHTML = '<span class="log-normal">✔ TypeScript Compiler Ready! Click Run Code.</span>\n\n';
+                runBtn.disabled = false;
+                runBtn.innerText = "Run Code ❯";
+            } else {
+                consoleDiv.innerHTML = '<span class="log-error">Failed to load TypeScript. Please refresh the page.</span>';
+                runBtn.disabled = true;
+                runBtn.innerText = "Load Failed";
+            }
+        }
+
+        runBtn.addEventListener('click', executeTypeScript);
+
+        typescriptInput.addEventListener('keydown', function(e) {
+            if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
+                executeTypeScript();
+            }
+        });
+
+        typescriptInput.addEventListener('input', function() {
+            localStorage.setItem('careerPathTypeScriptCode', typescriptInput.value);
+        });
+
+        initTypeScript();
+</script>
+</body>
+</html>
+

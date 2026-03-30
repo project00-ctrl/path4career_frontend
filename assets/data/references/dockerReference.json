@@ -1,0 +1,125 @@
+{
+  "sections": [
+    {
+      "title": "Container Basics",
+      "desc": "Docker fundamentals — images, containers, and lifecycle.",
+      "type": "table",
+      "columns": ["COMMAND", "DESCRIPTION", "EXAMPLE"],
+      "rows": [
+        { "property": "docker run image", "desc": "Create and start a container from image", "version": "docker run -d -p 8080:80 nginx" },
+        { "property": "docker run -d", "desc": "Run container in detached (background) mode", "version": "docker run -d --name web nginx" },
+        { "property": "docker run -p host:container", "desc": "Map host port to container port", "version": "docker run -p 3000:3000 my-app" },
+        { "property": "docker run -v host:container", "desc": "Mount host directory as volume", "version": "docker run -v $(pwd):/app my-app" },
+        { "property": "docker run -e KEY=VALUE", "desc": "Set environment variable", "version": "docker run -e DB_HOST=localhost my-app" },
+        { "property": "docker run --name name", "desc": "Assign name to container", "version": "docker run --name my-postgres postgres" },
+        { "property": "docker run --rm", "desc": "Auto-remove container when it stops", "version": "docker run --rm alpine echo hello" },
+        { "property": "docker run -it", "desc": "Interactive mode with terminal", "version": "docker run -it ubuntu bash" },
+        { "property": "docker run --network name", "desc": "Connect container to a network", "version": "docker run --network my-net my-app" },
+        { "property": "docker run --restart always", "desc": "Auto-restart container on failure", "version": "docker run --restart unless-stopped nginx" }
+      ]
+    },
+    {
+      "title": "Container Management",
+      "desc": "Managing running and stopped containers.",
+      "type": "table",
+      "columns": ["COMMAND", "DESCRIPTION", "EXAMPLE"],
+      "rows": [
+        { "property": "docker ps", "desc": "List running containers", "version": "docker ps" },
+        { "property": "docker ps -a", "desc": "List all containers (including stopped)", "version": "docker ps -a" },
+        { "property": "docker stop container", "desc": "Gracefully stop a running container", "version": "docker stop my-app" },
+        { "property": "docker start container", "desc": "Start a stopped container", "version": "docker start my-app" },
+        { "property": "docker restart container", "desc": "Restart a container", "version": "docker restart my-app" },
+        { "property": "docker rm container", "desc": "Remove a stopped container", "version": "docker rm my-app" },
+        { "property": "docker rm -f container", "desc": "Force remove (even if running)", "version": "docker rm -f my-app" },
+        { "property": "docker logs container", "desc": "View container logs", "version": "docker logs -f my-app" },
+        { "property": "docker exec -it container cmd", "desc": "Execute command inside running container", "version": "docker exec -it my-app bash" },
+        { "property": "docker inspect container", "desc": "Detailed container information (JSON)", "version": "docker inspect my-app" },
+        { "property": "docker stats", "desc": "Live CPU, memory, network usage", "version": "docker stats" },
+        { "property": "docker top container", "desc": "Show running processes in container", "version": "docker top my-app" },
+        { "property": "docker cp src container:dest", "desc": "Copy files between host and container", "version": "docker cp file.txt my-app:/tmp/" }
+      ]
+    },
+    {
+      "title": "Images",
+      "desc": "Building, managing, and sharing Docker images.",
+      "type": "table",
+      "columns": ["COMMAND", "DESCRIPTION", "EXAMPLE"],
+      "rows": [
+        { "property": "docker build -t name:tag .", "desc": "Build image from Dockerfile in current directory", "version": "docker build -t my-app:v1 ." },
+        { "property": "docker images", "desc": "List local images", "version": "docker images" },
+        { "property": "docker pull image:tag", "desc": "Download image from registry", "version": "docker pull node:20-alpine" },
+        { "property": "docker push image:tag", "desc": "Push image to registry", "version": "docker push user/my-app:v1" },
+        { "property": "docker tag source target", "desc": "Tag image with new name", "version": "docker tag my-app:v1 user/my-app:latest" },
+        { "property": "docker rmi image", "desc": "Remove local image", "version": "docker rmi my-app:v1" },
+        { "property": "docker image prune", "desc": "Remove unused/dangling images", "version": "docker image prune -a" },
+        { "property": "docker history image", "desc": "Show image layer history", "version": "docker history my-app:v1" },
+        { "property": "docker save -o file.tar image", "desc": "Save image to tar archive", "version": "docker save -o app.tar my-app:v1" },
+        { "property": "docker load -i file.tar", "desc": "Load image from tar archive", "version": "docker load -i app.tar" }
+      ]
+    },
+    {
+      "title": "Dockerfile",
+      "desc": "Dockerfile instructions for building custom images.",
+      "type": "table",
+      "columns": ["INSTRUCTION", "DESCRIPTION", "EXAMPLE"],
+      "rows": [
+        { "property": "FROM image:tag", "desc": "Base image for the build", "version": "FROM node:20-alpine" },
+        { "property": "WORKDIR /path", "desc": "Set working directory inside container", "version": "WORKDIR /app" },
+        { "property": "COPY src dest", "desc": "Copy files from host to container", "version": "COPY package*.json ./" },
+        { "property": "ADD src dest", "desc": "Copy files (supports URLs and auto-extract tar)", "version": "ADD app.tar.gz /app/" },
+        { "property": "RUN command", "desc": "Execute command during build (creates layer)", "version": "RUN npm install --production" },
+        { "property": "CMD [\"exec\", \"args\"]", "desc": "Default command when container starts", "version": "CMD [\"node\", \"server.js\"]" },
+        { "property": "ENTRYPOINT [\"exec\"]", "desc": "Fixed executable — CMD becomes arguments", "version": "ENTRYPOINT [\"python\", \"app.py\"]" },
+        { "property": "ENV KEY=VALUE", "desc": "Set environment variable", "version": "ENV NODE_ENV=production" },
+        { "property": "EXPOSE port", "desc": "Document which port the container listens on", "version": "EXPOSE 3000" },
+        { "property": "VOLUME /path", "desc": "Create mount point for persistent data", "version": "VOLUME /data" },
+        { "property": "ARG name=default", "desc": "Build-time variable (not available at runtime)", "version": "ARG VERSION=1.0" },
+        { "property": "USER username", "desc": "Set user for subsequent commands", "version": "USER node" },
+        { "property": "HEALTHCHECK CMD ...", "desc": "Define container health check command", "version": "HEALTHCHECK CMD curl -f http://localhost:3000/ || exit 1" },
+        { "property": ".dockerignore", "desc": "File listing patterns to exclude from build context", "version": "node_modules, .git, *.log" },
+        { "property": "Multi-stage build", "desc": "Use multiple FROM stages for smaller final image", "version": "FROM node AS build ... FROM alpine COPY --from=build ..." }
+      ]
+    },
+    {
+      "title": "Docker Compose",
+      "desc": "Multi-container application definition and management.",
+      "type": "table",
+      "columns": ["KEY / COMMAND", "DESCRIPTION", "EXAMPLE"],
+      "rows": [
+        { "property": "docker compose up", "desc": "Start all services defined in compose file", "version": "docker compose up -d" },
+        { "property": "docker compose down", "desc": "Stop and remove containers, networks", "version": "docker compose down -v (also remove volumes)" },
+        { "property": "docker compose build", "desc": "Build or rebuild services", "version": "docker compose build" },
+        { "property": "docker compose logs", "desc": "View service logs", "version": "docker compose logs -f app" },
+        { "property": "docker compose ps", "desc": "List running compose services", "version": "docker compose ps" },
+        { "property": "docker compose exec svc cmd", "desc": "Execute command in running service", "version": "docker compose exec db psql -U postgres" },
+        { "property": "services:", "desc": "Define services (containers) to run", "version": "services: web: image: nginx" },
+        { "property": "build:", "desc": "Build image from Dockerfile", "version": "build: ./app" },
+        { "property": "ports:", "desc": "Port mapping", "version": "ports: - '3000:3000'" },
+        { "property": "volumes:", "desc": "Mount volumes", "version": "volumes: - ./data:/var/lib/data" },
+        { "property": "environment:", "desc": "Set environment variables", "version": "environment: - DB_HOST=db" },
+        { "property": "depends_on:", "desc": "Service startup dependency order", "version": "depends_on: - db" },
+        { "property": "networks:", "desc": "Define custom networks", "version": "networks: backend: driver: bridge" }
+      ]
+    },
+    {
+      "title": "Volumes & Networks",
+      "desc": "Data persistence and container networking.",
+      "type": "table",
+      "columns": ["COMMAND", "DESCRIPTION", "EXAMPLE"],
+      "rows": [
+        { "property": "docker volume create name", "desc": "Create named volume", "version": "docker volume create my-data" },
+        { "property": "docker volume ls", "desc": "List all volumes", "version": "docker volume ls" },
+        { "property": "docker volume rm name", "desc": "Remove a volume", "version": "docker volume rm my-data" },
+        { "property": "docker volume prune", "desc": "Remove all unused volumes", "version": "docker volume prune" },
+        { "property": "-v name:/path", "desc": "Mount named volume to container path", "version": "docker run -v my-data:/var/lib/data postgres" },
+        { "property": "docker network create name", "desc": "Create custom network", "version": "docker network create my-net" },
+        { "property": "docker network ls", "desc": "List all networks", "version": "docker network ls" },
+        { "property": "docker network connect net container", "desc": "Connect container to network", "version": "docker network connect my-net my-app" },
+        { "property": "docker network rm name", "desc": "Remove a network", "version": "docker network rm my-net" },
+        { "property": "bridge (default)", "desc": "Default network — containers can reach each other by IP", "version": "docker run --network bridge" },
+        { "property": "host", "desc": "Container shares host network", "version": "docker run --network host" },
+        { "property": "docker system prune", "desc": "Remove all unused containers, networks, images, cache", "version": "docker system prune -a" }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,362 @@
+[
+    {
+        "id": "dsa-1",
+        "question": "What does DSA stand for?",
+        "options": [
+            "Data Systems & Analytics",
+            "Data Structures & Algorithms",
+            "Digital Services Architecture",
+            "Dynamic Software Applications"
+        ],
+        "correctAnswer": 1,
+        "explanation": "DSA stands for Data Structures & Algorithms, forming the foundation of computer science for writing efficient code."
+    },
+    {
+        "id": "dsa-2",
+        "question": "Which of the following describes Time Complexity?",
+        "options": [
+            "How much memory an algorithm uses.",
+            "How long it takes the compiler to read the code.",
+            "How long the algorithm takes to complete relative to input size.",
+            "The time it takes to write the algorithm."
+        ],
+        "correctAnswer": 2,
+        "explanation": "Time Complexity uses Big O notation to describe how the execution time of an algorithm grows as the input size increases."
+    },
+    {
+        "id": "dsa-3",
+        "question": "Which data structure stores elements in contiguous memory locations?",
+        "options": [
+            "Linked List",
+            "Array",
+            "Tree",
+            "Graph"
+        ],
+        "correctAnswer": 1,
+        "explanation": "An array is a linear data structure that allocates contiguous blocks of memory, allowing O(1) direct access by index."
+    },
+    {
+        "id": "dsa-4",
+        "question": "What is the average time complexity to access an element by index in an Array?",
+        "options": [
+            "O(1)",
+            "O(n)",
+            "O(log n)",
+            "O(n^2)"
+        ],
+        "correctAnswer": 0,
+        "explanation": "Because arrays use contiguous memory, accessing any index can be calculated instantly in O(1) constant time."
+    },
+    {
+        "id": "dsa-5",
+        "question": "In a Singly Linked List, what does each node contain?",
+        "options": [
+            "Data only",
+            "Pointers to previous and next nodes",
+            "Data and a pointer to the next node",
+            "An array of data"
+        ],
+        "correctAnswer": 2,
+        "explanation": "A Singly Linked List node holds its own data and exactly one pointer (reference) pointing to the next node in the chain."
+    },
+    {
+        "id": "dsa-6",
+        "question": "Which data structure follows the LIFO (Last In, First Out) principle?",
+        "options": [
+            "Queue",
+            "Binary Tree",
+            "Heap",
+            "Stack"
+        ],
+        "correctAnswer": 3,
+        "explanation": "A Stack operates like a stack of plates—the last item added (pushed) is the first one removed (popped)."
+    },
+    {
+        "id": "dsa-7",
+        "question": "Which operation removes the top element from a Stack?",
+        "options": [
+            "push()",
+            "pop()",
+            "shift()",
+            "dequeue()"
+        ],
+        "correctAnswer": 1,
+        "explanation": "The pop() operation removes and returns the most recently inserted element from the top of the stack."
+    },
+    {
+        "id": "dsa-8",
+        "question": "Which data structure follows the FIFO (First In, First Out) principle?",
+        "options": [
+            "Stack",
+            "Array",
+            "Queue",
+            "Graph"
+        ],
+        "correctAnswer": 2,
+        "explanation": "A Queue operates like a real-life line: the first person to join the line is the first one served."
+    },
+    {
+        "id": "dsa-9",
+        "question": "Which collision handling technique stores multiple values in a linked list at the same index?",
+        "options": [
+            "Linear Probing",
+            "Chaining",
+            "Quadratic Probing",
+            "Open Addressing"
+        ],
+        "correctAnswer": 1,
+        "explanation": "Chaining allows multiple key-value pairs that hash to the same bucket to co-exist in a linked list attached to that bucket."
+    },
+    {
+        "id": "dsa-10",
+        "question": "What is the topmost node of a Tree called?",
+        "options": [
+            "Leaf",
+            "Branch",
+            "Root",
+            "Head"
+        ],
+        "correctAnswer": 2,
+        "explanation": "The single entry point at the top of a tree hierarchy is known as the Root node."
+    },
+    {
+        "id": "dsa-11",
+        "question": "In a Binary Search Tree (BST), where are smaller values located relative to a parent node?",
+        "options": [
+            "In the right subtree",
+            "In the left subtree",
+            "At the root",
+            "At the leaves"
+        ],
+        "correctAnswer": 1,
+        "explanation": "A BST enforces a strict property: all values in the left subtree are smaller than the parent, and all values in the right subtree are larger."
+    },
+    {
+        "id": "dsa-12",
+        "question": "Which Tree traversal visits nodes in Sorted Order for a BST?",
+        "options": [
+            "Pre-order",
+            "Post-order",
+            "In-order",
+            "Level-order"
+        ],
+        "correctAnswer": 2,
+        "explanation": "In-order traversal visits the Left child, then the Root, then the Right child, resulting in nicely sorted data."
+    },
+    {
+        "id": "dsa-13",
+        "question": "What defining property does a Max Heap possess?",
+        "options": [
+            "The parent node is always smaller than its children.",
+            "The parent node is always larger than or equal to its children.",
+            "It is a completely unbalanced tree.",
+            "It only stores strings."
+        ],
+        "correctAnswer": 1,
+        "explanation": "In a Max Heap, the root always contains the maximum value, and every parent is greater than its children."
+    },
+    {
+        "id": "dsa-14",
+        "question": "What is an excellent use case for a Heap Data Structure?",
+        "options": [
+            "Storing a phone book directory.",
+            "Detecting cycles in a graph.",
+            "Implementing a Priority Queue.",
+            "Reversing a string."
+        ],
+        "correctAnswer": 2,
+        "explanation": "Heaps provide O(log n) insertions and fast O(1) access to the highest/lowest priority element, making them perfect for Priority Queues."
+    },
+    {
+        "id": "dsa-15",
+        "question": "What are the core components used to represent a Graph?",
+        "options": [
+            "Roots and Leaves",
+            "Vertices (Nodes) connected by Edges",
+            "Rows and Columns",
+            "Keys and Values"
+        ],
+        "correctAnswer": 1,
+        "explanation": "A Graph consists of a set of vertices (or nodes) joined together by lines called edges."
+    },
+    {
+        "id": "dsa-16",
+        "question": "Which Graph Traversal algorithm explores level by level and uses a Queue?",
+        "options": [
+            "Depth-First Search (DFS)",
+            "Breadth-First Search (BFS)",
+            "Binary Search",
+            "Linear Search"
+        ],
+        "correctAnswer": 1,
+        "explanation": "BFS radiates outward level by level, making it the perfect algorithm to find the shortest path in unweighted graphs."
+    },
+    {
+        "id": "dsa-17",
+        "question": "Which Graph Traversal goes as deep as possible before backtracking and uses a Stack (or recursion)?",
+        "options": [
+            "Depth-First Search (DFS)",
+            "Breadth-First Search (BFS)",
+            "Bubble Sort",
+            "Dijkstra's Algorithm"
+        ],
+        "correctAnswer": 0,
+        "explanation": "DFS plunges down a path until it hits a dead end, then backtracks. It is ideal for cycle detection and maze solving."
+    },
+    {
+        "id": "dsa-18",
+        "question": "Which sorting algorithm repeatedly swaps adjacent elements if they are in the wrong order?",
+        "options": [
+            "Merge Sort",
+            "Quick Sort",
+            "Insertion Sort",
+            "Bubble Sort"
+        ],
+        "correctAnswer": 3,
+        "explanation": "Bubble Sort compares adjacent items and \"bubbles\" the largest values to the end. It takes O(n^2) time."
+    },
+    {
+        "id": "dsa-19",
+        "question": "Which highly efficient sorting algorithm divides the array in half, sorts the halves, and merges them?",
+        "options": [
+            "Bubble Sort",
+            "Merge Sort",
+            "Selection Sort",
+            "Linear Sort"
+        ],
+        "correctAnswer": 1,
+        "explanation": "Merge Sort is a classic Divide and Conquer algorithm that guarantees O(n log n) time complexity by splitting and merging."
+    },
+    {
+        "id": "dsa-20",
+        "question": "What is the key operation in Quick Sort?",
+        "options": [
+            "Merging two sorted arrays.",
+            "Selecting a 'pivot' and partitioning the array around it.",
+            "Finding the minimum element repeatedly.",
+            "Bubbling up the maximum element."
+        ],
+        "correctAnswer": 1,
+        "explanation": "Quick Sort chooses a pivot, places smaller items to the left and larger to the right, then recurses."
+    },
+    {
+        "id": "dsa-21",
+        "question": "What is the crucial prerequisite for Binary Search?",
+        "options": [
+            "The array must be completely random.",
+            "The array must be sorted.",
+            "The array must contain only integers.",
+            "The array must be smaller than 100 elements."
+        ],
+        "correctAnswer": 1,
+        "explanation": "Binary Search mathematically halves the search space comparing against the middle, which only works if the elements are already ordered."
+    },
+    {
+        "id": "dsa-22",
+        "question": "What is the time complexity of a Binary Search?",
+        "options": [
+            "O(n)",
+            "O(log n)",
+            "O(n log n)",
+            "O(1)"
+        ],
+        "correctAnswer": 1,
+        "explanation": "Because it divides the array in half each time, it takes logarithmic time, making it incredibly fast even for massive arrays."
+    },
+    {
+        "id": "dsa-23",
+        "question": "What are the two mandatory components of a Recursive function?",
+        "options": [
+            "A while loop and a counter.",
+            "A base case and a recursive case.",
+            "A Stack and a Queue.",
+            "A class and an object."
+        ],
+        "correctAnswer": 1,
+        "explanation": "A recursive function must have a base case to eventually stop, and a recursive case where it calls itself with smaller inputs."
+    },
+    {
+        "id": "dsa-24",
+        "question": "What problem-solving optimization technique stores the results of subproblems to avoid redundant calculations?",
+        "options": [
+            "Greedy Approach",
+            "Dynamic Programming (DP)",
+            "Backtracking",
+            "Two Pointers"
+        ],
+        "correctAnswer": 1,
+        "explanation": "Dynamic Programming (using Memoization or Tabulation) turns exponential time algorithms into linear or polynomial time."
+    },
+    {
+        "id": "dsa-25",
+        "question": "What is the 'Top-Down' Dynamic Programming approach also known as?",
+        "options": [
+            "Tabulation",
+            "Iteration",
+            "Memoization",
+            "Partitioning"
+        ],
+        "correctAnswer": 2,
+        "explanation": "Top-Down DP involves writing a recursive function and \"memoizing\" (caching) the result so it isn't computed twice."
+    },
+    {
+        "id": "dsa-26",
+        "question": "Which algorithmic paradigm makes locally optimal choices at each step, hoping to find a global optimum?",
+        "options": [
+            "Dynamic Programming",
+            "Divide and Conquer",
+            "Greedy Algorithms",
+            "Backtracking"
+        ],
+        "correctAnswer": 2,
+        "explanation": "A Greedy algorithm grabs the best immediate option without reconsidering past choices (e.g., Fractional Knapsack)."
+    },
+    {
+        "id": "dsa-27",
+        "question": "Which technique is highly efficient for finding Pairs matching a sum in a Sorted Array?",
+        "options": [
+            "Dynamic Programming",
+            "Two Pointers",
+            "Graph Traversal",
+            "Backtracking"
+        ],
+        "correctAnswer": 1,
+        "explanation": "Setting one pointer at the start and one at the end, and walking them toward each other takes O(n) time."
+    },
+    {
+        "id": "dsa-28",
+        "question": "Which pattern is used to find the maximum sum of \"k\" consecutive elements in an array?",
+        "options": [
+            "Sliding Window",
+            "Binary Search",
+            "DFS",
+            "Merge Sort"
+        ],
+        "correctAnswer": 0,
+        "explanation": "A Sliding Window maintains a subset frame of size k that moves across the array, adding the next item and dropping the oldest."
+    },
+    {
+        "id": "dsa-29",
+        "question": "What technique builds solutions incrementally and 'undoes' its choices when a partial solution hits a dead end?",
+        "options": [
+            "Sliding Window",
+            "Greedy",
+            "Two Pointers",
+            "Backtracking"
+        ],
+        "correctAnswer": 3,
+        "explanation": "Backtracking is an exhaustive search technique often used for generating Permutations, Subsets, and solving Mazes."
+    },
+    {
+        "id": "dsa-30",
+        "question": "What is the worst-case space complexity of Quick Sort?",
+        "options": [
+            "O(1)",
+            "O(log n)",
+            "O(n)",
+            "O(n^2)"
+        ],
+        "correctAnswer": 1,
+        "explanation": "Quick Sort is an in-place sort, but the recursive function calls require O(log n) space on the call stack."
+    }
+]

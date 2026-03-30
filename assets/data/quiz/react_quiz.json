@@ -1,0 +1,362 @@
+[
+    {
+        "id": "react-1",
+        "question": "What is React?",
+        "options": [
+            "A server-side programming language.",
+            "A JavaScript library for building user interfaces.",
+            "A database management system.",
+            "A CSS framework."
+        ],
+        "correctAnswer": 1,
+        "explanation": "React is a powerful frontend JavaScript library developed by Facebook, specifically designed for creating fast, interactive Single Page Applications (SPAs)."
+    },
+    {
+        "id": "react-2",
+        "question": "What is the 'Virtual DOM'?",
+        "options": [
+            "A virtual reality headset for developers.",
+            "A backend server architecture.",
+            "A lightweight, in-memory representation of the real DOM that React uses to calculate efficient updates.",
+            "A hidden folder where React stores images."
+        ],
+        "correctAnswer": 2,
+        "explanation": "React compares the Virtual DOM to the real DOM and only updates the physical webpage exactly where changes occurred, drastically boosting speed."
+    },
+    {
+        "id": "react-3",
+        "question": "If you want to start a new React project rapidly, what modern build tool is highly recommended?",
+        "options": [
+            "jQuery",
+            "Vite",
+            "Apache",
+            "MySQL"
+        ],
+        "correctAnswer": 1,
+        "explanation": "Modern developers prefer Vite over older tools like Create React App because it spins up a local development server and compiles code significantly faster."
+    },
+    {
+        "id": "react-4",
+        "question": "What does JSX stand for?",
+        "options": [
+            "JavaScript Extension",
+            "Java Standard XML",
+            "JavaScript XML",
+            "JSON Syntax X"
+        ],
+        "correctAnswer": 2,
+        "explanation": "JSX (JavaScript XML) allows developers to write an HTML-like syntax directly inside their JavaScript logic files."
+    },
+    {
+        "id": "react-5",
+        "question": "In JSX, how do you inject a dynamic JavaScript variable into the HTML-like syntax?",
+        "options": [
+            "Using dollar signs: $variable$",
+            "Using square brackets: [variable]",
+            "Using percentage signs: %variable%",
+            "Using curly braces: {variable}"
+        ],
+        "correctAnswer": 3,
+        "explanation": "Curly braces {} tell the JSX compiler that the code inside them should be evaluated as real JavaScript."
+    },
+    {
+        "id": "react-6",
+        "question": "Which of the following describes a React 'Component'?",
+        "options": [
+            "A CSS stylesheet.",
+            "An independent, reusable piece of the UI (like a Button or a Header).",
+            "A SQL database table.",
+            "A Python script."
+        ],
+        "correctAnswer": 1,
+        "explanation": "React applications are built entirely out of components, which are essentially JavaScript functions that return JSX."
+    },
+    {
+        "id": "react-7",
+        "question": "What is the absolute golden rule for naming a custom React Component?",
+        "options": [
+            "It must end in .html.",
+            "It must start with a lowercase letter.",
+            "It must start with a Capital letter.",
+            "It must be written entirely in UPPERCASE."
+        ],
+        "correctAnswer": 2,
+        "explanation": "React requires custom components to start with unequivocally Capital letters (e.g., <MyButton />) so it doesn't confuse them with standard HTML tags (like <div>)."
+    },
+    {
+        "id": "react-8",
+        "question": "What are 'Props' in React?",
+        "options": [
+            "Special animations used in CSS.",
+            "The backend server configuration.",
+            "Read-only properties used to pass data down from a parent component to a child component.",
+            "A built-in login system."
+        ],
+        "correctAnswer": 2,
+        "explanation": "Props make components reusable by allowing you to pass dynamic data (like a user's name) as arguments to child components."
+    },
+    {
+        "id": "react-9",
+        "question": "Which React Hook is fundamentally used to add 'State' (component memory) to a functional component?",
+        "options": [
+            "useMemory",
+            "useStore",
+            "useState",
+            "useData"
+        ],
+        "correctAnswer": 2,
+        "explanation": "The useState Hook declares a state variable and a function to instantly update it, triggering a component re-render when it changes."
+    },
+    {
+        "id": "react-10",
+        "question": "What happens automatically to a completely rendered component when its internal 'State' changes?",
+        "options": [
+            "It deletes itself from the DOM.",
+            "React automatically re-renders it to reflect the new data.",
+            "The user is logged out.",
+            "The browser crashes."
+        ],
+        "correctAnswer": 1,
+        "explanation": "React tracks State objects relentlessly, and securely triggering an update function (like setCount) forces React to immediately re-run the component to update the UI."
+    },
+    {
+        "id": "react-11",
+        "question": "When generating a list of similar elements dynamically (e.g., by using .map()), what special prop MUST you attach to the outermost iterated element?",
+        "options": [
+            "class",
+            "id",
+            "key",
+            "index"
+        ],
+        "correctAnswer": 2,
+        "explanation": "React requires a unique 'key' prop on iterated elements to efficiently track which specific items in a massive list were altered, added, or removed."
+    },
+    {
+        "id": "react-12",
+        "question": "How are DOM events named standardly in React JSX compared to plain HTML?",
+        "options": [
+            "All uppercase (ONCLICK)",
+            "All lowercase (onclick)",
+            "CamelCase (onClick)",
+            "Kebab-case (on-click)"
+        ],
+        "correctAnswer": 2,
+        "explanation": "React normalizes event handling perfectly, requiring strict camelCase names (e.g., onClick, onChange) across all supported browsers."
+    },
+    {
+        "id": "react-13",
+        "question": "Which React Hook lets you perform 'Side Effects' like fetching API data or setting up timers?",
+        "options": [
+            "useSideEffect",
+            "useEffect",
+            "useFetch",
+            "useAction"
+        ],
+        "correctAnswer": 1,
+        "explanation": "The useEffect hook executes arbitrary code immediately after React has physically committed the component updates to the screen."
+    },
+    {
+        "id": "react-14",
+        "question": "In the useEffect hook, what does providing an completely empty dependency array ( [] ) do?",
+        "options": [
+            "It runs the effect infinitely in a loop.",
+            "It entirely prevents the effect from ever running.",
+            "It runs the effect exactly once when the component initially mounts, and never again.",
+            "It throws an error."
+        ],
+        "correctAnswer": 2,
+        "explanation": "An empty dependency array tells React that the given effect relies on absolutely no props or state variables, so it only needs to run on the very first render."
+    },
+    {
+        "id": "react-15",
+        "question": "Which powerful JavaScript operator is overwhelmingly used inside JSX to conditionally render elements if something is true? (e.g., {isLoggedIn _____ <Dashboard />})",
+        "options": [
+            "=",
+            "||",
+            "&&",
+            "+"
+        ],
+        "correctAnswer": 2,
+        "explanation": "The logical AND (&&) tightly evaluates the left side; if true, it renders exactly the JSX on the right. If false, it ignores it."
+    },
+    {
+        "id": "react-16",
+        "question": "What is a 'Controlled Component' when dealing with HTML forms in React?",
+        "options": [
+            "A form controlled entirely by the CSS.",
+            "A form where the input values are strictly pushed and pulled from React State, rather than relying on the DOM.",
+            "A form that disables the submit button forever.",
+            "A form handled by a separate backend server."
+        ],
+        "correctAnswer": 1,
+        "explanation": "Controlled components give React the ultimate 'single source of truth'. You dictate the input's value by assigning it to a state variable, and intercept user typing via onChange."
+    },
+    {
+        "id": "react-17",
+        "question": "Which external library is considered the gold standard for routing and navigating pages in standard React applications?",
+        "options": [
+            "React Web Navigator",
+            "React Route Manager",
+            "React Router",
+            "React Linker"
+        ],
+        "correctAnswer": 2,
+        "explanation": "React Router cleanly intercepts URL changes natively, allowing you to swap out massive components simulating complex page transitions."
+    },
+    {
+        "id": "react-18",
+        "question": "Which Hook effortlessly allows you to broadcast 'Global State' bypassing the brutal 'prop-drilling' issue?",
+        "options": [
+            "useGlobal",
+            "useContext",
+            "useReducer",
+            "useState"
+        ],
+        "correctAnswer": 1,
+        "explanation": "The Context API, triggered by useContext(), creates a massive invisible tube allowing deeply nested components to pull data from a high-level provider directly."
+    },
+    {
+        "id": "react-19",
+        "question": "What does a 'cleanup function' returned from inside a useEffect hook do?",
+        "options": [
+            "Deletes the entire component.",
+            "Clears the browser's cookies.",
+            "Eliminates memory leaks by removing listeners/subscriptions right before the component unmounts.",
+            "Formats the code syntax."
+        ],
+        "correctAnswer": 2,
+        "explanation": "React triggers the optional cleanup function strictly right before the component is destroyed, preventing bizarre timing errors and memory bloat."
+    },
+    {
+        "id": "react-20",
+        "question": "Which Hook lets you safely store mutable data across re-renders WITHOUT instantly triggering a re-render?",
+        "options": [
+            "useState",
+            "useRef",
+            "useMemo",
+            "useCallback"
+        ],
+        "correctAnswer": 1,
+        "explanation": "The useRef hook provides an escape hatch: changing a ref does not force an update, making it wildly perfect for clinging onto physical DOM nodes (like auto-focusing inputs)."
+    },
+    {
+        "id": "react-21",
+        "question": "If you have insanely complex state logic spanning dozens of conditions, which Hook should you use instead of chaotic multiple useStates?",
+        "options": [
+            "useComplex",
+            "useManager",
+            "useContext",
+            "useReducer"
+        ],
+        "correctAnswer": 3,
+        "explanation": "The useReducer hook functions almost identically to Redux, securely isolating deep state alteration logic into an external 'reducer' switch statement."
+    },
+    {
+        "id": "react-22",
+        "question": "What exactly creates a 'Custom Hook' in React?",
+        "options": [
+            "Writing a function name strictly starting with the word 'use' that calls other React Hooks inside it.",
+            "Downloading a special module.",
+            "Writing a class component.",
+            "Using the useHook method."
+        ],
+        "correctAnswer": 0,
+        "explanation": "Custom Hooks are purely a naming convention. If a JS function inherently calls foundational React hooks (like useState) and starts with 'use', React treats it as an abstract, reusable Custom Hook."
+    },
+    {
+        "id": "react-23",
+        "question": "In the old era of Class Components, which lifecycle method directly mirrored putting an empty array [] in useEffect?",
+        "options": [
+            "componentWillUnmount",
+            "componentDidUpdate",
+            "render",
+            "componentDidMount"
+        ],
+        "correctAnswer": 3,
+        "explanation": "componentDidMount strictly fired exactly once after the component physically appeared on screen, a mechanism perfectly replaced by useEffect with an empty dependency array."
+    },
+    {
+        "id": "react-24",
+        "question": "What crucial modern JavaScript (ES6) feature allows you to pluck specific values out of a 'props' object instantaneously? (e.g., const { name } = props; )",
+        "options": [
+            "Template Literals",
+            "Destructuring",
+            "Arrow Functions",
+            "Promises"
+        ],
+        "correctAnswer": 1,
+        "explanation": "Destructuring cleanly unpacks properties natively from massive objects directly into distinct variables, reducing repetitive 'props.' calls."
+    },
+    {
+        "id": "react-25",
+        "question": "What happens if a parent component accidentally lacks a unique 'key' on looped children?",
+        "options": [
+            "The browser entirely crashes.",
+            "React throws an error and completely refuses to render the page.",
+            "React throws a massive console warning and begins rendering highly inefficiently.",
+            "Absolutely nothing happens."
+        ],
+        "correctAnswer": 2,
+        "explanation": "React falls back tightly to using array indices, which violently degrades performance when sorting or deleting elements across heavy interfaces."
+    },
+    {
+        "id": "react-26",
+        "question": "What brilliant mechanism allows you to yank a component completely outside its parent's CSS `overflow: hidden` restrictions, rendering it safely at the end of the document body?",
+        "options": [
+            "React Wormholes",
+            "React Portals",
+            "Absolute Positioning",
+            "Z-Index overrides"
+        ],
+        "correctAnswer": 1,
+        "explanation": "The createPortal() method magically projects a component's physical DOM rendering completely outside its architectural React Tree."
+    },
+    {
+        "id": "react-27",
+        "question": "Which of the following describes the absolute 'Lifting State Up' principle?",
+        "options": [
+            "Deploying state to a cloud database.",
+            "Moving a piece of shared state completely out of child components and into their closest common parent to share it freely as props.",
+            "Writing the state declaration at the top of the file.",
+            "Deleting old state variables."
+        ],
+        "correctAnswer": 1,
+        "explanation": "If two isolated siblings vehemently need to interact with the exact same data, the state MUST be forcefully lifted upward into their mutual parent."
+    },
+    {
+        "id": "react-28",
+        "question": "What is the unbreakable restriction regarding WHERE React Hooks can be called?",
+        "options": [
+            "They strictly must be called unconditionally at the very top level of a component.",
+            "They can be called deeply inside `if` statements.",
+            "They can be called inside standard loops.",
+            "They can only be called from an external server."
+        ],
+        "correctAnswer": 0,
+        "explanation": "Because React relies heavily on the exact sequential order Hooks are called during a render, hiding Hooks inside unpredictable conditions guarantees fatal crashes."
+    },
+    {
+        "id": "react-29",
+        "question": "Why is manually injecting user text using `dangerouslySetInnerHTML` heavily discouraged?",
+        "options": [
+            "It turns the text bright red.",
+            "It violently opens the door for devastating Cross-Site Scripting (XSS) attacks if not sanitized properly.",
+            "It crashes the server entirely.",
+            "It creates unreadable code."
+        ],
+        "correctAnswer": 1,
+        "explanation": "React by default automatically aggressively sanitizes text insertions, but bypassing it using dangerouslySetInnerHTML allows malicious user input to execute freely as scripts."
+    },
+    {
+        "id": "react-30",
+        "question": "How are properties passed differently to Custom Components compared to standard HTML tags? (e.g., <MyButton colorful={true} /> )",
+        "options": [
+            "They are securely passed as variables rather than raw strings.",
+            "They must be parsed using JSON.",
+            "There is no functional difference.",
+            "They can only take numbers."
+        ],
+        "correctAnswer": 0,
+        "explanation": "React seamlessly parses any native JavaScript data types (arrays, deep objects, boolean logic) cleanly as component Props without needing raw string conversions."
+    }
+]

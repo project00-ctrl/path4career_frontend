@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Path4Career Bootcamp — Intensive Coding Programs</title>
+  <meta name="description" content="Join Path4Career’s intensive coding bootcamps. Learn in-demand skills through live sessions, hands-on projects, and expert mentorship.">
+  <link rel="stylesheet" href="../assets/css/navbar.css">
+  <link rel="stylesheet" href="../assets/css/bootcamp.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+    rel="stylesheet">
+</head>
+
+<body class="bootcamp-page">
+
+  <!-- SHARED NAVBAR (injected by navbar.js) -->
+  <div id="navbar-root"></div>
+
+  <!-- ===== COMING SOON BANNER ===== -->
+  <section class="bc-coming-soon-banner">
+    <div class="bc-banner-glow"></div>
+    <div class="bc-banner-glow bc-banner-glow-2"></div>
+    <div class="bc-banner-content">
+      <div class="bc-badge-wrap">
+        <span class="bc-badge"><i class="fa-solid fa-rocket"></i> Launching Soon</span>
+      </div>
+      <h1 class="bc-banner-title">
+        Bootcamps Are<br>
+        <span class="bc-gradient-text">Coming Soon</span>
+      </h1>
+      <p class="bc-banner-subtitle">
+        We're building intensive, career-focused coding programs designed to take you
+        from beginner to job-ready in weeks — not years. Stay tuned for our first cohort launch!
+      </p>
+      <div class="bc-countdown" id="bcCountdown">
+        <div class="bc-countdown-item">
+          <span class="bc-countdown-num" id="bcDays">30</span>
+          <span class="bc-countdown-label">Days</span>
+        </div>
+        <div class="bc-countdown-item">
+          <span class="bc-countdown-num" id="bcHours">12</span>
+          <span class="bc-countdown-label">Hours</span>
+        </div>
+        <div class="bc-countdown-item">
+          <span class="bc-countdown-num" id="bcMins">45</span>
+          <span class="bc-countdown-label">Minutes</span>
+        </div>
+        <div class="bc-countdown-item">
+          <span class="bc-countdown-num" id="bcSecs">20</span>
+          <span class="bc-countdown-label">Seconds</span>
+        </div>
+      </div>
+      <div class="bc-notify-form">
+        <input type="email" placeholder="Enter your email to get notified" class="bc-notify-input" id="bcEmailInput">
+        <button class="bc-notify-btn" id="bcNotifyBtn"><i class="fa-solid fa-bell"></i> Notify Me</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== WHAT IS BOOTCAMP ===== -->
+  <section class="bc-what-section">
+    <div class="bc-what-container">
+      <div class="bc-what-header">
+        <span class="bc-section-label"><i class="fa-solid fa-graduation-cap"></i> Understanding Bootcamps</span>
+        <h2>What is a Coding Bootcamp?</h2>
+        <p class="bc-what-intro">
+          A coding bootcamp is an intensive, short-term training program that teaches you the practical skills
+          needed to start a career in tech. Unlike traditional degrees that take 4 years, bootcamps condense
+          the most essential knowledge into focused, hands-on programs lasting just weeks to months.
+        </p>
+      </div>
+
+      <div class="bc-features-grid">
+        <div class="bc-feature-card">
+          <div class="bc-feature-icon"><i class="fa-solid fa-laptop-code"></i></div>
+          <h3>Project-Based Learning</h3>
+          <p>Build real-world projects from day one. Every concept you learn is immediately applied to hands-on coding challenges and portfolio-worthy applications.</p>
+        </div>
+        <div class="bc-feature-card">
+          <div class="bc-feature-icon"><i class="fa-solid fa-users"></i></div>
+          <h3>Expert Mentorship</h3>
+          <p>Learn directly from industry professionals who have years of real-world experience. Get personalized feedback, code reviews, and career guidance.</p>
+        </div>
+        <div class="bc-feature-card">
+          <div class="bc-feature-icon"><i class="fa-solid fa-clock"></i></div>
+          <h3>Accelerated Timeline</h3>
+          <p>Go from zero to job-ready in as little as 3–24 weeks. Our curriculum is optimized to teach you what employers actually look for — nothing more, nothing less.</p>
+        </div>
+        <div class="bc-feature-card">
+          <div class="bc-feature-icon"><i class="fa-solid fa-certificate"></i></div>
+          <h3>Industry Certifications</h3>
+          <p>Earn recognized certificates upon completion. Showcase your skills to employers with verified proof of your coding abilities and project portfolio.</p>
+        </div>
+        <div class="bc-feature-card">
+          <div class="bc-feature-icon"><i class="fa-solid fa-briefcase"></i></div>
+          <h3>Career Support</h3>
+          <p>Resume building, mock interviews, job referrals, and networking events. We don't just teach you to code — we help you land your first tech role.</p>
+        </div>
+        <div class="bc-feature-card">
+          <div class="bc-feature-icon"><i class="fa-solid fa-people-group"></i></div>
+          <h3>Community & Networking</h3>
+          <p>Join a cohort of motivated learners. Collaborate on projects, share knowledge, and build lasting professional connections in the tech industry.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== WHY Path4Career BOOTCAMPS ===== -->
+  <section class="bc-why-section">
+    <div class="bc-why-container">
+      <span class="bc-section-label"><i class="fa-solid fa-star"></i> The Path4Career Difference</span>
+      <h2>Why Choose Path4Career Bootcamps?</h2>
+
+      <div class="bc-why-grid">
+        <div class="bc-why-card">
+          <div class="bc-why-number">01</div>
+          <h3>Aligned With Real Job Roles</h3>
+          <p>Our bootcamps are designed around actual industry job roles — Frontend Developer, Backend Engineer, Data Analyst, and more. Every lesson maps to skills employers hire for today.</p>
+        </div>
+        <div class="bc-why-card">
+          <div class="bc-why-number">02</div>
+          <h3>Built on Path4Career’s Ecosystem</h3>
+          <p>Your bootcamp progress integrates directly with Path4Career’s courses, roadmaps, quizzes, and certificates. Everything you learn contributes to your career profile.</p>
+        </div>
+        <div class="bc-why-card">
+          <div class="bc-why-number">03</div>
+          <h3>Flexible Learning Formats</h3>
+          <p>Choose from full-time immersive or part-time evening programs. Whether you're a student, working professional, or career switcher — there's a schedule for you.</p>
+        </div>
+        <div class="bc-why-card">
+          <div class="bc-why-number">04</div>
+          <h3>Affordable & Accessible</h3>
+          <p>Quality education shouldn't break the bank. Path4Career Bootcamps offer competitive pricing, flexible payment plans, and scholarship opportunities for deserving students.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== PLANNED BOOTCAMPS ===== -->
+  <section class="bc-planned-section">
+    <div class="bc-planned-container">
+      <span class="bc-section-label"><i class="fa-solid fa-calendar-days"></i> Upcoming Programs</span>
+      <h2>Planned Bootcamp Tracks</h2>
+      <p class="bc-planned-intro">Here's a preview of the bootcamp tracks we're preparing. Dates and pricing will be announced when we launch.</p>
+
+      <div class="bc-tracks-grid">
+        <div class="bc-track-card">
+          <div class="bc-track-header" style="background: linear-gradient(135deg, #f97316, #ea580c);">
+            <i class="fa-brands fa-html5"></i>
+            <span class="bc-track-badge">Beginner</span>
+          </div>
+          <div class="bc-track-body">
+            <h3>HTML & CSS Foundations</h3>
+            <p>Master the building blocks of web development. Learn semantic HTML, responsive CSS, Flexbox, Grid, and build beautiful web pages.</p>
+            <div class="bc-track-meta">
+              <span><i class="fa-regular fa-clock"></i> 3 Weeks</span>
+              <span><i class="fa-solid fa-layer-group"></i> 6 Projects</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="bc-track-card">
+          <div class="bc-track-header" style="background: linear-gradient(135deg, #f7df1e, #d4a017);">
+            <i class="fa-brands fa-js"></i>
+            <span class="bc-track-badge">Intermediate</span>
+          </div>
+          <div class="bc-track-body">
+            <h3>JavaScript Mastery</h3>
+            <p>Deep dive into modern JavaScript — ES6+, DOM manipulation, async programming, APIs, and build interactive web applications.</p>
+            <div class="bc-track-meta">
+              <span><i class="fa-regular fa-clock"></i> 4 Weeks</span>
+              <span><i class="fa-solid fa-layer-group"></i> 8 Projects</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="bc-track-card">
+          <div class="bc-track-header" style="background: linear-gradient(135deg, #61dafb, #0284c7);">
+            <i class="fa-brands fa-react"></i>
+            <span class="bc-track-badge">Advanced</span>
+          </div>
+          <div class="bc-track-body">
+            <h3>Full Stack Web Development</h3>
+            <p>The complete package — React, Node.js, MongoDB, REST APIs, authentication, deployment. Build production-ready full-stack apps.</p>
+            <div class="bc-track-meta">
+              <span><i class="fa-regular fa-clock"></i> 24 Weeks</span>
+              <span><i class="fa-solid fa-layer-group"></i> 15 Projects</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="bc-track-card">
+          <div class="bc-track-header" style="background: linear-gradient(135deg, #3776ab, #1d4ed8);">
+            <i class="fa-brands fa-python"></i>
+            <span class="bc-track-badge">Intermediate</span>
+          </div>
+          <div class="bc-track-body">
+            <h3>Python & Data Science</h3>
+            <p>Learn Python, data analysis with Pandas & NumPy, data visualization, and foundational machine learning concepts.</p>
+            <div class="bc-track-meta">
+              <span><i class="fa-regular fa-clock"></i> 8 Weeks</span>
+              <span><i class="fa-solid fa-layer-group"></i> 10 Projects</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="bc-track-card">
+          <div class="bc-track-header" style="background: linear-gradient(135deg, #38bdf8, #6366f1);">
+            <i class="fa-solid fa-database"></i>
+            <span class="bc-track-badge">Beginner</span>
+          </div>
+          <div class="bc-track-body">
+            <h3>SQL & Database Design</h3>
+            <p>Master SQL queries, joins, aggregations, database design, and learn to work with MySQL, PostgreSQL, and MongoDB.</p>
+            <div class="bc-track-meta">
+              <span><i class="fa-regular fa-clock"></i> 4 Weeks</span>
+              <span><i class="fa-solid fa-layer-group"></i> 5 Projects</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="bc-track-card">
+          <div class="bc-track-header" style="background: linear-gradient(135deg, #22c55e, #16a34a);">
+            <i class="fa-solid fa-cloud"></i>
+            <span class="bc-track-badge">Advanced</span>
+          </div>
+          <div class="bc-track-body">
+            <h3>DevOps & Cloud</h3>
+            <p>CI/CD pipelines, Docker, Kubernetes, AWS fundamentals, and modern deployment practices for production applications.</p>
+            <div class="bc-track-meta">
+              <span><i class="fa-regular fa-clock"></i> 6 Weeks</span>
+              <span><i class="fa-solid fa-layer-group"></i> 7 Projects</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== STATS ===== -->
+  <section class="bc-stats-section">
+    <div class="bc-stats-container">
+      <div class="bc-stat-item">
+        <h2>70m+</h2>
+        <p>Monthly Visitors</p>
+      </div>
+      <div class="bc-stat-item">
+        <h2>25+</h2>
+        <p>Courses Available</p>
+      </div>
+      <div class="bc-stat-item">
+        <h2>10k+</h2>
+        <p>Learners Community</p>
+      </div>
+      <div class="bc-stat-item">
+        <h2>95%</h2>
+        <p>Completion Rate</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FAQ ===== -->
+  <section class="bc-faq-section">
+    <div class="bc-faq-container">
+      <span class="bc-section-label"><i class="fa-solid fa-circle-question"></i> Got Questions?</span>
+      <h2>Frequently Asked Questions</h2>
+
+      <div class="bc-faq-list">
+        <div class="bc-faq-item" id="faq1">
+          <button class="bc-faq-question" onclick="toggleFaq('faq1')">
+            <span>Do I need prior coding experience?</span>
+            <i class="fa-solid fa-chevron-down"></i>
+          </button>
+          <div class="bc-faq-answer">
+            <p>Not at all! Our beginner bootcamps start from absolute zero. If you can use a computer and browse the web, you're ready to start. For intermediate and advanced tracks, we recommend completing the relevant Path4Career tutorials first.</p>
+          </div>
+        </div>
+        <div class="bc-faq-item" id="faq2">
+          <button class="bc-faq-question" onclick="toggleFaq('faq2')">
+            <span>Will I get a certificate?</span>
+            <i class="fa-solid fa-chevron-down"></i>
+          </button>
+          <div class="bc-faq-answer">
+            <p>Yes! Every bootcamp completion comes with a verified Path4Career certificate that you can share on LinkedIn and add to your resume. The certificate includes your project portfolio and skills assessment results.</p>
+          </div>
+        </div>
+        <div class="bc-faq-item" id="faq3">
+          <button class="bc-faq-question" onclick="toggleFaq('faq3')">
+            <span>Are bootcamps live or self-paced?</span>
+            <i class="fa-solid fa-chevron-down"></i>
+          </button>
+          <div class="bc-faq-answer">
+            <p>Bootcamps will be a hybrid of live and self-paced learning. You'll have scheduled live sessions with mentors for core concepts and code reviews, plus self-paced assignments and projects you can work on at your own speed.</p>
+          </div>
+        </div>
+        <div class="bc-faq-item" id="faq4">
+          <button class="bc-faq-question" onclick="toggleFaq('faq4')">
+            <span>How is this different from Path4Career’s free tutorials?</span>
+            <i class="fa-solid fa-chevron-down"></i>
+          </button>
+          <div class="bc-faq-answer">
+            <p>While our free tutorials teach individual topics, bootcamps provide a structured, guided path with live mentorship, code reviews, real-world projects, peer collaboration, and career support — everything you need to actually land a job, not just learn concepts.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CTA ===== -->
+  <section class="bc-cta-section">
+    <div class="bc-cta-container">
+      <h2>Ready to Fast-Track Your Career?</h2>
+      <p>While bootcamps are on the way, start building your skills today with Path4Career’s free tutorials and courses.</p>
+      <div class="bc-cta-buttons">
+        <a href="../index.html" class="bc-cta-btn bc-cta-primary"><i class="fa-solid fa-play"></i> Explore Courses</a>
+        <a href="roadmaps/roadmaps.html" class="bc-cta-btn bc-cta-secondary"><i class="fa-solid fa-map"></i> View Roadmaps</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="bc-footer">
+    <div class="bc-footer-inner">
+      <p>2026 <a href="../index.html">Path4Career</a> · Learn · Build · Grow</p>
+    </div>
+  </footer>
+
+  <script src="../assets/js/navbar.js"></script>
+  <script>
+    // ===== COUNTDOWN TIMER =====
+    (function () {
+      // Set launch to 30 days from now
+      const launchDate = new Date();
+      launchDate.setDate(launchDate.getDate() + 30);
+
+      function updateCountdown() {
+        const now = new Date();
+        const diff = launchDate - now;
+        if (diff <= 0) return;
+
+        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+        const mins = Math.floor((diff / (1000 * 60)) % 60);
+        const secs = Math.floor((diff / 1000) % 60);
+
+        const d = document.getElementById('bcDays');
+        const h = document.getElementById('bcHours');
+        const m = document.getElementById('bcMins');
+        const s = document.getElementById('bcSecs');
+        if (d) d.textContent = String(days).padStart(2, '0');
+        if (h) h.textContent = String(hours).padStart(2, '0');
+        if (m) m.textContent = String(mins).padStart(2, '0');
+        if (s) s.textContent = String(secs).padStart(2, '0');
+      }
+      updateCountdown();
+      setInterval(updateCountdown, 1000);
+    })();
+
+    // ===== NOTIFY BUTTON =====
+    const notifyBtn = document.getElementById('bcNotifyBtn');
+    if (notifyBtn) {
+      notifyBtn.addEventListener('click', () => {
+        const email = document.getElementById('bcEmailInput').value.trim();
+        if (!email || !email.includes('@')) {
+          alert('Please enter a valid email address.');
+          return;
+        }
+        notifyBtn.innerHTML = '<i class="fa-solid fa-check"></i> You\'re on the list!';
+        notifyBtn.style.background = 'linear-gradient(135deg, #22c55e, #16a34a)';
+        notifyBtn.disabled = true;
+        document.getElementById('bcEmailInput').disabled = true;
+      });
+    }
+
+    // ===== FAQ TOGGLE =====
+    function toggleFaq(id) {
+      const item = document.getElementById(id);
+      if (!item) return;
+      item.classList.toggle('open');
+    }
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,362 @@
+[
+    {
+        "id": "html-1",
+        "question": "What does HTML stand for?",
+        "options": [
+            "Hyperlinks and Text Markup Language",
+            "Hyper Text Markup Language",
+            "Home Tool Markup Language",
+            "Hyper Tool Multi Language"
+        ],
+        "correctAnswer": 1,
+        "explanation": "HTML stands for Hyper Text Markup Language, the standard markup language for creating Web pages."
+    },
+    {
+        "id": "html-2",
+        "question": "Which declaration is used to specify that a document is an HTML5 document?",
+        "options": [
+            "<!DOCTYPE html>",
+            "<html5>",
+            "<!DOCTYPE html5>",
+            "<?xml version=\"1.0\"?>"
+        ],
+        "correctAnswer": 0,
+        "explanation": "The <!DOCTYPE html> declaration is required at the very beginning of the document to trigger standards mode in the browser."
+    },
+    {
+        "id": "html-3",
+        "question": "An HTML element is typically defined by:",
+        "options": [
+            "Just a start tag",
+            "A start tag, content, and an end tag",
+            "Just an end tag",
+            "A class attribute"
+        ],
+        "correctAnswer": 1,
+        "explanation": "A standard HTML element consists of a start tag (e.g., <p>), the content between them, and an end tag (e.g., </p>)."
+    },
+    {
+        "id": "html-4",
+        "question": "What is an 'empty element' in HTML?",
+        "options": [
+            "An element with no content but has both start and end tags.",
+            "An element that is completely ignored by the browser.",
+            "An element like <br> or <img> that has no end tag.",
+            "An element that contains only spaces."
+        ],
+        "correctAnswer": 2,
+        "explanation": "Empty elements, such as <br> (line break) or <img ...>, do not wrap content and therefore do not use an end tag."
+    },
+    {
+        "id": "html-5",
+        "question": "Where are HTML attributes always specified?",
+        "options": [
+            "In the document's <head>",
+            "In the end tag",
+            "Inside the content of the element",
+            "In the start tag"
+        ],
+        "correctAnswer": 3,
+        "explanation": "Attributes provide additional information about elements and are always placed inside the opening (start) tag."
+    },
+    {
+        "id": "html-6",
+        "question": "Which HTML tag is used to define the most important heading?",
+        "options": [
+            "<h6>",
+            "<head>",
+            "<h1>",
+            "<header>"
+        ],
+        "correctAnswer": 2,
+        "explanation": "The <h1> tag defines the highest level (most important) heading on a page, crucial for accessibility and SEO."
+    },
+    {
+        "id": "html-7",
+        "question": "Which tag defines a paragraph?",
+        "options": [
+            "<pg>",
+            "<p>",
+            "<para>",
+            "<text>"
+        ],
+        "correctAnswer": 1,
+        "explanation": "The <p> tag defines a text paragraph. Browsers automatically add a margin before and after it."
+    },
+    {
+        "id": "html-8",
+        "question": "Which HTML tag is used to create a hyperlink?",
+        "options": [
+            "<link>",
+            "<a>",
+            "<href>",
+            "<nav>"
+        ],
+        "correctAnswer": 1,
+        "explanation": "The anchor tag <a> is used to create hyperlinks connecting web pages."
+    },
+    {
+        "id": "html-9",
+        "question": "Which attribute is REQUIRED for the <a> tag to actually link to another page?",
+        "options": [
+            "src",
+            "link",
+            "href",
+            "path"
+        ],
+        "correctAnswer": 2,
+        "explanation": "The 'href' attribute specifies the URL destination of the hyperlink."
+    },
+    {
+        "id": "html-10",
+        "question": "What is the correct HTML format for adding an image?",
+        "options": [
+            "<img href=\"image.gif\" alt=\"MyImage\">",
+            "<img src=\"image.gif\" alt=\"MyImage\">",
+            "<image src=\"image.gif\" alt=\"MyImage\">",
+            "<img class=\"image.gif\">"
+        ],
+        "correctAnswer": 1,
+        "explanation": "The <img> tag requires the 'src' attribute to point to the image file, and 'alt' for accessibility."
+    },
+    {
+        "id": "html-11",
+        "question": "Which HTML element is used to define an unordered (bulleted) list?",
+        "options": [
+            "<list>",
+            "<ul>",
+            "<ol>",
+            "<li>"
+        ],
+        "correctAnswer": 1,
+        "explanation": "The <ul> (Unordered List) element creates a list prefixed by bullet points."
+    },
+    {
+        "id": "html-12",
+        "question": "Inside a table element (<table>), which tag defines a standard table row?",
+        "options": [
+            "<td>",
+            "<th>",
+            "<row>",
+            "<tr>"
+        ],
+        "correctAnswer": 3,
+        "explanation": "The <tr> (Table Row) tag defines a horizontal row in an HTML table."
+    },
+    {
+        "id": "html-13",
+        "question": "What is the primary purpose of an HTML <form>?",
+        "options": [
+            "To draw a square shape on the screen.",
+            "To organize images into a grid.",
+            "To collect user input and submit it to a server.",
+            "To format text automatically."
+        ],
+        "correctAnswer": 2,
+        "explanation": "Forms are the standard way to accept user data (text, checkboxes, passwords) and send it elsewhere."
+    },
+    {
+        "id": "html-14",
+        "question": "Which input type creates a field where characters are masked (hidden as dots or asterisks)?",
+        "options": [
+            "type=\"hidden\"",
+            "type=\"text\"",
+            "type=\"password\"",
+            "type=\"secret\""
+        ],
+        "correctAnswer": 2,
+        "explanation": "Setting <input type=\"password\"> masks the user's keystrokes for security."
+    },
+    {
+        "id": "html-15",
+        "question": "Which form attribute defines WHERE the form data should be sent when submitted?",
+        "options": [
+            "method",
+            "action",
+            "target",
+            "destination"
+        ],
+        "correctAnswer": 1,
+        "explanation": "The 'action' attribute specifies the URL or file that will process the form submission."
+    },
+    {
+        "id": "html-16",
+        "question": "What is a 'Semantic' HTML element?",
+        "options": [
+            "An element that changes color automatically.",
+            "An element that connects directly to a database.",
+            "An element that strictly contains only numbers.",
+            "An element that clearly describes its meaning to both the browser and the developer."
+        ],
+        "correctAnswer": 3,
+        "explanation": "Semantic tags like <header>, <article>, and <footer> have inherent meaning, unlike the generic <div>."
+    },
+    {
+        "id": "html-17",
+        "question": "Which HTML element is a generic, block-level container often used to group elements together for styling?",
+        "options": [
+            "<span>",
+            "<div>",
+            "<container>",
+            "<group>"
+        ],
+        "correctAnswer": 1,
+        "explanation": "The <div> tag is a block-level generic container. It has no special meaning inherently."
+    },
+    {
+        "id": "html-18",
+        "question": "What is the difference between a 'class' and an 'id' attribute?",
+        "options": [
+            "A class is for JavaScript, an id is for CSS.",
+            "An id can only be used once per page, a class can be used on multiple elements.",
+            "A class can only be used once per page, an id can be used on multiple elements.",
+            "There is absolutely no difference."
+        ],
+        "correctAnswer": 1,
+        "explanation": "IDs must be strictly unique within an HTML document. Classes can be applied to an unlimited number of elements."
+    },
+    {
+        "id": "html-19",
+        "question": "Which HTML tag is used to display a completely separate web page within your current web page?",
+        "options": [
+            "<page>",
+            "<window>",
+            "<iframe>",
+            "<embed>"
+        ],
+        "correctAnswer": 2,
+        "explanation": "The <iframe> (Inline Frame) tag embeds another document inside the current HTML document."
+    },
+    {
+        "id": "html-20",
+        "question": "Which attribute on the <video> or <audio> tags ensures the user sees playback buttons (play, pause, volume)?",
+        "options": [
+            "buttons",
+            "interface",
+            "controls",
+            "autoplay"
+        ],
+        "correctAnswer": 2,
+        "explanation": "Adding the 'controls' attribute tells the browser to display its default media playback interface."
+    },
+    {
+        "id": "html-21",
+        "question": "Where must <meta> tags be placed within an HTML document?",
+        "options": [
+            "At the very end of the document",
+            "Inside the <body> section",
+            "Inside the <head> section",
+            "Inside a <footer> section"
+        ],
+        "correctAnswer": 2,
+        "explanation": "Meta tags contain hidden metadata (like character sets and SEO descriptions) and invariably belong in the <head>."
+    },
+    {
+        "id": "html-22",
+        "question": "By default, what is the 'display' flow of a <span> element?",
+        "options": [
+            "Inline",
+            "Block",
+            "Hidden",
+            "Grid"
+        ],
+        "correctAnswer": 0,
+        "explanation": "A <span> is an inline element, meaning it only takes up as much width as necessary and does not force a line break."
+    },
+    {
+        "id": "html-23",
+        "question": "How do you write a comment in the HTML source code?",
+        "options": [
+            "// This is a comment",
+            "/* This is a comment */",
+            "<!-- This is a comment -->",
+            "' This is a comment"
+        ],
+        "correctAnswer": 2,
+        "explanation": "HTML comments start with <!-- and end with -->. They are entirely ignored by the browser parser."
+    },
+    {
+        "id": "html-24",
+        "question": "How can you apply CSS styles directly to a specific HTML element without using an external stylesheet?",
+        "options": [
+            "Using the 'design' attribute",
+            "Using the 'css' attribute",
+            "Using the 'format' attribute",
+            "Using the 'style' attribute"
+        ],
+        "correctAnswer": 3,
+        "explanation": "The 'style' attribute allows you to write Inline CSS directly onto an individual HTML element."
+    },
+    {
+        "id": "html-25",
+        "question": "What character is used in HTML Entities to represent characters that are otherwise reserved (like < or >)?",
+        "options": [
+            "A percent sign (%)",
+            "An ampersand (&)",
+            "A hashtag (#)",
+            "A dollar sign ($)"
+        ],
+        "correctAnswer": 1,
+        "explanation": "HTML Entities overwhelmingly begin with an ampersand (&) and end with a semicolon (;), like &amp; or &lt;."
+    },
+    {
+        "id": "html-26",
+        "question": "What specifically does the <meta name=\"viewport\"> tag do?",
+        "options": [
+            "It turns on the webcam.",
+            "It allows the page to be indexed by Google.",
+            "It controls how the webpage scales and sizes itself on mobile devices.",
+            "It changes the language of the page."
+        ],
+        "correctAnswer": 2,
+        "explanation": "The viewport meta tag instructs the browser on how to control the page's dimensions and scaling, critical for mobile responsiveness."
+    },
+    {
+        "id": "html-27",
+        "question": "Which HTML5 element is used to draw graphics on the fly via JavaScript?",
+        "options": [
+            "<svg>",
+            "<draw>",
+            "<canvas>",
+            "<graphic>"
+        ],
+        "correctAnswer": 2,
+        "explanation": "The <canvas> element acts as a container, but you must use JavaScript to actually draw shapes or graphics inside it."
+    },
+    {
+        "id": "html-28",
+        "question": "Which HTML5 API allows a website to store large amounts of structured data locally in the user's browser?",
+        "options": [
+            "PHP Sessions",
+            "IndexedDB",
+            "WebSockets",
+            "Server-Sent Events"
+        ],
+        "correctAnswer": 1,
+        "explanation": "IndexedDB is a powerful, low-level browser API for client-side storage of significant amounts of structured data."
+    },
+    {
+        "id": "html-29",
+        "question": "What is the MOST critical HTML element for basic Search Engine Optimization (SEO)?",
+        "options": [
+            "The <h1> heading",
+            "The <title> tag",
+            "The <body> tag",
+            "The <strong> tag"
+        ],
+        "correctAnswer": 1,
+        "explanation": "The exact wording inside the <title> tag is one of the strongest signals Google uses to determine what a page is about."
+    },
+    {
+        "id": "html-30",
+        "question": "What does 'Sanitizing Input' prevent in a web application form?",
+        "options": [
+            "It prevents spelling errors.",
+            "It prevents Cross-Site Scripting (XSS) attacks by removing malicious <script> tags.",
+            "It prevents the CSS from breaking.",
+            "It stops the page from reloading."
+        ],
+        "correctAnswer": 1,
+        "explanation": "Sanitizing removes hazardous characters or code (like unexpected JavaScript) injected by attackers into forms before displaying it."
+    }
+]

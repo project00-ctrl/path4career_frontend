@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Courses | Path4Career</title>
+    <link rel="stylesheet" href="../../assets/css/navbar.css">
+    <link rel="stylesheet" href="../../assets/css/roadmaps.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- SHARED NAVBAR (injected by navbar.js) -->
+    <div id="navbar-root"></div>
+
+    <!-- COURSES (modules) -->
+    <h1 class="main-title">Path4Career Courses</h1>
+    <div class="course-filters">
+        <select id="levelFilter">
+            <option value="all">All Levels</option>
+            <option value="beginner">Beginner</option>
+            <option value="intermediate">Intermediate</option>
+            <option value="advanced">Advanced</option>
+        </select>
+        <input type="text" id="searchInput" placeholder="Search courses..." />
+        <p id="noResults" style="display:none;">No courses found</p>
+    </div>
+    <div id="cardContainer" class="card-container"></div>
+
+    <script src="../../assets/js/navbar.js"></script>
+    <script>
+        const API_BASE = "https://path4career-backend.onrender.com";
+        let courses = [];
+        let completedModuleIds = [];
+
+        let completedSkillIds = []; // Global to store individual completed skills
+
+        async function init() {
+            await loadCompletedModules();
+            await loadCompletedSkills();
+            await loadCourses();
+        }
+
+        function getAuthToken() {
+            const cookies = document.cookie.split(';');
+            for (const cookie of cookies) {
+                const [name, value] = cookie.trim().split('=');
+                if (name === 'AUTH_TOKEN') return value;
+            }
+            return localStorage.getItem('AUTH_TOKEN') || localStorage.getItem('token');
+        }
+
+        async function loadCompletedModules() {
+            const token = getAuthToken();
+            if (!token) return;
+
+            try {
+                const res = await fetch(`${API_BASE}/api/v1/modules/completed`, {
+                    headers: { 'Authorization': `Bearer ${token}` }
+                });
+                if (res.ok) {
+                    completedModuleIds = await res.json();
+                }
+            } catch (err) {
+                console.warn("Could not load completed modules:", err);
+            }
+        }
+
+        async function loadCompletedSkills() {
+            const token = getAuthToken();
+            if (!token) return;
+
+            try {
+                const res = await fetch(`${API_BASE}/api/v1/tutorials/completed`, {
+                    headers: { 'Authorization': `Bearer ${token}` }
+                });
+                if (res.ok) {
+                    completedSkillIds = await res.json();
+                }
+            } catch (err) {
+                console.warn("Could not load completed skills:", err);
+            }
+        }
+
+        async function loadCourses() {
+            try {
+                const res = await fetch(`${API_BASE}/api/user/modules`);
+                if (!res.ok) throw new Error("Failed to load courses");
+                courses = await res.json();
+                applyFilters();
+            } catch (err) {
+                console.error(err);
+                document.getElementById("cardContainer").innerHTML =
+                    "<p style='color:#f66; text-align:center; padding:40px;'>Failed to load courses. Is the backend running?</p>";
+            }
+        }
+
+        function renderCards(data) {
+            const container = document.getElementById("cardContainer");
+            container.innerHTML = "";
+
+            data.forEach(course => {
+                const isCompleted = completedModuleIds.includes(course.id);
+
+                let progress = 0;
+                if (isCompleted) {
+                    progress = 100;
+                } else if (course.skillIds && course.skillIds.length > 0) {
+                    // Calculate exact progress
+                    const completedForCourse = course.skillIds.filter(id => completedSkillIds.includes(id)).length;
+                    progress = Math.round((completedForCourse / course.skillIds.length) * 100);
+                }
+
+                const card = document.createElement("div");
+                card.classList.add("card");
+
+                if (isCompleted) {
+                    card.style.borderColor = "var(--accent)";
+                }
+
+                const duration = course.durationValue
+                    ? `${course.durationValue} ${(course.durationUnit || "").toLowerCase()}`
+                    : "-";
+
+                const badgeHtml = isCompleted
+                    ? `<span style="background:var(--accent); color:#111; padding:4px 8px; border-radius:4px; font-size:12px; font-weight:700; display:inline-block; margin-top:8px;">✅ COMPLETED</span>`
+                    : "";
+
+                card.innerHTML = `
+                <div class="card-inner">
+                    <div class="card-front" style="${isCompleted ? 'background: rgba(21, 128, 61, 0.05);' : ''}">
+                        <h2>${course.name}</h2>
+                        <p>${course.description || ""}</p>
+                        ${badgeHtml}
+                        <div class="meta" style="margin-top: 15px;">
+                            <p><strong>Level:</strong> ${course.difficulty || "-"}</p>
+                            <p><strong>Duration:</strong> ${duration}</p>
+                        </div>
+                        <div class="progress-container">
+                            <div class="progress-bar" style="width:${progress}%; ${isCompleted ? 'background: var(--accent);' : ''}"></div>
+                        </div>
+                        <div class="progress-text">${progress}% Completed</div>
+                        <a href="skills.html?courseId=${course.id}" class="mobile-learn-btn">Learn More →</a>
+                    </div>
+                    <div class="card-back">
+                        <h3>${course.name}</h3>
+                        <a href="skills.html?courseId=${course.id}" class="learn-btn">Learn More →</a>
+                    </div>
+                </div>`;
+
+                container.appendChild(card);
+            });
+        }
+
+        const searchInput = document.getElementById("searchInput");
+        const levelFilter = document.getElementById("levelFilter");
+        const noResults = document.getElementById("noResults");
+
+        function applyFilters() {
+            const searchValue = searchInput.value.toLowerCase();
+            const selectedLevel = levelFilter.value.toLowerCase();
+
+            const filteredData = courses.filter(course => {
+                const matchesSearch =
+                    (course.name || "").toLowerCase().includes(searchValue) ||
+                    (course.description || "").toLowerCase().includes(searchValue);
+                const matchesLevel =
+                    selectedLevel === "all" ||
+                    (course.difficulty || "").toLowerCase() === selectedLevel;
+                return matchesSearch && matchesLevel;
+            });
+
+            renderCards(filteredData);
+            noResults.style.display = filteredData.length === 0 ? "block" : "none";
+        }
+
+        searchInput.addEventListener("input", applyFilters);
+        levelFilter.addEventListener("change", applyFilters);
+
+        init();
+    </script>
+</body>
+
+</html>

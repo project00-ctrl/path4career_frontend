@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live FastAPI Editor - CareerPath</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../../assets/css/editor.css">
+    
+    <script src="https://cdn.jsdelivr.net/pyodide/v0.23.4/full/pyodide.js"></script>
+    
+    <style>
+        .header h2 span {
+            color: #05998b !important;
+        }
+
+        .run-btn {
+            background: linear-gradient(135deg, #05998b, #00ffb3) !important;
+            color: #fff !important;
+        }
+
+        .run-btn:hover {
+            background: linear-gradient(135deg, #04887a, #00cc90) !important;
+        }
+
+        .fastapi-badge {
+            background-color: #1e1e3f;
+            color: #05998b;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            margin-left: 10px;
+            font-weight: bold;
+            border: 1px solid #05998b;
+        }
+
+        #fastapiInput { color: #f1fa8c; } 
+        
+        .console-output {
+            flex: 1;
+            background-color: #1e1e2f;
+            display: flex;
+            flex-direction: column;
+        }
+
+        #consoleDiv {
+            flex: 1;
+            padding: 10px 20px;
+            font-family: 'Courier New', Courier, monospace;
+            overflow-y: auto;
+            color: #cbd5e1;
+            font-size: 14px;
+            white-space: pre-wrap; 
+        }
+
+        .log-error { color: #ff4757; }
+        .log-normal { color: #00ffb3; }
+        .log-loading { color: #8be9fd; font-style: italic; }
+
+        .fastapi-note {
+            background: rgba(5, 153, 139, 0.1);
+            border: 1px solid rgba(5, 153, 139, 0.3);
+            border-radius: 6px;
+            padding: 8px 14px;
+            margin: 0 15px;
+            font-size: 12px;
+            color: #05998b;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div style="display: flex; align-items: center; gap: 15px;">
+            <a href="../index.html" style="color: #05998b; text-decoration: none; font-size: 14px;">← Back</a>
+            <h2><span>⚡</span> FastAPI Python Workspace <span class="fastapi-badge">FastAPI</span></h2>
+        </div>
+        <button class="run-btn" id="runBtn" disabled>Loading Python...</button>
+    </div>
+    <div class="fastapi-note">
+        💡 This workspace uses <strong>Pyodide</strong> to run Python in the browser. Note: Real ASGI servers (like Uvicorn) cannot fully run in a browser environment, but you can test your FastAPI logic here!
+    </div>
+    <div class="workspace">
+        <div class="editor-pane">
+            <p class="pane-label">main.py</p>
+            <textarea id="fastapiInput" spellcheck="false" aria-label="FastAPI Python Input"></textarea>
+        </div>
+        
+        <div class="result-pane">
+            <div class="console-output">
+                <p class="pane-label" style="padding:10px 20px 0;">Terminal Output</p>
+                <div id="consoleDiv">
+                    <span class="log-loading">Initializing FastAPI Python Engine... please wait.</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+const fastapiInput = document.getElementById('fastapiInput');
+        const consoleDiv = document.getElementById('consoleDiv');
+        const runBtn = document.getElementById('runBtn');
+        
+        let pyodideInstance = null;
+
+        // Fetch saved code or use a default FastAPI template
+        const savedCode = localStorage.getItem('careerPathFastAPICode');
+        fastapiInput.value = savedCode ? savedCode : `# ⚡ FastAPI Workspace
+from fastapi import FastAPI
+
+app = FastAPI()
+
+@app.get("/")
+def read_root():
+    return {"message": "Hello FastAPI from the browser!"}
+
+@app.get("/items/{item_id}")
+def read_item(item_id: int, q: str = None):
+    return {"item_id": item_id, "q": q}
+
+# Test the app logic
+print("Mocking API Calls...")
+print(f"GET / -> {read_root()}")
+print(f"GET /items/5?q=test -> {read_item(5, 'test')}")`;
+
+        // Function to append text to our visual console
+        function appendToConsole(text, className) {
+            const span = document.createElement('span');
+            span.className = className;
+            span.textContent = text + '\n';
+            consoleDiv.appendChild(span);
+            consoleDiv.scrollTop = consoleDiv.scrollHeight;
+        }
+
+        // Initialize Pyodide
+        async function main() {
+            try {
+                pyodideInstance = await loadPyodide({
+                    stdout: (text) => appendToConsole(text, 'log-normal'),
+                    stderr: (text) => appendToConsole(text, 'log-error')
+                });
+                
+                consoleDiv.innerHTML = '<span class="log-loading">Configuring FastAPI Mock Environment...</span>\n';
+                
+                // Inject a high-quality FastAPI Mock
+                // This allows the user to use "from fastapi import FastAPI" and "@app.get('/')"
+                // It also mocks Pydantic's BaseModel
+                const mockCode = `
+import sys
+from types import ModuleType
+
+# Mock Pydantic
+pydantic = ModuleType("pydantic")
+class BaseModel:
+    def __init__(self, **data):
+        for key, value in data.items():
+            setattr(self, key, value)
+    def __repr__(self):
+        return str(self.__dict__)
+pydantic.BaseModel = BaseModel
+pydantic.Field = lambda *args, **kwargs: None
+pydantic.EmailStr = str
+sys.modules["pydantic"] = pydantic
+
+# Mock FastAPI
+fastapi = ModuleType("fastapi")
+class FastAPI:
+    def __init__(self):
+        self.routes = {}
+    def _add_route(self, path, func, method):
+        self.routes[f"{method} {path}"] = func
+        return func
+    def get(self, path): return lambda f: self._add_route(path, f, "GET")
+    def post(self, path): return lambda f: self._add_route(path, f, "POST")
+    def put(self, path): return lambda f: self._add_route(path, f, "PUT")
+    def delete(self, path): return lambda f: self._add_route(path, f, "DELETE")
+
+fastapi.FastAPI = FastAPI
+fastapi.HTTPException = Exception
+fastapi.Header = lambda *args, **kwargs: None
+fastapi.Cookie = lambda *args, **kwargs: None
+fastapi.Form = lambda *args, **kwargs: None
+fastapi.Depends = lambda x: x
+fastapi.BackgroundTasks = list
+sys.modules["fastapi"] = fastapi
+
+print("FastAPI Simulator Initialized.")
+`;
+                await pyodideInstance.runPythonAsync(mockCode);
+                
+                consoleDiv.innerHTML = '<span class="log-normal">✔ FastAPI Python Simulator Ready!\nClick Run Code to execute and test logic.</span>\n\n';
+                runBtn.disabled = false;
+                runBtn.innerText = "Run Code ❯";
+            } catch (err) {
+                consoleDiv.innerHTML = `<span class="log-error">Failed to load FastAPI simulator: ${err.message}</span>`;
+            }
+        }
+
+        // Execute Python code
+        async function executePython() {
+            if (!pyodideInstance) return;
+            
+            const code = fastapiInput.value.trim();
+            if (!code) {
+                consoleDiv.innerHTML = '<span class="log-error">Please enter some Python code.</span>\n';
+                return;
+            }
+
+            consoleDiv.innerHTML = '<span class="log-loading">>>> Running FastAPI script...</span>\n';
+            runBtn.disabled = true;
+
+            // Save the code
+            localStorage.setItem('careerPathFastAPICode', fastapiInput.value);
+
+            try {
+                await pyodideInstance.runPythonAsync(code);
+                
+                // Automatically discover and test routes if "app" exists
+                const discoverRoutesCode = `
+try:
+    if 'app' in globals() and hasattr(app, 'routes'):
+        print("\\n--- Auto-Discovered Routes ---")
+        for route_name in app.routes:
+            print(f"✔ Registered: {route_name}")
+        
+        # If there's a GET / route, auto-test it
+        if "GET /" in app.routes:
+            print(f"\\nAuto-Testing 'GET /'...")
+            result = app.routes["GET /"]()
+            print(f"Response: {result}")
+except Exception as e:
+    pass
+`;
+                await pyodideInstance.runPythonAsync(discoverRoutesCode);
+
+            } catch (err) {
+                appendToConsole(err, 'log-error');
+            } finally {
+                runBtn.disabled = false;
+            }
+        }
+
+        runBtn.addEventListener('click', executePython);
+
+        // Keyboard shortcuts
+        fastapiInput.addEventListener('keydown', function(e) {
+            if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
+                executePython();
+            }
+            if (e.key === 'Tab') {
+                e.preventDefault();
+                const start = this.selectionStart;
+                const end = this.selectionEnd;
+                this.value = this.value.substring(0, start) + '    ' + this.value.substring(end);
+                this.selectionStart = this.selectionEnd = start + 4;
+            }
+        });
+
+        // Start loading the engine immediately
+        main();
+</script>
+</body>
+</html>

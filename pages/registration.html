@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Path4Career</title>
+    <link rel="stylesheet" href="../assets/css/registration.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/navbar.css">
+</head>
+
+<body>
+    <div id="navbar-root"></div>
+    <main>
+        <div class="page">
+
+            <!-- LEFT CARD -->
+            <div class="career-card">
+                <div class="title">
+                    <img src="../assets/images/careericon.png" width="40">
+                    <h2>Path4Career</h2>
+                </div>
+                <p>Learn. Build.</p>
+                <p>Get Hired.</p>
+                <img src="../assets/images/careericon.png" class="bg-hat">
+            </div>
+
+            <!-- RIGHT CARD -->
+            <div class="form-card">
+
+                <!-- ROLE SELECT -->
+                <div id="roleSelectBox">
+                    <h2>Welcome to Path4Career!</h2>
+
+                    <select id="mainRole">
+                        <option value="">I am joining as</option>
+                        <option value="student">Student</option>
+                        <option value="job">Job Seeker</option>
+                        <option value="recruiter">Recruiter</option>
+                        <option value="mentor">Mentor</option>
+                    </select>
+
+                    <!-- Student Type -->
+                    <div id="studentTypeBox" class="hide">
+                        <select id="studentType">
+                            <option value="">Select</option>
+                            <option value="school">School</option>
+                            <option value="college">College</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- SCHOOL -->
+                <form class="roleForm hide" id="schoolForm">
+                    <h3>School Details</h3>
+                    <input type="text" class="input" placeholder="Student Name">
+                    <small class="error"></small>
+
+                    <input type="text" class="input" placeholder="School Name">
+                    <small class="error"></small>
+
+                    <input type="number" class="input" placeholder="Class / Grade">
+                    <small class="error"></small>
+
+                    <button type="button" id="schoolContinue">Continue</button>
+                </form>
+
+                <!-- COLLEGE -->
+                <form class="roleForm hide" id="collegeForm">
+                    <h3>College Details</h3>
+                    <input type="text" class="input" placeholder="Student Name">
+                    <small class="error"></small>
+
+                    <input type="text" class="input" placeholder="College Name">
+                    <small class="error"></small>
+
+                    <input type="text" class="input" placeholder="Qualification">
+                    <small class="error"></small>
+
+                    <input type="text" class="input" placeholder="Specialization">
+                    <small class="error"></small>
+
+                    <input type="number" class="input" placeholder="Year of Graduation">
+                    <small class="error"></small>
+
+                    <button type="button" id="collegeContinue">Continue</button>
+                </form>
+
+                <!-- STUDENT REGISTER -->
+                <form class="register hide" id="studentRegister">
+                    <h2>Create Student Account</h2>
+                    <input type="text" class="input" placeholder="Full Name">
+                    <small class="error"></small>
+
+                    <input type="email" class="input" placeholder="Email">
+                    <small class="error"></small>
+
+                    <input type="password" class="input" placeholder="Password">
+                    <small class="error"></small>
+
+                    <input type="password" class="input" placeholder="Confirm Password">
+                    <small class="error"></small>
+
+                    <!-- terms -->
+                    <div class="terms-box">
+                        <input type="checkbox" class="termsCheck">
+                        <label>
+                            I agree to the <a href="#">Terms & Conditions</a> and <a href="#">Privacy Policy</a>
+                        </label>
+                        <p class="terms-error"></p>
+                    </div>
+
+
+                    <button>Register</button>
+
+                    <span>--------- Or register with ----------</span>
+
+                    <!-- for social logos -->
+                    <div class="logos">
+                        <a href=""><img src="../assets/images/icons8-google.svg" alt="" width="25px"></a>
+                        <a href=""><img src="../assets/images/facebook.png" alt="" width="25px"></a>
+                    </div>
+
+                    <p>Already a member ? <a href="./login.html">Login</a></p>
+                </form>
+
+                <!-- JOB -->
+                <form class="register hide" id="jobForm">
+                    <h2>Create Job Seeker Account</h2>
+                    <input type="text" class="input" placeholder="Full Name">
+                    <small class="error"></small>
+
+                    <input type="email" class="input" placeholder="Email">
+                    <small class="error"></small>
+
+                    <input type="password" class="input" placeholder="Password">
+                    <small class="error"></small>
+
+                    <input type="password" class="input" placeholder="Confirm Password">
+                    <small class="error"></small>
+
+                    <input type="number" placeholder="Years of Experience">
+                    <input type="text" placeholder="Domain">
+                    <textarea placeholder="Experience Summary"></textarea>
+                    <!-- terms -->
+                    <div class="terms-box">
+                        <input type="checkbox" class="termsCheck">
+                        <label>
+                            I agree to the <a href="#">Terms & Conditions</a> and <a href="#">Privacy Policy</a>
+                        </label>
+                        <p class="terms-error"></p>
+                    </div>
+
+                    <button>Register</button>
+                    <span>--------- Or register with ----------</span>
+
+                    <!-- for social logos -->
+                    <div class="logos">
+                        <a href=""><img src="../assets/images/icons8-google.svg" alt="" width="25px"></a>
+                        <a href=""><img src="../assets/images/facebook.png" alt="" width="25px"></a>
+                    </div>
+
+                    <p>Already a member ? <a href="./login.html">Login</a></p>
+                </form>
+
+                <!-- RECRUITER -->
+                <form class="register hide" id="recruiterForm">
+                    <h2>Create Recruiter Account</h2>
+                    <input type="text" class="input" placeholder="Name">
+                    <small class="error"></small>
+
+                    <input type="email" class="input" placeholder="Email">
+                    <small class="error"></small>
+
+                    <input type="password" class="input" placeholder="Password">
+                    <small class="error"></small>
+
+                    <input type="password" class="input" placeholder="Confirm Password">
+                    <small class="error"></small>
+
+                    <input type="text" placeholder="Company Name">
+                    <textarea placeholder="Company Description"></textarea>
+                    <!-- terms -->
+                    <div class="terms-box">
+                        <input type="checkbox" class="termsCheck">
+                        <label>
+                            I agree to the <a href="#">Terms & Conditions</a> and <a href="#">Privacy Policy</a>
+                        </label>
+                        <p class="terms-error"></p>
+                    </div>
+
+
+                    <button>Register</button>
+                    <span>--------- Or register with ----------</span>
+
+                    <!-- for social logos -->
+                    <div class="logos">
+                        <a href=""><img src="../assets/images/icons8-google.svg" alt="" width="25px"></a>
+                        <a href=""><img src="../assets/images/facebook.png" alt="" width="25px"></a>
+                    </div>
+
+                    <p>Already a member ? <a href="./login.html">Login</a></p>
+                </form>
+
+                <!-- MENTOR -->
+                <form class="register hide" id="mentorForm">
+                    <h2>Create Mentor Account</h2>
+                    <input type="text" class="input" placeholder="Full Name">
+                    <small class="error"></small>
+
+                    <input type="email" class="input" placeholder="Email">
+                    <small class="error"></small>
+
+                    <input type="password" class="input" placeholder="Password">
+                    <small class="error"></small>
+
+                    <input type="password" class="input" placeholder="Confirm Password">
+                    <small class="error"></small>
+
+                    <input type="text" placeholder="Qualification">
+                    <input type="text" placeholder="Specialization">
+                    <input type="text" placeholder="Available Time">
+
+                    <!-- terms -->
+                    <div class="terms-box">
+                        <input type="checkbox" class="termsCheck">
+                        <label>
+                            I agree to the <a href="#">Terms & Conditions</a> and <a href="#">Privacy Policy</a>
+                        </label>
+                        <p class="terms-error"></p>
+                    </div>
+
+                    <button>Register</button>
+                    <span>--------- Or register with ----------</span>
+
+                    <!-- for social logos -->
+                    <div class="logos">
+                        <a href=""><img src="../assets/images/icons8-google.svg" alt="" width="25px"></a>
+                        <a href=""><img src="../assets/images/facebook.png" alt="" width="25px"></a>
+                    </div>
+
+                    <p>Already a member ? <a href="./login.html">Login</a></p>
+                </form>
+
+            </div>
+
+        </div>
+    </main>
+
+    <script src="../assets/js/registration.js"></script>
+    <script src="../assets/js/navbar.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,131 @@
+{
+  "sections": [
+    {
+      "title": "Data Analysis with Pandas",
+      "desc": "Core Pandas operations for data manipulation and analysis.",
+      "type": "table",
+      "columns": ["METHOD / FUNCTION", "DESCRIPTION", "EXAMPLE"],
+      "rows": [
+        { "property": "pd.read_csv(file)", "desc": "Read CSV file into DataFrame", "version": "df = pd.read_csv('data.csv')" },
+        { "property": "pd.read_excel(file)", "desc": "Read Excel file into DataFrame", "version": "df = pd.read_excel('data.xlsx')" },
+        { "property": "df.head(n)", "desc": "View first n rows (default 5)", "version": "df.head(10)" },
+        { "property": "df.info()", "desc": "Display column types, non-null counts, memory", "version": "df.info()" },
+        { "property": "df.describe()", "desc": "Statistical summary — mean, std, min, max, quartiles", "version": "df.describe()" },
+        { "property": "df.shape", "desc": "Returns (rows, columns) tuple", "version": "df.shape" },
+        { "property": "df.dtypes", "desc": "Data types of each column", "version": "df.dtypes" },
+        { "property": "df['col']", "desc": "Select a single column (returns Series)", "version": "df['age']" },
+        { "property": "df[['col1', 'col2']]", "desc": "Select multiple columns", "version": "df[['name', 'age']]" },
+        { "property": "df.loc[row, col]", "desc": "Select by label-based index", "version": "df.loc[0:5, 'name']" },
+        { "property": "df.iloc[row, col]", "desc": "Select by integer position", "version": "df.iloc[0:5, 0:3]" },
+        { "property": "df.groupby('col').agg()", "desc": "Group and aggregate data", "version": "df.groupby('city')['salary'].mean()" },
+        { "property": "df.merge(other, on='key')", "desc": "Merge/join two DataFrames", "version": "pd.merge(df1, df2, on='id', how='left')" },
+        { "property": "df.pivot_table()", "desc": "Create pivot table with aggregation", "version": "df.pivot_table(values='sales', index='region', aggfunc='sum')" },
+        { "property": "df.fillna(value)", "desc": "Fill missing values", "version": "df['age'].fillna(df['age'].mean())" },
+        { "property": "df.dropna()", "desc": "Drop rows with missing values", "version": "df.dropna(subset=['email'])" },
+        { "property": "df.apply(func)", "desc": "Apply function to each row or column", "version": "df['name'].apply(str.upper)" },
+        { "property": "df.sort_values('col')", "desc": "Sort by column values", "version": "df.sort_values('age', ascending=False)" },
+        { "property": "df.to_csv(file)", "desc": "Export DataFrame to CSV", "version": "df.to_csv('output.csv', index=False)" }
+      ]
+    },
+    {
+      "title": "Data Visualization",
+      "desc": "Visualization libraries and chart types for data exploration.",
+      "type": "table",
+      "columns": ["LIBRARY / CHART", "DESCRIPTION", "USE CASE"],
+      "rows": [
+        { "property": "Matplotlib", "desc": "Foundational plotting library — highly customizable", "version": "import matplotlib.pyplot as plt" },
+        { "property": "plt.plot(x, y)", "desc": "Line chart", "version": "Trends over time" },
+        { "property": "plt.bar(x, height)", "desc": "Bar chart", "version": "Category comparisons" },
+        { "property": "plt.scatter(x, y)", "desc": "Scatter plot", "version": "Correlation analysis" },
+        { "property": "plt.hist(data, bins)", "desc": "Histogram — frequency distribution", "version": "Data distribution" },
+        { "property": "plt.pie(sizes, labels)", "desc": "Pie chart — proportions", "version": "Market share" },
+        { "property": "Seaborn", "desc": "Statistical visualization library built on Matplotlib", "version": "import seaborn as sns" },
+        { "property": "sns.heatmap(corr_matrix)", "desc": "Heatmap for correlation matrix", "version": "Feature correlations" },
+        { "property": "sns.boxplot(x, y, data)", "desc": "Box plot — distribution spread + outliers", "version": "Value distribution by group" },
+        { "property": "sns.pairplot(df)", "desc": "Scatter plot matrix for all numeric pairs", "version": "Feature relationships" },
+        { "property": "Plotly", "desc": "Interactive web-based charts", "version": "import plotly.express as px" },
+        { "property": "px.line(df, x, y)", "desc": "Interactive line chart", "version": "px.line(df, x='date', y='price')" },
+        { "property": "px.bar(df, x, y, color)", "desc": "Interactive grouped bar chart", "version": "px.bar(df, x='category', y='sales', color='region')" }
+      ]
+    },
+    {
+      "title": "Statistical Concepts",
+      "desc": "Key statistics concepts for data science.",
+      "type": "table",
+      "columns": ["CONCEPT", "DESCRIPTION", "APPLICATION"],
+      "rows": [
+        { "property": "Mean", "desc": "Average value — sum divided by count", "version": "Central tendency measure" },
+        { "property": "Median", "desc": "Middle value when sorted — robust to outliers", "version": "Income distribution" },
+        { "property": "Mode", "desc": "Most frequently occurring value", "version": "Categorical data analysis" },
+        { "property": "Standard Deviation", "desc": "Measure of data spread around the mean", "version": "Risk assessment" },
+        { "property": "Variance", "desc": "Average of squared deviations from mean", "version": "Data variability" },
+        { "property": "Correlation", "desc": "Relationship strength between two variables (-1 to 1)", "version": "Feature selection" },
+        { "property": "Normal Distribution", "desc": "Bell-curve shaped symmetric distribution", "version": "Many natural phenomena" },
+        { "property": "Hypothesis Testing", "desc": "Statistical test to accept/reject a claim", "version": "A/B testing" },
+        { "property": "p-value", "desc": "Probability of results if null hypothesis is true", "version": "< 0.05 typically significant" },
+        { "property": "Confidence Interval", "desc": "Range likely containing true population parameter", "version": "95% CI is standard" },
+        { "property": "Chi-Square Test", "desc": "Test independence between categorical variables", "version": "Survey analysis" },
+        { "property": "T-Test", "desc": "Compare means of two groups", "version": "A/B test significance" }
+      ]
+    },
+    {
+      "title": "Data Preprocessing",
+      "desc": "Data cleaning, transformation, and feature engineering techniques.",
+      "type": "table",
+      "columns": ["TECHNIQUE", "DESCRIPTION", "EXAMPLE"],
+      "rows": [
+        { "property": "Missing Value Imputation", "desc": "Fill missing values with mean, median, or mode", "version": "df['age'].fillna(df['age'].median())" },
+        { "property": "OneHotEncoder", "desc": "Convert categorical features to binary columns", "version": "pd.get_dummies(df, columns=['color'])" },
+        { "property": "LabelEncoder", "desc": "Convert categories to numeric labels", "version": "LabelEncoder().fit_transform(df['size'])" },
+        { "property": "StandardScaler", "desc": "Z-score normalization (mean=0, std=1)", "version": "StandardScaler().fit_transform(X)" },
+        { "property": "MinMaxScaler", "desc": "Scale features to [0, 1] range", "version": "MinMaxScaler().fit_transform(X)" },
+        { "property": "Train/Test Split", "desc": "Split data into training and testing sets", "version": "train_test_split(X, y, test_size=0.2)" },
+        { "property": "Feature Selection", "desc": "Select most important features for the model", "version": "SelectKBest, RFE, Feature Importance" },
+        { "property": "Outlier Detection", "desc": "Identify and handle extreme values", "version": "IQR method, Z-score method" },
+        { "property": "Text Vectorization", "desc": "Convert text to numerical features", "version": "TfidfVectorizer, CountVectorizer" },
+        { "property": "Polynomial Features", "desc": "Create interaction and polynomial terms", "version": "PolynomialFeatures(degree=2)" },
+        { "property": "Cross-Validation", "desc": "K-fold validation for robust model evaluation", "version": "cross_val_score(model, X, y, cv=5)" }
+      ]
+    },
+    {
+      "title": "NumPy Essentials",
+      "desc": "NumPy operations commonly used in data science.",
+      "type": "table",
+      "columns": ["FUNCTION / METHOD", "DESCRIPTION", "EXAMPLE"],
+      "rows": [
+        { "property": "np.array(list)", "desc": "Create NumPy array from list", "version": "np.array([1, 2, 3])" },
+        { "property": "np.zeros(shape)", "desc": "Create array filled with zeros", "version": "np.zeros((3, 4))" },
+        { "property": "np.ones(shape)", "desc": "Create array filled with ones", "version": "np.ones((2, 3))" },
+        { "property": "np.arange(start, stop, step)", "desc": "Create evenly spaced values", "version": "np.arange(0, 10, 2)" },
+        { "property": "np.linspace(start, stop, num)", "desc": "Create n evenly spaced values", "version": "np.linspace(0, 1, 50)" },
+        { "property": "np.random.rand(shape)", "desc": "Random values from uniform distribution", "version": "np.random.rand(3, 3)" },
+        { "property": "np.random.randn(shape)", "desc": "Random values from normal distribution", "version": "np.random.randn(100)" },
+        { "property": "arr.reshape(shape)", "desc": "Change array shape without changing data", "version": "arr.reshape(3, 4)" },
+        { "property": "np.dot(a, b)", "desc": "Matrix multiplication / dot product", "version": "np.dot(A, B)" },
+        { "property": "np.mean(arr)", "desc": "Calculate mean of array", "version": "np.mean(arr, axis=0)" },
+        { "property": "np.std(arr)", "desc": "Calculate standard deviation", "version": "np.std(arr)" },
+        { "property": "arr[condition]", "desc": "Boolean indexing / filtering", "version": "arr[arr > 5]" }
+      ]
+    },
+    {
+      "title": "Scikit-learn ML Pipeline",
+      "desc": "End-to-end machine learning workflow with scikit-learn.",
+      "type": "table",
+      "columns": ["STEP / METHOD", "DESCRIPTION", "EXAMPLE"],
+      "rows": [
+        { "property": "train_test_split()", "desc": "Split data into train and test sets", "version": "X_train, X_test, y_train, y_test = train_test_split(X, y)" },
+        { "property": "model.fit(X_train, y_train)", "desc": "Train the model on training data", "version": "model.fit(X_train, y_train)" },
+        { "property": "model.predict(X_test)", "desc": "Make predictions on test data", "version": "y_pred = model.predict(X_test)" },
+        { "property": "model.score(X_test, y_test)", "desc": "Evaluate model accuracy", "version": "model.score(X_test, y_test)" },
+        { "property": "accuracy_score(y_true, y_pred)", "desc": "Classification accuracy metric", "version": "accuracy_score(y_test, y_pred)" },
+        { "property": "classification_report()", "desc": "Precision, recall, F1 per class", "version": "print(classification_report(y_test, y_pred))" },
+        { "property": "confusion_matrix()", "desc": "TP, TN, FP, FN matrix", "version": "confusion_matrix(y_test, y_pred)" },
+        { "property": "mean_squared_error()", "desc": "Regression error metric", "version": "mean_squared_error(y_test, y_pred)" },
+        { "property": "GridSearchCV()", "desc": "Exhaustive hyperparameter search with CV", "version": "GridSearchCV(model, param_grid, cv=5)" },
+        { "property": "Pipeline(steps)", "desc": "Chain preprocessing + model steps", "version": "Pipeline([('scaler', StandardScaler()), ('clf', SVC())])" },
+        { "property": "joblib.dump(model, file)", "desc": "Save trained model to file", "version": "joblib.dump(model, 'model.pkl')" },
+        { "property": "joblib.load(file)", "desc": "Load saved model from file", "version": "model = joblib.load('model.pkl')" }
+      ]
+    }
+  ]
+}

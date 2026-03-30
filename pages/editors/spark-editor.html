@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live Spark Editor - CareerPath</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../../assets/css/editor.css">
+    
+    <script src="https://cdn.jsdelivr.net/pyodide/v0.23.4/full/pyodide.js"></script>
+    
+    <style>
+        #pythonInput { color: #f1fa8c; } 
+        
+        .console-output {
+            flex: 1;
+            background-color: #1e1e2f;
+            display: flex;
+            flex-direction: column;
+        }
+
+        #consoleDiv {
+            flex: 1;
+            padding: 10px 20px;
+            font-family: 'Courier New', Courier, monospace;
+            overflow-y: auto;
+            color: #cbd5e1;
+            font-size: 14px;
+            white-space: pre-wrap; 
+        }
+
+        .log-error { color: #ff4757; }
+        .log-normal { color: #00ffb3; }
+        .log-loading { color: #8be9fd; font-style: italic; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h2><span style="color: #e25a1c;">⚡</span> Real Spark Workspace</h2>
+        <button class="run-btn" id="runBtn" disabled>Loading Spark Engine...</button>
+    </div>
+    <div class="packages-note" style="background: rgba(226, 90, 28, 0.1); border: 1px solid rgba(226, 90, 28, 0.3); border-radius: 6px; padding: 8px 14px; margin: 0 15px; font-size: 12px; color: #e25a1c;">
+        💡 Core packages available: <strong>pyspark</strong> (simulated), <strong>numpy</strong>, <strong>pandas</strong>. <br>
+        🧪 <strong>Apache Spark</strong> operations are simulated locally via a browser shim (CPU only).
+    </div>
+    <div class="workspace">
+        <div class="editor-pane">
+            <p class="pane-label">main.py</p>
+            <textarea id="pythonInput" spellcheck="false" aria-label="Spark Input"></textarea>
+        </div>
+        
+        <div class="result-pane" style="display: flex; flex-direction: column;">
+            <div class="console-output" style="flex: 1; overflow-y: auto; display: flex; flex-direction: column;">
+                <p class="pane-label" style="padding:10px 20px 0; flex: 0 0 auto;">Terminal Output</p>
+                <div id="consoleDiv" style="flex: 1;">
+                    <span class="log-loading">Initializing WebAssembly Spark Engine... please wait.</span>
+                </div>
+            </div>
+            <div class="plot-output" style="flex: 1; min-height: 250px; background-color: #ffffff; display: flex; justify-content: center; align-items: center; overflow: auto; border-top: 1px solid #444;">
+                <div id="plotDiv"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+const pythonInput = document.getElementById('pythonInput');
+        const consoleDiv = document.getElementById('consoleDiv');
+        const runBtn = document.getElementById('runBtn');
+        const plotDiv = document.getElementById('plotDiv');
+        
+        document.pyodideMplTarget = plotDiv;
+        
+        let pyodideInstance = null;
+
+        const savedCode = localStorage.getItem('careerPathSparkCode');
+        pythonInput.value = savedCode ? savedCode : `# Write your PySpark code here!
+from pyspark.sql import SparkSession
+
+spark = SparkSession.builder \\
+    .appName("My First Spark App") \\
+    .getOrCreate()
+
+print("Spark Version:", spark.version)
+
+data = [("Alice", 25), ("Bob", 30), ("Charlie", 35)]
+columns = ["Name", "Age"]
+
+df = spark.createDataFrame(data, columns)
+df.show()`;
+
+        function appendToConsole(text, className) {
+            const span = document.createElement('span');
+            span.className = className;
+            span.textContent = text;
+            consoleDiv.appendChild(span);
+            consoleDiv.scrollTop = consoleDiv.scrollHeight; 
+        }
+
+        async function main() {
+            try {
+                pyodideInstance = await loadPyodide({
+                    stdout: (text) => appendToConsole(text + '\\n', 'log-normal'),
+                    stderr: (text) => appendToConsole(text + '\\n', 'log-error')
+                });
+                
+                consoleDiv.innerHTML = '<span class="log-loading">Loading PySpark browser shim (CPU simulation)...</span>\\n';
+                
+                const shimCode = `
+import sys
+from types import ModuleType
+
+pyspark = ModuleType("pyspark")
+pyspark.sql = ModuleType("pyspark.sql")
+
+class MockDataFrame:
+    def __init__(self, data, columns):
+        self.data = data
+        self.columns = columns
+    def show(self):
+        print("+" + "-"*15 + "+" + "-"*15 + "+")
+        print(f"| {self.columns[0]:<13} | {self.columns[1]:<13} |")
+        print("+" + "-"*15 + "+" + "-"*15 + "+")
+        for row in self.data:
+            print(f"| {str(row[0]):<13} | {str(row[1]):<13} |")
+        print("+" + "-"*15 + "+" + "-"*15 + "+")
+    def filter(self, *args): return self
+    def select(self, *args): return self
+    def cache(self): return self
+    def count(self): return len(self.data)
+    def createOrReplaceTempView(self, name): pass
+    def join(self, other, on=None, how=None): return self
+    def withColumn(self, name, col): return self
+
+class MockSparkContext:
+    def parallelize(self, data, partitions=1):
+        return MockRDD(data)
+    def accumulator(self, val):
+        return MockAccumulator(val)
+    def broadcast(self, val):
+        return MockBroadcast(val)
+
+class MockRDD:
+    def __init__(self, data): self.data = data
+    def map(self, f): return MockRDD([f(x) for x in self.data])
+    def collect(self): return self.data
+    def reduceByKey(self, f): return self
+    def getNumPartitions(self): return 1
+    def repartition(self, n): return self
+    def foreach(self, f):
+        for x in self.data: f(x)
+
+class MockAccumulator:
+    def __init__(self, val): self.value = val
+
+class MockBroadcast:
+    def __init__(self, val): self.value = val
+
+class MockSparkSessionBuilder:
+    def appName(self, name): return self
+    def getOrCreate(self): return MockSparkSession()
+
+class MockSparkSession:
+    def __init__(self):
+        self.builder = MockSparkSessionBuilder()
+        self.version = "3.4.1 (Simulated)"
+        self.sparkContext = MockSparkContext()
+    def createDataFrame(self, data, columns):
+        return MockDataFrame(data, columns)
+    def sql(self, query):
+        return MockDataFrame([("Mock", "Data")], ["Col1", "Col2"])
+
+pyspark.sql.SparkSession = MockSparkSession()
+pyspark.sql.functions = ModuleType("pyspark.sql.functions")
+def mock_udf(f, returnType=None): return lambda x: x
+pyspark.sql.functions.udf = mock_udf
+
+pyspark.sql.types = ModuleType("pyspark.sql.types")
+class StringType: pass
+pyspark.sql.types.StringType = StringType
+
+pyspark.ml = ModuleType("pyspark.ml")
+pyspark.ml.regression = ModuleType("pyspark.ml.regression")
+class MockLinearRegression:
+    def __init__(self, **kwargs): pass
+    def fit(self, df): return MockModel()
+class MockModel:
+    @property
+    def coefficients(self): return [0.5, 0.2, -0.1]
+pyspark.ml.regression.LinearRegression = MockLinearRegression
+
+pyspark.ml.linalg = ModuleType("pyspark.ml.linalg")
+class Vectors:
+    @staticmethod
+    def dense(arr): return arr
+pyspark.ml.linalg.Vectors = Vectors
+
+sys.modules["pyspark"] = pyspark
+sys.modules["pyspark.sql"] = pyspark.sql
+sys.modules["pyspark.sql.functions"] = pyspark.sql.functions
+sys.modules["pyspark.sql.types"] = pyspark.sql.types
+sys.modules["pyspark.ml"] = pyspark.ml
+sys.modules["pyspark.ml.regression"] = pyspark.ml.regression
+sys.modules["pyspark.ml.linalg"] = pyspark.ml.linalg
+`;
+                await pyodideInstance.runPythonAsync(shimCode);
+
+                consoleDiv.innerHTML = '<span class="log-normal">✔ Spark Engine Ready! Click Run Code to execute.</span>\n\n';
+                runBtn.disabled = false;
+                runBtn.innerText = "Run Code ❯";
+            } catch (err) {
+                consoleDiv.innerHTML = `<span class="log-error">Failed to load Spark engine: ${err.message}</span>`;
+            }
+        }
+
+        async function executePython() {
+            if (!pyodideInstance) return;
+            
+            const code = pythonInput.value.trim();
+            if (!code) {
+                consoleDiv.innerHTML = '<span class="log-error">Please enter some PySpark code.</span>\n';
+                return;
+            }
+
+            consoleDiv.innerHTML = '<span class="log-loading">>>> Running script...</span>\n';
+            plotDiv.innerHTML = ''; 
+            runBtn.disabled = true;
+
+            try {
+                // Ensure output is collected
+                pyodideInstance.globals.set('_execution_output', '');
+                await pyodideInstance.runPythonAsync(`
+import sys
+import io
+
+class WebConsoleRedirector:
+    def __init__(self):
+        self.buffer = ""
+    def write(self, string):
+        self.buffer += string
+        if "\\n" in self.buffer:
+            lines = self.buffer.split("\\n")
+            from js import appendToConsole
+            for line in lines[:-1]:
+                appendToConsole(line + "\\n", 'log-normal')
+            self.buffer = lines[-1]
+    def flush(self):
+        if self.buffer:
+            from js import appendToConsole
+            appendToConsole(self.buffer, 'log-normal')
+            self.buffer = ""
+
+sys.stdout = WebConsoleRedirector()
+sys.stderr = WebConsoleRedirector()
+`);
+                await pyodideInstance.runPythonAsync(code);
+                
+                // Explicitly flush stdout buffer after script finishes
+                await pyodideInstance.runPythonAsync(`sys.stdout.flush()`);
+            } catch (err) {
+                appendToConsole(err, 'log-error');
+            } finally {
+                runBtn.disabled = false;
+            }
+        }
+
+        runBtn.addEventListener('click', executePython);
+        main();
+</script>
+</body>
+</html>

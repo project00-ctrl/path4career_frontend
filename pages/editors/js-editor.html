@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live JS Editor - CareerPath</title>
+    <link rel="stylesheet" href="../../assets/css/editor.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+    
+    <nav class="editor-nav">
+        <div class="logo-area">
+            <img class="logo-icon" src="../../assets/images/path4career-icon.png" alt="Path4Career" style="width:32px;height:32px;border-radius:8px;">
+            <div class="logo-text">Path4Career</div>
+            <div class="title-badge">⚡ JS Workspace</div>
+        </div>
+        <button class="run-btn" id="runBtn" onclick="executeJS()">▶ Run Code</button>
+    </nav>
+
+    <div class="workspace">
+        <div class="editor-pane">
+            <p class="pane-label">script.js (JavaScript)</p>
+            <textarea id="jsInput" spellcheck="false" aria-label="JavaScript Input"></textarea>
+        </div>
+        
+        <div class="result-pane">
+            <div class="visual-output">
+                <p class="pane-label">Visual DOM Output</p>
+                <iframe id="htmlOutput" title="Live Preview"></iframe>
+            </div>
+            <div class="console-output">
+                <p class="pane-label">Terminal / Console</p>
+                <div id="consoleDiv"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+const jsInput = document.getElementById('jsInput');
+        const htmlOutput = document.getElementById('htmlOutput');
+        const consoleDiv = document.getElementById('consoleDiv');
+        const runBtn = document.getElementById('runBtn');
+
+        // 1. Fetch saved code or use default example
+        const savedCode = localStorage.getItem('careerPathJsCode');
+        const defaultCode = `// 1. Log a message to the console below!
+console.log("Hello from CareerPath JavaScript!");
+
+// 2. Do some math
+let a = 10;
+let b = 20;
+console.log("The sum of a and b is:", a + b);
+
+// 3. Manipulate the visual webpage above!
+document.body.innerHTML = "<h1>JavaScript successfully manipulated the DOM! 🎉</h1>";
+document.body.style.color = "#0f172a";
+document.body.style.textAlign = "center";
+document.body.style.fontFamily = "sans-serif";
+document.body.style.paddingTop = "20px";`;
+
+        jsInput.value = savedCode ? savedCode : defaultCode;
+
+        // 2. Smart Indentation
+        jsInput.addEventListener('keydown', function(e) {
+            if (e.key === 'Tab') {
+                e.preventDefault();
+                const start = this.selectionStart;
+                const end = this.selectionEnd;
+                const spaces = "    "; 
+                this.value = this.value.substring(0, start) + spaces + this.value.substring(end);
+                this.selectionStart = this.selectionEnd = start + spaces.length;
+                localStorage.setItem('careerPathJsCode', this.value);
+            }
+        });
+
+        // 3. Auto-Save
+        jsInput.addEventListener('input', () => {
+            localStorage.setItem('careerPathJsCode', jsInput.value);
+        });
+
+        // ✨ Direct Terminal Link
+        window.logToTerminal = function(level, message) {
+            const logElement = document.createElement('div');
+            logElement.className = 'log-line ' + (level === 'error' ? 'log-error' : 'log-normal');
+            logElement.textContent = '> ' + message;
+            consoleDiv.appendChild(logElement);
+            consoleDiv.scrollTop = consoleDiv.scrollHeight;
+        };
+
+        // 4. The Execution Engine (Bulletproofed)
+        function executeJS() {
+            consoleDiv.innerHTML = '<div class="log-line log-system">>>> Executing script...</div>';
+            
+            const rawCode = jsInput.value;
+            
+            // SMART DETECTOR: Pure JS vs HTML
+            const isHTML = rawCode.includes('<script') || rawCode.trim().startsWith('<');
+            const bodyContent = isHTML ? rawCode : "";
+
+            const injectedHTML = `<!DOCTYPE html><html><head>\x3C/head><body>${bodyContent}\x3C/body>\x3C/html>`;
+            
+            const iframeDoc = htmlOutput.contentWindow.document;
+            iframeDoc.open();
+            iframeDoc.write(injectedHTML);
+            iframeDoc.close();
+
+            // Inject console interceptor via DOM (avoids template literal parsing bugs)
+            const interceptor = iframeDoc.createElement('script');
+            interceptor.textContent = `
+                function safeStringify(obj) {
+                    try {
+                        return typeof obj === 'object' ? JSON.stringify(obj, null, 2) : String(obj);
+                    } catch(e) {
+                        return Object.prototype.toString.call(obj);
+                    }
+                }
+                const originalLog = console.log;
+                const originalError = console.error;
+                console.log = function(...args) {
+                    const msg = args.map(a => safeStringify(a)).join(' ');
+                    if(window.parent && window.parent.logToTerminal) {
+                        window.parent.logToTerminal('log', msg);
+                    }
+                    originalLog.apply(console, args);
+                };
+                console.error = function(...args) {
+                    const msg = args.map(a => safeStringify(a)).join(' ');
+                    if(window.parent && window.parent.logToTerminal) {
+                        window.parent.logToTerminal('error', msg);
+                    }
+                    originalError.apply(console, args);
+                };
+                window.onerror = function(msg, url, line) {
+                    if(window.parent && window.parent.logToTerminal) {
+                        window.parent.logToTerminal('error', msg);
+                    }
+                    return false;
+                };
+            `;
+            iframeDoc.head.appendChild(interceptor);
+
+            // Safely inject Pure JS as a DOM node
+            if (!isHTML) {
+                const scriptEl = iframeDoc.createElement('script');
+                scriptEl.textContent = rawCode;
+                iframeDoc.body.appendChild(scriptEl);
+            }
+    }
+
+    runBtn.addEventListener('click', executeJS);
+    executeJS();
+</script>
+</body>
+</html>

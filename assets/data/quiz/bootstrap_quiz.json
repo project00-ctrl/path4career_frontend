@@ -1,0 +1,362 @@
+[
+    {
+        "id": "bs-1",
+        "question": "What is Bootstrap?",
+        "options": [
+            "A server-side programming language.",
+            "A database management system.",
+            "The most popular CSS framework for building responsive, mobile-first websites.",
+            "A JavaScript testing library."
+        ],
+        "correctAnswer": 2,
+        "explanation": "Bootstrap is widely used because it provides pre-built CSS classes and JavaScript components for fast, responsive web development."
+    },
+    {
+        "id": "bs-2",
+        "question": "Which tag must be included in the HTML <head> to load Bootstrap via CDN?",
+        "options": [
+            "<script src=\"bootstrap.js\"></script>",
+            "<link href=\"...bootstrap.min.css\" rel=\"stylesheet\">",
+            "<style src=\"bootstrap\"></style>",
+            "<bootstrap link=\"cdn\">"
+        ],
+        "correctAnswer": 1,
+        "explanation": "The core of Bootstrap is a CSS stylesheet, which is included using the standard <link rel=\"stylesheet\"> tag."
+    },
+    {
+        "id": "bs-3",
+        "question": "Which class provides a responsive fixed-width container in Bootstrap?",
+        "options": [
+            ".container-fixed",
+            ".container",
+            ".fixed-container",
+            ".container-fluid"
+        ],
+        "correctAnswer": 1,
+        "explanation": "The '.container' class provides a standard, responsive fixed-width container that changes max-width at different breakpoints."
+    },
+    {
+        "id": "bs-4",
+        "question": "Which class provides a full-width container, spanning the entire width of the viewport?",
+        "options": [
+            ".container-all",
+            ".container",
+            ".container-fluid",
+            ".container-full"
+        ],
+        "correctAnswer": 2,
+        "explanation": "The '.container-fluid' class provides a 100% width container across all screen sizes."
+    },
+    {
+        "id": "bs-5",
+        "question": "How many columns does the default Bootstrap grid system have across the page?",
+        "options": [
+            "6",
+            "10",
+            "12",
+            "16"
+        ],
+        "correctAnswer": 2,
+        "explanation": "Bootstrap uses a 12-column grid system, which allows for highly flexible mathematical division of screen space."
+    },
+    {
+        "id": "bs-6",
+        "question": "Which class is used to create a flexbox-based row for grid columns?",
+        "options": [
+            ".grid-row",
+            ".col-row",
+            ".row",
+            ".flex-row"
+        ],
+        "correctAnswer": 2,
+        "explanation": "Grid columns (.col) must be placed directly inside a '.row' container."
+    },
+    {
+        "id": "bs-7",
+        "question": "If you want an element to span exactly 4 columns out of 12, which class do you use?",
+        "options": [
+            ".col-md-4",
+            ".span-4",
+            ".col-4",
+            ".grid-4"
+        ],
+        "correctAnswer": 2,
+        "explanation": "Adding a number (1-12) explicitly to the '.col' class, like '.col-4', dictates exact column width."
+    },
+    {
+        "id": "bs-8",
+        "question": "What does the '.display-1' class do to a heading?",
+        "options": [
+            "Hides it from the display.",
+            "Makes it the smallest possible heading.",
+            "Changes it to a flex display.",
+            "Makes the heading stand out more with a larger font size and lighter font weight."
+        ],
+        "correctAnswer": 3,
+        "explanation": "Display headings in Bootstrap (.display-1 through .display-6) are used for hero sections to make text larger and thinner."
+    },
+    {
+        "id": "bs-9",
+        "question": "Which contextual color class usually represents a blue or main brand color?",
+        "options": [
+            "primary",
+            "info",
+            "success",
+            "dark"
+        ],
+        "correctAnswer": 0,
+        "explanation": "The 'primary' color is the default main brand color in Bootstrap, typically a shade of blue."
+    },
+    {
+        "id": "bs-10",
+        "question": "Which class would make text red?",
+        "options": [
+            ".font-red",
+            ".text-danger",
+            ".text-red",
+            ".color-danger"
+        ],
+        "correctAnswer": 1,
+        "explanation": "Bootstrap uses semantic class names. Danger implies a warning/error and is colored red."
+    },
+    {
+        "id": "bs-11",
+        "question": "What is the correct class to create a basic Bootstrap button?",
+        "options": [
+            ".button",
+            ".btn",
+            ".bt",
+            ".boot-btn"
+        ],
+        "correctAnswer": 1,
+        "explanation": "The base '.btn' class applies the core padding, layout, and hover transitions for a button."
+    },
+    {
+        "id": "bs-12",
+        "question": "How do you create a green button indicating success?",
+        "options": [
+            "class=\"btn btn-green\"",
+            "class=\"btn btn-success\"",
+            "class=\"button-success\"",
+            "class=\"btn-color-success\""
+        ],
+        "correctAnswer": 1,
+        "explanation": "Combining '.btn' with the modifier '.btn-success' colors the button green."
+    },
+    {
+        "id": "bs-13",
+        "question": "What is the main container class for a Bootstrap Card component?",
+        "options": [
+            ".card-body",
+            ".card-container",
+            ".card",
+            ".panel"
+        ],
+        "correctAnswer": 2,
+        "explanation": "The '.card' class serves as the main wrapper for all card-related content."
+    },
+    {
+        "id": "bs-14",
+        "question": "Inside a '.card', where does the main text content usually go?",
+        "options": [
+            "Inside .card-title",
+            "Inside .card-content",
+            "Inside .card-body",
+            "Inside .card-text"
+        ],
+        "correctAnswer": 2,
+        "explanation": "The '.card-body' provides the necessary padding and layout for the core text/content of a card."
+    },
+    {
+        "id": "bs-15",
+        "question": "Which class is applied to <input> elements to give them modern Bootstrap styling?",
+        "options": [
+            ".input-form",
+            ".bs-input",
+            ".form-style",
+            ".form-control"
+        ],
+        "correctAnswer": 3,
+        "explanation": "The '.form-control' class styles inputs, textareas, and selects with proper width, padding, and focus outlines."
+    },
+    {
+        "id": "bs-16",
+        "question": "How do you apply basic Bootstrap padding and dividers to a standard HTML <table>?",
+        "options": [
+            "class=\"table\"",
+            "class=\"bs-table\"",
+            "class=\"table-basic\"",
+            "By importing Bootstrap, all tables style automatically."
+        ],
+        "correctAnswer": 0,
+        "explanation": "Adding the '.table' class to the <table> tag opts-in to Bootstrap's standard table styling."
+    },
+    {
+        "id": "bs-17",
+        "question": "Which classes create a blue alert message box?",
+        "options": [
+            ".alert .alert-blue",
+            ".alert .alert-info",
+            ".alert .alert-primary",
+            ".box .alert-primary"
+        ],
+        "correctAnswer": 2,
+        "explanation": "The base class is '.alert' and the modifier '.alert-primary' applies the blue semantic theme."
+    },
+    {
+        "id": "bs-18",
+        "question": "What is the purpose of a Bootstrap Badge?",
+        "options": [
+            "To grant user permissions.",
+            "To highlight small counts and notifications like 'New' or '4'.",
+            "It is a type of button.",
+            "It creates an alert box."
+        ],
+        "correctAnswer": 1,
+        "explanation": "Badges (.badge) are small, flexible inline elements used most often to display counts or labels."
+    },
+    {
+        "id": "bs-19",
+        "question": "Which two classes are required to create a basic Progress Bar?",
+        "options": [
+            ".progress and .progress-bar",
+            ".bar-container and .bar",
+            ".progress-container and .progress-fill",
+            ".progress-wrap and .progress-inner"
+        ],
+        "correctAnswer": 0,
+        "explanation": "An outer wrapper gets the '.progress' class, and the inner div gets the '.progress-bar' class."
+    },
+    {
+        "id": "bs-20",
+        "question": "Which class creates a circular loading animation?",
+        "options": [
+            ".loader",
+            ".spinner-circle",
+            ".spinner-border",
+            ".loading-icon"
+        ],
+        "correctAnswer": 2,
+        "explanation": "The '.spinner-border' class creates a pure CSS border-spinning loading indicator."
+    },
+    {
+        "id": "bs-21",
+        "question": "What is the main wrapper class for a Bootstrap navigation header?",
+        "options": [
+            ".nav-header",
+            ".navbar",
+            ".nav-container",
+            ".menu-bar"
+        ],
+        "correctAnswer": 1,
+        "explanation": "The '.navbar' class creates a responsive navigation header that can collapse on smaller screens."
+    },
+    {
+        "id": "bs-22",
+        "question": "What class allows a Navbar to expand completely on large screens?",
+        "options": [
+            ".navbar-expand-lg",
+            ".navbar-large",
+            ".navbar-full",
+            ".navbar-desktop"
+        ],
+        "correctAnswer": 0,
+        "explanation": "The '.navbar-expand-*' classes govern when the mobile hamburger menu turns into a full horizontal menu."
+    },
+    {
+        "id": "bs-23",
+        "question": "Which class transforms a basic navigation list (.nav) into styled tabs?",
+        "options": [
+            ".nav-pills",
+            ".nav-tabs",
+            ".tabs",
+            ".nav-menu"
+        ],
+        "correctAnswer": 1,
+        "explanation": "Adding '.nav-tabs' to a '.nav' ul generates a classic tabbed interface."
+    },
+    {
+        "id": "bs-24",
+        "question": "What is a basic Bootstrap Modal?",
+        "options": [
+            "A form validation script.",
+            "A navigation menu.",
+            "A popup dialog box that appears over the current page.",
+            "An image gallery slider."
+        ],
+        "correctAnswer": 2,
+        "explanation": "Modals (.modal) are used for user prompts, alerts, or lightboxes focusing attention away from the main page."
+    },
+    {
+        "id": "bs-25",
+        "question": "What does the Bootstrap Carousel component do?",
+        "options": [
+            "Validates form input.",
+            "Creates a slideshow for cycling through elements like images.",
+            "Displays a loading spinner.",
+            "Creates a dropdown menu."
+        ],
+        "correctAnswer": 1,
+        "explanation": "The Carousel (.carousel) is a flexible slideshow component often used on homepages to rotate banner images."
+    },
+    {
+        "id": "bs-26",
+        "question": "What does the spacing utility class 'mt-4' do?",
+        "options": [
+            "Adds Margin to the Top of size 4.",
+            "Adds Margin to the Text of size 4.",
+            "Multiplies the Typography by 4.",
+            "Adds Padding to the Top of size 4."
+        ],
+        "correctAnswer": 0,
+        "explanation": "Bootstrap spacing uses 'm' for margin, 't' for top, followed by a dash and the size scale (0-5, auto)."
+    },
+    {
+        "id": "bs-27",
+        "question": "Which utility class aligns text or an element strictly in the horizontal center?",
+        "options": [
+            ".align-center",
+            ".center-all",
+            ".mx-auto",
+            ".my-auto"
+        ],
+        "correctAnswer": 2,
+        "explanation": "'mx-auto' sets margin-left and margin-right to auto, centering a block element inside its container."
+    },
+    {
+        "id": "bs-28",
+        "question": "To enable flexbox on an element, which class must you apply?",
+        "options": [
+            ".display-flex",
+            ".flex",
+            ".f-box",
+            ".d-flex"
+        ],
+        "correctAnswer": 3,
+        "explanation": "The '.d-flex' utility directly applies the 'display: flex;' CSS property."
+    },
+    {
+        "id": "bs-29",
+        "question": "How do you make an image responsive so it scales with its parent correctly in Bootstrap?",
+        "options": [
+            "class=\"img-responsive\"",
+            "class=\"img-fluid\"",
+            "class=\"img-scale\"",
+            "class=\"img-auto\""
+        ],
+        "correctAnswer": 1,
+        "explanation": "The '.img-fluid' class adds max-width: 100% and height: auto to the image."
+    },
+    {
+        "id": "bs-30",
+        "question": "What does the responsive utility class '.d-none d-md-block' achieve?",
+        "options": [
+            "It hides the block everywhere.",
+            "It shows the block only on mobile, and hides it on medium screens.",
+            "It hides the block completely on mobile, but makes it visible as a block element on medium and larger screens.",
+            "It makes the block a flex container."
+        ],
+        "correctAnswer": 2,
+        "explanation": "Bootstrap is mobile-first. '.d-none' hides it by default (mobile). 'd-md-block' overrides that to show it when the screen size reaches the medium breakpoint."
+    }
+]

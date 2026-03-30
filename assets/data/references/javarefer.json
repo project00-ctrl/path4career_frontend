@@ -1,0 +1,2123 @@
+{
+  "courses": [
+    "HTML",
+    "CSS",
+    "JAVASCRIPT",
+    "SQL",
+    "PYTHON",
+    "JAVA",
+    "PHP",
+    "C",
+    "C++",
+    "C#",
+    "BOOTSTRAP",
+    "REACT",
+    "MYSQL",
+    "JQUERY",
+    "EXCEL",
+    "XML",
+    "DJANGO",
+    "NUMPY",
+    "PANDAS",
+    "NODEJS",
+    "DSA",
+    "TYPESCRIPT",
+    "MANGODB",
+    "GIT",
+    "ANGULAR",
+    "DATASCIENCE"
+  ],
+  "toc": [
+    {
+      "href": "#data-types",
+      "label": "Data Types"
+    },
+    {
+      "href": "#operators",
+      "label": "Operators"
+    },
+    {
+      "href": "#control-flow",
+      "label": "Control Flow"
+    },
+    {
+      "href": "#arrays",
+      "label": "Arrays"
+    },
+    {
+      "href": "#string-methods",
+      "label": "String Methods"
+    },
+    {
+      "href": "#math-methods",
+      "label": "Math Methods"
+    },
+    {
+      "href": "#collections",
+      "label": "Collections"
+    },
+    {
+      "href": "#oop",
+      "label": "OOP Keywords"
+    },
+    {
+      "href": "#exceptions",
+      "label": "Exception Handling"
+    },
+    {
+      "href": "#file-io",
+      "label": "File I/O"
+    },
+    {
+      "href": "#threads",
+      "label": "Threads & Concurrency"
+    },
+    {
+      "href": "#java-keywords",
+      "label": "Java Keywords"
+    }
+  ],
+  "nav": {
+    "tutorials": {
+      "frontend": [
+        {
+          "label": "HTML",
+          "href": "./reference.html?course=htmlReference.json",
+          "note": "tutorial"
+        },
+        {
+          "label": "CSS",
+          "href": "./reference.html?course=cssReference.json",
+          "note": "tutorial"
+        },
+        {
+          "label": "JAVASCRIPT",
+          "href": "./reference.html?course=jsReference.json",
+          "note": "tutorial"
+        },
+        {
+          "label": "REACT",
+          "href": "./reactrefer.html",
+          "note": "tutorial"
+        },
+        {
+          "label": "ICONS",
+          "href": "./iconrefer.html",
+          "note": "tutorial"
+        },
+        {
+          "label": "UTF-8",
+          "href": "./utf-8refer.html",
+          "note": "tutorial"
+        },
+        {
+          "label": "COLOR NAMES",
+          "href": "./colors.html",
+          "note": "tutorial"
+        }
+      ],
+      "backend": [
+        {
+          "label": "PYTHON",
+          "href": "./reference.html?course=pythonReference.json",
+          "note": "tutorial"
+        },
+        {
+          "label": "JAVA",
+          "href": "./javarefer.html",
+          "note": "tutorial"
+        },
+        {
+          "label": "C",
+          "href": "",
+          "note": "tutorial"
+        },
+        {
+          "label": "C++",
+          "href": "",
+          "note": "tutorial"
+        }
+      ]
+    },
+    "references": {
+      "frontend": [
+        {
+          "label": "HTML",
+          "href": "./reference.html?course=htmlReference.json",
+          "note": "Reference"
+        },
+        {
+          "label": "CSS",
+          "href": "./reference.html?course=cssReference.json",
+          "note": "Reference"
+        },
+        {
+          "label": "JAVASCRIPT",
+          "href": "./reference.html?course=jsReference.json",
+          "note": "Reference"
+        },
+        {
+          "label": "REACT",
+          "href": "./reactrefer.html",
+          "note": "Reference"
+        },
+        {
+          "label": "ICONS",
+          "href": "./iconrefer.html",
+          "note": "Reference"
+        },
+        {
+          "label": "UTF-8",
+          "href": "./utf-8refer.html",
+          "note": "Reference"
+        },
+        {
+          "label": "COLOR NAMES",
+          "href": "./colors.html",
+          "note": "Reference"
+        }
+      ],
+      "backend": [
+        {
+          "label": "PYTHON",
+          "href": "./reference.html?course=pythonReference.json",
+          "note": "Reference"
+        },
+        {
+          "label": "JAVA",
+          "href": "./javarefer.html",
+          "note": "Reference"
+        },
+        {
+          "label": "C",
+          "href": "",
+          "note": "Reference"
+        },
+        {
+          "label": "C++",
+          "href": "",
+          "note": "Reference"
+        }
+      ]
+    }
+  },
+  "sections": [
+    {
+      "id": "data-types",
+      "heading": "Data Types",
+      "columns": [
+        "TYPE",
+        "DESCRIPTION",
+        "DEFAULT VALUE"
+      ],
+      "rows": [
+        {
+          "property": "byte",
+          "desc": "8-bit signed integer",
+          "version": "0"
+        },
+        {
+          "property": "short",
+          "desc": "16-bit signed integer",
+          "version": "0"
+        },
+        {
+          "property": "int",
+          "desc": "32-bit signed integer",
+          "version": "0"
+        },
+        {
+          "property": "long",
+          "desc": "64-bit signed integer (use L suffix)",
+          "version": "0L"
+        },
+        {
+          "property": "float",
+          "desc": "32-bit floating point (use F suffix)",
+          "version": "0.0F"
+        },
+        {
+          "property": "double",
+          "desc": "64-bit double precision floating point",
+          "version": "0.0d"
+        },
+        {
+          "property": "char",
+          "desc": "Single 16-bit Unicode character",
+          "version": "'\\u0000'"
+        },
+        {
+          "property": "boolean",
+          "desc": "Stores true or false",
+          "version": "false"
+        },
+        {
+          "property": "String",
+          "desc": "Sequence of characters (Object, not primitive)",
+          "version": "null"
+        },
+        {
+          "property": "int[]",
+          "desc": "Array of integers",
+          "version": "null"
+        },
+        {
+          "property": "Integer",
+          "desc": "Wrapper class for int primitive",
+          "version": "null"
+        },
+        {
+          "property": "Long",
+          "desc": "Wrapper class for long primitive",
+          "version": "null"
+        },
+        {
+          "property": "Double",
+          "desc": "Wrapper class for double primitive",
+          "version": "null"
+        },
+        {
+          "property": "Boolean",
+          "desc": "Wrapper class for boolean primitive",
+          "version": "null"
+        },
+        {
+          "property": "Character",
+          "desc": "Wrapper class for char primitive",
+          "version": "null"
+        },
+        {
+          "property": "var",
+          "desc": "Local variable type inference (Java 10+)",
+          "version": "Java 10"
+        },
+        {
+          "property": "Object",
+          "desc": "Root superclass of all Java classes",
+          "version": "null"
+        }
+      ]
+    },
+    {
+      "id": "operators",
+      "heading": "Operators",
+      "columns": [
+        "OPERATOR",
+        "DESCRIPTION",
+        "EXAMPLE"
+      ],
+      "rows": [
+        {
+          "property": "+",
+          "desc": "Addition / String concatenation",
+          "version": "a + b"
+        },
+        {
+          "property": "-",
+          "desc": "Subtraction",
+          "version": "a - b"
+        },
+        {
+          "property": "*",
+          "desc": "Multiplication",
+          "version": "a * b"
+        },
+        {
+          "property": "/",
+          "desc": "Division (integer division if both operands int)",
+          "version": "a / b"
+        },
+        {
+          "property": "%",
+          "desc": "Modulus (remainder)",
+          "version": "a % b"
+        },
+        {
+          "property": "++",
+          "desc": "Increment by 1 (prefix or postfix)",
+          "version": "a++ / ++a"
+        },
+        {
+          "property": "--",
+          "desc": "Decrement by 1 (prefix or postfix)",
+          "version": "a-- / --a"
+        },
+        {
+          "property": "==",
+          "desc": "Equal to (compares value for primitives)",
+          "version": "a == b"
+        },
+        {
+          "property": "!=",
+          "desc": "Not equal to",
+          "version": "a != b"
+        },
+        {
+          "property": ">",
+          "desc": "Greater than",
+          "version": "a > b"
+        },
+        {
+          "property": "<",
+          "desc": "Less than",
+          "version": "a < b"
+        },
+        {
+          "property": ">=",
+          "desc": "Greater than or equal to",
+          "version": "a >= b"
+        },
+        {
+          "property": "<=",
+          "desc": "Less than or equal to",
+          "version": "a <= b"
+        },
+        {
+          "property": "&&",
+          "desc": "Logical AND (short-circuit)",
+          "version": "a && b"
+        },
+        {
+          "property": "||",
+          "desc": "Logical OR (short-circuit)",
+          "version": "a || b"
+        },
+        {
+          "property": "!",
+          "desc": "Logical NOT",
+          "version": "!a"
+        },
+        {
+          "property": "&",
+          "desc": "Bitwise AND",
+          "version": "a & b"
+        },
+        {
+          "property": "|",
+          "desc": "Bitwise OR",
+          "version": "a | b"
+        },
+        {
+          "property": "^",
+          "desc": "Bitwise XOR",
+          "version": "a ^ b"
+        },
+        {
+          "property": "~",
+          "desc": "Bitwise NOT (complement)",
+          "version": "~a"
+        },
+        {
+          "property": "<<",
+          "desc": "Left bit shift",
+          "version": "a << 2"
+        },
+        {
+          "property": ">>",
+          "desc": "Signed right bit shift",
+          "version": "a >> 2"
+        },
+        {
+          "property": ">>>",
+          "desc": "Unsigned right bit shift",
+          "version": "a >>> 2"
+        },
+        {
+          "property": "=",
+          "desc": "Assignment",
+          "version": "a = 5"
+        },
+        {
+          "property": "+=",
+          "desc": "Add and assign",
+          "version": "a += 5"
+        },
+        {
+          "property": "-=",
+          "desc": "Subtract and assign",
+          "version": "a -= 5"
+        },
+        {
+          "property": "*=",
+          "desc": "Multiply and assign",
+          "version": "a *= 5"
+        },
+        {
+          "property": "/=",
+          "desc": "Divide and assign",
+          "version": "a /= 5"
+        },
+        {
+          "property": "%=",
+          "desc": "Modulus and assign",
+          "version": "a %= 5"
+        },
+        {
+          "property": "? :",
+          "desc": "Ternary (conditional) operator",
+          "version": "a > b ? a : b"
+        },
+        {
+          "property": "instanceof",
+          "desc": "Tests if object is instance of a class",
+          "version": "obj instanceof String"
+        }
+      ]
+    },
+    {
+      "id": "control-flow",
+      "heading": "Control Flow",
+      "columns": [
+        "STATEMENT",
+        "DESCRIPTION",
+        "VERSION"
+      ],
+      "rows": [
+        {
+          "property": "if",
+          "desc": "Executes block if condition is true",
+          "version": "Java 1"
+        },
+        {
+          "property": "if...else",
+          "desc": "Executes else block if condition is false",
+          "version": "Java 1"
+        },
+        {
+          "property": "else if",
+          "desc": "Chains multiple conditions",
+          "version": "Java 1"
+        },
+        {
+          "property": "switch",
+          "desc": "Selects one of many code blocks to execute",
+          "version": "Java 1"
+        },
+        {
+          "property": "switch (expr) ->",
+          "desc": "Switch expression with arrow syntax (no fall-through)",
+          "version": "Java 14"
+        },
+        {
+          "property": "yield",
+          "desc": "Returns value from switch expression block",
+          "version": "Java 14"
+        },
+        {
+          "property": "for",
+          "desc": "Loop with initialiser, condition, and increment",
+          "version": "Java 1"
+        },
+        {
+          "property": "for-each",
+          "desc": "Enhanced for loop — iterates over array or Iterable",
+          "version": "Java 5"
+        },
+        {
+          "property": "while",
+          "desc": "Repeats block while condition is true",
+          "version": "Java 1"
+        },
+        {
+          "property": "do...while",
+          "desc": "Executes block at least once, then checks condition",
+          "version": "Java 1"
+        },
+        {
+          "property": "break",
+          "desc": "Exits loop or switch immediately",
+          "version": "Java 1"
+        },
+        {
+          "property": "break label",
+          "desc": "Breaks out of labelled outer loop",
+          "version": "Java 1"
+        },
+        {
+          "property": "continue",
+          "desc": "Skips rest of current loop iteration",
+          "version": "Java 1"
+        },
+        {
+          "property": "continue label",
+          "desc": "Continues the labelled outer loop",
+          "version": "Java 1"
+        },
+        {
+          "property": "return",
+          "desc": "Exits method and optionally returns a value",
+          "version": "Java 1"
+        },
+        {
+          "property": "return (expr)",
+          "desc": "Returns expression value from method",
+          "version": "Java 1"
+        }
+      ]
+    },
+    {
+      "id": "arrays",
+      "heading": "Arrays",
+      "columns": [
+        "SYNTAX / METHOD",
+        "DESCRIPTION",
+        "VERSION"
+      ],
+      "rows": [
+        {
+          "property": "int[] arr = new int[5]",
+          "desc": "Declare and allocate integer array of size 5",
+          "version": "Java 1"
+        },
+        {
+          "property": "int[] arr = {1, 2, 3}",
+          "desc": "Declare and initialise array with values",
+          "version": "Java 1"
+        },
+        {
+          "property": "arr[i]",
+          "desc": "Access element at index i",
+          "version": "Java 1"
+        },
+        {
+          "property": "arr.length",
+          "desc": "Returns number of elements in array",
+          "version": "Java 1"
+        },
+        {
+          "property": "Arrays.sort(arr)",
+          "desc": "Sorts array in ascending natural order",
+          "version": "Java 1.2"
+        },
+        {
+          "property": "Arrays.sort(arr, comparator)",
+          "desc": "Sorts array using custom comparator",
+          "version": "Java 1.2"
+        },
+        {
+          "property": "Arrays.binarySearch(arr, key)",
+          "desc": "Binary search on sorted array; returns index",
+          "version": "Java 1.2"
+        },
+        {
+          "property": "Arrays.copyOf(arr, len)",
+          "desc": "Copies array to new array of given length",
+          "version": "Java 1.6"
+        },
+        {
+          "property": "Arrays.copyOfRange(arr, f, t)",
+          "desc": "Copies a range of array elements",
+          "version": "Java 1.6"
+        },
+        {
+          "property": "Arrays.fill(arr, value)",
+          "desc": "Fills all elements with specified value",
+          "version": "Java 1.2"
+        },
+        {
+          "property": "Arrays.equals(arr1, arr2)",
+          "desc": "Returns true if arrays are equal element-by-element",
+          "version": "Java 1.2"
+        },
+        {
+          "property": "Arrays.toString(arr)",
+          "desc": "Returns string representation of array",
+          "version": "Java 1.5"
+        },
+        {
+          "property": "Arrays.stream(arr)",
+          "desc": "Returns a Stream over array elements",
+          "version": "Java 8"
+        },
+        {
+          "property": "int[][] matrix = new int[r][c]",
+          "desc": "Declare 2D array of r rows and c columns",
+          "version": "Java 1"
+        },
+        {
+          "property": "System.arraycopy(src,si,dst,di,len)",
+          "desc": "Efficiently copies elements between arrays",
+          "version": "Java 1"
+        }
+      ]
+    },
+    {
+      "id": "string-methods",
+      "heading": "String Methods",
+      "columns": [
+        "METHOD",
+        "DESCRIPTION",
+        "VERSION"
+      ],
+      "rows": [
+        {
+          "property": "length()",
+          "desc": "Returns number of characters in the string",
+          "version": "Java 1"
+        },
+        {
+          "property": "charAt(index)",
+          "desc": "Returns char at given index",
+          "version": "Java 1"
+        },
+        {
+          "property": "indexOf(str)",
+          "desc": "Returns index of first occurrence of str; -1 if not found",
+          "version": "Java 1"
+        },
+        {
+          "property": "lastIndexOf(str)",
+          "desc": "Returns index of last occurrence of str",
+          "version": "Java 1"
+        },
+        {
+          "property": "substring(start)",
+          "desc": "Returns substring from start to end",
+          "version": "Java 1"
+        },
+        {
+          "property": "substring(start, end)",
+          "desc": "Returns substring from start (inclusive) to end (exclusive)",
+          "version": "Java 1"
+        },
+        {
+          "property": "toUpperCase()",
+          "desc": "Converts all characters to upper case",
+          "version": "Java 1"
+        },
+        {
+          "property": "toLowerCase()",
+          "desc": "Converts all characters to lower case",
+          "version": "Java 1"
+        },
+        {
+          "property": "trim()",
+          "desc": "Removes leading and trailing whitespace",
+          "version": "Java 1"
+        },
+        {
+          "property": "strip()",
+          "desc": "Unicode-aware trim (recommended over trim())",
+          "version": "Java 11"
+        },
+        {
+          "property": "stripLeading()",
+          "desc": "Removes only leading whitespace",
+          "version": "Java 11"
+        },
+        {
+          "property": "stripTrailing()",
+          "desc": "Removes only trailing whitespace",
+          "version": "Java 11"
+        },
+        {
+          "property": "replace(old, new)",
+          "desc": "Replaces all occurrences of old with new",
+          "version": "Java 1.5"
+        },
+        {
+          "property": "replaceAll(regex, str)",
+          "desc": "Replaces all substrings matching regex",
+          "version": "Java 1.4"
+        },
+        {
+          "property": "replaceFirst(regex, str)",
+          "desc": "Replaces first substring matching regex",
+          "version": "Java 1.4"
+        },
+        {
+          "property": "split(regex)",
+          "desc": "Splits string around matches of regex; returns String[]",
+          "version": "Java 1.4"
+        },
+        {
+          "property": "split(regex, limit)",
+          "desc": "Splits with at most limit tokens",
+          "version": "Java 1.4"
+        },
+        {
+          "property": "contains(seq)",
+          "desc": "Returns true if string contains the CharSequence",
+          "version": "Java 1.5"
+        },
+        {
+          "property": "startsWith(prefix)",
+          "desc": "Returns true if string starts with prefix",
+          "version": "Java 1"
+        },
+        {
+          "property": "endsWith(suffix)",
+          "desc": "Returns true if string ends with suffix",
+          "version": "Java 1"
+        },
+        {
+          "property": "equals(str)",
+          "desc": "Compares string content (case-sensitive)",
+          "version": "Java 1"
+        },
+        {
+          "property": "equalsIgnoreCase(str)",
+          "desc": "Compares string content ignoring case",
+          "version": "Java 1"
+        },
+        {
+          "property": "compareTo(str)",
+          "desc": "Lexicographic comparison; returns negative, 0, or positive",
+          "version": "Java 1"
+        },
+        {
+          "property": "isEmpty()",
+          "desc": "Returns true if length() == 0",
+          "version": "Java 1.6"
+        },
+        {
+          "property": "isBlank()",
+          "desc": "Returns true if empty or contains only whitespace",
+          "version": "Java 11"
+        },
+        {
+          "property": "concat(str)",
+          "desc": "Concatenates str to end of this string",
+          "version": "Java 1"
+        },
+        {
+          "property": "valueOf(x)",
+          "desc": "Converts x to String representation (static method)",
+          "version": "Java 1"
+        },
+        {
+          "property": "toCharArray()",
+          "desc": "Converts string to char array",
+          "version": "Java 1"
+        },
+        {
+          "property": "getBytes()",
+          "desc": "Encodes string into byte array using default charset",
+          "version": "Java 1"
+        },
+        {
+          "property": "matches(regex)",
+          "desc": "Returns true if string matches the regex pattern",
+          "version": "Java 1.4"
+        },
+        {
+          "property": "intern()",
+          "desc": "Returns canonical representation from string pool",
+          "version": "Java 1"
+        },
+        {
+          "property": "repeat(n)",
+          "desc": "Returns string repeated n times",
+          "version": "Java 11"
+        },
+        {
+          "property": "formatted(args)",
+          "desc": "Returns formatted string (like String.format) — instance method",
+          "version": "Java 15"
+        },
+        {
+          "property": "String.format(fmt, args)",
+          "desc": "Returns formatted string using format specifiers (static)",
+          "version": "Java 1.5"
+        },
+        {
+          "property": "String.join(delim, parts)",
+          "desc": "Joins strings with delimiter (static method)",
+          "version": "Java 8"
+        },
+        {
+          "property": "chars()",
+          "desc": "Returns IntStream of char values",
+          "version": "Java 8"
+        },
+        {
+          "property": "indent(n)",
+          "desc": "Adjusts indentation of each line by n spaces",
+          "version": "Java 12"
+        }
+      ]
+    },
+    {
+      "id": "math-methods",
+      "heading": "Math Methods",
+      "columns": [
+        "METHOD",
+        "DESCRIPTION",
+        "VERSION"
+      ],
+      "rows": [
+        {
+          "property": "Math.abs(x)",
+          "desc": "Absolute value of x",
+          "version": "Java 1"
+        },
+        {
+          "property": "Math.max(a, b)",
+          "desc": "Returns the larger of a and b",
+          "version": "Java 1"
+        },
+        {
+          "property": "Math.min(a, b)",
+          "desc": "Returns the smaller of a and b",
+          "version": "Java 1"
+        },
+        {
+          "property": "Math.pow(base, exp)",
+          "desc": "Returns base raised to the power exp",
+          "version": "Java 1"
+        },
+        {
+          "property": "Math.sqrt(x)",
+          "desc": "Returns square root of x",
+          "version": "Java 1"
+        },
+        {
+          "property": "Math.cbrt(x)",
+          "desc": "Returns cube root of x",
+          "version": "Java 1.5"
+        },
+        {
+          "property": "Math.ceil(x)",
+          "desc": "Rounds x up to nearest integer (returns double)",
+          "version": "Java 1"
+        },
+        {
+          "property": "Math.floor(x)",
+          "desc": "Rounds x down to nearest integer (returns double)",
+          "version": "Java 1"
+        },
+        {
+          "property": "Math.round(x)",
+          "desc": "Rounds x to nearest integer (returns long for double)",
+          "version": "Java 1"
+        },
+        {
+          "property": "Math.random()",
+          "desc": "Returns random double between 0.0 (inclusive) and 1.0",
+          "version": "Java 1"
+        },
+        {
+          "property": "Math.log(x)",
+          "desc": "Natural logarithm (base e) of x",
+          "version": "Java 1"
+        },
+        {
+          "property": "Math.log10(x)",
+          "desc": "Base-10 logarithm of x",
+          "version": "Java 1.5"
+        },
+        {
+          "property": "Math.exp(x)",
+          "desc": "Returns e raised to the power x",
+          "version": "Java 1"
+        },
+        {
+          "property": "Math.sin(x)",
+          "desc": "Sine of x (x in radians)",
+          "version": "Java 1"
+        },
+        {
+          "property": "Math.cos(x)",
+          "desc": "Cosine of x (x in radians)",
+          "version": "Java 1"
+        },
+        {
+          "property": "Math.tan(x)",
+          "desc": "Tangent of x (x in radians)",
+          "version": "Java 1"
+        },
+        {
+          "property": "Math.toRadians(deg)",
+          "desc": "Converts degrees to radians",
+          "version": "Java 1"
+        },
+        {
+          "property": "Math.toDegrees(rad)",
+          "desc": "Converts radians to degrees",
+          "version": "Java 1"
+        },
+        {
+          "property": "Math.PI",
+          "desc": "Constant: 3.141592653589793",
+          "version": "Java 1"
+        },
+        {
+          "property": "Math.E",
+          "desc": "Constant: 2.718281828459045 (Euler's number)",
+          "version": "Java 1"
+        },
+        {
+          "property": "Math.signum(x)",
+          "desc": "Returns sign: -1.0, 0.0, or 1.0",
+          "version": "Java 1.5"
+        },
+        {
+          "property": "Math.hypot(x, y)",
+          "desc": "Returns sqrt(x² + y²) without overflow",
+          "version": "Java 1.5"
+        },
+        {
+          "property": "Math.floorDiv(x, y)",
+          "desc": "Integer division rounding toward negative infinity",
+          "version": "Java 8"
+        },
+        {
+          "property": "Math.floorMod(x, y)",
+          "desc": "Modulus consistent with floorDiv",
+          "version": "Java 8"
+        },
+        {
+          "property": "Math.addExact(x, y)",
+          "desc": "Adds x and y; throws ArithmeticException on overflow",
+          "version": "Java 8"
+        },
+        {
+          "property": "Math.multiplyExact(x,y)",
+          "desc": "Multiplies x and y; throws on overflow",
+          "version": "Java 8"
+        }
+      ]
+    },
+    {
+      "id": "collections",
+      "heading": "Collections Framework",
+      "columns": [
+        "CLASS / METHOD",
+        "DESCRIPTION",
+        "VERSION"
+      ],
+      "rows": [
+        {
+          "property": "ArrayList<T>",
+          "desc": "Resizable array implementation of List",
+          "version": "Java 1.2"
+        },
+        {
+          "property": "LinkedList<T>",
+          "desc": "Doubly-linked list; implements List and Deque",
+          "version": "Java 1.2"
+        },
+        {
+          "property": "HashMap<K,V>",
+          "desc": "Hash table based Map; O(1) average get/put",
+          "version": "Java 1.2"
+        },
+        {
+          "property": "LinkedHashMap<K,V>",
+          "desc": "HashMap maintaining insertion order",
+          "version": "Java 1.4"
+        },
+        {
+          "property": "TreeMap<K,V>",
+          "desc": "Red-black tree Map; keys sorted in natural order",
+          "version": "Java 1.2"
+        },
+        {
+          "property": "HashSet<T>",
+          "desc": "Set backed by HashMap; no duplicates, unordered",
+          "version": "Java 1.2"
+        },
+        {
+          "property": "LinkedHashSet<T>",
+          "desc": "HashSet maintaining insertion order",
+          "version": "Java 1.4"
+        },
+        {
+          "property": "TreeSet<T>",
+          "desc": "NavigableSet backed by TreeMap; elements sorted",
+          "version": "Java 1.2"
+        },
+        {
+          "property": "Stack<T>",
+          "desc": "LIFO stack extending Vector (prefer Deque instead)",
+          "version": "Java 1"
+        },
+        {
+          "property": "ArrayDeque<T>",
+          "desc": "Resizable double-ended queue; faster than Stack",
+          "version": "Java 1.6"
+        },
+        {
+          "property": "PriorityQueue<T>",
+          "desc": "Min-heap priority queue based on natural ordering",
+          "version": "Java 1.5"
+        },
+        {
+          "property": "Collections.sort(list)",
+          "desc": "Sorts list in ascending natural order",
+          "version": "Java 1.2"
+        },
+        {
+          "property": "Collections.sort(list, comp)",
+          "desc": "Sorts list with custom comparator",
+          "version": "Java 1.2"
+        },
+        {
+          "property": "Collections.reverse(list)",
+          "desc": "Reverses order of list elements",
+          "version": "Java 1.2"
+        },
+        {
+          "property": "Collections.shuffle(list)",
+          "desc": "Randomly permutes list elements",
+          "version": "Java 1.2"
+        },
+        {
+          "property": "Collections.min(coll)",
+          "desc": "Returns minimum element by natural ordering",
+          "version": "Java 1.2"
+        },
+        {
+          "property": "Collections.max(coll)",
+          "desc": "Returns maximum element by natural ordering",
+          "version": "Java 1.2"
+        },
+        {
+          "property": "Collections.frequency(coll,o)",
+          "desc": "Returns count of elements equal to o",
+          "version": "Java 1.5"
+        },
+        {
+          "property": "Collections.unmodifiableList(l)",
+          "desc": "Returns unmodifiable view of list",
+          "version": "Java 1.2"
+        },
+        {
+          "property": "Collections.emptyList()",
+          "desc": "Returns immutable empty list",
+          "version": "Java 1.5"
+        },
+        {
+          "property": "Collections.singletonList(o)",
+          "desc": "Returns immutable list containing only o",
+          "version": "Java 1.3"
+        },
+        {
+          "property": "List.of(e1, e2, …)",
+          "desc": "Creates immutable List with given elements (Java 9+)",
+          "version": "Java 9"
+        },
+        {
+          "property": "Map.of(k1,v1, k2,v2)",
+          "desc": "Creates immutable Map with given entries (Java 9+)",
+          "version": "Java 9"
+        },
+        {
+          "property": "Set.of(e1, e2, …)",
+          "desc": "Creates immutable Set with given elements (Java 9+)",
+          "version": "Java 9"
+        },
+        {
+          "property": "list.add(element)",
+          "desc": "Appends element to end of list",
+          "version": "Java 1.2"
+        },
+        {
+          "property": "list.add(index, element)",
+          "desc": "Inserts element at specified index",
+          "version": "Java 1.2"
+        },
+        {
+          "property": "list.get(index)",
+          "desc": "Returns element at specified index",
+          "version": "Java 1.2"
+        },
+        {
+          "property": "list.set(index, element)",
+          "desc": "Replaces element at index",
+          "version": "Java 1.2"
+        },
+        {
+          "property": "list.remove(index)",
+          "desc": "Removes element at index; returns removed element",
+          "version": "Java 1.2"
+        },
+        {
+          "property": "list.remove(object)",
+          "desc": "Removes first occurrence of object",
+          "version": "Java 1.2"
+        },
+        {
+          "property": "list.size()",
+          "desc": "Returns number of elements in list",
+          "version": "Java 1.2"
+        },
+        {
+          "property": "list.isEmpty()",
+          "desc": "Returns true if list contains no elements",
+          "version": "Java 1.2"
+        },
+        {
+          "property": "list.contains(object)",
+          "desc": "Returns true if list contains the object",
+          "version": "Java 1.2"
+        },
+        {
+          "property": "list.indexOf(object)",
+          "desc": "Returns index of first occurrence of object",
+          "version": "Java 1.2"
+        },
+        {
+          "property": "list.clear()",
+          "desc": "Removes all elements from the list",
+          "version": "Java 1.2"
+        },
+        {
+          "property": "list.subList(from, to)",
+          "desc": "Returns view of portion from (inclusive) to to (exclusive)",
+          "version": "Java 1.2"
+        },
+        {
+          "property": "list.iterator()",
+          "desc": "Returns an Iterator over the list elements",
+          "version": "Java 1.2"
+        },
+        {
+          "property": "map.put(key, value)",
+          "desc": "Associates key with value in map",
+          "version": "Java 1.2"
+        },
+        {
+          "property": "map.get(key)",
+          "desc": "Returns value mapped to key, or null",
+          "version": "Java 1.2"
+        },
+        {
+          "property": "map.getOrDefault(key, def)",
+          "desc": "Returns value for key, or def if not present",
+          "version": "Java 8"
+        },
+        {
+          "property": "map.containsKey(key)",
+          "desc": "Returns true if map contains the key",
+          "version": "Java 1.2"
+        },
+        {
+          "property": "map.containsValue(value)",
+          "desc": "Returns true if map maps any key to value",
+          "version": "Java 1.2"
+        },
+        {
+          "property": "map.remove(key)",
+          "desc": "Removes mapping for key",
+          "version": "Java 1.2"
+        },
+        {
+          "property": "map.keySet()",
+          "desc": "Returns Set view of all keys",
+          "version": "Java 1.2"
+        },
+        {
+          "property": "map.values()",
+          "desc": "Returns Collection view of all values",
+          "version": "Java 1.2"
+        },
+        {
+          "property": "map.entrySet()",
+          "desc": "Returns Set of Map.Entry key-value pairs",
+          "version": "Java 1.2"
+        },
+        {
+          "property": "map.putIfAbsent(key, val)",
+          "desc": "Puts value only if key is not already present",
+          "version": "Java 8"
+        },
+        {
+          "property": "map.computeIfAbsent(key, fn)",
+          "desc": "Computes value for key if not present using function",
+          "version": "Java 8"
+        },
+        {
+          "property": "map.forEach((k,v) -> …)",
+          "desc": "Iterates over all entries with BiConsumer",
+          "version": "Java 8"
+        }
+      ]
+    },
+    {
+      "id": "oop",
+      "heading": "OOP Keywords & Concepts",
+      "columns": [
+        "KEYWORD",
+        "DESCRIPTION",
+        "VERSION"
+      ],
+      "rows": [
+        {
+          "property": "class",
+          "desc": "Declares a class",
+          "version": "Java 1"
+        },
+        {
+          "property": "interface",
+          "desc": "Declares an interface; can have default and static methods",
+          "version": "Java 1"
+        },
+        {
+          "property": "abstract",
+          "desc": "Declares abstract class or method (no body)",
+          "version": "Java 1"
+        },
+        {
+          "property": "extends",
+          "desc": "Inherits from a superclass (single inheritance only)",
+          "version": "Java 1"
+        },
+        {
+          "property": "implements",
+          "desc": "Implements one or more interfaces",
+          "version": "Java 1"
+        },
+        {
+          "property": "super",
+          "desc": "Refers to parent class; calls parent constructor or method",
+          "version": "Java 1"
+        },
+        {
+          "property": "this",
+          "desc": "Refers to current object instance",
+          "version": "Java 1"
+        },
+        {
+          "property": "new",
+          "desc": "Creates a new object instance",
+          "version": "Java 1"
+        },
+        {
+          "property": "static",
+          "desc": "Member belongs to class, not instances",
+          "version": "Java 1"
+        },
+        {
+          "property": "final",
+          "desc": "Variable: constant. Method: not overridable. Class: not inheritable",
+          "version": "Java 1"
+        },
+        {
+          "property": "public",
+          "desc": "Accessible from anywhere",
+          "version": "Java 1"
+        },
+        {
+          "property": "private",
+          "desc": "Accessible only within the declaring class",
+          "version": "Java 1"
+        },
+        {
+          "property": "protected",
+          "desc": "Accessible within package and subclasses",
+          "version": "Java 1"
+        },
+        {
+          "property": "default",
+          "desc": "Package-private access (no modifier); also default interface method",
+          "version": "Java 1"
+        },
+        {
+          "property": "@Override",
+          "desc": "Annotation: verifies method overrides a parent method",
+          "version": "Java 5"
+        },
+        {
+          "property": "@Deprecated",
+          "desc": "Annotation: marks element as deprecated",
+          "version": "Java 5"
+        },
+        {
+          "property": "@FunctionalInterface",
+          "desc": "Annotation: verifies interface has exactly one abstract method",
+          "version": "Java 8"
+        },
+        {
+          "property": "enum",
+          "desc": "Declares an enumeration type",
+          "version": "Java 5"
+        },
+        {
+          "property": "record",
+          "desc": "Immutable data class with auto-generated constructor/getters/equals",
+          "version": "Java 16"
+        },
+        {
+          "property": "sealed",
+          "desc": "Restricts which classes may extend or implement",
+          "version": "Java 17"
+        },
+        {
+          "property": "permits",
+          "desc": "Lists allowed subclasses of a sealed class",
+          "version": "Java 17"
+        },
+        {
+          "property": "instanceof pattern",
+          "desc": "Pattern matching: if (obj instanceof String s) { … }",
+          "version": "Java 16"
+        },
+        {
+          "property": "void",
+          "desc": "Indicates method returns no value",
+          "version": "Java 1"
+        },
+        {
+          "property": "null",
+          "desc": "Represents absence of a reference value",
+          "version": "Java 1"
+        },
+        {
+          "property": "Comparable<T>",
+          "desc": "Interface: implement compareTo() for natural ordering",
+          "version": "Java 1"
+        },
+        {
+          "property": "Comparator<T>",
+          "desc": "Functional interface: external ordering strategy",
+          "version": "Java 1.2"
+        },
+        {
+          "property": "Iterable<T>",
+          "desc": "Interface: implement iterator() to enable for-each",
+          "version": "Java 1.5"
+        },
+        {
+          "property": "Iterator<T>",
+          "desc": "Interface: hasNext(), next(), remove()",
+          "version": "Java 1.2"
+        },
+        {
+          "property": "Optional<T>",
+          "desc": "Container that may or may not hold a non-null value",
+          "version": "Java 8"
+        }
+      ]
+    },
+    {
+      "id": "exceptions",
+      "heading": "Exception Handling",
+      "columns": [
+        "KEYWORD / CLASS",
+        "DESCRIPTION",
+        "VERSION"
+      ],
+      "rows": [
+        {
+          "property": "try",
+          "desc": "Block of code to monitor for exceptions",
+          "version": "Java 1"
+        },
+        {
+          "property": "catch (ExType e)",
+          "desc": "Catches exceptions of specified type",
+          "version": "Java 1"
+        },
+        {
+          "property": "catch (Ex1 | Ex2 e)",
+          "desc": "Multi-catch: catches multiple exception types",
+          "version": "Java 7"
+        },
+        {
+          "property": "finally",
+          "desc": "Always executes after try-catch, even if exception thrown",
+          "version": "Java 1"
+        },
+        {
+          "property": "throw",
+          "desc": "Explicitly throws an exception object",
+          "version": "Java 1"
+        },
+        {
+          "property": "throws",
+          "desc": "Declares checked exceptions a method may throw",
+          "version": "Java 1"
+        },
+        {
+          "property": "try-with-resources",
+          "desc": "Auto-closes AutoCloseable resources after block",
+          "version": "Java 7"
+        },
+        {
+          "property": "Exception",
+          "desc": "Base class for checked exceptions",
+          "version": "Java 1"
+        },
+        {
+          "property": "RuntimeException",
+          "desc": "Base class for unchecked exceptions",
+          "version": "Java 1"
+        },
+        {
+          "property": "Error",
+          "desc": "Serious JVM-level problems; should not be caught normally",
+          "version": "Java 1"
+        },
+        {
+          "property": "NullPointerException",
+          "desc": "Thrown when using a null reference",
+          "version": "Java 1"
+        },
+        {
+          "property": "ArrayIndexOutOfBoundsException",
+          "desc": "Thrown when accessing array with invalid index",
+          "version": "Java 1"
+        },
+        {
+          "property": "ClassCastException",
+          "desc": "Thrown on illegal cast between incompatible types",
+          "version": "Java 1"
+        },
+        {
+          "property": "NumberFormatException",
+          "desc": "Thrown when parsing invalid number string",
+          "version": "Java 1"
+        },
+        {
+          "property": "IllegalArgumentException",
+          "desc": "Thrown when method receives inappropriate argument",
+          "version": "Java 1"
+        },
+        {
+          "property": "IllegalStateException",
+          "desc": "Thrown when method called at wrong time",
+          "version": "Java 1"
+        },
+        {
+          "property": "StackOverflowError",
+          "desc": "Thrown when call stack exceeds limit (e.g. infinite recursion)",
+          "version": "Java 1"
+        },
+        {
+          "property": "OutOfMemoryError",
+          "desc": "Thrown when JVM runs out of heap memory",
+          "version": "Java 1"
+        },
+        {
+          "property": "IOException",
+          "desc": "Checked exception for I/O operation failures",
+          "version": "Java 1"
+        },
+        {
+          "property": "FileNotFoundException",
+          "desc": "Thrown when file with given path cannot be found",
+          "version": "Java 1"
+        },
+        {
+          "property": "ArithmeticException",
+          "desc": "Thrown for arithmetic errors e.g. division by zero",
+          "version": "Java 1"
+        },
+        {
+          "property": "UnsupportedOperationException",
+          "desc": "Thrown when operation is not supported",
+          "version": "Java 1"
+        },
+        {
+          "property": "ConcurKaNCgLvMEXxNzMxj2F7FYi1AdRrTo6Nhu",
+          "desc": "Thrown when collection modified while iterating",
+          "version": "Java 1.2"
+        },
+        {
+          "property": "IndexOutOfBoundsException",
+          "desc": "Superclass of array and string index exceptions",
+          "version": "Java 1"
+        },
+        {
+          "property": "e.getMessage()",
+          "desc": "Returns detail message of the exception",
+          "version": "Java 1"
+        },
+        {
+          "property": "e.getClass().getName()",
+          "desc": "Returns fully qualified class name of exception",
+          "version": "Java 1"
+        },
+        {
+          "property": "e.printStackTrace()",
+          "desc": "Prints stack trace to standard error",
+          "version": "Java 1"
+        },
+        {
+          "property": "e.getCause()",
+          "desc": "Returns the cause of this exception or null",
+          "version": "Java 1.4"
+        }
+      ]
+    },
+    {
+      "id": "file-io",
+      "heading": "File I/O",
+      "columns": [
+        "CLASS / METHOD",
+        "DESCRIPTION",
+        "VERSION"
+      ],
+      "rows": [
+        {
+          "property": "File(path)",
+          "desc": "Creates File object representing path on disk",
+          "version": "Java 1"
+        },
+        {
+          "property": "file.exists()",
+          "desc": "Returns true if file or directory exists",
+          "version": "Java 1"
+        },
+        {
+          "property": "file.createNewFile()",
+          "desc": "Creates new empty file; returns false if already exists",
+          "version": "Java 1"
+        },
+        {
+          "property": "file.delete()",
+          "desc": "Deletes file or empty directory",
+          "version": "Java 1"
+        },
+        {
+          "property": "file.mkdir()",
+          "desc": "Creates directory",
+          "version": "Java 1"
+        },
+        {
+          "property": "file.listFiles()",
+          "desc": "Returns array of File objects in directory",
+          "version": "Java 1"
+        },
+        {
+          "property": "file.length()",
+          "desc": "Returns file size in bytes",
+          "version": "Java 1"
+        },
+        {
+          "property": "file.getName()",
+          "desc": "Returns file name (not full path)",
+          "version": "Java 1"
+        },
+        {
+          "property": "FileWriter(path)",
+          "desc": "Writes characters to a file",
+          "version": "Java 1"
+        },
+        {
+          "property": "BufferedWriter(writer)",
+          "desc": "Buffers FileWriter for efficient writing",
+          "version": "Java 1"
+        },
+        {
+          "property": "writer.write(str)",
+          "desc": "Writes string to file",
+          "version": "Java 1"
+        },
+        {
+          "property": "writer.newLine()",
+          "desc": "Writes line separator",
+          "version": "Java 1"
+        },
+        {
+          "property": "FileReader(path)",
+          "desc": "Reads characters from a file",
+          "version": "Java 1"
+        },
+        {
+          "property": "BufferedReader(reader)",
+          "desc": "Buffers FileReader; provides readLine()",
+          "version": "Java 1"
+        },
+        {
+          "property": "reader.readLine()",
+          "desc": "Reads one line; returns null at end of file",
+          "version": "Java 1"
+        },
+        {
+          "property": "Files.readAllLines(path)",
+          "desc": "Reads all lines into a List<String> (NIO)",
+          "version": "Java 7"
+        },
+        {
+          "property": "Files.write(path, lines)",
+          "desc": "Writes iterable of lines to file (NIO)",
+          "version": "Java 7"
+        },
+        {
+          "property": "Files.readString(path)",
+          "desc": "Reads entire file content as String (NIO)",
+          "version": "Java 11"
+        },
+        {
+          "property": "Files.writeString(path, str)",
+          "desc": "Writes String directly to file (NIO)",
+          "version": "Java 11"
+        },
+        {
+          "property": "Files.copy(src, dst)",
+          "desc": "Copies file from src path to dst path",
+          "version": "Java 7"
+        },
+        {
+          "property": "Files.move(src, dst)",
+          "desc": "Moves or renames file",
+          "version": "Java 7"
+        },
+        {
+          "property": "Files.delete(path)",
+          "desc": "Deletes file; throws if not found",
+          "version": "Java 7"
+        },
+        {
+          "property": "Files.exists(path)",
+          "desc": "Returns true if path exists",
+          "version": "Java 7"
+        },
+        {
+          "property": "Path.of(str)",
+          "desc": "Creates Path object from string (NIO)",
+          "version": "Java 11"
+        },
+        {
+          "property": "Paths.get(str)",
+          "desc": "Creates Path object (NIO, older API)",
+          "version": "Java 7"
+        },
+        {
+          "property": "Scanner(file)",
+          "desc": "Reads structured data from file token by token",
+          "version": "Java 1.5"
+        },
+        {
+          "property": "PrintWriter(path)",
+          "desc": "Writes formatted text to file",
+          "version": "Java 1"
+        }
+      ]
+    },
+    {
+      "id": "threads",
+      "heading": "Threads & Concurrency",
+      "columns": [
+        "CLASS / METHOD",
+        "DESCRIPTION",
+        "VERSION"
+      ],
+      "rows": [
+        {
+          "property": "Thread",
+          "desc": "Class representing a thread of execution",
+          "version": "Java 1"
+        },
+        {
+          "property": "new Thread(() -> { … })",
+          "desc": "Create thread from Runnable lambda",
+          "version": "Java 8"
+        },
+        {
+          "property": "thread.start()",
+          "desc": "Starts thread execution (calls run() in new thread)",
+          "version": "Java 1"
+        },
+        {
+          "property": "thread.run()",
+          "desc": "Task to execute — override in subclass or pass Runnable",
+          "version": "Java 1"
+        },
+        {
+          "property": "thread.sleep(ms)",
+          "desc": "Pauses current thread for ms milliseconds",
+          "version": "Java 1"
+        },
+        {
+          "property": "thread.join()",
+          "desc": "Waits for this thread to finish before continuing",
+          "version": "Java 1"
+        },
+        {
+          "property": "thread.interrupt()",
+          "desc": "Interrupts thread; sets interrupted flag",
+          "version": "Java 1"
+        },
+        {
+          "property": "Thread.currentThread()",
+          "desc": "Returns currently executing thread",
+          "version": "Java 1"
+        },
+        {
+          "property": "Runnable",
+          "desc": "Functional interface: void run() — thread task",
+          "version": "Java 1"
+        },
+        {
+          "property": "Callable<T>",
+          "desc": "Like Runnable but returns result and can throw",
+          "version": "Java 1.5"
+        },
+        {
+          "property": "synchronized",
+          "desc": "Keyword: ensures only one thread executes block at once",
+          "version": "Java 1"
+        },
+        {
+          "property": "volatile",
+          "desc": "Keyword: ensures variable always read from main memory",
+          "version": "Java 1"
+        },
+        {
+          "property": "ExecutorService",
+          "desc": "Interface: manages pool of threads for task execution",
+          "version": "Java 1.5"
+        },
+        {
+          "property": "Executors.newFixedThreadPool(n)",
+          "desc": "Creates thread pool with fixed number of threads",
+          "version": "Java 1.5"
+        },
+        {
+          "property": "Executors.newCachedThreadPool()",
+          "desc": "Creates pool that creates threads as needed",
+          "version": "Java 1.5"
+        },
+        {
+          "property": "executor.submit(task)",
+          "desc": "Submits task for execution; returns Future",
+          "version": "Java 1.5"
+        },
+        {
+          "property": "executor.shutdown()",
+          "desc": "Shuts down pool after completing submitted tasks",
+          "version": "Java 1.5"
+        },
+        {
+          "property": "Future<T>",
+          "desc": "Represents result of async computation",
+          "version": "Java 1.5"
+        },
+        {
+          "property": "future.get()",
+          "desc": "Blocks until result is available; returns result",
+          "version": "Java 1.5"
+        },
+        {
+          "property": "CompletableFuture<T>",
+          "desc": "Composable async computation with callback chaining",
+          "version": "Java 8"
+        },
+        {
+          "property": "CompletableFuture.supplyAsync(fn)",
+          "desc": "Runs fn asynchronously in common pool",
+          "version": "Java 8"
+        },
+        {
+          "property": ".thenApply(fn)",
+          "desc": "Transforms CompletableFuture result when complete",
+          "version": "Java 8"
+        },
+        {
+          "property": ".thenAccept(fn)",
+          "desc": "Consumes result without returning new value",
+          "version": "Java 8"
+        },
+        {
+          "property": ".exceptionally(fn)",
+          "desc": "Handles exception in CompletableFuture chain",
+          "version": "Java 8"
+        },
+        {
+          "property": "ReentrantLock",
+          "desc": "Explicit lock with lock()/unlock() methods",
+          "version": "Java 1.5"
+        },
+        {
+          "property": "AtomicInteger",
+          "desc": "Thread-safe integer with atomic operations",
+          "version": "Java 1.5"
+        },
+        {
+          "property": "ConcurrentHashMap<K,V>",
+          "desc": "Thread-safe HashMap for high concurrency",
+          "version": "Java 1.5"
+        }
+      ]
+    },
+    {
+      "id": "java-keywords",
+      "heading": "Java Keywords",
+      "columns": [
+        "KEYWORD",
+        "DESCRIPTION",
+        "VERSION"
+      ],
+      "rows": [
+        {
+          "property": "abstract",
+          "desc": "Declares abstract class or method",
+          "version": "Java 1"
+        },
+        {
+          "property": "assert",
+          "desc": "Debugging aid; throws AssertionError if expression is false",
+          "version": "Java 1.4"
+        },
+        {
+          "property": "boolean",
+          "desc": "Primitive boolean type",
+          "version": "Java 1"
+        },
+        {
+          "property": "break",
+          "desc": "Exits loop or switch",
+          "version": "Java 1"
+        },
+        {
+          "property": "byte",
+          "desc": "8-bit signed integer primitive",
+          "version": "Java 1"
+        },
+        {
+          "property": "case",
+          "desc": "Label in switch statement",
+          "version": "Java 1"
+        },
+        {
+          "property": "catch",
+          "desc": "Catches exception in try block",
+          "version": "Java 1"
+        },
+        {
+          "property": "char",
+          "desc": "16-bit Unicode character primitive",
+          "version": "Java 1"
+        },
+        {
+          "property": "class",
+          "desc": "Declares a class",
+          "version": "Java 1"
+        },
+        {
+          "property": "const",
+          "desc": "Reserved but not used (use final instead)",
+          "version": "Java 1"
+        },
+        {
+          "property": "continue",
+          "desc": "Skips current loop iteration",
+          "version": "Java 1"
+        },
+        {
+          "property": "default",
+          "desc": "Default case in switch; default method in interface",
+          "version": "Java 1"
+        },
+        {
+          "property": "do",
+          "desc": "Starts do-while loop",
+          "version": "Java 1"
+        },
+        {
+          "property": "double",
+          "desc": "64-bit floating point primitive",
+          "version": "Java 1"
+        },
+        {
+          "property": "else",
+          "desc": "Alternative branch in if statement",
+          "version": "Java 1"
+        },
+        {
+          "property": "enum",
+          "desc": "Declares enumeration type",
+          "version": "Java 5"
+        },
+        {
+          "property": "extends",
+          "desc": "Inherits from superclass or extends interface",
+          "version": "Java 1"
+        },
+        {
+          "property": "final",
+          "desc": "Constant variable, non-overridable method, non-extendable class",
+          "version": "Java 1"
+        },
+        {
+          "property": "finally",
+          "desc": "Block always executed after try-catch",
+          "version": "Java 1"
+        },
+        {
+          "property": "float",
+          "desc": "32-bit floating point primitive",
+          "version": "Java 1"
+        },
+        {
+          "property": "for",
+          "desc": "For loop",
+          "version": "Java 1"
+        },
+        {
+          "property": "goto",
+          "desc": "Reserved but not used in Java",
+          "version": "Java 1"
+        },
+        {
+          "property": "if",
+          "desc": "Conditional statement",
+          "version": "Java 1"
+        },
+        {
+          "property": "implements",
+          "desc": "Implements one or more interfaces",
+          "version": "Java 1"
+        },
+        {
+          "property": "import",
+          "desc": "Imports classes or packages for use",
+          "version": "Java 1"
+        },
+        {
+          "property": "instanceof",
+          "desc": "Tests if object is instance of a type",
+          "version": "Java 1"
+        },
+        {
+          "property": "int",
+          "desc": "32-bit signed integer primitive",
+          "version": "Java 1"
+        },
+        {
+          "property": "interface",
+          "desc": "Declares an interface",
+          "version": "Java 1"
+        },
+        {
+          "property": "long",
+          "desc": "64-bit signed integer primitive",
+          "version": "Java 1"
+        },
+        {
+          "property": "native",
+          "desc": "Method implemented in native code (JNI)",
+          "version": "Java 1"
+        },
+        {
+          "property": "new",
+          "desc": "Creates new object or array",
+          "version": "Java 1"
+        },
+        {
+          "property": "package",
+          "desc": "Declares package membership of class",
+          "version": "Java 1"
+        },
+        {
+          "property": "private",
+          "desc": "Access modifier: class-only visibility",
+          "version": "Java 1"
+        },
+        {
+          "property": "protected",
+          "desc": "Access modifier: package + subclass visibility",
+          "version": "Java 1"
+        },
+        {
+          "property": "public",
+          "desc": "Access modifier: visible everywhere",
+          "version": "Java 1"
+        },
+        {
+          "property": "return",
+          "desc": "Exits method and returns optional value",
+          "version": "Java 1"
+        },
+        {
+          "property": "short",
+          "desc": "16-bit signed integer primitive",
+          "version": "Java 1"
+        },
+        {
+          "property": "static",
+          "desc": "Member belongs to class not instance",
+          "version": "Java 1"
+        },
+        {
+          "property": "strictfp",
+          "desc": "Restricts floating-point calculations for portability",
+          "version": "Java 1.2"
+        },
+        {
+          "property": "super",
+          "desc": "Refers to parent class constructor or members",
+          "version": "Java 1"
+        },
+        {
+          "property": "switch",
+          "desc": "Multi-way branch statement",
+          "version": "Java 1"
+        },
+        {
+          "property": "synchronized",
+          "desc": "Restricts method/block to one thread at a time",
+          "version": "Java 1"
+        },
+        {
+          "property": "this",
+          "desc": "Refers to current object instance",
+          "version": "Java 1"
+        },
+        {
+          "property": "throw",
+          "desc": "Throws an exception object",
+          "version": "Java 1"
+        },
+        {
+          "property": "throws",
+          "desc": "Declares checked exceptions method may throw",
+          "version": "Java 1"
+        },
+        {
+          "property": "transient",
+          "desc": "Field excluded from serialisation",
+          "version": "Java 1"
+        },
+        {
+          "property": "try",
+          "desc": "Starts exception-handling block",
+          "version": "Java 1"
+        },
+        {
+          "property": "var",
+          "desc": "Local variable type inference",
+          "version": "Java 10"
+        },
+        {
+          "property": "void",
+          "desc": "Method returns no value",
+          "version": "Java 1"
+        },
+        {
+          "property": "volatile",
+          "desc": "Variable always read/written to main memory",
+          "version": "Java 1"
+        },
+        {
+          "property": "while",
+          "desc": "While loop",
+          "version": "Java 1"
+        },
+        {
+          "property": "record",
+          "desc": "Immutable data class declaration",
+          "version": "Java 16"
+        },
+        {
+          "property": "sealed",
+          "desc": "Restricts subclassing to permitted classes",
+          "version": "Java 17"
+        },
+        {
+          "property": "permits",
+          "desc": "Lists classes permitted to extend sealed class",
+          "version": "Java 17"
+        },
+        {
+          "property": "yield",
+          "desc": "Returns value from switch expression",
+          "version": "Java 14"
+        }
+      ]
+    }
+  ]
+}

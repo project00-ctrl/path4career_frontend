@@ -1,0 +1,247 @@
+{
+  "sections": [
+    {
+      "id": "ddl-commands",
+      "title": "DDL Commands (Data Definition)",
+      "type": "table",
+      "columns": ["COMMAND", "DESCRIPTION", "EXAMPLE"],
+      "rows": [
+        { "property": "CREATE DATABASE", "desc": "Creates a new database", "version": "CREATE DATABASE mydb;" },
+        { "property": "DROP DATABASE", "desc": "Deletes a database permanently", "version": "DROP DATABASE mydb;" },
+        { "property": "CREATE TABLE", "desc": "Creates a new table with columns and types", "version": "CREATE TABLE users (id INT, name VARCHAR(50));" },
+        { "property": "DROP TABLE", "desc": "Deletes a table and all its data", "version": "DROP TABLE users;" },
+        { "property": "ALTER TABLE ... ADD", "desc": "Adds a new column to a table", "version": "ALTER TABLE users ADD email VARCHAR(100);" },
+        { "property": "ALTER TABLE ... DROP COLUMN", "desc": "Removes a column from a table", "version": "ALTER TABLE users DROP COLUMN email;" },
+        { "property": "ALTER TABLE ... MODIFY", "desc": "Changes the data type of a column", "version": "ALTER TABLE users MODIFY name VARCHAR(100);" },
+        { "property": "ALTER TABLE ... RENAME", "desc": "Renames a column", "version": "ALTER TABLE users RENAME COLUMN name TO full_name;" },
+        { "property": "RENAME TABLE", "desc": "Renames a table", "version": "RENAME TABLE users TO members;" },
+        { "property": "TRUNCATE TABLE", "desc": "Removes all rows without logging individual deletions", "version": "TRUNCATE TABLE users;" },
+        { "property": "CREATE INDEX", "desc": "Creates an index for faster queries", "version": "CREATE INDEX idx_name ON users(name);" },
+        { "property": "DROP INDEX", "desc": "Removes an index", "version": "DROP INDEX idx_name;" },
+        { "property": "CREATE VIEW", "desc": "Creates a virtual table from a query", "version": "CREATE VIEW active_users AS SELECT * FROM users WHERE active=1;" },
+        { "property": "DROP VIEW", "desc": "Removes a view", "version": "DROP VIEW active_users;" }
+      ]
+    },
+    {
+      "id": "dml-commands",
+      "title": "DML Commands (Data Manipulation)",
+      "type": "table",
+      "columns": ["COMMAND", "DESCRIPTION", "EXAMPLE"],
+      "rows": [
+        { "property": "SELECT", "desc": "Retrieves data from one or more tables", "version": "SELECT name, age FROM users;" },
+        { "property": "SELECT *", "desc": "Retrieves all columns from a table", "version": "SELECT * FROM users;" },
+        { "property": "SELECT DISTINCT", "desc": "Returns only unique values", "version": "SELECT DISTINCT country FROM users;" },
+        { "property": "INSERT INTO", "desc": "Inserts new row(s) into a table", "version": "INSERT INTO users (name, age) VALUES ('Dev', 25);" },
+        { "property": "INSERT INTO ... SELECT", "desc": "Inserts data from another query", "version": "INSERT INTO archive SELECT * FROM users WHERE active=0;" },
+        { "property": "UPDATE ... SET", "desc": "Modifies existing row(s)", "version": "UPDATE users SET age = 26 WHERE name = 'Dev';" },
+        { "property": "DELETE FROM", "desc": "Removes row(s) from a table", "version": "DELETE FROM users WHERE age < 18;" },
+        { "property": "REPLACE INTO", "desc": "Inserts or replaces if key exists", "version": "REPLACE INTO users (id, name) VALUES (1, 'Dev');" }
+      ]
+    },
+    {
+      "id": "clauses",
+      "title": "Clauses & Filtering",
+      "type": "table",
+      "columns": ["CLAUSE", "DESCRIPTION", "EXAMPLE"],
+      "rows": [
+        { "property": "WHERE", "desc": "Filters rows based on a condition", "version": "SELECT * FROM users WHERE age > 18;" },
+        { "property": "AND / OR", "desc": "Combines multiple conditions", "version": "WHERE age > 18 AND country = 'US'" },
+        { "property": "NOT", "desc": "Negates a condition", "version": "WHERE NOT country = 'US'" },
+        { "property": "IN", "desc": "Matches any value in a list", "version": "WHERE country IN ('US', 'UK', 'IN')" },
+        { "property": "NOT IN", "desc": "Excludes values in a list", "version": "WHERE country NOT IN ('US')" },
+        { "property": "BETWEEN", "desc": "Matches values within a range (inclusive)", "version": "WHERE age BETWEEN 18 AND 30" },
+        { "property": "LIKE", "desc": "Pattern matching with wildcards (% and _)", "version": "WHERE name LIKE 'D%'" },
+        { "property": "IS NULL / IS NOT NULL", "desc": "Checks for NULL values", "version": "WHERE email IS NOT NULL" },
+        { "property": "EXISTS", "desc": "Returns true if subquery returns any rows", "version": "WHERE EXISTS (SELECT 1 FROM orders WHERE ...)" },
+        { "property": "ORDER BY", "desc": "Sorts results in ascending or descending order", "version": "ORDER BY age DESC" },
+        { "property": "GROUP BY", "desc": "Groups rows sharing a property for aggregate functions", "version": "GROUP BY country" },
+        { "property": "HAVING", "desc": "Filters groups (like WHERE for GROUP BY)", "version": "HAVING COUNT(*) > 5" },
+        { "property": "LIMIT", "desc": "Limits number of returned rows", "version": "LIMIT 10" },
+        { "property": "OFFSET", "desc": "Skips a number of rows before returning", "version": "LIMIT 10 OFFSET 20" },
+        { "property": "AS", "desc": "Alias for column or table", "version": "SELECT name AS full_name" },
+        { "property": "CASE", "desc": "Conditional logic inside queries", "version": "CASE WHEN age>=18 THEN 'Adult' ELSE 'Minor' END" }
+      ]
+    },
+    {
+      "id": "joins",
+      "title": "Joins",
+      "type": "table",
+      "columns": ["JOIN TYPE", "DESCRIPTION", "EXAMPLE"],
+      "rows": [
+        { "property": "INNER JOIN", "desc": "Returns rows with matching values in both tables", "version": "SELECT * FROM users INNER JOIN orders ON users.id = orders.user_id;" },
+        { "property": "LEFT JOIN", "desc": "Returns all left table rows + matched right rows", "version": "SELECT * FROM users LEFT JOIN orders ON users.id = orders.user_id;" },
+        { "property": "RIGHT JOIN", "desc": "Returns all right table rows + matched left rows", "version": "SELECT * FROM users RIGHT JOIN orders ON users.id = orders.user_id;" },
+        { "property": "FULL OUTER JOIN", "desc": "Returns all rows from both tables (matched and unmatched)", "version": "SELECT * FROM users FULL OUTER JOIN orders ON ..." },
+        { "property": "CROSS JOIN", "desc": "Returns Cartesian product (every row combination)", "version": "SELECT * FROM colors CROSS JOIN sizes;" },
+        { "property": "SELF JOIN", "desc": "Joins a table to itself", "version": "SELECT a.name, b.name FROM users a, users b WHERE a.mgr_id = b.id;" },
+        { "property": "NATURAL JOIN", "desc": "Auto-joins on columns with same name", "version": "SELECT * FROM users NATURAL JOIN profiles;" },
+        { "property": "USING", "desc": "Join condition using shared column name", "version": "SELECT * FROM users JOIN orders USING (user_id);" },
+        { "property": "ON", "desc": "Specifies join condition explicitly", "version": "JOIN orders ON users.id = orders.user_id" }
+      ]
+    },
+    {
+      "id": "aggregate-functions",
+      "title": "Aggregate Functions",
+      "type": "table",
+      "columns": ["FUNCTION", "DESCRIPTION", "EXAMPLE"],
+      "rows": [
+        { "property": "COUNT()", "desc": "Returns the number of rows", "version": "SELECT COUNT(*) FROM users;" },
+        { "property": "COUNT(DISTINCT col)", "desc": "Counts unique values in a column", "version": "SELECT COUNT(DISTINCT country) FROM users;" },
+        { "property": "SUM()", "desc": "Returns the sum of a numeric column", "version": "SELECT SUM(amount) FROM orders;" },
+        { "property": "AVG()", "desc": "Returns the average of a numeric column", "version": "SELECT AVG(age) FROM users;" },
+        { "property": "MIN()", "desc": "Returns the minimum value", "version": "SELECT MIN(price) FROM products;" },
+        { "property": "MAX()", "desc": "Returns the maximum value", "version": "SELECT MAX(price) FROM products;" },
+        { "property": "GROUP_CONCAT()", "desc": "Concatenates values from grouped rows", "version": "SELECT GROUP_CONCAT(name) FROM users GROUP BY dept;" },
+        { "property": "STRING_AGG()", "desc": "Concatenates strings with separator (PostgreSQL/SQL Server)", "version": "SELECT STRING_AGG(name, ', ') FROM users;" }
+      ]
+    },
+    {
+      "id": "string-functions",
+      "title": "String Functions",
+      "type": "table",
+      "columns": ["FUNCTION", "DESCRIPTION", "EXAMPLE"],
+      "rows": [
+        { "property": "CONCAT()", "desc": "Concatenates two or more strings", "version": "SELECT CONCAT(first, ' ', last);" },
+        { "property": "LENGTH() / LEN()", "desc": "Returns string length in characters", "version": "SELECT LENGTH(name) FROM users;" },
+        { "property": "UPPER()", "desc": "Converts string to uppercase", "version": "SELECT UPPER(name);" },
+        { "property": "LOWER()", "desc": "Converts string to lowercase", "version": "SELECT LOWER(name);" },
+        { "property": "TRIM()", "desc": "Removes leading and trailing whitespace", "version": "SELECT TRIM(name);" },
+        { "property": "LTRIM() / RTRIM()", "desc": "Removes leading or trailing whitespace", "version": "SELECT LTRIM(name);" },
+        { "property": "SUBSTRING()", "desc": "Extracts part of a string", "version": "SELECT SUBSTRING(name, 1, 3);" },
+        { "property": "REPLACE()", "desc": "Replaces occurrences of a substring", "version": "SELECT REPLACE(name, 'old', 'new');" },
+        { "property": "REVERSE()", "desc": "Reverses a string", "version": "SELECT REVERSE(name);" },
+        { "property": "LEFT() / RIGHT()", "desc": "Returns leftmost or rightmost n characters", "version": "SELECT LEFT(name, 3);" },
+        { "property": "LPAD() / RPAD()", "desc": "Pads string on left or right to specified length", "version": "SELECT LPAD(id, 5, '0');" },
+        { "property": "INSTR() / LOCATE()", "desc": "Finds position of substring", "version": "SELECT INSTR(name, 'e');" },
+        { "property": "COALESCE()", "desc": "Returns first non-NULL value from list", "version": "SELECT COALESCE(nickname, name);" },
+        { "property": "NULLIF(a, b)", "desc": "Returns NULL if a equals b, otherwise a", "version": "SELECT NULLIF(score, 0);" },
+        { "property": "CAST()", "desc": "Converts value to specified data type", "version": "SELECT CAST(price AS INTEGER);" },
+        { "property": "CONVERT()", "desc": "Converts value between data types", "version": "SELECT CONVERT(price, SIGNED);" }
+      ]
+    },
+    {
+      "id": "date-functions",
+      "title": "Date & Time Functions",
+      "type": "table",
+      "columns": ["FUNCTION", "DESCRIPTION", "EXAMPLE"],
+      "rows": [
+        { "property": "NOW()", "desc": "Returns current date and time", "version": "SELECT NOW();" },
+        { "property": "CURDATE()", "desc": "Returns current date", "version": "SELECT CURDATE();" },
+        { "property": "CURTIME()", "desc": "Returns current time", "version": "SELECT CURTIME();" },
+        { "property": "DATE()", "desc": "Extracts date part from datetime", "version": "SELECT DATE(created_at);" },
+        { "property": "TIME()", "desc": "Extracts time part from datetime", "version": "SELECT TIME(created_at);" },
+        { "property": "YEAR() / MONTH() / DAY()", "desc": "Extracts year, month, or day from date", "version": "SELECT YEAR(created_at);" },
+        { "property": "HOUR() / MINUTE() / SECOND()", "desc": "Extracts time components", "version": "SELECT HOUR(created_at);" },
+        { "property": "DATEDIFF()", "desc": "Returns difference in days between two dates", "version": "SELECT DATEDIFF(end_date, start_date);" },
+        { "property": "DATE_ADD()", "desc": "Adds an interval to a date", "version": "SELECT DATE_ADD(NOW(), INTERVAL 7 DAY);" },
+        { "property": "DATE_SUB()", "desc": "Subtracts an interval from a date", "version": "SELECT DATE_SUB(NOW(), INTERVAL 1 MONTH);" },
+        { "property": "DATE_FORMAT()", "desc": "Formats date as string", "version": "SELECT DATE_FORMAT(NOW(), '%Y-%m-%d');" },
+        { "property": "STR_TO_DATE()", "desc": "Parses string into date", "version": "SELECT STR_TO_DATE('31-12-2024', '%d-%m-%Y');" },
+        { "property": "TIMESTAMPDIFF()", "desc": "Returns difference between timestamps in specified unit", "version": "TIMESTAMPDIFF(HOUR, start, end)" },
+        { "property": "DAYNAME() / MONTHNAME()", "desc": "Returns day or month name", "version": "SELECT DAYNAME(NOW());" },
+        { "property": "DAYOFWEEK() / DAYOFYEAR()", "desc": "Returns numeric day of week/year", "version": "SELECT DAYOFWEEK(NOW());" }
+      ]
+    },
+    {
+      "id": "constraints",
+      "title": "Constraints",
+      "type": "table",
+      "columns": ["CONSTRAINT", "DESCRIPTION", "EXAMPLE"],
+      "rows": [
+        { "property": "PRIMARY KEY", "desc": "Uniquely identifies each row in a table", "version": "id INT PRIMARY KEY AUTO_INCREMENT" },
+        { "property": "FOREIGN KEY", "desc": "Links column to primary key in another table", "version": "FOREIGN KEY (user_id) REFERENCES users(id)" },
+        { "property": "NOT NULL", "desc": "Column cannot contain NULL values", "version": "name VARCHAR(50) NOT NULL" },
+        { "property": "UNIQUE", "desc": "All values in column must be unique", "version": "email VARCHAR(100) UNIQUE" },
+        { "property": "DEFAULT", "desc": "Sets a default value for a column", "version": "status VARCHAR(20) DEFAULT 'active'" },
+        { "property": "CHECK", "desc": "Ensures column values meet a condition", "version": "CHECK (age >= 0)" },
+        { "property": "AUTO_INCREMENT", "desc": "Automatically generates sequential integer values", "version": "id INT AUTO_INCREMENT" },
+        { "property": "ON DELETE CASCADE", "desc": "Deletes child rows when parent is deleted", "version": "FOREIGN KEY ... ON DELETE CASCADE" },
+        { "property": "ON UPDATE CASCADE", "desc": "Updates child rows when parent key changes", "version": "FOREIGN KEY ... ON UPDATE CASCADE" },
+        { "property": "ON DELETE SET NULL", "desc": "Sets foreign key to NULL when parent is deleted", "version": "FOREIGN KEY ... ON DELETE SET NULL" }
+      ]
+    },
+    {
+      "id": "subqueries",
+      "title": "Subqueries & Set Operations",
+      "type": "table",
+      "columns": ["OPERATION", "DESCRIPTION", "EXAMPLE"],
+      "rows": [
+        { "property": "Subquery in WHERE", "desc": "Query inside WHERE clause for filtering", "version": "WHERE id IN (SELECT user_id FROM orders)" },
+        { "property": "Subquery in FROM", "desc": "Derived table used as data source", "version": "FROM (SELECT * FROM users WHERE active=1) AS t" },
+        { "property": "Subquery in SELECT", "desc": "Scalar subquery returning single value", "version": "SELECT name, (SELECT COUNT(*) FROM orders) AS total" },
+        { "property": "Correlated Subquery", "desc": "Subquery referencing outer query's columns", "version": "WHERE salary > (SELECT AVG(salary) FROM dept WHERE dept.id = emp.dept_id)" },
+        { "property": "UNION", "desc": "Combines results of two queries (removes duplicates)", "version": "SELECT name FROM staff UNION SELECT name FROM clients;" },
+        { "property": "UNION ALL", "desc": "Combines results including duplicates", "version": "SELECT name FROM staff UNION ALL SELECT name FROM clients;" },
+        { "property": "INTERSECT", "desc": "Returns rows common to both queries", "version": "SELECT name FROM staff INTERSECT SELECT name FROM clients;" },
+        { "property": "EXCEPT / MINUS", "desc": "Returns rows in first query but not second", "version": "SELECT name FROM staff EXCEPT SELECT name FROM clients;" }
+      ]
+    },
+    {
+      "id": "window-functions",
+      "title": "Window Functions",
+      "type": "table",
+      "columns": ["FUNCTION", "DESCRIPTION", "EXAMPLE"],
+      "rows": [
+        { "property": "ROW_NUMBER()", "desc": "Assigns unique sequential number to each row", "version": "ROW_NUMBER() OVER (ORDER BY salary DESC)" },
+        { "property": "RANK()", "desc": "Assigns rank with gaps for ties", "version": "RANK() OVER (ORDER BY score DESC)" },
+        { "property": "DENSE_RANK()", "desc": "Assigns rank without gaps for ties", "version": "DENSE_RANK() OVER (ORDER BY score DESC)" },
+        { "property": "NTILE(n)", "desc": "Distributes rows into n buckets", "version": "NTILE(4) OVER (ORDER BY salary)" },
+        { "property": "LAG(col, n)", "desc": "Returns value from n rows before current row", "version": "LAG(price, 1) OVER (ORDER BY date)" },
+        { "property": "LEAD(col, n)", "desc": "Returns value from n rows after current row", "version": "LEAD(price, 1) OVER (ORDER BY date)" },
+        { "property": "FIRST_VALUE(col)", "desc": "Returns first value in the window frame", "version": "FIRST_VALUE(name) OVER (ORDER BY score DESC)" },
+        { "property": "LAST_VALUE(col)", "desc": "Returns last value in the window frame", "version": "LAST_VALUE(name) OVER (...)" },
+        { "property": "SUM() OVER()", "desc": "Running sum across window", "version": "SUM(amount) OVER (ORDER BY date)" },
+        { "property": "AVG() OVER()", "desc": "Running average across window", "version": "AVG(price) OVER (PARTITION BY category)" },
+        { "property": "PARTITION BY", "desc": "Divides result set into partitions for window function", "version": "OVER (PARTITION BY dept)" },
+        { "property": "OVER (ORDER BY col)", "desc": "Defines ordering within window", "version": "OVER (ORDER BY created_at)" }
+      ]
+    },
+    {
+      "id": "data-types",
+      "title": "Common Data Types",
+      "type": "table",
+      "columns": ["TYPE", "DESCRIPTION", "STORAGE"],
+      "rows": [
+        { "property": "INT / INTEGER", "desc": "Standard integer (4 bytes)", "version": "−2,147,483,648 to 2,147,483,647" },
+        { "property": "SMALLINT", "desc": "Small integer (2 bytes)", "version": "−32,768 to 32,767" },
+        { "property": "BIGINT", "desc": "Large integer (8 bytes)", "version": "±9.2 quintillion" },
+        { "property": "TINYINT", "desc": "Very small integer (1 byte)", "version": "0 to 255 (unsigned)" },
+        { "property": "DECIMAL(p, s)", "desc": "Exact numeric with precision p and scale s", "version": "DECIMAL(10, 2)" },
+        { "property": "FLOAT", "desc": "Approximate floating point (4 bytes)", "version": "7-digit precision" },
+        { "property": "DOUBLE", "desc": "Double precision floating point (8 bytes)", "version": "15-digit precision" },
+        { "property": "CHAR(n)", "desc": "Fixed-length string of n characters", "version": "Max 255 chars" },
+        { "property": "VARCHAR(n)", "desc": "Variable-length string up to n characters", "version": "Max 65,535 chars" },
+        { "property": "TEXT", "desc": "Variable-length string for large text", "version": "Max 65,535 chars" },
+        { "property": "LONGTEXT", "desc": "Very large text data", "version": "Max ~4 GB" },
+        { "property": "BLOB", "desc": "Binary large object", "version": "Max 65,535 bytes" },
+        { "property": "DATE", "desc": "Date in YYYY-MM-DD format", "version": "1000-01-01 to 9999-12-31" },
+        { "property": "TIME", "desc": "Time in HH:MM:SS format", "version": "−838:59:59 to 838:59:59" },
+        { "property": "DATETIME", "desc": "Date and time combined", "version": "YYYY-MM-DD HH:MM:SS" },
+        { "property": "TIMESTAMP", "desc": "Date and time with timezone awareness", "version": "1970-01-01 to 2038-01-19" },
+        { "property": "BOOLEAN", "desc": "True/false value (stored as TINYINT)", "version": "0 (false) or 1 (true)" },
+        { "property": "ENUM", "desc": "String from predefined list of values", "version": "ENUM('small', 'medium', 'large')" },
+        { "property": "JSON", "desc": "JSON formatted data (validated on insert)", "version": "MySQL 5.7+ / PostgreSQL" },
+        { "property": "UUID", "desc": "Universally unique identifier", "version": "PostgreSQL native / MySQL function" }
+      ]
+    },
+    {
+      "id": "tcl-dcl",
+      "title": "TCL & DCL Commands",
+      "type": "table",
+      "columns": ["COMMAND", "DESCRIPTION", "EXAMPLE"],
+      "rows": [
+        { "property": "COMMIT", "desc": "Saves all changes made in current transaction", "version": "COMMIT;" },
+        { "property": "ROLLBACK", "desc": "Undoes all changes made in current transaction", "version": "ROLLBACK;" },
+        { "property": "SAVEPOINT name", "desc": "Creates a named savepoint within a transaction", "version": "SAVEPOINT sp1;" },
+        { "property": "ROLLBACK TO name", "desc": "Rolls back to a specific savepoint", "version": "ROLLBACK TO sp1;" },
+        { "property": "BEGIN / START TRANSACTION", "desc": "Starts a new transaction", "version": "START TRANSACTION;" },
+        { "property": "SET AUTOCOMMIT", "desc": "Enables or disables auto-commit mode", "version": "SET AUTOCOMMIT = 0;" },
+        { "property": "GRANT", "desc": "Gives privileges to a user", "version": "GRANT SELECT ON mydb.* TO 'user'@'host';" },
+        { "property": "REVOKE", "desc": "Removes privileges from a user", "version": "REVOKE SELECT ON mydb.* FROM 'user'@'host';" },
+        { "property": "CREATE USER", "desc": "Creates a new database user", "version": "CREATE USER 'user'@'host' IDENTIFIED BY 'pass';" },
+        { "property": "DROP USER", "desc": "Deletes a database user", "version": "DROP USER 'user'@'host';" },
+        { "property": "SHOW GRANTS", "desc": "Displays privileges for a user", "version": "SHOW GRANTS FOR 'user'@'host';" }
+      ]
+    }
+  ]
+}

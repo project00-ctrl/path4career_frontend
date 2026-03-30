@@ -1,0 +1,801 @@
+/* ==========================================
+   BOOTCAMP PAGE — NEW DESIGN
+   ========================================== */
+:root {
+    /* Master Palette */
+    --primary: #214EA5; /* Deep Navy Blue */
+    --primary-hover: #1c4491;
+    --accent: #15803D; /* Deep Forest Green */
+    --accent-soft: #15803D;
+    --bg-main: #FDFAF6;
+    --bg-section: #F5F2EB;
+    --bg-dark: #020617;
+    --bg-dark-secondary: #050B1C;
+    --bg-dark-card: #0F172A;
+    --card-bg: #FFFFFF;
+    --card-dark: #0F172A;
+    --surface: #F8FAFC;
+    --border: rgba(0, 0, 0, 0.08);
+    --border-dark: rgba(255, 255, 255, 0.14);
+    --text-heading: #0B192C;
+    --text-main: #475569;
+    --text-secondary: #64748B;
+    --text-muted: #94A3B8;
+    --text-light: #FFFFFF;
+    --success: #15803D;
+    --warning: #F59E0B;
+    --danger: #EF4444;
+    --primary-gradient: linear-gradient(135deg, var(--primary), var(--accent));
+    --shadow-soft: 0 4px 16px rgba(0, 0, 0, 0.05);
+    --shadow-hover: 0 10px 25px rgba(0, 0, 0, 0.08);
+    --shadow-glow: 0 0 25px rgba(16, 185, 129, 0.4); /* Green glow */
+}
+
+body.bootcamp-page {
+  background: var(--bg-main);
+  color: var(--text-main);
+  font-family: 'Inter', sans-serif;
+  margin: 0;
+  overflow-x: hidden;
+}
+
+/* ===== SECTION LABEL (reusable) ===== */
+.bc-section-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--accent);
+  margin-bottom: 12px;
+}
+
+.bc-section-label i {
+  font-size: 0.9rem;
+}
+
+/* ===== COMING SOON BANNER ===== */
+.bc-coming-soon-banner {
+  position: relative;
+  min-height: 85vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 120px 20px 80px;
+  background: radial-gradient(ellipse at 50% 0%, rgba(74, 108, 247, 0.15) 0%, transparent 60%),
+              radial-gradient(ellipse at 80% 100%, rgba(34, 197, 94, 0.08) 0%, transparent 50%),
+              var(--bg-main);
+  overflow: hidden;
+}
+
+.bc-banner-glow {
+  position: absolute;
+  width: 500px;
+  height: 500px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(74, 108, 247, 0.2), transparent 70%);
+  top: -100px;
+  left: 50%;
+  transform: translateX(-50%);
+  animation: bcPulse 4s ease-in-out infinite;
+  pointer-events: none;
+}
+
+.bc-banner-glow-2 {
+  background: radial-gradient(circle, rgba(34, 197, 94, 0.12), transparent 70%);
+  top: auto;
+  bottom: -200px;
+  left: 70%;
+  animation-delay: 2s;
+}
+
+@keyframes bcPulse {
+  0%, 100% { transform: translateX(-50%) scale(1); opacity: 0.6; }
+  50% { transform: translateX(-50%) scale(1.2); opacity: 1; }
+}
+
+.bc-banner-content {
+  position: relative;
+  z-index: 2;
+  max-width: 700px;
+}
+
+.bc-badge-wrap {
+  margin-bottom: 24px;
+}
+
+.bc-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(34, 197, 94, 0.12);
+  border: 1px solid rgba(34, 197, 94, 0.3);
+  color: var(--accent);
+  padding: 8px 20px;
+  border-radius: 50px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  animation: bcBadgePulse 2s ease-in-out infinite;
+}
+
+@keyframes bcBadgePulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.3); }
+  50% { box-shadow: 0 0 0 10px rgba(34, 197, 94, 0); }
+}
+
+.bc-banner-title {
+  font-size: 4rem;
+  font-weight: 900;
+  line-height: 1.1;
+  margin: 0 0 20px;
+  color: var(--text-main);
+}
+
+.bc-gradient-text {
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.bc-banner-subtitle {
+  font-size: 1.15rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+  margin: 0 0 40px;
+}
+
+/* Countdown */
+.bc-countdown {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  margin-bottom: 40px;
+}
+
+.bc-countdown-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 20px 24px;
+  min-width: 80px;
+  backdrop-filter: blur(8px);
+}
+
+.bc-countdown-num {
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: var(--text-main);
+  font-variant-numeric: tabular-nums;
+}
+
+.bc-countdown-label {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  margin-top: 4px;
+}
+
+/* Notify Form */
+.bc-notify-form {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+.bc-notify-input {
+  flex: 1;
+  padding: 14px 20px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--text-main);
+  font-size: 0.95rem;
+  font-family: 'Inter', sans-serif;
+  outline: none;
+  transition: border-color 0.25s, box-shadow 0.25s;
+}
+
+.bc-notify-input:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 2px rgba(21, 128, 61, 0.2);
+}
+
+.bc-notify-input::placeholder {
+  color: #475569;
+}
+
+.bc-notify-btn {
+  padding: 14px 28px;
+  border-radius: 12px;
+  border: none;
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  color: var(--text-light);
+  font-size: 0.95rem;
+  font-weight: 700;
+  font-family: 'Inter', sans-serif;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: transform 0.2s, box-shadow 0.2s;
+  white-space: nowrap;
+}
+
+.bc-notify-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(74, 108, 247, 0.3);
+}
+
+.bc-notify-btn:active {
+  transform: translateY(0);
+}
+
+/* ===== WHAT IS BOOTCAMP ===== */
+.bc-what-section {
+  padding: 100px 20px;
+  background: var(--bg-secondary);
+}
+
+.bc-what-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.bc-what-header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.bc-what-header h2 {
+  font-size: 2.5rem;
+  font-weight: 800;
+  margin: 12px 0 20px;
+  color: var(--text-main);
+}
+
+.bc-what-intro {
+  max-width: 750px;
+  margin: 0 auto;
+  font-size: 1.1rem;
+  color: var(--text-secondary);
+  line-height: 1.8;
+}
+
+.bc-features-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.bc-feature-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 36px 28px;
+  transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
+}
+
+.bc-feature-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(74, 108, 247, 0.3);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.3);
+}
+
+.bc-feature-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, rgba(74, 108, 247, 0.15), rgba(34, 197, 94, 0.1));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  color: var(--primary);
+  margin-bottom: 20px;
+}
+
+.bc-feature-card h3 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--text-main);
+  margin: 0 0 12px;
+}
+
+.bc-feature-card p {
+  font-size: 0.92rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+  margin: 0;
+}
+
+/* ===== WHY path4career ===== */
+.bc-why-section {
+  padding: 100px 20px;
+  background: var(--bg-main);
+}
+
+.bc-why-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.bc-why-container h2 {
+  font-size: 2.5rem;
+  font-weight: 800;
+  margin: 12px 0 50px;
+  color: var(--text-main);
+}
+
+.bc-why-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+  text-align: left;
+}
+
+.bc-why-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 36px 30px;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s, border-color 0.3s;
+}
+
+.bc-why-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(34, 197, 94, 0.25);
+}
+
+.bc-why-number {
+  font-size: 3rem;
+  font-weight: 900;
+  color: rgba(74, 108, 247, 0.1);
+  position: absolute;
+  top: 16px;
+  right: 24px;
+  line-height: 1;
+}
+
+.bc-why-card h3 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--text-main);
+  margin: 0 0 12px;
+}
+
+.bc-why-card p {
+  font-size: 0.92rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+  margin: 0;
+}
+
+/* ===== PLANNED TRACKS ===== */
+.bc-planned-section {
+  padding: 100px 20px;
+  background: var(--bg-secondary);
+}
+
+.bc-planned-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.bc-planned-container h2 {
+  font-size: 2.5rem;
+  font-weight: 800;
+  margin: 12px 0 16px;
+  color: var(--text-main);
+}
+
+.bc-planned-intro {
+  font-size: 1.05rem;
+  color: var(--text-secondary);
+  margin-bottom: 50px;
+}
+
+.bc-tracks-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  text-align: left;
+}
+
+.bc-track-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  overflow: hidden;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.bc-track-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+}
+
+.bc-track-header {
+  padding: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: var(--text-light);
+}
+
+.bc-track-header i {
+  font-size: 2.2rem;
+}
+
+.bc-track-badge {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  background: rgba(0, 0, 0, 0.25);
+  padding: 4px 12px;
+  border-radius: 20px;
+}
+
+.bc-track-body {
+  padding: 24px 28px 28px;
+}
+
+.bc-track-body h3 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--text-main);
+  margin: 0 0 10px;
+}
+
+.bc-track-body p {
+  font-size: 0.88rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+  margin: 0 0 18px;
+}
+
+.bc-track-meta {
+  display: flex;
+  gap: 20px;
+  font-size: 0.82rem;
+  color: #64748B;
+}
+
+.bc-track-meta span {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.bc-track-meta i {
+  color: var(--accent);
+  font-size: 0.85rem;
+}
+
+/* ===== STATS ===== */
+.bc-stats-section {
+  padding: 80px 20px;
+  background: linear-gradient(135deg, rgba(74, 108, 247, 0.08), rgba(34, 197, 94, 0.05));
+}
+
+.bc-stats-container {
+  max-width: 900px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-around;
+  text-align: center;
+  flex-wrap: wrap;
+  gap: 30px;
+}
+
+.bc-stat-item h2 {
+  font-size: 2.5rem;
+  font-weight: 900;
+  margin: 0;
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.bc-stat-item p {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  margin: 6px 0 0;
+}
+
+/* ===== FAQ ===== */
+.bc-faq-section {
+  padding: 100px 20px;
+  background: var(--bg-main);
+}
+
+.bc-faq-container {
+  max-width: 720px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.bc-faq-container h2 {
+  font-size: 2.2rem;
+  font-weight: 800;
+  margin: 12px 0 50px;
+  color: var(--text-main);
+}
+
+.bc-faq-list {
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.bc-faq-item {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  overflow: hidden;
+  transition: border-color 0.3s;
+}
+
+.bc-faq-item:hover {
+  border-color: rgba(74, 108, 247, 0.2);
+}
+
+.bc-faq-question {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 24px;
+  background: none;
+  border: none;
+  color: var(--text-main);
+  font-size: 1rem;
+  font-weight: 600;
+  font-family: 'Inter', sans-serif;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.bc-faq-question i {
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+  transition: transform 0.3s;
+}
+
+.bc-faq-item.open .bc-faq-question i {
+  transform: rotate(180deg);
+  color: var(--accent);
+}
+
+.bc-faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.35s ease, padding 0.35s ease;
+  padding: 0 24px;
+}
+
+.bc-faq-item.open .bc-faq-answer {
+  max-height: 300px;
+  padding: 0 24px 20px;
+}
+
+.bc-faq-answer p {
+  font-size: 0.92rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+  margin: 0;
+}
+
+/* ===== CTA ===== */
+.bc-cta-section {
+  padding: 100px 20px;
+  background: var(--bg-secondary);
+  text-align: center;
+}
+
+.bc-cta-container {
+  max-width: 650px;
+  margin: 0 auto;
+}
+
+.bc-cta-container h2 {
+  font-size: 2.2rem;
+  font-weight: 800;
+  margin: 0 0 16px;
+  color: var(--text-main);
+}
+
+.bc-cta-container p {
+  font-size: 1.05rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+  margin: 0 0 36px;
+}
+
+.bc-cta-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.bc-cta-btn {
+  padding: 14px 28px;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: 700;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.bc-cta-btn:hover {
+  transform: translateY(-2px);
+}
+
+.bc-cta-primary {
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  color: var(--text-light);
+}
+
+.bc-cta-primary:hover {
+  box-shadow: 0 8px 24px rgba(74, 108, 247, 0.3);
+}
+
+.bc-cta-secondary {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid var(--border);
+  color: var(--text-main);
+}
+
+.bc-cta-secondary:hover {
+  border-color: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+}
+
+/* ===== FOOTER ===== */
+.bc-footer {
+  padding: 30px 20px;
+  text-align: center;
+  border-top: 1px solid var(--border);
+  background: var(--bg-main);
+}
+
+.bc-footer p {
+  font-size: 0.85rem;
+  color: #64748B;
+  margin: 0;
+}
+
+.bc-footer a {
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 1024px) {
+  .bc-features-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .bc-tracks-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .bc-banner-title {
+    font-size: 3rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .bc-coming-soon-banner {
+    min-height: 70vh;
+    padding: 100px 16px 60px;
+  }
+
+  .bc-banner-title {
+    font-size: 2.4rem;
+  }
+
+  .bc-banner-subtitle {
+    font-size: 1rem;
+  }
+
+  .bc-countdown {
+    gap: 10px;
+  }
+
+  .bc-countdown-item {
+    padding: 14px 16px;
+    min-width: 60px;
+  }
+
+  .bc-countdown-num {
+    font-size: 1.6rem;
+  }
+
+  .bc-notify-form {
+    flex-direction: column;
+  }
+
+  .bc-features-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .bc-why-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .bc-tracks-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .bc-what-header h2,
+  .bc-why-container h2,
+  .bc-planned-container h2,
+  .bc-faq-container h2,
+  .bc-cta-container h2 {
+    font-size: 1.8rem;
+  }
+
+  .bc-what-section,
+  .bc-why-section,
+  .bc-planned-section,
+  .bc-faq-section,
+  .bc-cta-section {
+    padding: 60px 16px;
+  }
+
+  .bc-stats-container {
+    gap: 20px;
+  }
+
+  .bc-stat-item h2 {
+    font-size: 1.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .bc-banner-title {
+    font-size: 1.9rem;
+  }
+
+  .bc-countdown-item {
+    padding: 10px 12px;
+    min-width: 50px;
+  }
+
+  .bc-countdown-num {
+    font-size: 1.3rem;
+  }
+
+  .bc-countdown-label {
+    font-size: 0.65rem;
+  }
+
+  .bc-cta-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+}

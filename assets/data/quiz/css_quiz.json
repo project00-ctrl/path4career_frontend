@@ -1,0 +1,362 @@
+[
+    {
+        "id": "css-1",
+        "question": "What does CSS stand for?",
+        "options": [
+            "Computer Style Sheets",
+            "Cascading Style Sheets",
+            "Creative Style Sheets",
+            "Colorful Style Sheets"
+        ],
+        "correctAnswer": 1,
+        "explanation": "CSS (Cascading Style Sheets) is the language used to style HTML elements on a webpage."
+    },
+    {
+        "id": "css-2",
+        "question": "Where in an HTML document is the correct place to refer to an external style sheet?",
+        "options": [
+            "At the end of the document",
+            "In the <body> section",
+            "In the <head> section",
+            "In a <css> section"
+        ],
+        "correctAnswer": 2,
+        "explanation": "External stylesheets are linked using the <link> tag placed within the <head> section."
+    },
+    {
+        "id": "css-3",
+        "question": "Which HTML tag is used to define an internal style sheet?",
+        "options": [
+            "<style>",
+            "<css>",
+            "<script>",
+            "<design>"
+        ],
+        "correctAnswer": 0,
+        "explanation": "The <style> tag is used inside the <head> section to hold internal CSS rules."
+    },
+    {
+        "id": "css-4",
+        "question": "Which HTML attribute is used to define inline styles?",
+        "options": [
+            "class",
+            "style",
+            "font",
+            "styles"
+        ],
+        "correctAnswer": 1,
+        "explanation": "The 'style' attribute applies inline CSS directly to a single HTML element."
+    },
+    {
+        "id": "css-5",
+        "question": "Which is the correct CSS syntax?",
+        "options": [
+            "body {color: black;}",
+            "body:color=black;",
+            "{body:color=black;}",
+            "{body;color:black;}"
+        ],
+        "correctAnswer": 0,
+        "explanation": "CSS rules consist of a selector (e.g., body) followed by a declaration block inside curly braces containing property:value pairs."
+    },
+    {
+        "id": "css-6",
+        "question": "How do you insert a comment in a CSS file?",
+        "options": [
+            "// this is a comment",
+            "/* this is a comment */",
+            "' this is a comment",
+            "<!-- this is a comment -->"
+        ],
+        "correctAnswer": 1,
+        "explanation": "CSS comments begin with /* and end with */."
+    },
+    {
+        "id": "css-7",
+        "question": "Which property is used to change the background color of a webpage?",
+        "options": [
+            "color",
+            "bgcolor",
+            "background-color",
+            "bg-color"
+        ],
+        "correctAnswer": 2,
+        "explanation": "The 'background-color' property sets the background color of an element."
+    },
+    {
+        "id": "css-8",
+        "question": "How do you add a background color for all <h1> elements?",
+        "options": [
+            "h1.all {background-color:#FFFFFF;}",
+            "h1 {background-color:#FFFFFF;}",
+            "all.h1 {background-color:#FFFFFF;}",
+            "h1 {color:#FFFFFF;}"
+        ],
+        "correctAnswer": 1,
+        "explanation": "The element selector 'h1' automatically targets all <h1> elements in the document."
+    },
+    {
+        "id": "css-9",
+        "question": "Which CSS property is used to change the text color of an element?",
+        "options": [
+            "font-color",
+            "text-color",
+            "color",
+            "fgcolor"
+        ],
+        "correctAnswer": 2,
+        "explanation": "The 'color' property specifically dictates the foreground (text) color of an element."
+    },
+    {
+        "id": "css-10",
+        "question": "Which CSS property controls the text size?",
+        "options": [
+            "font-size",
+            "text-style",
+            "text-size",
+            "font-style"
+        ],
+        "correctAnswer": 0,
+        "explanation": "The 'font-size' property adjusts how large or small the text appears."
+    },
+    {
+        "id": "css-11",
+        "question": "What is the correct CSS syntax for making all the <p> elements bold?",
+        "options": [
+            "p {font-weight:bold;}",
+            "<p style=\"font-size:bold;\">",
+            "p {text-size:bold;}",
+            "p {text-weight:bold;}"
+        ],
+        "correctAnswer": 0,
+        "explanation": "The 'font-weight' property specifies the weight (thickness) of the font, such as bold."
+    },
+    {
+        "id": "css-12",
+        "question": "How do you display hyperlinks without an underline?",
+        "options": [
+            "a {underline:none;}",
+            "a {text-decoration:none;}",
+            "a {decoration:no-underline;}",
+            "a {text-style:none;}"
+        ],
+        "correctAnswer": 1,
+        "explanation": "Setting 'text-decoration: none;' removes the default underline from anchor (<a>) tags."
+    },
+    {
+        "id": "css-13",
+        "question": "How do you make each word in a text start with a capital letter?",
+        "options": [
+            "text-style:capitalize",
+            "transform:capitalize",
+            "text-transform:capitalize;",
+            "font-transform:uppercase"
+        ],
+        "correctAnswer": 2,
+        "explanation": "The 'text-transform: capitalize;' rule forces the first letter of each word to be uppercase."
+    },
+    {
+        "id": "css-14",
+        "question": "Which CSS property specifies the font family?",
+        "options": [
+            "font",
+            "font-family",
+            "font-style",
+            "family"
+        ],
+        "correctAnswer": 1,
+        "explanation": "The 'font-family' property dictates which typeface the browser should use."
+    },
+    {
+        "id": "css-15",
+        "question": "How can you center text horizontally within an element?",
+        "options": [
+            "text-align: center;",
+            "align: center;",
+            "margin: auto;",
+            "float: center;"
+        ],
+        "correctAnswer": 0,
+        "explanation": "The 'text-align' property determines the horizontal alignment of inline content."
+    },
+    {
+        "id": "css-16",
+        "question": "Which CSS property controls the space between the content of an element and its border?",
+        "options": [
+            "margin",
+            "padding",
+            "spacing",
+            "border-spacing"
+        ],
+        "correctAnswer": 1,
+        "explanation": "Padding is the empty space strictly inside an element's border, pushing content inward."
+    },
+    {
+        "id": "css-17",
+        "question": "If you want to create empty space outside of an element's border, pushing other elements away, which property do you use?",
+        "options": [
+            "border",
+            "padding",
+            "margin",
+            "gap"
+        ],
+        "correctAnswer": 2,
+        "explanation": "Margins clear an area completely outside the border of an element."
+    },
+    {
+        "id": "css-18",
+        "question": "When defining 'margin: 10px 20px 30px 40px;', what sides do these numbers represent?",
+        "options": [
+            "top, right, bottom, left",
+            "left, right, top, bottom",
+            "top, bottom, left, right",
+            "bottom, right, top, left"
+        ],
+        "correctAnswer": 0,
+        "explanation": "Shorthand margin and padding values go clockwise: Top, Right, Bottom, Left."
+    },
+    {
+        "id": "css-19",
+        "question": "Which CSS property is used to change the style of an element's border, such as making it dotted?",
+        "options": [
+            "border-style",
+            "border-type",
+            "border-shape",
+            "border-design"
+        ],
+        "correctAnswer": 0,
+        "explanation": "The 'border-style' property specifies what kind of border to display (solid, dotted, dashed, etc.)."
+    },
+    {
+        "id": "css-20",
+        "question": "In the CSS Box Model, the total width of an element is calculated by adding:",
+        "options": [
+            "Content Width + Padding + Border",
+            "Width + Margin",
+            "Content Width + Padding + Border + Margin",
+            "Content Width only"
+        ],
+        "correctAnswer": 2,
+        "explanation": "When an element renders on the page, the space it fully occupies horizontally is Width + Left/Right Padding + Left/Right Border + Left/Right Margin."
+    },
+    {
+        "id": "css-21",
+        "question": "How do you select an element with id 'demo'?",
+        "options": [
+            "*demo",
+            "demo",
+            ".demo",
+            "#demo"
+        ],
+        "correctAnswer": 3,
+        "explanation": "The hash (#) symbol is used in CSS to target an element by its unique ID."
+    },
+    {
+        "id": "css-22",
+        "question": "How do you select elements with class name 'test'?",
+        "options": [
+            "#test",
+            ".test",
+            "*test",
+            "test"
+        ],
+        "correctAnswer": 1,
+        "explanation": "The period (.) symbol is used to target elements that share the same class attribute."
+    },
+    {
+        "id": "css-23",
+        "question": "What is the default value of the CSS 'position' property?",
+        "options": [
+            "absolute",
+            "relative",
+            "static",
+            "fixed"
+        ],
+        "correctAnswer": 2,
+        "explanation": "HTML elements are positioned 'static' by default, meaning they flow normally on the page according to their HTML order."
+    },
+    {
+        "id": "css-24",
+        "question": "Which layout model is best suited for laying out items in a single row or column?",
+        "options": [
+            "Floats",
+            "CSS Grid",
+            "CSS Tables",
+            "CSS Flexbox"
+        ],
+        "correctAnswer": 3,
+        "explanation": "Flexbox is designed as a one-dimensional layout model for spacing and aligning items in a row or column."
+    },
+    {
+        "id": "css-25",
+        "question": "Which layout model is meant for complex, two-dimensional layouts containing both rows and columns?",
+        "options": [
+            "Flexbox",
+            "CSS Grid",
+            "Block model",
+            "Inline-Block"
+        ],
+        "correctAnswer": 1,
+        "explanation": "CSS Grid Layout excels at dividing a page into major regions along both horizontal and vertical axes simultaneously."
+    },
+    {
+        "id": "css-26",
+        "question": "What is a CSS Media Query used for?",
+        "options": [
+            "Connecting to a database.",
+            "Loading a video player.",
+            "Creating responsive designs that adapt to different screen sizes.",
+            "Playing audio files."
+        ],
+        "correctAnswer": 2,
+        "explanation": "Media queries (@media) apply CSS rules only when certain conditions are true, like a user viewing the site on a mobile phone (max-width)."
+    },
+    {
+        "id": "css-27",
+        "question": "What does the pseudo-class :hover do?",
+        "options": [
+            "Styles an element only when a user clicks on it.",
+            "Styles an element only when the mouse pointer moves over it.",
+            "Styles elements after they are visited.",
+            "Hides the element from the page."
+        ],
+        "correctAnswer": 1,
+        "explanation": "The :hover state activates when pointing an input device (like a mouse) over the selected element."
+    },
+    {
+        "id": "css-28",
+        "question": "If you set 'box-sizing: border-box;', what does it do?",
+        "options": [
+            "It turns the element into a perfect square.",
+            "It removes all borders from the element.",
+            "It includes padding and borders in the element's total width and height.",
+            "It adds a 3D shadow box."
+        ],
+        "correctAnswer": 2,
+        "explanation": "With border-box, the defined width and height strictly include the content, padding, and border, making sizing far more predictable."
+    },
+    {
+        "id": "css-29",
+        "question": "Which CSS property is used to create a smooth transition between state changes (like hovering)?",
+        "options": [
+            "animate",
+            "transition",
+            "change",
+            "transform"
+        ],
+        "correctAnswer": 1,
+        "explanation": "The 'transition' property allows property changes in CSS values to occur smoothly over a specified duration."
+    },
+    {
+        "id": "css-30",
+        "question": "What is the purpose of the CSS 'transform' property?",
+        "options": [
+            "To rename HTML tags.",
+            "To change the color of images.",
+            "To rotate, scale, skew, or translate an element.",
+            "To hide elements securely."
+        ],
+        "correctAnswer": 2,
+        "explanation": "Transforms let you modify the coordinate space of an element, enabling visual alterations like rotating a box 45 degrees."
+    }
+]

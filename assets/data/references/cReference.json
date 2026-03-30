@@ -1,0 +1,1753 @@
+{
+  "sections": [
+    {
+      "id": "data-types",
+      "columns": [
+        "TYPE",
+        "DESCRIPTION",
+        "SIZE / FORMAT"
+      ],
+      "rows": [
+        {
+          "property": "char",
+          "desc": "Single character (also used as small integer)",
+          "version": "1 byte"
+        },
+        {
+          "property": "unsigned char",
+          "desc": "Unsigned character; range 0 to 255",
+          "version": "1 byte"
+        },
+        {
+          "property": "short",
+          "desc": "Short signed integer",
+          "version": "2 bytes"
+        },
+        {
+          "property": "unsigned short",
+          "desc": "Short unsigned integer; range 0 to 65535",
+          "version": "2 bytes"
+        },
+        {
+          "property": "int",
+          "desc": "Standard signed integer",
+          "version": "4 bytes"
+        },
+        {
+          "property": "unsigned int",
+          "desc": "Unsigned integer; range 0 to 4294967295",
+          "version": "4 bytes"
+        },
+        {
+          "property": "long",
+          "desc": "Long signed integer",
+          "version": "4 or 8 bytes"
+        },
+        {
+          "property": "long long",
+          "desc": "64-bit signed integer (C99+)",
+          "version": "8 bytes"
+        },
+        {
+          "property": "unsigned long long",
+          "desc": "64-bit unsigned integer (C99+)",
+          "version": "8 bytes"
+        },
+        {
+          "property": "float",
+          "desc": "Single precision floating point",
+          "version": "4 bytes / %f"
+        },
+        {
+          "property": "double",
+          "desc": "Double precision floating point",
+          "version": "8 bytes / %lf"
+        },
+        {
+          "property": "long double",
+          "desc": "Extended precision floating point",
+          "version": "10–16 bytes"
+        },
+        {
+          "property": "void",
+          "desc": "No type; used for functions returning nothing or generic pointers",
+          "version": "—"
+        },
+        {
+          "property": "_Bool",
+          "desc": "Boolean type (C99); 0 is false, non-zero is true",
+          "version": "1 byte"
+        },
+        {
+          "property": "bool",
+          "desc": "Boolean alias from <stdbool.h> (C99)",
+          "version": "1 byte"
+        },
+        {
+          "property": "size_t",
+          "desc": "Unsigned type for sizes/counts; returned by sizeof",
+          "version": "<stddef.h>"
+        },
+        {
+          "property": "ptrdiff_t",
+          "desc": "Signed type for pointer differences",
+          "version": "<stddef.h>"
+        },
+        {
+          "property": "int8_t",
+          "desc": "Exact 8-bit signed integer (C99)",
+          "version": "<stdint.h>"
+        },
+        {
+          "property": "uint8_t",
+          "desc": "Exact 8-bit unsigned integer (C99)",
+          "version": "<stdint.h>"
+        },
+        {
+          "property": "int16_t",
+          "desc": "Exact 16-bit signed integer (C99)",
+          "version": "<stdint.h>"
+        },
+        {
+          "property": "int32_t",
+          "desc": "Exact 32-bit signed integer (C99)",
+          "version": "<stdint.h>"
+        },
+        {
+          "property": "int64_t",
+          "desc": "Exact 64-bit signed integer (C99)",
+          "version": "<stdint.h>"
+        },
+        {
+          "property": "struct",
+          "desc": "User-defined composite type grouping variables",
+          "version": "variable"
+        },
+        {
+          "property": "union",
+          "desc": "Members share same memory location; size = largest member",
+          "version": "variable"
+        },
+        {
+          "property": "enum",
+          "desc": "Enumeration of named integer constants",
+          "version": "4 bytes"
+        },
+        {
+          "property": "typedef",
+          "desc": "Creates an alias for an existing type",
+          "version": "—"
+        }
+      ],
+      "title": "Data Types",
+      "type": "table"
+    },
+    {
+      "id": "operators",
+      "columns": [
+        "OPERATOR",
+        "DESCRIPTION",
+        "EXAMPLE"
+      ],
+      "rows": [
+        {
+          "property": "+",
+          "desc": "Addition",
+          "version": "a + b"
+        },
+        {
+          "property": "-",
+          "desc": "Subtraction",
+          "version": "a - b"
+        },
+        {
+          "property": "*",
+          "desc": "Multiplication",
+          "version": "a * b"
+        },
+        {
+          "property": "/",
+          "desc": "Division (integer division if both operands are integers)",
+          "version": "a / b"
+        },
+        {
+          "property": "%",
+          "desc": "Modulus — remainder after integer division",
+          "version": "a % b"
+        },
+        {
+          "property": "++",
+          "desc": "Increment by 1 (prefix: ++a, postfix: a++)",
+          "version": "a++ / ++a"
+        },
+        {
+          "property": "--",
+          "desc": "Decrement by 1 (prefix: --a, postfix: a--)",
+          "version": "a-- / --a"
+        },
+        {
+          "property": "==",
+          "desc": "Equal to",
+          "version": "a == b"
+        },
+        {
+          "property": "!=",
+          "desc": "Not equal to",
+          "version": "a != b"
+        },
+        {
+          "property": ">",
+          "desc": "Greater than",
+          "version": "a > b"
+        },
+        {
+          "property": "<",
+          "desc": "Less than",
+          "version": "a < b"
+        },
+        {
+          "property": ">=",
+          "desc": "Greater than or equal to",
+          "version": "a >= b"
+        },
+        {
+          "property": "<=",
+          "desc": "Less than or equal to",
+          "version": "a <= b"
+        },
+        {
+          "property": "&&",
+          "desc": "Logical AND (short-circuit evaluation)",
+          "version": "a && b"
+        },
+        {
+          "property": "||",
+          "desc": "Logical OR (short-circuit evaluation)",
+          "version": "a || b"
+        },
+        {
+          "property": "!",
+          "desc": "Logical NOT",
+          "version": "!a"
+        },
+        {
+          "property": "&",
+          "desc": "Bitwise AND / address-of operator",
+          "version": "a & b / &x"
+        },
+        {
+          "property": "|",
+          "desc": "Bitwise OR",
+          "version": "a | b"
+        },
+        {
+          "property": "^",
+          "desc": "Bitwise XOR",
+          "version": "a ^ b"
+        },
+        {
+          "property": "~",
+          "desc": "Bitwise NOT (one's complement)",
+          "version": "~a"
+        },
+        {
+          "property": "<<",
+          "desc": "Left bit shift",
+          "version": "a << 2"
+        },
+        {
+          "property": ">>",
+          "desc": "Right bit shift",
+          "version": "a >> 2"
+        },
+        {
+          "property": "=",
+          "desc": "Assignment",
+          "version": "a = 5"
+        },
+        {
+          "property": "+=",
+          "desc": "Add and assign",
+          "version": "a += 3"
+        },
+        {
+          "property": "-=",
+          "desc": "Subtract and assign",
+          "version": "a -= 3"
+        },
+        {
+          "property": "*=",
+          "desc": "Multiply and assign",
+          "version": "a *= 3"
+        },
+        {
+          "property": "/=",
+          "desc": "Divide and assign",
+          "version": "a /= 3"
+        },
+        {
+          "property": "%=",
+          "desc": "Modulus and assign",
+          "version": "a %= 3"
+        },
+        {
+          "property": "&=",
+          "desc": "Bitwise AND and assign",
+          "version": "a &= b"
+        },
+        {
+          "property": "|=",
+          "desc": "Bitwise OR and assign",
+          "version": "a |= b"
+        },
+        {
+          "property": "^=",
+          "desc": "Bitwise XOR and assign",
+          "version": "a ^= b"
+        },
+        {
+          "property": "<<=",
+          "desc": "Left shift and assign",
+          "version": "a <<= 2"
+        },
+        {
+          "property": ">>=",
+          "desc": "Right shift and assign",
+          "version": "a >>= 2"
+        },
+        {
+          "property": "? :",
+          "desc": "Ternary (conditional) operator",
+          "version": "a > b ? a : b"
+        },
+        {
+          "property": "*",
+          "desc": "Pointer dereference — access value at pointer address",
+          "version": "*ptr"
+        },
+        {
+          "property": "&",
+          "desc": "Address-of — returns address of a variable",
+          "version": "&var"
+        },
+        {
+          "property": "->",
+          "desc": "Access struct/union member via pointer",
+          "version": "ptr->member"
+        },
+        {
+          "property": ".",
+          "desc": "Access struct/union member directly",
+          "version": "var.member"
+        },
+        {
+          "property": "[]",
+          "desc": "Array subscript — access element at index",
+          "version": "arr[i]"
+        },
+        {
+          "property": "sizeof",
+          "desc": "Returns size in bytes of type or variable (compile-time)",
+          "version": "sizeof(int)"
+        },
+        {
+          "property": "(type)",
+          "desc": "Cast operator — explicitly convert type",
+          "version": "(int)3.7"
+        },
+        {
+          "property": ",",
+          "desc": "Comma operator — evaluates both operands, returns right",
+          "version": "a=1, b=2"
+        }
+      ],
+      "title": "Operators",
+      "type": "table"
+    },
+    {
+      "id": "control-flow",
+      "columns": [
+        "STATEMENT",
+        "DESCRIPTION",
+        "VERSION"
+      ],
+      "rows": [
+        {
+          "property": "if",
+          "desc": "Executes block if condition is true",
+          "version": "C89"
+        },
+        {
+          "property": "if...else",
+          "desc": "Executes else block when condition is false",
+          "version": "C89"
+        },
+        {
+          "property": "else if",
+          "desc": "Chains additional conditions",
+          "version": "C89"
+        },
+        {
+          "property": "switch",
+          "desc": "Multi-way branch based on integer expression",
+          "version": "C89"
+        },
+        {
+          "property": "case",
+          "desc": "Label for a switch branch",
+          "version": "C89"
+        },
+        {
+          "property": "default",
+          "desc": "Default branch when no case matches",
+          "version": "C89"
+        },
+        {
+          "property": "for",
+          "desc": "Loop with init, condition, and increment expressions",
+          "version": "C89"
+        },
+        {
+          "property": "while",
+          "desc": "Repeats block while condition is true",
+          "version": "C89"
+        },
+        {
+          "property": "do...while",
+          "desc": "Executes block at least once then checks condition",
+          "version": "C89"
+        },
+        {
+          "property": "break",
+          "desc": "Exits innermost loop or switch immediately",
+          "version": "C89"
+        },
+        {
+          "property": "continue",
+          "desc": "Skips rest of current loop iteration",
+          "version": "C89"
+        },
+        {
+          "property": "return",
+          "desc": "Exits function and optionally returns a value",
+          "version": "C89"
+        },
+        {
+          "property": "goto",
+          "desc": "Unconditional jump to a labelled statement",
+          "version": "C89"
+        },
+        {
+          "property": "label:",
+          "desc": "Target for goto statement",
+          "version": "C89"
+        }
+      ],
+      "title": "Control Flow",
+      "type": "table"
+    },
+    {
+      "id": "arrays",
+      "columns": [
+        "SYNTAX / FUNCTION",
+        "DESCRIPTION",
+        "HEADER"
+      ],
+      "rows": [
+        {
+          "property": "int arr[5]",
+          "desc": "Declare integer array of 5 elements (index 0–4)",
+          "version": "—"
+        },
+        {
+          "property": "int arr[] = {1,2,3}",
+          "desc": "Declare and initialise array; size inferred",
+          "version": "—"
+        },
+        {
+          "property": "arr[i]",
+          "desc": "Access element at index i",
+          "version": "—"
+        },
+        {
+          "property": "sizeof(arr)/sizeof(arr[0])",
+          "desc": "Calculate number of elements in array",
+          "version": "—"
+        },
+        {
+          "property": "int mat[3][4]",
+          "desc": "Declare 2D array with 3 rows and 4 columns",
+          "version": "—"
+        },
+        {
+          "property": "char str[50]",
+          "desc": "Character array (C string) with capacity 49 + null term",
+          "version": "—"
+        },
+        {
+          "property": "char str[] = \"hello\"",
+          "desc": "Initialise string literal; null terminator added auto",
+          "version": "—"
+        },
+        {
+          "property": "strlen(str)",
+          "desc": "Returns length of string (excludes null terminator)",
+          "version": "<string.h>"
+        },
+        {
+          "property": "strcpy(dest, src)",
+          "desc": "Copies src string to dest (no bounds check)",
+          "version": "<string.h>"
+        },
+        {
+          "property": "strncpy(dest, src, n)",
+          "desc": "Copies at most n characters from src to dest",
+          "version": "<string.h>"
+        },
+        {
+          "property": "strcat(dest, src)",
+          "desc": "Appends src to end of dest",
+          "version": "<string.h>"
+        },
+        {
+          "property": "strncat(dest, src, n)",
+          "desc": "Appends at most n characters of src to dest",
+          "version": "<string.h>"
+        },
+        {
+          "property": "strcmp(s1, s2)",
+          "desc": "Compares strings; returns 0 if equal, <0 or >0 otherwise",
+          "version": "<string.h>"
+        },
+        {
+          "property": "strncmp(s1, s2, n)",
+          "desc": "Compares first n characters of two strings",
+          "version": "<string.h>"
+        },
+        {
+          "property": "strchr(str, c)",
+          "desc": "Returns pointer to first occurrence of char c in str",
+          "version": "<string.h>"
+        },
+        {
+          "property": "strrchr(str, c)",
+          "desc": "Returns pointer to last occurrence of char c in str",
+          "version": "<string.h>"
+        },
+        {
+          "property": "strstr(haystack, needle)",
+          "desc": "Returns pointer to first occurrence of needle in haystack",
+          "version": "<string.h>"
+        },
+        {
+          "property": "strtok(str, delim)",
+          "desc": "Tokenises string by delimiter; returns tokens one by one",
+          "version": "<string.h>"
+        },
+        {
+          "property": "memset(ptr, val, n)",
+          "desc": "Fills n bytes at ptr with value val",
+          "version": "<string.h>"
+        },
+        {
+          "property": "memcpy(dest, src, n)",
+          "desc": "Copies n bytes from src to dest (non-overlapping)",
+          "version": "<string.h>"
+        },
+        {
+          "property": "memmove(dest, src, n)",
+          "desc": "Copies n bytes; safe for overlapping memory regions",
+          "version": "<string.h>"
+        },
+        {
+          "property": "memcmp(s1, s2, n)",
+          "desc": "Compares first n bytes of two memory regions",
+          "version": "<string.h>"
+        },
+        {
+          "property": "atoi(str)",
+          "desc": "Converts string to integer",
+          "version": "<stdlib.h>"
+        },
+        {
+          "property": "atof(str)",
+          "desc": "Converts string to double",
+          "version": "<stdlib.h>"
+        },
+        {
+          "property": "atol(str)",
+          "desc": "Converts string to long integer",
+          "version": "<stdlib.h>"
+        },
+        {
+          "property": "strtol(str, &end, base)",
+          "desc": "Converts string to long with base and end-pointer",
+          "version": "<stdlib.h>"
+        },
+        {
+          "property": "strtod(str, &end)",
+          "desc": "Converts string to double with end-pointer",
+          "version": "<stdlib.h>"
+        },
+        {
+          "property": "sprintf(buf, fmt, ...)",
+          "desc": "Writes formatted string into character buffer",
+          "version": "<stdio.h>"
+        },
+        {
+          "property": "snprintf(buf, n, fmt, ...)",
+          "desc": "Like sprintf but writes at most n-1 characters (safe)",
+          "version": "<stdio.h>"
+        }
+      ],
+      "title": "Arrays & Strings",
+      "type": "table"
+    },
+    {
+      "id": "pointers",
+      "columns": [
+        "SYNTAX / CONCEPT",
+        "DESCRIPTION",
+        "EXAMPLE"
+      ],
+      "rows": [
+        {
+          "property": "int *ptr",
+          "desc": "Declare pointer to int",
+          "version": "int *ptr;"
+        },
+        {
+          "property": "&variable",
+          "desc": "Address-of operator — gets memory address of variable",
+          "version": "ptr = &x;"
+        },
+        {
+          "property": "*ptr",
+          "desc": "Dereference — access value at address stored in ptr",
+          "version": "*ptr = 10;"
+        },
+        {
+          "property": "NULL",
+          "desc": "Null pointer constant — pointer that points to nothing",
+          "version": "ptr = NULL;"
+        },
+        {
+          "property": "void *ptr",
+          "desc": "Generic pointer; can point to any data type",
+          "version": "void *p = &x;"
+        },
+        {
+          "property": "ptr++",
+          "desc": "Pointer arithmetic — advance by sizeof pointed type",
+          "version": "ptr++;"
+        },
+        {
+          "property": "ptr + n",
+          "desc": "Move pointer n elements forward",
+          "version": "ptr + 3"
+        },
+        {
+          "property": "ptr1 - ptr2",
+          "desc": "Pointer difference — number of elements between them",
+          "version": "ptrdiff_t d"
+        },
+        {
+          "property": "ptr[i]",
+          "desc": "Array indexing via pointer — same as *(ptr + i)",
+          "version": "ptr[2]"
+        },
+        {
+          "property": "int **ptr",
+          "desc": "Pointer to pointer (double pointer)",
+          "version": "int **pp;"
+        },
+        {
+          "property": "int (*fp)(int, int)",
+          "desc": "Function pointer — points to function with matching signature",
+          "version": "fp = &add;"
+        },
+        {
+          "property": "(*fp)(a, b)",
+          "desc": "Call function via function pointer",
+          "version": "(*fp)(3,4)"
+        },
+        {
+          "property": "const int *ptr",
+          "desc": "Pointer to constant — cannot modify value via ptr",
+          "version": "const int *p"
+        },
+        {
+          "property": "int * const ptr",
+          "desc": "Constant pointer — address cannot be changed",
+          "version": "int * const p"
+        },
+        {
+          "property": "const int * const ptr",
+          "desc": "Constant pointer to constant value",
+          "version": "const int * const p"
+        },
+        {
+          "property": "ptr->member",
+          "desc": "Access struct member through pointer (same as (*ptr).member)",
+          "version": "ptr->x"
+        },
+        {
+          "property": "sizeof(ptr)",
+          "desc": "Size of pointer itself (4 or 8 bytes), not pointed type",
+          "version": "sizeof(ptr)"
+        },
+        {
+          "property": "free(ptr); ptr = NULL",
+          "desc": "Free memory and set pointer to NULL to avoid dangling ptr",
+          "version": "best practice"
+        }
+      ],
+      "title": "Pointers",
+      "type": "table"
+    },
+    {
+      "id": "functions",
+      "columns": [
+        "SYNTAX / CONCEPT",
+        "DESCRIPTION",
+        "EXAMPLE"
+      ],
+      "rows": [
+        {
+          "property": "returnType name(params)",
+          "desc": "Function definition",
+          "version": "int add(int a, int b)"
+        },
+        {
+          "property": "returnType name(params);",
+          "desc": "Function prototype / declaration (before main)",
+          "version": "int add(int, int);"
+        },
+        {
+          "property": "void name(void)",
+          "desc": "Function with no parameters and no return value",
+          "version": "void greet(void)"
+        },
+        {
+          "property": "return value;",
+          "desc": "Return value to caller",
+          "version": "return a + b;"
+        },
+        {
+          "property": "return;",
+          "desc": "Exit void function early",
+          "version": "return;"
+        },
+        {
+          "property": "int main(void)",
+          "desc": "Main entry point with no arguments",
+          "version": "int main(void)"
+        },
+        {
+          "property": "int main(int argc, char *argv[])",
+          "desc": "Main with command-line arguments",
+          "version": "int main(int argc, char *argv[])"
+        },
+        {
+          "property": "static",
+          "desc": "Limits function scope to file; retains local var value across calls",
+          "version": "static int count = 0;"
+        },
+        {
+          "property": "inline",
+          "desc": "Hints compiler to inline function body (C99)",
+          "version": "inline int sq(int x)"
+        },
+        {
+          "property": "Pass by value",
+          "desc": "Copy of argument passed; original not modified",
+          "version": "void f(int x)"
+        },
+        {
+          "property": "Pass by pointer",
+          "desc": "Address passed; function can modify original variable",
+          "version": "void f(int *x)"
+        },
+        {
+          "property": "Variadic function",
+          "desc": "Function accepting variable number of arguments",
+          "version": "void f(int n, ...)"
+        },
+        {
+          "property": "va_list, va_start, va_arg, va_end",
+          "desc": "Macros to iterate variadic arguments (<stdarg.h>)",
+          "version": "<stdarg.h>"
+        },
+        {
+          "property": "Recursive function",
+          "desc": "Function that calls itself; needs base case to terminate",
+          "version": "int fact(int n)"
+        },
+        {
+          "property": "Function pointer",
+          "desc": "Variable holding address of a function",
+          "version": "int (*fp)(int,int)"
+        }
+      ],
+      "title": "Functions",
+      "type": "table"
+    },
+    {
+      "id": "string-funcs",
+      "columns": [
+        "FUNCTION",
+        "DESCRIPTION",
+        "HEADER"
+      ],
+      "rows": [
+        {
+          "property": "strlen(str)",
+          "desc": "Returns number of characters (excluding null terminator)",
+          "version": "<string.h>"
+        },
+        {
+          "property": "strcpy(dest, src)",
+          "desc": "Copies src to dest including null terminator",
+          "version": "<string.h>"
+        },
+        {
+          "property": "strncpy(dest, src, n)",
+          "desc": "Copies up to n chars; pads with nulls if src shorter",
+          "version": "<string.h>"
+        },
+        {
+          "property": "strcat(dest, src)",
+          "desc": "Concatenates src to end of dest",
+          "version": "<string.h>"
+        },
+        {
+          "property": "strncat(dest, src, n)",
+          "desc": "Concatenates at most n chars from src to dest",
+          "version": "<string.h>"
+        },
+        {
+          "property": "strcmp(s1, s2)",
+          "desc": "Lexicographic compare; 0=equal, <0=s1 before s2, >0=after",
+          "version": "<string.h>"
+        },
+        {
+          "property": "strncmp(s1, s2, n)",
+          "desc": "Compares at most n characters",
+          "version": "<string.h>"
+        },
+        {
+          "property": "strcasecmp(s1, s2)",
+          "desc": "Case-insensitive string comparison (POSIX)",
+          "version": "<strings.h>"
+        },
+        {
+          "property": "strchr(str, c)",
+          "desc": "Pointer to first occurrence of char c; NULL if not found",
+          "version": "<string.h>"
+        },
+        {
+          "property": "strrchr(str, c)",
+          "desc": "Pointer to last occurrence of char c",
+          "version": "<string.h>"
+        },
+        {
+          "property": "strstr(hay, needle)",
+          "desc": "Pointer to first occurrence of needle in hay",
+          "version": "<string.h>"
+        },
+        {
+          "property": "strtok(str, delim)",
+          "desc": "Returns next token; modifies string — not thread-safe",
+          "version": "<string.h>"
+        },
+        {
+          "property": "strtok_r(str, delim, &saveptr)",
+          "desc": "Re-entrant (thread-safe) version of strtok",
+          "version": "<string.h>"
+        },
+        {
+          "property": "strspn(str, accept)",
+          "desc": "Returns length of prefix containing only accept chars",
+          "version": "<string.h>"
+        },
+        {
+          "property": "strcspn(str, reject)",
+          "desc": "Returns length of prefix with no reject chars",
+          "version": "<string.h>"
+        },
+        {
+          "property": "strpbrk(str, accept)",
+          "desc": "Pointer to first char in str that is in accept set",
+          "version": "<string.h>"
+        },
+        {
+          "property": "strerror(errnum)",
+          "desc": "Returns string describing error number (errno)",
+          "version": "<string.h>"
+        },
+        {
+          "property": "memset(ptr, val, n)",
+          "desc": "Fills n bytes of memory starting at ptr with val",
+          "version": "<string.h>"
+        },
+        {
+          "property": "memcpy(dst, src, n)",
+          "desc": "Copies n bytes from src to dst (no overlap)",
+          "version": "<string.h>"
+        },
+        {
+          "property": "memmove(dst, src, n)",
+          "desc": "Copies n bytes; handles overlapping memory safely",
+          "version": "<string.h>"
+        },
+        {
+          "property": "memcmp(s1, s2, n)",
+          "desc": "Compares first n bytes of two memory blocks",
+          "version": "<string.h>"
+        },
+        {
+          "property": "memchr(ptr, c, n)",
+          "desc": "Finds first occurrence of byte c in first n bytes",
+          "version": "<string.h>"
+        },
+        {
+          "property": "toupper(c)",
+          "desc": "Converts character to uppercase",
+          "version": "<ctype.h>"
+        },
+        {
+          "property": "tolower(c)",
+          "desc": "Converts character to lowercase",
+          "version": "<ctype.h>"
+        },
+        {
+          "property": "isalpha(c)",
+          "desc": "Returns non-zero if c is alphabetic",
+          "version": "<ctype.h>"
+        },
+        {
+          "property": "isdigit(c)",
+          "desc": "Returns non-zero if c is a decimal digit",
+          "version": "<ctype.h>"
+        },
+        {
+          "property": "isalnum(c)",
+          "desc": "Returns non-zero if c is alphanumeric",
+          "version": "<ctype.h>"
+        },
+        {
+          "property": "isspace(c)",
+          "desc": "Returns non-zero if c is whitespace (space, tab, newline)",
+          "version": "<ctype.h>"
+        },
+        {
+          "property": "isupper(c)",
+          "desc": "Returns non-zero if c is uppercase letter",
+          "version": "<ctype.h>"
+        },
+        {
+          "property": "islower(c)",
+          "desc": "Returns non-zero if c is lowercase letter",
+          "version": "<ctype.h>"
+        },
+        {
+          "property": "ispunct(c)",
+          "desc": "Returns non-zero if c is punctuation character",
+          "version": "<ctype.h>"
+        },
+        {
+          "property": "isprint(c)",
+          "desc": "Returns non-zero if c is a printable character",
+          "version": "<ctype.h>"
+        }
+      ],
+      "title": "String Functions",
+      "type": "table"
+    },
+    {
+      "id": "math-funcs",
+      "columns": [
+        "FUNCTION",
+        "DESCRIPTION",
+        "HEADER"
+      ],
+      "rows": [
+        {
+          "property": "abs(x)",
+          "desc": "Absolute value of integer x",
+          "version": "<stdlib.h>"
+        },
+        {
+          "property": "fabs(x)",
+          "desc": "Absolute value of floating-point x",
+          "version": "<math.h>"
+        },
+        {
+          "property": "ceil(x)",
+          "desc": "Rounds x up to nearest integer (returns double)",
+          "version": "<math.h>"
+        },
+        {
+          "property": "floor(x)",
+          "desc": "Rounds x down to nearest integer (returns double)",
+          "version": "<math.h>"
+        },
+        {
+          "property": "round(x)",
+          "desc": "Rounds x to nearest integer, halfway rounds away from zero",
+          "version": "<math.h>"
+        },
+        {
+          "property": "trunc(x)",
+          "desc": "Truncates decimal part toward zero",
+          "version": "<math.h>"
+        },
+        {
+          "property": "sqrt(x)",
+          "desc": "Square root of x",
+          "version": "<math.h>"
+        },
+        {
+          "property": "cbrt(x)",
+          "desc": "Cube root of x (C99)",
+          "version": "<math.h>"
+        },
+        {
+          "property": "pow(base, exp)",
+          "desc": "Returns base raised to power exp",
+          "version": "<math.h>"
+        },
+        {
+          "property": "exp(x)",
+          "desc": "Returns e raised to the power x",
+          "version": "<math.h>"
+        },
+        {
+          "property": "log(x)",
+          "desc": "Natural logarithm (base e) of x",
+          "version": "<math.h>"
+        },
+        {
+          "property": "log2(x)",
+          "desc": "Base-2 logarithm of x (C99)",
+          "version": "<math.h>"
+        },
+        {
+          "property": "log10(x)",
+          "desc": "Base-10 logarithm of x",
+          "version": "<math.h>"
+        },
+        {
+          "property": "sin(x)",
+          "desc": "Sine of x in radians",
+          "version": "<math.h>"
+        },
+        {
+          "property": "cos(x)",
+          "desc": "Cosine of x in radians",
+          "version": "<math.h>"
+        },
+        {
+          "property": "tan(x)",
+          "desc": "Tangent of x in radians",
+          "version": "<math.h>"
+        },
+        {
+          "property": "asin(x)",
+          "desc": "Arc sine of x; result in radians",
+          "version": "<math.h>"
+        },
+        {
+          "property": "acos(x)",
+          "desc": "Arc cosine of x; result in radians",
+          "version": "<math.h>"
+        },
+        {
+          "property": "atan(x)",
+          "desc": "Arc tangent of x; result in radians",
+          "version": "<math.h>"
+        },
+        {
+          "property": "atan2(y, x)",
+          "desc": "Arc tangent of y/x using signs to determine quadrant",
+          "version": "<math.h>"
+        },
+        {
+          "property": "hypot(x, y)",
+          "desc": "Returns sqrt(x*x + y*y) without overflow/underflow",
+          "version": "<math.h>"
+        },
+        {
+          "property": "fmod(x, y)",
+          "desc": "Floating-point remainder of x/y",
+          "version": "<math.h>"
+        },
+        {
+          "property": "modf(x, &ipart)",
+          "desc": "Splits x into integer and fractional parts",
+          "version": "<math.h>"
+        },
+        {
+          "property": "fmax(x, y)",
+          "desc": "Returns larger of x and y (C99)",
+          "version": "<math.h>"
+        },
+        {
+          "property": "fmin(x, y)",
+          "desc": "Returns smaller of x and y (C99)",
+          "version": "<math.h>"
+        },
+        {
+          "property": "M_PI",
+          "desc": "Pi constant ≈ 3.14159265358979 (POSIX extension)",
+          "version": "<math.h>"
+        },
+        {
+          "property": "M_E",
+          "desc": "Euler's number ≈ 2.71828182845905 (POSIX extension)",
+          "version": "<math.h>"
+        },
+        {
+          "property": "rand()",
+          "desc": "Returns pseudo-random integer in range [0, RAND_MAX]",
+          "version": "<stdlib.h>"
+        },
+        {
+          "property": "srand(seed)",
+          "desc": "Seeds the random number generator",
+          "version": "<stdlib.h>"
+        },
+        {
+          "property": "RAND_MAX",
+          "desc": "Maximum value returned by rand() (at least 32767)",
+          "version": "<stdlib.h>"
+        }
+      ],
+      "title": "Math Functions",
+      "type": "table"
+    },
+    {
+      "id": "memory",
+      "columns": [
+        "FUNCTION / CONCEPT",
+        "DESCRIPTION",
+        "HEADER"
+      ],
+      "rows": [
+        {
+          "property": "malloc(size)",
+          "desc": "Allocates size bytes; returns void* or NULL on failure",
+          "version": "<stdlib.h>"
+        },
+        {
+          "property": "calloc(n, size)",
+          "desc": "Allocates n elements of size bytes; zero-initialises",
+          "version": "<stdlib.h>"
+        },
+        {
+          "property": "realloc(ptr, newSize)",
+          "desc": "Resizes previously allocated block; may move memory",
+          "version": "<stdlib.h>"
+        },
+        {
+          "property": "free(ptr)",
+          "desc": "Frees previously allocated memory block",
+          "version": "<stdlib.h>"
+        },
+        {
+          "property": "sizeof(type)",
+          "desc": "Returns size in bytes of type or expression at compile time",
+          "version": "—"
+        },
+        {
+          "property": "Stack memory",
+          "desc": "Auto-allocated for local variables; freed on function return",
+          "version": "automatic"
+        },
+        {
+          "property": "Heap memory",
+          "desc": "Dynamic allocation via malloc/calloc; must be freed manually",
+          "version": "manual"
+        },
+        {
+          "property": "Memory leak",
+          "desc": "Allocated memory never freed — causes increasing RAM usage",
+          "version": "bug"
+        },
+        {
+          "property": "Dangling pointer",
+          "desc": "Pointer to memory that has been freed",
+          "version": "bug"
+        },
+        {
+          "property": "Double free",
+          "desc": "Calling free() twice on same pointer — undefined behaviour",
+          "version": "bug"
+        },
+        {
+          "property": "Buffer overflow",
+          "desc": "Writing past end of allocated buffer — undefined behaviour",
+          "version": "bug"
+        },
+        {
+          "property": "ptr = NULL after free",
+          "desc": "Set pointer to NULL after free to prevent dangling access",
+          "version": "best practice"
+        },
+        {
+          "property": "memset(ptr, 0, n)",
+          "desc": "Zero-initialise n bytes at ptr",
+          "version": "<string.h>"
+        },
+        {
+          "property": "alloca(size)",
+          "desc": "Allocates on stack (non-standard); freed automatically",
+          "version": "<alloca.h>"
+        }
+      ],
+      "title": "Memory Management",
+      "type": "table"
+    },
+    {
+      "id": "file-io",
+      "columns": [
+        "FUNCTION",
+        "DESCRIPTION",
+        "HEADER"
+      ],
+      "rows": [
+        {
+          "property": "FILE *fp",
+          "desc": "File pointer type used for all file operations",
+          "version": "<stdio.h>"
+        },
+        {
+          "property": "fopen(path, mode)",
+          "desc": "Opens file; returns FILE* or NULL on failure",
+          "version": "<stdio.h>"
+        },
+        {
+          "property": "fclose(fp)",
+          "desc": "Closes file and flushes buffer; returns 0 on success",
+          "version": "<stdio.h>"
+        },
+        {
+          "property": "fread(buf, size, n, fp)",
+          "desc": "Reads n elements of size bytes from binary file",
+          "version": "<stdio.h>"
+        },
+        {
+          "property": "fwrite(buf, size, n, fp)",
+          "desc": "Writes n elements of size bytes to binary file",
+          "version": "<stdio.h>"
+        },
+        {
+          "property": "fgets(buf, n, fp)",
+          "desc": "Reads up to n-1 chars or newline from file into buf",
+          "version": "<stdio.h>"
+        },
+        {
+          "property": "fputs(str, fp)",
+          "desc": "Writes string str to file (no newline added)",
+          "version": "<stdio.h>"
+        },
+        {
+          "property": "fprintf(fp, fmt, ...)",
+          "desc": "Writes formatted output to file",
+          "version": "<stdio.h>"
+        },
+        {
+          "property": "fscanf(fp, fmt, ...)",
+          "desc": "Reads formatted input from file",
+          "version": "<stdio.h>"
+        },
+        {
+          "property": "fgetc(fp)",
+          "desc": "Reads one character from file; returns EOF at end",
+          "version": "<stdio.h>"
+        },
+        {
+          "property": "fputc(c, fp)",
+          "desc": "Writes one character to file",
+          "version": "<stdio.h>"
+        },
+        {
+          "property": "feof(fp)",
+          "desc": "Returns non-zero if end-of-file indicator is set",
+          "version": "<stdio.h>"
+        },
+        {
+          "property": "ferror(fp)",
+          "desc": "Returns non-zero if error indicator is set",
+          "version": "<stdio.h>"
+        },
+        {
+          "property": "clearerr(fp)",
+          "desc": "Clears error and end-of-file indicators",
+          "version": "<stdio.h>"
+        },
+        {
+          "property": "fseek(fp, offset, whence)",
+          "desc": "Moves file position; whence: SEEK_SET, SEEK_CUR, SEEK_END",
+          "version": "<stdio.h>"
+        },
+        {
+          "property": "ftell(fp)",
+          "desc": "Returns current file position in bytes from start",
+          "version": "<stdio.h>"
+        },
+        {
+          "property": "rewind(fp)",
+          "desc": "Resets file position to beginning",
+          "version": "<stdio.h>"
+        },
+        {
+          "property": "fflush(fp)",
+          "desc": "Flushes output buffer to file",
+          "version": "<stdio.h>"
+        },
+        {
+          "property": "remove(path)",
+          "desc": "Deletes file; returns 0 on success",
+          "version": "<stdio.h>"
+        },
+        {
+          "property": "rename(old, new)",
+          "desc": "Renames or moves file",
+          "version": "<stdio.h>"
+        },
+        {
+          "property": "tmpfile()",
+          "desc": "Creates temporary file opened in wb+ mode",
+          "version": "<stdio.h>"
+        },
+        {
+          "property": "\"r\"",
+          "desc": "Open for reading (file must exist)",
+          "version": "mode"
+        },
+        {
+          "property": "\"w\"",
+          "desc": "Open for writing (creates or truncates)",
+          "version": "mode"
+        },
+        {
+          "property": "\"a\"",
+          "desc": "Open for appending (creates if not exist)",
+          "version": "mode"
+        },
+        {
+          "property": "\"r+\"",
+          "desc": "Open for read and write (file must exist)",
+          "version": "mode"
+        },
+        {
+          "property": "\"w+\"",
+          "desc": "Open for read and write (creates or truncates)",
+          "version": "mode"
+        },
+        {
+          "property": "\"rb\" / \"wb\"",
+          "desc": "Binary read / binary write mode",
+          "version": "mode"
+        }
+      ],
+      "title": "File I/O",
+      "type": "table"
+    },
+    {
+      "id": "stdio",
+      "columns": [
+        "FUNCTION",
+        "DESCRIPTION",
+        "FORMAT SPECIFIER"
+      ],
+      "rows": [
+        {
+          "property": "printf(fmt, ...)",
+          "desc": "Prints formatted output to stdout",
+          "version": "—"
+        },
+        {
+          "property": "scanf(fmt, ...)",
+          "desc": "Reads formatted input from stdin",
+          "version": "—"
+        },
+        {
+          "property": "puts(str)",
+          "desc": "Prints string to stdout followed by newline",
+          "version": "—"
+        },
+        {
+          "property": "gets(buf)",
+          "desc": "Reads line from stdin — UNSAFE, do not use (removed C11)",
+          "version": "—"
+        },
+        {
+          "property": "fgets(buf, n, stdin)",
+          "desc": "Safe alternative to gets(); reads up to n-1 chars",
+          "version": "—"
+        },
+        {
+          "property": "getchar()",
+          "desc": "Reads one character from stdin",
+          "version": "—"
+        },
+        {
+          "property": "putchar(c)",
+          "desc": "Writes one character to stdout",
+          "version": "—"
+        },
+        {
+          "property": "sprintf(buf, fmt, ...)",
+          "desc": "Writes formatted string into character buffer",
+          "version": "—"
+        },
+        {
+          "property": "snprintf(buf,n,fmt,...)",
+          "desc": "Safe sprintf — writes at most n-1 characters",
+          "version": "—"
+        },
+        {
+          "property": "sscanf(str, fmt, ...)",
+          "desc": "Reads formatted data from string buffer",
+          "version": "—"
+        },
+        {
+          "property": "perror(str)",
+          "desc": "Prints str and error message for current errno value",
+          "version": "—"
+        },
+        {
+          "property": "%d / %i",
+          "desc": "Signed decimal integer",
+          "version": "int"
+        },
+        {
+          "property": "%u",
+          "desc": "Unsigned decimal integer",
+          "version": "unsigned int"
+        },
+        {
+          "property": "%f",
+          "desc": "Decimal floating point",
+          "version": "float/double"
+        },
+        {
+          "property": "%lf",
+          "desc": "Double floating point (scanf only)",
+          "version": "double"
+        },
+        {
+          "property": "%e / %E",
+          "desc": "Scientific notation",
+          "version": "float/double"
+        },
+        {
+          "property": "%g / %G",
+          "desc": "Shorter of %f or %e notation",
+          "version": "float/double"
+        },
+        {
+          "property": "%c",
+          "desc": "Single character",
+          "version": "char"
+        },
+        {
+          "property": "%s",
+          "desc": "String (char array)",
+          "version": "char*"
+        },
+        {
+          "property": "%p",
+          "desc": "Pointer address in hex",
+          "version": "void*"
+        },
+        {
+          "property": "%x / %X",
+          "desc": "Unsigned hexadecimal integer",
+          "version": "unsigned int"
+        },
+        {
+          "property": "%o",
+          "desc": "Unsigned octal integer",
+          "version": "unsigned int"
+        },
+        {
+          "property": "%ld",
+          "desc": "Long decimal integer",
+          "version": "long"
+        },
+        {
+          "property": "%lld",
+          "desc": "Long long decimal integer",
+          "version": "long long"
+        },
+        {
+          "property": "%zu",
+          "desc": "size_t (unsigned, for sizeof results)",
+          "version": "size_t"
+        },
+        {
+          "property": "%%",
+          "desc": "Literal percent sign",
+          "version": "—"
+        },
+        {
+          "property": "%5d",
+          "desc": "Field width — minimum 5 characters wide",
+          "version": "width"
+        },
+        {
+          "property": "%-5d",
+          "desc": "Left-align within field width",
+          "version": "width"
+        },
+        {
+          "property": "%05d",
+          "desc": "Zero-pad to field width",
+          "version": "width"
+        },
+        {
+          "property": "%.2f",
+          "desc": "Floating point with 2 decimal places precision",
+          "version": "precision"
+        }
+      ],
+      "title": "stdio.h Functions",
+      "type": "table"
+    },
+    {
+      "id": "c-keywords",
+      "columns": [
+        "KEYWORD",
+        "DESCRIPTION",
+        "STANDARD"
+      ],
+      "rows": [
+        {
+          "property": "auto",
+          "desc": "Default storage class for local variables (rarely used explicitly)",
+          "version": "C89"
+        },
+        {
+          "property": "break",
+          "desc": "Exits innermost loop or switch",
+          "version": "C89"
+        },
+        {
+          "property": "case",
+          "desc": "Label in switch statement",
+          "version": "C89"
+        },
+        {
+          "property": "char",
+          "desc": "Character data type (1 byte)",
+          "version": "C89"
+        },
+        {
+          "property": "const",
+          "desc": "Declares variable as read-only after initialisation",
+          "version": "C89"
+        },
+        {
+          "property": "continue",
+          "desc": "Skips to next iteration of current loop",
+          "version": "C89"
+        },
+        {
+          "property": "default",
+          "desc": "Default label in switch when no case matches",
+          "version": "C89"
+        },
+        {
+          "property": "do",
+          "desc": "Starts do-while loop (executes body at least once)",
+          "version": "C89"
+        },
+        {
+          "property": "double",
+          "desc": "Double precision floating point type",
+          "version": "C89"
+        },
+        {
+          "property": "else",
+          "desc": "Alternative branch of if statement",
+          "version": "C89"
+        },
+        {
+          "property": "enum",
+          "desc": "Declares enumeration of named integer constants",
+          "version": "C89"
+        },
+        {
+          "property": "extern",
+          "desc": "Declares variable/function defined in another file",
+          "version": "C89"
+        },
+        {
+          "property": "float",
+          "desc": "Single precision floating point type",
+          "version": "C89"
+        },
+        {
+          "property": "for",
+          "desc": "For loop with initialiser, condition, and increment",
+          "version": "C89"
+        },
+        {
+          "property": "goto",
+          "desc": "Unconditional jump to a named label",
+          "version": "C89"
+        },
+        {
+          "property": "if",
+          "desc": "Conditional statement",
+          "version": "C89"
+        },
+        {
+          "property": "inline",
+          "desc": "Hints compiler to expand function inline (C99)",
+          "version": "C99"
+        },
+        {
+          "property": "int",
+          "desc": "Standard integer type",
+          "version": "C89"
+        },
+        {
+          "property": "long",
+          "desc": "Long integer type",
+          "version": "C89"
+        },
+        {
+          "property": "register",
+          "desc": "Suggests variable be stored in CPU register (advisory only)",
+          "version": "C89"
+        },
+        {
+          "property": "restrict",
+          "desc": "Pointer optimisation hint — no other pointer aliases this object (C99)",
+          "version": "C99"
+        },
+        {
+          "property": "return",
+          "desc": "Exits function and optionally returns a value",
+          "version": "C89"
+        },
+        {
+          "property": "short",
+          "desc": "Short integer type (2 bytes)",
+          "version": "C89"
+        },
+        {
+          "property": "signed",
+          "desc": "Specifies signed integer type (default for int, char)",
+          "version": "C89"
+        },
+        {
+          "property": "sizeof",
+          "desc": "Returns size in bytes of type or expression at compile time",
+          "version": "C89"
+        },
+        {
+          "property": "static",
+          "desc": "Persistent storage for locals; file scope for globals/functions",
+          "version": "C89"
+        },
+        {
+          "property": "struct",
+          "desc": "User-defined composite type",
+          "version": "C89"
+        },
+        {
+          "property": "switch",
+          "desc": "Multi-way branch on integer expression",
+          "version": "C89"
+        },
+        {
+          "property": "typedef",
+          "desc": "Creates alias for existing data type",
+          "version": "C89"
+        },
+        {
+          "property": "union",
+          "desc": "All members share same memory; size equals largest member",
+          "version": "C89"
+        },
+        {
+          "property": "unsigned",
+          "desc": "Unsigned integer type modifier",
+          "version": "C89"
+        },
+        {
+          "property": "void",
+          "desc": "Specifies no type — used for functions and generic pointers",
+          "version": "C89"
+        },
+        {
+          "property": "volatile",
+          "desc": "Prevents compiler optimising away reads/writes (e.g. hardware regs)",
+          "version": "C89"
+        },
+        {
+          "property": "while",
+          "desc": "While loop — checks condition before each iteration",
+          "version": "C89"
+        },
+        {
+          "property": "_Bool",
+          "desc": "Boolean type (C99); use bool from <stdbool.h> instead",
+          "version": "C99"
+        },
+        {
+          "property": "_Complex",
+          "desc": "Complex number type (C99)",
+          "version": "C99"
+        },
+        {
+          "property": "_Imaginary",
+          "desc": "Imaginary number type (C99)",
+          "version": "C99"
+        },
+        {
+          "property": "_Alignas",
+          "desc": "Specifies alignment of variable (C11)",
+          "version": "C11"
+        },
+        {
+          "property": "_Alignof",
+          "desc": "Returns alignment requirement of type (C11)",
+          "version": "C11"
+        },
+        {
+          "property": "_Atomic",
+          "desc": "Atomic type qualifier for thread-safe operations (C11)",
+          "version": "C11"
+        },
+        {
+          "property": "_Generic",
+          "desc": "Type-generic expression selection (C11)",
+          "version": "C11"
+        },
+        {
+          "property": "_Noreturn",
+          "desc": "Declares function never returns to caller (C11)",
+          "version": "C11"
+        },
+        {
+          "property": "_Static_assert",
+          "desc": "Compile-time assertion (C11)",
+          "version": "C11"
+        },
+        {
+          "property": "_Thread_local",
+          "desc": "Thread-local storage duration (C11)",
+          "version": "C11"
+        }
+      ],
+      "title": "C Keywords",
+      "type": "table"
+    }
+  ]
+}

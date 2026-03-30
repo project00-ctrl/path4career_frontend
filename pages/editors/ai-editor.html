@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live AI Editor - CareerPath</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../../assets/css/editor.css">
+    
+    <script src="https://cdn.jsdelivr.net/pyodide/v0.23.4/full/pyodide.js"></script>
+    
+    <style>
+        .header h2 span {
+            color: #a855f7 !important;
+        }
+
+        .run-btn {
+            background: linear-gradient(135deg, #a855f7, #6366f1) !important;
+            color: #fff !important;
+        }
+
+        .run-btn:hover {
+            background: linear-gradient(135deg, #9333ea, #4f46e5) !important;
+        }
+
+        .run-btn:disabled {
+            background: #555 !important;
+            cursor: not-allowed;
+        }
+
+        .ai-badge {
+            background-color: #1e1e3f;
+            color: #a855f7;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            margin-left: 10px;
+            font-weight: bold;
+            border: 1px solid #a855f7;
+        }
+
+        #aiInput { color: #f1fa8c; } 
+        
+        .console-output {
+            flex: 1;
+            background-color: #1e1e2f;
+            display: flex;
+            flex-direction: column;
+        }
+
+        #consoleDiv {
+            flex: 1;
+            padding: 10px 20px;
+            font-family: 'Courier New', Courier, monospace;
+            overflow-y: auto;
+            color: #cbd5e1;
+            font-size: 14px;
+            white-space: pre-wrap; 
+        }
+
+        .log-error { color: #ff4757; }
+        .log-normal { color: #00ffb3; }
+        .log-loading { color: #8be9fd; font-style: italic; }
+
+        .packages-note {
+            background: rgba(168, 85, 247, 0.1);
+            border: 1px solid rgba(168, 85, 247, 0.3);
+            border-radius: 6px;
+            padding: 8px 14px;
+            margin: 0 15px;
+            font-size: 12px;
+            color: #a78bfa;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div style="display: flex; align-items: center; gap: 15px;">
+            <a href="../index.html" style="color: #a855f7; text-decoration: none; font-size: 14px;">← Back</a>
+            <h2><span>🤖</span> AI / ML Python Workspace <span class="ai-badge">AI / ML</span></h2>
+        </div>
+        <button class="run-btn" id="runBtn" disabled>Loading Python...</button>
+    </div>
+    <div class="packages-note">
+        💡 Core packages available: <strong>numpy</strong>, <strong>scikit-learn</strong>, <strong>statistics</strong>, <strong>math</strong>, <strong>random</strong>, <strong>json</strong>. Heavy packages (tensorflow, torch, opencv) are not available in the browser.
+    </div>
+    <div class="workspace">
+        <div class="editor-pane">
+            <p class="pane-label">ai_script.py</p>
+            <textarea id="aiInput" spellcheck="false" aria-label="AI Python Input"></textarea>
+        </div>
+        
+        <div class="result-pane">
+            <div class="console-output">
+                <p class="pane-label" style="padding:10px 20px 0;">Terminal Output</p>
+                <div id="consoleDiv">
+                    <span class="log-loading">Initializing AI Python Engine... please wait.</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+const aiInput = document.getElementById('aiInput');
+        const consoleDiv = document.getElementById('consoleDiv');
+        const runBtn = document.getElementById('runBtn');
+        
+        let pyodideInstance = null;
+
+        // Fetch saved code or use a default AI template
+        const savedCode = localStorage.getItem('careerPathAICode');
+        aiInput.value = savedCode ? savedCode : `# 🤖 AI / Machine Learning Workspace
+# Try running this simple ML example!
+
+import numpy as np
+
+# Create sample data: hours studied vs exam score
+hours_studied = np.array([1, 2, 3, 4, 5, 6, 7, 8])
+exam_scores = np.array([45, 55, 60, 70, 75, 80, 88, 92])
+
+# Calculate simple statistics
+print("=== AI Data Analysis ===")
+print(f"Average hours studied: {np.mean(hours_studied):.1f}")
+print(f"Average exam score: {np.mean(exam_scores):.1f}")
+print(f"Correlation: {np.corrcoef(hours_studied, exam_scores)[0,1]:.4f}")
+
+# Simple Linear Regression (from scratch!)
+n = len(hours_studied)
+x_mean = np.mean(hours_studied)
+y_mean = np.mean(exam_scores)
+
+slope = np.sum((hours_studied - x_mean) * (exam_scores - y_mean)) / np.sum((hours_studied - x_mean)**2)
+intercept = y_mean - slope * x_mean
+
+print(f"\\n=== Linear Regression Model ===")
+print(f"Formula: score = {slope:.2f} * hours + {intercept:.2f}")
+
+# Predict score for 10 hours of study
+predicted = slope * 10 + intercept
+print(f"\\nPredicted score for 10 hours: {predicted:.1f}")`;
+
+        // Function to append text to our visual console
+        function appendToConsole(text, className) {
+            const span = document.createElement('span');
+            span.className = className;
+            span.textContent = text + '\n';
+            consoleDiv.appendChild(span);
+            consoleDiv.scrollTop = consoleDiv.scrollHeight;
+        }
+
+        // Initialize Pyodide with numpy and scikit-learn
+        async function main() {
+            try {
+                pyodideInstance = await loadPyodide({
+                    stdout: (text) => appendToConsole(text, 'log-normal'),
+                    stderr: (text) => appendToConsole(text, 'log-error')
+                });
+                
+                // Pre-install numpy and scikit-learn
+                consoleDiv.innerHTML = '<span class="log-loading">Loading AI/ML packages (numpy, scikit-learn)...</span>\n';
+                await pyodideInstance.loadPackage(['numpy', 'scikit-learn']);
+                
+                consoleDiv.innerHTML = '<span class="log-normal">✔ AI Python Engine Ready! Packages loaded: numpy, scikit-learn.\nClick Run Code to execute.</span>\n\n';
+                runBtn.disabled = false;
+                runBtn.innerText = "Run Code ❯";
+            } catch (err) {
+                consoleDiv.innerHTML = `<span class="log-error">Failed to load AI engine: ${err.message}</span>`;
+            }
+        }
+
+        // Execute Python code
+        async function executePython() {
+            if (!pyodideInstance) return;
+            
+            const code = aiInput.value.trim();
+            if (!code) {
+                consoleDiv.innerHTML = '<span class="log-error">Please enter some Python code.</span>\n';
+                return;
+            }
+
+            consoleDiv.innerHTML = '<span class="log-loading">>>> Running AI script...</span>\n';
+            runBtn.disabled = true;
+
+            // Save the code
+            localStorage.setItem('careerPathAICode', aiInput.value);
+
+            try {
+                await pyodideInstance.runPythonAsync(code);
+            } catch (err) {
+                appendToConsole(err, 'log-error');
+            } finally {
+                runBtn.disabled = false;
+            }
+        }
+
+        runBtn.addEventListener('click', executePython);
+
+        // Keyboard shortcuts
+        aiInput.addEventListener('keydown', function(e) {
+            if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
+                executePython();
+            }
+            if (e.key === 'Tab') {
+                e.preventDefault();
+                const start = this.selectionStart;
+                const end = this.selectionEnd;
+                this.value = this.value.substring(0, start) + '    ' + this.value.substring(end);
+                this.selectionStart = this.selectionEnd = start + 4;
+            }
+        });
+
+        // Start loading the engine immediately
+        main();
+</script>
+</body>
+</html>

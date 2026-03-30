@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI Career Shield — AI Job Safety Analyzer</title>
+    <!-- Add global navbar CSS -->
+    <link rel="stylesheet" href="../../assets/css/navbar.css" />
+  </head>
+  <body>
+    <!-- Global Navbar Container -->
+    <div id="navbar-container"></div>
+    
+    <div id="root"></div>
+    
+    <!-- Inject the global navbar script dynamically to ensure correct path resolution -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const script = document.createElement('script');
+            script.src = '../../assets/js/navbar.js';
+            document.body.appendChild(script);
+        });
+    </script>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

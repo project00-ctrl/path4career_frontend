@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live Kubernetes Editor - CareerPath</title>
+
+    <link rel="stylesheet" href="../../assets/css/editor.css">
+    <style>
+        /* Kubernetes Blue Theme Overrides */
+        .header h2 span {
+            color: #326ce5 !important;
+        }
+
+        .run-btn {
+            background-color: #326ce5 !important;
+            color: #fff !important;
+        }
+
+        .run-btn:hover {
+            background-color: #2855b3 !important;
+        }
+
+        .k8s-badge {
+            background-color: #1e1e3f;
+            color: #326ce5;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            margin-left: 10px;
+            font-weight: bold;
+            border: 1px solid #326ce5;
+        }
+
+        .code-box:first-child {
+            border-bottom: 2px solid #333;
+        }
+
+        #commandInput {
+            color: #c3e88d;
+        }
+
+        #yamlInput {
+            color: #ffb86c;
+        }
+
+        /* Result pane styling */
+        .result-pane {
+            background-color: #1e1e1e !important;
+            color: #d4d4d4 !important;
+        }
+
+        .console-output {
+            flex: 1;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 14px;
+            padding: 20px;
+            overflow-y: auto;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+
+        .line {
+            margin-bottom: 4px;
+            line-height: 1.6;
+        }
+
+        .line-success { color: #4ec9b0; }
+        .line-error { color: #f44747; }
+        .line-warn { color: #dcdcaa; }
+        .line-info { color: #569cd6; }
+        .line-output { color: #d4d4d4; }
+        .prompt { color: #608b4e; }
+    </style>
+</head>
+
+<body>
+    <div class="header">
+        <div style="display: flex; align-items: center; gap: 15px;">
+            <a href="../index.html" style="color: #326ce5; text-decoration: none; font-size: 14px;">← Back</a>
+            <h2><span>☸</span> Kubernetes Workspace <span class="k8s-badge">YAML / Kubectl</span></h2>
+        </div>
+        <button class="run-btn" id="runBtn">Apply / Run ❯</button>
+    </div>
+    <div class="workspace">
+        <div class="editor-pane">
+            <div class="code-box" style="flex: 1; display: flex; flex-direction: column; padding: 15px;">
+                <p class="pane-label">Kubectl Commands (CLI)</p>
+                <textarea id="commandInput" spellcheck="false" aria-label="Kubectl Command Input"></textarea>
+            </div>
+            <div class="code-box" style="flex: 1; display: flex; flex-direction: column; padding: 15px;">
+                <p class="pane-label">Resource Manifest (YAML)</p>
+                <textarea id="yamlInput" spellcheck="false" aria-label="YAML Manifest Input"></textarea>
+            </div>
+        </div>
+        <div class="result-pane">
+            <p class="pane-label" style="padding: 15px 20px 0; margin-bottom: 0;">Cluster Events / Console</p>
+            <div class="console-output" id="consoleOutput">
+                <div class="line line-info">// Kubernetes Cluster Ready. Click "Apply / Run" to deploy manifests or execute commands.</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+const commandInput = document.getElementById('commandInput');
+        const yamlInput = document.getElementById('yamlInput');
+        const consoleOutput = document.getElementById('consoleOutput');
+        const runBtn = document.getElementById('runBtn');
+
+        // Load saved code or defaults
+        const savedCommand = localStorage.getItem('careerPathK8sCommand');
+        const savedYAML = localStorage.getItem('careerPathK8sYAML');
+
+        commandInput.value = savedCommand ? savedCommand : `# Get cluster information\nkubectl cluster-info\n\n# List all pods\nkubectl get pods`;
+        yamlInput.value = savedYAML ? savedYAML : `apiVersion: v1\nkind: Pod\nmetadata:\n  name: my-pod\nspec:\n  containers:\n  - name: nginx\n    image: nginx:1.14.2`;
+
+        function simulateK8s() {
+            const commandCode = commandInput.value.trim();
+            const yamlCode = yamlInput.value.trim();
+            
+            consoleOutput.innerHTML = '';
+
+            // Echo commands if present
+            if (commandCode) {
+                addLog(`$ ${commandCode.split('\n')[0]}...`, 'prompt');
+            }
+            if (yamlCode.length > 10) {
+                addLog(`Applying manifest...`, 'info');
+            }
+
+            // Simulate YAML Apply if present
+            if (yamlCode.length > 20) {
+                const kindMatch = yamlCode.match(/kind:\s*(\w+)/i);
+                const nameMatch = yamlCode.match(/name:\s*([\w-]+)/i);
+                const kind = kindMatch ? kindMatch[1] : 'Resource';
+                const name = nameMatch ? nameMatch[1] : 'unnamed';
+                
+                setTimeout(() => {
+                    addLog(`${kind.toLowerCase()}.apps/${name} created`, 'success');
+                }, 100);
+            }
+
+            // Simulate Command Result
+            setTimeout(() => {
+                if (commandCode.includes('kubectl get nodes')) {
+                    addLog('NAME             STATUS   ROLES           AGE   VERSION', 'output');
+                    addLog('minikube         Ready    control-plane   2d    v1.28.3', 'output');
+                } else if (commandCode.includes('kubectl get pods')) {
+                    const yamlName = yamlCode.match(/name:\s*([\w-]+)/i);
+                    const podName = yamlName ? yamlName[1] : 'nginx-pod';
+                    addLog('NAME             READY   STATUS    RESTARTS   AGE', 'output');
+                    addLog(`${podName}        1/1     Running   0          55s`, 'output');
+                } else if (commandCode.includes('cluster-info')) {
+                    addLog('Kubernetes control plane is running at https://127.0.0.1:51224', 'info');
+                    addLog('CoreDNS is running at https://127.0.0.1:51224/api/v1/namespaces/kube-system/services/kube-dns:dns/proxy', 'info');
+                } else if (commandCode.length > 0) {
+                    addLog('Command executed successfully.', 'success');
+                }
+            }, 200);
+
+            // Save state
+            localStorage.setItem('careerPathK8sCommand', commandInput.value);
+            localStorage.setItem('careerPathK8sYAML', yamlInput.value);
+        }
+
+        function addLog(text, type) {
+            const div = document.createElement('div');
+            div.className = `line line-${type}`;
+            if (type === 'prompt') {
+                div.innerHTML = `<span class="prompt">${text}</span>`;
+            } else {
+                div.textContent = text;
+            }
+            consoleOutput.appendChild(div);
+            consoleOutput.scrollTop = consoleOutput.scrollHeight;
+        }
+
+        runBtn.addEventListener('click', simulateK8s);
+
+        // Keyboard shortcuts
+        const handleKeyDown = function (e) {
+            if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
+                simulateK8s();
+            }
+            if (e.key === 'Tab') {
+                e.preventDefault();
+                const start = this.selectionStart;
+                const end = this.selectionEnd;
+                this.value = this.value.substring(0, start) + '    ' + this.value.substring(end);
+                this.selectionStart = this.selectionEnd = start + 4;
+            }
+        };
+
+        commandInput.addEventListener('keydown', handleKeyDown);
+        yamlInput.addEventListener('keydown', handleKeyDown);
+
+        // Initial run if code is present
+        if (savedCommand || savedYAML) {
+            simulateK8s();
+        }
+</script>
+</body>
+</html>

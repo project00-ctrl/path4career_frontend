@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live React Editor</title>
+    <link rel="stylesheet" href="../../assets/css/editor.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+    
+    <nav class="editor-nav">
+        <div class="logo-area">
+            <img class="logo-icon" src="../../assets/images/path4career-icon.png" alt="Path4Career" style="width:32px;height:32px;border-radius:8px;">
+            <div class="logo-text">Path4Career</div>
+            <div class="title-badge"><span style="color: #61dafb;">⚛️</span> React Workspace</div>
+        </div>
+        <button class="run-btn" id="runBtn" onclick="runReact()">▶ Force Refresh</button>
+    </nav>
+
+    <div class="workspace">
+        <div class="editor-pane">
+            <p class="pane-label">
+                <span>App.js (JSX)</span>
+                <span style="color:#61dafb; font-size:11px;">React v18 Loaded</span>
+            </p>
+            <textarea id="reactInput" spellcheck="false" aria-label="React Input"></textarea>
+        </div>
+        
+        <div class="result-pane">
+            <p class="pane-label">
+                <span>Live Browser Output</span>
+                <span id="compileStatus" style="color:#10b981; font-size:11px; transition: 0.2s;">● Auto-updating</span>
+            </p>
+            <iframe id="outputFrame" title="Browser Output"></iframe>
+        </div>
+    </div>
+
+    <script>
+const reactInput = document.getElementById('reactInput');
+        const outputFrame = document.getElementById('outputFrame');
+        const compileStatus = document.getElementById('compileStatus');
+
+        // 1. Fetch saved code or provide default state
+        const savedCode = localStorage.getItem('reactPlaygroundCode');
+        const defaultReactCode = `// Write your React components here!
+function App() {
+  const [count, setCount] = React.useState(0);
+
+  return (
+    <div style={{ textAlign: 'center', marginTop: '50px' }}>
+      <h1 style={{ color: '#0f172a' }}>Hello, World! 🚀</h1>
+      <p style={{ color: '#475569' }}>Start editing to see some magic happen!</p>
+      
+      <button 
+        onClick={() => setCount(count + 1)}
+        style={{ 
+          padding: '12px 24px', 
+          fontSize: '16px', 
+          background: '#00ffb3', 
+          color: '#000', 
+          border: 'none', 
+          borderRadius: '8px', 
+          cursor: 'pointer', 
+          fontWeight: 'bold', 
+          marginTop: '15px',
+          boxShadow: '0 4px 6px rgba(0,255,179,0.3)'
+        }}>
+        Clicked {count} times
+      </button>
+    </div>
+  );
+}
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(<App />);`;
+
+        reactInput.value = savedCode ? savedCode : defaultReactCode;
+
+        // 2. The Engine: Wrap JSX in HTML & Babel and send to iframe
+        // 2. The Engine: Wrap JSX in HTML & Babel and send to iframe
+        function runReact() {
+            const userCode = reactInput.value;
+            compileStatus.style.color = '#10b981';
+            compileStatus.innerText = '● Compiled';
+            
+            // Safely escape HTML to prevent iframe parsing crashes
+            const safeCode = userCode.replace(/</g, '&lt;').replace(/>/g, '&gt;');
+
+            const boilerplate = `<!DOCTYPE html><html><head>
+                    <link rel="preconnect" href="https://fonts.googleapis.com">
+                    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+                    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Fira+Code&display=swap" rel="stylesheet">
+                \x3C/head><body>
+                    <div id="error-box"></div>
+                    <div id="root"></div>
+                    <textarea id="raw-jsx" style="display:none;">${safeCode}</textarea>
+                \x3C/body>\x3C/html>`;
+
+            const iframeDoc = outputFrame.contentDocument || outputFrame.contentWindow.document;
+            iframeDoc.open();
+            iframeDoc.write(boilerplate);
+            iframeDoc.close();
+
+            // Inject CDN scripts via DOM (avoids template literal parsing bugs)
+            const cdnScripts = [
+                'https://unpkg.com/react@18/umd/react.development.js',
+                'https://unpkg.com/react-dom@18/umd/react-dom.development.js',
+                'https://unpkg.com/@babel/standalone/babel.min.js'
+            ];
+
+            let loadedCount = 0;
+            cdnScripts.forEach(src => {
+                const s = iframeDoc.createElement('script');
+                s.src = src;
+                s.crossOrigin = 'anonymous';
+                s.onload = () => {
+                    loadedCount++;
+                    if (loadedCount === cdnScripts.length) {
+                        // All CDN scripts loaded, now execute user code
+                        const userScript = iframeDoc.createElement('script');
+                        userScript.textContent = `
+                            try {
+                                const rawJSX = document.getElementById('raw-jsx').value;
+                                var exports = {};
+                                var module = { exports: exports };
+                                function require(name) {
+                                    if (name.toLowerCase() === 'react') return window.React;
+                                    if (name.toLowerCase() === 'react-dom' || name === 'react-dom/client') return window.ReactDOM;
+                                    return {};
+                                }
+                                const compiled = Babel.transform(rawJSX, { presets: ['react', 'env'] }).code;
+                                eval(compiled);
+                                if (exports.default && !rawJSX.includes('root.render')) {
+                                    const App = exports.default;
+                                    const root = ReactDOM.createRoot(document.getElementById('root'));
+                                    root.render(React.createElement(App));
+                                }
+                            } catch (err) {
+                                document.getElementById('root').style.display = 'none';
+                                const errBox = document.getElementById('error-box');
+                                errBox.style.display = 'block';
+                                errBox.innerText = "Compilation Error:\\n" + err.message;
+                            }
+                        `;
+                        iframeDoc.body.appendChild(userScript);
+                    }
+                };
+                iframeDoc.head.appendChild(s);
+            });
+
+
+        // 3. Smart Indentation Engine (Upgraded for JSX)
+        reactInput.addEventListener('keydown', function(e) {
+            if (e.key === 'Tab') {
+                e.preventDefault();
+                const start = this.selectionStart;
+                const end = this.selectionEnd;
+                const spaces = "  "; // 2 spaces is standard for React/JSX
+                this.value = this.value.substring(0, start) + spaces + this.value.substring(end);
+                this.selectionStart = this.selectionEnd = start + spaces.length;
+                localStorage.setItem('reactPlaygroundCode', this.value);
+            }
+            
+            if (e.key === 'Enter') {
+                e.preventDefault(); 
+                const start = this.selectionStart;
+                const end = this.selectionEnd;
+                const textBeforeCursor = this.value.substring(0, start);
+                const lines = textBeforeCursor.split(/\r?\n/);
+                const currentLine = lines[lines.length - 1] || "";
+                
+                const leadingSpacesMatch = currentLine.match(/^(\s*)/);
+                let indentSpaces = leadingSpacesMatch ? leadingSpacesMatch[1] : '';
+                
+                // Add indentation if line ends with { or ( or < >
+                if (currentLine.trim().endsWith('{') || currentLine.trim().endsWith('(') || currentLine.match(/<[^/]+>$/)) {
+                    indentSpaces += "  ";
+                }
+                
+                const insertText = "\n" + indentSpaces;
+                this.value = this.value.substring(0, start) + insertText + this.value.substring(end);
+                this.selectionStart = this.selectionEnd = start + insertText.length;
+                this.dispatchEvent(new Event('input'));
+            }
+        });
+
+        // 4. PERFORMANCE FIX: Debounced Live Reload
+        let typingTimer;
+        reactInput.addEventListener('input', () => {
+            localStorage.setItem('reactPlaygroundCode', reactInput.value);
+            
+            compileStatus.style.color = '#f59e0b'; // Orange
+            compileStatus.innerText = '● Compiling...';
+            
+            clearTimeout(typingTimer);
+            typingTimer = setTimeout(() => {
+                runReact();
+            }, 600); // Waits 600ms after the student stops typing to compile
+        });
+
+        // 5. Run on initial load
+        runReact();
+</script>
+</body>
+</html>

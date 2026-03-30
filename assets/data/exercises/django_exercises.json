@@ -1,0 +1,127 @@
+{
+    "language": "Django",
+    "icon": "dj",
+    "color": "#092E20",
+    "exercises": [
+        {
+            "id": 1,
+            "title": "Hello View",
+            "difficulty": "basic",
+            "description": "Write a Django view function <code>hello</code> that returns <strong>Hello, Django!</strong>.",
+            "starterCode": "from django.http import HttpResponse\n\ndef hello(request):\n    # Return HttpResponse\n    pass",
+            "expectedOutput": "",
+            "validationType": "outputContains",
+            "validationValue": "Hello, Django!",
+            "hint": "return HttpResponse(\"Hello, Django!\")",
+            "solutionCode": "# The hint provides the solution:\n# return HttpResponse(\"Hello, Django!\")"
+        },
+        {
+            "id": 2,
+            "title": "Template Variable",
+            "difficulty": "basic",
+            "description": "Print a variable <code>name = 'World'</code> using print().",
+            "starterCode": "# Simulate template context\nname = 'World'\n# Print greeting\nprint(f'Hello, {name}!')",
+            "expectedOutput": "",
+            "validationType": "outputContains",
+            "validationValue": "Hello, World!",
+            "hint": "print(f'Hello, {name}!')",
+            "solutionCode": "# The hint provides the solution:\n# print(f'Hello, {name}!')"
+        },
+        {
+            "id": 3,
+            "title": "URL Pattern",
+            "difficulty": "basic",
+            "description": "Print the URL pattern string <strong>/api/users/</strong>.",
+            "starterCode": "# Print URL pattern\nprint('/api/users/')",
+            "expectedOutput": "",
+            "validationType": "outputContains",
+            "validationValue": "api/users",
+            "hint": "print('/api/users/')",
+            "solutionCode": "# The hint provides the solution:\n# print('/api/users/')"
+        },
+        {
+            "id": 4,
+            "title": "Model Fields",
+            "difficulty": "basic",
+            "description": "Print the fields of a User model: <strong>username</strong>, <strong>email</strong>, <strong>age</strong>.",
+            "starterCode": "# Print model fields\nfields = ['username', 'email', 'age']\nfor f in fields:\n    print(f)",
+            "expectedOutput": "",
+            "validationType": "outputContains",
+            "validationValue": "username",
+            "hint": "print(f)",
+            "solutionCode": "# The hint provides the solution:\n# print(f)"
+        },
+        {
+            "id": 5,
+            "title": "QuerySet Filter",
+            "difficulty": "basic",
+            "description": "Create a list of dicts and filter where age > 20. Print matching names.",
+            "starterCode": "users = [{'name':'Alice','age':25},{'name':'Bob','age':18},{'name':'Charlie','age':30}]\nfor u in users:\n    if u['age'] > 20:\n        print(u['name'])",
+            "expectedOutput": "",
+            "validationType": "outputContains",
+            "validationValue": "Alice",
+            "hint": "if u['age'] > 20: print(u['name'])",
+            "solutionCode": "# The hint provides the solution:\n# if u['age'] > 20: print(u['name'])"
+        },
+        {
+            "id": 6,
+            "title": "Form Validation",
+            "difficulty": "intermediate",
+            "description": "Validate that an email contains <strong>@</strong>. Print <strong>Valid</strong> or <strong>Invalid</strong>.",
+            "starterCode": "email = 'user@example.com'\nif '@' in email:\n    print('Valid')\nelse:\n    print('Invalid')",
+            "expectedOutput": "",
+            "validationType": "outputContains",
+            "validationValue": "Valid",
+            "hint": "if '@' in email: print('Valid')",
+            "solutionCode": "# The hint provides the solution:\n# if '@' in email: print('Valid')"
+        },
+        {
+            "id": 7,
+            "title": "Status Codes",
+            "difficulty": "intermediate",
+            "description": "Print HTTP status codes: <strong>200 OK</strong>, <strong>404 Not Found</strong>, <strong>500 Server Error</strong>.",
+            "starterCode": "codes = {200:'OK',404:'Not Found',500:'Server Error'}\nfor code,msg in codes.items():\n    print(f'{code} {msg}')",
+            "expectedOutput": "",
+            "validationType": "outputContains",
+            "validationValue": "200 OK",
+            "hint": "print(f'{code} {msg}')",
+            "solutionCode": "# The hint provides the solution:\n# print(f'{code} {msg}')"
+        },
+        {
+            "id": 8,
+            "title": "Middleware",
+            "difficulty": "intermediate",
+            "description": "Print <strong>Request received</strong> and <strong>Response sent</strong> to simulate middleware.",
+            "starterCode": "print('Request received')\nprint('Processing...')\nprint('Response sent')",
+            "expectedOutput": "",
+            "validationType": "outputContains",
+            "validationValue": "Request received",
+            "hint": "print('Request received')",
+            "solutionCode": "# The hint provides the solution:\n# print('Request received')"
+        },
+        {
+            "id": 9,
+            "title": "Admin Register",
+            "difficulty": "intermediate",
+            "description": "Print <strong>Model registered: Product</strong> to simulate admin.site.register().",
+            "starterCode": "model_name = 'Product'\nprint(f'Model registered: {model_name}')",
+            "expectedOutput": "",
+            "validationType": "outputContains",
+            "validationValue": "Model registered: Product",
+            "hint": "print(f'Model registered: {model_name}')",
+            "solutionCode": "# The hint provides the solution:\n# print(f'Model registered: {model_name}')"
+        },
+        {
+            "id": 10,
+            "title": "REST Response",
+            "difficulty": "intermediate",
+            "description": "Create a dict response and print it as JSON.",
+            "starterCode": "import json\nresponse = {'status':'success','data':{'id':1,'name':'Item'}}\nprint(json.dumps(response))",
+            "expectedOutput": "",
+            "validationType": "outputContains",
+            "validationValue": "success",
+            "hint": "import json; print(json.dumps(response))",
+            "solutionCode": "# The hint provides the solution:\n# import json; print(json.dumps(response))"
+        }
+    ]
+}

@@ -1,0 +1,298 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ICON NAMES</title>
+    <link rel="stylesheet" href="../../assets/css/navbar.css">
+    <link rel="stylesheet" href="../../assets/css/iconrefer.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&family=JetBrains+Mono:wght@400;500&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- SHARED NAVBAR (injected by navbar.js) -->
+    <div id="navbar-root"></div>
+
+    <!-- SIDEBAR -->
+    <aside class="side-content" id="sideContent">
+        <div class="side-close"><button id="side-close">✕</button></div>
+
+        <div class="brand">
+            <div class="brand-dot"></div> ICONS.LIB
+        </div>
+
+        <div class="control-section">
+            <span class="label">Pixel Density</span>
+            <div class="slider-wrap">
+                <input type="range" id="size" min="20" max="90" value="38" oninput="render()">
+            </div>
+        </div>
+
+        <div class="control-section">
+            <span class="label">Module Selector</span>
+            <div class="lib-grid">
+                <button class="lib-opt active" onclick="setLib('fa',  this)">FONT_AWESOME</button>
+                <button class="lib-opt" onclick="setLib('mat', this)">MATERIAL_DESIGN</button>
+                <button class="lib-btn lib-opt" onclick="setLib('bs', this)">BOOTSTRAP_UI</button>
+            </div>
+        </div>
+
+        <div class="control-section">
+            <span class="label">Color Accent</span>
+            <input type="color" id="color" value="#00d2ff" oninput="render()"
+                style="width:100%;height:40px;border:none;background:none;cursor:pointer;">
+        </div>
+    </aside>
+
+    <main>
+        <div class="top-bar">
+            <h1>ICONS HUB</h1>
+            <input type="text" class="search-field" id="icon-search" placeholder="Search system nodes..."
+                onkeyup="search()">
+        </div>
+        <div class="forge-grid" id="grid"></div>
+    </main>
+
+    <div id="notify" class="notification">NODE_CODE_INJECTED_TO_CLIPBOARD</div>
+
+    <script>
+        /* ================================================================
+           DATA  — all hardcoded content moved here (mirrors iconrefer.json)
+           wikiLinks  = Wikipedia keyword links  (keyword engine)
+           icons      = fa / mat / bs icon name arrays  (render engine)
+        ================================================================ */
+        const DATA = {
+
+            wikiLinks: [
+                { word: "icon", link: "https://en.wikipedia.org/wiki/Icon_(computing)" },
+                { word: "font", link: "https://en.wikipedia.org/wiki/Computer_font" },
+                { word: "vector", link: "https://en.wikipedia.org/wiki/Vector_graphics" },
+                { word: "SVG", link: "https://en.wikipedia.org/wiki/SVG" },
+                { word: "glyph", link: "https://en.wikipedia.org/wiki/Glyph" },
+                { word: "Material", link: "https://en.wikipedia.org/wiki/Material_Design" },
+                { word: "Bootstrap", link: "https://en.wikipedia.org/wiki/Bootstrap_(front-end_framework)" },
+                { word: "pixel", link: "https://en.wikipedia.org/wiki/Pixel" },
+                { word: "CSS", link: "https://en.wikipedia.org/wiki/CSS" },
+                { word: "HTML", link: "https://en.wikipedia.org/wiki/HTML" },
+                { word: "clipboard", link: "https://en.wikipedia.org/wiki/Clipboard_(computing)" },
+                { word: "grid", link: "https://en.wikipedia.org/wiki/Grid_(graphic_design)" },
+                { word: "color", link: "https://en.wikipedia.org/wiki/Color_model" },
+                { word: "typography", link: "https://en.wikipedia.org/wiki/Typography" },
+                { word: "library", link: "https://en.wikipedia.org/wiki/Library_(computing)" },
+                { word: "rendering", link: "https://en.wikipedia.org/wiki/Rendering_(computer_graphics)" },
+                { word: "Unicode", link: "https://en.wikipedia.org/wiki/Unicode" },
+                { word: "cursor", link: "https://en.wikipedia.org/wiki/Cursor_(user_interface)" },
+                { word: "database", link: "https://en.wikipedia.org/wiki/Database" },
+                { word: "terminal", link: "https://en.wikipedia.org/wiki/Terminal_emulator" }
+            ],
+
+            courses: ["HTML", "CSS", "JAVASCRIPT", "SQL", "PYTHON", "JAVA", "PHP", "C", "C++", "C#",
+                "BOOTSTRAP", "REACT", "MYSQL", "JQUERY", "EXCEL", "XML", "DJANGO", "NUMPY",
+                "PANDAS", "NODEJS", "DSA", "TYPESCRIPT", "MANGODB", "GIT", "ANGULAR", "DATASCIENCE"],
+
+            nav: {
+                tutorials: {
+                    frontend: [
+                        { label: "HTML", href: "./reference/htmlreference.html", note: "tutorial" },
+                        { label: "CSS", href: "./reference/cssreference.html", note: "tutorial" },
+                        { label: "JAVASCRIPT", href: "./reference/jsreference.html", note: "tutorial" },
+                        { label: "REACT", href: "", note: "Reference" },
+                        { label: "ICONS", href: "./reference/iconrefer.html", note: "tutorial" },
+                        { label: "UTF-8", href: "./reference/utf-8refer.html", note: "tutorial" },
+                        { label: "COLOR NAMES", href: "./reference/colors.html", note: "tutorial" }
+                    ],
+                    backend: [
+                        { label: "PYTHON", href: "./reference/pythonrefer.html", note: "tutorial" },
+                        { label: "JAVA", href: "", note: "tutorial" },
+                        { label: "C", href: "", note: "tutorial" },
+                        { label: "C++", href: "", note: "tutorial" }
+                    ]
+                },
+                references: {
+                    frontend: [
+                        { label: "HTML", href: "./reference/htmlreference.html", note: "Reference" },
+                        { label: "CSS", href: "./reference/cssreference.html", note: "Reference" },
+                        { label: "JAVASCRIPT", href: "./reference/jsreference.html", note: "Reference" },
+                        { label: "REACT", href: "", note: "Reference" },
+                        { label: "ICONS", href: "./reference/iconrefer.html", note: "Reference" },
+                        { label: "UTF-8", href: "./reference/utf-8refer.html", note: "Reference" },
+                        { label: "COLOR NAMES", href: "./reference/colors.html", note: "Reference" },
+                        { label: "HTML DOM", href: "#", note: "Reference" }
+                    ],
+                    backend: [
+                        { label: "PYTHON", href: "./reference/pythonrefer.html", note: "Reference" },
+                        { label: "JAVA", href: "", note: "Reference" },
+                        { label: "C", href: "", note: "Reference" },
+                        { label: "C++", href: "", note: "Reference" },
+                        { label: "jQuery", href: "", note: "Reference" },
+                        { label: "Angular", href: "", note: "Reference" }
+                    ]
+                }
+            },
+
+            icons: {
+                fa: ["house", "user", "gear", "envelope", "check", "star", "heart", "bell", "camera", "image", "magnifying-glass", "folder", "pen", "link", "comment", "share", "eye", "lock", "key", "print", "laptop", "mobile", "headphones", "video", "clock", "calendar", "map", "bolt", "leaf", "fire", "water", "sun", "moon", "wind", "snowflake", "bicycle", "car", "plane", "ship", "ghost", "robot", "bug", "code", "terminal", "database", "wifi", "battery-full", "shield", "trophy", "gift", "coffee", "flask", "smile", "plus", "minus", "xmark", "bars", "arrow-right", "arrow-left", "circle-info", "earth-americas", "palette", "music", "film", "gamepad", "trash", "anchor", "umbrella", "briefcase", "book", "bookmark", "compass", "globe", "calculator", "microchip", "credit-card", "money-bill", "chart-line", "cart-shopping", "bag-shopping", "medal", "graduation-cap", "flask-vial", "dna", "atom", "brain", "hippo", "crow", "dog", "cat", "fish", "dragon", "spider", "hammer", "wrench", "screwdriver", "truck", "helicopter", "rocket", "paper-plane"],
+                mat: ["home", "search", "settings", "done", "favorite", "info", "account_circle", "delete", "visibility", "lock", "face", "schedule", "language", "help", "event", "shopping_cart", "description", "work", "build", "camera_alt", "verified_user", "thumb_up", "print", "explore", "assignment", "dashboard", "room", "book", "grade", "autorenew", "extension", "announcement", "backup", "credit_card", "fingerprint", "loyalty", "receipt", "tab", "today", "update", "accessibility", "alarm", "aspect_ratio", "bug_report", "change_history", "copyright", "dns", "euro_symbol", "gavel", "history"],
+                bs: ["alarm", "apple", "arrow-up-circle", "bag", "bank", "basket", "battery", "bell", "bicycle", "book", "box", "briefcase", "bug", "calculator", "calendar", "camera", "cart", "chat", "cloud", "code", "compass", "controller", "cpu", "credit-card", "cup", "database", "display", "ear", "envelope", "eye", "file", "fingerprint", "flag", "folder", "gear", "gem", "gift", "globe", "graph-up", "hammer", "hand-thumbs-up", "heart", "house", "image", "infinity", "key", "lamp", "laptop", "layers", "lightning"]
+            }
+        };
+
+
+
+        /* ================================================================
+           ICON RENDER ENGINE  (exact original logic — zero changes)
+        ================================================================ */
+        let current = 'fa';
+
+        function render() {
+            const grid = document.getElementById('grid');
+            grid.innerHTML = '';
+            const list = current === 'fa' ? DATA.icons.fa : (current === 'mat' ? DATA.icons.mat : DATA.icons.bs);
+            const size = document.getElementById('size').value;
+            const color = document.getElementById('color').value;
+
+            document.documentElement.style.setProperty('--neon-blue', color);
+
+            list.forEach(name => {
+                const card = document.createElement('div');
+                card.className = 'forge-card';
+                let html = '';
+
+                if (current === 'fa') html = `<i class="fa-solid fa-${name}" style="font-size:${size}px; color:#fff"></i>`;
+                else if (current === 'mat') html = `<span class="material-icons" style="font-size:${size}px; color:#fff">${name}</span>`;
+                else html = `<i class="bi bi-${name}" style="font-size:${size}px; color:#fff"></i>`;
+
+                card.innerHTML = `${html}<div class="node-id">${name}</div>`;
+                card.onclick = () => copy(html);
+                grid.appendChild(card);
+            });
+
+            /* Run keyword engine every render because grid is rebuilt */
+            runKeywordEngine();
+        }
+
+        function setLib(lib, btn) {
+            current = lib;
+            document.querySelectorAll('.lib-opt').forEach(opt => opt.classList.remove('active'));
+            btn.classList.add('active');
+            render();
+        }
+
+        function search() {
+            const q = document.getElementById('icon-search').value.toLowerCase();
+            document.querySelectorAll('.forge-card').forEach(c => {
+                c.style.display = c.innerText.toLowerCase().includes(q) ? 'block' : 'none';
+            });
+        }
+
+        function copy(text) {
+            const el = document.createElement('textarea');
+            el.value = text; document.body.appendChild(el);
+            el.select(); document.execCommand('copy'); document.body.removeChild(el);
+            const n = document.getElementById('notify');
+            n.style.display = 'block';
+            setTimeout(() => n.style.display = 'none', 2000);
+        }
+
+        /* ================================================================
+           WIKIPEDIA KEYWORD ENGINE
+           - DATA.wikiLinks only — completely separate from DATA.icons
+           - TreeWalker scans .node-id text inside #grid
+           - Skips text inside <a>, <i>, <span> (icon elements)
+           - First occurrence only per keyword (Set tracking)
+           - Word-boundary regex, case-insensitive
+        ================================================================ */
+        function runKeywordEngine() {
+            const root = document.getElementById('grid');
+            if (!root) return;
+            const seen = new Set();
+
+            DATA.wikiLinks.forEach(({ word, link }) => {
+                const key = word.toLowerCase();
+                if (seen.has(key)) return;
+
+                const safe = word.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+                const regex = new RegExp('\\b(' + safe + ')\\b', 'i');
+
+                /* Collect all eligible text nodes first, THEN mutate
+                   (mutating during TreeWalker traversal skips nodes) */
+                const walker = document.createTreeWalker(
+                    root,
+                    NodeFilter.SHOW_TEXT,
+                    {
+                        acceptNode(node) {
+                            let p = node.parentElement;
+                            while (p && p !== root) {
+                                const t = p.tagName;
+                                if (t === 'A' || t === 'I' || t === 'SPAN')
+                                    return NodeFilter.FILTER_REJECT;
+                                p = p.parentElement;
+                            }
+                            return NodeFilter.FILTER_ACCEPT;
+                        }
+                    }
+                );
+
+                const nodes = [];
+                let n;
+                while ((n = walker.nextNode())) nodes.push(n);
+
+                for (const textNode of nodes) {
+                    if (seen.has(key)) break;
+                    const m = regex.exec(textNode.nodeValue);
+                    if (!m) continue;
+
+                    const before = document.createTextNode(textNode.nodeValue.slice(0, m.index));
+                    const anchor = document.createElement('a');
+                    anchor.href = link;
+                    anchor.target = '_blank';
+                    anchor.rel = 'noopener noreferrer';
+                    anchor.className = 'auto-kw';
+                    anchor.textContent = m[0];
+                    const after = document.createTextNode(textNode.nodeValue.slice(m.index + m[0].length));
+
+                    textNode.parentNode.insertBefore(before, textNode);
+                    textNode.parentNode.insertBefore(anchor, textNode);
+                    textNode.parentNode.insertBefore(after, textNode);
+                    textNode.parentNode.removeChild(textNode);
+                    seen.add(key);
+                }
+            });
+        }
+
+        /* Initial render */
+        render();
+
+        /* ================================================================
+           UI BEHAVIOUR  (exact original logic — zero changes)
+        ================================================================ */
+        // Aside sidebar logic
+        const aside = document.querySelector(".side-content");
+        const sideBtn = document.getElementById("side-close");
+        if (sideBtn) {
+            sideBtn.addEventListener("click", () => {
+                aside.classList.remove("open");
+            });
+        }
+        document.addEventListener("keydown", (e) => {
+            if (e.key === "Escape") {
+                if (aside) aside.classList.remove("open");
+            }
+        });
+    </script>
+    <script src="../../assets/js/navbar.js"></script>
+</body>
+
+</html>

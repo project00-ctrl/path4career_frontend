@@ -1,0 +1,362 @@
+[
+    {
+        "id": "cs-1",
+        "question": "What is C#?",
+        "options": [
+            "A markup language for web pages.",
+            "A modern, object-oriented programming language developed by Microsoft.",
+            "A database querying language.",
+            "An operating system."
+        ],
+        "correctAnswer": 1,
+        "explanation": "C# is a powerful, modern, object-oriented language created by Microsoft, widely used in .NET applications."
+    },
+    {
+        "id": "cs-2",
+        "question": "Which method is the main entry point for a C# console application?",
+        "options": [
+            "Start()",
+            "Init()",
+            "Main()",
+            "Run()"
+        ],
+        "correctAnswer": 2,
+        "explanation": "The static void Main() method is the starting point for execution in C# programs."
+    },
+    {
+        "id": "cs-3",
+        "question": "How do you output 'Hello, World!' to the console in C#?",
+        "options": [
+            "System.out.println('Hello, World!');",
+            "Console.WriteLine(\"Hello, World!\");",
+            "print(\"Hello, World!\");",
+            "echo \"Hello, World!\";"
+        ],
+        "correctAnswer": 1,
+        "explanation": "Console.WriteLine() is the standard method from the System namespace used to print text to the console."
+    },
+    {
+        "id": "cs-4",
+        "question": "Which data type is used to store text in C#?",
+        "options": [
+            "string",
+            "char",
+            "text",
+            "StringBox"
+        ],
+        "correctAnswer": 0,
+        "explanation": "The 'string' data type (all lowercase) is used to store sequence of characters (text)."
+    },
+    {
+        "id": "cs-5",
+        "question": "Which of the following describes C#'s typing system?",
+        "options": [
+            "Weakly typed",
+            "Dynamically typed",
+            "Strongly typed",
+            "No types required"
+        ],
+        "correctAnswer": 2,
+        "explanation": "C# is strongly typed, meaning you must specify the exact data type of a variable when you declare it."
+    },
+    {
+        "id": "cs-6",
+        "question": "What is the modulus operator in C#?",
+        "options": [
+            "//",
+            "%",
+            "mod",
+            "*"
+        ],
+        "correctAnswer": 1,
+        "explanation": "The % operator returns the remainder of an integer division."
+    },
+    {
+        "id": "cs-7",
+        "question": "How do you define a variable that holds a true or false value?",
+        "options": [
+            "boolean",
+            "bool",
+            "bit",
+            "logic"
+        ],
+        "correctAnswer": 1,
+        "explanation": "In C#, 'bool' is the keyword used to declare a variable that holds either true or false."
+    },
+    {
+        "id": "cs-8",
+        "question": "Which string method changes all characters to uppercase?",
+        "options": [
+            "ToUpper()",
+            "Upper()",
+            "ToUpperCase()",
+            "Capitals()"
+        ],
+        "correctAnswer": 0,
+        "explanation": "The ToUpper() method returns a copy of the string converted to uppercase."
+    },
+    {
+        "id": "cs-9",
+        "question": "What is the correct syntax for an if-statement in C#?",
+        "options": [
+            "if x > 5 then",
+            "if (x > 5)",
+            "if x > 5",
+            "if [x > 5]"
+        ],
+        "correctAnswer": 1,
+        "explanation": "The condition in an if-statement must be enclosed in parentheses ()."
+    },
+    {
+        "id": "cs-10",
+        "question": "Which control structure is best when you need to select one of many blocks of code to execute based on a single value?",
+        "options": [
+            "for loop",
+            "switch statement",
+            "while loop",
+            "try-catch"
+        ],
+        "correctAnswer": 1,
+        "explanation": "The switch statement is optimized for checking a single variable against multiple potential constant values."
+    },
+    {
+        "id": "cs-11",
+        "question": "Which keyword is required at the end of each 'case' block in a switch statement to prevent execution from falling through?",
+        "options": [
+            "stop",
+            "end",
+            "exit",
+            "break"
+        ],
+        "correctAnswer": 3,
+        "explanation": "The 'break' keyword explicitly ends a case block and exits the switch statement."
+    },
+    {
+        "id": "cs-12",
+        "question": "Which loop executes a block of code a specified number of times using an initializer, condition, and iterator?",
+        "options": [
+            "while loop",
+            "for loop",
+            "foreach loop",
+            "do-while loop"
+        ],
+        "correctAnswer": 1,
+        "explanation": "A 'for' loop is used when you know exactly how many times you want the block to run."
+    },
+    {
+        "id": "cs-13",
+        "question": "Which loop is explicitly designed to iterate through items in collections like arrays or lists?",
+        "options": [
+            "for",
+            "while",
+            "foreach",
+            "loop"
+        ],
+        "correctAnswer": 2,
+        "explanation": "The 'foreach' loop cleanly iterates through every single element in an enumerable collection."
+    },
+    {
+        "id": "cs-14",
+        "question": "How do you declare an array of integers in C#?",
+        "options": [
+            "int array[] numbers;",
+            "int numbers[];",
+            "int[] numbers;",
+            "array<int> numbers;"
+        ],
+        "correctAnswer": 2,
+        "explanation": "In C#, the square brackets [] come immediately after the type definition, before the variable name."
+    },
+    {
+        "id": "cs-15",
+        "question": "Which property gives the total number of elements in a C# array?",
+        "options": [
+            "Count",
+            "Length",
+            "Size",
+            "Elements"
+        ],
+        "correctAnswer": 1,
+        "explanation": "Arrays in C# have a built-in 'Length' property that returns the number of elements they can hold."
+    },
+    {
+        "id": "cs-16",
+        "question": "What keyword is used to return a value from a method?",
+        "options": [
+            "send",
+            "give",
+            "output",
+            "return"
+        ],
+        "correctAnswer": 3,
+        "explanation": "The 'return' keyword passes a value back to the caller and exits the method."
+    },
+    {
+        "id": "cs-17",
+        "question": "If a method does not return any value, what return type should be specified in its signature?",
+        "options": [
+            "null",
+            "void",
+            "empty",
+            "none"
+        ],
+        "correctAnswer": 1,
+        "explanation": "The 'void' keyword explicitly tells the compiler that the method performs an action but returns nothing."
+    },
+    {
+        "id": "cs-18",
+        "question": "In C#, what is the blueprint used to create objects?",
+        "options": [
+            "Method",
+            "Variable",
+            "Class",
+            "Struct"
+        ],
+        "correctAnswer": 2,
+        "explanation": "A Class is a blueprint that defines the properties, methods, and structure for objects."
+    },
+    {
+        "id": "cs-19",
+        "question": "What keyword is used to create a new instance (object) of a class?",
+        "options": [
+            "new",
+            "create",
+            "init",
+            "instance"
+        ],
+        "correctAnswer": 0,
+        "explanation": "The 'new' keyword allocates memory for a new object and calls the class constructor."
+    },
+    {
+        "id": "cs-20",
+        "question": "What C# concept allows a new class to inherit members from an existing class?",
+        "options": [
+            "Polymorphism",
+            "Encapsulation",
+            "Inheritance",
+            "Abstraction"
+        ],
+        "correctAnswer": 2,
+        "explanation": "Inheritance allows a 'derived' class to reuse code written in a 'base' class."
+    },
+    {
+        "id": "cs-21",
+        "question": "Which symbol is used to denote inheritance in C# class definitions?",
+        "options": [
+            "extends",
+            ": (colon)",
+            "->",
+            "inherits"
+        ],
+        "correctAnswer": 1,
+        "explanation": "A colon indicates inheritance. Example: class Dog : Animal"
+    },
+    {
+        "id": "cs-22",
+        "question": "An Interface in C# can contain method implementations (actual code).",
+        "options": [
+            "True",
+            "False",
+            "Only in old versions",
+            "Only for private methods"
+        ],
+        "correctAnswer": 1,
+        "explanation": "Traditionally, an Interface serves as a strict contract and contains only member signatures without implementations."
+    },
+    {
+        "id": "cs-23",
+        "question": "Which collection type from System.Collections.Generic can grow or shrink dynamically in size?",
+        "options": [
+            "Array",
+            "List<T>",
+            "Tuple",
+            "FixedArray"
+        ],
+        "correctAnswer": 1,
+        "explanation": "List<T> is the standard generic dynamic collection heavily preferred over standard arrays for variable-size data."
+    },
+    {
+        "id": "cs-24",
+        "question": "Which collection type stores data in Key-Value pairs for fast lookups?",
+        "options": [
+            "ListTracker",
+            "Queue",
+            "Dictionary<TKey, TValue>",
+            "HashSet"
+        ],
+        "correctAnswer": 2,
+        "explanation": "Dictionaries map unique keys to values, ensuring extremely fast data retrieval."
+    },
+    {
+        "id": "cs-25",
+        "question": "Which block of a try-catch-finally statement always executes, regardless of whether an exception occurred?",
+        "options": [
+            "try",
+            "catch",
+            "finally",
+            "throw"
+        ],
+        "correctAnswer": 2,
+        "explanation": "The 'finally' block is used to clean up resources (like closing files) because it is guaranteed to run."
+    },
+    {
+        "id": "cs-26",
+        "question": "Which class in System.IO is used to read all text from a file in one go?",
+        "options": [
+            "FileReader",
+            "TextReader",
+            "File",
+            "StreamAccess"
+        ],
+        "correctAnswer": 2,
+        "explanation": "The static File class provides utility methods like File.ReadAllText()."
+    },
+    {
+        "id": "cs-27",
+        "question": "What does LINQ stand for in C#?",
+        "options": [
+            "Linear Integration Network Queue",
+            "Logical Interface Network Queries",
+            "Language Integrated Query",
+            "Logic In Native Queries"
+        ],
+        "correctAnswer": 2,
+        "explanation": "LINQ provides powerful, SQL-like query capabilities directly within the C# language syntax."
+    },
+    {
+        "id": "cs-28",
+        "question": "Which LINQ method is used to filter a collection based on a condition?",
+        "options": [
+            "Select()",
+            "Filter()",
+            "Where()",
+            "Find()"
+        ],
+        "correctAnswer": 2,
+        "explanation": "The Where() extension method filters a sequence of values based on a predicate."
+    },
+    {
+        "id": "cs-29",
+        "question": "What is a C# delegate?",
+        "options": [
+            "A security permission token.",
+            "A type that represents references to methods with a specific parameter list.",
+            "A way to inherit from multiple classes.",
+            "A database connection object."
+        ],
+        "correctAnswer": 1,
+        "explanation": "Delegates act like function pointers; they hold references to methods and are the foundation for Events."
+    },
+    {
+        "id": "cs-30",
+        "question": "What feature allows you to define a class, interface, or method with placeholders for the data types they store or use?",
+        "options": [
+            "Generics",
+            "Polymorphism",
+            "Encapsulation",
+            "Reflection"
+        ],
+        "correctAnswer": 0,
+        "explanation": "Generics (using <T>) provide type safety and performance by allowing code to operate on any data type."
+    }
+]

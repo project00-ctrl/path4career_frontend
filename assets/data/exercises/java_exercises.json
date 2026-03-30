@@ -1,0 +1,147 @@
+{
+    "language": "Java",
+    "icon": "\u2615",
+    "color": "#ED8B00",
+    "exercises": [
+        {
+            "id": 1,
+            "title": "Hello World",
+            "difficulty": "basic",
+            "description": "Print <strong>Hello, World!</strong> using <code>System.out.println</code>.",
+            "starterCode": "public class Main {\n    public static void main(String[] args) {\n        // Print Hello, World!\n    }\n}",
+            "expectedOutput": "Hello, World!",
+            "validationType": "outputContains",
+            "validationValue": "Hello, World!",
+            "hint": "Use System.out.println(\"Hello, World!\");",
+            "solutionCode": "public class Main { public static void main(String[] args) { System.out.println(\"Hello, World!\"); } }"
+        },
+        {
+            "id": 2,
+            "title": "Variables & Data Types",
+            "difficulty": "basic",
+            "description": "Declare an <code>int a = 10</code>, <code>double b = 3.14</code>, and <code>String name = \"Java\"</code>. Print all three on separate lines.",
+            "starterCode": "public class Main {\n    public static void main(String[] args) {\n        // Declare and print variables\n    }\n}",
+            "expectedOutput": "10\n3.14\nJava",
+            "validationType": "outputContainsAll",
+            "validationValue": [
+                "10",
+                "3.14",
+                "Java"
+            ],
+            "hint": "Use System.out.println() for each variable.",
+            "solutionCode": "public class Main {\n    public static void main(String[] args) {\n        int a = 10;\n        double b = 3.14;\n        String name = \"Java\";\n        System.out.println(a);\n        System.out.println(b);\n        System.out.println(name);\n    }\n}"
+        },
+        {
+            "id": 3,
+            "title": "If-Else Statement",
+            "difficulty": "basic",
+            "description": "Write an if-else: if <code>int score = 85</code> is >= 60, print <strong>Pass</strong>, otherwise print <strong>Fail</strong>.",
+            "starterCode": "public class Main {\n    public static void main(String[] args) {\n        int score = 85;\n        // Write if-else\n    }\n}",
+            "expectedOutput": "Pass",
+            "validationType": "outputContains",
+            "validationValue": "Pass",
+            "hint": "Use if (score >= 60) { ... } else { ... }",
+            "solutionCode": "public class Main {\n    public static void main(String[] args) {\n        int score = 85;\n        if (score >= 60) {\n            System.out.println(\"Pass\");\n        } else {\n            System.out.println(\"Fail\");\n        }\n    }\n}"
+        },
+        {
+            "id": 4,
+            "title": "For Loop",
+            "difficulty": "basic",
+            "description": "Print numbers from <strong>1 to 5</strong> using a <code>for</code> loop.",
+            "starterCode": "public class Main {\n    public static void main(String[] args) {\n        // Print 1 to 5\n    }\n}",
+            "expectedOutput": "1\n2\n3\n4\n5",
+            "validationType": "outputContainsAll",
+            "validationValue": [
+                "1",
+                "2",
+                "3",
+                "4",
+                "5"
+            ],
+            "hint": "Use for (int i = 1; i <= 5; i++) { System.out.println(i); }",
+            "solutionCode": "public class Main { public static void main(String[] args) { for(int i=1; i<=5; i++) { System.out.println(i); } } }"
+        },
+        {
+            "id": 5,
+            "title": "Array Sum",
+            "difficulty": "basic",
+            "description": "Create an array <code>int[] nums = {2, 4, 6, 8, 10}</code>. Calculate and print the sum.",
+            "starterCode": "public class Main {\n    public static void main(String[] args) {\n        int[] nums = {2, 4, 6, 8, 10};\n        // Calculate and print sum\n    }\n}",
+            "expectedOutput": "30",
+            "validationType": "outputContains",
+            "validationValue": "30",
+            "hint": "Use a for loop to iterate and add each element to a sum variable.",
+            "solutionCode": "public class Main {\n    public static void main(String[] args) {\n        int[] nums = {2, 4, 6, 8, 10};\n        int sum = 0;\n        for (int n : nums) { sum += n; }\n        System.out.println(sum);\n    }\n}"
+        },
+        {
+            "id": 6,
+            "title": "Method \u2014 Max of Two",
+            "difficulty": "basic",
+            "description": "Create a static method <code>max(int a, int b)</code> that returns the larger number. Call it with <strong>max(10, 25)</strong> and print the result.",
+            "starterCode": "public class Main {\n    // Create the max method here\n\n    public static void main(String[] args) {\n        // Call max and print\n    }\n}",
+            "expectedOutput": "25",
+            "validationType": "outputContains",
+            "validationValue": "25",
+            "hint": "Use return (a > b) ? a : b; or an if-else inside the method.",
+            "solutionCode": "public class Main {\n    static int max(int a, int b) {\n        return (a > b) ? a : b;\n    }\n    public static void main(String[] args) {\n        System.out.println(max(10, 25));\n    }\n}"
+        },
+        {
+            "id": 7,
+            "title": "String Methods",
+            "difficulty": "basic",
+            "description": "Given <code>String str = \"Hello, Java!\"</code>, print: its length, the uppercase version, and the substring from index 7.",
+            "starterCode": "public class Main {\n    public static void main(String[] args) {\n        String str = \"Hello, Java!\";\n        // Print length, uppercase, and substring\n    }\n}",
+            "expectedOutput": "12\nHELLO, JAVA!\nJava!",
+            "validationType": "outputContainsAll",
+            "validationValue": [
+                "12",
+                "HELLO, JAVA!",
+                "Java!"
+            ],
+            "hint": "Use str.length(), str.toUpperCase(), str.substring(7).",
+            "solutionCode": "public class Main {\n    public static void main(String[] args) {\n        String str = \"Hello, Java!\";\n        System.out.println(str.length());\n        System.out.println(str.toUpperCase());\n        System.out.println(str.substring(7));\n    }\n}"
+        },
+        {
+            "id": 8,
+            "title": "ArrayList",
+            "difficulty": "intermediate",
+            "description": "Create an <code>ArrayList&lt;String&gt;</code>, add <strong>\"Apple\"</strong>, <strong>\"Banana\"</strong>, <strong>\"Cherry\"</strong>. Remove <strong>\"Banana\"</strong> and print the remaining list.",
+            "starterCode": "import java.util.ArrayList;\n\npublic class Main {\n    public static void main(String[] args) {\n        // Create ArrayList, add items, remove Banana, print\n    }\n}",
+            "expectedOutput": "[Apple, Cherry]",
+            "validationType": "outputContainsAll",
+            "validationValue": [
+                "Apple",
+                "Cherry"
+            ],
+            "hint": "Use .add() to add, .remove(\"Banana\") to remove, then println the list.",
+            "solutionCode": "import java.util.ArrayList;\npublic class Main {\n    public static void main(String[] args) {\n        ArrayList<String> list = new ArrayList<>();\n        list.add(\"Apple\");\n        list.add(\"Banana\");\n        list.add(\"Cherry\");\n        list.remove(\"Banana\");\n        System.out.println(list);\n    }\n}"
+        },
+        {
+            "id": 9,
+            "title": "Class & Constructor",
+            "difficulty": "intermediate",
+            "description": "Create a class <code>Car</code> with fields <code>brand</code> and <code>year</code>, a constructor, and a <code>display()</code> method. Create an instance <code>new Car(\"Toyota\", 2024)</code> and call <code>display()</code> printing <strong>Toyota (2024)</strong>.",
+            "starterCode": "public class Main {\n    // Define Car class here\n\n    public static void main(String[] args) {\n        // Create Car and display\n    }\n}",
+            "expectedOutput": "Toyota (2024)",
+            "validationType": "outputContains",
+            "validationValue": "Toyota (2024)",
+            "hint": "Define Car as a static inner class with a constructor and display() method.",
+            "solutionCode": "public class Main {\n    static class Car {\n        String brand; int year;\n        Car(String b, int y) { brand = b; year = y; }\n        void display() { System.out.println(brand + \" (\" + year + \")\"); }\n    }\n    public static void main(String[] args) {\n        Car c = new Car(\"Toyota\", 2024);\n        c.display();\n    }\n}"
+        },
+        {
+            "id": 10,
+            "title": "Exception Handling",
+            "difficulty": "intermediate",
+            "description": "Write a try-catch block that attempts to parse <code>\"abc\"</code> as an integer using <code>Integer.parseInt()</code>. Catch <code>NumberFormatException</code> and print <strong>Invalid number format!</strong>. Then parse <strong>\"42\"</strong> successfully and print the result.",
+            "starterCode": "public class Main {\n    public static void main(String[] args) {\n        // Try parsing \"abc\" then \"42\"\n    }\n}",
+            "expectedOutput": "Invalid number format!\n42",
+            "validationType": "outputContainsAll",
+            "validationValue": [
+                "Invalid number format!",
+                "42"
+            ],
+            "hint": "Use try { Integer.parseInt(\"abc\"); } catch (NumberFormatException e) { ... }",
+            "solutionCode": "public class Main {\n    public static void main(String[] args) {\n        try {\n            Integer.parseInt(\"abc\");\n        } catch (NumberFormatException e) {\n            System.out.println(\"Invalid number format!\");\n        }\n        int num = Integer.parseInt(\"42\");\n        System.out.println(num);\n    }\n}"
+        }
+    ]
+}

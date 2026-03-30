@@ -1,0 +1,2194 @@
+{
+  "sections": [
+    {
+      "title": "Built-in Functions",
+      "desc": "Python built-in functions.",
+      "type": "grouped-list",
+      "groups": [
+        {
+          "title": "Type Conversion Functions",
+          "items": [
+            {
+              "code": "int()",
+              "desc": "Converts value to integer"
+            },
+            {
+              "code": "float()",
+              "desc": "Converts value to floating point number"
+            },
+            {
+              "code": "str()",
+              "desc": "Converts value to string"
+            },
+            {
+              "code": "bool()",
+              "desc": "Converts value to Boolean"
+            },
+            {
+              "code": "list()",
+              "desc": "Converts value to list"
+            },
+            {
+              "code": "tuple()",
+              "desc": "Converts value to tuple"
+            },
+            {
+              "code": "dict()",
+              "desc": "Creates a dictionary"
+            },
+            {
+              "code": "set()",
+              "desc": "Creates a set"
+            },
+            {
+              "code": "frozenset()",
+              "desc": "Creates an immutable set"
+            },
+            {
+              "code": "complex()",
+              "desc": "Creates a complex number"
+            },
+            {
+              "code": "bytes()",
+              "desc": "Returns bytes object"
+            },
+            {
+              "code": "bytearray()",
+              "desc": "Returns bytearray object"
+            }
+          ]
+        },
+        {
+          "title": "Mathematical Functions",
+          "items": [
+            {
+              "code": "abs(x)",
+              "desc": "Returns absolute value"
+            },
+            {
+              "code": "divmod(x, y)",
+              "desc": "Returns quotient and remainder"
+            },
+            {
+              "code": "max(iterable)",
+              "desc": "Returns largest item"
+            },
+            {
+              "code": "min(iterable)",
+              "desc": "Returns smallest item"
+            },
+            {
+              "code": "pow(x, y, z=None)",
+              "desc": "Returns x to power y, optionally modulo z"
+            },
+            {
+              "code": "round(number, ndigits=None)",
+              "desc": "Rounds number to ndigits precision"
+            },
+            {
+              "code": "sum(iterable, start=0)",
+              "desc": "Sums items of iterable"
+            }
+          ]
+        },
+        {
+          "title": "Input/Output Functions",
+          "items": [
+            {
+              "code": "print(*objects, sep=' ', end='\\n')",
+              "desc": "Prints objects to console"
+            },
+            {
+              "code": "input(prompt='')",
+              "desc": "Reads input from console"
+            }
+          ]
+        },
+        {
+          "title": "Iterable Functions",
+          "items": [
+            {
+              "code": "all(iterable)",
+              "desc": "Returns True if all elements are true"
+            },
+            {
+              "code": "any(iterable)",
+              "desc": "Returns True if any element is true"
+            },
+            {
+              "code": "enumerate(iterable, start=0)",
+              "desc": "Returns enumerate object with index and value"
+            },
+            {
+              "code": "filter(function, iterable)",
+              "desc": "Filters iterable using function"
+            },
+            {
+              "code": "len(object)",
+              "desc": "Returns length of object"
+            },
+            {
+              "code": "map(function, iterable)",
+              "desc": "Applies function to every item"
+            },
+            {
+              "code": "range(start, stop, step)",
+              "desc": "Creates range object"
+            },
+            {
+              "code": "reversed(sequence)",
+              "desc": "Returns reversed iterator"
+            },
+            {
+              "code": "sorted(iterable, key=None, reverse=False)",
+              "desc": "Returns sorted list"
+            },
+            {
+              "code": "zip(*iterables)",
+              "desc": "Aggregates elements from iterables"
+            }
+          ]
+        },
+        {
+          "title": "Object Inspection Functions",
+          "items": [
+            {
+              "code": "dir(object)",
+              "desc": "Returns list of object attributes"
+            },
+            {
+              "code": "help(object)",
+              "desc": "Invokes help system"
+            },
+            {
+              "code": "id(object)",
+              "desc": "Returns identity of object"
+            },
+            {
+              "code": "isinstance(object, classinfo)",
+              "desc": "Checks if object is instance of class"
+            },
+            {
+              "code": "issubclass(class, classinfo)",
+              "desc": "Checks if class is subclass"
+            },
+            {
+              "code": "type(object)",
+              "desc": "Returns type of object"
+            },
+            {
+              "code": "callable(object)",
+              "desc": "Checks if object is callable"
+            }
+          ]
+        },
+        {
+          "title": "Object Manipulation Functions",
+          "items": [
+            {
+              "code": "delattr(object, name)",
+              "desc": "Deletes attribute from object"
+            },
+            {
+              "code": "getattr(object, name, default=None)",
+              "desc": "Gets attribute value"
+            },
+            {
+              "code": "hasattr(object, name)",
+              "desc": "Checks if object has attribute"
+            },
+            {
+              "code": "setattr(object, name, value)",
+              "desc": "Sets attribute value"
+            },
+            {
+              "code": "vars(object)",
+              "desc": "Returns dict attribute"
+            }
+          ]
+        },
+        {
+          "title": "Iteration Functions",
+          "items": [
+            {
+              "code": "iter(object, sentinel=None)",
+              "desc": "Returns iterator object"
+            },
+            {
+              "code": "next(iterator, default)",
+              "desc": "Gets next item from iterator"
+            }
+          ]
+        },
+        {
+          "title": "String Functions",
+          "items": [
+            {
+              "code": "ascii(object)",
+              "desc": "Returns printable representation"
+            },
+            {
+              "code": "bin(x)",
+              "desc": "Converts integer to binary string"
+            },
+            {
+              "code": "chr(i)",
+              "desc": "Returns string representing Unicode character"
+            },
+            {
+              "code": "format(value, format_spec='')",
+              "desc": "Formats value"
+            },
+            {
+              "code": "hex(x)",
+              "desc": "Converts integer to hexadecimal string"
+            },
+            {
+              "code": "oct(x)",
+              "desc": "Converts integer to octal string"
+            },
+            {
+              "code": "ord(c)",
+              "desc": "Returns Unicode code point"
+            },
+            {
+              "code": "repr(object)",
+              "desc": "Returns printable representation"
+            }
+          ]
+        },
+        {
+          "title": "Advanced Functions",
+          "items": [
+            {
+              "code": "compile(source, filename, mode)",
+              "desc": "Compiles source into code object"
+            },
+            {
+              "code": "eval(expression, globals=None, locals=None)",
+              "desc": "Evaluates expression"
+            },
+            {
+              "code": "exec(object, globals=None, locals=None)",
+              "desc": "Executes Python code"
+            },
+            {
+              "code": "globals()",
+              "desc": "Returns dictionary of global symbol table"
+            },
+            {
+              "code": "locals()",
+              "desc": "Returns dictionary of local symbol table"
+            },
+            {
+              "code": "hash(object)",
+              "desc": "Returns hash value"
+            },
+            {
+              "code": "memoryview(object)",
+              "desc": "Returns memory view object"
+            },
+            {
+              "code": "object()",
+              "desc": "Returns new featureless object"
+            },
+            {
+              "code": "open(file, mode='r')",
+              "desc": "Opens file and returns file object"
+            },
+            {
+              "code": "property(fget=None, fset=None, fdel=None)",
+              "desc": "Returns property attribute"
+            },
+            {
+              "code": "slice(start, stop, step)",
+              "desc": "Returns slice object"
+            },
+            {
+              "code": "staticmethod(function)",
+              "desc": "Converts function to static method"
+            },
+            {
+              "code": "classmethod(function)",
+              "desc": "Converts function to class method"
+            },
+            {
+              "code": "super()",
+              "desc": "Returns proxy object for parent class"
+            },
+            {
+              "code": "__import__(name)",
+              "desc": "Invoked by import statement"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Data Types",
+      "desc": "Python data types.",
+      "type": "grouped-list",
+      "groups": [
+        {
+          "title": "Basic Data Types",
+          "items": [
+            {
+              "code": "int",
+              "desc": "Integer numbers (e.g., 42, -7, 0)"
+            },
+            {
+              "code": "float",
+              "desc": "Floating point numbers (e.g., 3.14, -0.5, 2.0)"
+            },
+            {
+              "code": "complex",
+              "desc": "Complex numbers (e.g., 3+4j, 2-5j)"
+            },
+            {
+              "code": "str",
+              "desc": "Strings (e.g., \"hello\", 'world')"
+            },
+            {
+              "code": "bool",
+              "desc": "Boolean values (True, False)"
+            },
+            {
+              "code": "NoneType",
+              "desc": "None value"
+            }
+          ]
+        },
+        {
+          "title": "Collection Data Types",
+          "items": [
+            {
+              "code": "list",
+              "desc": "Ordered, mutable collection [1, 2, 3]"
+            },
+            {
+              "code": "tuple",
+              "desc": "Ordered, immutable collection (1, 2, 3)"
+            },
+            {
+              "code": "dict",
+              "desc": "Key-value pairs {'key': 'value'}"
+            },
+            {
+              "code": "set",
+              "desc": "Unordered, unique elements {1, 2, 3}"
+            },
+            {
+              "code": "frozenset",
+              "desc": "Immutable set frozenset({1, 2, 3})"
+            }
+          ]
+        },
+        {
+          "title": "Sequence Types",
+          "items": [
+            {
+              "code": "range",
+              "desc": "Immutable sequence of numbers"
+            },
+            {
+              "code": "bytes",
+              "desc": "Immutable sequence of bytes"
+            },
+            {
+              "code": "bytearray",
+              "desc": "Mutable sequence of bytes"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "String Methods",
+      "desc": "Methods on Python string objects.",
+      "type": "grouped-list",
+      "groups": [
+        {
+          "title": "Case Conversion Methods",
+          "items": [
+            {
+              "code": "capitalize()",
+              "desc": "Converts first character to uppercase"
+            },
+            {
+              "code": "casefold()",
+              "desc": "Converts to lowercase for caseless comparisons"
+            },
+            {
+              "code": "lower()",
+              "desc": "Converts to lowercase"
+            },
+            {
+              "code": "upper()",
+              "desc": "Converts to uppercase"
+            },
+            {
+              "code": "swapcase()",
+              "desc": "Swaps case"
+            },
+            {
+              "code": "title()",
+              "desc": "Converts to title case"
+            }
+          ]
+        },
+        {
+          "title": "Search and Replace Methods",
+          "items": [
+            {
+              "code": "count(sub, start=0, end=len)",
+              "desc": "Counts occurrences of substring"
+            },
+            {
+              "code": "find(sub, start=0, end=len)",
+              "desc": "Finds first occurrence (-1 if not found)"
+            },
+            {
+              "code": "rfind(sub, start=0, end=len)",
+              "desc": "Finds last occurrence"
+            },
+            {
+              "code": "index(sub, start=0, end=len)",
+              "desc": "Like find() but raises ValueError"
+            },
+            {
+              "code": "rindex(sub, start=0, end=len)",
+              "desc": "Like rfind() but raises ValueError"
+            },
+            {
+              "code": "replace(old, new, count=-1)",
+              "desc": "Replaces substring"
+            }
+          ]
+        },
+        {
+          "title": "Checking Methods",
+          "items": [
+            {
+              "code": "startswith(prefix, start=0, end=len)",
+              "desc": "Checks if starts with prefix"
+            },
+            {
+              "code": "endswith(suffix, start=0, end=len)",
+              "desc": "Checks if ends with suffix"
+            },
+            {
+              "code": "isalnum()",
+              "desc": "Checks if all characters are alphanumeric"
+            },
+            {
+              "code": "isalpha()",
+              "desc": "Checks if all characters are alphabetic"
+            },
+            {
+              "code": "isascii()",
+              "desc": "Checks if all characters are ASCII"
+            },
+            {
+              "code": "isdecimal()",
+              "desc": "Checks if all characters are decimals"
+            },
+            {
+              "code": "isdigit()",
+              "desc": "Checks if all characters are digits"
+            },
+            {
+              "code": "isidentifier()",
+              "desc": "Checks if valid identifier"
+            },
+            {
+              "code": "islower()",
+              "desc": "Checks if all cased characters are lowercase"
+            },
+            {
+              "code": "isnumeric()",
+              "desc": "Checks if all characters are numeric"
+            },
+            {
+              "code": "isprintable()",
+              "desc": "Checks if all characters are printable"
+            },
+            {
+              "code": "isspace()",
+              "desc": "Checks if all characters are whitespace"
+            },
+            {
+              "code": "istitle()",
+              "desc": "Checks if string is title-cased"
+            },
+            {
+              "code": "isupper()",
+              "desc": "Checks if all cased characters are uppercase"
+            }
+          ]
+        },
+        {
+          "title": "Formatting Methods",
+          "items": [
+            {
+              "code": "center(width, fillchar=' ')",
+              "desc": "Centers string in field of width"
+            },
+            {
+              "code": "ljust(width, fillchar=' ')",
+              "desc": "Left-justifies string"
+            },
+            {
+              "code": "rjust(width, fillchar=' ')",
+              "desc": "Right-justifies string"
+            },
+            {
+              "code": "zfill(width)",
+              "desc": "Pads string with zeros on left"
+            },
+            {
+              "code": "format(*args, **kwargs)",
+              "desc": "Formats string"
+            },
+            {
+              "code": "format_map(mapping)",
+              "desc": "Formats string using mapping"
+            }
+          ]
+        },
+        {
+          "title": "Splitting and Joining Methods",
+          "items": [
+            {
+              "code": "split(sep=None, maxsplit=-1)",
+              "desc": "Splits string into list"
+            },
+            {
+              "code": "rsplit(sep=None, maxsplit=-1)",
+              "desc": "Splits from right"
+            },
+            {
+              "code": "splitlines(keepends=False)",
+              "desc": "Splits at line boundaries"
+            },
+            {
+              "code": "join(iterable)",
+              "desc": "Joins iterable elements with string"
+            },
+            {
+              "code": "partition(sep)",
+              "desc": "Splits into three parts"
+            },
+            {
+              "code": "rpartition(sep)",
+              "desc": "Splits from right into three parts"
+            }
+          ]
+        },
+        {
+          "title": "Trimming Methods",
+          "items": [
+            {
+              "code": "strip(chars=None)",
+              "desc": "Removes leading and trailing characters"
+            },
+            {
+              "code": "lstrip(chars=None)",
+              "desc": "Removes leading characters"
+            },
+            {
+              "code": "rstrip(chars=None)",
+              "desc": "Removes trailing characters"
+            },
+            {
+              "code": "removeprefix(prefix)",
+              "desc": "Removes prefix if present"
+            },
+            {
+              "code": "removesuffix(suffix)",
+              "desc": "Removes suffix if present"
+            }
+          ]
+        },
+        {
+          "title": "Encoding Methods",
+          "items": [
+            {
+              "code": "encode(encoding='utf-8', errors='strict')",
+              "desc": "Encodes string"
+            },
+            {
+              "code": "expandtabs(tabsize=8)",
+              "desc": "Expands tabs"
+            },
+            {
+              "code": "translate(table)",
+              "desc": "Translates using table"
+            },
+            {
+              "code": "maketrans(x, y=None, z=None)",
+              "desc": "Creates translation table"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "List Methods",
+      "desc": "Methods on Python list objects.",
+      "type": "grouped-list",
+      "groups": [
+        {
+          "title": "Adding Elements",
+          "items": [
+            {
+              "code": "append(element)",
+              "desc": "Adds element to end"
+            },
+            {
+              "code": "insert(index, element)",
+              "desc": "Inserts element at index"
+            },
+            {
+              "code": "extend(iterable)",
+              "desc": "Extends list with iterable"
+            }
+          ]
+        },
+        {
+          "title": "Removing Elements",
+          "items": [
+            {
+              "code": "remove(element)",
+              "desc": "Removes first occurrence of element"
+            },
+            {
+              "code": "pop(index=-1)",
+              "desc": "Removes and returns element at index"
+            },
+            {
+              "code": "clear()",
+              "desc": "Removes all elements"
+            }
+          ]
+        },
+        {
+          "title": "Searching and Counting",
+          "items": [
+            {
+              "code": "index(element, start=0, end=len)",
+              "desc": "Returns index of first occurrence"
+            },
+            {
+              "code": "count(element)",
+              "desc": "Returns number of occurrences"
+            }
+          ]
+        },
+        {
+          "title": "Sorting and Reversing",
+          "items": [
+            {
+              "code": "sort(key=None, reverse=False)",
+              "desc": "Sorts list in place"
+            },
+            {
+              "code": "reverse()",
+              "desc": "Reverses list in place"
+            }
+          ]
+        },
+        {
+          "title": "Copying",
+          "items": [
+            {
+              "code": "copy()",
+              "desc": "Returns shallow copy of list"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Dictionary Methods",
+      "desc": "Methods on Python dict objects.",
+      "type": "grouped-list",
+      "groups": [
+        {
+          "title": "Accessing Values",
+          "items": [
+            {
+              "code": "get(key, default=None)",
+              "desc": "Returns value for key"
+            },
+            {
+              "code": "setdefault(key, default=None)",
+              "desc": "Returns value; sets default if not present"
+            },
+            {
+              "code": "keys()",
+              "desc": "Returns view of keys"
+            },
+            {
+              "code": "values()",
+              "desc": "Returns view of values"
+            },
+            {
+              "code": "items()",
+              "desc": "Returns view of (key, value) pairs"
+            }
+          ]
+        },
+        {
+          "title": "Adding / Updating",
+          "items": [
+            {
+              "code": "update([other])",
+              "desc": "Updates dictionary with key-value pairs"
+            },
+            {
+              "code": "fromkeys(iterable, value=None)",
+              "desc": "Creates dict from keys (class method)"
+            }
+          ]
+        },
+        {
+          "title": "Removing",
+          "items": [
+            {
+              "code": "pop(key, default=None)",
+              "desc": "Removes key and returns value"
+            },
+            {
+              "code": "popitem()",
+              "desc": "Removes and returns arbitrary (key, value) pair"
+            },
+            {
+              "code": "clear()",
+              "desc": "Removes all items"
+            }
+          ]
+        },
+        {
+          "title": "Copying",
+          "items": [
+            {
+              "code": "copy()",
+              "desc": "Returns shallow copy"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Tuple Methods",
+      "desc": "Methods on Python tuple objects.",
+      "type": "grouped-list",
+      "groups": [
+        {
+          "title": "Methods",
+          "items": [
+            {
+              "code": "count(value)",
+              "desc": "Returns number of occurrences"
+            },
+            {
+              "code": "index(value, start=0, end=len)",
+              "desc": "Returns index of first occurrence"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Set Methods",
+      "desc": "Methods on Python set objects.",
+      "type": "grouped-list",
+      "groups": [
+        {
+          "title": "Adding Elements",
+          "items": [
+            {
+              "code": "add(element)",
+              "desc": "Adds element"
+            },
+            {
+              "code": "update(*others)",
+              "desc": "Updates set with union of sets"
+            }
+          ]
+        },
+        {
+          "title": "Removing Elements",
+          "items": [
+            {
+              "code": "remove(element)",
+              "desc": "Removes element (raises KeyError if not found)"
+            },
+            {
+              "code": "discard(element)",
+              "desc": "Removes element (no error if not found)"
+            },
+            {
+              "code": "pop()",
+              "desc": "Removes and returns arbitrary element"
+            },
+            {
+              "code": "clear()",
+              "desc": "Removes all elements"
+            }
+          ]
+        },
+        {
+          "title": "Set Operations",
+          "items": [
+            {
+              "code": "union(*others)",
+              "desc": "Returns union of sets"
+            },
+            {
+              "code": "intersection(*others)",
+              "desc": "Returns intersection"
+            },
+            {
+              "code": "difference(*others)",
+              "desc": "Returns difference"
+            },
+            {
+              "code": "symmetric_difference(other)",
+              "desc": "Returns symmetric difference"
+            },
+            {
+              "code": "copy()",
+              "desc": "Returns shallow copy"
+            }
+          ]
+        },
+        {
+          "title": "Set Comparisons",
+          "items": [
+            {
+              "code": "isdisjoint(other)",
+              "desc": "Returns True if sets have no common elements"
+            },
+            {
+              "code": "issubset(other)",
+              "desc": "Returns True if set is subset"
+            },
+            {
+              "code": "issuperset(other)",
+              "desc": "Returns True if set is superset"
+            }
+          ]
+        },
+        {
+          "title": "In-place Operations",
+          "items": [
+            {
+              "code": "intersection_update(*others)",
+              "desc": "Updates with intersection"
+            },
+            {
+              "code": "difference_update(*others)",
+              "desc": "Updates with difference"
+            },
+            {
+              "code": "symmetric_difference_update(other)",
+              "desc": "Updates with symmetric difference"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "File Methods",
+      "desc": "Methods for file handling.",
+      "type": "grouped-list",
+      "groups": [
+        {
+          "title": "Reading Methods",
+          "items": [
+            {
+              "code": "read(size=-1)",
+              "desc": "Reads and returns up to size bytes"
+            },
+            {
+              "code": "readline(size=-1)",
+              "desc": "Reads a single line"
+            },
+            {
+              "code": "readlines(hint=-1)",
+              "desc": "Reads and returns list of lines"
+            }
+          ]
+        },
+        {
+          "title": "Writing Methods",
+          "items": [
+            {
+              "code": "write(string)",
+              "desc": "Writes string to file"
+            },
+            {
+              "code": "writelines(lines)",
+              "desc": "Writes list of lines"
+            }
+          ]
+        },
+        {
+          "title": "File Position",
+          "items": [
+            {
+              "code": "tell()",
+              "desc": "Returns current file position"
+            },
+            {
+              "code": "seek(offset, whence=0)",
+              "desc": "Changes file position"
+            },
+            {
+              "code": "truncate(size=None)",
+              "desc": "Resizes file"
+            }
+          ]
+        },
+        {
+          "title": "File Control",
+          "items": [
+            {
+              "code": "close()",
+              "desc": "Closes file"
+            },
+            {
+              "code": "flush()",
+              "desc": "Flushes internal buffer"
+            },
+            {
+              "code": "fileno()",
+              "desc": "Returns file descriptor"
+            },
+            {
+              "code": "isatty()",
+              "desc": "Returns True if file is connected to terminal"
+            }
+          ]
+        },
+        {
+          "title": "File Status",
+          "items": [
+            {
+              "code": "readable()",
+              "desc": "Returns True if file can be read"
+            },
+            {
+              "code": "writable()",
+              "desc": "Returns True if file can be written"
+            },
+            {
+              "code": "seekable()",
+              "desc": "Returns True if file supports random access"
+            },
+            {
+              "code": "closed",
+              "desc": "True if file is closed"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Python Keywords",
+      "desc": "Reserved words in the Python language.",
+      "type": "grouped-list",
+      "groups": [
+        {
+          "title": "Control Flow",
+          "items": [
+            {
+              "code": "if",
+              "desc": "Conditional statement"
+            },
+            {
+              "code": "elif",
+              "desc": "Else if condition"
+            },
+            {
+              "code": "else",
+              "desc": "Alternative condition"
+            },
+            {
+              "code": "for",
+              "desc": "For loop"
+            },
+            {
+              "code": "while",
+              "desc": "While loop"
+            },
+            {
+              "code": "break",
+              "desc": "Exit loop"
+            },
+            {
+              "code": "continue",
+              "desc": "Skip to next iteration"
+            },
+            {
+              "code": "pass",
+              "desc": "Null statement"
+            },
+            {
+              "code": "match",
+              "desc": "Pattern matching (Python 3.10+)"
+            },
+            {
+              "code": "case",
+              "desc": "Case in match statement"
+            }
+          ]
+        },
+        {
+          "title": "Function and Class",
+          "items": [
+            {
+              "code": "def",
+              "desc": "Define function"
+            },
+            {
+              "code": "return",
+              "desc": "Return from function"
+            },
+            {
+              "code": "lambda",
+              "desc": "Anonymous function"
+            },
+            {
+              "code": "class",
+              "desc": "Define class"
+            },
+            {
+              "code": "yield",
+              "desc": "Generator function"
+            }
+          ]
+        },
+        {
+          "title": "Exception Handling",
+          "items": [
+            {
+              "code": "try",
+              "desc": "Try block"
+            },
+            {
+              "code": "except",
+              "desc": "Exception handler"
+            },
+            {
+              "code": "finally",
+              "desc": "Always executed block"
+            },
+            {
+              "code": "raise",
+              "desc": "Raise exception"
+            },
+            {
+              "code": "assert",
+              "desc": "Debug assertion"
+            }
+          ]
+        },
+        {
+          "title": "Import",
+          "items": [
+            {
+              "code": "import",
+              "desc": "Import module"
+            },
+            {
+              "code": "from",
+              "desc": "Import specific names"
+            },
+            {
+              "code": "as",
+              "desc": "Alias for import"
+            }
+          ]
+        },
+        {
+          "title": "Logical Operators",
+          "items": [
+            {
+              "code": "and",
+              "desc": "Logical AND"
+            },
+            {
+              "code": "or",
+              "desc": "Logical OR"
+            },
+            {
+              "code": "not",
+              "desc": "Logical NOT"
+            }
+          ]
+        },
+        {
+          "title": "Identity and Membership",
+          "items": [
+            {
+              "code": "is",
+              "desc": "Identity test"
+            },
+            {
+              "code": "in",
+              "desc": "Membership test"
+            }
+          ]
+        },
+        {
+          "title": "Variable Scope",
+          "items": [
+            {
+              "code": "global",
+              "desc": "Declare global variable"
+            },
+            {
+              "code": "nonlocal",
+              "desc": "Declare nonlocal variable"
+            }
+          ]
+        },
+        {
+          "title": "Special",
+          "items": [
+            {
+              "code": "None",
+              "desc": "Null value"
+            },
+            {
+              "code": "True",
+              "desc": "Boolean true"
+            },
+            {
+              "code": "False",
+              "desc": "Boolean false"
+            },
+            {
+              "code": "del",
+              "desc": "Delete reference"
+            },
+            {
+              "code": "with",
+              "desc": "Context manager"
+            },
+            {
+              "code": "async",
+              "desc": "Asynchronous function"
+            },
+            {
+              "code": "await",
+              "desc": "Await async result"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Operators",
+      "desc": "Python operators.",
+      "type": "grouped-list",
+      "groups": [
+        {
+          "title": "Arithmetic Operators",
+          "items": [
+            {
+              "code": "+",
+              "desc": "Addition"
+            },
+            {
+              "code": "-",
+              "desc": "Subtraction"
+            },
+            {
+              "code": "*",
+              "desc": "Multiplication"
+            },
+            {
+              "code": "/",
+              "desc": "Division"
+            },
+            {
+              "code": "//",
+              "desc": "Floor division"
+            },
+            {
+              "code": "%",
+              "desc": "Modulus (remainder)"
+            },
+            {
+              "code": "**",
+              "desc": "Exponentiation"
+            }
+          ]
+        },
+        {
+          "title": "Comparison Operators",
+          "items": [
+            {
+              "code": "==",
+              "desc": "Equal to"
+            },
+            {
+              "code": "!=",
+              "desc": "Not equal to"
+            },
+            {
+              "code": ">",
+              "desc": "Greater than"
+            },
+            {
+              "code": "<",
+              "desc": "Less than"
+            },
+            {
+              "code": ">=",
+              "desc": "Greater than or equal to"
+            },
+            {
+              "code": "<=",
+              "desc": "Less than or equal to"
+            }
+          ]
+        },
+        {
+          "title": "Assignment Operators",
+          "items": [
+            {
+              "code": "=",
+              "desc": "Assign"
+            },
+            {
+              "code": "+=",
+              "desc": "Add and assign"
+            },
+            {
+              "code": "-=",
+              "desc": "Subtract and assign"
+            },
+            {
+              "code": "*=",
+              "desc": "Multiply and assign"
+            },
+            {
+              "code": "/=",
+              "desc": "Divide and assign"
+            },
+            {
+              "code": "//=",
+              "desc": "Floor divide and assign"
+            },
+            {
+              "code": "%=",
+              "desc": "Modulus and assign"
+            },
+            {
+              "code": "**=",
+              "desc": "Exponent and assign"
+            },
+            {
+              "code": "&=",
+              "desc": "Bitwise AND and assign"
+            },
+            {
+              "code": "|=",
+              "desc": "Bitwise OR and assign"
+            },
+            {
+              "code": "^=",
+              "desc": "Bitwise XOR and assign"
+            },
+            {
+              "code": ">>=",
+              "desc": "Right shift and assign"
+            },
+            {
+              "code": "<<=",
+              "desc": "Left shift and assign"
+            },
+            {
+              "code": ":=",
+              "desc": "Walrus operator (assignment expression)"
+            }
+          ]
+        },
+        {
+          "title": "Logical Operators",
+          "items": [
+            {
+              "code": "and",
+              "desc": "Logical AND"
+            },
+            {
+              "code": "or",
+              "desc": "Logical OR"
+            },
+            {
+              "code": "not",
+              "desc": "Logical NOT"
+            }
+          ]
+        },
+        {
+          "title": "Identity Operators",
+          "items": [
+            {
+              "code": "is",
+              "desc": "True if both refer to the same object"
+            },
+            {
+              "code": "is not",
+              "desc": "True if objects are different"
+            }
+          ]
+        },
+        {
+          "title": "Membership Operators",
+          "items": [
+            {
+              "code": "in",
+              "desc": "True if value exists in sequence"
+            },
+            {
+              "code": "not in",
+              "desc": "True if value does not exist"
+            }
+          ]
+        },
+        {
+          "title": "Bitwise Operators",
+          "items": [
+            {
+              "code": "&",
+              "desc": "Bitwise AND"
+            },
+            {
+              "code": "|",
+              "desc": "Bitwise OR"
+            },
+            {
+              "code": "^",
+              "desc": "Bitwise XOR"
+            },
+            {
+              "code": "~",
+              "desc": "Bitwise NOT"
+            },
+            {
+              "code": "<<",
+              "desc": "Left shift"
+            },
+            {
+              "code": ">>",
+              "desc": "Right shift"
+            }
+          ]
+        },
+        {
+          "title": "Operator Precedence (Highest to Lowest)",
+          "items": [
+            {
+              "code": "()",
+              "desc": "Parentheses"
+            },
+            {
+              "code": "**",
+              "desc": "Exponentiation"
+            },
+            {
+              "code": "+x, -x, ~x",
+              "desc": "Unary operators"
+            },
+            {
+              "code": "*, /, //, %",
+              "desc": "Multiplication / Division"
+            },
+            {
+              "code": "+, -",
+              "desc": "Addition / Subtraction"
+            },
+            {
+              "code": "<<, >>",
+              "desc": "Bit shifts"
+            },
+            {
+              "code": "&",
+              "desc": "Bitwise AND"
+            },
+            {
+              "code": "^",
+              "desc": "Bitwise XOR"
+            },
+            {
+              "code": "|",
+              "desc": "Bitwise OR"
+            },
+            {
+              "code": "==, !=, <, <=, >, >=, is, in",
+              "desc": "Comparisons"
+            },
+            {
+              "code": "not",
+              "desc": "Logical NOT"
+            },
+            {
+              "code": "and",
+              "desc": "Logical AND"
+            },
+            {
+              "code": "or",
+              "desc": "Logical OR"
+            },
+            {
+              "code": ":=",
+              "desc": "Walrus operator"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Modules",
+      "desc": "Common Python standard library modules.",
+      "type": "module",
+      "modules": [
+        {
+          "name": "Random Module",
+          "desc": "Implements pseudo-random number generators.",
+          "groups": [
+            {
+              "title": null,
+              "items": [
+                {
+                  "code": "random()",
+                  "desc": "Random float between 0 and 1"
+                },
+                {
+                  "code": "randint(a, b)",
+                  "desc": "Random integer between a and b (inclusive)"
+                },
+                {
+                  "code": "randrange(start, stop, step)",
+                  "desc": "Random integer from range"
+                },
+                {
+                  "code": "choice(sequence)",
+                  "desc": "Random element from sequence"
+                },
+                {
+                  "code": "choices(population, weights, k)",
+                  "desc": "List of k random elements"
+                },
+                {
+                  "code": "shuffle(sequence)",
+                  "desc": "Shuffles sequence in place"
+                },
+                {
+                  "code": "sample(population, k)",
+                  "desc": "List of k unique random elements"
+                },
+                {
+                  "code": "uniform(a, b)",
+                  "desc": "Random float between a and b"
+                },
+                {
+                  "code": "seed(a)",
+                  "desc": "Initializes random number generator"
+                },
+                {
+                  "code": "getstate()",
+                  "desc": "Returns internal state"
+                },
+                {
+                  "code": "setstate(state)",
+                  "desc": "Restores internal state"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Math Module",
+          "desc": "Provides mathematical functions.",
+          "groups": [
+            {
+              "title": "Constants",
+              "items": [
+                {
+                  "code": "math.pi",
+                  "desc": "Pi (3.14159...)"
+                },
+                {
+                  "code": "math.e",
+                  "desc": "Euler's number (2.71828...)"
+                },
+                {
+                  "code": "math.tau",
+                  "desc": "Tau (2 x pi)"
+                },
+                {
+                  "code": "math.inf",
+                  "desc": "Positive infinity"
+                },
+                {
+                  "code": "math.nan",
+                  "desc": "Not a number"
+                }
+              ]
+            },
+            {
+              "title": "Functions",
+              "items": [
+                {
+                  "code": "ceil(x)",
+                  "desc": "Ceiling of x"
+                },
+                {
+                  "code": "floor(x)",
+                  "desc": "Floor of x"
+                },
+                {
+                  "code": "trunc(x)",
+                  "desc": "Truncates to integer"
+                },
+                {
+                  "code": "fabs(x)",
+                  "desc": "Absolute value as float"
+                },
+                {
+                  "code": "factorial(x)",
+                  "desc": "Factorial"
+                },
+                {
+                  "code": "gcd(a, b)",
+                  "desc": "Greatest common divisor"
+                },
+                {
+                  "code": "lcm(a, b)",
+                  "desc": "Least common multiple"
+                },
+                {
+                  "code": "pow(x, y)",
+                  "desc": "x to power y"
+                },
+                {
+                  "code": "sqrt(x)",
+                  "desc": "Square root"
+                },
+                {
+                  "code": "exp(x)",
+                  "desc": "e raised to x"
+                },
+                {
+                  "code": "log(x, base)",
+                  "desc": "Logarithm"
+                },
+                {
+                  "code": "log10(x)",
+                  "desc": "Base-10 logarithm"
+                },
+                {
+                  "code": "log2(x)",
+                  "desc": "Base-2 logarithm"
+                },
+                {
+                  "code": "sin(x)",
+                  "desc": "Sine"
+                },
+                {
+                  "code": "cos(x)",
+                  "desc": "Cosine"
+                },
+                {
+                  "code": "tan(x)",
+                  "desc": "Tangent"
+                },
+                {
+                  "code": "asin(x)",
+                  "desc": "Arcsine"
+                },
+                {
+                  "code": "acos(x)",
+                  "desc": "Arccosine"
+                },
+                {
+                  "code": "atan(x)",
+                  "desc": "Arctangent"
+                },
+                {
+                  "code": "atan2(y, x)",
+                  "desc": "Arctangent of y / x"
+                },
+                {
+                  "code": "sinh(x)",
+                  "desc": "Hyperbolic sine"
+                },
+                {
+                  "code": "cosh(x)",
+                  "desc": "Hyperbolic cosine"
+                },
+                {
+                  "code": "tanh(x)",
+                  "desc": "Hyperbolic tangent"
+                },
+                {
+                  "code": "degrees(x)",
+                  "desc": "Converts radians to degrees"
+                },
+                {
+                  "code": "radians(x)",
+                  "desc": "Converts degrees to radians"
+                },
+                {
+                  "code": "isfinite(x)",
+                  "desc": "Checks if x is finite"
+                },
+                {
+                  "code": "isinf(x)",
+                  "desc": "Checks if x is infinite"
+                },
+                {
+                  "code": "isnan(x)",
+                  "desc": "Checks if x is NaN"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "CMath Module",
+          "desc": "Mathematical functions for complex numbers.",
+          "groups": [
+            {
+              "title": null,
+              "items": [
+                {
+                  "code": "phase(x)",
+                  "desc": "Returns phase of complex number"
+                },
+                {
+                  "code": "polar(x)",
+                  "desc": "Converts complex number to polar coordinates"
+                },
+                {
+                  "code": "rect(r, phi)",
+                  "desc": "Converts from polar coordinates"
+                },
+                {
+                  "code": "exp(x)",
+                  "desc": "e raised to x"
+                },
+                {
+                  "code": "log(x, base)",
+                  "desc": "Logarithm"
+                },
+                {
+                  "code": "log10(x)",
+                  "desc": "Base-10 logarithm"
+                },
+                {
+                  "code": "sqrt(x)",
+                  "desc": "Square root"
+                }
+              ]
+            },
+            {
+              "title": "Trigonometric Functions",
+              "items": [
+                {
+                  "code": "sin(x)",
+                  "desc": "Sine"
+                },
+                {
+                  "code": "cos(x)",
+                  "desc": "Cosine"
+                },
+                {
+                  "code": "tan(x)",
+                  "desc": "Tangent"
+                }
+              ]
+            },
+            {
+              "title": "Inverse Trigonometric Functions",
+              "items": [
+                {
+                  "code": "asin(x)",
+                  "desc": "Arcsine"
+                },
+                {
+                  "code": "acos(x)",
+                  "desc": "Arccosine"
+                },
+                {
+                  "code": "atan(x)",
+                  "desc": "Arctangent"
+                }
+              ]
+            },
+            {
+              "title": "Hyperbolic Functions",
+              "items": [
+                {
+                  "code": "sinh(x)",
+                  "desc": "Hyperbolic sine"
+                },
+                {
+                  "code": "cosh(x)",
+                  "desc": "Hyperbolic cosine"
+                },
+                {
+                  "code": "asinh(x)",
+                  "desc": "Inverse hyperbolic sine"
+                },
+                {
+                  "code": "tanh(x)",
+                  "desc": "Hyperbolic tangent"
+                }
+              ]
+            },
+            {
+              "title": "Inverse Hyperbolic Functions",
+              "items": [
+                {
+                  "code": "acosh(x)",
+                  "desc": "Inverse hyperbolic cosine"
+                },
+                {
+                  "code": "atanh(x)",
+                  "desc": "Inverse hyperbolic tangent"
+                }
+              ]
+            },
+            {
+              "title": "Validation Functions",
+              "items": [
+                {
+                  "code": "isfinite(x)",
+                  "desc": "Checks if both components are finite"
+                },
+                {
+                  "code": "isinf(x)",
+                  "desc": "Checks if either component is infinite"
+                },
+                {
+                  "code": "isnan(x)",
+                  "desc": "Checks if either component is NaN"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Statistics Module",
+          "desc": "Mathematical statistics functions.",
+          "groups": [
+            {
+              "title": null,
+              "items": [
+                {
+                  "code": "mean(data)",
+                  "desc": "Arithmetic mean"
+                },
+                {
+                  "code": "fmean(data)",
+                  "desc": "Fast floating-point mean"
+                },
+                {
+                  "code": "geometric_mean(data)",
+                  "desc": "Geometric mean"
+                },
+                {
+                  "code": "harmonic_mean(data)",
+                  "desc": "Harmonic mean"
+                },
+                {
+                  "code": "median(data)",
+                  "desc": "Median"
+                },
+                {
+                  "code": "median_low(data)",
+                  "desc": "Low median"
+                },
+                {
+                  "code": "median_high(data)",
+                  "desc": "High median"
+                },
+                {
+                  "code": "median_grouped(data)",
+                  "desc": "Median of grouped data"
+                },
+                {
+                  "code": "mode(data)",
+                  "desc": "Most common value"
+                },
+                {
+                  "code": "multimode(data)",
+                  "desc": "List of most common values"
+                },
+                {
+                  "code": "pstdev(data)",
+                  "desc": "Population standard deviation"
+                },
+                {
+                  "code": "pvariance(data)",
+                  "desc": "Population variance"
+                },
+                {
+                  "code": "stdev(data)",
+                  "desc": "Sample standard deviation"
+                },
+                {
+                  "code": "variance(data)",
+                  "desc": "Sample variance"
+                },
+                {
+                  "code": "quantiles(data, n)",
+                  "desc": "Divides data into n intervals"
+                },
+                {
+                  "code": "covariance(x, y)",
+                  "desc": "Sample covariance"
+                },
+                {
+                  "code": "correlation(x, y)",
+                  "desc": "Pearson correlation coefficient"
+                },
+                {
+                  "code": "linear_regression(x, y)",
+                  "desc": "Simple linear regression"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Datetime Module",
+          "desc": "Working with dates and times.",
+          "groups": [
+            {
+              "title": "Classes",
+              "items": [
+                {
+                  "code": "date",
+                  "desc": "Date object (year, month, day)"
+                },
+                {
+                  "code": "time",
+                  "desc": "Time object (hour, minute, second, microsecond)"
+                },
+                {
+                  "code": "datetime",
+                  "desc": "Date and time combined"
+                },
+                {
+                  "code": "timedelta",
+                  "desc": "Duration between dates or times"
+                },
+                {
+                  "code": "timezone",
+                  "desc": "Time zone information"
+                }
+              ]
+            },
+            {
+              "title": "Common Methods",
+              "items": [
+                {
+                  "code": "datetime.now()",
+                  "desc": "Current local date and time"
+                },
+                {
+                  "code": "datetime.today()",
+                  "desc": "Current local date and time"
+                },
+                {
+                  "code": "datetime.utcnow()",
+                  "desc": "Current UTC date and time"
+                },
+                {
+                  "code": "date.today()",
+                  "desc": "Current local date"
+                },
+                {
+                  "code": "strftime(format)",
+                  "desc": "Formats datetime as string"
+                },
+                {
+                  "code": "strptime(string, format)",
+                  "desc": "Parses string to datetime"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "OS Module",
+          "desc": "Operating system interface.",
+          "groups": [
+            {
+              "title": null,
+              "items": [
+                {
+                  "code": "os.getcwd()",
+                  "desc": "Gets current working directory"
+                },
+                {
+                  "code": "os.chdir(path)",
+                  "desc": "Changes current directory"
+                },
+                {
+                  "code": "os.listdir(path)",
+                  "desc": "Lists directory contents"
+                },
+                {
+                  "code": "os.mkdir(path)",
+                  "desc": "Creates directory"
+                },
+                {
+                  "code": "os.makedirs(path)",
+                  "desc": "Creates directories recursively"
+                },
+                {
+                  "code": "os.remove(path)",
+                  "desc": "Removes file"
+                },
+                {
+                  "code": "os.rmdir(path)",
+                  "desc": "Removes directory"
+                },
+                {
+                  "code": "os.rename(src, dst)",
+                  "desc": "Renames file or directory"
+                },
+                {
+                  "code": "os.path.exists(path)",
+                  "desc": "Checks if path exists"
+                },
+                {
+                  "code": "os.path.isfile(path)",
+                  "desc": "Checks if path is file"
+                },
+                {
+                  "code": "os.path.isdir(path)",
+                  "desc": "Checks if path is directory"
+                },
+                {
+                  "code": "os.path.join(*paths)",
+                  "desc": "Joins path components"
+                },
+                {
+                  "code": "os.path.split(path)",
+                  "desc": "Splits path into directory and file"
+                },
+                {
+                  "code": "os.path.basename(path)",
+                  "desc": "Returns filename"
+                },
+                {
+                  "code": "os.path.dirname(path)",
+                  "desc": "Returns directory name"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Sys Module",
+          "desc": "System-specific parameters and functions.",
+          "groups": [
+            {
+              "title": "Common Objects",
+              "items": [
+                {
+                  "code": "sys.argv",
+                  "desc": "Command-line arguments"
+                },
+                {
+                  "code": "sys.path",
+                  "desc": "Module search path"
+                },
+                {
+                  "code": "sys.version",
+                  "desc": "Python version"
+                },
+                {
+                  "code": "sys.platform",
+                  "desc": "Platform identifier"
+                }
+              ]
+            },
+            {
+              "title": "Common Functions",
+              "items": [
+                {
+                  "code": "sys.exit(status)",
+                  "desc": "Exits program"
+                },
+                {
+                  "code": "sys.getsizeof(object)",
+                  "desc": "Returns object size in bytes"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Exception Handling",
+      "desc": "Python built-in exceptions.",
+      "type": "grouped-list",
+      "groups": [
+        {
+          "title": "Base Exceptions",
+          "items": [
+            {
+              "code": "BaseException",
+              "desc": "Base class for all exceptions"
+            },
+            {
+              "code": "Exception",
+              "desc": "Base class for all non-exit exceptions"
+            },
+            {
+              "code": "ArithmeticError",
+              "desc": "Base for arithmetic errors"
+            },
+            {
+              "code": "LookupError",
+              "desc": "Base for lookup errors"
+            }
+          ]
+        },
+        {
+          "title": "Specific Exceptions",
+          "items": [
+            {
+              "code": "AttributeError",
+              "desc": "Attribute reference or assignment fails"
+            },
+            {
+              "code": "EOFError",
+              "desc": "input() hits end-of-file condition"
+            },
+            {
+              "code": "FloatingPointError",
+              "desc": "Floating-point operation fails"
+            },
+            {
+              "code": "GeneratorExit",
+              "desc": "Generator .close() was called"
+            },
+            {
+              "code": "ImportError",
+              "desc": "Import statement fails"
+            },
+            {
+              "code": "ModuleNotFoundError",
+              "desc": "Module cannot be found"
+            },
+            {
+              "code": "IndexError",
+              "desc": "Sequence index out of range"
+            },
+            {
+              "code": "KeyError",
+              "desc": "Dictionary key not found"
+            },
+            {
+              "code": "KeyboardInterrupt",
+              "desc": "User interrupts execution"
+            },
+            {
+              "code": "MemoryError",
+              "desc": "Out of memory"
+            },
+            {
+              "code": "NameError",
+              "desc": "Name not defined"
+            },
+            {
+              "code": "NotImplementedError",
+              "desc": "Method not implemented"
+            },
+            {
+              "code": "OSError",
+              "desc": "System-related error"
+            },
+            {
+              "code": "FileNotFoundError",
+              "desc": "File not found"
+            },
+            {
+              "code": "PermissionError",
+              "desc": "Insufficient permissions"
+            },
+            {
+              "code": "OverflowError",
+              "desc": "Arithmetic result too large"
+            },
+            {
+              "code": "RecursionError",
+              "desc": "Maximum recursion depth exceeded"
+            },
+            {
+              "code": "RuntimeError",
+              "desc": "Error not fitting other categories"
+            },
+            {
+              "code": "StopIteration",
+              "desc": "Iterator exhausted"
+            },
+            {
+              "code": "SyntaxError",
+              "desc": "Invalid Python syntax"
+            },
+            {
+              "code": "IndentationError",
+              "desc": "Incorrect indentation"
+            },
+            {
+              "code": "TabError",
+              "desc": "Inconsistent tabs and spaces"
+            },
+            {
+              "code": "SystemError",
+              "desc": "Internal Python error"
+            },
+            {
+              "code": "SystemExit",
+              "desc": "sys.exit() was called"
+            },
+            {
+              "code": "TypeError",
+              "desc": "Operation on incompatible type"
+            },
+            {
+              "code": "UnboundLocalError",
+              "desc": "Local variable referenced before assignment"
+            },
+            {
+              "code": "UnicodeError",
+              "desc": "Unicode encoding/decoding error"
+            },
+            {
+              "code": "ValueError",
+              "desc": "Invalid value passed to function"
+            },
+            {
+              "code": "ZeroDivisionError",
+              "desc": "Division or modulo by zero"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

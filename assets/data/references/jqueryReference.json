@@ -1,0 +1,1778 @@
+{
+  "sections": [
+    {
+      "title": "Selectors",
+      "desc": "",
+      "type": "table",
+      "columns": [
+        "SELECTOR",
+        "DESCRIPTION",
+        "EXAMPLE"
+      ],
+      "rows": [
+        {
+          "property": "$(\"*\")",
+          "desc": "Select all elements in the document",
+          "version": "$(\"*\")"
+        },
+        {
+          "property": "$(this)",
+          "desc": "Select the current HTML element in context",
+          "version": "$(this).hide()"
+        },
+        {
+          "property": "$(\"#id\")",
+          "desc": "Select single element by its id attribute",
+          "version": "$(\"#main\")"
+        },
+        {
+          "property": "$(\".class\")",
+          "desc": "Select all elements with given class",
+          "version": "$(\".box\")"
+        },
+        {
+          "property": "$(\"element\")",
+          "desc": "Select all elements of given HTML tag",
+          "version": "$(\"p\")"
+        },
+        {
+          "property": "$(\"el.class\")",
+          "desc": "Select elements of type with specific class",
+          "version": "$(\"p.intro\")"
+        },
+        {
+          "property": "$(\"el, el\")",
+          "desc": "Select multiple selectors (comma-separated)",
+          "version": "$(\"h1, p\")"
+        },
+        {
+          "property": "$(\"parent > child\")",
+          "desc": "Select direct children of parent",
+          "version": "$(\"ul > li\")"
+        },
+        {
+          "property": "$(\"ancestor descendant\")",
+          "desc": "Select all descendants inside ancestor",
+          "version": "$(\"div p\")"
+        },
+        {
+          "property": "$(\"prev + next\")",
+          "desc": "Select adjacent sibling immediately after prev",
+          "version": "$(\"h1 + p\")"
+        },
+        {
+          "property": "$(\"prev ~ siblings\")",
+          "desc": "Select all siblings after prev element",
+          "version": "$(\"h1 ~ p\")"
+        },
+        {
+          "property": "$(\"[attr]\")",
+          "desc": "Select elements that have specified attribute",
+          "version": "$(\"[href]\")"
+        },
+        {
+          "property": "$(\"[attr='val']\")",
+          "desc": "Select elements where attribute equals value",
+          "version": "$(\"[type='text']\")"
+        },
+        {
+          "property": "$(\"[attr!='val']\")",
+          "desc": "Select elements where attribute does not equal value",
+          "version": "$(\"[type!='submit']\")"
+        },
+        {
+          "property": "$(\"[attr^='val']\")",
+          "desc": "Select elements where attribute starts with value",
+          "version": "$(\"[href^='https']\")"
+        },
+        {
+          "property": "$(\"[attr$='val']\")",
+          "desc": "Select elements where attribute ends with value",
+          "version": "$(\"[src$='.png']\")"
+        },
+        {
+          "property": "$(\"[attr*='val']\")",
+          "desc": "Select elements where attribute contains value",
+          "version": "$(\"[class*='btn']\")"
+        },
+        {
+          "property": "$(\":first\")",
+          "desc": "Select first matched element",
+          "version": "$(\"li:first\")"
+        },
+        {
+          "property": "$(\":last\")",
+          "desc": "Select last matched element",
+          "version": "$(\"li:last\")"
+        },
+        {
+          "property": "$(\":even\")",
+          "desc": "Select elements at even indexes (0, 2, 4...)",
+          "version": "$(\"tr:even\")"
+        },
+        {
+          "property": "$(\":odd\")",
+          "desc": "Select elements at odd indexes (1, 3, 5...)",
+          "version": "$(\"tr:odd\")"
+        },
+        {
+          "property": "$(\":eq(n)\")",
+          "desc": "Select element at index n (zero-based)",
+          "version": "$(\"li:eq(2)\")"
+        },
+        {
+          "property": "$(\":gt(n)\")",
+          "desc": "Select elements with index greater than n",
+          "version": "$(\"li:gt(1)\")"
+        },
+        {
+          "property": "$(\":lt(n)\")",
+          "desc": "Select elements with index less than n",
+          "version": "$(\"li:lt(3)\")"
+        },
+        {
+          "property": "$(\":not(sel)\")",
+          "desc": "Select elements that do not match selector",
+          "version": "$(\"p:not(.note)\")"
+        },
+        {
+          "property": "$(\":contains('text')\")",
+          "desc": "Select elements containing specified text",
+          "version": "$(\"p:contains('jQuery')\")"
+        },
+        {
+          "property": "$(\":empty\")",
+          "desc": "Select elements with no children or text",
+          "version": "$(\"td:empty\")"
+        },
+        {
+          "property": "$(\":has(sel)\")",
+          "desc": "Select elements that contain at least one matching descendant",
+          "version": "$(\"div:has(p)\")"
+        },
+        {
+          "property": "$(\":parent\")",
+          "desc": "Select elements that have at least one child node",
+          "version": "$(\"td:parent\")"
+        },
+        {
+          "property": "$(\":hidden\")",
+          "desc": "Select all hidden elements",
+          "version": "$(\":hidden\")"
+        },
+        {
+          "property": "$(\":visible\")",
+          "desc": "Select all visible elements",
+          "version": "$(\":visible\")"
+        },
+        {
+          "property": "$(\":checked\")",
+          "desc": "Select checked checkboxes and radio buttons",
+          "version": "$(\":checked\")"
+        },
+        {
+          "property": "$(\":selected\")",
+          "desc": "Select selected option elements",
+          "version": "$(\"option:selected\")"
+        },
+        {
+          "property": "$(\":disabled\")",
+          "desc": "Select disabled form elements",
+          "version": "$(\":disabled\")"
+        },
+        {
+          "property": "$(\":enabled\")",
+          "desc": "Select enabled form elements",
+          "version": "$(\":enabled\")"
+        },
+        {
+          "property": "$(\":input\")",
+          "desc": "Select all input, textarea, select, and button elements",
+          "version": "$(\":input\")"
+        },
+        {
+          "property": "$(\":text\")",
+          "desc": "Select input elements of type text",
+          "version": "$(\":text\")"
+        },
+        {
+          "property": "$(\":password\")",
+          "desc": "Select input elements of type password",
+          "version": "$(\":password\")"
+        },
+        {
+          "property": "$(\":submit\")",
+          "desc": "Select submit buttons",
+          "version": "$(\":submit\")"
+        },
+        {
+          "property": "$(\":radio\")",
+          "desc": "Select radio button inputs",
+          "version": "$(\":radio\")"
+        },
+        {
+          "property": "$(\":checkbox\")",
+          "desc": "Select checkbox inputs",
+          "version": "$(\":checkbox\")"
+        },
+        {
+          "property": "$(\":file\")",
+          "desc": "Select file upload inputs",
+          "version": "$(\":file\")"
+        },
+        {
+          "property": "$(\":focus\")",
+          "desc": "Select currently focused element",
+          "version": "$(\":focus\")"
+        },
+        {
+          "property": "$(\":first-child\")",
+          "desc": "Select elements that are first child of their parent",
+          "version": "$(\"li:first-child\")"
+        },
+        {
+          "property": "$(\":last-child\")",
+          "desc": "Select elements that are last child of their parent",
+          "version": "$(\"li:last-child\")"
+        },
+        {
+          "property": "$(\":nth-child(n)\")",
+          "desc": "Select elements that are nth child of their parent",
+          "version": "$(\"li:nth-child(2)\")"
+        },
+        {
+          "property": "$(\":only-child\")",
+          "desc": "Select elements that are the only child of their parent",
+          "version": "$(\"p:only-child\")"
+        },
+        {
+          "property": "$(\":header\")",
+          "desc": "Select all heading elements (h1 through h6)",
+          "version": "$(\":header\")"
+        },
+        {
+          "property": "$(\":animated\")",
+          "desc": "Select elements currently being animated",
+          "version": "$(\":animated\")"
+        }
+      ]
+    },
+    {
+      "title": "Traversing",
+      "desc": "",
+      "type": "table",
+      "columns": [
+        "METHOD",
+        "DESCRIPTION",
+        "EXAMPLE"
+      ],
+      "rows": [
+        {
+          "property": ".find(sel)",
+          "desc": "Find all descendants matching selector",
+          "version": "$(\"div\").find(\"p\")"
+        },
+        {
+          "property": ".filter(sel)",
+          "desc": "Reduce matched set to those matching selector",
+          "version": "$(\"li\").filter(\".active\")"
+        },
+        {
+          "property": ".not(sel)",
+          "desc": "Remove elements matching selector from matched set",
+          "version": "$(\"li\").not(\".done\")"
+        },
+        {
+          "property": ".has(sel)",
+          "desc": "Reduce set to elements that have a descendant matching selector",
+          "version": "$(\"div\").has(\"p\")"
+        },
+        {
+          "property": ".is(sel)",
+          "desc": "Check if any element in set matches; returns boolean",
+          "version": "$(\"li\").is(\".active\")"
+        },
+        {
+          "property": ".children(sel)",
+          "desc": "Get direct children, optionally filtered by selector",
+          "version": "$(\"ul\").children(\"li\")"
+        },
+        {
+          "property": ".parent(sel)",
+          "desc": "Get immediate parent of each element",
+          "version": "$(\"li\").parent()"
+        },
+        {
+          "property": ".parents(sel)",
+          "desc": "Get all ancestors up to document root",
+          "version": "$(\"li\").parents(\"div\")"
+        },
+        {
+          "property": ".parentsUntil(sel)",
+          "desc": "Get ancestors between element and selector (exclusive)",
+          "version": "$(\"li\").parentsUntil(\"div\")"
+        },
+        {
+          "property": ".closest(sel)",
+          "desc": "Get nearest ancestor (including self) matching selector",
+          "version": "$(\"li\").closest(\"ul\")"
+        },
+        {
+          "property": ".siblings(sel)",
+          "desc": "Get all siblings, optionally filtered",
+          "version": "$(\"li\").siblings()"
+        },
+        {
+          "property": ".next(sel)",
+          "desc": "Get immediately following sibling",
+          "version": "$(\"h1\").next()"
+        },
+        {
+          "property": ".nextAll(sel)",
+          "desc": "Get all following siblings",
+          "version": "$(\"li\").nextAll()"
+        },
+        {
+          "property": ".nextUntil(sel)",
+          "desc": "Get all following siblings up to selector",
+          "version": "$(\"li\").nextUntil(\".stop\")"
+        },
+        {
+          "property": ".prev(sel)",
+          "desc": "Get immediately preceding sibling",
+          "version": "$(\"h1\").prev()"
+        },
+        {
+          "property": ".prevAll(sel)",
+          "desc": "Get all preceding siblings",
+          "version": "$(\"li\").prevAll()"
+        },
+        {
+          "property": ".prevUntil(sel)",
+          "desc": "Get all preceding siblings up to selector",
+          "version": "$(\"li\").prevUntil(\".start\")"
+        },
+        {
+          "property": ".first()",
+          "desc": "Get first element in matched set",
+          "version": "$(\"li\").first()"
+        },
+        {
+          "property": ".last()",
+          "desc": "Get last element in matched set",
+          "version": "$(\"li\").last()"
+        },
+        {
+          "property": ".eq(n)",
+          "desc": "Get element at index n in matched set",
+          "version": "$(\"li\").eq(2)"
+        },
+        {
+          "property": ".slice(start, end)",
+          "desc": "Get subset of elements between start and end indexes",
+          "version": "$(\"li\").slice(1,3)"
+        },
+        {
+          "property": ".each(fn)",
+          "desc": "Iterate over matched elements executing function for each",
+          "version": "$(\"li\").each(fn)"
+        },
+        {
+          "property": ".map(fn)",
+          "desc": "Pass each element through function; return new jQuery object",
+          "version": "$(\"li\").map(fn)"
+        },
+        {
+          "property": ".add(sel)",
+          "desc": "Add elements matching selector to current matched set",
+          "version": "$(\"p\").add(\"div\")"
+        },
+        {
+          "property": ".addBack(sel)",
+          "desc": "Add previous set of elements back onto stack",
+          "version": "$(\"li\").find(\"a\").addBack()"
+        },
+        {
+          "property": ".end()",
+          "desc": "End most recent filtering and return previous matched set",
+          "version": "$(\"ul\").find(\"li\").end()"
+        },
+        {
+          "property": ".contents()",
+          "desc": "Get children including text and comment nodes",
+          "version": "$(\"div\").contents()"
+        },
+        {
+          "property": ".index(el)",
+          "desc": "Return index of element within matched set",
+          "version": "$(\"li\").index($(\"#item\"))"
+        }
+      ]
+    },
+    {
+      "title": "DOM Manipulation",
+      "desc": "",
+      "type": "table",
+      "columns": [
+        "METHOD",
+        "DESCRIPTION",
+        "EXAMPLE"
+      ],
+      "rows": [
+        {
+          "property": ".html()",
+          "desc": "Get inner HTML content of first matched element",
+          "version": "$(\"div\").html()"
+        },
+        {
+          "property": ".html(content)",
+          "desc": "Set inner HTML content of all matched elements",
+          "version": "$(\"div\").html(\"<b>Hi</b>\")"
+        },
+        {
+          "property": ".text()",
+          "desc": "Get combined text content of all matched elements",
+          "version": "$(\"p\").text()"
+        },
+        {
+          "property": ".text(string)",
+          "desc": "Set text content of all matched elements",
+          "version": "$(\"p\").text(\"Hello\")"
+        },
+        {
+          "property": ".val()",
+          "desc": "Get value of first matched form element",
+          "version": "$(\"input\").val()"
+        },
+        {
+          "property": ".val(value)",
+          "desc": "Set value of all matched form elements",
+          "version": "$(\"input\").val(\"user\")"
+        },
+        {
+          "property": ".attr(name)",
+          "desc": "Get value of an attribute on first matched element",
+          "version": "$(\"img\").attr(\"src\")"
+        },
+        {
+          "property": ".attr(name, value)",
+          "desc": "Set attribute value on all matched elements",
+          "version": "$(\"img\").attr(\"src\",\"img.png\")"
+        },
+        {
+          "property": ".removeAttr(name)",
+          "desc": "Remove specified attribute from all matched elements",
+          "version": "$(\"a\").removeAttr(\"href\")"
+        },
+        {
+          "property": ".prop(name)",
+          "desc": "Get property value of first matched element",
+          "version": "$(\":checkbox\").prop(\"checked\")"
+        },
+        {
+          "property": ".prop(name, value)",
+          "desc": "Set property value on all matched elements",
+          "version": "$(\":checkbox\").prop(\"checked\",true)"
+        },
+        {
+          "property": ".removeProp(name)",
+          "desc": "Remove a property set by .prop()",
+          "version": "$(\"el\").removeProp(\"name\")"
+        },
+        {
+          "property": ".append(content)",
+          "desc": "Insert content at end of each matched element (inside)",
+          "version": "$(\"ul\").append(\"<li>Item</li>\")"
+        },
+        {
+          "property": ".appendTo(target)",
+          "desc": "Insert matched elements at end of target element",
+          "version": "$(\"<li>\").appendTo(\"ul\")"
+        },
+        {
+          "property": ".prepend(content)",
+          "desc": "Insert content at beginning of each matched element (inside)",
+          "version": "$(\"ul\").prepend(\"<li>First</li>\")"
+        },
+        {
+          "property": ".prependTo(target)",
+          "desc": "Insert matched elements at beginning of target",
+          "version": "$(\"<li>\").prependTo(\"ul\")"
+        },
+        {
+          "property": ".after(content)",
+          "desc": "Insert content after each matched element (outside)",
+          "version": "$(\"p\").after(\"<hr>\")"
+        },
+        {
+          "property": ".insertAfter(target)",
+          "desc": "Insert matched elements after target element",
+          "version": "$(\"<hr>\").insertAfter(\"p\")"
+        },
+        {
+          "property": ".before(content)",
+          "desc": "Insert content before each matched element (outside)",
+          "version": "$(\"p\").before(\"<hr>\")"
+        },
+        {
+          "property": ".insertBefore(target)",
+          "desc": "Insert matched elements before target element",
+          "version": "$(\"<hr>\").insertBefore(\"p\")"
+        },
+        {
+          "property": ".wrap(html)",
+          "desc": "Wrap each matched element with HTML structure",
+          "version": "$(\"p\").wrap(\"<div>\")"
+        },
+        {
+          "property": ".wrapAll(html)",
+          "desc": "Wrap all matched elements together in HTML structure",
+          "version": "$(\"p\").wrapAll(\"<div>\")"
+        },
+        {
+          "property": ".wrapInner(html)",
+          "desc": "Wrap inner HTML of each matched element",
+          "version": "$(\"p\").wrapInner(\"<b>\")"
+        },
+        {
+          "property": ".unwrap()",
+          "desc": "Remove parent element while keeping matched elements in DOM",
+          "version": "$(\"p\").unwrap()"
+        },
+        {
+          "property": ".remove(sel)",
+          "desc": "Remove matched elements from DOM including all data and events",
+          "version": "$(\"p\").remove()"
+        },
+        {
+          "property": ".detach(sel)",
+          "desc": "Remove from DOM but keep all data and events attached",
+          "version": "$(\"p\").detach()"
+        },
+        {
+          "property": ".empty()",
+          "desc": "Remove all child nodes and content from matched elements",
+          "version": "$(\"div\").empty()"
+        },
+        {
+          "property": ".clone(withEvents)",
+          "desc": "Create deep copy of matched elements; true copies events too",
+          "version": "$(\"p\").clone(true)"
+        },
+        {
+          "property": ".replaceWith(content)",
+          "desc": "Replace each matched element with provided content",
+          "version": "$(\"p\").replaceWith(\"<div>\")"
+        },
+        {
+          "property": ".replaceAll(target)",
+          "desc": "Replace target elements with matched elements",
+          "version": "$(\"<b>\").replaceAll(\"p\")"
+        }
+      ]
+    },
+    {
+      "title": "CSS Methods",
+      "desc": "",
+      "type": "table",
+      "columns": [
+        "METHOD",
+        "DESCRIPTION",
+        "EXAMPLE"
+      ],
+      "rows": [
+        {
+          "property": ".css(property)",
+          "desc": "Get computed value of CSS property for first element",
+          "version": "$(\"p\").css(\"color\")"
+        },
+        {
+          "property": ".css(property, value)",
+          "desc": "Set CSS property value on all matched elements",
+          "version": "$(\"p\").css(\"color\",\"red\")"
+        },
+        {
+          "property": ".css({prop:val, ...})",
+          "desc": "Set multiple CSS properties at once using an object",
+          "version": "$(\"p\").css({color:\"red\",fontSize:\"16px\"})"
+        },
+        {
+          "property": ".addClass(class)",
+          "desc": "Add one or more classes to matched elements",
+          "version": "$(\"p\").addClass(\"active\")"
+        },
+        {
+          "property": ".removeClass(class)",
+          "desc": "Remove one or more classes from matched elements",
+          "version": "$(\"p\").removeClass(\"active\")"
+        },
+        {
+          "property": ".toggleClass(class)",
+          "desc": "Add class if absent; remove if present",
+          "version": "$(\"p\").toggleClass(\"active\")"
+        },
+        {
+          "property": ".hasClass(class)",
+          "desc": "Returns true if any element has the specified class",
+          "version": "$(\"p\").hasClass(\"active\")"
+        },
+        {
+          "property": ".width()",
+          "desc": "Get width of first element (excluding padding/border/margin)",
+          "version": "$(\"div\").width()"
+        },
+        {
+          "property": ".width(value)",
+          "desc": "Set width of all matched elements",
+          "version": "$(\"div\").width(200)"
+        },
+        {
+          "property": ".height()",
+          "desc": "Get height of first element",
+          "version": "$(\"div\").height()"
+        },
+        {
+          "property": ".height(value)",
+          "desc": "Set height of all matched elements",
+          "version": "$(\"div\").height(100)"
+        },
+        {
+          "property": ".innerWidth()",
+          "desc": "Get width including padding but not border",
+          "version": "$(\"div\").innerWidth()"
+        },
+        {
+          "property": ".innerHeight()",
+          "desc": "Get height including padding but not border",
+          "version": "$(\"div\").innerHeight()"
+        },
+        {
+          "property": ".outerWidth(includeMargin)",
+          "desc": "Get width including padding and border; true includes margin",
+          "version": "$(\"div\").outerWidth(true)"
+        },
+        {
+          "property": ".outerHeight(includeMargin)",
+          "desc": "Get height including padding and border; true includes margin",
+          "version": "$(\"div\").outerHeight(true)"
+        },
+        {
+          "property": ".offset()",
+          "desc": "Get position of element relative to document (top, left)",
+          "version": "$(\"div\").offset()"
+        },
+        {
+          "property": ".offset({top,left})",
+          "desc": "Set position of element relative to document",
+          "version": "$(\"div\").offset({top:100,left:50})"
+        },
+        {
+          "property": ".position()",
+          "desc": "Get position relative to offset parent (top, left)",
+          "version": "$(\"div\").position()"
+        },
+        {
+          "property": ".scrollTop()",
+          "desc": "Get vertical scroll position of first element",
+          "version": "$(\"div\").scrollTop()"
+        },
+        {
+          "property": ".scrollTop(value)",
+          "desc": "Set vertical scroll position",
+          "version": "$(\"div\").scrollTop(100)"
+        },
+        {
+          "property": ".scrollLeft()",
+          "desc": "Get horizontal scroll position of first element",
+          "version": "$(\"div\").scrollLeft()"
+        },
+        {
+          "property": ".scrollLeft(value)",
+          "desc": "Set horizontal scroll position",
+          "version": "$(\"div\").scrollLeft(50)"
+        }
+      ]
+    },
+    {
+      "title": "Events",
+      "desc": "",
+      "type": "table",
+      "columns": [
+        "METHOD / EVENT",
+        "DESCRIPTION",
+        "EXAMPLE"
+      ],
+      "rows": [
+        {
+          "property": ".on(event, fn)",
+          "desc": "Attach event handler for one or more events",
+          "version": "$(\"p\").on(\"click\", fn)"
+        },
+        {
+          "property": ".on(event, sel, fn)",
+          "desc": "Attach delegated event handler for dynamically added elements",
+          "version": "$(\"ul\").on(\"click\",\"li\",fn)"
+        },
+        {
+          "property": ".off(event, fn)",
+          "desc": "Remove event handler",
+          "version": "$(\"p\").off(\"click\", fn)"
+        },
+        {
+          "property": ".one(event, fn)",
+          "desc": "Attach handler that fires only once then removes itself",
+          "version": "$(\"p\").one(\"click\", fn)"
+        },
+        {
+          "property": ".trigger(event)",
+          "desc": "Execute all handlers attached to event on matched elements",
+          "version": "$(\"#btn\").trigger(\"click\")"
+        },
+        {
+          "property": ".triggerHandler(event)",
+          "desc": "Execute handlers without bubbling or default behaviour",
+          "version": "$(\"input\").triggerHandler(\"focus\")"
+        },
+        {
+          "property": ".click(fn)",
+          "desc": "Bind or trigger click event",
+          "version": "$(\"p\").click(fn)"
+        },
+        {
+          "property": ".dblclick(fn)",
+          "desc": "Bind or trigger double-click event",
+          "version": "$(\"p\").dblclick(fn)"
+        },
+        {
+          "property": ".mouseenter(fn)",
+          "desc": "Bind handler for mouse entering the element",
+          "version": "$(\"div\").mouseenter(fn)"
+        },
+        {
+          "property": ".mouseleave(fn)",
+          "desc": "Bind handler for mouse leaving the element",
+          "version": "$(\"div\").mouseleave(fn)"
+        },
+        {
+          "property": ".mouseover(fn)",
+          "desc": "Bind handler for mouse over element or descendants",
+          "version": "$(\"div\").mouseover(fn)"
+        },
+        {
+          "property": ".mouseout(fn)",
+          "desc": "Bind handler for mouse out of element or descendants",
+          "version": "$(\"div\").mouseout(fn)"
+        },
+        {
+          "property": ".mousemove(fn)",
+          "desc": "Bind handler for mouse movement over element",
+          "version": "$(\"div\").mousemove(fn)"
+        },
+        {
+          "property": ".mousedown(fn)",
+          "desc": "Bind handler for mouse button pressed",
+          "version": "$(\"div\").mousedown(fn)"
+        },
+        {
+          "property": ".mouseup(fn)",
+          "desc": "Bind handler for mouse button released",
+          "version": "$(\"div\").mouseup(fn)"
+        },
+        {
+          "property": ".hover(enterFn, leaveFn)",
+          "desc": "Shortcut for mouseenter and mouseleave combined",
+          "version": "$(\"li\").hover(fn1, fn2)"
+        },
+        {
+          "property": ".keydown(fn)",
+          "desc": "Bind handler for key pressed down",
+          "version": "$(\"input\").keydown(fn)"
+        },
+        {
+          "property": ".keyup(fn)",
+          "desc": "Bind handler for key released",
+          "version": "$(\"input\").keyup(fn)"
+        },
+        {
+          "property": ".keypress(fn)",
+          "desc": "Bind handler for key press (character keys)",
+          "version": "$(\"input\").keypress(fn)"
+        },
+        {
+          "property": ".focus(fn)",
+          "desc": "Bind handler for element receiving focus",
+          "version": "$(\"input\").focus(fn)"
+        },
+        {
+          "property": ".blur(fn)",
+          "desc": "Bind handler for element losing focus",
+          "version": "$(\"input\").blur(fn)"
+        },
+        {
+          "property": ".change(fn)",
+          "desc": "Bind handler for value change on input/select/textarea",
+          "version": "$(\"select\").change(fn)"
+        },
+        {
+          "property": ".submit(fn)",
+          "desc": "Bind handler for form submission",
+          "version": "$(\"form\").submit(fn)"
+        },
+        {
+          "property": ".select(fn)",
+          "desc": "Bind handler for text selection in input or textarea",
+          "version": "$(\"input\").select(fn)"
+        },
+        {
+          "property": ".scroll(fn)",
+          "desc": "Bind handler for scroll event",
+          "version": "$(window).scroll(fn)"
+        },
+        {
+          "property": ".resize(fn)",
+          "desc": "Bind handler for window or element resize",
+          "version": "$(window).resize(fn)"
+        },
+        {
+          "property": ".load(fn)",
+          "desc": "Bind handler for element fully loaded (deprecated in 3.0)",
+          "version": "$(\"img\").on(\"load\",fn)"
+        },
+        {
+          "property": ".unload(fn)",
+          "desc": "Bind handler for window unload (deprecated in 3.0)",
+          "version": "$(window).on(\"unload\",fn)"
+        },
+        {
+          "property": ".ready(fn)",
+          "desc": "Execute function when DOM is fully loaded and ready",
+          "version": "$(document).ready(fn)"
+        },
+        {
+          "property": "$(fn)",
+          "desc": "Shorthand for $(document).ready(fn)",
+          "version": "$(function(){...})"
+        },
+        {
+          "property": "event.preventDefault()",
+          "desc": "Prevent default browser action for the event",
+          "version": "e.preventDefault()"
+        },
+        {
+          "property": "event.stopPropagation()",
+          "desc": "Stop event from bubbling up to parent elements",
+          "version": "e.stopPropagation()"
+        },
+        {
+          "property": "event.stopImmediatePropagation()",
+          "desc": "Stop event bubbling and prevent other handlers running",
+          "version": "e.stopImmediatePropagation()"
+        },
+        {
+          "property": "event.target",
+          "desc": "DOM element that triggered the event",
+          "version": "e.target"
+        },
+        {
+          "property": "event.currentTarget",
+          "desc": "Element to which the handler is attached",
+          "version": "e.currentTarget"
+        },
+        {
+          "property": "event.which",
+          "desc": "Key code or mouse button number that triggered event",
+          "version": "e.which"
+        },
+        {
+          "property": "event.pageX / event.pageY",
+          "desc": "Mouse position relative to document",
+          "version": "e.pageX, e.pageY"
+        },
+        {
+          "property": "event.type",
+          "desc": "Type of event that was triggered",
+          "version": "e.type"
+        },
+        {
+          "property": "event.data",
+          "desc": "Optional data passed to event handler via .on()",
+          "version": "e.data"
+        },
+        {
+          "property": "event.namespace",
+          "desc": "Namespace used when event was triggered",
+          "version": "e.namespace"
+        }
+      ]
+    },
+    {
+      "title": "Effects & Animation",
+      "desc": "",
+      "type": "table",
+      "columns": [
+        "METHOD",
+        "DESCRIPTION",
+        "EXAMPLE"
+      ],
+      "rows": [
+        {
+          "property": ".show(speed, fn)",
+          "desc": "Display matched elements with optional animation speed",
+          "version": "$(\"p\").show(\"slow\")"
+        },
+        {
+          "property": ".hide(speed, fn)",
+          "desc": "Hide matched elements with optional animation speed",
+          "version": "$(\"p\").hide(400)"
+        },
+        {
+          "property": ".toggle(speed, fn)",
+          "desc": "Show if hidden, hide if visible",
+          "version": "$(\"p\").toggle()"
+        },
+        {
+          "property": ".fadeIn(speed, fn)",
+          "desc": "Fade in matched elements by animating opacity",
+          "version": "$(\"div\").fadeIn(\"fast\")"
+        },
+        {
+          "property": ".fadeOut(speed, fn)",
+          "desc": "Fade out matched elements to invisible",
+          "version": "$(\"div\").fadeOut(500)"
+        },
+        {
+          "property": ".fadeToggle(speed, fn)",
+          "desc": "Toggle between fadeIn and fadeOut",
+          "version": "$(\"div\").fadeToggle()"
+        },
+        {
+          "property": ".fadeTo(speed, opacity, fn)",
+          "desc": "Animate opacity to specified value (0 to 1)",
+          "version": "$(\"div\").fadeTo(400, 0.5)"
+        },
+        {
+          "property": ".slideDown(speed, fn)",
+          "desc": "Show elements with sliding down motion",
+          "version": "$(\"div\").slideDown()"
+        },
+        {
+          "property": ".slideUp(speed, fn)",
+          "desc": "Hide elements with sliding up motion",
+          "version": "$(\"div\").slideUp(300)"
+        },
+        {
+          "property": ".slideToggle(speed, fn)",
+          "desc": "Toggle between slideDown and slideUp",
+          "version": "$(\"div\").slideToggle()"
+        },
+        {
+          "property": ".animate(props, speed, easing, fn)",
+          "desc": "Animate CSS numeric properties to given values",
+          "version": "$(\"div\").animate({left:250},500)"
+        },
+        {
+          "property": ".animate(props, options)",
+          "desc": "Animate with options object (duration, easing, queue, step)",
+          "version": "$(\"div\").animate({width:300},{duration:500})"
+        },
+        {
+          "property": ".stop(clearQueue, finish)",
+          "desc": "Stop currently running animation on matched elements",
+          "version": "$(\"div\").stop(true,true)"
+        },
+        {
+          "property": ".finish()",
+          "desc": "Stop animation, remove queued, complete all animations",
+          "version": "$(\"div\").finish()"
+        },
+        {
+          "property": ".delay(duration)",
+          "desc": "Delay execution of subsequent queued items",
+          "version": "$(\"div\").delay(500).fadeIn()"
+        },
+        {
+          "property": ".queue(fn)",
+          "desc": "Show or manipulate queue of functions for element",
+          "version": "$(\"div\").queue()"
+        },
+        {
+          "property": ".dequeue()",
+          "desc": "Execute next function in queue for matched elements",
+          "version": "$(\"div\").dequeue()"
+        },
+        {
+          "property": ".clearQueue()",
+          "desc": "Remove all remaining queued functions",
+          "version": "$(\"div\").clearQueue()"
+        },
+        {
+          "property": "$.fx.off",
+          "desc": "Globally disable all jQuery animations when set to true",
+          "version": "$.fx.off = true"
+        },
+        {
+          "property": "$.fx.interval",
+          "desc": "Rate in milliseconds at which animations fire (default 13)",
+          "version": "$.fx.interval = 20"
+        },
+        {
+          "property": "speed values",
+          "desc": "Accepted speed strings: 'slow' (600ms), 'fast' (200ms), or number in ms",
+          "version": "\"slow\", \"fast\", 400"
+        },
+        {
+          "property": "easing functions",
+          "desc": "Built-in: 'linear', 'swing'. More via jQuery UI or plugins",
+          "version": "easing: 'linear'"
+        }
+      ]
+    },
+    {
+      "title": "AJAX",
+      "desc": "",
+      "type": "table",
+      "columns": [
+        "METHOD / OPTION",
+        "DESCRIPTION",
+        "EXAMPLE"
+      ],
+      "rows": [
+        {
+          "property": "$.ajax(options)",
+          "desc": "Core AJAX method — full control over the request",
+          "version": "$.ajax({url:'data.php'})"
+        },
+        {
+          "property": "url",
+          "desc": "URL to send the request to",
+          "version": "url: '/api/data'"
+        },
+        {
+          "property": "type / method",
+          "desc": "HTTP method: 'GET', 'POST', 'PUT', 'DELETE' (method preferred)",
+          "version": "method: 'POST'"
+        },
+        {
+          "property": "data",
+          "desc": "Data to send to the server (object, string, or FormData)",
+          "version": "data: {id:1}"
+        },
+        {
+          "property": "dataType",
+          "desc": "Expected response type: 'json','html','xml','text','script'",
+          "version": "dataType: 'json'"
+        },
+        {
+          "property": "contentType",
+          "desc": "Content-Type header for request body",
+          "version": "contentType: 'application/json'"
+        },
+        {
+          "property": "headers",
+          "desc": "Object of additional HTTP headers to send",
+          "version": "headers: {'X-Token':'abc'}"
+        },
+        {
+          "property": "timeout",
+          "desc": "Request timeout in milliseconds",
+          "version": "timeout: 5000"
+        },
+        {
+          "property": "async",
+          "desc": "Send asynchronously (true) or synchronously (false, avoid)",
+          "version": "async: true"
+        },
+        {
+          "property": "cache",
+          "desc": "Allow browser to cache the request (false appends timestamp)",
+          "version": "cache: false"
+        },
+        {
+          "property": "success: function(data)",
+          "desc": "Callback when request succeeds",
+          "version": "success: function(res){}"
+        },
+        {
+          "property": "error: function(xhr,s,e)",
+          "desc": "Callback when request fails",
+          "version": "error: function(xhr,s,e){}"
+        },
+        {
+          "property": "complete: function(xhr,s)",
+          "desc": "Callback when request finishes (success or error)",
+          "version": "complete: function(xhr,s){}"
+        },
+        {
+          "property": "beforeSend: function(xhr)",
+          "desc": "Callback before request is sent; return false to cancel",
+          "version": "beforeSend: function(xhr){}"
+        },
+        {
+          "property": "$.get(url, data, fn)",
+          "desc": "Shorthand GET request",
+          "version": "$.get('/api',{id:1},fn)"
+        },
+        {
+          "property": "$.post(url, data, fn)",
+          "desc": "Shorthand POST request",
+          "version": "$.post('/api',{name:'x'},fn)"
+        },
+        {
+          "property": "$.getJSON(url, data, fn)",
+          "desc": "GET request expecting JSON response",
+          "version": "$.getJSON('/api/data',fn)"
+        },
+        {
+          "property": "$.getScript(url, fn)",
+          "desc": "Load and execute JavaScript file via GET",
+          "version": "$.getScript('plugin.js')"
+        },
+        {
+          "property": ".load(url, data, fn)",
+          "desc": "Load HTML from server and insert into matched element",
+          "version": "$(\"#div\").load('page.html')"
+        },
+        {
+          "property": ".load('url #sel')",
+          "desc": "Load only part of response matching selector",
+          "version": "$(\"#div\").load('page.html #main')"
+        },
+        {
+          "property": "$.ajax().done(fn)",
+          "desc": "Promise-style success handler",
+          "version": "$.ajax(opts).done(fn)"
+        },
+        {
+          "property": "$.ajax().fail(fn)",
+          "desc": "Promise-style failure handler",
+          "version": "$.ajax(opts).fail(fn)"
+        },
+        {
+          "property": "$.ajax().always(fn)",
+          "desc": "Promise-style handler called regardless of outcome",
+          "version": "$.ajax(opts).always(fn)"
+        },
+        {
+          "property": "$.ajaxSetup(options)",
+          "desc": "Set default options for all future AJAX requests",
+          "version": "$.ajaxSetup({timeout:3000})"
+        },
+        {
+          "property": "$.ajaxPrefilter(fn)",
+          "desc": "Handle custom AJAX options before request is sent",
+          "version": "$.ajaxPrefilter(fn)"
+        },
+        {
+          "property": "$(document).ajaxStart(fn)",
+          "desc": "Handler fires when first AJAX request begins",
+          "version": "ajaxStart"
+        },
+        {
+          "property": "$(document).ajaxStop(fn)",
+          "desc": "Handler fires when all AJAX requests complete",
+          "version": "ajaxStop"
+        },
+        {
+          "property": "$(document).ajaxComplete(fn)",
+          "desc": "Handler fires when any AJAX request completes",
+          "version": "ajaxComplete"
+        },
+        {
+          "property": "$(document).ajaxError(fn)",
+          "desc": "Handler fires when any AJAX request fails",
+          "version": "ajaxError"
+        },
+        {
+          "property": "$(document).ajaxSuccess(fn)",
+          "desc": "Handler fires when any AJAX request succeeds",
+          "version": "ajaxSuccess"
+        },
+        {
+          "property": "$.param(obj)",
+          "desc": "Serialize object into URL query string",
+          "version": "$.param({a:1,b:2})"
+        },
+        {
+          "property": ".serialize()",
+          "desc": "Encode form fields into URL-encoded string",
+          "version": "$(\"form\").serialize()"
+        },
+        {
+          "property": ".serializeArray()",
+          "desc": "Encode form fields as array of {name, value} objects",
+          "version": "$(\"form\").serializeArray()"
+        }
+      ]
+    },
+    {
+      "title": "Utilities",
+      "desc": "",
+      "type": "table",
+      "columns": [
+        "METHOD",
+        "DESCRIPTION",
+        "EXAMPLE"
+      ],
+      "rows": [
+        {
+          "property": "$.each(obj/arr, fn)",
+          "desc": "Iterate over object or array with index and value",
+          "version": "$.each(arr, function(i,v){})"
+        },
+        {
+          "property": "$.map(arr, fn)",
+          "desc": "Translate array/object items through function into new array",
+          "version": "$.map(arr, function(v,i){})"
+        },
+        {
+          "property": "$.grep(arr, fn)",
+          "desc": "Filter array keeping elements where function returns true",
+          "version": "$.grep(arr, fn)"
+        },
+        {
+          "property": "$.inArray(val, arr)",
+          "desc": "Find index of value in array; returns -1 if not found",
+          "version": "$.inArray(5, arr)"
+        },
+        {
+          "property": "$.merge(arr1, arr2)",
+          "desc": "Merge contents of two arrays into first array",
+          "version": "$.merge([1,2],[3,4])"
+        },
+        {
+          "property": "$.unique(arr)",
+          "desc": "Remove duplicate DOM elements from array (deprecated use $.uniqueSort)",
+          "version": "$.unique(arr)"
+        },
+        {
+          "property": "$.uniqueSort(arr)",
+          "desc": "Remove duplicates and sort DOM elements array",
+          "version": "$.uniqueSort(arr)"
+        },
+        {
+          "property": "$.extend(target, obj)",
+          "desc": "Merge properties of obj into target object",
+          "version": "$.extend({}, defaults, opts)"
+        },
+        {
+          "property": "$.extend(true, target, obj)",
+          "desc": "Deep merge — recursively merges nested objects",
+          "version": "$.extend(true,{},a,b)"
+        },
+        {
+          "property": "$.isArray(value)",
+          "desc": "Returns true if value is a JavaScript array",
+          "version": "$.isArray([])"
+        },
+        {
+          "property": "$.isFunction(value)",
+          "desc": "Returns true if value is a function (deprecated 3.3)",
+          "version": "$.isFunction(fn)"
+        },
+        {
+          "property": "$.isNumeric(value)",
+          "desc": "Returns true if value represents a numeric value",
+          "version": "$.isNumeric('3.14')"
+        },
+        {
+          "property": "$.isEmptyObject(obj)",
+          "desc": "Returns true if object has no own enumerable properties",
+          "version": "$.isEmptyObject({})"
+        },
+        {
+          "property": "$.isPlainObject(obj)",
+          "desc": "Returns true if object was created via {} or new Object()",
+          "version": "$.isPlainObject({})"
+        },
+        {
+          "property": "$.type(value)",
+          "desc": "Determine internal JavaScript class of an object",
+          "version": "$.type([])"
+        },
+        {
+          "property": "$.trim(string)",
+          "desc": "Remove whitespace from start and end of string (deprecated 3.5)",
+          "version": "$.trim('  hi  ')"
+        },
+        {
+          "property": "$.parseJSON(string)",
+          "desc": "Parse JSON string into JavaScript object (use JSON.parse in modern code)",
+          "version": "$.parseJSON(str)"
+        },
+        {
+          "property": "$.parseXML(string)",
+          "desc": "Parse XML string into XML document",
+          "version": "$.parseXML(str)"
+        },
+        {
+          "property": "$.parseHTML(string)",
+          "desc": "Parse HTML string into array of DOM nodes",
+          "version": "$.parseHTML(str)"
+        },
+        {
+          "property": "$.now()",
+          "desc": "Return current time as number of milliseconds since epoch",
+          "version": "$.now()"
+        },
+        {
+          "property": "$.noop()",
+          "desc": "Empty function that does nothing — useful as default callback",
+          "version": "$.noop"
+        },
+        {
+          "property": "$.proxy(fn, context)",
+          "desc": "Return function with bound context (like Function.bind)",
+          "version": "$.proxy(fn, this)"
+        },
+        {
+          "property": "$.contains(parent, child)",
+          "desc": "Check if DOM element is descendant of another",
+          "version": "$.contains(el, child)"
+        },
+        {
+          "property": "$.globalEval(code)",
+          "desc": "Execute JavaScript in global scope",
+          "version": "$.globalEval('var x=1')"
+        },
+        {
+          "property": "$.noConflict()",
+          "desc": "Release $ alias; return jQuery to avoid conflicts with other libraries",
+          "version": "var jq = $.noConflict()"
+        },
+        {
+          "property": "$.fn",
+          "desc": "jQuery prototype — add methods to extend jQuery",
+          "version": "$.fn.myMethod = function(){}"
+        },
+        {
+          "property": "$.expr[':']",
+          "desc": "Add custom selectors via selector extension",
+          "version": "$.expr[':'].custom = fn"
+        },
+        {
+          "property": "$.support",
+          "desc": "Object of feature detection properties (mostly deprecated)",
+          "version": "$.support.cors"
+        }
+      ]
+    },
+    {
+      "title": "Deferred & Promises",
+      "desc": "",
+      "type": "table",
+      "columns": [
+        "METHOD",
+        "DESCRIPTION",
+        "EXAMPLE"
+      ],
+      "rows": [
+        {
+          "property": "$.Deferred()",
+          "desc": "Create a new Deferred object",
+          "version": "var d = $.Deferred()"
+        },
+        {
+          "property": "deferred.resolve(args)",
+          "desc": "Resolve the deferred with optional arguments",
+          "version": "d.resolve('data')"
+        },
+        {
+          "property": "deferred.reject(args)",
+          "desc": "Reject the deferred with optional arguments",
+          "version": "d.reject('error')"
+        },
+        {
+          "property": "deferred.notify(args)",
+          "desc": "Call progress handlers with optional arguments",
+          "version": "d.notify(50)"
+        },
+        {
+          "property": "deferred.promise()",
+          "desc": "Return read-only Promise object from Deferred",
+          "version": "d.promise()"
+        },
+        {
+          "property": "deferred.done(fn)",
+          "desc": "Add handler called when deferred is resolved",
+          "version": "d.done(fn)"
+        },
+        {
+          "property": "deferred.fail(fn)",
+          "desc": "Add handler called when deferred is rejected",
+          "version": "d.fail(fn)"
+        },
+        {
+          "property": "deferred.always(fn)",
+          "desc": "Add handler called when deferred resolves or rejects",
+          "version": "d.always(fn)"
+        },
+        {
+          "property": "deferred.progress(fn)",
+          "desc": "Add handler called when deferred notifies progress",
+          "version": "d.progress(fn)"
+        },
+        {
+          "property": "deferred.then(done, fail, progress)",
+          "desc": "Add handlers for resolve, reject, and progress",
+          "version": "d.then(doneFn, failFn)"
+        },
+        {
+          "property": "deferred.state()",
+          "desc": "Return current state: 'pending', 'resolved', or 'rejected'",
+          "version": "d.state()"
+        },
+        {
+          "property": "$.when(deferreds...)",
+          "desc": "Execute callback when all deferreds resolve",
+          "version": "$.when(d1, d2).done(fn)"
+        },
+        {
+          "property": "promise.done(fn)",
+          "desc": "Add resolve handler to promise",
+          "version": "promise.done(fn)"
+        },
+        {
+          "property": "promise.fail(fn)",
+          "desc": "Add reject handler to promise",
+          "version": "promise.fail(fn)"
+        },
+        {
+          "property": "promise.then(fn)",
+          "desc": "Chain promise with new promise returned from fn",
+          "version": "promise.then(fn)"
+        },
+        {
+          "property": "promise.state()",
+          "desc": "Return promise state",
+          "version": "promise.state()"
+        }
+      ]
+    },
+    {
+      "title": "Dimensions",
+      "desc": "",
+      "type": "table",
+      "columns": [
+        "METHOD",
+        "DESCRIPTION",
+        "RETURNS"
+      ],
+      "rows": [
+        {
+          "property": "$(\"el\").width()",
+          "desc": "Content width excluding padding, border, margin",
+          "version": "Number (px)"
+        },
+        {
+          "property": "$(\"el\").height()",
+          "desc": "Content height excluding padding, border, margin",
+          "version": "Number (px)"
+        },
+        {
+          "property": "$(\"el\").innerWidth()",
+          "desc": "Width including padding, excluding border and margin",
+          "version": "Number (px)"
+        },
+        {
+          "property": "$(\"el\").innerHeight()",
+          "desc": "Height including padding, excluding border and margin",
+          "version": "Number (px)"
+        },
+        {
+          "property": "$(\"el\").outerWidth()",
+          "desc": "Width including padding and border",
+          "version": "Number (px)"
+        },
+        {
+          "property": "$(\"el\").outerWidth(true)",
+          "desc": "Width including padding, border, and margin",
+          "version": "Number (px)"
+        },
+        {
+          "property": "$(\"el\").outerHeight()",
+          "desc": "Height including padding and border",
+          "version": "Number (px)"
+        },
+        {
+          "property": "$(\"el\").outerHeight(true)",
+          "desc": "Height including padding, border, and margin",
+          "version": "Number (px)"
+        },
+        {
+          "property": "$(window).width()",
+          "desc": "Width of browser viewport",
+          "version": "Number (px)"
+        },
+        {
+          "property": "$(window).height()",
+          "desc": "Height of browser viewport",
+          "version": "Number (px)"
+        },
+        {
+          "property": "$(document).width()",
+          "desc": "Width of entire HTML document",
+          "version": "Number (px)"
+        },
+        {
+          "property": "$(document).height()",
+          "desc": "Height of entire HTML document",
+          "version": "Number (px)"
+        },
+        {
+          "property": "$(\"el\").offset().top",
+          "desc": "Distance from element top to document top",
+          "version": "Number (px)"
+        },
+        {
+          "property": "$(\"el\").offset().left",
+          "desc": "Distance from element left to document left",
+          "version": "Number (px)"
+        },
+        {
+          "property": "$(\"el\").position().top",
+          "desc": "Distance from element top to offset parent top",
+          "version": "Number (px)"
+        },
+        {
+          "property": "$(\"el\").position().left",
+          "desc": "Distance from element left to offset parent left",
+          "version": "Number (px)"
+        },
+        {
+          "property": "$(\"el\").scrollTop()",
+          "desc": "Vertical scroll amount of element",
+          "version": "Number (px)"
+        },
+        {
+          "property": "$(\"el\").scrollLeft()",
+          "desc": "Horizontal scroll amount of element",
+          "version": "Number (px)"
+        }
+      ]
+    },
+    {
+      "title": "Data Methods",
+      "desc": "",
+      "type": "table",
+      "columns": [
+        "METHOD",
+        "DESCRIPTION",
+        "EXAMPLE"
+      ],
+      "rows": [
+        {
+          "property": ".data(key)",
+          "desc": "Get value of stored data by key from first element",
+          "version": "$(\"div\").data(\"user\")"
+        },
+        {
+          "property": ".data(key, value)",
+          "desc": "Store arbitrary data on matched elements",
+          "version": "$(\"div\").data(\"user\",\"Ali\")"
+        },
+        {
+          "property": ".data(obj)",
+          "desc": "Store multiple key-value data pairs at once",
+          "version": "$(\"div\").data({id:1,name:'x'})"
+        },
+        {
+          "property": ".removeData(key)",
+          "desc": "Remove previously stored data by key",
+          "version": "$(\"div\").removeData(\"user\")"
+        },
+        {
+          "property": ".removeData()",
+          "desc": "Remove all stored data from matched elements",
+          "version": "$(\"div\").removeData()"
+        },
+        {
+          "property": "$.data(el, key)",
+          "desc": "Get data stored on a DOM element (low-level)",
+          "version": "$.data(el, 'key')"
+        },
+        {
+          "property": "$.data(el, key, value)",
+          "desc": "Set data on a DOM element (low-level)",
+          "version": "$.data(el, 'key', val)"
+        },
+        {
+          "property": "$.removeData(el, key)",
+          "desc": "Remove data stored on DOM element (low-level)",
+          "version": "$.removeData(el, 'key')"
+        },
+        {
+          "property": "data-* HTML attributes",
+          "desc": "jQuery reads HTML5 data-* attributes into .data() cache",
+          "version": "data-user-id='5'"
+        },
+        {
+          "property": ".data('user-id')",
+          "desc": "Reads data-user-id HTML attribute (camelCase supported)",
+          "version": "$(el).data('userId')"
+        }
+      ]
+    },
+    {
+      "title": "jQuery Keywords & Concepts",
+      "desc": "",
+      "type": "table",
+      "columns": [
+        "KEYWORD / CONCEPT",
+        "DESCRIPTION",
+        "NOTES"
+      ],
+      "rows": [
+        {
+          "property": "$",
+          "desc": "Alias for the jQuery function — main entry point",
+          "version": "core"
+        },
+        {
+          "property": "jQuery",
+          "desc": "The full jQuery function name (used when $ conflicts)",
+          "version": "core"
+        },
+        {
+          "property": "$(document).ready(fn)",
+          "desc": "Run code after DOM is ready but before images load",
+          "version": "core"
+        },
+        {
+          "property": "$(fn)",
+          "desc": "Shorthand for DOM ready handler",
+          "version": "core"
+        },
+        {
+          "property": "jQuery object",
+          "desc": "Array-like wrapper around matched DOM elements",
+          "version": "core"
+        },
+        {
+          "property": "Chaining",
+          "desc": "Methods return jQuery object allowing .method().method() chains",
+          "version": "$(\"p\").css(\"color\",\"red\").show()"
+        },
+        {
+          "property": "Implicit iteration",
+          "desc": "Most methods operate on all matched elements automatically",
+          "version": "core"
+        },
+        {
+          "property": ".length",
+          "desc": "Number of elements in matched jQuery set",
+          "version": "$(\"li\").length"
+        },
+        {
+          "property": ".get(n)",
+          "desc": "Get native DOM element at index n from jQuery set",
+          "version": "$(\"li\").get(0)"
+        },
+        {
+          "property": ".get()",
+          "desc": "Get all matched elements as plain JavaScript array",
+          "version": "$(\"li\").get()"
+        },
+        {
+          "property": "[n]",
+          "desc": "Access native DOM element by index from jQuery set",
+          "version": "$(\"li\")[0]"
+        },
+        {
+          "property": ".toArray()",
+          "desc": "Convert matched elements to plain JavaScript array",
+          "version": "$(\"li\").toArray()"
+        },
+        {
+          "property": "$.fn.extend(obj)",
+          "desc": "Add new methods to jQuery prototype for plugin creation",
+          "version": "$.fn.extend({myPlugin:fn})"
+        },
+        {
+          "property": "$.extend(obj)",
+          "desc": "Add static methods to jQuery namespace",
+          "version": "$.extend({myUtil:fn})"
+        },
+        {
+          "property": "Event delegation",
+          "desc": "Attach handler to parent to capture events from dynamic children",
+          "version": ".on('click','li',fn)"
+        },
+        {
+          "property": "Namespace events",
+          "desc": "Use dot notation to group events: 'click.myPlugin'",
+          "version": ".on('click.myplugin',fn)"
+        },
+        {
+          "property": ".off('.myPlugin')",
+          "desc": "Remove all handlers with specific namespace",
+          "version": ".off('click.myplugin')"
+        },
+        {
+          "property": "$.noConflict()",
+          "desc": "Restore $ to its previous owner; use jQuery instead",
+          "version": "var jq = $.noConflict()"
+        },
+        {
+          "property": "CDN include",
+          "desc": "Load jQuery from Google/Microsoft CDN or jquery.com",
+          "version": "<script src='jquery.min.js'>"
+        },
+        {
+          "property": "Slim build",
+          "desc": "jQuery slim version excludes AJAX and effects modules",
+          "version": "jquery.slim.min.js"
+        },
+        {
+          "property": "jQuery 3.x",
+          "desc": "Current major version — uses Promises/A+ compliant promises",
+          "version": "3.x"
+        },
+        {
+          "property": "$.ajax vs fetch",
+          "desc": "$.ajax wraps XMLHttpRequest; modern code may prefer fetch API",
+          "version": "comparison"
+        },
+        {
+          "property": ".on() vs .click()",
+          "desc": ".on() supports delegation and namespacing; prefer .on()",
+          "version": "best practice"
+        },
+        {
+          "property": "$(\"#id\") vs getElementById",
+          "desc": "jQuery returns jQuery object; getElementById returns DOM node",
+          "version": "difference"
+        },
+        {
+          "property": "Sizzle engine",
+          "desc": "jQuery's CSS selector engine used internally for selection",
+          "version": "internal"
+        },
+        {
+          "property": "$(\"<tag>\")",
+          "desc": "Create new DOM element using HTML string",
+          "version": "$(\"<div class='box'>\")"
+        },
+        {
+          "property": "$(\"<tag>\", props)",
+          "desc": "Create element and set properties in one call",
+          "version": "$(\"<a>\",{href:'#',text:'click'})"
+        },
+        {
+          "property": "Plugin pattern",
+          "desc": "(function($){ $.fn.plugin = function(){}; }(jQuery))",
+          "version": "plugin authoring"
+        },
+        {
+          "property": "return this",
+          "desc": "Return this from plugin method to enable chaining",
+          "version": "plugin best practice"
+        },
+        {
+          "property": "$.expr.pseudos",
+          "desc": "Add custom pseudo-class selectors (jQuery 1.8+)",
+          "version": "$.expr.pseudos.custom=fn"
+        }
+      ]
+    }
+  ]
+}

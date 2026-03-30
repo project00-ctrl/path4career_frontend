@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coding Exercises | Path4Career</title>
+    <meta name="description" content="Practice coding with interactive exercises on Path4Career learning platform">
+    <!-- Navbar styles -->
+    <link rel="stylesheet" href="../assets/css/navbar.css">
+    <!-- Exercises styles -->
+    <link rel="stylesheet" href="../assets/css/exercises.css">
+    <!-- Pyodide for Python -->
+    <script src="https://cdn.jsdelivr.net/pyodide/v0.23.4/full/pyodide.js"></script>
+    <!-- sql.js for SQL -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.8.0/sql-wasm.js"></script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- SHARED NAVBAR (injected by navbar.js) -->
+    <div id="navbar-root"></div>
+
+    <div class="exercise-container">
+
+        <!-- ═══════════════════════════════════════
+             VIEW 1: LANGUAGE SELECTION
+             ═══════════════════════════════════════ -->
+        <div id="languageView" class="view active">
+            <div class="exercise-hero">
+                <div class="exercise-hero-icon">💻</div>
+                <h1>Coding Exercises</h1>
+                <p>Choose a language and start solving challenges — from basic to intermediate!</p>
+            </div>
+
+            <div class="language-grid" id="languageGrid">
+                <!-- Rendered by JS -->
+            </div>
+        </div>
+
+        <!-- ═══════════════════════════════════════
+             VIEW 2: EXERCISE LIST
+             ═══════════════════════════════════════ -->
+        <div id="listView" class="view">
+            <div class="list-top-bar">
+                <button class="btn-back" onclick="showLanguageView()">← Back to Languages</button>
+                <div class="list-header-info">
+                    <span class="module-badge" id="listBadge">JavaScript</span>
+                    <span class="progress-text" id="listProgress">0 / 10 Completed</span>
+                </div>
+            </div>
+
+            <div class="progress-bar-wrap">
+                <div class="progress-bar-fill" id="progressBarFill" style="width: 0%"></div>
+            </div>
+
+            <div class="exercise-list" id="exerciseList">
+                <!-- Rendered by JS -->
+            </div>
+        </div>
+
+        <!-- ═══════════════════════════════════════
+             VIEW 3: CODE EDITOR
+             ═══════════════════════════════════════ -->
+        <div id="editorView" class="view">
+            <div class="editor-top-bar">
+                <button class="btn-back" onclick="showListView()">← Back to Exercises</button>
+                <div class="editor-header-info">
+                    <span class="module-badge" id="editorBadge">JavaScript</span>
+                    <span class="exercise-title-bar" id="editorTitle">Exercise 1</span>
+                </div>
+                <div class="difficulty-badge" id="editorDifficulty">Basic</div>
+            </div>
+
+            <!-- Mobile Toggle Buttons (visible only on mobile) -->
+            <div class="mobile-panel-toggle" id="mobilePanelToggle">
+                <button class="panel-toggle-btn active" id="btnShowQuestion" onclick="showPanel('question')">📋 Question</button>
+                <button class="panel-toggle-btn" id="btnShowEditor" onclick="showPanel('editor')">💻 Code Editor</button>
+            </div>
+
+            <!-- Question Description -->
+            <div class="question-panel" id="questionPanel">
+                <div class="question-number-label" id="questionNumber">Exercise 1 of 10</div>
+                <div class="question-description" id="questionDescription">
+                    <!-- Rendered by JS -->
+                </div>
+                <div class="hint-section">
+                    <div style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
+                        <button class="btn-hint" id="btnHint" onclick="toggleHint()">💡 Show Hint</button>
+                        <button class="btn-solution" id="btnSolution" onclick="toggleSolution()">📝 View
+                            Solution</button>
+                    </div>
+                    <div class="hint-text" id="hintText" style="display: none;"></div>
+                    <div class="solution-text" id="solutionText" style="display: none;">
+                        <div style="margin-bottom: 8px; font-weight: 600; color: #15803D;">Expected Answer:</div>
+                        <pre id="solutionCode"
+                            style="margin: 0; white-space: pre-wrap; font-family: 'Courier New', monospace;"></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Editor Workspace -->
+            <div class="workspace" id="editorWorkspace" style="padding: 0;">
+                <iframe id="editorIframe" src="" style="width: 100%; height: 500px; border: none; border-radius: 8px;"></iframe>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="editor-actions-bar">
+                <button class="btn-submit" id="btnSubmit" onclick="submitCode()">✓ Submit</button>
+            </div>
+
+            <!-- Result Feedback -->
+            <div class="result-feedback" id="resultFeedback" style="display: none;">
+                <div class="feedback-content" id="feedbackContent">
+                    <!-- Rendered by JS -->
+                </div>
+            </div>
+
+            <!-- Next Exercise Button -->
+            <div class="next-exercise-bar" id="nextExerciseBar" style="display: none;">
+                <button class="btn-next-exercise" id="btnNextExercise" onclick="goToNextExercise()">
+                    Next Exercise →
+                </button>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- ═══ FAQ CHATBOT ═══ -->
+    <button class="chatbot-toggle" id="chatbotToggle" onclick="toggleChatbot()" aria-label="Open FAQ Chat">
+        <span class="chatbot-toggle-icon">💬</span>
+        <span class="chatbot-toggle-pulse"></span>
+    </button>
+
+    <div class="chatbot-widget" id="chatbotWidget">
+        <div class="chatbot-header">
+            <div class="chatbot-header-info">
+                <span class="chatbot-avatar">🤖</span>
+                <div>
+                    <div class="chatbot-title">Exercise Helper</div>
+                    <div class="chatbot-subtitle">FAQ • Always Online</div>
+                </div>
+            </div>
+            <button class="chatbot-close" onclick="toggleChatbot()" aria-label="Close Chat">✕</button>
+        </div>
+        <div class="chatbot-messages" id="chatbotMessages">
+            <!-- Messages rendered by JS -->
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast"></div>
+
+    <!-- Scripts -->
+    <script src="../assets/js/navbar.js"></script>
+    <script src="../assets/js/exercises.js"></script>
+</body>
+
+</html>

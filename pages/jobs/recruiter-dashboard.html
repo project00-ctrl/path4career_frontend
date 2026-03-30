@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Recruiter Dashboard - Manage your job postings on Path4Career">
+    <title>Recruiter Dashboard - Path4Career</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../assets/css/navbar.css">
+    <link rel="stylesheet" href="../../assets/css/jobs.css">
+    <style>
+        .jobs-toast { position: fixed; bottom: 24px; right: 24px; z-index: 9999; background: var(--surface); color: var(--text-main); padding: 1rem 1.5rem; border-radius: var(--radius-md); box-shadow: var(--shadow-lg); display: flex; align-items: center; gap: 0.75rem; transform: translateX(110%); transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); border-left: 4px solid var(--success); }
+        .jobs-toast-error { border-left-color: var(--error); }
+        .jobs-toast-show { transform: translateX(0); }
+        .jobs-page-wrapper { padding-top: 10px; }
+        .jobs-page-wrapper .container { max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; }
+
+        .dashboard-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; flex-wrap: wrap; gap: 1rem; }
+        .dashboard-header h2 { color: var(--text-main); font-size: 1.75rem; }
+        .dash-stats { display: flex; gap: 1.5rem; margin-bottom: 2rem; flex-wrap: wrap; }
+        .stat-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 1.5rem; flex: 1; min-width: 150px; text-align: center; }
+        .stat-card .stat-number { font-size: 2rem; font-weight: 800; color: var(--primary); }
+        .stat-card .stat-label { color: var(--text-muted); font-size: 0.9rem; margin-top: 0.25rem; }
+        .recruiter-jobs-table { width: 100%; border-collapse: collapse; background: var(--card-bg); border-radius: var(--radius-lg); overflow: hidden; border: 1px solid var(--border); }
+        .recruiter-jobs-table thead { background: var(--surface); }
+        .recruiter-jobs-table th, .recruiter-jobs-table td { padding: 1rem 1.25rem; text-align: left; font-size: 0.9rem; }
+        .recruiter-jobs-table th { color: var(--text-secondary); font-weight: 600; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 0.5px; }
+        .recruiter-jobs-table td { color: var(--text-main); border-top: 1px solid var(--border); }
+        .recruiter-jobs-table tr:hover td { background: rgba(74, 108, 247, 0.05); }
+        .action-btns { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+        .action-btns button, .action-btns a { font-size: 0.75rem; padding: 0.35rem 0.6rem; border-radius: 6px; cursor: pointer; border: 1px solid var(--border); background: var(--surface); color: var(--text-main); text-decoration: none; transition: var(--transition); display: inline-flex; align-items: center; gap: 0.25rem; }
+        .action-btns button:hover, .action-btns a:hover { background: var(--primary); color: white; border-color: var(--primary); }
+        .action-btns .btn-danger { color: var(--error); border-color: var(--error); }
+        .action-btns .btn-danger:hover { background: var(--error); color: white; }
+    </style>
+</head>
+<body>
+    <div id="navbar-root"></div>
+
+    <div class="jobs-page-wrapper">
+        <div class="container" style="padding-top: 1rem;">
+            <div class="dashboard-header">
+                <div>
+                    <h2>👔 Recruiter Dashboard</h2>
+                    <p style="color: var(--text-muted);" id="welcomeMsg">Welcome back!</p>
+                </div>
+                <div style="display: flex; gap: 0.5rem;">
+                    <a href="recruiter-job-form.html" class="btn btn-primary" style="text-decoration:none;">+ Post New Job</a>
+                    <button class="btn btn-outline" id="logoutBtn">🚪 Logout</button>
+                </div>
+            </div>
+
+            <!-- Stats -->
+            <div class="dash-stats">
+                <div class="stat-card">
+                    <div class="stat-number" id="totalJobs">0</div>
+                    <div class="stat-label">Total Jobs</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="activeJobs">0</div>
+                    <div class="stat-label">Active Jobs</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="totalApps">0</div>
+                    <div class="stat-label">Total Applications</div>
+                </div>
+            </div>
+
+            <!-- Jobs Table -->
+            <h3 style="color: var(--text-main); margin-bottom: 1rem;">Your Job Listings</h3>
+            <div id="jobsTableContainer">
+                <div style="text-align:center; padding:2rem; color: var(--text-muted);">Loading your jobs...</div>
+            </div>
+        </div>
+    </div>
+
+    <footer><p>&copy; 2026 Path4Career. All rights reserved.</p></footer>
+
+    <script src="../../assets/js/navbar.js"></script>
+    <script src="../../assets/js/jobs-api.js"></script>
+    <script src="../../assets/js/recruiter.js"></script>
+</body>
+</html>

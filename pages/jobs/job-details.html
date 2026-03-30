@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Job details - Path4Career">
+    <title>Job Details - Path4Career</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../assets/css/navbar.css">
+    <link rel="stylesheet" href="../../assets/css/jobs.css">
+    <style>
+        .jobs-toast { position: fixed; bottom: 24px; right: 24px; z-index: 9999; background: var(--surface); color: var(--text-main); padding: 1rem 1.5rem; border-radius: var(--radius-md); box-shadow: var(--shadow-lg); display: flex; align-items: center; gap: 0.75rem; transform: translateX(110%); transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); border-left: 4px solid var(--success); }
+        .jobs-toast-error { border-left-color: var(--error); }
+        .jobs-toast-show { transform: translateX(0); }
+        .jobs-page-wrapper { padding-top: 10px; }
+        .jobs-page-wrapper .container { max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; }
+        .back-link { color: var(--text-muted); text-decoration: none; display: inline-flex; align-items: center; gap: 0.5rem; margin-bottom: 1.5rem; transition: color 0.2s; }
+        .back-link:hover { color: var(--primary); }
+        .sidebar-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 1.5rem; position: sticky; top: 100px; }
+        .sidebar-card h4 { color: var(--text-main); margin-bottom: 1rem; }
+        .sidebar-item { display: flex; align-items: center; gap: 0.75rem; padding: 0.75rem 0; border-bottom: 1px solid var(--border); color: var(--text-secondary); font-size: 0.95rem; }
+        .sidebar-item:last-child { border-bottom: none; }
+        .sidebar-item strong { color: var(--text-main); }
+        .job-detail-header { margin-bottom: 2rem; }
+        .job-detail-header h1 { font-size: 2rem; padding: 0; margin-bottom: 0.5rem; color: var(--text-main); letter-spacing: normal; }
+        .job-detail-header .company-line { color: var(--text-secondary); font-size: 1.1rem; margin-bottom: 1rem; }
+        .job-detail-content { background: var(--card-bg); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 2rem; }
+        .job-detail-content h3 { color: var(--text-main); margin: 1.5rem 0 0.75rem 0; font-size: 1.25rem; }
+        .job-detail-content h3:first-child { margin-top: 0; }
+        .job-detail-content p, .job-detail-content li { color: var(--text-muted); line-height: 1.7; }
+        .job-detail-content ul { padding-left: 1.5rem; margin-top: 0.5rem; }
+        .job-detail-content li { margin-bottom: 0.5rem; }
+    </style>
+</head>
+<body>
+    <div id="navbar-root"></div>
+
+    <div class="jobs-page-wrapper">
+        <div class="container" style="padding-top: 1rem;">
+            <a href="jobs-listing.html" class="back-link">← Back to Jobs</a>
+
+            <div class="job-details-grid" id="jobDetailsContainer">
+                <div>
+                    <div class="job-detail-header">
+                        <div class="job-card-tags" id="detailTags" style="margin-bottom: 1rem;"></div>
+                        <h1 id="detailTitle">Loading...</h1>
+                        <p class="company-line" id="detailCompany"></p>
+                    </div>
+                    <div class="job-detail-content" id="detailContent">
+                        <p>Loading job details...</p>
+                    </div>
+                </div>
+
+                <aside>
+                    <div class="sidebar-card">
+                        <h4>Job Overview</h4>
+                        <div id="sidebarDetails">
+                            <div class="sidebar-item">Loading...</div>
+                        </div>
+                        <button class="btn btn-primary btn-full" id="applyBtn" style="margin-top: 1.5rem;" onclick="openApplyModal()">
+                            Apply Now →
+                        </button>
+                        <p id="alreadyApplied" style="display:none; color: var(--success); text-align:center; margin-top:1rem; font-weight:600;">✓ You've already applied</p>
+                    </div>
+                </aside>
+            </div>
+        </div>
+    </div>
+
+    <!-- Apply Choice Modal (shown when applyUrl exists) -->
+    <div class="modal" id="choiceModal">
+        <div class="modal-content" style="max-width: 460px;">
+            <button class="close-btn" onclick="closeChoiceModal()">&times;</button>
+            <div class="modal-header" style="text-align: center;">
+                <div class="modal-title-area" style="width: 100%;">
+                    <h2>How would you like to apply?</h2>
+                    <p class="modal-company-name" id="choiceJobTitle"></p>
+                </div>
+            </div>
+            <div class="modal-body-content" style="display: flex; flex-direction: column; gap: 1rem;">
+                <p style="color: var(--text-muted); text-align: center;">This job has an external application link. Choose how you'd like to apply:</p>
+
+                <button class="btn btn-primary btn-full" onclick="chooseInAppApply()" style="padding: 1rem; font-size: 1rem;">
+                    📝 Submit Application Here
+                    <br><small style="opacity: 0.8; font-weight: 400;">Fill out our form & track your status</small>
+                </button>
+
+                <a id="externalApplyLink" href="#" target="_blank" rel="noopener" class="btn btn-outline btn-full" style="padding: 1rem; font-size: 1rem; text-decoration: none; text-align: center; display: block;">
+                    🔗 Apply on Company Website
+                    <br><small style="opacity: 0.8;">Opens in a new tab</small>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Apply Modal -->
+    <div class="modal" id="applyModal">
+        <div class="modal-content" style="max-width: 500px;">
+            <button class="close-btn" onclick="closeApplyModal()">&times;</button>
+            <div class="modal-header">
+                <div class="modal-title-area">
+                    <h2>Apply for this Position</h2>
+                    <p class="modal-company-name" id="applyJobTitle"></p>
+                </div>
+            </div>
+            <div class="modal-body-content">
+                <form id="applicationForm" class="modern-form-group">
+                    <div>
+                        <label>Full Name *</label>
+                        <input type="text" class="modern-form-input" id="appName" required placeholder="Your full name">
+                    </div>
+                    <div>
+                        <label>Email *</label>
+                        <input type="email" class="modern-form-input" id="appEmail" required placeholder="your@email.com">
+                    </div>
+                    <div>
+                        <label>Phone</label>
+                        <input type="tel" class="modern-form-input" id="appPhone" placeholder="Your phone number">
+                    </div>
+                    <div>
+                        <label>Why are you a good fit?</label>
+                        <textarea class="modern-form-input" id="appPitch" rows="4" placeholder="Tell us why you're perfect for this role..."></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-full">Submit Application</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <footer><p>&copy; 2026 Path4Career. All rights reserved.</p></footer>
+
+    <script src="../../assets/js/navbar.js"></script>
+    <script src="../../assets/js/jobs-api.js"></script>
+    <script src="../../assets/js/job-details.js"></script>
+</body>
+</html>

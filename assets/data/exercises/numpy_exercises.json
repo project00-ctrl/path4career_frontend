@@ -1,0 +1,127 @@
+{
+    "language": "NumPy",
+    "icon": "Nu",
+    "color": "#013243",
+    "exercises": [
+        {
+            "id": 1,
+            "title": "Create Array",
+            "difficulty": "basic",
+            "description": "Create a NumPy array [1,2,3,4,5] and print it.",
+            "starterCode": "import numpy as np\n# Create and print array",
+            "expectedOutput": "",
+            "validationType": "outputContains",
+            "validationValue": "[1 2 3 4 5]",
+            "hint": "arr = np.array([1,2,3,4,5]); print(arr)",
+            "solutionCode": "# The hint provides the solution:\n# arr = np.array([1,2,3,4,5]); print(arr)"
+        },
+        {
+            "id": 2,
+            "title": "Array Shape",
+            "difficulty": "basic",
+            "description": "Create a 2x3 array and print its shape.",
+            "starterCode": "import numpy as np\narr = np.array([[1,2,3],[4,5,6]])\n# Print shape",
+            "expectedOutput": "",
+            "validationType": "outputContains",
+            "validationValue": "(2, 3)",
+            "hint": "print(arr.shape)",
+            "solutionCode": "# The hint provides the solution:\n# print(arr.shape)"
+        },
+        {
+            "id": 3,
+            "title": "Zeros Array",
+            "difficulty": "basic",
+            "description": "Create a 3x3 array of zeros and print it.",
+            "starterCode": "import numpy as np\n# Create zeros array",
+            "expectedOutput": "",
+            "validationType": "outputContains",
+            "validationValue": "0.",
+            "hint": "print(np.zeros((3,3)))",
+            "solutionCode": "# The hint provides the solution:\n# print(np.zeros((3,3)))"
+        },
+        {
+            "id": 4,
+            "title": "Arange",
+            "difficulty": "basic",
+            "description": "Create an array from 0 to 9 using arange. Print it.",
+            "starterCode": "import numpy as np\n# Use arange",
+            "expectedOutput": "",
+            "validationType": "outputContains",
+            "validationValue": "[0 1 2 3 4 5 6 7 8 9]",
+            "hint": "print(np.arange(10))",
+            "solutionCode": "# The hint provides the solution:\n# print(np.arange(10))"
+        },
+        {
+            "id": 5,
+            "title": "Sum and Mean",
+            "difficulty": "basic",
+            "description": "Find sum and mean of [10,20,30,40,50]. Print both.",
+            "starterCode": "import numpy as np\narr = np.array([10,20,30,40,50])\n# Print sum and mean",
+            "expectedOutput": "",
+            "validationType": "outputContains",
+            "validationValue": "150",
+            "hint": "print(np.sum(arr)); print(np.mean(arr))",
+            "solutionCode": "# The hint provides the solution:\n# print(np.sum(arr)); print(np.mean(arr))"
+        },
+        {
+            "id": 6,
+            "title": "Reshape",
+            "difficulty": "intermediate",
+            "description": "Reshape [1..12] into a 3x4 matrix. Print it.",
+            "starterCode": "import numpy as np\narr = np.arange(1,13)\n# Reshape to 3x4 and print",
+            "expectedOutput": "",
+            "validationType": "outputContains",
+            "validationValue": "[[ 1  2  3  4]",
+            "hint": "print(arr.reshape(3,4))",
+            "solutionCode": "# The hint provides the solution:\n# print(arr.reshape(3,4))"
+        },
+        {
+            "id": 7,
+            "title": "Indexing",
+            "difficulty": "intermediate",
+            "description": "From [[1,2,3],[4,5,6]], access and print element at row 1, col 2.",
+            "starterCode": "import numpy as np\narr = np.array([[1,2,3],[4,5,6]])\n# Print element at [1][2]",
+            "expectedOutput": "",
+            "validationType": "outputContains",
+            "validationValue": "6",
+            "hint": "print(arr[1,2])",
+            "solutionCode": "# The hint provides the solution:\n# print(arr[1,2])"
+        },
+        {
+            "id": 8,
+            "title": "Boolean Mask",
+            "difficulty": "intermediate",
+            "description": "From [10,20,30,40,50], print elements greater than 25.",
+            "starterCode": "import numpy as np\narr = np.array([10,20,30,40,50])\n# Filter and print",
+            "expectedOutput": "",
+            "validationType": "outputContains",
+            "validationValue": "30",
+            "hint": "print(arr[arr > 25])",
+            "solutionCode": "# The hint provides the solution:\n# print(arr[arr > 25])"
+        },
+        {
+            "id": 9,
+            "title": "Dot Product",
+            "difficulty": "intermediate",
+            "description": "Compute dot product of [1,2,3] and [4,5,6]. Print result.",
+            "starterCode": "import numpy as np\na = np.array([1,2,3])\nb = np.array([4,5,6])\n# Dot product",
+            "expectedOutput": "",
+            "validationType": "outputContains",
+            "validationValue": "32",
+            "hint": "print(np.dot(a,b))",
+            "solutionCode": "# The hint provides the solution:\n# print(np.dot(a,b))"
+        },
+        {
+            "id": 10,
+            "title": "Random Array",
+            "difficulty": "intermediate",
+            "description": "Generate a 2x3 array of random integers 1-100. Print it.",
+            "starterCode": "import numpy as np\n# Random integers",
+            "expectedOutput": "",
+            "validationType": "outputContains",
+            "validationValue": "",
+            "hint": "print(np.random.randint(1,100,size=(2,3)))",
+            "solutionCode": "# The hint provides the solution:\n# print(np.random.randint(1,100,size=(2,3)))"
+        }
+    ]
+}

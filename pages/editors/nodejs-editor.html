@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live Node.js Simulator - CareerPath</title>
+    <link rel="stylesheet" href="../../assets/css/editor.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+</head>
+<body>
+    
+    <nav class="editor-nav">
+        <div class="logo-area">
+            <img class="logo-icon" src="../../assets/images/path4career-icon.png" alt="Path4Career" style="width:32px;height:32px;border-radius:8px;">
+            <div class="logo-text">Path4Career</div>
+            <div class="title-badge">⬢ Node.js Workspace</div>
+        </div>
+        <button class="run-btn" id="runBtn" onclick="executeNode()">▶ Run Server Code</button>
+    </nav>
+
+    <div class="workspace">
+        <div class="editor-pane">
+            <p class="pane-label">
+                <span>app.js</span>
+                <span class="status-text">Virtual Node Simulator</span>
+            </p>
+            <textarea id="nodejsInput" spellcheck="false" aria-label="Node.js Input"></textarea>
+        </div>
+        
+        <div class="result-pane">
+            <p class="pane-label">Terminal Output</p>
+            <div id="consoleDiv">
+                <span class="log-system">Virtual Node.js Engine Ready. Click "Run Server Code" to execute.</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+const nodejsInput = document.getElementById('nodejsInput');
+        const consoleDiv = document.getElementById('consoleDiv');
+        const runBtn = document.getElementById('runBtn');
+
+        // 1. Fetch saved code or use default Node template
+        const savedCode = localStorage.getItem('careerPathNodejsCode');
+        const defaultCode = `// Welcome to the Serverless Node.js Simulator! 🚀
+const os = require('os');
+const crypto = require('crypto');
+const fs = require('fs');
+
+console.log("Hello from the Virtual Node.js server!");
+
+// 1. Test the 'os' module
+console.log("Server OS:", os.type(), os.release());
+
+// 2. Test the 'crypto' module
+const hash = crypto.createHash('sha256').update('CareerPath').digest('hex');
+console.log("\\nSHA-256 Hash of 'CareerPath':");
+console.log(hash);
+
+// 3. Test the 'fs' (File System) module
+console.log("\\nTesting Virtual File System:");
+fs.writeFileSync('test.txt', 'This is saved in virtual memory!');
+const fileData = fs.readFileSync('test.txt');
+console.log("Read from file:", fileData);
+`;
+
+        nodejsInput.value = savedCode ? savedCode : defaultCode;
+
+        // 2. Smart Indentation Engine
+        nodejsInput.addEventListener('keydown', function(e) {
+            if (e.key === 'Tab') {
+                e.preventDefault(); 
+                const start = this.selectionStart;
+                const end = this.selectionEnd;
+                const spaces = "    "; // 4 spaces
+                this.value = this.value.substring(0, start) + spaces + this.value.substring(end);
+                this.selectionStart = this.selectionEnd = start + spaces.length;
+                this.dispatchEvent(new Event('input'));
+            }
+            
+            if (e.key === 'Enter') {
+                e.preventDefault(); 
+                const start = this.selectionStart;
+                const end = this.selectionEnd;
+                const textBeforeCursor = this.value.substring(0, start);
+                const lines = textBeforeCursor.split(/\r?\n/);
+                const currentLine = lines[lines.length - 1] || "";
+                
+                const leadingSpacesMatch = currentLine.match(/^(\s*)/);
+                let indentSpaces = leadingSpacesMatch ? leadingSpacesMatch[1] : '';
+                
+                // Add 4 spaces if line ends with {
+                if (currentLine.trim().endsWith('{')) {
+                    indentSpaces += "    ";
+                }
+                
+                const insertText = "\n" + indentSpaces;
+                this.value = this.value.substring(0, start) + insertText + this.value.substring(end);
+                this.selectionStart = this.selectionEnd = start + insertText.length;
+                this.dispatchEvent(new Event('input'));
+            }
+        });
+
+        // 3. Auto-Save
+        nodejsInput.addEventListener('input', () => {
+            localStorage.setItem('careerPathNodejsCode', nodejsInput.value);
+        });
+
+        function appendToConsole(text, className) {
+            const span = document.createElement('span');
+            span.className = className;
+            span.textContent = text + '\n';
+            consoleDiv.appendChild(span);
+            consoleDiv.scrollTop = consoleDiv.scrollHeight;
+        }
+
+        // 4. The Engine: Virtual Node Simulator (100% Serverless)
+        function executeNode() {
+            const code = nodejsInput.value.trim();
+            
+            if (!code) {
+                consoleDiv.innerHTML = '<span class="log-error">Please enter some Node.js code.</span>';
+                return;
+            }
+
+            consoleDiv.innerHTML = '<span class="log-loading">>>> Executing in Virtual Node Simulator...</span>\n';
+
+            // --- VIRTUAL NODE.JS ENVIRONMENT --- //
+            
+            // 1. Intercept console.log safely
+            const customConsole = {
+                log: function(...args) {
+                    const message = args.map(arg => {
+                        if (typeof arg === 'object') return JSON.stringify(arg, null, 2);
+                        return String(arg);
+                    }).join(' ');
+                    appendToConsole(message, 'log-normal');
+                },
+                error: function(...args) {
+                    appendToConsole(args.join(' '), 'log-error');
+                }
+            };
+
+            // 2. Build the 'require' Polyfill (Mocks Backend Modules)
+            const customRequire = function(moduleName) {
+                // Mock 'os' module
+                if (moduleName === 'os') {
+                    return {
+                        type: () => "Browser-OS (Virtual Node)",
+                        release: () => navigator.platform,
+                        platform: () => "web",
+                        cpus: () => [{ model: "Virtual Web CPU", speed: 2000 }]
+                    };
+                }
+                
+                // Mock 'crypto' module
+                if (moduleName === 'crypto') {
+                    return {
+                        createHash: function(algo) {
+                            let payload = '';
+                            return {
+                                update: function(data) { payload += data; return this; },
+                                digest: function(format) {
+                                    if (window.CryptoJS && algo === 'sha256') {
+                                        return CryptoJS.SHA256(payload).toString();
+                                    }
+                                    return `[Simulated ${algo} Hash]`;
+                                }
+                            };
+                        },
+                        randomBytes: (size) => ({ toString: () => "mock-random-bytes" })
+                    };
+                }
+
+                // Mock 'fs' (File System) module
+                if (moduleName === 'fs') {
+                    // We store files in a temporary RAM object while the script runs
+                    const virtualHardDrive = {};
+                    return {
+                        writeFileSync: (path, data) => { virtualHardDrive[path] = data; },
+                        readFileSync: (path) => { 
+                            if(virtualHardDrive[path]) return virtualHardDrive[path];
+                            throw new Error(`ENOENT: no such file or directory, open '${path}'`);
+                        },
+                        existsSync: (path) => !!virtualHardDrive[path]
+                    };
+                }
+
+                // Mock 'path' module
+                if (moduleName === 'path') {
+                    return {
+                        join: (...args) => args.join('/'),
+                        resolve: (...args) => '/' + args.join('/')
+                    };
+                }
+
+                throw new Error(`Cannot find module '${moduleName}' in the serverless browser simulator.`);
+            };
+
+            // 3. Execute!
+            try {
+                // Inject our custom console and require functions securely into the script
+                const executeFn = new Function('console', 'require', `"use strict";\n${code}`);
+                executeFn(customConsole, customRequire);
+                
+                appendToConsole('\n--- Execution Finished ---', 'log-system');
+            } catch (e) {
+                appendToConsole('\nRuntime Error:\n' + e.message, 'log-error');
+            }
+        }
+</script>
+</body>
+</html>

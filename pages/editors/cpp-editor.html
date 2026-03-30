@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live C++ Editor - CareerPath</title>
+    <link rel="stylesheet" href="../../assets/css/editor.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Fira+Code:wght@400;500&display=swap"
+        rel="stylesheet">
+
+    <script src="https://cdn.jsdelivr.net/npm/jscpp@2.0.8/dist/JSCPP.es5.min.js"></script>
+</head>
+
+<body>
+
+    <nav class="editor-nav">
+        <div class="logo-area">
+            <img class="logo-icon" src="../../assets/images/path4career-icon.png" alt="Path4Career" style="width:32px;height:32px;border-radius:8px;">
+            <div class="logo-text">Path4Career</div>
+            <div class="title-badge">⚙️ C++ Workspace</div>
+        </div>
+        <button class="run-btn" id="runBtn" onclick="handleRunClick()">▶ Compile & Run</button>
+    </nav>
+
+    <div class="workspace">
+        <div class="editor-pane">
+            <p class="pane-label">
+                <span>main.cpp</span>
+                <span class="status-text">JSCPP Engine (Serverless)</span>
+            </p>
+            <textarea id="cppInput" spellcheck="false" aria-label="C++ Input"></textarea>
+        </div>
+
+        <div class="result-pane">
+            <p class="pane-label">Terminal Output</p>
+            <div id="consoleDiv">
+                <span class="log-system">✔ In-Browser C++ Engine Ready. Click "Compile & Run".</span>
+            </div>
+        </div>
+    </div>
+
+    <div id="inputModal" class="modal-overlay">
+        <div class="modal-content">
+            <h3><span style="color: #00ffb3;">⚡</span> Console Input Required</h3>
+            <p>Your code uses <code>cin</code> to request input. Please provide the values below <strong>(separated by
+                    spaces or new lines)</strong> before running.</p>
+            <textarea id="modalStdin" placeholder="Enter inputs here..."></textarea>
+            <div class="modal-actions">
+                <button class="btn-cancel" onclick="closeModal()">Cancel</button>
+                <button class="btn-confirm" onclick="confirmAndRun()">▶ Continue Execution</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+const cppInput = document.getElementById('cppInput');
+        const consoleDiv = document.getElementById('consoleDiv');
+        const runBtn = document.getElementById('runBtn');
+
+        const inputModal = document.getElementById('inputModal');
+        const modalStdin = document.getElementById('modalStdin');
+
+        // 1. Default C++ template
+        const savedCode = localStorage.getItem('careerPathCppCode');
+        const defaultCode = `#include <iostream>
+using namespace std;
+
+int main() {
+    cout << "--- C++ Serverless Engine ---" << endl;
+    
+    int age;
+    cout << "Enter your age: ";
+    cin >> age;
+    
+    cout << "You are " << age << " years old!" << endl;
+    
+    if(age >= 18) {
+        cout << "Access Granted." << endl;
+    } else {
+        cout << "Access Denied." << endl;
+    }
+    
+    return 0;
+}`;
+        cppInput.value = savedCode ? savedCode : defaultCode;
+
+        // 2. Smart Indentation Engine
+        cppInput.addEventListener('keydown', function (e) {
+            if (e.key === 'Tab') {
+                e.preventDefault();
+                const start = this.selectionStart;
+                const end = this.selectionEnd;
+                const spaces = "    ";
+                this.value = this.value.substring(0, start) + spaces + this.value.substring(end);
+                this.selectionStart = this.selectionEnd = start + spaces.length;
+                this.dispatchEvent(new Event('input'));
+            }
+
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                const start = this.selectionStart;
+                const end = this.selectionEnd;
+                const textBeforeCursor = this.value.substring(0, start);
+                const lines = textBeforeCursor.split(/\r?\n/);
+                const currentLine = lines[lines.length - 1] || "";
+
+                const leadingSpacesMatch = currentLine.match(/^(\s*)/);
+                let indentSpaces = leadingSpacesMatch ? leadingSpacesMatch[1] : '';
+
+                if (currentLine.trim().endsWith('{')) {
+                    indentSpaces += "    ";
+                }
+
+                const insertText = "\n" + indentSpaces;
+                this.value = this.value.substring(0, start) + insertText + this.value.substring(end);
+                this.selectionStart = this.selectionEnd = start + insertText.length;
+                this.dispatchEvent(new Event('input'));
+            }
+        });
+
+        // 3. Auto-Save
+        cppInput.addEventListener('input', () => {
+            localStorage.setItem('careerPathCppCode', cppInput.value);
+        });
+
+        function appendToConsole(text, className) {
+            const span = document.createElement('span');
+            span.className = className;
+            span.textContent = text;
+            consoleDiv.appendChild(span);
+            consoleDiv.scrollTop = consoleDiv.scrollHeight;
+        }
+
+        // 4. Smart Execution Flow (Detects if Modal is needed)
+        function handleRunClick() {
+            const code = cppInput.value.trim();
+            if (!code) {
+                consoleDiv.innerHTML = '<span class="log-error">Please enter some C++ code.</span>';
+                return;
+            }
+
+            // Detect 'cin >>' or 'scanf'
+            if (/\bcin\s*>>/.test(code) || /\bscanf\s*\(/.test(code)) {
+                inputModal.style.display = 'flex';
+                modalStdin.value = localStorage.getItem('careerPathCppStdin') || '';
+                modalStdin.focus();
+            } else {
+                executeCppCode("");
+            }
+        }
+
+        function closeModal() {
+            inputModal.style.display = 'none';
+        }
+
+        function confirmAndRun() {
+            inputModal.style.display = 'none';
+            const stdinData = modalStdin.value;
+            localStorage.setItem('careerPathCppStdin', stdinData);
+            executeCppCode(stdinData);
+        }
+
+        // 5. The Engine: JSCPP Execution
+        function executeCppCode(stdinString) {
+            const code = cppInput.value.trim();
+            consoleDiv.innerHTML = '<span class="log-loading">>>> Compiling C++...</span>\n';
+            runBtn.disabled = true;
+
+            // Configure the JSCPP Interpreter
+            const config = {
+                stdio: {
+                    write: function (s) {
+                        appendToConsole(s, 'log-normal');
+                    }
+                }
+            };
+
+            // Small delay to allow UI to update to "Compiling..." before freezing for compilation
+            setTimeout(() => {
+                try {
+                    // JSCPP takes the code, the input string (for cin), and config
+                    JSCPP.run(code, stdinString, config);
+                    appendToConsole('\n\n--- Execution Finished ---', 'log-system');
+                } catch (err) {
+                    // Clean up internal JSCPP error traces for students
+                    let cleanError = err.message || err.toString();
+                    appendToConsole('\nCompilation/Runtime Error:\n' + cleanError, 'log-error');
+                } finally {
+                    runBtn.disabled = false;
+                }
+            }, 50);
+        }
+</script>
+</body>
+
+</html>

@@ -1,0 +1,2033 @@
+{
+  "sections": [
+    {
+      "title": "Project Setup & Management Commands",
+      "desc": "",
+      "type": "table",
+      "columns": [
+        "COMMAND / SYNTAX",
+        "DESCRIPTION",
+        "CONTEXT"
+      ],
+      "rows": [
+        {
+          "property": "pip install django",
+          "desc": "Install Django via pip",
+          "version": "terminal"
+        },
+        {
+          "property": "django-admin startproject mysite",
+          "desc": "Create a new Django project named mysite",
+          "version": "terminal"
+        },
+        {
+          "property": "django-admin startapp myapp",
+          "desc": "Create a new app inside the project",
+          "version": "terminal"
+        },
+        {
+          "property": "python manage.py runserver",
+          "desc": "Start development server on port 8000",
+          "version": "terminal"
+        },
+        {
+          "property": "python manage.py runserver 8080",
+          "desc": "Start dev server on custom port",
+          "version": "terminal"
+        },
+        {
+          "property": "python manage.py makemigrations",
+          "desc": "Generate migration files from model changes",
+          "version": "terminal"
+        },
+        {
+          "property": "python manage.py makemigrations appname",
+          "desc": "Generate migrations for a specific app",
+          "version": "terminal"
+        },
+        {
+          "property": "python manage.py migrate",
+          "desc": "Apply pending migrations to the database",
+          "version": "terminal"
+        },
+        {
+          "property": "python manage.py migrate appname 0001",
+          "desc": "Migrate app to a specific migration version",
+          "version": "terminal"
+        },
+        {
+          "property": "python manage.py showmigrations",
+          "desc": "List all migrations and their applied status",
+          "version": "terminal"
+        },
+        {
+          "property": "python manage.py sqlmigrate app 0001",
+          "desc": "Show SQL that a migration would execute",
+          "version": "terminal"
+        },
+        {
+          "property": "python manage.py createsuperuser",
+          "desc": "Create an admin superuser account",
+          "version": "terminal"
+        },
+        {
+          "property": "python manage.py changepassword username",
+          "desc": "Change password for a user",
+          "version": "terminal"
+        },
+        {
+          "property": "python manage.py shell",
+          "desc": "Open interactive Python shell with Django loaded",
+          "version": "terminal"
+        },
+        {
+          "property": "python manage.py shell_plus",
+          "desc": "Enhanced shell with all models auto-imported (django-extensions)",
+          "version": "terminal"
+        },
+        {
+          "property": "python manage.py collectstatic",
+          "desc": "Collect static files into STATIC_ROOT",
+          "version": "terminal"
+        },
+        {
+          "property": "python manage.py check",
+          "desc": "Run system checks for project issues",
+          "version": "terminal"
+        },
+        {
+          "property": "python manage.py test",
+          "desc": "Run all test cases in the project",
+          "version": "terminal"
+        },
+        {
+          "property": "python manage.py test appname",
+          "desc": "Run tests for a specific app",
+          "version": "terminal"
+        },
+        {
+          "property": "python manage.py dumpdata appname",
+          "desc": "Serialize app data to JSON fixture",
+          "version": "terminal"
+        },
+        {
+          "property": "python manage.py loaddata fixture.json",
+          "desc": "Load data from a JSON fixture file",
+          "version": "terminal"
+        },
+        {
+          "property": "python manage.py flush",
+          "desc": "Delete all data from the database",
+          "version": "terminal"
+        },
+        {
+          "property": "python manage.py dbshell",
+          "desc": "Open the database command-line client",
+          "version": "terminal"
+        },
+        {
+          "property": "python manage.py inspectdb",
+          "desc": "Generate models from existing database tables",
+          "version": "terminal"
+        },
+        {
+          "property": "INSTALLED_APPS",
+          "desc": "settings.py list of active apps; add your app here",
+          "version": "settings.py"
+        },
+        {
+          "property": "DATABASES",
+          "desc": "settings.py dict configuring database engine and credentials",
+          "version": "settings.py"
+        },
+        {
+          "property": "DEBUG = True",
+          "desc": "Enable debug mode — never True in production",
+          "version": "settings.py"
+        },
+        {
+          "property": "ALLOWED_HOSTS",
+          "desc": "List of host/domain names the Django site can serve",
+          "version": "settings.py"
+        },
+        {
+          "property": "STATIC_URL",
+          "desc": "URL prefix for serving static files",
+          "version": "settings.py"
+        },
+        {
+          "property": "MEDIA_ROOT / MEDIA_URL",
+          "desc": "Filesystem path and URL for user-uploaded files",
+          "version": "settings.py"
+        }
+      ]
+    },
+    {
+      "title": "Models",
+      "desc": "",
+      "type": "table",
+      "columns": [
+        "SYNTAX / METHOD",
+        "DESCRIPTION",
+        "MODULE"
+      ],
+      "rows": [
+        {
+          "property": "from django.db import models",
+          "desc": "Import models base module",
+          "version": "django.db"
+        },
+        {
+          "property": "class MyModel(models.Model):",
+          "desc": "Define a database model class",
+          "version": "models.py"
+        },
+        {
+          "property": "class Meta:",
+          "desc": "Inner class for model metadata options",
+          "version": "models.py"
+        },
+        {
+          "property": "Meta: ordering = ['-created_at']",
+          "desc": "Default queryset ordering for the model",
+          "version": "Meta"
+        },
+        {
+          "property": "Meta: verbose_name = 'Article'",
+          "desc": "Human-readable singular name for admin",
+          "version": "Meta"
+        },
+        {
+          "property": "Meta: verbose_name_plural = 'Articles'",
+          "desc": "Human-readable plural name for admin",
+          "version": "Meta"
+        },
+        {
+          "property": "Meta: db_table = 'custom_table'",
+          "desc": "Override the database table name",
+          "version": "Meta"
+        },
+        {
+          "property": "Meta: unique_together = [['f1','f2']]",
+          "desc": "Composite unique constraint across multiple fields",
+          "version": "Meta"
+        },
+        {
+          "property": "Meta: indexes = [models.Index(fields=['name'])]",
+          "desc": "Add database index on field(s)",
+          "version": "Meta"
+        },
+        {
+          "property": "Meta: constraints = [...]",
+          "desc": "Define database-level constraints (Django 2.2+)",
+          "version": "Meta"
+        },
+        {
+          "property": "Meta: abstract = True",
+          "desc": "Make model abstract — no table created, used for inheritance",
+          "version": "Meta"
+        },
+        {
+          "property": "def __str__(self):",
+          "desc": "String representation shown in admin and shell",
+          "version": "models.py"
+        },
+        {
+          "property": "def save(self, *args, **kwargs):",
+          "desc": "Override save method to add custom logic",
+          "version": "models.py"
+        },
+        {
+          "property": "def delete(self, *args, **kwargs):",
+          "desc": "Override delete method to add custom logic",
+          "version": "models.py"
+        },
+        {
+          "property": "def get_absolute_url(self):",
+          "desc": "Returns canonical URL for this model instance",
+          "version": "models.py"
+        },
+        {
+          "property": "@property",
+          "desc": "Define a computed property on the model",
+          "version": "models.py"
+        },
+        {
+          "property": "objects",
+          "desc": "Default manager — MyModel.objects.all()",
+          "version": "manager"
+        },
+        {
+          "property": "objects = models.Manager()",
+          "desc": "Explicitly define the default manager",
+          "version": "models.py"
+        },
+        {
+          "property": "class MyManager(models.Manager):",
+          "desc": "Custom manager to add reusable queryset methods",
+          "version": "models.py"
+        },
+        {
+          "property": "pre_save / post_save signal",
+          "desc": "Signals fired before/after model.save()",
+          "version": "signals"
+        },
+        {
+          "property": "pre_delete / post_delete signal",
+          "desc": "Signals fired before/after model.delete()",
+          "version": "signals"
+        },
+        {
+          "property": "ForeignKey(Model, on_delete=CASCADE)",
+          "desc": "Many-to-one relationship",
+          "version": "relations"
+        },
+        {
+          "property": "OneToOneField(Model, on_delete=CASCADE)",
+          "desc": "One-to-one relationship",
+          "version": "relations"
+        },
+        {
+          "property": "ManyToManyField(Model)",
+          "desc": "Many-to-many relationship",
+          "version": "relations"
+        },
+        {
+          "property": "on_delete=models.CASCADE",
+          "desc": "Delete related objects when parent is deleted",
+          "version": "on_delete"
+        },
+        {
+          "property": "on_delete=models.SET_NULL",
+          "desc": "Set FK to NULL when parent deleted (null=True required)",
+          "version": "on_delete"
+        },
+        {
+          "property": "on_delete=models.PROTECT",
+          "desc": "Prevent deletion if related objects exist",
+          "version": "on_delete"
+        },
+        {
+          "property": "on_delete=models.SET_DEFAULT",
+          "desc": "Set FK to default value when parent deleted",
+          "version": "on_delete"
+        },
+        {
+          "property": "related_name='posts'",
+          "desc": "Name for reverse relation from related model",
+          "version": "FK option"
+        },
+        {
+          "property": "related_query_name='post'",
+          "desc": "Name used in reverse filter lookups",
+          "version": "FK option"
+        }
+      ]
+    },
+    {
+      "title": "Field Types",
+      "desc": "",
+      "type": "table",
+      "columns": [
+        "FIELD TYPE",
+        "DESCRIPTION",
+        "KEY OPTIONS"
+      ],
+      "rows": [
+        {
+          "property": "CharField",
+          "desc": "Short-to-medium string field",
+          "version": "max_length required"
+        },
+        {
+          "property": "TextField",
+          "desc": "Unlimited length text field",
+          "version": "—"
+        },
+        {
+          "property": "IntegerField",
+          "desc": "Integer (-2147483648 to 2147483647)",
+          "version": "—"
+        },
+        {
+          "property": "BigIntegerField",
+          "desc": "64-bit integer",
+          "version": "—"
+        },
+        {
+          "property": "SmallIntegerField",
+          "desc": "Small integer (-32768 to 32767)",
+          "version": "—"
+        },
+        {
+          "property": "PositiveIntegerField",
+          "desc": "Non-negative integer (0 to 2147483647)",
+          "version": "—"
+        },
+        {
+          "property": "BigAutoField",
+          "desc": "64-bit auto-incrementing primary key (default in Django 3.2+)",
+          "version": "primary_key=True"
+        },
+        {
+          "property": "AutoField",
+          "desc": "Auto-incrementing integer primary key",
+          "version": "primary_key=True"
+        },
+        {
+          "property": "FloatField",
+          "desc": "Python float (double precision)",
+          "version": "—"
+        },
+        {
+          "property": "DecimalField",
+          "desc": "Fixed-precision decimal number",
+          "version": "max_digits, decimal_places"
+        },
+        {
+          "property": "BooleanField",
+          "desc": "True/False value",
+          "version": "default=False"
+        },
+        {
+          "property": "NullBooleanField",
+          "desc": "Nullable boolean (deprecated; use BooleanField(null=True))",
+          "version": "null=True"
+        },
+        {
+          "property": "DateField",
+          "desc": "Date without time (Python datetime.date)",
+          "version": "auto_now, auto_now_add"
+        },
+        {
+          "property": "TimeField",
+          "desc": "Time without date (Python datetime.time)",
+          "version": "auto_now, auto_now_add"
+        },
+        {
+          "property": "DateTimeField",
+          "desc": "Date and time (Python datetime.datetime)",
+          "version": "auto_now, auto_now_add"
+        },
+        {
+          "property": "DurationField",
+          "desc": "Time duration (Python timedelta)",
+          "version": "—"
+        },
+        {
+          "property": "EmailField",
+          "desc": "CharField with email validation",
+          "version": "max_length=254"
+        },
+        {
+          "property": "URLField",
+          "desc": "CharField with URL validation",
+          "version": "max_length=200"
+        },
+        {
+          "property": "SlugField",
+          "desc": "Short label for URLs containing only letters, numbers, hyphens",
+          "version": "max_length=50"
+        },
+        {
+          "property": "UUIDField",
+          "desc": "UUID stored as 32-character string",
+          "version": "default=uuid.uuid4"
+        },
+        {
+          "property": "IPAddressField",
+          "desc": "IPv4 address string",
+          "version": "—"
+        },
+        {
+          "property": "GenericIPAddressField",
+          "desc": "IPv4 or IPv6 address",
+          "version": "protocol='both'"
+        },
+        {
+          "property": "FileField",
+          "desc": "File upload field",
+          "version": "upload_to='path/'"
+        },
+        {
+          "property": "ImageField",
+          "desc": "ImageField validates uploaded file is an image",
+          "version": "upload_to='images/'"
+        },
+        {
+          "property": "FilePathField",
+          "desc": "CharField limited to filenames in a directory",
+          "version": "path required"
+        },
+        {
+          "property": "BinaryField",
+          "desc": "Stores raw binary data",
+          "version": "—"
+        },
+        {
+          "property": "JSONField",
+          "desc": "Stores JSON-encoded data (Django 3.1+)",
+          "version": "—"
+        },
+        {
+          "property": "ArrayField",
+          "desc": "PostgreSQL array field (django.contrib.postgres)",
+          "version": "postgres only"
+        },
+        {
+          "property": "HStoreField",
+          "desc": "PostgreSQL hstore key-value field",
+          "version": "postgres only"
+        },
+        {
+          "property": "choices=CHOICES",
+          "desc": "Restrict field to a predefined list of values",
+          "version": "any field"
+        }
+      ]
+    },
+    {
+      "title": "Field Options",
+      "desc": "",
+      "type": "table",
+      "columns": [
+        "OPTION",
+        "DESCRIPTION",
+        "DEFAULT"
+      ],
+      "rows": [
+        {
+          "property": "null=True",
+          "desc": "Store NULL in database when no value provided",
+          "version": "False"
+        },
+        {
+          "property": "blank=True",
+          "desc": "Allow empty value in form validation",
+          "version": "False"
+        },
+        {
+          "property": "default=value",
+          "desc": "Default value if none provided; can be callable",
+          "version": "—"
+        },
+        {
+          "property": "unique=True",
+          "desc": "Enforce unique constraint at database level",
+          "version": "False"
+        },
+        {
+          "property": "primary_key=True",
+          "desc": "Mark field as primary key",
+          "version": "False"
+        },
+        {
+          "property": "db_index=True",
+          "desc": "Create database index on this field",
+          "version": "False"
+        },
+        {
+          "property": "db_column='col_name'",
+          "desc": "Override the database column name",
+          "version": "field name"
+        },
+        {
+          "property": "max_length=255",
+          "desc": "Maximum character length for CharField/SlugField",
+          "version": "required for Char"
+        },
+        {
+          "property": "max_digits=10",
+          "desc": "Total number of digits for DecimalField",
+          "version": "required for Decimal"
+        },
+        {
+          "property": "decimal_places=2",
+          "desc": "Number of decimal places for DecimalField",
+          "version": "required for Decimal"
+        },
+        {
+          "property": "choices=MY_CHOICES",
+          "desc": "Iterable of (value, display) pairs for field values",
+          "version": "—"
+        },
+        {
+          "property": "verbose_name='label'",
+          "desc": "Human-readable name for field in admin and forms",
+          "version": "field name"
+        },
+        {
+          "property": "help_text='...'",
+          "desc": "Extra help text displayed in forms and admin",
+          "version": "—"
+        },
+        {
+          "property": "editable=False",
+          "desc": "Exclude field from forms and admin editing",
+          "version": "True"
+        },
+        {
+          "property": "auto_now=True",
+          "desc": "Automatically set field to current datetime on every save",
+          "version": "False"
+        },
+        {
+          "property": "auto_now_add=True",
+          "desc": "Automatically set field to datetime when created",
+          "version": "False"
+        },
+        {
+          "property": "upload_to='uploads/'",
+          "desc": "Subdirectory within MEDIA_ROOT for uploaded files",
+          "version": "—"
+        },
+        {
+          "property": "related_name='+'",
+          "desc": "Disable reverse accessor on relation",
+          "version": "—"
+        },
+        {
+          "property": "validators=[fn]",
+          "desc": "List of validator functions run on field value",
+          "version": "[]"
+        },
+        {
+          "property": "serialize=False",
+          "desc": "Exclude field from serialization (e.g. dumpdata)",
+          "version": "True"
+        }
+      ]
+    },
+    {
+      "title": "QuerySet API",
+      "desc": "",
+      "type": "table",
+      "columns": [
+        "METHOD",
+        "DESCRIPTION",
+        "RETURNS"
+      ],
+      "rows": [
+        {
+          "property": "Model.objects.all()",
+          "desc": "Returns all objects",
+          "version": "QuerySet"
+        },
+        {
+          "property": "Model.objects.filter(**kwargs)",
+          "desc": "Returns objects matching conditions",
+          "version": "QuerySet"
+        },
+        {
+          "property": "Model.objects.exclude(**kwargs)",
+          "desc": "Returns objects NOT matching conditions",
+          "version": "QuerySet"
+        },
+        {
+          "property": "Model.objects.get(**kwargs)",
+          "desc": "Returns single object; raises if 0 or 2+ found",
+          "version": "instance"
+        },
+        {
+          "property": "Model.objects.get_or_create(**kwargs)",
+          "desc": "Gets existing or creates new; returns (obj, created)",
+          "version": "(obj, bool)"
+        },
+        {
+          "property": "Model.objects.update_or_create(**kwargs)",
+          "desc": "Updates existing or creates new instance",
+          "version": "(obj, bool)"
+        },
+        {
+          "property": "Model.objects.create(**kwargs)",
+          "desc": "Creates and saves new instance in one call",
+          "version": "instance"
+        },
+        {
+          "property": "Model.objects.bulk_create([objs])",
+          "desc": "Inserts multiple objects in single SQL query",
+          "version": "list"
+        },
+        {
+          "property": "Model.objects.bulk_update(objs, fields)",
+          "desc": "Updates multiple objects in single SQL query",
+          "version": "int"
+        },
+        {
+          "property": "Model.objects.count()",
+          "desc": "Returns count of matching objects",
+          "version": "int"
+        },
+        {
+          "property": "Model.objects.exists()",
+          "desc": "Returns True if any matching objects exist",
+          "version": "bool"
+        },
+        {
+          "property": "Model.objects.first()",
+          "desc": "Returns first object or None",
+          "version": "instance/None"
+        },
+        {
+          "property": "Model.objects.last()",
+          "desc": "Returns last object or None",
+          "version": "instance/None"
+        },
+        {
+          "property": "Model.objects.order_by('field')",
+          "desc": "Order by field ascending",
+          "version": "QuerySet"
+        },
+        {
+          "property": "Model.objects.order_by('-field')",
+          "desc": "Order by field descending",
+          "version": "QuerySet"
+        },
+        {
+          "property": "Model.objects.order_by('?')",
+          "desc": "Random ordering (slow on large tables)",
+          "version": "QuerySet"
+        },
+        {
+          "property": "qs.values('field1','field2')",
+          "desc": "Returns dicts with specified fields only",
+          "version": "QuerySet[dict]"
+        },
+        {
+          "property": "qs.values_list('field', flat=True)",
+          "desc": "Returns list of single field values",
+          "version": "QuerySet"
+        },
+        {
+          "property": "qs.distinct()",
+          "desc": "Removes duplicate rows",
+          "version": "QuerySet"
+        },
+        {
+          "property": "qs.select_related('fk')",
+          "desc": "Follows FK/OneToOne in single SQL JOIN — avoids N+1",
+          "version": "QuerySet"
+        },
+        {
+          "property": "qs.prefetch_related('m2m')",
+          "desc": "Separate queries for M2M and reverse FK — avoids N+1",
+          "version": "QuerySet"
+        },
+        {
+          "property": "qs.annotate(total=Sum('price'))",
+          "desc": "Adds computed field to each object",
+          "version": "QuerySet"
+        },
+        {
+          "property": "qs.aggregate(total=Sum('price'))",
+          "desc": "Returns dict of computed aggregate values",
+          "version": "dict"
+        },
+        {
+          "property": "qs.only('f1','f2')",
+          "desc": "Load only specified fields (deferred loading)",
+          "version": "QuerySet"
+        },
+        {
+          "property": "qs.defer('big_field')",
+          "desc": "Exclude specified fields from initial load",
+          "version": "QuerySet"
+        },
+        {
+          "property": "qs.select_for_update()",
+          "desc": "Lock rows for update until end of transaction",
+          "version": "QuerySet"
+        },
+        {
+          "property": "qs.update(**kwargs)",
+          "desc": "Bulk update matching rows; returns count updated",
+          "version": "int"
+        },
+        {
+          "property": "qs.delete()",
+          "desc": "Deletes all matching rows; returns (count, dict)",
+          "version": "(int, dict)"
+        },
+        {
+          "property": "qs[:10]",
+          "desc": "Slicing — returns first 10 results (LIMIT 10)",
+          "version": "QuerySet"
+        },
+        {
+          "property": "qs[10:20]",
+          "desc": "Slicing — returns rows 10–19 (LIMIT 10 OFFSET 10)",
+          "version": "QuerySet"
+        },
+        {
+          "property": "field__exact=val",
+          "desc": "Exact match lookup (default)",
+          "version": "filter lookup"
+        },
+        {
+          "property": "field__iexact=val",
+          "desc": "Case-insensitive exact match",
+          "version": "filter lookup"
+        },
+        {
+          "property": "field__contains=val",
+          "desc": "Case-sensitive substring match (LIKE %val%)",
+          "version": "filter lookup"
+        },
+        {
+          "property": "field__icontains=val",
+          "desc": "Case-insensitive substring match",
+          "version": "filter lookup"
+        },
+        {
+          "property": "field__startswith=val",
+          "desc": "Starts with val (case-sensitive)",
+          "version": "filter lookup"
+        },
+        {
+          "property": "field__endswith=val",
+          "desc": "Ends with val (case-sensitive)",
+          "version": "filter lookup"
+        },
+        {
+          "property": "field__in=[v1,v2]",
+          "desc": "Value is in provided list",
+          "version": "filter lookup"
+        },
+        {
+          "property": "field__gt / __gte",
+          "desc": "Greater than / greater than or equal to",
+          "version": "filter lookup"
+        },
+        {
+          "property": "field__lt / __lte",
+          "desc": "Less than / less than or equal to",
+          "version": "filter lookup"
+        },
+        {
+          "property": "field__range=(a,b)",
+          "desc": "Value is within range a to b inclusive",
+          "version": "filter lookup"
+        },
+        {
+          "property": "field__isnull=True",
+          "desc": "Field is NULL",
+          "version": "filter lookup"
+        },
+        {
+          "property": "field__date=date",
+          "desc": "Extract date from DateTimeField for comparison",
+          "version": "filter lookup"
+        },
+        {
+          "property": "field__year / __month / __day",
+          "desc": "Date component lookups",
+          "version": "filter lookup"
+        },
+        {
+          "property": "Q(condition) | Q(condition)",
+          "desc": "OR combination of filter conditions",
+          "version": "django.db.models.Q"
+        },
+        {
+          "property": "Q(condition) & Q(condition)",
+          "desc": "AND combination of filter conditions",
+          "version": "django.db.models.Q"
+        },
+        {
+          "property": "~Q(condition)",
+          "desc": "NOT condition",
+          "version": "django.db.models.Q"
+        },
+        {
+          "property": "F('field') + 1",
+          "desc": "Reference field value in query for atomic update",
+          "version": "django.db.models.F"
+        },
+        {
+          "property": "from django.db.models import Sum, Avg, Count, Max, Min",
+          "desc": "Aggregation functions for annotate/aggregate",
+          "version": "django.db.models"
+        }
+      ]
+    },
+    {
+      "title": "Views",
+      "desc": "",
+      "type": "table",
+      "columns": [
+        "SYNTAX / CLASS",
+        "DESCRIPTION",
+        "MODULE"
+      ],
+      "rows": [
+        {
+          "property": "from django.shortcuts import render",
+          "desc": "Import render shortcut",
+          "version": "django.shortcuts"
+        },
+        {
+          "property": "def my_view(request):",
+          "desc": "Function-based view — receives HttpRequest, returns HttpResponse",
+          "version": "views.py"
+        },
+        {
+          "property": "return render(request, 'template.html', ctx)",
+          "desc": "Render template with context dict",
+          "version": "shortcut"
+        },
+        {
+          "property": "return HttpResponse('text')",
+          "desc": "Return plain text response",
+          "version": "django.http"
+        },
+        {
+          "property": "return JsonResponse({'key': 'val'})",
+          "desc": "Return JSON response with correct content-type",
+          "version": "django.http"
+        },
+        {
+          "property": "return HttpResponseRedirect(url)",
+          "desc": "Redirect to URL (302 by default)",
+          "version": "django.http"
+        },
+        {
+          "property": "return redirect('url-name')",
+          "desc": "Shortcut redirect to named URL or path",
+          "version": "django.shortcuts"
+        },
+        {
+          "property": "return redirect('url-name', pk=1)",
+          "desc": "Redirect with URL kwargs",
+          "version": "django.shortcuts"
+        },
+        {
+          "property": "get_object_or_404(Model, pk=pk)",
+          "desc": "Get object or return 404 response",
+          "version": "django.shortcuts"
+        },
+        {
+          "property": "get_list_or_404(Model, active=True)",
+          "desc": "Get list or return 404 if empty",
+          "version": "django.shortcuts"
+        },
+        {
+          "property": "request.method",
+          "desc": "HTTP method string: 'GET', 'POST', etc.",
+          "version": "HttpRequest"
+        },
+        {
+          "property": "request.GET",
+          "desc": "QueryDict of GET parameters",
+          "version": "HttpRequest"
+        },
+        {
+          "property": "request.POST",
+          "desc": "QueryDict of POST parameters",
+          "version": "HttpRequest"
+        },
+        {
+          "property": "request.FILES",
+          "desc": "Dict-like object of uploaded files",
+          "version": "HttpRequest"
+        },
+        {
+          "property": "request.user",
+          "desc": "Currently authenticated user or AnonymousUser",
+          "version": "HttpRequest"
+        },
+        {
+          "property": "request.session",
+          "desc": "Dict-like session object",
+          "version": "HttpRequest"
+        },
+        {
+          "property": "request.path",
+          "desc": "URL path of the request",
+          "version": "HttpRequest"
+        },
+        {
+          "property": "request.headers",
+          "desc": "Dict of request headers (Django 2.2+)",
+          "version": "HttpRequest"
+        },
+        {
+          "property": "class MyView(View):",
+          "desc": "Class-based view base class",
+          "version": "django.views"
+        },
+        {
+          "property": "def get(self, request, *args, **kwargs):",
+          "desc": "Handle GET in CBV",
+          "version": "CBV"
+        },
+        {
+          "property": "def post(self, request, *args, **kwargs):",
+          "desc": "Handle POST in CBV",
+          "version": "CBV"
+        },
+        {
+          "property": "MyView.as_view()",
+          "desc": "Convert CBV to callable for URL config",
+          "version": "CBV"
+        },
+        {
+          "property": "ListView",
+          "desc": "Display list of objects",
+          "version": "generic CBVs"
+        },
+        {
+          "property": "DetailView",
+          "desc": "Display single object detail",
+          "version": "generic CBVs"
+        },
+        {
+          "property": "CreateView",
+          "desc": "Display form and create new object",
+          "version": "generic CBVs"
+        },
+        {
+          "property": "UpdateView",
+          "desc": "Display form and update existing object",
+          "version": "generic CBVs"
+        },
+        {
+          "property": "DeleteView",
+          "desc": "Confirm and delete an object",
+          "version": "generic CBVs"
+        },
+        {
+          "property": "TemplateView",
+          "desc": "Render a template with no model",
+          "version": "generic CBVs"
+        },
+        {
+          "property": "FormView",
+          "desc": "Display and process a form",
+          "version": "generic CBVs"
+        },
+        {
+          "property": "LoginView / LogoutView",
+          "desc": "Built-in authentication views",
+          "version": "django.contrib.auth.views"
+        },
+        {
+          "property": "@login_required",
+          "desc": "Decorator: redirect to login if not authenticated",
+          "version": "django.contrib.auth.decorators"
+        },
+        {
+          "property": "@permission_required('app.perm')",
+          "desc": "Decorator: require specific permission",
+          "version": "django.contrib.auth.decorators"
+        },
+        {
+          "property": "LoginRequiredMixin",
+          "desc": "CBV mixin equivalent of @login_required",
+          "version": "django.contrib.auth.mixins"
+        },
+        {
+          "property": "PermissionRequiredMixin",
+          "desc": "CBV mixin to require specific permission",
+          "version": "django.contrib.auth.mixins"
+        },
+        {
+          "property": "@require_http_methods(['GET','POST'])",
+          "desc": "Restrict view to specified HTTP methods",
+          "version": "django.views.decorators.http"
+        },
+        {
+          "property": "@csrf_exempt",
+          "desc": "Disable CSRF check for this view (use carefully)",
+          "version": "django.views.decorators.csrf"
+        }
+      ]
+    },
+    {
+      "title": "URL Routing",
+      "desc": "",
+      "type": "table",
+      "columns": [
+        "SYNTAX / FUNCTION",
+        "DESCRIPTION",
+        "MODULE"
+      ],
+      "rows": [
+        {
+          "property": "from django.urls import path, include",
+          "desc": "Import URL routing functions",
+          "version": "django.urls"
+        },
+        {
+          "property": "urlpatterns = [...]",
+          "desc": "List of URL patterns in urls.py",
+          "version": "urls.py"
+        },
+        {
+          "property": "path('url/', view, name='name')",
+          "desc": "Map URL to view with optional name",
+          "version": "django.urls"
+        },
+        {
+          "property": "path('user/<int:pk>/', view)",
+          "desc": "Capture integer URL parameter as pk",
+          "version": "path converters"
+        },
+        {
+          "property": "path('slug/<slug:slug>/', view)",
+          "desc": "Capture slug URL parameter",
+          "version": "path converters"
+        },
+        {
+          "property": "path('item/<uuid:id>/', view)",
+          "desc": "Capture UUID URL parameter",
+          "version": "path converters"
+        },
+        {
+          "property": "path('file/<path:subpath>/', view)",
+          "desc": "Capture path including slashes",
+          "version": "path converters"
+        },
+        {
+          "property": "path('name/<str:name>/', view)",
+          "desc": "Capture string URL parameter (no slash)",
+          "version": "path converters"
+        },
+        {
+          "property": "re_path(r'^regex/$', view)",
+          "desc": "Map URL using regular expression",
+          "version": "django.urls"
+        },
+        {
+          "property": "include('appname.urls')",
+          "desc": "Include another app's URL config",
+          "version": "django.urls"
+        },
+        {
+          "property": "include('appname.urls', namespace='app')",
+          "desc": "Include URLs with namespace for reverse lookups",
+          "version": "django.urls"
+        },
+        {
+          "property": "app_name = 'myapp'",
+          "desc": "Set application namespace in app's urls.py",
+          "version": "urls.py"
+        },
+        {
+          "property": "reverse('url-name')",
+          "desc": "Returns URL string from named URL",
+          "version": "django.urls"
+        },
+        {
+          "property": "reverse('app:url-name', kwargs={'pk':1})",
+          "desc": "Reverse namespaced URL with kwargs",
+          "version": "django.urls"
+        },
+        {
+          "property": "{% url 'name' %}",
+          "desc": "Template tag to generate URL from name",
+          "version": "template"
+        },
+        {
+          "property": "{% url 'name' pk=obj.pk %}",
+          "desc": "Template URL tag with arguments",
+          "version": "template"
+        },
+        {
+          "property": "get_absolute_url()",
+          "desc": "Model method returning its canonical URL string",
+          "version": "models.py"
+        },
+        {
+          "property": "path('', include('app.urls'))",
+          "desc": "Mount app URLs at root path",
+          "version": "urls.py"
+        }
+      ]
+    },
+    {
+      "title": "Templates",
+      "desc": "",
+      "type": "table",
+      "columns": [
+        "SYNTAX / TAG",
+        "DESCRIPTION",
+        "CONTEXT"
+      ],
+      "rows": [
+        {
+          "property": "{{ variable }}",
+          "desc": "Output a context variable",
+          "version": "template"
+        },
+        {
+          "property": "{{ variable|filter }}",
+          "desc": "Apply filter to variable",
+          "version": "template"
+        },
+        {
+          "property": "{% tag %}",
+          "desc": "Template tag for logic (block, for, if etc.)",
+          "version": "template"
+        },
+        {
+          "property": "{# comment #}",
+          "desc": "Template comment — not rendered in output",
+          "version": "template"
+        },
+        {
+          "property": "{% extends 'base.html' %}",
+          "desc": "Inherit from base template",
+          "version": "template"
+        },
+        {
+          "property": "{% block content %}{% endblock %}",
+          "desc": "Define overridable block in base template",
+          "version": "template"
+        },
+        {
+          "property": "{% include 'partial.html' %}",
+          "desc": "Include another template inline",
+          "version": "template"
+        },
+        {
+          "property": "{% include 'part.html' with key=val %}",
+          "desc": "Include template and pass extra context",
+          "version": "template"
+        },
+        {
+          "property": "{% for item in items %}{% endfor %}",
+          "desc": "Iterate over list or queryset",
+          "version": "template"
+        },
+        {
+          "property": "{{ forloop.counter }}",
+          "desc": "Current loop iteration (1-indexed)",
+          "version": "for loop"
+        },
+        {
+          "property": "{{ forloop.counter0 }}",
+          "desc": "Current loop iteration (0-indexed)",
+          "version": "for loop"
+        },
+        {
+          "property": "{{ forloop.first }} / {{ forloop.last }}",
+          "desc": "True on first / last iteration",
+          "version": "for loop"
+        },
+        {
+          "property": "{% empty %}",
+          "desc": "Renders if for loop has no items",
+          "version": "template"
+        },
+        {
+          "property": "{% if cond %}{% elif %}{% else %}{% endif %}",
+          "desc": "Conditional rendering",
+          "version": "template"
+        },
+        {
+          "property": "{% if x == y %}",
+          "desc": "Equality check in template if",
+          "version": "template"
+        },
+        {
+          "property": "{% if x in list %}",
+          "desc": "Membership test in if tag",
+          "version": "template"
+        },
+        {
+          "property": "{% with alias=long.var %}{% endwith %}",
+          "desc": "Assign long variable to shorter alias",
+          "version": "template"
+        },
+        {
+          "property": "{% url 'name' %}",
+          "desc": "Generate URL from named pattern",
+          "version": "template"
+        },
+        {
+          "property": "{% static 'css/style.css' %}",
+          "desc": "Generate URL for static file",
+          "version": "{% load static %}"
+        },
+        {
+          "property": "{% load static %}",
+          "desc": "Load static files template tag library",
+          "version": "template"
+        },
+        {
+          "property": "{% csrf_token %}",
+          "desc": "Render CSRF hidden input in forms",
+          "version": "template"
+        },
+        {
+          "property": "{{ value|default:'fallback' }}",
+          "desc": "Show fallback if value is falsy",
+          "version": "filter"
+        },
+        {
+          "property": "{{ value|truncatewords:30 }}",
+          "desc": "Truncate to N words",
+          "version": "filter"
+        },
+        {
+          "property": "{{ value|truncatechars:100 }}",
+          "desc": "Truncate to N characters",
+          "version": "filter"
+        },
+        {
+          "property": "{{ value|date:'Y-m-d' }}",
+          "desc": "Format date value",
+          "version": "filter"
+        },
+        {
+          "property": "{{ value|time:'H:i' }}",
+          "desc": "Format time value",
+          "version": "filter"
+        },
+        {
+          "property": "{{ value|linebreaks }}",
+          "desc": "Convert newlines to <br> and <p> tags",
+          "version": "filter"
+        },
+        {
+          "property": "{{ value|safe }}",
+          "desc": "Mark string as safe HTML — skip auto-escaping",
+          "version": "filter"
+        },
+        {
+          "property": "{{ value|escape }}",
+          "desc": "Escape HTML characters",
+          "version": "filter"
+        },
+        {
+          "property": "{{ value|upper / lower }}",
+          "desc": "Convert to uppercase / lowercase",
+          "version": "filter"
+        },
+        {
+          "property": "{{ value|length }}",
+          "desc": "Return length of value",
+          "version": "filter"
+        },
+        {
+          "property": "{{ value|add:5 }}",
+          "desc": "Add integer to value",
+          "version": "filter"
+        },
+        {
+          "property": "{{ value|floatformat:2 }}",
+          "desc": "Format float to N decimal places",
+          "version": "filter"
+        },
+        {
+          "property": "{{ value|capfirst }}",
+          "desc": "Capitalise first character",
+          "version": "filter"
+        },
+        {
+          "property": "{{ value|join:', ' }}",
+          "desc": "Join list items with separator",
+          "version": "filter"
+        },
+        {
+          "property": "{{ value|dictsort:'key' }}",
+          "desc": "Sort list of dicts by key",
+          "version": "filter"
+        },
+        {
+          "property": "{{ value|yesno:'yes,no,maybe' }}",
+          "desc": "Map True/False/None to custom strings",
+          "version": "filter"
+        }
+      ]
+    },
+    {
+      "title": "Forms",
+      "desc": "",
+      "type": "table",
+      "columns": [
+        "SYNTAX / METHOD",
+        "DESCRIPTION",
+        "MODULE"
+      ],
+      "rows": [
+        {
+          "property": "from django import forms",
+          "desc": "Import forms module",
+          "version": "django"
+        },
+        {
+          "property": "class MyForm(forms.Form):",
+          "desc": "Define a standalone form class",
+          "version": "forms.py"
+        },
+        {
+          "property": "class MyForm(forms.ModelForm):",
+          "desc": "Form auto-generated from model fields",
+          "version": "forms.py"
+        },
+        {
+          "property": "class Meta: model = MyModel",
+          "desc": "Specify model for ModelForm",
+          "version": "ModelForm"
+        },
+        {
+          "property": "class Meta: fields = ['f1','f2']",
+          "desc": "Specify which fields to include",
+          "version": "ModelForm"
+        },
+        {
+          "property": "class Meta: fields = '__all__'",
+          "desc": "Include all model fields",
+          "version": "ModelForm"
+        },
+        {
+          "property": "class Meta: exclude = ['field']",
+          "desc": "Exclude specified fields",
+          "version": "ModelForm"
+        },
+        {
+          "property": "class Meta: widgets = {'f': forms.Textarea}",
+          "desc": "Override default widget for a field",
+          "version": "ModelForm"
+        },
+        {
+          "property": "form = MyForm(request.POST)",
+          "desc": "Bind form to POST data",
+          "version": "views.py"
+        },
+        {
+          "property": "form = MyForm(request.POST, request.FILES)",
+          "desc": "Bind form with file uploads",
+          "version": "views.py"
+        },
+        {
+          "property": "form = MyForm(instance=obj)",
+          "desc": "Pre-populate ModelForm with existing instance",
+          "version": "views.py"
+        },
+        {
+          "property": "form.is_valid()",
+          "desc": "Validate form; returns True if all valid",
+          "version": "Form"
+        },
+        {
+          "property": "form.save()",
+          "desc": "Save ModelForm to database",
+          "version": "ModelForm"
+        },
+        {
+          "property": "form.save(commit=False)",
+          "desc": "Return unsaved instance to modify before saving",
+          "version": "ModelForm"
+        },
+        {
+          "property": "form.cleaned_data['field']",
+          "desc": "Access validated and cleaned field value",
+          "version": "Form"
+        },
+        {
+          "property": "form.errors",
+          "desc": "Dict of field errors",
+          "version": "Form"
+        },
+        {
+          "property": "form.non_field_errors()",
+          "desc": "Errors not tied to a specific field",
+          "version": "Form"
+        },
+        {
+          "property": "def clean_fieldname(self):",
+          "desc": "Custom validation for a single field",
+          "version": "Form"
+        },
+        {
+          "property": "def clean(self):",
+          "desc": "Cross-field validation; raises ValidationError",
+          "version": "Form"
+        },
+        {
+          "property": "{{ form.as_p }}",
+          "desc": "Render form fields wrapped in <p> tags",
+          "version": "template"
+        },
+        {
+          "property": "{{ form.as_table }}",
+          "desc": "Render form fields wrapped in <tr> tags",
+          "version": "template"
+        },
+        {
+          "property": "{{ form.as_ul }}",
+          "desc": "Render form fields wrapped in <li> tags",
+          "version": "template"
+        },
+        {
+          "property": "{{ form.field }}",
+          "desc": "Render individual field widget",
+          "version": "template"
+        },
+        {
+          "property": "{{ form.field.errors }}",
+          "desc": "Render field-specific error messages",
+          "version": "template"
+        },
+        {
+          "property": "{{ form.field.label_tag }}",
+          "desc": "Render field label HTML element",
+          "version": "template"
+        },
+        {
+          "property": "forms.CharField()",
+          "desc": "Text input field",
+          "version": "field types"
+        },
+        {
+          "property": "forms.IntegerField()",
+          "desc": "Integer input field",
+          "version": "field types"
+        },
+        {
+          "property": "forms.EmailField()",
+          "desc": "Email input with validation",
+          "version": "field types"
+        },
+        {
+          "property": "forms.ChoiceField(choices=CHOICES)",
+          "desc": "Dropdown select field",
+          "version": "field types"
+        },
+        {
+          "property": "forms.BooleanField()",
+          "desc": "Checkbox field",
+          "version": "field types"
+        },
+        {
+          "property": "forms.DateField()",
+          "desc": "Date input field",
+          "version": "field types"
+        },
+        {
+          "property": "forms.FileField()",
+          "desc": "File upload field",
+          "version": "field types"
+        },
+        {
+          "property": "forms.ImageField()",
+          "desc": "Image upload field with validation",
+          "version": "field types"
+        },
+        {
+          "property": "forms.HiddenInput()",
+          "desc": "Hidden input widget",
+          "version": "widget"
+        },
+        {
+          "property": "forms.Textarea(attrs={'rows':4})",
+          "desc": "Textarea widget with HTML attributes",
+          "version": "widget"
+        }
+      ]
+    },
+    {
+      "title": "Admin",
+      "desc": "",
+      "type": "table",
+      "columns": [
+        "SYNTAX / OPTION",
+        "DESCRIPTION",
+        "MODULE"
+      ],
+      "rows": [
+        {
+          "property": "from django.contrib import admin",
+          "desc": "Import admin module",
+          "version": "django.contrib"
+        },
+        {
+          "property": "admin.site.register(MyModel)",
+          "desc": "Register model with default admin options",
+          "version": "admin.py"
+        },
+        {
+          "property": "@admin.register(MyModel)",
+          "desc": "Decorator to register model with custom ModelAdmin",
+          "version": "admin.py"
+        },
+        {
+          "property": "class MyAdmin(admin.ModelAdmin):",
+          "desc": "Customise admin display for a model",
+          "version": "admin.py"
+        },
+        {
+          "property": "list_display = ['f1','f2','f3']",
+          "desc": "Columns shown in the admin list view",
+          "version": "ModelAdmin"
+        },
+        {
+          "property": "list_filter = ['status','author']",
+          "desc": "Sidebar filter options in list view",
+          "version": "ModelAdmin"
+        },
+        {
+          "property": "search_fields = ['title','body']",
+          "desc": "Enable search box filtering on these fields",
+          "version": "ModelAdmin"
+        },
+        {
+          "property": "ordering = ['-created_at']",
+          "desc": "Default ordering in admin list view",
+          "version": "ModelAdmin"
+        },
+        {
+          "property": "list_per_page = 25",
+          "desc": "Number of items per admin list page",
+          "version": "ModelAdmin"
+        },
+        {
+          "property": "list_editable = ['status']",
+          "desc": "Allow inline editing in list view",
+          "version": "ModelAdmin"
+        },
+        {
+          "property": "list_display_links = ['title']",
+          "desc": "Fields that link to change form",
+          "version": "ModelAdmin"
+        },
+        {
+          "property": "list_select_related = True",
+          "desc": "Use select_related for FK fields in list",
+          "version": "ModelAdmin"
+        },
+        {
+          "property": "date_hierarchy = 'created_at'",
+          "desc": "Drill-down navigation by date",
+          "version": "ModelAdmin"
+        },
+        {
+          "property": "readonly_fields = ['created_at']",
+          "desc": "Fields shown but not editable in change form",
+          "version": "ModelAdmin"
+        },
+        {
+          "property": "fieldsets = [(name, {'fields':[...]})]",
+          "desc": "Group fields into sections in change form",
+          "version": "ModelAdmin"
+        },
+        {
+          "property": "exclude = ['field']",
+          "desc": "Exclude fields from change form",
+          "version": "ModelAdmin"
+        },
+        {
+          "property": "raw_id_fields = ['fk_field']",
+          "desc": "Use text input instead of dropdown for FK fields",
+          "version": "ModelAdmin"
+        },
+        {
+          "property": "autocomplete_fields = ['fk']",
+          "desc": "Autocomplete widget for FK/M2M fields (Django 2.0+)",
+          "version": "ModelAdmin"
+        },
+        {
+          "property": "filter_horizontal = ['m2m']",
+          "desc": "Horizontal filter widget for M2M fields",
+          "version": "ModelAdmin"
+        },
+        {
+          "property": "filter_vertical = ['m2m']",
+          "desc": "Vertical filter widget for M2M fields",
+          "version": "ModelAdmin"
+        },
+        {
+          "property": "prepopulated_fields = {'slug':('title',)}",
+          "desc": "Auto-populate slug from title with JS",
+          "version": "ModelAdmin"
+        },
+        {
+          "property": "save_on_top = True",
+          "desc": "Show save buttons at top of change form",
+          "version": "ModelAdmin"
+        },
+        {
+          "property": "show_full_result_count = False",
+          "desc": "Hide total count in search results",
+          "version": "ModelAdmin"
+        },
+        {
+          "property": "actions = ['my_action']",
+          "desc": "List of custom bulk actions",
+          "version": "ModelAdmin"
+        },
+        {
+          "property": "def my_action(self, request, queryset):",
+          "desc": "Custom admin action on selected objects",
+          "version": "ModelAdmin"
+        },
+        {
+          "property": "class InlineAdmin(admin.TabularInline):",
+          "desc": "Tabular inline for related model editing",
+          "version": "admin.py"
+        },
+        {
+          "property": "class InlineAdmin(admin.StackedInline):",
+          "desc": "Stacked inline for related model editing",
+          "version": "admin.py"
+        },
+        {
+          "property": "inlines = [InlineAdmin]",
+          "desc": "Include inline models in parent change form",
+          "version": "ModelAdmin"
+        },
+        {
+          "property": "admin.site.site_header = 'My Admin'",
+          "desc": "Customise the admin site header text",
+          "version": "admin.py"
+        },
+        {
+          "property": "admin.site.site_title = 'My Site'",
+          "desc": "Customise admin browser tab title",
+          "version": "admin.py"
+        }
+      ]
+    },
+    {
+      "title": "Authentication",
+      "desc": "",
+      "type": "table",
+      "columns": [
+        "SYNTAX / FUNCTION",
+        "DESCRIPTION",
+        "MODULE"
+      ],
+      "rows": [
+        {
+          "property": "from django.contrib.auth.models import User",
+          "desc": "Import built-in User model",
+          "version": "django.contrib.auth"
+        },
+        {
+          "property": "User.objects.create_user(username, email, pw)",
+          "desc": "Create regular user with hashed password",
+          "version": "User manager"
+        },
+        {
+          "property": "User.objects.create_superuser(u, e, pw)",
+          "desc": "Create superuser with all permissions",
+          "version": "User manager"
+        },
+        {
+          "property": "user.set_password('newpass')",
+          "desc": "Hash and set new password",
+          "version": "User"
+        },
+        {
+          "property": "user.check_password('pass')",
+          "desc": "Verify plain-text password against hash",
+          "version": "User"
+        },
+        {
+          "property": "user.save()",
+          "desc": "Save user changes to database",
+          "version": "User"
+        },
+        {
+          "property": "user.is_authenticated",
+          "desc": "True if user is logged in (not AnonymousUser)",
+          "version": "User"
+        },
+        {
+          "property": "user.is_active",
+          "desc": "True if user account is active",
+          "version": "User"
+        },
+        {
+          "property": "user.is_staff",
+          "desc": "True if user can log into admin site",
+          "version": "User"
+        },
+        {
+          "property": "user.is_superuser",
+          "desc": "True if user has all permissions",
+          "version": "User"
+        },
+        {
+          "property": "user.groups.all()",
+          "desc": "Groups the user belongs to",
+          "version": "User"
+        },
+        {
+          "property": "user.user_permissions.all()",
+          "desc": "Permissions directly assigned to user",
+          "version": "User"
+        },
+        {
+          "property": "user.has_perm('app.perm_code')",
+          "desc": "Check if user has a specific permission",
+          "version": "User"
+        },
+        {
+          "property": "user.has_perms(['app.p1','app.p2'])",
+          "desc": "Check if user has all listed permissions",
+          "version": "User"
+        },
+        {
+          "property": "authenticate(request, username=u, password=p)",
+          "desc": "Verify credentials; returns User or None",
+          "version": "django.contrib.auth"
+        },
+        {
+          "property": "login(request, user)",
+          "desc": "Log in user and create session",
+          "version": "django.contrib.auth"
+        },
+        {
+          "property": "logout(request)",
+          "desc": "Log out user and clear session",
+          "version": "django.contrib.auth"
+        },
+        {
+          "property": "AbstractUser",
+          "desc": "Extend built-in User model with extra fields",
+          "version": "django.contrib.auth.models"
+        },
+        {
+          "property": "AbstractBaseUser",
+          "desc": "Fully custom user model (advanced)",
+          "version": "django.contrib.auth.models"
+        },
+        {
+          "property": "AUTH_USER_MODEL = 'app.CustomUser'",
+          "desc": "Override default User model in settings.py",
+          "version": "settings.py"
+        },
+        {
+          "property": "get_user_model()",
+          "desc": "Returns currently active User model",
+          "version": "django.contrib.auth"
+        },
+        {
+          "property": "PasswordResetView",
+          "desc": "Built-in view for initiating password reset",
+          "version": "django.contrib.auth.views"
+        },
+        {
+          "property": "PasswordChangeView",
+          "desc": "Built-in view for changing password",
+          "version": "django.contrib.auth.views"
+        },
+        {
+          "property": "from django.contrib.auth.forms import AuthenticationForm",
+          "desc": "Built-in login form",
+          "version": "django.contrib.auth.forms"
+        },
+        {
+          "property": "from django.contrib.auth.forms import UserCreationForm",
+          "desc": "Built-in user registration form",
+          "version": "django.contrib.auth.forms"
+        }
+      ]
+    },
+    {
+      "title": "Django Keywords & Settings",
+      "desc": "",
+      "type": "table",
+      "columns": [
+        "KEYWORD / SETTING",
+        "DESCRIPTION",
+        "CONTEXT"
+      ],
+      "rows": [
+        {
+          "property": "SECRET_KEY",
+          "desc": "Cryptographic key for signing; keep secret in production",
+          "version": "settings.py"
+        },
+        {
+          "property": "DEBUG",
+          "desc": "Enable debug mode; shows error pages (False in production)",
+          "version": "settings.py"
+        },
+        {
+          "property": "ALLOWED_HOSTS",
+          "desc": "List of valid hostnames the site can serve",
+          "version": "settings.py"
+        },
+        {
+          "property": "INSTALLED_APPS",
+          "desc": "List of active Django applications",
+          "version": "settings.py"
+        },
+        {
+          "property": "MIDDLEWARE",
+          "desc": "List of middleware classes processed per request",
+          "version": "settings.py"
+        },
+        {
+          "property": "ROOT_URLCONF",
+          "desc": "Python path to root URL configuration module",
+          "version": "settings.py"
+        },
+        {
+          "property": "TEMPLATES",
+          "desc": "Template engine configuration list",
+          "version": "settings.py"
+        },
+        {
+          "property": "DATABASES",
+          "desc": "Database connection settings dict",
+          "version": "settings.py"
+        },
+        {
+          "property": "STATIC_URL",
+          "desc": "URL path for serving static files",
+          "version": "settings.py"
+        },
+        {
+          "property": "STATIC_ROOT",
+          "desc": "Filesystem path where collectstatic gathers files",
+          "version": "settings.py"
+        },
+        {
+          "property": "STATICFILES_DIRS",
+          "desc": "Additional directories to search for static files",
+          "version": "settings.py"
+        },
+        {
+          "property": "MEDIA_URL",
+          "desc": "URL prefix for user-uploaded media files",
+          "version": "settings.py"
+        },
+        {
+          "property": "MEDIA_ROOT",
+          "desc": "Filesystem path for user-uploaded media files",
+          "version": "settings.py"
+        },
+        {
+          "property": "LANGUAGE_CODE",
+          "desc": "Default language code e.g. 'en-us'",
+          "version": "settings.py"
+        },
+        {
+          "property": "TIME_ZONE",
+          "desc": "Default time zone e.g. 'UTC' or 'Asia/Kolkata'",
+          "version": "settings.py"
+        },
+        {
+          "property": "USE_TZ = True",
+          "desc": "Store datetimes in UTC; convert to TIME_ZONE on display",
+          "version": "settings.py"
+        },
+        {
+          "property": "USE_I18N = True",
+          "desc": "Enable Django's translation system",
+          "version": "settings.py"
+        },
+        {
+          "property": "DEFAULT_AUTO_FIELD",
+          "desc": "Default primary key type e.g. 'django.db.models.BigAutoField'",
+          "version": "settings.py"
+        },
+        {
+          "property": "EMAIL_BACKEND",
+          "desc": "Email sending backend class",
+          "version": "settings.py"
+        },
+        {
+          "property": "CACHES",
+          "desc": "Cache backend configuration",
+          "version": "settings.py"
+        },
+        {
+          "property": "SESSION_ENGINE",
+          "desc": "Session storage backend",
+          "version": "settings.py"
+        },
+        {
+          "property": "LOGIN_URL",
+          "desc": "URL to redirect unauthenticated users",
+          "version": "settings.py"
+        },
+        {
+          "property": "LOGIN_REDIRECT_URL",
+          "desc": "URL after successful login",
+          "version": "settings.py"
+        },
+        {
+          "property": "LOGOUT_REDIRECT_URL",
+          "desc": "URL after logout",
+          "version": "settings.py"
+        },
+        {
+          "property": "CSRF_COOKIE_SECURE",
+          "desc": "Send CSRF cookie only over HTTPS",
+          "version": "settings.py"
+        },
+        {
+          "property": "SESSION_COOKIE_SECURE",
+          "desc": "Send session cookie only over HTTPS",
+          "version": "settings.py"
+        },
+        {
+          "property": "SECURE_SSL_REDIRECT",
+          "desc": "Redirect all HTTP requests to HTTPS",
+          "version": "settings.py"
+        },
+        {
+          "property": "apps.py AppConfig",
+          "desc": "App configuration class; set default_app_label",
+          "version": "apps.py"
+        },
+        {
+          "property": "signals.py",
+          "desc": "Define and connect Django signal handlers",
+          "version": "project"
+        },
+        {
+          "property": "middleware",
+          "desc": "Process request/response globally before/after views",
+          "version": "project"
+        },
+        {
+          "property": "context_processors",
+          "desc": "Functions that add data to every template context",
+          "version": "TEMPLATES"
+        },
+        {
+          "property": "management commands",
+          "desc": "Custom manage.py commands via management/commands/",
+          "version": "project"
+        },
+        {
+          "property": "django.test.TestCase",
+          "desc": "Base class for Django unit tests with database support",
+          "version": "testing"
+        },
+        {
+          "property": "Client()",
+          "desc": "Test client to simulate HTTP requests in tests",
+          "version": "django.test"
+        },
+        {
+          "property": "reverse()",
+          "desc": "Resolve URL by name in tests and views",
+          "version": "django.urls"
+        },
+        {
+          "property": "transaction.atomic()",
+          "desc": "Wrap operations in database transaction block",
+          "version": "django.db"
+        },
+        {
+          "property": "cache.get(key) / cache.set(key,val,timeout)",
+          "desc": "Read/write cache using configured backend",
+          "version": "django.core.cache"
+        },
+        {
+          "property": "send_mail(subj, msg, from, to)",
+          "desc": "Send email using configured backend",
+          "version": "django.core.mail"
+        }
+      ]
+    }
+  ]
+}

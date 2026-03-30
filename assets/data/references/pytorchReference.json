@@ -1,0 +1,33 @@
+{
+  "title": "PyTorch Reference",
+  "description": "PyTorch tensors, neural networks, training loops, and model building.",
+  "sections": [
+    {
+      "title": "Tensors",
+      "items": [
+        { "name": "torch.tensor()", "description": "Create a tensor from data.", "code": "import torch\nx = torch.tensor([1, 2, 3])" },
+        { "name": "torch.zeros()", "description": "Create a tensor filled with zeros.", "code": "z = torch.zeros(3, 4)" },
+        { "name": "torch.randn()", "description": "Create a tensor with random normal values.", "code": "r = torch.randn(2, 3)" },
+        { "name": "Tensor Operations", "description": "Basic arithmetic on tensors.", "code": "a = torch.tensor([1.0, 2.0])\nb = torch.tensor([3.0, 4.0])\nc = a + b       # element-wise add\nd = a @ b       # dot product" },
+        { "name": ".to(device)", "description": "Move tensor to GPU or CPU.", "code": "device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')\nx = x.to(device)" }
+      ]
+    },
+    {
+      "title": "Neural Networks",
+      "items": [
+        { "name": "nn.Module", "description": "Base class for all neural network modules.", "code": "import torch.nn as nn\n\nclass MyModel(nn.Module):\n    def __init__(self):\n        super().__init__()\n        self.fc1 = nn.Linear(784, 128)\n        self.fc2 = nn.Linear(128, 10)\n\n    def forward(self, x):\n        x = torch.relu(self.fc1(x))\n        return self.fc2(x)" },
+        { "name": "nn.Linear", "description": "Fully connected layer.", "code": "layer = nn.Linear(in_features=128, out_features=64)" },
+        { "name": "nn.Conv2d", "description": "2D convolutional layer.", "code": "conv = nn.Conv2d(in_channels=3, out_channels=16, kernel_size=3)" },
+        { "name": "Activation Functions", "description": "Common non-linear activations.", "code": "torch.relu(x)\ntorch.sigmoid(x)\ntorch.softmax(x, dim=1)" }
+      ]
+    },
+    {
+      "title": "Training",
+      "items": [
+        { "name": "Loss Functions", "description": "Common loss/criterion functions.", "code": "criterion = nn.CrossEntropyLoss()\nloss = criterion(output, target)" },
+        { "name": "Optimizers", "description": "Parameter optimization algorithms.", "code": "optimizer = torch.optim.Adam(model.parameters(), lr=0.001)" },
+        { "name": "Training Loop", "description": "Standard training loop pattern.", "code": "for epoch in range(epochs):\n    optimizer.zero_grad()\n    output = model(inputs)\n    loss = criterion(output, labels)\n    loss.backward()\n    optimizer.step()" }
+      ]
+    }
+  ]
+}

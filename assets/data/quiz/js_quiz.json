@@ -1,0 +1,362 @@
+[
+    {
+        "id": "js-1",
+        "question": "What is the primary role of JavaScript on a web page?",
+        "options": [
+            "To define the visual layout and styles.",
+            "To structure the content and HTML tags.",
+            "To manage the database server.",
+            "To make the web page interactive and compute logic."
+        ],
+        "correctAnswer": 3,
+        "explanation": "While HTML structures and CSS styles, JavaScript is the programming language that adds interactivity and dynamic behavior."
+    },
+    {
+        "id": "js-2",
+        "question": "Which keyword is used to declare a variable that cannot be reassigned after its initial value is set?",
+        "options": [
+            "let",
+            "var",
+            "const",
+            "static"
+        ],
+        "correctAnswer": 2,
+        "explanation": "The 'const' keyword creates a constant reference to a value, meaning the variable identifier cannot be reassigned."
+    },
+    {
+        "id": "js-3",
+        "question": "How do you write a single-line comment in JavaScript?",
+        "options": [
+            "<!-- This is a comment -->",
+            "// This is a comment",
+            "/* This is a comment */",
+            "' This is a comment"
+        ],
+        "correctAnswer": 1,
+        "explanation": "Two forward slashes (//) indicate a single-line comment. Everything following them on that line is ignored by the engine."
+    },
+    {
+        "id": "js-4",
+        "question": "What is the correct syntax for a JavaScript string?",
+        "options": [
+            "\"Hello World\"",
+            "'Hello World'",
+            "`Hello World`",
+            "All of the above"
+        ],
+        "correctAnswer": 3,
+        "explanation": "Strings in JavaScript can be enclosed in double quotes, single quotes, or backticks (template literals)."
+    },
+    {
+        "id": "js-5",
+        "question": "Which operator is used to check if two values are equal AND of the exact same data type?",
+        "options": [
+            "=",
+            "==",
+            "===",
+            "!="
+        ],
+        "correctAnswer": 2,
+        "explanation": "The strict equality operator (===) checks both value and type, unlike loosely equal (==) which performs type coercion."
+    },
+    {
+        "id": "js-6",
+        "question": "How do you create a function in JavaScript?",
+        "options": [
+            "function:myFunction()",
+            "function myFunction()",
+            "create myFunction()",
+            "def myFunction()"
+        ],
+        "correctAnswer": 1,
+        "explanation": "Functions are declared using the 'function' keyword, followed by the name, parentheses, and curly braces."
+    },
+    {
+        "id": "js-7",
+        "question": "How do you call a function named 'calculateTotals'?",
+        "options": [
+            "call function calculateTotals",
+            "calculateTotals",
+            "calculateTotals()",
+            "run.calculateTotals"
+        ],
+        "correctAnswer": 2,
+        "explanation": "Appending parentheses () to the function's name executes it."
+    },
+    {
+        "id": "js-8",
+        "question": "What does DOM stand for in JavaScript?",
+        "options": [
+            "Document Output Method",
+            "Document Object Model",
+            "Data Object Mode",
+            "Display Orientation Module"
+        ],
+        "correctAnswer": 1,
+        "explanation": "The Document Object Model (DOM) is an API that represents your HTML page as a manipulatable tree structure."
+    },
+    {
+        "id": "js-9",
+        "question": "Which method selects an HTML element by its ID?",
+        "options": [
+            "document.getElementById()",
+            "document.selectId()",
+            "document.getElement()",
+            "document.findId()"
+        ],
+        "correctAnswer": 0,
+        "explanation": "getElementById() is the standard DOM method to find an element precisely by its unique HTML ID attribute."
+    },
+    {
+        "id": "js-10",
+        "question": "How do you write an IF statement in JavaScript?",
+        "options": [
+            "if x = 5 then",
+            "if (x == 5)",
+            "if x == 5",
+            "if: x == 5"
+        ],
+        "correctAnswer": 1,
+        "explanation": "Conditional logic uses the 'if' keyword followed by the condition enclosed securely in parentheses (). "
+    },
+    {
+        "id": "js-11",
+        "question": "How does a FOR loop start?",
+        "options": [
+            "for (i <= 5; i++)",
+            "for (let i = 0; i <= 5)",
+            "for (let i = 0; i <= 5; i++)",
+            "for i = 1 to 5"
+        ],
+        "correctAnswer": 2,
+        "explanation": "A traditional FOR loop requires three parts: initialization (let i=0), condition (i <= 5), and increment (i++)."
+    },
+    {
+        "id": "js-12",
+        "question": "What is an Array in JavaScript?",
+        "options": [
+            "A special variable that can hold more than one value at a time.",
+            "A function that returns a number.",
+            "A styling object for CSS.",
+            "A type of loop."
+        ],
+        "correctAnswer": 0,
+        "explanation": "Arrays, defined using square brackets [], store ordered lists of data in a single variable."
+    },
+    {
+        "id": "js-13",
+        "question": "In an Array named 'colors', how do you access the first element?",
+        "options": [
+            "colors[1]",
+            "colors.first()",
+            "colors[0]",
+            "colors(0)"
+        ],
+        "correctAnswer": 2,
+        "explanation": "JavaScript arrays are zero-indexed, meaning the first element is located at index number 0."
+    },
+    {
+        "id": "js-14",
+        "question": "What is the correct syntax for creating a JavaScript Object?",
+        "options": [
+            "let user = ['name': 'John', 'age': 30];",
+            "let user = {name: 'John', age: 30};",
+            "let user = (name = 'John', age = 30);",
+            "let user = name: 'John', age: 30;"
+        ],
+        "correctAnswer": 1,
+        "explanation": "Objects use curly braces {} and store data in key-value pairs (property: value), separated by commas."
+    },
+    {
+        "id": "js-15",
+        "question": "Which built-in object provides mathematical tasks and constants (like random numbers)?",
+        "options": [
+            "Calc",
+            "Math",
+            "Numbers",
+            "JSMath"
+        ],
+        "correctAnswer": 1,
+        "explanation": "The Math object (e.g., Math.random(), Math.round()) contains methods for performing mathematical operations."
+    },
+    {
+        "id": "js-16",
+        "question": "Which event occurs when a user clicks on an HTML element?",
+        "options": [
+            "onmouseclick",
+            "onchange",
+            "onclick",
+            "onhover"
+        ],
+        "correctAnswer": 2,
+        "explanation": "The 'onclick' HTML attribute allows you to run JavaScript when that element is clicked."
+    },
+    {
+        "id": "js-17",
+        "question": "What does the 'this' keyword usually refer to inside an object's method?",
+        "options": [
+            "The html document.",
+            "The global window object.",
+            "The function itself.",
+            "The object that owns the method."
+        ],
+        "correctAnswer": 3,
+        "explanation": "When executing a method, 'this' automatically refers to the parent object the method belongs to."
+    },
+    {
+        "id": "js-18",
+        "question": "What is a major difference between 'let' and 'var'?",
+        "options": [
+            "'var' holds text, 'let' holds numbers.",
+            "'let' is block-scoped, while 'var' is function-scoped.",
+            "There is no difference.",
+            "'var' cannot be reassigned."
+        ],
+        "correctAnswer": 1,
+        "explanation": "Variables defined with 'let' are strictly confined to the block {} they are declared in, preventing bugs common with 'var'."
+    },
+    {
+        "id": "js-19",
+        "question": "What is the purpose of an Arrow Function (=>) introduced in ES6?",
+        "options": [
+            "To send HTTP requests.",
+            "To style elements.",
+            "To provide a shorter, more concise syntax for writing function expressions.",
+            "To automatically run a loop."
+        ],
+        "correctAnswer": 2,
+        "explanation": "Arrow functions shorten function declaration syntax and bind 'this' lexically."
+    },
+    {
+        "id": "js-20",
+        "question": "What does a JavaScript Promise represent?",
+        "options": [
+            "A guarantee that a function will execute immediately.",
+            "The eventual completion (or failure) of an asynchronous operation and its resulting value.",
+            "A syntax error.",
+            "A loop that never ends."
+        ],
+        "correctAnswer": 1,
+        "explanation": "Promises manage async actions (like network requests). They start 'pending' and become either 'resolved' or 'rejected'."
+    },
+    {
+        "id": "js-21",
+        "question": "What does the Fetch API do?",
+        "options": [
+            "Retrieves deleted files from the computer.",
+            "Downloads an image to the desktop.",
+            "Provides a Promise-based interface for making network requests to servers and APIs.",
+            "Calculates math equations extremely fast."
+        ],
+        "correctAnswer": 2,
+        "explanation": "The global fetch() method is the modern standard for requesting and sending data across networks in JS."
+    },
+    {
+        "id": "js-22",
+        "question": "What is JSON used for?",
+        "options": [
+            "To animate elements on the screen.",
+            "To store and transmit data formatted as raw text between a server and client.",
+            "To compile JavaScript into machine code.",
+            "To select CSS classes."
+        ],
+        "correctAnswer": 1,
+        "explanation": "JavaScript Object Notation (JSON) is a lightweight, text-based data interchange format."
+    },
+    {
+        "id": "js-23",
+        "question": "Which method converts a JavaScript object into a JSON text string?",
+        "options": [
+            "JSON.stringify()",
+            "JSON.parse()",
+            "JSON.toString()",
+            "JSON.format()"
+        ],
+        "correctAnswer": 0,
+        "explanation": "Because networks transfer text, JSON.stringify() is used to convert live JS objects into a string format."
+    },
+    {
+        "id": "js-24",
+        "question": "What is LocalStorage?",
+        "options": [
+            "A cloud database provided by Google.",
+            "A browser API that saves key/value data across browser sessions indefinitely.",
+            "A folder on the server where scripts hide data.",
+            "A temporary memory cache that clears immediately on refresh."
+        ],
+        "correctAnswer": 1,
+        "explanation": "localStorage securely persists data in the user's browser even if they close the tab or window."
+    },
+    {
+        "id": "js-25",
+        "question": "Which method is used to attach an event handler to an element without overwriting existing handlers?",
+        "options": [
+            "element.onclick()",
+            "element.attachEvent()",
+            "element.addEventListener()",
+            "element.onEvent()"
+        ],
+        "correctAnswer": 2,
+        "explanation": "addEventListener() allows you to attach multiple listeners (e.g., clicks, hovers) to one element safely."
+    },
+    {
+        "id": "js-26",
+        "question": "In ES6, what are Template Literals enclosed by?",
+        "options": [
+            "Single quotes ('')",
+            "Double quotes (\"\")",
+            "Parentheses ()",
+            "Backticks (``)"
+        ],
+        "correctAnswer": 3,
+        "explanation": "Backticks allow strings to span multiple lines and seamlessly interpolate variables using ${variable}."
+    },
+    {
+        "id": "js-27",
+        "question": "What does the try...catch block do?",
+        "options": [
+            "Attempts a math operation and catches the answer.",
+            "Tests an HTML form for spam.",
+            "Catches execution errors (exceptions) so they can be handled gracefully instead of crashing the app.",
+            "It is used exclusively to fetch data."
+        ],
+        "correctAnswer": 2,
+        "explanation": "If the code in the 'try' block throws an error, execution stops and instantly passes to the 'catch' block."
+    },
+    {
+        "id": "js-28",
+        "question": "How do you dynamically create a brand new <div> element using JS?",
+        "options": [
+            "document.createElement('div')",
+            "document.add('div')",
+            "document.makeElement('div')",
+            "new HTMLElement('div')"
+        ],
+        "correctAnswer": 0,
+        "explanation": "document.createElement() builds a new DOM node from scratch in memory."
+    },
+    {
+        "id": "js-29",
+        "question": "Which function runs a block of code continuously at set time intervals?",
+        "options": [
+            "setTimeout()",
+            "setInterval()",
+            "setTimer()",
+            "repeat()"
+        ],
+        "correctAnswer": 1,
+        "explanation": "setInterval() executes a function repeatedly, pausing for a specified number of milliseconds between each call."
+    },
+    {
+        "id": "js-30",
+        "question": "What is a Closure?",
+        "options": [
+            "A method to shut down the browser entirely.",
+            "When an inner function has access to the outer function's variables, even after the outer function has returned.",
+            "A CSS trick to hide an element.",
+            "An error that occurs when a loop never ends."
+        ],
+        "correctAnswer": 1,
+        "explanation": "Closures allow a function to 'remember' the environment and variables where it was created, useful for data privacy."
+    }
+]

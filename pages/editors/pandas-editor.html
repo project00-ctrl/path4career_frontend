@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live Pandas Editor - CareerPath</title>
+    <link rel="stylesheet" href="../../assets/css/editor.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    
+    <script src="https://cdn.jsdelivr.net/pyodide/v0.25.0/full/pyodide.js"></script>
+</head>
+<body>
+    
+    <nav class="editor-nav">
+        <div class="logo-area">
+            <img class="logo-icon" src="../../assets/images/path4career-icon.png" alt="Path4Career" style="width:32px;height:32px;border-radius:8px;">
+            <div class="logo-text">Path4Career</div>
+            <div class="title-badge">🐼 Pandas Workspace</div>
+        </div>
+        <button class="run-btn" id="runBtn" disabled>⏳ Loading Data Science Engine...</button>
+    </nav>
+
+    <div class="workspace">
+        <div class="editor-pane">
+            <p class="pane-label">
+                <span>analysis.py</span>
+                <span class="status-text">Pyodide 0.25.0</span>
+            </p>
+            <textarea id="pandasInput" spellcheck="false" aria-label="Pandas Input"></textarea>
+        </div>
+        
+        <div class="result-pane">
+            <p class="pane-label">Terminal Output</p>
+            <div id="consoleDiv">
+                <span class="log-loading">Initializing Python Environment...</span><br>
+            </div>
+        </div>
+    </div>
+
+    <div id="inputModal" class="modal-overlay">
+        <div class="modal-content">
+            <h3><span style="color: #00ffb3;">⚡</span> Console Input Required</h3>
+            <p>Your script uses the <code>input()</code> function. Please provide the values below <strong>(one per line)</strong> before running.</p>
+            <textarea id="modalStdin" placeholder="Enter values here..."></textarea>
+            <div class="modal-actions">
+                <button class="btn-cancel" onclick="closeModal()">Cancel</button>
+                <button class="btn-confirm" onclick="confirmAndRun()">▶ Continue Execution</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+const pandasInput = document.getElementById('pandasInput');
+        const consoleDiv = document.getElementById('consoleDiv');
+        const runBtn = document.getElementById('runBtn');
+        
+        const inputModal = document.getElementById('inputModal');
+        const modalStdin = document.getElementById('modalStdin');
+
+        let pyodideInstance = null;
+        let inputLines = [];
+
+        // 1. Default Pandas template
+        const savedCode = localStorage.getItem('careerPathPandasCode');
+        const defaultCode = `import pandas as pd
+
+# 1. Create a sample DataFrame
+data = {
+    'Employee': ['Alice', 'Bob', 'Charlie', 'David', 'Eva'],
+    'Department': ['Engineering', 'HR', 'Engineering', 'Finance', 'Marketing'],
+    'Salary': [85000, 60000, 92000, 78000, 71000],
+    'Years_Active': [3, 5, 2, 8, 1]
+}
+
+df = pd.DataFrame(data)
+
+print("--- 📊 FULL DATAFRAME ---")
+print(df)
+print("\\n")
+
+# 2. Data Filtering
+print("--- 💻 ENGINEERING TEAM ONLY ---")
+engineering = df[df['Department'] == 'Engineering']
+print(engineering)
+print("\\n")
+
+# 3. Data Aggregation & Math
+print("--- 💰 AVERAGE SALARY BY DEPARTMENT ---")
+avg_salary = df.groupby('Department')['Salary'].mean()
+print(avg_salary)
+print("\\n")
+
+print(f"Highest Salary in company: $\\{df['Salary'].max()}")
+`;
+        pandasInput.value = savedCode ? savedCode : defaultCode;
+
+        // 2. Smart Indentation Engine
+        pandasInput.addEventListener('keydown', function(e) {
+            if (e.key === 'Tab') {
+                e.preventDefault(); 
+                const start = this.selectionStart;
+                const end = this.selectionEnd;
+                const spaces = "    ";
+                this.value = this.value.substring(0, start) + spaces + this.value.substring(end);
+                this.selectionStart = this.selectionEnd = start + spaces.length;
+                this.dispatchEvent(new Event('input'));
+            }
+            
+            if (e.key === 'Enter') {
+                e.preventDefault(); 
+                const start = this.selectionStart;
+                const end = this.selectionEnd;
+                const textBeforeCursor = this.value.substring(0, start);
+                const lines = textBeforeCursor.split(/\r?\n/);
+                const currentLine = lines[lines.length - 1] || "";
+                
+                const leadingSpacesMatch = currentLine.match(/^(\s*)/);
+                let indentSpaces = leadingSpacesMatch ? leadingSpacesMatch[1] : '';
+                
+                if (currentLine.trim().endsWith(':')) {
+                    indentSpaces += "    ";
+                }
+                
+                const insertText = "\n" + indentSpaces;
+                this.value = this.value.substring(0, start) + insertText + this.value.substring(end);
+                this.selectionStart = this.selectionEnd = start + insertText.length;
+                this.dispatchEvent(new Event('input'));
+            }
+        });
+
+        // 3. Auto-Save
+        pandasInput.addEventListener('input', () => {
+            localStorage.setItem('careerPathPandasCode', pandasInput.value);
+        });
+
+        function appendToConsole(text, className) {
+            const span = document.createElement('span');
+            span.className = className;
+            span.textContent = text + (className === 'log-input-echo' ? '\n' : '\n');
+            consoleDiv.appendChild(span);
+            consoleDiv.scrollTop = consoleDiv.scrollHeight;
+        }
+
+        // 4. Initialize Pyodide AND Install Pandas
+        async function main() {
+            try {
+                // 🚨 CRITICAL FIX: We explicitly set the indexURL so it downloads from the CDN, not your local Live Server!
+                pyodideInstance = await loadPyodide({
+                    indexURL: "https://cdn.jsdelivr.net/pyodide/v0.25.0/full/",
+                    stdin: () => {
+                        let val = inputLines.shift();
+                        if (val !== undefined) {
+                            appendToConsole(val, 'log-input-echo'); 
+                            return val;
+                        }
+                        return null; 
+                    },
+                    stdout: (text) => {
+                        const span = document.createElement('span');
+                        span.className = 'log-normal';
+                        span.textContent = text + '\n';
+                        consoleDiv.appendChild(span);
+                        consoleDiv.scrollTop = consoleDiv.scrollHeight;
+                    },
+                    stderr: (text) => appendToConsole(text, 'log-error')
+                });
+                
+                consoleDiv.innerHTML += '<span class="log-loading">Fetching Pandas library (Approx 10MB, please wait)...</span><br>';
+                
+                // Load Pandas into the WebAssembly environment
+                await pyodideInstance.loadPackage("pandas");
+                
+                consoleDiv.innerHTML += '<br><span class="log-system">✔ Data Science Engine Ready! Click Run Code.</span>\n\n';
+                runBtn.disabled = false;
+                runBtn.innerHTML = "▶ Run Code";
+            } catch (err) {
+                consoleDiv.innerHTML += `<br><span class="log-error">CRITICAL ERROR: Failed to load engine. ${err.message}</span>`;
+            }
+        }
+
+        // 5. Smart Execution Flow
+        function handleRunClick() {
+            const code = pandasInput.value.trim();
+            if (!code) {
+                consoleDiv.innerHTML = '<span class="log-error">Please enter some Python code.</span>';
+                return;
+            }
+
+            if (/\binput\s*\(/.test(code)) {
+                inputModal.style.display = 'flex';
+                modalStdin.value = localStorage.getItem('careerPathPandasStdin') || '';
+                modalStdin.focus();
+            } else {
+                inputLines = [];
+                executePandasCode();
+            }
+        }
+
+        function closeModal() {
+            inputModal.style.display = 'none';
+        }
+
+        function confirmAndRun() {
+            inputModal.style.display = 'none';
+            localStorage.setItem('careerPathPandasStdin', modalStdin.value);
+            
+            const rawInputs = modalStdin.value.split('\n');
+            inputLines = rawInputs.length === 1 && rawInputs[0] === "" ? [] : rawInputs;
+            
+            executePandasCode();
+        }
+
+        async function executePandasCode() {
+            const code = pandasInput.value.trim();
+            consoleDiv.innerHTML = '<span class="log-loading">>>> Analyzing Data...</span>\n';
+            runBtn.disabled = true;
+
+            try {
+                await pyodideInstance.runPythonAsync(code);
+                appendToConsole('\n--- Execution Finished ---', 'log-system');
+            } catch (err) {
+                if (err.message.includes("EOFError")) {
+                    appendToConsole('\nRuntime Error: EOFError. Your code asked for input(), but you did not provide enough lines in the popup box!', 'log-error');
+                } else {
+                    appendToConsole('\nRuntime Error:\n' + err.message, 'log-error');
+                }
+            } finally {
+                runBtn.disabled = false;
+            }
+        }
+
+        runBtn.addEventListener('click', handleRunClick);
+
+        // Start initialization
+        main();
+</script>
+</body>
+</html>

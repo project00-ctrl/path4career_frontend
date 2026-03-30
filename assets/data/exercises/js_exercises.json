@@ -1,0 +1,147 @@
+{
+    "language": "JavaScript",
+    "icon": "JS",
+    "color": "#F7DF1E",
+    "exercises": [
+        {
+            "id": 1,
+            "title": "Hello Console",
+            "difficulty": "basic",
+            "description": "Use <code>console.log</code> to print <strong>Hello, World!</strong> to the console.",
+            "starterCode": "// Print Hello, World! to the console\n",
+            "expectedOutput": "Hello, World!",
+            "validationType": "outputContains",
+            "validationValue": "Hello, World!",
+            "hint": "Use console.log(\"Hello, World!\");",
+            "solutionCode": "console.log('Hello, World!');"
+        },
+        {
+            "id": 2,
+            "title": "Variables & Sum",
+            "difficulty": "basic",
+            "description": "Declare two variables <code>a = 10</code> and <code>b = 20</code>. Print their sum using <code>console.log</code>.",
+            "starterCode": "// Declare a and b, then print the sum\n",
+            "expectedOutput": "30",
+            "validationType": "outputContains",
+            "validationValue": "30",
+            "hint": "Declare with let a = 10; let b = 20; then console.log(a + b);",
+            "solutionCode": "let a = 10;\nlet b = 20;\nconsole.log(a + b);"
+        },
+        {
+            "id": 3,
+            "title": "If-Else Statement",
+            "difficulty": "basic",
+            "description": "Write an if-else statement: if <code>age = 18</code>, print <strong>You can vote!</strong>, otherwise print <strong>Too young.</strong>",
+            "starterCode": "let age = 18;\n// Write your if-else below\n",
+            "expectedOutput": "You can vote!",
+            "validationType": "outputContains",
+            "validationValue": "You can vote!",
+            "hint": "Use if (age >= 18) { console.log(...) } else { console.log(...) }",
+            "solutionCode": "let age = 18;\nif (age >= 18) {\n    console.log('You can vote!');\n} else {\n    console.log('Too young.');\n}"
+        },
+        {
+            "id": 4,
+            "title": "For Loop",
+            "difficulty": "basic",
+            "description": "Use a <code>for</code> loop to print numbers from <strong>1 to 5</strong>, each on a new line.",
+            "starterCode": "// Print numbers 1 to 5 using a for loop\n",
+            "expectedOutput": "1\n2\n3\n4\n5",
+            "validationType": "outputContainsAll",
+            "validationValue": [
+                "1",
+                "2",
+                "3",
+                "4",
+                "5"
+            ],
+            "hint": "Use for (let i = 1; i <= 5; i++) { console.log(i); }",
+            "solutionCode": "for (let i = 1; i <= 5; i++) {\n    console.log(i);\n}"
+        },
+        {
+            "id": 5,
+            "title": "Function \u2014 Square",
+            "difficulty": "basic",
+            "description": "Create a function <code>square(n)</code> that returns <code>n * n</code>. Call it with <strong>7</strong> and print the result.",
+            "starterCode": "// Create the square function and test it\n",
+            "expectedOutput": "49",
+            "validationType": "outputContains",
+            "validationValue": "49",
+            "hint": "function square(n) { return n * n; } then console.log(square(7));",
+            "solutionCode": "function square(n) {\n    return n * n;\n}\nconsole.log(square(7));"
+        },
+        {
+            "id": 6,
+            "title": "Array Methods",
+            "difficulty": "basic",
+            "description": "Create an array <code>[1, 2, 3, 4, 5]</code>. Use <code>.filter()</code> to get even numbers and print the result.",
+            "starterCode": "// Filter even numbers from the array\n",
+            "expectedOutput": "[2, 4]",
+            "validationType": "outputContainsAll",
+            "validationValue": [
+                "2",
+                "4"
+            ],
+            "hint": "Use .filter(n => n % 2 === 0) and console.log the result.",
+            "solutionCode": "const nums = [1, 2, 3, 4, 5];\nconst evens = nums.filter(n => n % 2 === 0);\nconsole.log(evens);"
+        },
+        {
+            "id": 7,
+            "title": "Object & Properties",
+            "difficulty": "basic",
+            "description": "Create an object <code>person</code> with properties <code>name: \"Alice\"</code> and <code>age: 25</code>. Print <strong>Alice is 25 years old.</strong>",
+            "starterCode": "// Create the person object and print the message\n",
+            "expectedOutput": "Alice is 25 years old.",
+            "validationType": "outputContains",
+            "validationValue": "Alice is 25 years old.",
+            "hint": "Use template literals: `${person.name} is ${person.age} years old.`",
+            "solutionCode": "const person = { name: 'Alice', age: 25 };\nconsole.log(`${person.name} is ${person.age} years old.`);"
+        },
+        {
+            "id": 8,
+            "title": "Arrow Functions & Map",
+            "difficulty": "intermediate",
+            "description": "Use an arrow function with <code>.map()</code> to double every number in <code>[1, 2, 3, 4, 5]</code>. Print the result.",
+            "starterCode": "// Double every number using map and arrow function\n",
+            "expectedOutput": "[2, 4, 6, 8, 10]",
+            "validationType": "outputContainsAll",
+            "validationValue": [
+                "2",
+                "4",
+                "6",
+                "8",
+                "10"
+            ],
+            "hint": "const doubled = [1,2,3,4,5].map(n => n * 2);",
+            "solutionCode": "const nums = [1, 2, 3, 4, 5];\nconst doubled = nums.map(n => n * 2);\nconsole.log(doubled);"
+        },
+        {
+            "id": 9,
+            "title": "Destructuring & Spread",
+            "difficulty": "intermediate",
+            "description": "Given <code>const arr = [10, 20, 30]</code>, use destructuring to get the first two values into <code>a</code> and <code>b</code>. Use spread to create a new array <code>[...arr, 40, 50]</code>. Print both.",
+            "starterCode": "const arr = [10, 20, 30];\n// Destructure and spread below\n",
+            "expectedOutput": "10 20\n[10, 20, 30, 40, 50]",
+            "validationType": "outputContainsAll",
+            "validationValue": [
+                "10",
+                "20",
+                "40",
+                "50"
+            ],
+            "hint": "const [a, b] = arr; const newArr = [...arr, 40, 50];",
+            "solutionCode": "const arr = [10, 20, 30];\nconst [a, b] = arr;\nconsole.log(a, b);\nconst newArr = [...arr, 40, 50];\nconsole.log(newArr);"
+        },
+        {
+            "id": 10,
+            "title": "Promise & Async",
+            "difficulty": "intermediate",
+            "description": "Create a function <code>fetchData()</code> that returns a <strong>Promise</strong> resolving with <strong>\"Data loaded!\"</strong> after 100ms. Use <code>async/await</code> to call it and print the result.",
+            "starterCode": "// Create fetchData with a Promise and use async/await\n",
+            "expectedOutput": "Data loaded!",
+            "validationType": "outputContains",
+            "validationValue": "Data loaded!",
+            "hint": "return new Promise(resolve => setTimeout(() => resolve('Data loaded!'), 100));",
+            "solutionCode": "function fetchData() {\n    return new Promise(resolve => setTimeout(() => resolve('Data loaded!'), 100));\n}\nasync function main() {\n    const data = await fetchData();\n    console.log(data);\n}\nmain();"
+        }
+    ]
+}

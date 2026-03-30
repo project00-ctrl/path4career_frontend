@@ -1,0 +1,38 @@
+{
+  "title": "Angular Reference",
+  "description": "Angular components, services, directives, and modules reference.",
+  "sections": [
+    {
+      "title": "Components",
+      "items": [
+        { "name": "@Component", "description": "Decorator that marks a class as an Angular component.", "code": "@Component({\n  selector: 'app-hello',\n  template: '<h1>Hello {{name}}</h1>'\n})\nexport class HelloComponent {\n  name = 'World';\n}" },
+        { "name": "@Input()", "description": "Pass data from parent to child component.", "code": "@Input() title: string = '';" },
+        { "name": "@Output()", "description": "Emit events from child to parent component.", "code": "@Output() clicked = new EventEmitter<string>();" }
+      ]
+    },
+    {
+      "title": "Directives",
+      "items": [
+        { "name": "*ngIf", "description": "Conditionally render elements.", "code": "<div *ngIf=\"isVisible\">Visible!</div>" },
+        { "name": "*ngFor", "description": "Loop over a collection.", "code": "<li *ngFor=\"let item of items\">{{item}}</li>" },
+        { "name": "[ngClass]", "description": "Dynamically add/remove CSS classes.", "code": "<div [ngClass]=\"{'active': isActive}\">...</div>" },
+        { "name": "[(ngModel)]", "description": "Two-way data binding for forms.", "code": "<input [(ngModel)]=\"username\">" }
+      ]
+    },
+    {
+      "title": "Services & DI",
+      "items": [
+        { "name": "@Injectable", "description": "Marks a class as available for dependency injection.", "code": "@Injectable({ providedIn: 'root' })\nexport class DataService {\n  getData() { return ['a', 'b']; }\n}" },
+        { "name": "HttpClient", "description": "Make HTTP requests.", "code": "this.http.get<User[]>('/api/users')\n  .subscribe(data => this.users = data);" }
+      ]
+    },
+    {
+      "title": "Routing",
+      "items": [
+        { "name": "RouterModule", "description": "Configure application routes.", "code": "const routes: Routes = [\n  { path: '', component: HomeComponent },\n  { path: 'about', component: AboutComponent }\n];" },
+        { "name": "routerLink", "description": "Navigate between routes in templates.", "code": "<a routerLink=\"/about\">About</a>" },
+        { "name": "ActivatedRoute", "description": "Access route parameters.", "code": "this.route.params.subscribe(p => this.id = p['id']);" }
+      ]
+    }
+  ]
+}

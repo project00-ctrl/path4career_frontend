@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Post or edit a job listing on Path4Career">
+    <title>Post Job - Path4Career</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../assets/css/navbar.css">
+    <link rel="stylesheet" href="../../assets/css/jobs.css">
+    <style>
+        .jobs-toast { position: fixed; bottom: 24px; right: 24px; z-index: 9999; background: var(--surface); color: var(--text-main); padding: 1rem 1.5rem; border-radius: var(--radius-md); box-shadow: var(--shadow-lg); display: flex; align-items: center; gap: 0.75rem; transform: translateX(110%); transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); border-left: 4px solid var(--success); }
+        .jobs-toast-error { border-left-color: var(--error); }
+        .jobs-toast-show { transform: translateX(0); }
+        .jobs-page-wrapper { padding-top: 10px; }
+        .jobs-page-wrapper .container { max-width: 800px; margin: 0 auto; padding: 0 1.5rem; }
+
+        .form-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 2.5rem; margin-top: 1rem; }
+        .form-card h2 { color: var(--text-main); margin-bottom: 2rem; }
+        .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
+        .form-grid .full-width { grid-column: 1 / -1; }
+        .form-group { display: flex; flex-direction: column; }
+        .form-group label { color: var(--text-main); font-weight: 500; margin-bottom: 0.5rem; font-size: 0.95rem; }
+        .form-group input, .form-group select, .form-group textarea {
+            background: var(--bg-main); border: 1px solid var(--border); color: var(--text-main);
+            padding: 0.8rem 1rem; border-radius: 8px; font-size: 0.95rem; outline: none; transition: border-color 0.2s;
+            font-family: 'Inter', sans-serif;
+        }
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+            border-color: var(--primary); box-shadow: 0 0 0 3px rgba(74, 108, 247, 0.1);
+        }
+        .form-group textarea { resize: vertical; min-height: 120px; }
+        .form-actions { display: flex; gap: 1rem; margin-top: 1.5rem; justify-content: flex-end; }
+        @media (max-width: 768px) { .form-grid { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+    <div id="navbar-root"></div>
+
+    <div class="jobs-page-wrapper">
+        <div class="container" style="padding-top: 1rem;">
+            <a href="recruiter-dashboard.html" style="color: var(--text-muted); text-decoration:none; display:inline-flex; align-items:center; gap:0.5rem;">← Back to Dashboard</a>
+
+            <div class="form-card">
+                <h2 id="formTitle">📝 Post a New Job</h2>
+
+                <form id="jobForm">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label>Job Title *</label>
+                            <input type="text" id="jobTitle" required placeholder="e.g., Senior Developer">
+                        </div>
+                        <div class="form-group">
+                            <label>Company *</label>
+                            <input type="text" id="jobCompany" required placeholder="Company name">
+                        </div>
+                        <div class="form-group">
+                            <label>Location *</label>
+                            <input type="text" id="jobLocation" required placeholder="e.g., New York, NY">
+                        </div>
+                        <div class="form-group">
+                            <label>Job Type</label>
+                            <select id="jobType">
+                                <option value="Full-time">Full-time</option>
+                                <option value="Part-time">Part-time</option>
+                                <option value="Contract">Contract</option>
+                                <option value="Internship">Internship</option>
+                                <option value="Remote">Remote</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Salary Range</label>
+                            <input type="text" id="jobSalary" placeholder="e.g., $80,000 - $120,000">
+                        </div>
+                        <div class="form-group">
+                            <label>Job Role *</label>
+                            <select id="jobRoleId" required>
+                                <option value="">Select a role</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Apply URL (optional)</label>
+                            <input type="text" id="jobApplyUrl" placeholder="https://company.com/apply">
+                        </div>
+                        <div class="form-group">
+                            <label>Expiry Date</label>
+                            <input type="date" id="jobExpiry">
+                        </div>
+                        <div class="form-group full-width">
+                            <label>Job Description *</label>
+                            <textarea id="jobDescription" required placeholder="Describe the role, responsibilities, requirements, and benefits..."></textarea>
+                        </div>
+                    </div>
+
+                    <div class="form-actions">
+                        <a href="recruiter-dashboard.html" class="btn btn-outline" style="text-decoration:none;">Cancel</a>
+                        <button type="submit" class="btn btn-primary" id="submitBtn">Post Job →</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <footer><p>&copy; 2026 Path4Career. All rights reserved.</p></footer>
+
+    <script src="../../assets/js/navbar.js"></script>
+    <script src="../../assets/js/jobs-api.js"></script>
+    <script src="../../assets/js/recruiter-job-form.js"></script>
+</body>
+</html>

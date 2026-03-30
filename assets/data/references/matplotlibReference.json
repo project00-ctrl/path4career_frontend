@@ -1,0 +1,33 @@
+{
+  "title": "Matplotlib Reference",
+  "description": "Matplotlib plotting, charts, and visualization customization reference.",
+  "sections": [
+    {
+      "title": "Basic Plots",
+      "items": [
+        { "name": "plt.plot()", "description": "Create a line plot.", "code": "import matplotlib.pyplot as plt\nplt.plot([1, 2, 3], [4, 5, 6])\nplt.show()" },
+        { "name": "plt.scatter()", "description": "Create a scatter plot.", "code": "plt.scatter(x, y, c='red', marker='o')\nplt.show()" },
+        { "name": "plt.bar()", "description": "Create a bar chart.", "code": "plt.bar(['A', 'B', 'C'], [10, 20, 15])\nplt.show()" },
+        { "name": "plt.hist()", "description": "Create a histogram.", "code": "plt.hist(data, bins=20, edgecolor='black')\nplt.show()" },
+        { "name": "plt.pie()", "description": "Create a pie chart.", "code": "plt.pie(sizes, labels=labels, autopct='%1.1f%%')\nplt.show()" }
+      ]
+    },
+    {
+      "title": "Customization",
+      "items": [
+        { "name": "plt.title()", "description": "Set chart title.", "code": "plt.title('Sales Report', fontsize=16)" },
+        { "name": "plt.xlabel() / ylabel()", "description": "Label axes.", "code": "plt.xlabel('Month')\nplt.ylabel('Revenue ($)')" },
+        { "name": "plt.legend()", "description": "Add a legend.", "code": "plt.plot(x, y1, label='2024')\nplt.plot(x, y2, label='2025')\nplt.legend()" },
+        { "name": "plt.grid()", "description": "Show grid lines.", "code": "plt.grid(True, linestyle='--', alpha=0.7)" },
+        { "name": "plt.style.use()", "description": "Apply a built-in style.", "code": "plt.style.use('seaborn-v0_8')" }
+      ]
+    },
+    {
+      "title": "Subplots",
+      "items": [
+        { "name": "plt.subplots()", "description": "Create multiple plots in a grid.", "code": "fig, axes = plt.subplots(2, 2, figsize=(10, 8))\naxes[0, 0].plot(x, y)\naxes[0, 1].bar(cats, vals)\nplt.tight_layout()\nplt.show()" },
+        { "name": "fig.savefig()", "description": "Save figure to a file.", "code": "fig.savefig('chart.png', dpi=300, bbox_inches='tight')" }
+      ]
+    }
+  ]
+}

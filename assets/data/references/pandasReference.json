@@ -1,0 +1,208 @@
+{
+  "sections": [
+    {
+      "title": "DataFrame Creation & I/O",
+      "desc": "Methods for creating DataFrames and reading/writing data from files.",
+      "type": "table",
+      "columns": ["Method", "Description", "Example"],
+      "rows": [
+        { "prop": "pd.DataFrame()", "desc": "Creates a DataFrame from dict, list, array, or other data", "ver": "pd.DataFrame({'a': [1,2], 'b': [3,4]})" },
+        { "prop": "pd.Series()", "desc": "Creates a one-dimensional labeled array", "ver": "pd.Series([1, 2, 3], name='col')" },
+        { "prop": "pd.read_csv()", "desc": "Reads a CSV file into a DataFrame", "ver": "pd.read_csv('data.csv')" },
+        { "prop": "pd.read_excel()", "desc": "Reads an Excel file into a DataFrame", "ver": "pd.read_excel('data.xlsx', sheet_name=0)" },
+        { "prop": "pd.read_json()", "desc": "Reads a JSON file or string into a DataFrame", "ver": "pd.read_json('data.json')" },
+        { "prop": "pd.read_sql()", "desc": "Reads a SQL query or table into a DataFrame", "ver": "pd.read_sql('SELECT * FROM t', conn)" },
+        { "prop": "pd.read_html()", "desc": "Reads HTML tables from a web page into a list of DataFrames", "ver": "pd.read_html('https://...')" },
+        { "prop": "pd.read_clipboard()", "desc": "Reads text from clipboard into a DataFrame", "ver": "pd.read_clipboard()" },
+        { "prop": "df.to_csv()", "desc": "Writes DataFrame to a CSV file", "ver": "df.to_csv('out.csv', index=False)" },
+        { "prop": "df.to_excel()", "desc": "Writes DataFrame to an Excel file", "ver": "df.to_excel('out.xlsx')" },
+        { "prop": "df.to_json()", "desc": "Converts DataFrame to JSON string or file", "ver": "df.to_json('out.json')" },
+        { "prop": "df.to_sql()", "desc": "Writes DataFrame records to a SQL database", "ver": "df.to_sql('table', conn)" },
+        { "prop": "df.to_dict()", "desc": "Converts DataFrame to a dictionary", "ver": "df.to_dict(orient='records')" },
+        { "prop": "df.to_numpy()", "desc": "Converts DataFrame to a NumPy array", "ver": "df.to_numpy()" }
+      ]
+    },
+    {
+      "title": "Inspection & Info",
+      "desc": "Methods for viewing, inspecting, and summarizing DataFrame contents.",
+      "type": "table",
+      "columns": ["Method", "Description", "Example"],
+      "rows": [
+        { "prop": "df.head()", "desc": "Returns the first n rows (default 5)", "ver": "df.head(10)" },
+        { "prop": "df.tail()", "desc": "Returns the last n rows (default 5)", "ver": "df.tail(10)" },
+        { "prop": "df.shape", "desc": "Returns a tuple of (rows, columns)", "ver": "(1000, 5)" },
+        { "prop": "df.columns", "desc": "Returns the column labels as an Index", "ver": "Index(['a', 'b', 'c'])" },
+        { "prop": "df.index", "desc": "Returns the row labels (index) of the DataFrame", "ver": "RangeIndex(start=0, stop=100)" },
+        { "prop": "df.dtypes", "desc": "Returns the data type of each column", "ver": "a: int64, b: float64" },
+        { "prop": "df.info()", "desc": "Prints summary of DataFrame including dtypes and memory", "ver": "df.info()" },
+        { "prop": "df.describe()", "desc": "Generates descriptive statistics (mean, std, min, max, etc.)", "ver": "df.describe()" },
+        { "prop": "df.nunique()", "desc": "Returns count of unique values per column", "ver": "df.nunique()" },
+        { "prop": "df.value_counts()", "desc": "Counts unique value occurrences in a Series", "ver": "df['col'].value_counts()" },
+        { "prop": "df.sample()", "desc": "Returns a random sample of rows", "ver": "df.sample(5)" },
+        { "prop": "df.memory_usage()", "desc": "Returns memory usage of each column in bytes", "ver": "df.memory_usage(deep=True)" },
+        { "prop": "len(df)", "desc": "Returns number of rows in the DataFrame", "ver": "len(df)" }
+      ]
+    },
+    {
+      "title": "Selection & Indexing",
+      "desc": "Methods for selecting, accessing, and filtering data.",
+      "type": "table",
+      "columns": ["Method", "Description", "Example"],
+      "rows": [
+        { "prop": "df['col']", "desc": "Selects a single column, returns a Series", "ver": "df['name']" },
+        { "prop": "df[['col1','col2']]", "desc": "Selects multiple columns, returns a DataFrame", "ver": "df[['name', 'age']]" },
+        { "prop": "df.loc[]", "desc": "Selects by label-based indexing (rows & columns by name)", "ver": "df.loc[0:5, 'name':'age']" },
+        { "prop": "df.iloc[]", "desc": "Selects by integer position-based indexing", "ver": "df.iloc[0:5, 0:3]" },
+        { "prop": "df.at[]", "desc": "Accesses a single value by row/column label (fast)", "ver": "df.at[0, 'name']" },
+        { "prop": "df.iat[]", "desc": "Accesses a single value by row/column integer position", "ver": "df.iat[0, 1]" },
+        { "prop": "df[condition]", "desc": "Boolean indexing — filters rows by condition", "ver": "df[df['age'] > 25]" },
+        { "prop": "df.query()", "desc": "Filters rows using a string expression", "ver": "df.query('age > 25 and city == \"NY\"')" },
+        { "prop": "df.isin()", "desc": "Filters elements that are in a list of values", "ver": "df[df['city'].isin(['NY', 'LA'])]" },
+        { "prop": "df.between()", "desc": "Filters values within a range (inclusive)", "ver": "df[df['age'].between(20, 30)]" },
+        { "prop": "df.nlargest()", "desc": "Returns the n largest values by column", "ver": "df.nlargest(5, 'salary')" },
+        { "prop": "df.nsmallest()", "desc": "Returns the n smallest values by column", "ver": "df.nsmallest(5, 'age')" },
+        { "prop": "df.where()", "desc": "Replaces values where condition is False with NaN or other", "ver": "df.where(df > 0)" },
+        { "prop": "df.mask()", "desc": "Replaces values where condition is True with NaN or other", "ver": "df.mask(df < 0)" }
+      ]
+    },
+    {
+      "title": "Data Cleaning",
+      "desc": "Methods for handling missing data, duplicates, and data types.",
+      "type": "table",
+      "columns": ["Method", "Description", "Example"],
+      "rows": [
+        { "prop": "df.isnull()", "desc": "Returns boolean mask indicating missing values (NaN)", "ver": "df.isnull().sum()" },
+        { "prop": "df.notnull()", "desc": "Returns boolean mask indicating non-missing values", "ver": "df[df['col'].notnull()]" },
+        { "prop": "df.dropna()", "desc": "Removes rows (or columns) containing NaN values", "ver": "df.dropna(subset=['col'])" },
+        { "prop": "df.fillna()", "desc": "Replaces NaN values with a specified value or method", "ver": "df.fillna(0) or df.fillna(method='ffill')" },
+        { "prop": "df.interpolate()", "desc": "Fills NaN values using interpolation methods", "ver": "df.interpolate(method='linear')" },
+        { "prop": "df.duplicated()", "desc": "Returns boolean Series indicating duplicate rows", "ver": "df.duplicated(subset=['name'])" },
+        { "prop": "df.drop_duplicates()", "desc": "Removes duplicate rows", "ver": "df.drop_duplicates(keep='first')" },
+        { "prop": "df.replace()", "desc": "Replaces values in the DataFrame", "ver": "df.replace({'old': 'new'})" },
+        { "prop": "df.astype()", "desc": "Casts a column or DataFrame to a specified type", "ver": "df['age'].astype(int)" },
+        { "prop": "pd.to_datetime()", "desc": "Converts argument to datetime type", "ver": "pd.to_datetime(df['date'])" },
+        { "prop": "pd.to_numeric()", "desc": "Converts argument to numeric type, coercing errors", "ver": "pd.to_numeric(df['val'], errors='coerce')" },
+        { "prop": "df.clip()", "desc": "Trims values to specified lower and upper bounds", "ver": "df['col'].clip(0, 100)" },
+        { "prop": "df.rename()", "desc": "Renames columns or index labels", "ver": "df.rename(columns={'old': 'new'})" },
+        { "prop": "df.set_index()", "desc": "Sets one or more columns as the DataFrame index", "ver": "df.set_index('id')" },
+        { "prop": "df.reset_index()", "desc": "Resets the index back to default integer index", "ver": "df.reset_index(drop=True)" }
+      ]
+    },
+    {
+      "title": "Sorting & Ranking",
+      "desc": "Methods for ordering and ranking data.",
+      "type": "table",
+      "columns": ["Method", "Description", "Example"],
+      "rows": [
+        { "prop": "df.sort_values()", "desc": "Sorts by one or more columns", "ver": "df.sort_values('age', ascending=False)" },
+        { "prop": "df.sort_index()", "desc": "Sorts by the index labels", "ver": "df.sort_index(ascending=True)" },
+        { "prop": "df.rank()", "desc": "Assigns rank to entries (1 to n)", "ver": "df['col'].rank(method='dense')" },
+        { "prop": "df.nlargest()", "desc": "Returns the n rows with largest values in a column", "ver": "df.nlargest(10, 'score')" },
+        { "prop": "df.nsmallest()", "desc": "Returns the n rows with smallest values in a column", "ver": "df.nsmallest(10, 'score')" }
+      ]
+    },
+    {
+      "title": "Grouping & Aggregation",
+      "desc": "Methods for grouping data and performing aggregate calculations.",
+      "type": "table",
+      "columns": ["Method", "Description", "Example"],
+      "rows": [
+        { "prop": "df.groupby()", "desc": "Groups the DataFrame by one or more columns", "ver": "df.groupby('city')" },
+        { "prop": ".agg()", "desc": "Applies one or more aggregation functions to groups", "ver": "df.groupby('city').agg({'sal': ['mean','sum']})" },
+        { "prop": ".transform()", "desc": "Applies a function to each group, returning same-shaped result", "ver": "df.groupby('city')['sal'].transform('mean')" },
+        { "prop": ".filter()", "desc": "Filters groups based on a condition", "ver": "df.groupby('city').filter(lambda x: len(x)>5)" },
+        { "prop": ".apply()", "desc": "Applies a custom function to each group", "ver": "df.groupby('city').apply(my_func)" },
+        { "prop": ".size()", "desc": "Returns the number of elements in each group", "ver": "df.groupby('dept').size()" },
+        { "prop": ".count()", "desc": "Returns count of non-null values per group", "ver": "df.groupby('dept').count()" },
+        { "prop": ".first() / .last()", "desc": "Returns first or last non-null value per group", "ver": "df.groupby('dept').first()" },
+        { "prop": ".nth()", "desc": "Returns the nth row from each group", "ver": "df.groupby('dept').nth(0)" },
+        { "prop": "pd.pivot_table()", "desc": "Creates a pivot table with aggregation", "ver": "pd.pivot_table(df, values='sal', index='dept', aggfunc='mean')" },
+        { "prop": "pd.crosstab()", "desc": "Computes a cross-tabulation of two or more factors", "ver": "pd.crosstab(df['a'], df['b'])" },
+        { "prop": "df.resample()", "desc": "Resamples time-series data to a different frequency", "ver": "df.resample('M').mean()" }
+      ]
+    },
+    {
+      "title": "Merging & Joining",
+      "desc": "Methods for combining multiple DataFrames.",
+      "type": "table",
+      "columns": ["Method", "Description", "Example"],
+      "rows": [
+        { "prop": "pd.merge()", "desc": "Merges two DataFrames on keys (like SQL JOIN)", "ver": "pd.merge(df1, df2, on='id', how='left')" },
+        { "prop": "df.merge()", "desc": "Instance method version of pd.merge()", "ver": "df1.merge(df2, on='id')" },
+        { "prop": "pd.concat()", "desc": "Concatenates DataFrames along an axis (stack rows or columns)", "ver": "pd.concat([df1, df2], axis=0)" },
+        { "prop": "df.join()", "desc": "Joins DataFrames on their index (or a key column)", "ver": "df1.join(df2, on='key')" },
+        { "prop": "df.append()", "desc": "Appends rows to the end of a DataFrame (deprecated, use concat)", "ver": "pd.concat([df1, df2])" },
+        { "prop": "how='inner'", "desc": "Keeps only rows with matching keys in both DataFrames", "ver": "pd.merge(df1, df2, how='inner')" },
+        { "prop": "how='left'", "desc": "Keeps all rows from left DataFrame, fills NaN for non-matches", "ver": "pd.merge(df1, df2, how='left')" },
+        { "prop": "how='right'", "desc": "Keeps all rows from right DataFrame, fills NaN for non-matches", "ver": "pd.merge(df1, df2, how='right')" },
+        { "prop": "how='outer'", "desc": "Keeps all rows from both DataFrames (union)", "ver": "pd.merge(df1, df2, how='outer')" },
+        { "prop": "pd.merge_asof()", "desc": "Merge on nearest keys (useful for time-series data)", "ver": "pd.merge_asof(df1, df2, on='time')" }
+      ]
+    },
+    {
+      "title": "String Methods",
+      "desc": "Vectorized string operations accessed via the .str accessor.",
+      "type": "table",
+      "columns": ["Method", "Description", "Example"],
+      "rows": [
+        { "prop": "df['col'].str.lower()", "desc": "Converts all characters to lowercase", "ver": "df['name'].str.lower()" },
+        { "prop": ".str.upper()", "desc": "Converts all characters to uppercase", "ver": "df['name'].str.upper()" },
+        { "prop": ".str.title()", "desc": "Converts to title case", "ver": "df['name'].str.title()" },
+        { "prop": ".str.strip()", "desc": "Removes leading and trailing whitespace", "ver": "df['name'].str.strip()" },
+        { "prop": ".str.contains()", "desc": "Tests if pattern is contained in each string", "ver": "df['name'].str.contains('John')" },
+        { "prop": ".str.startswith()", "desc": "Tests if string starts with a pattern", "ver": "df['name'].str.startswith('J')" },
+        { "prop": ".str.endswith()", "desc": "Tests if string ends with a pattern", "ver": "df['name'].str.endswith('son')" },
+        { "prop": ".str.replace()", "desc": "Replaces occurrences of pattern in string", "ver": "df['col'].str.replace('old', 'new')" },
+        { "prop": ".str.split()", "desc": "Splits each string by a delimiter", "ver": "df['name'].str.split(' ')" },
+        { "prop": ".str.len()", "desc": "Returns the length of each string", "ver": "df['name'].str.len()" },
+        { "prop": ".str.extract()", "desc": "Extract capture groups of regex as columns", "ver": "df['col'].str.extract(r'(\\d+)')" },
+        { "prop": ".str.findall()", "desc": "Returns all occurrences of a pattern", "ver": "df['col'].str.findall(r'\\d+')" },
+        { "prop": ".str.cat()", "desc": "Concatenates strings in a Series with a separator", "ver": "df['col'].str.cat(sep=', ')" },
+        { "prop": ".str.pad()", "desc": "Pads strings from left, right, or both sides", "ver": "df['col'].str.pad(10, side='left')" },
+        { "prop": ".str.get()", "desc": "Accesses element at a position in each string or list", "ver": "df['col'].str.get(0)" }
+      ]
+    },
+    {
+      "title": "Apply & Map",
+      "desc": "Methods for applying custom transformations to data.",
+      "type": "table",
+      "columns": ["Method", "Description", "Example"],
+      "rows": [
+        { "prop": "df.apply()", "desc": "Applies a function along rows or columns", "ver": "df.apply(lambda x: x.max(), axis=0)" },
+        { "prop": "df.applymap()", "desc": "Applies a function element-wise to entire DataFrame", "ver": "df.applymap(lambda x: x**2)" },
+        { "prop": "s.map()", "desc": "Maps values of a Series using a dict or function", "ver": "df['grade'].map({'A': 4, 'B': 3})" },
+        { "prop": "s.apply()", "desc": "Applies a function to each element of a Series", "ver": "df['col'].apply(lambda x: x*2)" },
+        { "prop": "df.pipe()", "desc": "Chains functions that accept and return DataFrames", "ver": "df.pipe(clean).pipe(transform)" },
+        { "prop": "df.assign()", "desc": "Creates new columns using keyword assignments", "ver": "df.assign(bmi=df['wt']/(df['ht']**2))" },
+        { "prop": "df.eval()", "desc": "Evaluates a string expression on DataFrame columns", "ver": "df.eval('c = a + b')" },
+        { "prop": "pd.cut()", "desc": "Bins values into discrete intervals (equal-width)", "ver": "pd.cut(df['age'], bins=5)" },
+        { "prop": "pd.qcut()", "desc": "Bins values into quantile-based intervals", "ver": "pd.qcut(df['score'], q=4)" },
+        { "prop": "df.explode()", "desc": "Transforms list-like elements to rows", "ver": "df.explode('tags')" }
+      ]
+    },
+    {
+      "title": "Time Series",
+      "desc": "Methods for working with dates, times, and time-series data.",
+      "type": "table",
+      "columns": ["Method", "Description", "Example"],
+      "rows": [
+        { "prop": "pd.to_datetime()", "desc": "Converts strings or numbers to datetime objects", "ver": "pd.to_datetime('2024-01-15')" },
+        { "prop": "pd.date_range()", "desc": "Creates a fixed-frequency DatetimeIndex", "ver": "pd.date_range('2024-01', periods=12, freq='M')" },
+        { "prop": "pd.Timedelta()", "desc": "Represents a fixed duration of time", "ver": "pd.Timedelta('5 days')" },
+        { "prop": "df.resample()", "desc": "Groups time-series data by time frequency", "ver": "df.resample('W').sum()" },
+        { "prop": ".dt.year", "desc": "Extracts the year from datetime column", "ver": "df['date'].dt.year" },
+        { "prop": ".dt.month", "desc": "Extracts the month (1-12) from datetime column", "ver": "df['date'].dt.month" },
+        { "prop": ".dt.day", "desc": "Extracts the day of month from datetime column", "ver": "df['date'].dt.day" },
+        { "prop": ".dt.day_name()", "desc": "Returns the day name (Monday, Tuesday, etc.)", "ver": "df['date'].dt.day_name()" },
+        { "prop": ".dt.dayofweek", "desc": "Returns the day of week (0=Monday, 6=Sunday)", "ver": "df['date'].dt.dayofweek" },
+        { "prop": ".dt.hour", "desc": "Extracts the hour from datetime column", "ver": "df['date'].dt.hour" },
+        { "prop": "df.shift()", "desc": "Shifts data by a specified number of periods", "ver": "df['val'].shift(1)" },
+        { "prop": "df.diff()", "desc": "Computes the difference between consecutive elements", "ver": "df['val'].diff()" },
+        { "prop": "df.pct_change()", "desc": "Computes percentage change between consecutive elements", "ver": "df['price'].pct_change()" },
+        { "prop": "df.rolling()", "desc": "Creates a rolling window for aggregate calculations", "ver": "df['val'].rolling(7).mean()" },
+        { "prop": "df.expanding()", "desc": "Creates an expanding window (cumulative)", "ver": "df['val'].expanding().sum()" },
+        { "prop": "df.ewm()", "desc": "Creates exponentially weighted moving window", "ver": "df['val'].ewm(span=10).mean()" }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live MongoDB Editor - CareerPath</title>
+    <link rel="stylesheet" href="../../assets/css/editor.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+    
+    <nav class="editor-nav">
+        <div class="logo-area">
+            <img class="logo-icon" src="../../assets/images/path4career-icon.png" alt="Path4Career" style="width:32px;height:32px;border-radius:8px;">
+            <div class="logo-text">Path4Career</div>
+            <div class="title-badge">🍃 MongoDB Workspace</div>
+        </div>
+        <div class="nav-actions">
+            <button class="reset-btn" onclick="resetDatabase()">↻ Reset DB</button>
+            <button class="run-btn" id="runBtn" onclick="executeMongoQuery()">▶ Run Query</button>
+        </div>
+    </nav>
+
+    <div class="workspace">
+        <div class="editor-pane">
+            <p class="pane-label">
+                <span>query.js</span>
+                <span class="status-text">Mongoose Simulator</span>
+            </p>
+            <textarea id="mongoInput" spellcheck="false" aria-label="MongoDB Input"></textarea>
+        </div>
+        
+        <div class="result-pane">
+            <div class="db-explorer">
+                <div class="explorer-title">Live Collections</div>
+                <div class="collection-badges" id="collectionBadges">
+                    </div>
+            </div>
+            
+            <p class="pane-label" style="background: #000; border-bottom: none;">JSON Output</p>
+            <div id="consoleDiv">
+                <span class="log-system">MongoDB Engine Ready. Click "Run Query" to execute.</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+const mongoInput = document.getElementById('mongoInput');
+        const consoleDiv = document.getElementById('consoleDiv');
+        const collectionBadges = document.getElementById('collectionBadges');
+        const runBtn = document.getElementById('runBtn');
+
+        // Master Database State
+        let db = {};
+
+        // 1. Initial Data Seed Function
+        function initializeDatabase() {
+            db = {
+                users: [
+                    { _id: 1, name: "John Doe", email: "john@example.com", age: 25, city: "NYC" },
+                    { _id: 2, name: "Alice Smith", email: "alice@example.com", age: 30, city: "LA" },
+                    { _id: 3, name: "Bob Johnson", email: "bob@example.com", age: 28, city: "NYC" },
+                    { _id: 4, name: "Charlie Brown", email: "charlie@example.com", age: 35, city: "Chicago" }
+                ],
+                products: [
+                    { _id: 1, name: "Laptop", price: 999, category: "electronics" },
+                    { _id: 2, name: "Phone", price: 699, category: "electronics" },
+                    { _id: 3, name: "Headphones", price: 199, category: "accessories" }
+                ],
+                orders: [
+                    { _id: 1, userId: 1, productId: 1, quantity: 1, status: "completed" },
+                    { _id: 2, userId: 2, productId: 2, quantity: 2, status: "pending" }
+                ]
+            };
+            renderCollectionBadges();
+        }
+
+        // Render the top bar showing available collections
+        function renderCollectionBadges() {
+            collectionBadges.innerHTML = '';
+            Object.keys(db).forEach(collection => {
+                const count = db[collection].length;
+                collectionBadges.innerHTML += `<span class="collection-badge">📁 ${collection} (${count})</span>`;
+            });
+        }
+
+        // Function to reset the DB to default
+        function resetDatabase() {
+            initializeDatabase();
+            consoleDiv.innerHTML = '<span class="log-normal">✔ Database collections reset to default values.</span>';
+        }
+
+        // Default Code Template
+        const defaultCode = `// MongoDB Query Editor
+// Try running these commands (one at a time):
+
+db.users.find()
+
+// db.users.find({ city: "NYC" })
+
+// db.products.insertOne({ 
+//     "name": "Tablet", 
+//     "price": 449, 
+//     "category": "electronics" 
+// })
+
+// db.users.deleteOne({ name: "Bob Johnson" })
+`;
+        const savedCode = localStorage.getItem('careerPathMongoDBCode');
+        mongoInput.value = savedCode ? savedCode : defaultCode;
+
+        // 2. Smart Indentation Engine (Upgraded for JSON '{' Brackets)
+        mongoInput.addEventListener('keydown', function(e) {
+            if (e.key === 'Tab') {
+                e.preventDefault(); 
+                const start = this.selectionStart;
+                const end = this.selectionEnd;
+                const spaces = "    "; // 4 spaces
+                this.value = this.value.substring(0, start) + spaces + this.value.substring(end);
+                this.selectionStart = this.selectionEnd = start + spaces.length;
+                this.dispatchEvent(new Event('input'));
+            }
+            
+            if (e.key === 'Enter') {
+                e.preventDefault(); 
+                const start = this.selectionStart;
+                const end = this.selectionEnd;
+                const textBeforeCursor = this.value.substring(0, start);
+                const lines = textBeforeCursor.split(/\r?\n/);
+                const currentLine = lines[lines.length - 1] || "";
+                
+                const leadingSpacesMatch = currentLine.match(/^(\s*)/);
+                let indentSpaces = leadingSpacesMatch ? leadingSpacesMatch[1] : '';
+                
+                // Add 4 spaces if line ends with { or [
+                if (currentLine.trim().endsWith('{') || currentLine.trim().endsWith('[')) {
+                    indentSpaces += "    ";
+                }
+                
+                const insertText = "\n" + indentSpaces;
+                this.value = this.value.substring(0, start) + insertText + this.value.substring(end);
+                this.selectionStart = this.selectionEnd = start + insertText.length;
+                this.dispatchEvent(new Event('input'));
+            }
+        });
+
+        // Auto-Save
+        mongoInput.addEventListener('input', () => {
+            localStorage.setItem('careerPathMongoDBCode', mongoInput.value);
+        });
+
+        // Advanced JSON Syntax Highlighter
+        function syntaxHighlight(json) {
+            if (typeof json != 'string') {
+                json = JSON.stringify(json, undefined, 2);
+            }
+            json = json.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+            return json.replace(/("(\\u[a-zA-Z0-9]{4}|\\[^u]|[^\\"])*"(\s*:)?|\b(true|false|null)\b|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?)/g, function (match) {
+                let cls = 'json-number';
+                if (/^"/.test(match)) {
+                    if (/:$/.test(match)) {
+                        cls = 'json-key';
+                    } else {
+                        cls = 'json-string';
+                    }
+                } else if (/true|false/.test(match)) {
+                    cls = 'log-info'; // boolean
+                } else if (/null/.test(match)) {
+                    cls = 'log-error'; // null
+                }
+                return '<span class="' + cls + '">' + match + '</span>';
+            });
+        }
+
+        // 3. MongoDB Query Parser & Executor
+        function executeMongoQuery() {
+            // Get active, un-commented lines only
+            const rawLines = mongoInput.value.split('\n');
+            const activeCode = rawLines.filter(line => !line.trim().startsWith('//')).join('\n').trim();
+            
+            consoleDiv.innerHTML = '';
+
+            if (!activeCode) {
+                consoleDiv.innerHTML = '<span class="log-error">Please uncomment a query or enter a new one.</span>';
+                return;
+            }
+
+            try {
+                const result = parseAndExecute(activeCode);
+                
+                if (result.error) {
+                    consoleDiv.innerHTML = `<span class="log-error">✖ ${result.error}</span>`;
+                } else if (result.output !== undefined) {
+                    let outputHTML = '';
+                    
+                    if (Array.isArray(result.output)) {
+                        if (result.output.length === 0) {
+                            outputHTML = '<span class="log-info">No documents found matching the criteria.</span>';
+                        } else {
+                            outputHTML = syntaxHighlight(result.output);
+                            outputHTML += `\n\n<span class="log-normal">✔ ${result.output.length} document(s) returned.</span>`;
+                        }
+                    } else {
+                        outputHTML = syntaxHighlight(result.output);
+                        if (result.message) {
+                            outputHTML += `\n\n<span class="log-normal">✔ ${result.message}</span>`;
+                        }
+                    }
+                    consoleDiv.innerHTML = outputHTML;
+                    
+                    // Always re-render badges in case collections updated
+                    renderCollectionBadges();
+                }
+            } catch (err) {
+                consoleDiv.innerHTML = `<span class="log-error">✖ Syntax Error: ${err.message}</span>`;
+            }
+        }
+
+        // The Simulation Engine
+        function parseAndExecute(query) {
+            // MATCH: db.collection.find(...)
+            const findMatch = query.match(/db\.(\w+)\.find\s*\((.*)?\)/s);
+            if (findMatch) {
+                const collection = findMatch[1];
+                const filterStr = findMatch[2] || '{}';
+                if (!db[collection]) return { error: `Collection '${collection}' does not exist.` };
+
+                let filter = {};
+                if (filterStr.trim() !== '' && filterStr.trim() !== '{}') {
+                    try { filter = JSON.parse(filterStr); } 
+                    catch (e) { filter = parseSimpleFilter(filterStr); }
+                }
+                const results = db[collection].filter(doc => matchFilter(doc, filter));
+                return { output: results };
+            }
+
+            // MATCH: db.collection.insertOne(...)
+            const insertOneMatch = query.match(/db\.(\w+)\.insertOne\s*\((.*)?\)/s);
+            if (insertOneMatch) {
+                const collection = insertOneMatch[1];
+                const docStr = insertOneMatch[2];
+                if (!db[collection]) db[collection] = []; // Auto-create collection if missing
+
+                try {
+                    // Try parsing as strict JSON or loose object literal
+                    let doc;
+                    try { doc = JSON.parse(docStr); } 
+                    catch (e) { doc = new Function("return " + docStr)(); }
+
+                    const newId = db[collection].length > 0 ? Math.max(...db[collection].map(d => d._id)) + 1 : 1;
+                    const newDoc = { _id: newId, ...doc };
+                    db[collection].push(newDoc);
+                    return { output: { acknowledged: true, insertedId: newId }, message: 'Document inserted successfully.' };
+                } catch (e) {
+                    return { error: 'Invalid JSON document format inside insertOne().' };
+                }
+            }
+
+            // MATCH: db.collection.deleteOne(...)
+            const deleteOneMatch = query.match(/db\.(\w+)\.deleteOne\s*\((.*)?\)/s);
+            if (deleteOneMatch) {
+                const collection = deleteOneMatch[1];
+                const filterStr = deleteOneMatch[2];
+                if (!db[collection]) return { error: `Collection '${collection}' does not exist.` };
+
+                let filter = {};
+                try { filter = JSON.parse(filterStr || '{}'); } 
+                catch (e) { filter = parseSimpleFilter(filterStr); }
+
+                const index = db[collection].findIndex(doc => matchFilter(doc, filter));
+                if (index !== -1) {
+                    db[collection].splice(index, 1);
+                    return { output: { acknowledged: true, deletedCount: 1 }, message: 'Document deleted successfully.' };
+                }
+                return { output: { acknowledged: true, deletedCount: 0 }, message: 'No documents matched the deletion filter.' };
+            }
+
+            // MATCH: db.collection.countDocuments(...)
+            const countMatch = query.match(/db\.(\w+)\.countDocuments\s*\((.*)?\)/s);
+            if (countMatch) {
+                const collection = countMatch[1];
+                const filterStr = countMatch[2];
+                if (!db[collection]) return { error: `Collection '${collection}' does not exist.` };
+
+                let filter = {};
+                if (filterStr && filterStr.trim() !== '' && filterStr.trim() !== '{}') {
+                    try { filter = JSON.parse(filterStr); } 
+                    catch (e) { filter = parseSimpleFilter(filterStr); }
+                }
+
+                const count = db[collection].filter(doc => matchFilter(doc, filter)).length;
+                return { output: { count: count } };
+            }
+
+            return { error: 'Unsupported query. Try: db.collection.find(), insertOne(), deleteOne(), or countDocuments()' };
+        }
+
+        // Helper: Parse simple loose JSON (e.g. { age: 25 })
+        function parseSimpleFilter(str) {
+            try {
+                return new Function("return " + str)();
+            } catch (e) {
+                return {};
+            }
+        }
+
+        // Helper: Filter Logic
+        function matchFilter(doc, filter) {
+            for (const key in filter) {
+                if (filter[key] !== undefined) {
+                    if (doc[key] !== filter[key]) return false;
+                }
+            }
+            return true;
+        }
+
+        // Start initialization
+        initializeDatabase();
+</script>
+</body>
+</html>

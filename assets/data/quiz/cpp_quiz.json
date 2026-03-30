@@ -1,0 +1,362 @@
+[
+    {
+        "id": "cpp-1",
+        "question": "Who developed the C++ programming language?",
+        "options": [
+            "Dennis Ritchie",
+            "Bjarne Stroustrup",
+            "James Gosling",
+            "Guido van Rossum"
+        ],
+        "correctAnswer": 1,
+        "explanation": "C++ was developed by Bjarne Stroustrup as an extension to the C language."
+    },
+    {
+        "id": "cpp-2",
+        "question": "Which header file is required in C++ to work with input and output objects like 'cout'?",
+        "options": [
+            "<stdio.h>",
+            "<string>",
+            "<iostream>",
+            "<math.h>"
+        ],
+        "correctAnswer": 2,
+        "explanation": "The <iostream> library must be included to handle standard input and output in C++."
+    },
+    {
+        "id": "cpp-3",
+        "question": "What is the purpose of 'using namespace std;'?",
+        "options": [
+            "It turns on standard error checking.",
+            "It allows us to use names for objects and variables from the standard library without prefixing them with 'std::'.",
+            "It imports all available C++ mathematics functions.",
+            "It ends the program execution."
+        ],
+        "correctAnswer": 1,
+        "explanation": "using namespace std; tells the compiler to use the standard namespace, eliminating the need to write std::cout repeatedly."
+    },
+    {
+        "id": "cpp-4",
+        "question": "Which operator is used with 'cout' to insert text to the console?",
+        "options": [
+            ">>",
+            "::",
+            "++",
+            "<<"
+        ],
+        "correctAnswer": 3,
+        "explanation": "The insertion operator (<<) is used to send data to the standard output stream (cout)."
+    },
+    {
+        "id": "cpp-5",
+        "question": "Which symbol begins a single-line comment in C++?",
+        "options": [
+            "//",
+            "/*",
+            "<!--",
+            "#"
+        ],
+        "correctAnswer": 0,
+        "explanation": "Two forward slashes (//) are used to write a single-line comment in C++."
+    },
+    {
+        "id": "cpp-6",
+        "question": "If you want to read user input from the keyboard, which object and operator do you use?",
+        "options": [
+            "cget <<",
+            "cout >>",
+            "cin >>",
+            "cin <<"
+        ],
+        "correctAnswer": 2,
+        "explanation": "cin is the standard input stream object, and it uses the extraction operator (>>) to get data from the user."
+    },
+    {
+        "id": "cpp-7",
+        "question": "Which C++ data type is specifically designed to store sequences of text characters?",
+        "options": [
+            "char",
+            "string",
+            "text",
+            "array"
+        ],
+        "correctAnswer": 1,
+        "explanation": "The string type (requiring #include <string>) is built to handle sequences of characters."
+    },
+    {
+        "id": "cpp-8",
+        "question": "Which keyword is used to stop the execution of a switch statement block?",
+        "options": [
+            "stop",
+            "exit",
+            "break",
+            "default"
+        ],
+        "correctAnswer": 2,
+        "explanation": "The break keyword immediately stops execution inside a switch case, preventing the code from running into the next case."
+    },
+    {
+        "id": "cpp-9",
+        "question": "What is the difference between a 'while' loop and a 'do...while' loop?",
+        "options": [
+            "The do...while loop creates an infinite loop.",
+            "The do...while loop is guaranteed to execute its block at least once, even if the condition is false.",
+            "The while loop evaluates the condition after the code block runs.",
+            "There is no difference."
+        ],
+        "correctAnswer": 1,
+        "explanation": "Because a do...while loop tests its condition at the bottom of the loop, the code block is guaranteed to execute at least one time."
+    },
+    {
+        "id": "cpp-10",
+        "question": "Arrays in basic C++ (not vectors) have a ____ size.",
+        "options": [
+            "Dynamic",
+            "Flexible",
+            "Fixed",
+            "Infinite"
+        ],
+        "correctAnswer": 2,
+        "explanation": "Standard C++ arrays have a fixed size that must be defined when they are created."
+    },
+    {
+        "id": "cpp-11",
+        "question": "Where must custom functions generally be declared in relation to the main() function?",
+        "options": [
+            "Inside the main() function.",
+            "In a separate file only.",
+            "Before the main() function.",
+            "After the main() function."
+        ],
+        "correctAnswer": 2,
+        "explanation": "To avoid compiler errors, custom functions should be declared before they are called by the main() function."
+    },
+    {
+        "id": "cpp-12",
+        "question": "What does a C++ Reference (&) create?",
+        "options": [
+            "An array of pointers.",
+            "An alias to an existing variable.",
+            "A copy of the variable's value in a new memory location.",
+            "A dynamically allocated memory block."
+        ],
+        "correctAnswer": 1,
+        "explanation": "A reference acts as an alias. Changing the value of the reference directly changes the original variable because they share the same memory location."
+    },
+    {
+        "id": "cpp-13",
+        "question": "In Object-Oriented Programming (OOP), what is a 'Class'?",
+        "options": [
+            "A built-in data type like int or float.",
+            "A variable that holds memory addresses.",
+            "The physical instance of data in memory.",
+            "A blueprint or template for creating objects."
+        ],
+        "correctAnswer": 3,
+        "explanation": "A Class is a user-defined data type that acts as a blueprint, outlining the attributes and methods its resulting objects will have."
+    },
+    {
+        "id": "cpp-14",
+        "question": "What is a 'Constructor' in C++?",
+        "options": [
+            "A method used to delete an object from memory.",
+            "A special method called automatically exactly when an object is created.",
+            "A function that returns a boolean value.",
+            "A tool used to compile the code."
+        ],
+        "correctAnswer": 1,
+        "explanation": "A constructor is a method with the same name as the class that is automatically invoked upon object instantiation to initialize attributes."
+    },
+    {
+        "id": "cpp-15",
+        "question": "What does 'Constructor Overloading' allow you to do?",
+        "options": [
+            "Have multiple constructors in the same class, with different parameter lists.",
+            "Delete an object immediately after creating it.",
+            "Inherit variables from a child class.",
+            "Crash the program if too many objects are created."
+        ],
+        "correctAnswer": 0,
+        "explanation": "Constructor overloading allows a class to have multiple constructors, providing flexibility in how an object is initialized based on the arguments passed."
+    },
+    {
+        "id": "cpp-16",
+        "question": "Which access specifier ensures that class members CANNOT be viewed or modified from completely outside the class?",
+        "options": [
+            "visible",
+            "public",
+            "protected",
+            "private"
+        ],
+        "correctAnswer": 3,
+        "explanation": "The 'private' access specifier restricts access strictly to methods within the class itself, achieving encapsulation."
+    },
+    {
+        "id": "cpp-17",
+        "question": "What is Encapsulation?",
+        "options": [
+            "Writing all code in a single file.",
+            "Hiding sensitive structural data from the outside world by making variables private and providing public getter/setter methods.",
+            "Combining multiple classes together into an array.",
+            "Making an entire class completely public."
+        ],
+        "correctAnswer": 1,
+        "explanation": "Encapsulation protects an object's internal state by keeping variables private and explicitly controlling access through public methods."
+    },
+    {
+        "id": "cpp-18",
+        "question": "When a 'child' class (Derived Class) takes on the attributes and methods of a 'parent' class (Base Class), what is this called?",
+        "options": [
+            "Abstraction",
+            "Encapsulation",
+            "Overloading",
+            "Inheritance"
+        ],
+        "correctAnswer": 3,
+        "explanation": "Inheritance is the OOP principle that allows a class to reuse code by inheriting features from an existing parent class."
+    },
+    {
+        "id": "cpp-19",
+        "question": "C++ supports Multiple Inheritance. What does this mean?",
+        "options": [
+            "A class can inherit from more than one base (parent) class at the same time.",
+            "A parent class can have multiple child classes.",
+            "You can copy and paste code multiple times.",
+            "A program can run multiple inheritance blocks."
+        ],
+        "correctAnswer": 0,
+        "explanation": "Unlike Java, C++ allows a single derived class to inherit features from multiple, entirely different parent classes."
+    },
+    {
+        "id": "cpp-20",
+        "question": "Which keyword is used in a parent class to indicate that a method can be overridden by a child class to achieve Polymorphism?",
+        "options": [
+            "protected",
+            "static",
+            "override",
+            "virtual"
+        ],
+        "correctAnswer": 3,
+        "explanation": "The 'virtual' keyword tells the compiler to wait until runtime to determine which version of the method (parent's or child's) to execute."
+    },
+    {
+        "id": "cpp-21",
+        "question": "What is the Scope Resolution Operator (::) used for in relation to classes?",
+        "options": [
+            "To define a method's logic outside of the actual class structure.",
+            "To inherit from a parent class.",
+            "To declare a variable as private.",
+            "To pause program execution."
+        ],
+        "correctAnswer": 0,
+        "explanation": "The operator :: is used to map a method definition written entirely outside a class back to the original class blueprint."
+    },
+    {
+        "id": "cpp-22",
+        "question": "Which C++ library is required to read and write to files on the hard drive?",
+        "options": [
+            "<iostream>",
+            "<fs>",
+            "<filelib>",
+            "<fstream>"
+        ],
+        "correctAnswer": 3,
+        "explanation": "The <fstream> (File Stream) library provides the ifstream and ofstream objects necessary for interacting with files."
+    },
+    {
+        "id": "cpp-23",
+        "question": "What is the purpose of C++ Templates?",
+        "options": [
+            "To generate HTML code.",
+            "To write generic functions or classes that work with any data type without duplicating code.",
+            "To format the output on the console.",
+            "To create graphical user interfaces."
+        ],
+        "correctAnswer": 1,
+        "explanation": "Templates enable generic programming, allowing you to write a single function or class that can handle ints, strings, doubles, or custom objects automatically."
+    },
+    {
+        "id": "cpp-24",
+        "question": "Which format correctly instantiates a templated class named 'Box' to specifically hold an integer?",
+        "options": [
+            "Box::int myBox(10);",
+            "Box(int) myBox = 10;",
+            "int Box myBox(10);",
+            "Box<int> myBox(10);"
+        ],
+        "correctAnswer": 3,
+        "explanation": "When instantiating a class built from a template, you must specify the desired data type inside angle brackets (<int>)."
+    },
+    {
+        "id": "cpp-25",
+        "question": "What does STL stand for in C++?",
+        "options": [
+            "Standard Text Library",
+            "Static Type Language",
+            "Standard Template Library",
+            "System Tools Layer"
+        ],
+        "correctAnswer": 2,
+        "explanation": "The Standard Template Library (STL) is a massive collection of highly optimized generic algorithms and data structures."
+    },
+    {
+        "id": "cpp-26",
+        "question": "Within the STL, what is a Vector?",
+        "options": [
+            "A directional force.",
+            "A dynamic array that can automatically grow or shrink in size.",
+            "A multi-dimensional linked list.",
+            "A fixed-size array that cannot be modified."
+        ],
+        "correctAnswer": 1,
+        "explanation": "A Vector is the STL's implementation of a dynamic, resizable array, circumventing the fixed-size limitation of standard C++ arrays."
+    },
+    {
+        "id": "cpp-27",
+        "question": "If you require a data structure that allows highly efficient insertions and removals from ANYWHERE within the sequence, which STL container is best?",
+        "options": [
+            "Vector",
+            "String",
+            "Map",
+            "List"
+        ],
+        "correctAnswer": 3,
+        "explanation": "A List is implemented as a doubly-linked list beneath the surface, making random insertions incredibly fast compared to shifting a Vector."
+    },
+    {
+        "id": "cpp-28",
+        "question": "Which STL container stores data in Key/Value pairs, similar to a Python Dictionary?",
+        "options": [
+            "Set",
+            "List",
+            "Vector",
+            "Map"
+        ],
+        "correctAnswer": 3,
+        "explanation": "A Map stores elements as key/value pairs, sorting them by key and allowing for incredibly fast data lookup."
+    },
+    {
+        "id": "cpp-29",
+        "question": "In Exception Handling, what does the 'throw' keyword do?",
+        "options": [
+            "It automatically fixes the bug.",
+            "It deliberately triggers an exception/error to logically jump to a catch block.",
+            "It deletes an object from memory.",
+            "It shuts down the entire operating system."
+        ],
+        "correctAnswer": 1,
+        "explanation": "The throw keyword is used internally to signal that an error has occurred, halting normal execution and passing control to a corresponding catch block."
+    },
+    {
+        "id": "cpp-30",
+        "question": "Why is C++ considered faster than many higher-level languages like Python or JavaScript?",
+        "options": [
+            "Because it does not support Object-Oriented Programming.",
+            "Because it skips error checking.",
+            "Because it runs inside a web browser.",
+            "Because it compiles directly down to pure machine code before execution."
+        ],
+        "correctAnswer": 3,
+        "explanation": "C++ is a compiled language; the compiler translates the source code entirely into low-level machine code, eliminating runtime interpretation overhead."
+    }
+]

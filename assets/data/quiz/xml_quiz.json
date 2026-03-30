@@ -1,0 +1,362 @@
+[
+    {
+        "id": "xml-1",
+        "question": "What does XML stand for?",
+        "options": [
+            "eXtra Modern Link",
+            "eXtensible Markup Language",
+            "Example Markup Language",
+            "X-Markup Language"
+        ],
+        "correctAnswer": 1,
+        "explanation": "XML stands for eXtensible Markup Language. It was designed to store and transport data logically."
+    },
+    {
+        "id": "xml-2",
+        "question": "What is the primary difference between XML and HTML?",
+        "options": [
+            "XML is for displaying data, HTML is for storing data.",
+            "XML was designed to carry data, with focus on what data is. HTML was designed to display data, with focus on how data looks.",
+            "XML is a programming language, HTML is not.",
+            "There is no difference."
+        ],
+        "correctAnswer": 1,
+        "explanation": "HTML is strictly about presentation (displaying data), while XML is strictly about data structure and meaning (carrying data)."
+    },
+    {
+        "id": "xml-3",
+        "question": "Which of the following is an absolute requirement for all well-formed XML documents?",
+        "options": [
+            "They must have exactly one root element.",
+            "They must use lowercase tags.",
+            "They must include a CSS file.",
+            "They must be hosted on a Linux server."
+        ],
+        "correctAnswer": 0,
+        "explanation": "Every XML document must have a single parent element (the root) that completely encapsulates all other elements."
+    },
+    {
+        "id": "xml-4",
+        "question": "Are XML tags case-sensitive?",
+        "options": [
+            "No, <Note> is exactly the same as <note>.",
+            "Yes, <Note> and <note> are considered entirely different tags.",
+            "Only in the root element.",
+            "Only on Windows."
+        ],
+        "correctAnswer": 1,
+        "explanation": "XML strictly enforces case-sensitivity. A tag opened with <Message> MUST be closed precisely with </Message>."
+    },
+    {
+        "id": "xml-5",
+        "question": "Which of the following describes the accurate hierarchical structure of an XML document?",
+        "options": [
+            "A flat list",
+            "A relationship database",
+            "An inverted tree.",
+            "A directed graph."
+        ],
+        "correctAnswer": 2,
+        "explanation": "XML forms an inverted tree structure starting from the singular root element and branching downwards to child elements seamlessly."
+    },
+    {
+        "id": "xml-6",
+        "question": "What does a basic XML element fundamentally consist of?",
+        "options": [
+            "A start tag, content, and an end tag.",
+            "Only text.",
+            "Semicolons and brackets.",
+            "A function and parameters."
+        ],
+        "correctAnswer": 0,
+        "explanation": "The standard XML element is composed exactly of an opening tag, the inner data content (or nested child elements), and a matching closing tag."
+    },
+    {
+        "id": "xml-7",
+        "question": "What are XML Attributes fundamentally used for?",
+        "options": [
+            "Styling the XML code.",
+            "Providing additional metadata about an element.",
+            "Running JavaScript.",
+            "Erasing data."
+        ],
+        "correctAnswer": 1,
+        "explanation": "Attributes provide extra context about the element (like an ID or timestamp) but cannot contain complex nested hierarchical data structures."
+    },
+    {
+        "id": "xml-8",
+        "question": "What specific formatting rule applies strictly to XML attribute values?",
+        "options": [
+            "They must be integers.",
+            "They must always be enclosed in quotes (either single or double).",
+            "They cannot contain numbers.",
+            "They must be uppercase."
+        ],
+        "correctAnswer": 1,
+        "explanation": "Unlike some old lazy HTML, XML rigidly requires that all attribute values be cleanly wrapped in quotes (e.g., id=\"123\")."
+    },
+    {
+        "id": "xml-9",
+        "question": "Why are XML Namespaces utilized dynamically inside XML documents?",
+        "options": [
+            "To color-code tags.",
+            "To encrypt the data.",
+            "To avoid catastrophic naming conflicts when mixing different XML formats that might use exactly the same element names.",
+            "To compress the file size."
+        ],
+        "correctAnswer": 2,
+        "explanation": "If two different applications both dynamically define a <table> element (one for furniture, one for HTML), Namespaces cleanly distinguish them."
+    },
+    {
+        "id": "xml-10",
+        "question": "How do you explicitly declare a namespace inside an XML element?",
+        "options": [
+            "Using the 'namespace' attribute.",
+            "Using the 'xmlns' attribute.",
+            "Using a hashtag #.",
+            "Using the 'name' tag."
+        ],
+        "correctAnswer": 1,
+        "explanation": "The xmlns (XML NameSpace) attribute attaches a unique URI to a prefix, which is then cleanly appended to element names."
+    },
+    {
+        "id": "xml-11",
+        "question": "What does 'AJAX' fundamentally stand for in the context of fetching XML?",
+        "options": [
+            "Asynchronous JavaScript and XML",
+            "Advanced Java and XQuery",
+            "Asynchronous Joint Algorithm X",
+            "Automated JSON and XML"
+        ],
+        "correctAnswer": 0,
+        "explanation": "AJAX relies primarily on JavaScript executing an XMLHttpRequest to silently fetch XML (or JSON) data in the background iteratively."
+    },
+    {
+        "id": "xml-12",
+        "question": "What JavaScript object is historically required to fetch XML data natively from a server without refreshing the entire page?",
+        "options": [
+            "XMLParser",
+            "XMLHttpRequest",
+            "DOMReader",
+            "XMLGrabber"
+        ],
+        "correctAnswer": 1,
+        "explanation": "The XMLHttpRequest API allows front-end JavaScript to cleanly establish an HTTP connection forcefully requesting data behind the scenes."
+    },
+    {
+        "id": "xml-13",
+        "question": "What does the XML DOM specifically represent?",
+        "options": [
+            "Document Object Model - an API representing the XML document securely as a programmable tree of nodes.",
+            "Data Over Mechanism.",
+            "Document Operating Machine.",
+            "Domain Object Model."
+        ],
+        "correctAnswer": 0,
+        "explanation": "The DOM reads the raw text XML file and actively transforms it into a tree of memory objects that languages like Python or JS can traverse."
+    },
+    {
+        "id": "xml-14",
+        "question": "What does DTD stand for?",
+        "options": [
+            "Data Type Definition",
+            "Document Type Definition",
+            "Dynamic Text Data",
+            "Document Tree Design"
+        ],
+        "correctAnswer": 1,
+        "explanation": "A Document Type Definition physically dictates exactly what structural elements and attributes are legal within an attached XML document."
+    },
+    {
+        "id": "xml-15",
+        "question": "If an XML document correctly strictly follows the rules dictated by a DTD, the document is considered to be firmly:",
+        "options": [
+            "Encrypted",
+            "Well-formed",
+            "Valid",
+            "Compiled"
+        ],
+        "correctAnswer": 2,
+        "explanation": "An XML file is 'Well-formed' if it follows basic syntax rules (like closing tags), but it is only considered 'Valid' if it heavily perfectly passes DTD/Schema verification."
+    },
+    {
+        "id": "xml-16",
+        "question": "What is an XML Schema (XSD) fundamentally designed to do?",
+        "options": [
+            "Format exactly the visual appearance of the XML in browsers.",
+            "Encrypt passwords.",
+            "Describe the legal structural blueprint and strict data types allowed inside an XML document natively.",
+            "Convert XML to SQL."
+        ],
+        "correctAnswer": 2,
+        "explanation": "XSD provides massive validation superiority over DTD by rigorously checking concrete data types (like ensuring an 'Age' element is strictly an integer)."
+    },
+    {
+        "id": "xml-17",
+        "question": "Why is XML absolutely vital in classic Web Services (like SOAP)?",
+        "options": [
+            "It runs faster than C++.",
+            "It acts as a universal, universally understood data-exchange format, allowing servers running completely entirely different OS/Languages to perfectly communicate.",
+            "It hosts the website CSS.",
+            "It magically prevents hacking."
+        ],
+        "correctAnswer": 1,
+        "explanation": "XML provides an ultra-reliable platform-independent text format actively bridging massive structural communication gaps between diverse networks."
+    },
+    {
+        "id": "xml-18",
+        "question": "What is the primary function of XPath natively?",
+        "options": [
+            "To securely encrypt XML node branches.",
+            "To actively navigate and rigorously select nodes explicitly within an XML document utilizing path expressions.",
+            "To convert XML accurately into PDF format.",
+            "To write XML to a database."
+        ],
+        "correctAnswer": 1,
+        "explanation": "XPath acts exactly like a file system navigator, using slashes (/bookstore/book/title) to actively pluck precise nodes securely from massive trees."
+    },
+    {
+        "id": "xml-19",
+        "question": "In standard XPath syntax, what does a single forward slash `/` indicate at the very beginning of a path?",
+        "options": [
+            "A comment.",
+            "Absolute selection starting brutally from the absolute document root node.",
+            "A mathematical division operator.",
+            "Selecting any tag anywhere in the file."
+        ],
+        "correctAnswer": 1,
+        "explanation": "A leading slash signifies an Absolute Path, explicitly forcing XPath to begin its rigid descent perfectly from the structural root object."
+    },
+    {
+        "id": "xml-20",
+        "question": "In XPath, how do you dynamically select exactly the first `<book>` element belonging to `<bookstore>`?",
+        "options": [
+            "bookstore->book(1)",
+            "bookstore/book.first()",
+            "bookstore/book[1]",
+            "bookstore/book{0}"
+        ],
+        "correctAnswer": 2,
+        "explanation": "XPath uniquely utilizes 1-based indexing heavily securely inside square brackets to iteratively filter node arrays explicitly."
+    },
+    {
+        "id": "xml-21",
+        "question": "What exactly does XSLT strictly stand for?",
+        "options": [
+            "XML Server Logic Transfer",
+            "eXtensible Stylesheet Language Transformations",
+            "XML Standard Layout Tree",
+            "Extra Syntax Layer Transfer"
+        ],
+        "correctAnswer": 1,
+        "explanation": "XSLT completely rewrites XML trees, transforming raw data structures dynamically into visually ready HTML sheets or completely different XML documents actively."
+    },
+    {
+        "id": "xml-22",
+        "question": "Which specific element radically defines an XSLT transformation blueprint specifically applied to matching XML nodes dynamically?",
+        "options": [
+            "<xsl:match>",
+            "<xsl:apply>",
+            "<xsl:template>",
+            "<xsl:style>"
+        ],
+        "correctAnswer": 2,
+        "explanation": "The <xsl:template match=\"...\"> tag explicitly declares a set of rendering instructions fiercely executed whenever the parser touches the matching XML node."
+    },
+    {
+        "id": "xml-23",
+        "question": "In fiercely writing XSLT, which loop structure explicitly iterates aggressively over an array of matching XML elements dynamically?",
+        "options": [
+            "<xsl:loop>",
+            "<xsl:while>",
+            "<xsl:iterate>",
+            "<xsl:for-each>"
+        ],
+        "correctAnswer": 3,
+        "explanation": "The <xsl:for-each select=\"...\"> architecture explicitly triggers rapid sequential looping structurally iterating over massive identical node sets."
+    },
+    {
+        "id": "xml-24",
+        "question": "How do you systematically extract the incredibly specific textual value out of an XML node dynamically securely inside XSLT?",
+        "options": [
+            "<xsl:get>",
+            "<xsl:value-of select='node_name'/>",
+            "<xsl:print node='node_name'/>",
+            "<xsl:echo>"
+        ],
+        "correctAnswer": 1,
+        "explanation": "The <xsl:value-of> tag rigidly parses the selected XML node actively yielding purely the inner text flawlessly into the output buffer."
+    },
+    {
+        "id": "xml-25",
+        "question": "To forcefully inject complex If/Else conditional logic directly dynamically inside XSLT, which grouping of tags is actively preferred?",
+        "options": [
+            "<xsl:if> and <xsl:else>",
+            "<xsl:choose>, <xsl:when>, <xsl:otherwise>",
+            "<xsl:switch> and <xsl:case>",
+            "<xsl:condition>"
+        ],
+        "correctAnswer": 1,
+        "explanation": "Because XSLT lacks a sheer standalone <else> tag, the <xsl:choose> block acts as a powerful Switch/If-Else multi-branching engine dynamically."
+    },
+    {
+        "id": "xml-26",
+        "question": "What is the explicit overarching purpose of the robust XQuery language internally?",
+        "options": [
+            "To actively encrypt HTTP requests.",
+            "To intensely query and natively extract exact data from XML documents, acting similarly to how SQL works heavily for Databases.",
+            "To apply CSS formatting.",
+            "To delete server files."
+        ],
+        "correctAnswer": 1,
+        "explanation": "XQuery acts as a phenomenal heavy-duty data retrieval tool uniquely uniquely designed to filter, join, and actively scrape massive XML structures flawlessly."
+    },
+    {
+        "id": "xml-27",
+        "question": "What incredibly specific and ubiquitous keyword structure strictly defines standard natively complex XQuery logic heavily?",
+        "options": [
+            "SELECT, FROM, WHERE",
+            "FOR, LET, WHERE, ORDER BY, RETURN (FLWOR)",
+            "GET, POST, UPDATE",
+            "TRY, CATCH, FINALLY"
+        ],
+        "correctAnswer": 1,
+        "explanation": "The intricate FLWOR architecture fundamentally provides exact looping, variable assignment, filtering, explicitly sorting, and actively structuring return results intensely."
+    },
+    {
+        "id": "xml-28",
+        "question": "In standard XQuery logic, how do you explicitly correctly define a variable dynamically locally?",
+        "options": [
+            "var number = 5",
+            "let $number := 5",
+            "$number = 5",
+            "def number = 5"
+        ],
+        "correctAnswer": 1,
+        "explanation": "XQuery specifically uniquely requires the explicit 'let' assignment fiercely combined strictly with the := operator precisely binding variables tagged with dollar signs."
+    },
+    {
+        "id": "xml-29",
+        "question": "Are XQuery syntactical elements inherently case-sensitive explicitly globally?",
+        "options": [
+            "Yes, keywords and XML elements heavily rigorously strictly distinguish inherently between cases natively.",
+            "No, cases are ignored totally safely.",
+            "Only the variables are sensitive.",
+            "Only inside loop statements."
+        ],
+        "correctAnswer": 0,
+        "explanation": "Because XQuery processes strictly heavily case-sensitive XML documents explicitly internally, the language itself radically heavily intensely rigorously enforces rigorous case sensitivity inherently locally."
+    },
+    {
+        "id": "xml-30",
+        "question": "How do you actively explicitly rigorously filter returned explicit node results internally seamlessly inside an XQuery loop dynamically natively?",
+        "options": [
+            "Using an <if_filter> XML tag.",
+            "Using the explicit 'where' clause.",
+            "Using a CSS selector exactly.",
+            "Using JS explicitly immediately natively."
+        ],
+        "correctAnswer": 1,
+        "explanation": "The 'where' explicitly strictly systematically thoroughly evaluates explicit criteria iteratively securely dropping exact specific natively actively nodes explicitly failing natively dynamically firmly explicitly actively."
+    }
+]

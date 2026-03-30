@@ -1,0 +1,55 @@
+{
+  "references": [
+    { "file": "htmlReference.json", "name": "HTML", "icon": "🌐", "desc": "Tags, attributes, elements", "category": "Frontend" },
+    { "file": "cssReference.json", "name": "CSS", "icon": "🎨", "desc": "Properties, selectors, units", "category": "Frontend" },
+    { "file": "jsReference.json", "name": "JavaScript", "icon": "⚡", "desc": "Objects, methods, DOM, events", "category": "Frontend" },
+    { "file": "typescriptReference.json", "name": "TypeScript", "icon": "🔷", "desc": "Types, interfaces, generics", "category": "Frontend" },
+    { "file": "reactReference.json", "name": "React", "icon": "⚛️", "desc": "Hooks, components, state patterns", "category": "Frontend" },
+    { "file": "vuejsReference.json", "name": "Vue.js", "icon": "💚", "desc": "Directives, lifecycle, Vuex", "category": "Frontend" },
+    { "file": "angularReference.json", "name": "Angular", "icon": "🅰️", "desc": "Components, services, modules", "category": "Frontend" },
+    { "file": "bootstrapReference.json", "name": "Bootstrap", "icon": "🅱️", "desc": "Grid, components, utilities", "category": "Frontend" },
+    { "file": "tailwindReference.json", "name": "Tailwind", "icon": "🌊", "desc": "Utility classes, responsive design", "category": "Frontend" },
+    { "file": "jqueryReference.json", "name": "jQuery", "icon": "📦", "desc": "Selectors, events, effects, AJAX", "category": "Frontend" },
+    { "file": "nextjsReference.json", "name": "Next.js", "icon": "▲", "desc": "Routing, API, SSR, configuration", "category": "Frontend" },
+
+    { "file": "nodejsReference.json", "name": "Node.js", "icon": "🟢", "desc": "Core modules, fs, http, Express", "category": "Backend" },
+    { "file": "djangoReference.json", "name": "Django", "icon": "🎸", "desc": "Models, views, URLs, templates", "category": "Backend" },
+    { "file": "flaskReference.json", "name": "Flask", "icon": "🧪", "desc": "Routes, templates, extensions", "category": "Backend" },
+    { "file": "fastapiReference.json", "name": "FastAPI", "icon": "🚀", "desc": "Endpoints, models, middleware", "category": "Backend" },
+    { "file": "springbootReference.json", "name": "Spring Boot", "icon": "🍃", "desc": "Annotations, beans, configuration", "category": "Backend" },
+    { "file": "aspnetReference.json", "name": "ASP.NET", "icon": "🟦", "desc": "Controllers, middleware, routing", "category": "Backend" },
+    { "file": "graphqlReference.json", "name": "GraphQL", "icon": "◈", "desc": "Queries, mutations, schemas", "category": "Backend" },
+
+    { "file": "sqlReference.json", "name": "SQL", "icon": "🗃️", "desc": "Commands, joins, aggregates", "category": "Database" },
+    { "file": "mysqlReference.json", "name": "MySQL", "icon": "🐬", "desc": "Functions, JSON, procedures", "category": "Database" },
+    { "file": "postgresqlReference.json", "name": "PostgreSQL", "icon": "🐘", "desc": "Functions, data types, extensions", "category": "Database" },
+    { "file": "mongodbReference.json", "name": "MongoDB", "icon": "🍃", "desc": "CRUD, operators, aggregation", "category": "Database" },
+
+    { "file": "pythonReference.json", "name": "Python", "icon": "🐍", "desc": "Built-ins, data types, modules", "category": "Languages" },
+    { "file": "javaReference.json", "name": "Java", "icon": "☕", "desc": "OOP, collections, threads", "category": "Languages" },
+    { "file": "cReference.json", "name": "C", "icon": "💻", "desc": "Pointers, memory, stdio", "category": "Languages" },
+    { "file": "cppReference.json", "name": "C++", "icon": "⚙️", "desc": "OOP, STL, templates, modern C++", "category": "Languages" },
+    { "file": "csharpReference.json", "name": "C#", "icon": "🟪", "desc": "LINQ, async, OOP, .NET classes", "category": "Languages" },
+    { "file": "phpReference.json", "name": "PHP", "icon": "🐘", "desc": "Functions, OOP, arrays, strings", "category": "Languages" },
+    { "file": "goReference.json", "name": "Go", "icon": "🐹", "desc": "Goroutines, channels, stdlib", "category": "Languages" },
+    { "file": "rReference.json", "name": "R", "icon": "📊", "desc": "Functions, packages, data operations", "category": "Languages" },
+
+    { "file": "numpyReference.json", "name": "NumPy", "icon": "🔢", "desc": "Arrays, math, statistics", "category": "Data Science" },
+    { "file": "pandasReference.json", "name": "Pandas", "icon": "🐼", "desc": "DataFrames, cleaning, grouping", "category": "Data Science" },
+    { "file": "pytorchReference.json", "name": "PyTorch", "icon": "🔥", "desc": "Tensors, models, training", "category": "Data Science" },
+    { "file": "matplotlibReference.json", "name": "Matplotlib", "icon": "📉", "desc": "Plots, charts, customization", "category": "Data Science" },
+    { "file": "seabornReference.json", "name": "Seaborn", "icon": "🎨", "desc": "Statistical plots, themes", "category": "Data Science" },
+    { "file": "excelReference.json", "name": "Excel", "icon": "📊", "desc": "Formulas, functions, shortcuts", "category": "Data Science" },
+    { "file": "powerbiReference.json", "name": "Power BI", "icon": "📊", "desc": "DAX formulas, visualizations", "category": "Data Science" },
+    { "file": "datascienceReference.json", "name": "Data Science", "icon": "🔬", "desc": "Methods, tools, workflows", "category": "Data Science" },
+
+    { "file": "dockerReference.json", "name": "Docker", "icon": "🐳", "desc": "Commands, images, containers", "category": "DevOps" },
+    { "file": "kubernetesReference.json", "name": "Kubernetes", "icon": "☸️", "desc": "Resources, commands, config", "category": "DevOps" },
+    { "file": "gitReference.json", "name": "Git", "icon": "🔀", "desc": "Commands, branching, workflows", "category": "DevOps" },
+    { "file": "awsReference.json", "name": "AWS", "icon": "☁️", "desc": "Services, CLI, configurations", "category": "DevOps" },
+
+    { "file": "xmlReference.json", "name": "XML", "icon": "📄", "desc": "Syntax, DTD, XPath, XSLT", "category": "Other" },
+    { "file": "dsaReference.json", "name": "DSA", "icon": "🧮", "desc": "Arrays, trees, graphs, sorting", "category": "Other" },
+    { "file": "aiReference.json", "name": "AI", "icon": "🤖", "desc": "Concepts, algorithms, terminology", "category": "Other" }
+  ]
+}

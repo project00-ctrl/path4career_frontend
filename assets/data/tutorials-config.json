@@ -1,0 +1,63 @@
+{
+  "tutorials": [
+    { "file": "htmlPages.json", "name": "HTML", "category": "Frontend", "icon": "🌐", "desc": "The language for building web pages" },
+    { "file": "cssPages.json", "name": "CSS", "category": "Frontend", "icon": "🎨", "desc": "The language for styling web pages" },
+    { "file": "jsPages.json", "name": "JavaScript", "category": "Frontend", "icon": "⚡", "desc": "The programming language of the web" },
+    { "file": "bootstrapPages.json", "name": "Bootstrap", "category": "Framework", "icon": "🅱️", "desc": "Popular CSS framework for responsive design" },
+    { "file": "tailwindcssPages.json", "name": "Tailwind CSS", "category": "Framework", "icon": "🌊", "desc": "Utility-first CSS framework for rapid UI development" },
+    { "file": "reactPages.json", "name": "React", "category": "Framework", "icon": "⚛️", "desc": "JavaScript library for building user interfaces" },
+    { "file": "angularPages.json", "name": "Angular", "category": "Framework", "icon": "🅰️", "desc": "TypeScript-based platform for web applications" },
+    { "file": "vuePages.json", "name": "Vue.js", "category": "Framework", "icon": "💚", "desc": "Progressive JavaScript framework for UIs" },
+    { "file": "nextjsPages.json", "name": "Next.js", "category": "Framework", "icon": "▲", "desc": "React framework for production-ready web apps" },
+    { "file": "jqueryPages.json", "name": "jQuery", "category": "Frontend", "icon": "📦", "desc": "Fast and feature-rich JavaScript library" },
+    { "file": "typescriptPages.json", "name": "TypeScript", "category": "Frontend", "icon": "📜", "desc": "Typed superset of JavaScript for large apps" },
+    { "file": "xmlPages.json", "name": "XML", "category": "Frontend", "icon": "📄", "desc": "Markup language for structured data" },
+
+    { "file": "pythonPages.json", "name": "Python", "category": "Backend", "icon": "🐍", "desc": "Versatile language for backend and data science" },
+    { "file": "javaPages.json", "name": "Java", "category": "Backend", "icon": "☕", "desc": "Enterprise-grade object-oriented language" },
+    { "file": "phpPages.json", "name": "PHP", "category": "Backend", "icon": "🐘", "desc": "Server-side scripting language for the web" },
+    { "file": "cPages.json", "name": "C", "category": "Backend", "icon": "💻", "desc": "Low-level language for system programming" },
+    { "file": "cInc.json", "name": "C++", "category": "Backend", "icon": "⚙️", "desc": "Powerful language for high-performance apps" },
+    { "file": "cSharpPages.json", "name": "C#", "category": "Backend", "icon": "🔷", "desc": "Modern language for Windows and game dev" },
+    { "file": "goPages.json", "name": "Go", "category": "Backend", "icon": "🐹", "desc": "Fast, reliable language built by Google" },
+    { "file": "rPages.json", "name": "R", "category": "Backend", "icon": "📊", "desc": "Statistical computing and graphics language" },
+
+    { "file": "nodejsPages.json", "name": "Node.js", "category": "Runtime", "icon": "🟢", "desc": "JavaScript runtime for server-side development" },
+    { "file": "denoPages.json", "name": "Deno", "category": "Runtime", "icon": "🦕", "desc": "Modern runtime for JavaScript and TypeScript" },
+
+    { "file": "djangoPages.json", "name": "Django", "category": "Framework", "icon": "🎸", "desc": "High-level Python web framework" },
+    { "file": "flaskPages.json", "name": "Flask", "category": "Framework", "icon": "🧪", "desc": "Lightweight Python web microframework" },
+    { "file": "fastapiPages.json", "name": "FastAPI", "category": "Framework", "icon": "🚀", "desc": "Modern high-performance Python API framework" },
+    { "file": "nestPages.json", "name": "NestJS", "category": "Framework", "icon": "🐈", "desc": "Progressive Node.js framework for server apps" },
+    { "file": "springbootPages.json", "name": "Spring Boot", "category": "Framework", "icon": "🍃", "desc": "Java framework for production-ready apps" },
+    { "file": "aspPages.json", "name": "ASP.NET", "category": "Framework", "icon": "🟦", "desc": "Microsoft web framework for building APIs" },
+    { "file": "graphqlPages.json", "name": "GraphQL", "category": "Framework", "icon": "◈", "desc": "Query language for flexible APIs" },
+    { "file": "restapiPages.json", "name": "REST API", "category": "Framework", "icon": "🔗", "desc": "Architectural style for web services" },
+
+    { "file": "sqlPages.json", "name": "SQL", "category": "Database", "icon": "🗃️", "desc": "Standard language for managing databases" },
+    { "file": "mysqlPages.json", "name": "MySQL", "category": "Database", "icon": "🐬", "desc": "Popular open-source relational database" },
+    { "file": "postgresqlPages.json", "name": "PostgreSQL", "category": "Database", "icon": "🐘", "desc": "Advanced open-source relational database" },
+    { "file": "mongodbPages.json", "name": "MongoDB", "category": "Database", "icon": "🍃", "desc": "NoSQL database for modern applications" },
+    { "file": "clickhousePages.json", "name": "ClickHouse", "category": "Database", "icon": "🏠", "desc": "OLAP database for real-time analytics" },
+
+    { "file": "numpyPages.json", "name": "NumPy", "category": "Data Science", "icon": "🔢", "desc": "Python library for numerical computing" },
+    { "file": "pandasPages.json", "name": "Pandas", "category": "Data Science", "icon": "🐼", "desc": "Data manipulation and analysis library" },
+    { "file": "matplotlibPages.json", "name": "Matplotlib", "category": "Data Science", "icon": "📈", "desc": "Python library for data visualization" },
+    { "file": "seabornPages.json", "name": "Seaborn", "category": "Data Science", "icon": "🎨", "desc": "Statistical data visualization in Python" },
+    { "file": "datasciencePages.json", "name": "Data Science", "category": "Data Science", "icon": "🔬", "desc": "Foundations of data science and analytics" },
+    { "file": "pytorchPages.json", "name": "PyTorch", "category": "Data Science", "icon": "🔥", "desc": "Deep learning framework by Meta" },
+    { "file": "sparkPages.json", "name": "Apache Spark", "category": "Data Science", "icon": "⚡", "desc": "Big data processing engine" },
+    { "file": "powerbiPages.json", "name": "Power BI", "category": "Data Science", "icon": "📊", "desc": "Business intelligence and reporting tool" },
+    { "file": "aiPages.json", "name": "AI", "category": "Data Science", "icon": "🤖", "desc": "Artificial intelligence fundamentals" },
+
+    { "file": "dsaPages.json", "name": "DSA", "category": "Computer Science", "icon": "🧮", "desc": "Data Structures and Algorithms essentials" },
+
+    { "file": "excelPages.json", "name": "Excel", "category": "Tools", "icon": "📊", "desc": "Spreadsheet tool for data analysis" },
+    { "file": "gitPages.json", "name": "Git", "category": "Tools", "icon": "🔀", "desc": "Version control system for source code" },
+    { "file": "dockerPages.json", "name": "Docker", "category": "DevOps", "icon": "🐳", "desc": "Platform for containerized applications" },
+    { "file": "kubernetesPages.json", "name": "Kubernetes", "category": "DevOps", "icon": "☸️", "desc": "Container orchestration at scale" },
+    { "file": "awsPages.json", "name": "AWS", "category": "DevOps", "icon": "☁️", "desc": "Amazon Web Services cloud platform" },
+
+    { "file": "tutorialPages.json", "name": "Web Tutorial", "category": "Frontend", "icon": "📖", "desc": "Comprehensive web development tutorial" }
+  ]
+}

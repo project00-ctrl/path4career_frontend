@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live AWS Editor - CareerPath</title>
+
+    <link rel="stylesheet" href="../../assets/css/editor.css">
+    <style>
+        /* AWS Orange Theme Overrides */
+        .header h2 span {
+            color: #ff9900 !important;
+        }
+
+        .run-btn {
+            background-color: #ff9900 !important;
+            color: #000 !important;
+        }
+
+        .run-btn:hover {
+            background-color: #ec7211 !important;
+        }
+
+        .aws-badge {
+            background-color: #1e1e3f;
+            color: #ff9900;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            margin-left: 10px;
+            font-weight: bold;
+            border: 1px solid #ff9900;
+        }
+
+        .code-box:first-child {
+            border-bottom: 2px solid #333;
+        }
+
+        #scriptInput {
+            color: #c3e88d;
+        }
+
+        #iacInput {
+            color: #ffb86c;
+        }
+
+        /* Result pane styling */
+        .result-pane {
+            background-color: #1e1e1e !important;
+            color: #d4d4d4 !important;
+        }
+
+        .console-output {
+            flex: 1;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 14px;
+            padding: 20px;
+            overflow-y: auto;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+
+        .line {
+            margin-bottom: 4px;
+            line-height: 1.6;
+        }
+
+        .line-success { color: #4ec9b0; }
+        .line-error { color: #f44747; }
+        .line-warn { color: #dcdcaa; }
+        .line-info { color: #569cd6; }
+        .line-output { color: #d4d4d4; }
+        .prompt { color: #608b4e; }
+    </style>
+</head>
+
+<body>
+    <div class="header">
+        <div style="display: flex; align-items: center; gap: 15px;">
+            <a href="../index.html" style="color: #ff9900; text-decoration: none; font-size: 14px;">← Back</a>
+            <h2><span>☁</span> AWS Cloud Workspace <span class="aws-badge">CLI / IaC</span></h2>
+        </div>
+        <button class="run-btn" id="runBtn">Deploy / Run ❯</button>
+    </div>
+    <div class="workspace">
+        <div class="editor-pane">
+            <div class="code-box" style="flex: 1; display: flex; flex-direction: column; padding: 15px;">
+                <p class="pane-label">AWS Script / Policy (CLI / Boto3 / JSON)</p>
+                <textarea id="scriptInput" spellcheck="false" aria-label="AWS Script Input"></textarea>
+            </div>
+            <div class="code-box" style="flex: 1; display: flex; flex-direction: column; padding: 15px;">
+                <p class="pane-label">Infrastructure (CloudFormation / Terraform / YAML)</p>
+                <textarea id="iacInput" spellcheck="false" aria-label="IaC Input"></textarea>
+            </div>
+        </div>
+        <div class="result-pane">
+            <p class="pane-label" style="padding: 15px 20px 0; margin-bottom: 0;">Deployment Logs / Console</p>
+            <div class="console-output" id="consoleOutput">
+                <div class="line line-info">// AWS Environment Ready. Click "Deploy / Run" to execute scripts or model infrastructure.</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+const scriptInput = document.getElementById('scriptInput');
+        const iacInput = document.getElementById('iacInput');
+        const consoleOutput = document.getElementById('consoleOutput');
+        const runBtn = document.getElementById('runBtn');
+
+        // Load saved code or defaults
+        const savedScript = localStorage.getItem('careerPathAWSCode');
+        const savedIaC = localStorage.getItem('careerPathAWSIaC');
+
+        scriptInput.value = savedScript ? savedScript : `# AWS CLI example to list S3 buckets\naws s3 ls\n\n# Or Boto3 (Python)\nimport boto3\ns3 = boto3.resource('s3')\nfor bucket in s3.buckets.all():\n    print(bucket.name)`;
+        iacInput.value = savedIaC ? savedIaC : `AWSTemplateFormatVersion: '2010-09-09'\nDescription: A simple S3 Bucket\nResources:\n  MyS3Bucket:\n    Type: 'AWS::S3::Bucket'\n    Properties:\n      BucketName: my-careerpath-bucket`;
+
+        function simulateDeployment() {
+            const scriptCode = scriptInput.value.trim();
+            const iacCode = iacInput.value.trim();
+            
+            consoleOutput.innerHTML = '';
+
+            // Simulate IaC Result if present
+            if (iacCode.length > 20) {
+                const isTerraform = iacCode.includes('resource') && iacCode.includes('{');
+                
+                setTimeout(() => {
+                    addLog(isTerraform ? 'Terraform: Creation complete! Resources applied.' : 'CloudFormation: Stack created successfully. Resource: MyS3Bucket', 'success');
+                }, 400);
+            }
+
+            // Simulate Script Result
+            setTimeout(() => {
+                if (scriptCode.includes('aws s3 ls') || scriptCode.includes('boto3')) {
+                    addLog('my-careerpath-bucket', 'output');
+                    addLog('personal-projects-data', 'output');
+                } else if (scriptCode.includes('"Statement"') || scriptCode.includes('"Version"')) {
+                    addLog('IAM Policy successfully attached to role.', 'success');
+                } else if (scriptCode.length > 0) {
+                    addLog('Code executed successfully. No errors detected.', 'success');
+                }
+            }, 800);
+
+            // Save state
+            localStorage.setItem('careerPathAWSCode', scriptInput.value);
+            localStorage.setItem('careerPathAWSIaC', iacInput.value);
+        }
+
+        function addLog(text, type) {
+            const div = document.createElement('div');
+            div.className = `line line-${type}`;
+            if (type === 'prompt') {
+                div.innerHTML = `<span class="prompt">${text}</span>`;
+            } else {
+                div.textContent = text;
+            }
+            consoleOutput.appendChild(div);
+            consoleOutput.scrollTop = consoleOutput.scrollHeight;
+        }
+
+        runBtn.addEventListener('click', simulateDeployment);
+
+        // Keyboard shortcuts
+        const handleKeyDown = function (e) {
+            if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
+                simulateDeployment();
+            }
+            if (e.key === 'Tab') {
+                e.preventDefault();
+                const start = this.selectionStart;
+                const end = this.selectionEnd;
+                this.value = this.value.substring(0, start) + '    ' + this.value.substring(end);
+                this.selectionStart = this.selectionEnd = start + 4;
+            }
+        };
+
+        scriptInput.addEventListener('keydown', handleKeyDown);
+        iacInput.addEventListener('keydown', handleKeyDown);
+
+        // Initial run if code is present
+        if (savedScript || savedIaC) {
+            simulateDeployment();
+        }
+</script>
+</body>
+</html>

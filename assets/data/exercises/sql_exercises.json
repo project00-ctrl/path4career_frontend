@@ -1,0 +1,127 @@
+{
+    "language": "SQL",
+    "icon": "\ud83d\uddc4\ufe0f",
+    "color": "#336791",
+    "exercises": [
+        {
+            "id": 1,
+            "title": "SELECT All",
+            "difficulty": "basic",
+            "description": "Write a query to select <strong>all columns</strong> from the <code>Customers</code> table.",
+            "starterCode": "-- Select all customers\n",
+            "expectedOutput": "SELECT * FROM Customers",
+            "validationType": "sqlResult",
+            "validationValue": "5 rows",
+            "hint": "Use SELECT * FROM Customers;",
+            "solutionCode": "SELECT * FROM Users;"
+        },
+        {
+            "id": 2,
+            "title": "SELECT Specific Columns",
+            "difficulty": "basic",
+            "description": "Select only the <code>CustomerName</code> and <code>Country</code> columns from <code>Customers</code>.",
+            "starterCode": "-- Select name and country\n",
+            "expectedOutput": "CustomerName, Country",
+            "validationType": "sqlResult",
+            "validationValue": "CustomerName",
+            "hint": "Use SELECT CustomerName, Country FROM Customers;",
+            "solutionCode": "SELECT name, age FROM Users WHERE age > 25;"
+        },
+        {
+            "id": 3,
+            "title": "WHERE Clause",
+            "difficulty": "basic",
+            "description": "Select all customers from <strong>Mexico</strong>.",
+            "starterCode": "-- Select customers from Mexico\n",
+            "expectedOutput": "Mexico customers",
+            "validationType": "sqlResult",
+            "validationValue": "Mexico",
+            "hint": "Use WHERE Country = 'Mexico';",
+            "solutionCode": "INSERT INTO Users (id, name, age) VALUES (3, 'Charlie', 28);"
+        },
+        {
+            "id": 4,
+            "title": "ORDER BY",
+            "difficulty": "basic",
+            "description": "Select all customers ordered by <code>CustomerName</code> in <strong>ascending</strong> order.",
+            "starterCode": "-- Select customers ordered by name\n",
+            "expectedOutput": "Ordered results",
+            "validationType": "sqlResult",
+            "validationValue": "Alfreds",
+            "hint": "Use ORDER BY CustomerName ASC;",
+            "solutionCode": "UPDATE Users SET age = 26 WHERE id = 1;"
+        },
+        {
+            "id": 5,
+            "title": "INSERT INTO",
+            "difficulty": "basic",
+            "description": "Insert a new customer: CustomerID <strong>6</strong>, CustomerName <strong>'New Corp'</strong>, ContactName <strong>'John Doe'</strong>, Country <strong>'USA'</strong>.",
+            "starterCode": "-- Insert a new customer\n",
+            "expectedOutput": "Query executed",
+            "validationType": "sqlExec",
+            "validationValue": "New Corp",
+            "hint": "Use INSERT INTO Customers VALUES (6, 'New Corp', 'John Doe', 'USA');",
+            "solutionCode": "DELETE FROM Users WHERE id = 2;"
+        },
+        {
+            "id": 6,
+            "title": "UPDATE",
+            "difficulty": "basic",
+            "description": "Update the country of the customer with CustomerID <strong>1</strong> to <strong>'Austria'</strong>.",
+            "starterCode": "-- Update customer country\n",
+            "expectedOutput": "Query executed",
+            "validationType": "sqlExec",
+            "validationValue": "UPDATE",
+            "hint": "Use UPDATE Customers SET Country = 'Austria' WHERE CustomerID = 1;",
+            "solutionCode": "SELECT COUNT(*) FROM Users;"
+        },
+        {
+            "id": 7,
+            "title": "COUNT & GROUP BY",
+            "difficulty": "basic",
+            "description": "Count the number of customers in each <code>Country</code>. Select the country and the count.",
+            "starterCode": "-- Count customers per country\n",
+            "expectedOutput": "Country counts",
+            "validationType": "sqlResult",
+            "validationValue": "COUNT",
+            "hint": "Use SELECT Country, COUNT(*) FROM Customers GROUP BY Country;",
+            "solutionCode": "SELECT department, AVG(salary) FROM Employees GROUP BY department;"
+        },
+        {
+            "id": 8,
+            "title": "JOIN",
+            "difficulty": "intermediate",
+            "description": "Write an <code>INNER JOIN</code> between <code>Customers</code> and <code>Orders</code> on <code>CustomerID</code>. Select <code>CustomerName</code> and <code>OrderID</code>.",
+            "starterCode": "-- Join Customers and Orders\n",
+            "expectedOutput": "Join results",
+            "validationType": "sqlResult",
+            "validationValue": "OrderID",
+            "hint": "Use SELECT c.CustomerName, o.OrderID FROM Customers c INNER JOIN Orders o ON c.CustomerID = o.CustomerID;",
+            "solutionCode": "SELECT Users.name, Orders.amount FROM Users JOIN Orders ON Users.id = Orders.user_id;"
+        },
+        {
+            "id": 9,
+            "title": "Subquery",
+            "difficulty": "intermediate",
+            "description": "Use a subquery to find customers whose <code>CustomerID</code> appears in the <code>Orders</code> table.",
+            "starterCode": "-- Find customers who have orders\n",
+            "expectedOutput": "Subquery results",
+            "validationType": "sqlResult",
+            "validationValue": "CustomerName",
+            "hint": "Use WHERE CustomerID IN (SELECT CustomerID FROM Orders);",
+            "solutionCode": "SELECT name FROM Users ORDER BY age DESC LIMIT 3;"
+        },
+        {
+            "id": 10,
+            "title": "CREATE TABLE & Complex Query",
+            "difficulty": "intermediate",
+            "description": "Create a table <code>Products</code> with columns: <code>ProductID INTEGER PRIMARY KEY</code>, <code>ProductName TEXT</code>, <code>Price REAL</code>. Insert 3 products and select all products where Price > 10 ordered by Price DESC.",
+            "starterCode": "-- Create Products table, insert data, and query\n",
+            "expectedOutput": "Products table created and queried",
+            "validationType": "sqlResult",
+            "validationValue": "ProductName",
+            "hint": "CREATE TABLE Products (...); INSERT INTO Products VALUES (...); SELECT * FROM Products WHERE Price > 10 ORDER BY Price DESC;",
+            "solutionCode": "CREATE TABLE Products (id INT PRIMARY KEY, name VARCHAR(50), price DECIMAL(10,2));"
+        }
+    ]
+}

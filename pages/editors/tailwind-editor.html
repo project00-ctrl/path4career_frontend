@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live Tailwind CSS Editor</title>
+    
+    <link rel="stylesheet" href="../../assets/css/editor.css"> 
+    <style>
+        .editor-pane { padding: 0; } /* Reset padding for the split boxes */
+        .code-box { flex: 1; display: flex; flex-direction: column; padding: 15px; }
+        .code-box:first-child { border-bottom: 2px solid #333; }
+        #htmlInput { color: #ffb86c; }
+        #cssInput { color: #8be9fd; }
+        
+        /* Tailwind specific styling tweaks */
+        .header h2 span { color: #38bdf8 !important; }
+        .run-btn { background-color: #38bdf8 !important; color: #fff !important; }
+        .run-btn:hover { background-color: #0ea5e9 !important; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h2><span>{ }</span> Real Tailwind Workspace</h2>
+        <button class="run-btn" id="runBtn">Run Code ❯</button>
+    </div>
+    <div class="workspace">
+        <div class="editor-pane">
+            <div class="code-box">
+                <p class="pane-label">index.html (Structure & Tailwind Classes)</p>
+                <textarea id="htmlInput" spellcheck="false" aria-label="HTML Input">
+<div class="min-h-screen bg-gray-100 flex items-center justify-center p-4">
+  <div class="bg-white p-8 rounded-2xl shadow-xl max-w-sm w-full text-center hover:shadow-2xl transition-shadow duration-300">
+    <div class="bg-blue-100 w-16 h-16 mx-auto rounded-full flex items-center justify-center mb-6">
+      <svg class="w-8 h-8 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+      </svg>
+    </div>
+    <h2 class="text-2xl font-bold text-gray-800 mb-3">Tailwind CSS</h2>
+    <p class="text-gray-600 mb-6">Rapidly build modern websites without ever leaving your HTML.</p>
+    <button class="w-full bg-blue-500 hover:bg-blue-600 text-white font-semibold py-3 px-4 rounded-lg transition-colors duration-300">
+      Get Started
+    </button>
+  </div>
+</div>
+                </textarea>
+            </div>
+            <div class="code-box">
+                <p class="pane-label">styles.css (Custom CSS & @apply)</p>
+                <textarea id="cssInput" spellcheck="false" aria-label="CSS Input"></textarea>
+            </div>
+        </div>
+        <div class="result-pane">
+            <iframe id="htmlOutput" title="Live Preview"></iframe>
+        </div>
+    </div>
+
+    <script>
+const htmlInput = document.getElementById('htmlInput');
+        const cssInput = document.getElementById('cssInput');
+        const htmlOutput = document.getElementById('htmlOutput');
+        const runBtn = document.getElementById('runBtn');
+
+        // 1. Fetch saved code 
+        const savedHtml = localStorage.getItem('careerPathTailwindHtml');
+        const savedCss = localStorage.getItem('careerPathTailwindCss');
+        
+        if (savedHtml) {
+            htmlInput.value = savedHtml;
+        }
+        
+        cssInput.value = savedCss ? savedCss : `@tailwind base;\n@tailwind components;\n@tailwind utilities;\n\n/* Add your custom CSS or @apply rules here */\nbody {\n  margin: 0;\n}`;
+
+        // 2. Execution Engine
+        function executeCode() {
+            const html = htmlInput.value;
+            const css = cssInput.value;
+            
+            const combinedCode = `<!DOCTYPE html><html><head>
+                    <style type="text/tailwindcss">${css}\x3C/style>
+                \x3C/head><body>${html}\x3C/body>\x3C/html>`;
+            
+            const iframeDoc = htmlOutput.contentWindow.document;
+            iframeDoc.open();
+            iframeDoc.write(combinedCode);
+            iframeDoc.close();
+            
+            // Inject Tailwind CDN via DOM
+            const tailwindScript = iframeDoc.createElement('script');
+            tailwindScript.src = "https://cdn.tailwindcss.com";
+            iframeDoc.head.appendChild(tailwindScript);
+            
+            localStorage.setItem('careerPathTailwindHtml', html);
+            localStorage.setItem('careerPathTailwindCss', css);
+        }
+
+        // 3. Smart Indentation Engine
+        function setupSmartIndent(textarea) {
+            textarea.addEventListener('keydown', function(e) {
+                if (e.key === 'Tab') {
+                    e.preventDefault();
+                    const start = this.selectionStart;
+                    const end = this.selectionEnd;
+                    const spaces = "  "; // 2 spaces for HTML/CSS
+                    this.value = this.value.substring(0, start) + spaces + this.value.substring(end);
+                    this.selectionStart = this.selectionEnd = start + spaces.length;
+                    this.dispatchEvent(new Event('input'));
+                }
+                
+                if (e.key === 'Enter') {
+                    e.preventDefault(); 
+                    const start = this.selectionStart;
+                    const end = this.selectionEnd;
+                    const textBeforeCursor = this.value.substring(0, start);
+                    const lines = textBeforeCursor.split(/\r?\n/);
+                    const currentLine = lines[lines.length - 1] || "";
+                    
+                    const leadingSpacesMatch = currentLine.match(/^(\s*)/);
+                    let indentSpaces = leadingSpacesMatch ? leadingSpacesMatch[1] : '';
+                    
+                    // Indent after opening tags or brackets
+                    if (currentLine.trim().endsWith('{') || currentLine.match(/<[^/]+>$/)) {
+                        indentSpaces += "  ";
+                    }
+                    
+                    const insertText = "\n" + indentSpaces;
+                    this.value = this.value.substring(0, start) + insertText + this.value.substring(end);
+                    this.selectionStart = this.selectionEnd = start + insertText.length;
+                    this.dispatchEvent(new Event('input'));
+                }
+            });
+        }
+
+        setupSmartIndent(htmlInput);
+        setupSmartIndent(cssInput);
+
+        // 4. Debounced Live Reload
+        let typingTimer;
+        function handleInput() {
+            clearTimeout(typingTimer);
+            typingTimer = setTimeout(() => {
+                executeCode();
+            }, 400); // Auto-updates 400ms after typing stops
+        }
+
+        htmlInput.addEventListener('input', handleInput);
+        cssInput.addEventListener('input', handleInput);
+        runBtn.addEventListener('click', executeCode);
+
+        // Auto-run on load
+        executeCode();
+</script>
+</body>
+</html>

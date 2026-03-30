@@ -1,0 +1,140 @@
+{
+    "language": "C",
+    "icon": "C",
+    "color": "#A8B9CC",
+    "exercises": [
+        {
+            "id": 1,
+            "title": "Hello World",
+            "difficulty": "basic",
+            "description": "Print <strong>Hello, World!</strong> using <code>printf()</code>.",
+            "starterCode": "#include <stdio.h>\n\nint main() {\n    // Print Hello, World!\n    return 0;\n}",
+            "expectedOutput": "Hello, World!",
+            "validationType": "outputContains",
+            "validationValue": "Hello, World!",
+            "hint": "Use printf(\"Hello, World!\\n\");",
+            "solutionCode": "#include <stdio.h>\nint main() { printf(\"Hello, World!\\n\"); return 0; }"
+        },
+        {
+            "id": 2,
+            "title": "Variables & Data Types",
+            "difficulty": "basic",
+            "description": "Declare <code>int x = 5</code>, <code>float pi = 3.14</code>, <code>char letter = 'A'</code>. Print all three on separate lines.",
+            "starterCode": "#include <stdio.h>\n\nint main() {\n    // Declare and print variables\n    return 0;\n}",
+            "expectedOutput": "5\n3.14\nA",
+            "validationType": "outputContainsAll",
+            "validationValue": [
+                "5",
+                "3.14",
+                "A"
+            ],
+            "hint": "Use %d for int, %f for float, %c for char with printf.",
+            "solutionCode": "#include <stdio.h>\nint main() {\n    int x = 5;\n    float pi = 3.14;\n    char letter = 'A';\n    printf(\"%d\\n\", x);\n    printf(\"%.2f\\n\", pi);\n    printf(\"%c\\n\", letter);\n    return 0;\n}"
+        },
+        {
+            "id": 3,
+            "title": "If-Else Conditionals",
+            "difficulty": "basic",
+            "description": "Given <code>int score = 85</code>, print <strong>Grade: B</strong> if score >= 80, otherwise print <strong>Needs Improvement</strong>.",
+            "starterCode": "#include <stdio.h>\n\nint main() {\n    int score = 85;\n    // Write if-else\n    return 0;\n}",
+            "expectedOutput": "Grade: B",
+            "validationType": "outputContains",
+            "validationValue": "Grade: B",
+            "hint": "Use if (score >= 80) { printf(\"Grade: B\\n\"); }",
+            "solutionCode": "#include <stdio.h>\nint main() {\n    int score = 85;\n    if (score >= 80) {\n        printf(\"Grade: B\\n\");\n    } else {\n        printf(\"Needs Improvement\\n\");\n    }\n    return 0;\n}"
+        },
+        {
+            "id": 4,
+            "title": "For Loop",
+            "difficulty": "basic",
+            "description": "Print numbers from <strong>0 to 4</strong> using a <code>for</code> loop, each prefixed with <strong>Iteration</strong>.",
+            "starterCode": "#include <stdio.h>\n\nint main() {\n    // Print Iteration 0 through Iteration 4\n    return 0;\n}",
+            "expectedOutput": "Iteration 0\nIteration 4",
+            "validationType": "outputContainsAll",
+            "validationValue": [
+                "Iteration 0",
+                "Iteration 4"
+            ],
+            "hint": "Use for (int i = 0; i < 5; i++) { printf(\"Iteration %d\\n\", i); }",
+            "solutionCode": "#include <stdio.h>\nint main() {\n    for (int i = 0; i < 5; i++) {\n        printf(\"Iteration %d\\n\", i);\n    }\n    return 0;\n}"
+        },
+        {
+            "id": 5,
+            "title": "Functions",
+            "difficulty": "basic",
+            "description": "Create a <code>void greet()</code> function that prints <strong>Hello from a custom function!</strong>. Call it from main.",
+            "starterCode": "#include <stdio.h>\n\n// Define greet() here\n\nint main() {\n    // Call greet()\n    return 0;\n}",
+            "expectedOutput": "Hello from a custom function!",
+            "validationType": "outputContains",
+            "validationValue": "Hello from a custom function!",
+            "hint": "Define void greet() { printf(\"Hello from a custom function!\\n\"); } above main.",
+            "solutionCode": "#include <stdio.h>\nvoid greet() {\n    printf(\"Hello from a custom function!\\n\");\n}\nint main() {\n    greet();\n    return 0;\n}"
+        },
+        {
+            "id": 6,
+            "title": "Arrays",
+            "difficulty": "basic",
+            "description": "Declare <code>int numbers[5] = {10, 20, 30, 40, 50}</code>. Print the first and second elements.",
+            "starterCode": "#include <stdio.h>\n\nint main() {\n    int numbers[5] = {10, 20, 30, 40, 50};\n    // Print first and second elements\n    return 0;\n}",
+            "expectedOutput": "10\n20",
+            "validationType": "outputContainsAll",
+            "validationValue": [
+                "10",
+                "20"
+            ],
+            "hint": "Use printf(\"%d\\n\", numbers[0]); and numbers[1].",
+            "solutionCode": "#include <stdio.h>\nint main() {\n    int numbers[5] = {10, 20, 30, 40, 50};\n    printf(\"%d\\n\", numbers[0]);\n    printf(\"%d\\n\", numbers[1]);\n    return 0;\n}"
+        },
+        {
+            "id": 7,
+            "title": "Strings",
+            "difficulty": "basic",
+            "description": "Declare <code>char msg[] = \"Hello\"</code> and print it using <code>%s</code> format specifier.",
+            "starterCode": "#include <stdio.h>\n\nint main() {\n    // Declare and print a string\n    return 0;\n}",
+            "expectedOutput": "Hello",
+            "validationType": "outputContains",
+            "validationValue": "Hello",
+            "hint": "Use char msg[] = \"Hello\"; printf(\"%s\\n\", msg);",
+            "solutionCode": "#include <stdio.h>\nint main() {\n    char msg[] = \"Hello\";\n    printf(\"%s\\n\", msg);\n    return 0;\n}"
+        },
+        {
+            "id": 8,
+            "title": "Pointers",
+            "difficulty": "intermediate",
+            "description": "Declare <code>int x = 10</code> and a pointer <code>int *p = &x</code>. Print the value of x via the pointer using dereferencing.",
+            "starterCode": "#include <stdio.h>\n\nint main() {\n    // Use pointers to print value\n    return 0;\n}",
+            "expectedOutput": "10",
+            "validationType": "outputContains",
+            "validationValue": "10",
+            "hint": "Use printf(\"%d\\n\", *p); to dereference the pointer.",
+            "solutionCode": "#include <stdio.h>\nint main() {\n    int x = 10;\n    int *p = &x;\n    printf(\"%d\\n\", *p);\n    return 0;\n}"
+        },
+        {
+            "id": 9,
+            "title": "Structures",
+            "difficulty": "intermediate",
+            "description": "Create a <code>struct Person</code> with <code>char name[30]</code> and <code>int age</code>. Create a Person with name <strong>Sanjith</strong> and age <strong>25</strong>, then print them.",
+            "starterCode": "#include <stdio.h>\n#include <string.h>\n\n// Define struct here\n\nint main() {\n    // Create and print Person\n    return 0;\n}",
+            "expectedOutput": "Sanjith",
+            "validationType": "outputContainsAll",
+            "validationValue": [
+                "Sanjith",
+                "25"
+            ],
+            "hint": "Use strcpy(p1.name, \"Sanjith\"); p1.age = 25; then printf.",
+            "solutionCode": "#include <stdio.h>\n#include <string.h>\nstruct Person {\n    char name[30];\n    int age;\n};\nint main() {\n    struct Person p1;\n    strcpy(p1.name, \"Sanjith\");\n    p1.age = 25;\n    printf(\"%s\\n\", p1.name);\n    printf(\"%d\\n\", p1.age);\n    return 0;\n}"
+        },
+        {
+            "id": 10,
+            "title": "Enum Types",
+            "difficulty": "intermediate",
+            "description": "Create an <code>enum Week {Mon, Tue, Wed}</code>. Set <code>today = Tue</code> and print its integer value.",
+            "starterCode": "#include <stdio.h>\n\n// Define enum here\n\nint main() {\n    // Use enum and print\n    return 0;\n}",
+            "expectedOutput": "1",
+            "validationType": "outputContains",
+            "validationValue": "1",
+            "hint": "enum Week {Mon, Tue, Wed}; enum Week today = Tue; printf(\"%d\\n\", today);",
+            "solutionCode": "#include <stdio.h>\nenum Week {Mon, Tue, Wed};\nint main() {\n    enum Week today = Tue;\n    printf(\"%d\\n\", today);\n    return 0;\n}"
+        }
+    ]
+}

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Manage applicants for your job posting on Path4Career">
+    <title>Job Applicants - Path4Career</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../assets/css/navbar.css">
+    <link rel="stylesheet" href="../../assets/css/jobs.css">
+    <style>
+        .jobs-toast { position: fixed; bottom: 24px; right: 24px; z-index: 9999; background: var(--surface); color: var(--text-main); padding: 1rem 1.5rem; border-radius: var(--radius-md); box-shadow: var(--shadow-lg); display: flex; align-items: center; gap: 0.75rem; transform: translateX(110%); transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); border-left: 4px solid var(--success); }
+        .jobs-toast-error { border-left-color: var(--error); }
+        .jobs-toast-show { transform: translateX(0); }
+        .jobs-page-wrapper { padding-top: 10px; }
+        .jobs-page-wrapper .container { max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; }
+
+        .applicant-table { width: 100%; border-collapse: collapse; background: var(--card-bg); border-radius: var(--radius-lg); overflow: hidden; border: 1px solid var(--border); }
+        .applicant-table thead { background: var(--surface); }
+        .applicant-table th, .applicant-table td { padding: 1rem 1.25rem; text-align: left; font-size: 0.9rem; }
+        .applicant-table th { color: var(--text-secondary); font-weight: 600; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 0.5px; }
+        .applicant-table td { color: var(--text-main); border-top: 1px solid var(--border); }
+        .applicant-table tr:hover td { background: rgba(74, 108, 247, 0.05); }
+        .status-select { background: var(--bg-main); border: 1px solid var(--border); color: var(--text-main); padding: 0.4rem 0.6rem; border-radius: 6px; font-size: 0.85rem; cursor: pointer; outline: none; }
+        .status-select:focus { border-color: var(--primary); }
+        .pitch-text { max-width: 250px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: var(--text-muted); font-size: 0.85rem; }
+        .pitch-text:hover { white-space: normal; overflow: visible; }
+    </style>
+</head>
+<body>
+    <div id="navbar-root"></div>
+
+    <div class="jobs-page-wrapper">
+        <div class="container" style="padding-top: 1rem;">
+            <a href="recruiter-dashboard.html" style="color: var(--text-muted); text-decoration:none; display:inline-flex; align-items:center; gap:0.5rem; margin-bottom:1rem;">← Back to Dashboard</a>
+
+            <div style="margin-bottom: 2rem;">
+                <h2 style="color: var(--text-main);" id="pageTitle">👥 Job Applicants</h2>
+                <p style="color: var(--text-muted);" id="jobInfo">Loading...</p>
+            </div>
+
+            <div id="applicantsContainer">
+                <div style="text-align:center; padding:2rem; color: var(--text-muted);">Loading applicants...</div>
+            </div>
+        </div>
+    </div>
+
+    <footer><p>&copy; 2026 Path4Career. All rights reserved.</p></footer>
+
+    <script src="../../assets/js/navbar.js"></script>
+    <script src="../../assets/js/jobs-api.js"></script>
+    <script src="../../assets/js/recruiter-applicants.js"></script>
+</body>
+</html>

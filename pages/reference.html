@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>References | Path4Career</title>
+    <link rel="stylesheet" href="../assets/css/navbar.css">
+    <link rel="stylesheet" href="../assets/css/reference.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- SHARED NAVBAR (injected by navbar.js) -->
+    <div id="navbar-root"></div>
+
+    <!-- Sidebar Toggle Button (visible on mobile) -->
+    <button class="ref-sidebar-toggle" id="refSidebarToggle" aria-label="Toggle sidebar menu">
+        <span class="ref-sidebar-toggle-icon">☰</span>
+        <span class="ref-sidebar-toggle-label">Menu</span>
+    </button>
+
+    <!-- Sidebar Overlay (for mobile) -->
+    <div class="ref-sidebar-overlay" id="refSidebarOverlay"></div>
+
+    <div class="main-layout">
+
+        <aside class="left-sidebar" id="refLeftSidebar">
+            <div class="ref-sidebar-close-wrap">
+                <button class="ref-sidebar-close-btn" id="refSidebarClose" aria-label="Close sidebar">✕</button>
+            </div>
+            <ul class="sidebar-menu">
+            </ul>
+        </aside>
+
+        <main class="content-area">
+        </main>
+
+    </div>
+
+    <script src="../assets/js/navbar.js"></script>
+    <script src="../assets/js/reference.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quizzes | Path4Career</title>
+    <meta name="description" content="Test your knowledge with timed quizzes on Path4Career learning platform">
+    <link rel="stylesheet" href="../assets/css/navbar.css">
+    <link rel="stylesheet" href="../assets/css/quizzes.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <!-- SHARED NAVBAR -->
+    <div id="navbar-root"></div>
+
+    <!-- Hero Section -->
+    <section class="quizzes-hero">
+        <div class="hero-glow"></div>
+        <div class="hero-content">
+            <div class="hero-badge">🧠 Knowledge Check</div>
+            <h1>Test Your <span class="gradient-text">Knowledge</span></h1>
+            <p class="hero-subtitle">Choose a quiz to challenge yourself. Timed MCQs with instant results and detailed review.</p>
+        </div>
+    </section>
+
+    <!-- Quiz Cards Grid -->
+    <section class="quizzes-section">
+        <div class="container">
+            <!-- Filter Tabs -->
+            <div class="quiz-filters" id="quizFilters">
+                <button class="filter-tab active" data-filter="all">All Quizzes</button>
+            </div>
+
+            <!-- Loading State -->
+            <div class="quizzes-loading" id="quizzesLoading">
+                <div class="loader-spinner"></div>
+                <p>Loading available quizzes...</p>
+            </div>
+
+            <!-- Error State -->
+            <div class="quizzes-error" id="quizzesError" style="display:none;">
+                <div class="error-icon">❌</div>
+                <h3>Could not load quizzes</h3>
+                <p>Please make sure the backend server is running.</p>
+                <button class="btn-retry" onclick="loadQuizzes()">🔄 Retry</button>
+            </div>
+
+            <!-- Quiz Grid -->
+            <div class="quizzes-grid" id="quizzesGrid">
+                <!-- Populated by JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Login Modal -->
+    <div class="login-modal-overlay" id="loginModal">
+        <div class="login-modal">
+            <div class="login-modal-icon">🔒</div>
+            <h3>Login Required</h3>
+            <p>You need to be logged in to take quizzes. Your progress and scores will be saved to your account.</p>
+            <div class="login-modal-actions">
+                <button class="btn-login" onclick="goToLogin()">Login Now</button>
+                <button class="btn-cancel" onclick="closeLoginModal()">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="../assets/js/navbar.js"></script>
+    <script src="../assets/js/quizzes.js"></script>
+</body>
+
+</html>

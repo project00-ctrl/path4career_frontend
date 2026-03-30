@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live XML Editor - CareerPath</title>
+    <link rel="stylesheet" href="../../assets/css/editor.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+    
+    <nav class="editor-nav">
+        <div class="logo-area">
+            <img class="logo-icon" src="../../assets/images/path4career-icon.png" alt="Path4Career" style="width:32px;height:32px;border-radius:8px;">
+            <div class="logo-text">Path4Career</div>
+            <div class="title-badge">📄 XML Workspace</div>
+        </div>
+        <button class="run-btn" id="runBtn" onclick="parseXML()">▶ Parse XML</button>
+    </nav>
+
+    <div class="workspace">
+        <div class="editor-pane">
+            <p class="pane-label">
+                <span>data.xml</span>
+                <span class="status-text">XML 1.0</span>
+            </p>
+            <textarea id="xmlInput" spellcheck="false" aria-label="XML Input"></textarea>
+        </div>
+        
+        <div class="result-pane">
+            <p class="pane-label">XML Output / Parser Console</p>
+            <div id="outputDiv"></div>
+        </div>
+    </div>
+
+    <script>
+const xmlInput = document.getElementById('xmlInput');
+        const outputDiv = document.getElementById('outputDiv');
+
+        // 1. Load Data
+        const defaultTemplate = `<?xml version="1.0" encoding="UTF-8"?>
+<library>
+    <book category="programming">
+        <title>Learn XML</title>
+        <author>John Doe</author>
+        <year>2024</year>
+    </book>
+    <book category="design">
+        <title>UI/UX Principles</title>
+        <author>Jane Smith</author>
+        <year>2023</year>
+    </book>
+</library>`;
+
+        const savedCode = localStorage.getItem('careerPathXmlCode');
+        xmlInput.value = savedCode ? savedCode : defaultTemplate;
+
+        // Helper to prevent HTML injection in output
+        function escapeHTML(str) {
+            return str.replace(/</g, '&lt;').replace(/>/g, '&gt;');
+        }
+
+        // 2. The Engine: Parses XML and builds the visual tree
+        function parseXML() {
+            let code = xmlInput.value;
+            
+            if (!code || !code.trim()) {
+                outputDiv.innerHTML = '<span class="xml-error">Please enter some XML code.</span>';
+                return;
+            }
+            
+            code = code.trim();
+            
+            if (!code.startsWith('<') && !code.startsWith('<?')) {
+                outputDiv.innerHTML = '<span class="xml-error">❌ Not valid XML</span><br>This code does not appear to be XML. Make sure your code starts with &lt; or &lt;?xml';
+                return;
+            }
+            
+            outputDiv.innerHTML = '<span class="xml-success">Parsing XML...</span>';
+            
+            try {
+                const parser = new DOMParser();
+                const xmlDoc = parser.parseFromString(code, "text/xml");
+                
+                // Check for parsing errors
+                const parseError = xmlDoc.getElementsByTagName("parsererror");
+                if (parseError.length > 0) {
+                    outputDiv.innerHTML = '<span class="xml-error">❌ XML Parse Error:</span>\n\n' + 
+                        escapeHTML(parseError[0].textContent);
+                    return;
+                }
+                
+                let output = '<span class="xml-success">✔ XML is perfectly valid!</span>\n\n';
+                output += '<span class="xml-tag">📊 XML Document Structure:</span>\n\n';
+                
+                // Recursive function to display nodes safely
+                function displayNode(node, level = 0) {
+                    let indent = '  '.repeat(level);
+                    let result = '';
+                    
+                    if (node.nodeType === 1) { // Element Node
+                        // Safely render the tag brackets using &lt; and &gt;
+                        result += indent + '<span class="xml-tag">&lt;' + escapeHTML(node.nodeName) + '&gt;</span>\n';
+                        
+                        if (node.attributes) {
+                            for (let attr of node.attributes) {
+                                result += indent + '  <span class="xml-attr">' + escapeHTML(attr.name) + '</span>=<span class="xml-value">"' + escapeHTML(attr.value) + '"</span>\n';
+                            }
+                        }
+                        
+                        if (node.textContent.trim() && node.childNodes.length === 1 && node.childNodes[0].nodeType === 3) {
+                            result += indent + '  <span class="xml-text">' + escapeHTML(node.textContent.trim()) + '</span>\n';
+                        }
+                        
+                        for (let child of node.childNodes) {
+                            if (child.nodeType === 1) {
+                                result += displayNode(child, level + 1);
+                            }
+                        }
+                    }
+                    return result;
+                }
+                
+                const root = xmlDoc.documentElement;
+                output += 'Root Element: <span class="xml-tag">&lt;' + escapeHTML(root.nodeName) + '&gt;</span>\n';
+                output += 'Total Child Elements: ' + root.childElementCount + '\n\n';
+                
+                let previewCount = 0;
+                for (let child of root.children) {
+                    if (previewCount < 3) {
+                        output += displayNode(child, 0);
+                        previewCount++;
+                    }
+                }
+                
+                if (root.children.length > 3) {
+                    output += '\n... and ' + (root.children.length - 3) + ' more elements';
+                }
+                
+                outputDiv.innerHTML = output;
+                
+            } catch (error) {
+                outputDiv.innerHTML = '<span class="xml-error">Error: ' + escapeHTML(error.message) + '</span>';
+            }
+        }
+
+        // 3. Smart Indentation Engine
+        xmlInput.addEventListener('keydown', function(e) {
+            if (e.key === 'Tab') {
+                e.preventDefault();
+                const start = this.selectionStart;
+                const end = this.selectionEnd;
+                const spaces = "    "; // 4 spaces
+                this.value = this.value.substring(0, start) + spaces + this.value.substring(end);
+                this.selectionStart = this.selectionEnd = start + spaces.length;
+                
+                localStorage.setItem('careerPathXmlCode', this.value);
+                parseXML();
+            }
+        });
+
+        // 4. Real-time Live Reload Engine & Auto-Save
+        xmlInput.addEventListener('input', () => {
+            localStorage.setItem('careerPathXmlCode', xmlInput.value);
+            parseXML();
+        });
+
+        // 5. Run immediately on load
+        parseXML();
+</script>
+</body>
+</html>

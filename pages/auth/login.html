@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Path4Career - Login</title>
+    <link href="css/loginstyle.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="css/loginstyle.css">
+</head>
+
+<body>
+    <div class="container">
+        <!-- Left Banner Area -->
+        <div class="left-panel">
+            <h1 class="brand">Path4Career</h1>
+            <p class="tagline">Your journey to success starts here. Unlock your potential today.</p>
+        </div>
+
+        <!-- Right Form Area -->
+        <div class="right-panel">
+            <form class="login-box" id="loginForm">
+                <h2>Welcome Back</h2>
+
+                <div class="detail">
+                    <label for="email">Email Address</label>
+                    <input type="text" id="email" name="useremail" placeholder="name@example.com">
+                    <p id="email-err" class="err-msg"></p>
+                </div>
+
+                <div class="detail">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" placeholder="••••••••">
+                    <p id="pass-err" class="err-msg"></p>
+                </div>
+
+                <a class="forgot" href="forget-password.html">Forgot Password?</a>
+
+                <button type="submit" class="login-btn">Sign In</button>
+
+                <p class="signup-txt">New to Path4Career? <a class="nxt-page" href="register.html">Create an Account</a>
+                </p>
+            </form>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/config.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const loginForm = document.getElementById("loginForm");
+            const params = new URLSearchParams(window.location.search);
+            const redirectUrl = params.get('redirect') || document.referrer || '../../index.html';
+
+            const existingToken = localStorage.getItem('AUTH_TOKEN');
+            if (existingToken) {
+                window.location.href = redirectUrl;
+                return;
+            }
+
+            loginForm.addEventListener("submit", async (e) => {
+                e.preventDefault();
+                const email = document.getElementById("email").value.trim();
+                const password = document.getElementById("password").value.trim();
+                const btn = loginForm.querySelector('.login-btn');
+
+                if (!email || !password) {
+                    alert("Email and Password are required");
+                    return;
+                }
+
+                try {
+                    btn.textContent = "Signing in...";
+                    btn.disabled = true;
+
+                    const response = await fetch(API_BASE_URL + "/api/v1/auth/login", {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        credentials: "include",
+                        body: JSON.stringify({ email, password })
+                    });
+
+                    if (!response.ok) {
+                        const errBody = await response.json().catch(() => ({ error: 'Login failed' }));
+                        throw new Error(errBody.error || 'Login failed');
+                    }
+
+                    const contentType = response.headers.get("content-type");
+                    let token;
+                    if (contentType && contentType.includes("application/json")) {
+                        const data = await response.json();
+                        token = data.token || data.accessToken || data.jwt || data;
+                    } else {
+                        token = await response.text();
+                    }
+                    
+                    if (typeof token === 'object') token = JSON.stringify(token);
+
+                    localStorage.setItem('AUTH_TOKEN', token);
+                    window.location.href = redirectUrl;
+
+                } catch (error) {
+                    alert(error.message);
+                    btn.textContent = "Sign In";
+                    btn.disabled = false;
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

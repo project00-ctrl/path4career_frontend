@@ -1,0 +1,127 @@
+{
+    "language": "Excel",
+    "icon": "\ud83d\udcca",
+    "color": "#217346",
+    "exercises": [
+        {
+            "id": 1,
+            "title": "SUM Formula",
+            "difficulty": "basic",
+            "description": "Write the Excel formula to sum cells A1 through A5.",
+            "starterCode": "=",
+            "expectedOutput": "",
+            "validationType": "contains",
+            "validationValue": "SUM(A1:A5)",
+            "hint": "=SUM(A1:A5)",
+            "solutionCode": "# The hint provides the solution:\n# =SUM(A1:A5)"
+        },
+        {
+            "id": 2,
+            "title": "AVERAGE Formula",
+            "difficulty": "basic",
+            "description": "Write the formula to find the average of B1:B10.",
+            "starterCode": "=",
+            "expectedOutput": "",
+            "validationType": "contains",
+            "validationValue": "AVERAGE(B1:B10)",
+            "hint": "=AVERAGE(B1:B10)",
+            "solutionCode": "# The hint provides the solution:\n# =AVERAGE(B1:B10)"
+        },
+        {
+            "id": 3,
+            "title": "IF Formula",
+            "difficulty": "basic",
+            "description": "Write an IF formula: if A1 > 50 return \"Pass\" else \"Fail\".",
+            "starterCode": "=",
+            "expectedOutput": "",
+            "validationType": "contains",
+            "validationValue": "IF(A1>50",
+            "hint": "=IF(A1>50,\"Pass\",\"Fail\")",
+            "solutionCode": "# The hint provides the solution:\n# =IF(A1>50,\"Pass\",\"Fail\")"
+        },
+        {
+            "id": 4,
+            "title": "COUNT Formula",
+            "difficulty": "basic",
+            "description": "Write the formula to count numeric values in C1:C20.",
+            "starterCode": "=",
+            "expectedOutput": "",
+            "validationType": "contains",
+            "validationValue": "COUNT(C1:C20)",
+            "hint": "=COUNT(C1:C20)",
+            "solutionCode": "# The hint provides the solution:\n# =COUNT(C1:C20)"
+        },
+        {
+            "id": 5,
+            "title": "MAX and MIN",
+            "difficulty": "basic",
+            "description": "Write formulas for MAX and MIN of D1:D10 on separate lines.",
+            "starterCode": "=",
+            "expectedOutput": "",
+            "validationType": "contains",
+            "validationValue": "MAX(D1:D10)",
+            "hint": "=MAX(D1:D10) and =MIN(D1:D10)",
+            "solutionCode": "# The hint provides the solution:\n# =MAX(D1:D10) and =MIN(D1:D10)"
+        },
+        {
+            "id": 6,
+            "title": "VLOOKUP",
+            "difficulty": "intermediate",
+            "description": "Write VLOOKUP to find value in A2 from range B1:C10, column 2.",
+            "starterCode": "=",
+            "expectedOutput": "",
+            "validationType": "contains",
+            "validationValue": "VLOOKUP",
+            "hint": "=VLOOKUP(A2,B1:C10,2,FALSE)",
+            "solutionCode": "# The hint provides the solution:\n# =VLOOKUP(A2,B1:C10,2,FALSE)"
+        },
+        {
+            "id": 7,
+            "title": "CONCATENATE",
+            "difficulty": "intermediate",
+            "description": "Concatenate A1 and B1 separated by a space.",
+            "starterCode": "=",
+            "expectedOutput": "",
+            "validationType": "contains",
+            "validationValue": "CONCATENATE",
+            "hint": "=CONCATENATE(A1,\" \",B1) or =A1&\" \"&B1",
+            "solutionCode": "# The hint provides the solution:\n# =CONCATENATE(A1,\" \",B1) or =A1&\" \"&B1"
+        },
+        {
+            "id": 8,
+            "title": "COUNTIF",
+            "difficulty": "intermediate",
+            "description": "Count cells in A1:A20 that contain \"Yes\".",
+            "starterCode": "=",
+            "expectedOutput": "",
+            "validationType": "contains",
+            "validationValue": "COUNTIF",
+            "hint": "=COUNTIF(A1:A20,\"Yes\")",
+            "solutionCode": "# The hint provides the solution:\n# =COUNTIF(A1:A20,\"Yes\")"
+        },
+        {
+            "id": 9,
+            "title": "SUMIF",
+            "difficulty": "intermediate",
+            "description": "Sum values in B1:B10 where A1:A10 equals \"Sales\".",
+            "starterCode": "=",
+            "expectedOutput": "",
+            "validationType": "contains",
+            "validationValue": "SUMIF",
+            "hint": "=SUMIF(A1:A10,\"Sales\",B1:B10)",
+            "solutionCode": "# The hint provides the solution:\n# =SUMIF(A1:A10,\"Sales\",B1:B10)"
+        },
+        {
+            "id": 10,
+            "title": "INDEX MATCH",
+            "difficulty": "intermediate",
+            "description": "Use INDEX and MATCH to look up a value.",
+            "starterCode": "=",
+            "expectedOutput": "",
+            "validationType": "contains",
+            "validationValue": "INDEX",
+            "hint": "=INDEX(B1:B10,MATCH(\"target\",A1:A10,0))",
+            "solutionCode": "# The hint provides the solution:\n# =INDEX(B1:B10,MATCH(\"target\",A1:A10,0))"
+        }
+    ]
+}

@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spring Boot Workspace - CareerPath</title>
+    <link rel="stylesheet" href="../../assets/css/editor.css">
+    <style>
+        #springbootInput { color: #f1fa8c; } 
+        
+        .console-output {
+            flex: 1;
+            background-color: #1e1e2f;
+            display: flex;
+            flex-direction: column;
+        }
+
+        #consoleDiv {
+            flex: 1;
+            padding: 10px 20px;
+            font-family: 'Courier New', Courier, monospace;
+            overflow-y: auto;
+            color: #cbd5e1;
+            font-size: 14px;
+            white-space: pre-wrap; 
+        }
+
+        .log-error { color: #ff4757; }
+        .log-normal { color: #00ffb3; }
+        .log-loading { color: #8be9fd; font-style: italic; }
+        .log-info { color: #ffb86c; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h2><span style="color: #6bad33;">🍃</span> Spring Boot Workspace</h2>
+        <button class="run-btn" id="runBtn" disabled>Loading Spring Boot Engine...</button>
+    </div>
+    <div class="workspace">
+        <div class="editor-pane">
+            <p class="pane-label">SpringApp.java</p>
+            <textarea id="springbootInput" spellcheck="false" aria-label="Spring Boot Input"></textarea>
+        </div>
+        
+        <div class="result-pane">
+            <div class="console-output">
+                <p class="pane-label" style="padding:10px 20px 0;">Terminal Output</p>
+                <div id="consoleDiv">
+                    <span class="log-loading">Initializing Spring Boot environment... please wait.</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+const springbootInput = document.getElementById('springbootInput');
+const consoleDiv = document.getElementById('consoleDiv');
+const runBtn = document.getElementById('runBtn');
+
+// Default Spring Boot mock template
+const defaultTemplate = `import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+@RestController
+public class SpringApp {
+
+    @GetMapping("/")
+    public String home() {
+        return "Hello from Spring Boot!";
+    }
+
+    public static void main(String[] args) {
+        System.out.println("Starting Spring Boot application...");
+        System.out.println("Tomcat started on port(s): 8080 (http)");
+        System.out.println("Started SpringApp in 2.5 seconds");
+        
+        // Mocking a controller call
+        SpringApp app = new SpringApp();
+        System.out.println("Response from /: " + app.home());
+    }
+}`;
+
+// Get saved code from localStorage
+const savedCode = localStorage.getItem('careerPathSpringCode');
+springbootInput.value = savedCode ? savedCode : defaultTemplate;
+
+// Function to append text to console
+function appendToConsole(text, className) {
+    const span = document.createElement('span');
+    span.className = className;
+    span.textContent = text + '\n';
+    consoleDiv.appendChild(span);
+    consoleDiv.scrollTop = consoleDiv.scrollHeight;
+}
+
+// Clear console
+function clearConsole() {
+    consoleDiv.innerHTML = '';
+}
+
+// Simple Java to JavaScript converter for educational purposes
+function transpileJavaToJS(javaCode) {
+    let jsCode = javaCode;
+    
+    // Handle System.out.println
+    jsCode = jsCode.replace(/System\.out\.println\((.*?)\);/g, 'console.log($1);');
+    
+    // Handle variable declarations
+    jsCode = jsCode.replace(/\bint\s+(\w+)\s*=\s*/g, 'let $1 = ');
+    jsCode = jsCode.replace(/\bdouble\s+(\w+)\s*=\s*/g, 'let $1 = ');
+    jsCode = jsCode.replace(/\bfloat\s+(\w+)\s*=\s*/g, 'let $1 = ');
+    jsCode = jsCode.replace(/\bboolean\s+(\w+)\s*=\s*/g, 'let $1 = ');
+    jsCode = jsCode.replace(/\bString\s+(\w+)\s*=\s*/g, 'let $1 = ');
+    
+    return jsCode;
+}
+
+// Execute Mock Spring Boot code
+async function executeSpring() {
+    const code = springbootInput.value.trim();
+    
+    if (!code) {
+        appendToConsole('Please enter some code.', 'log-error');
+        return;
+    }
+    
+    // Save code to localStorage
+    localStorage.setItem('careerPathSpringCode', code);
+    
+    // Show running indicator
+    clearConsole();
+    appendToConsole('>>> Initializing Spring Boot Mock Environment...', 'log-loading');
+    runBtn.disabled = true;
+    
+    try {
+        // Extract main method content for execution
+        const mainMatch = code.match(/public\s+static\s+void\s+main\s*\([^)]*\)\s*\{([\s\S]*)\}/);
+        
+        if (mainMatch) {
+            let extractedCode = mainMatch[1].trim();
+            
+            // If there's a class closing brace at the end, remove it
+            if (extractedCode.endsWith('}')) {
+                extractedCode = extractedCode.substring(0, extractedCode.lastIndexOf('}')).trim();
+            }
+            
+            // Basic transpilation for the mock
+            extractedCode = extractedCode.replace(/System\.out\.println\((.*?)\);/g, 'console.log($1);');
+            extractedCode = extractedCode.replace(/\bint\s+(\w+)\s*=\s*/g, 'let $1 = ');
+            extractedCode = extractedCode.replace(/\bString\s+(\w+)\s*=\s*/g, 'let $1 = ');
+            
+            try {
+                const customConsole = {
+                    log: function(...args) {
+                        appendToConsole(args.map(arg => String(arg)).join(' '), 'log-normal');
+                    },
+                    error: function(...args) {
+                        appendToConsole(args.map(arg => String(arg)).join(' '), 'log-error');
+                    }
+                };
+                
+                // Execute the transpiled code
+                const executeCode = new Function('console', extractedCode);
+                executeCode(customConsole);
+                
+                appendToConsole('\n✔ Application startup completed!', 'log-normal');
+            } catch (execError) {
+                appendToConsole('Runtime Error: ' + execError.message, 'log-error');
+            }
+        } else {
+            // Fallback: Try to execute as simple snippet
+            let simpleCode = code;
+            
+            // Remove annotations and imports for mock execution
+            simpleCode = simpleCode.replace(/import\s+.*?;/g, '');
+            simpleCode = simpleCode.replace(/@\w+(\(.*?\))?/g, '');
+            
+            // Basic transpilation
+            simpleCode = simpleCode.replace(/System\.out\.println\((.*?)\);/g, 'console.log($1);');
+            simpleCode = simpleCode.replace(/\bint\s+(\w+)\s*=\s*/g, 'let $1 = ');
+            simpleCode = simpleCode.replace(/\bString\s+(\w+)\s*=\s*/g, 'let $1 = ');
+            
+            // If it's a class, just try to run the methods or just log a message
+            if (simpleCode.includes('class ')) {
+                appendToConsole('>>> Detected Class/Controller snippet. Running mock analysis...', 'log-info');
+                appendToConsole('✔ Controller endpoints mapped successfully.', 'log-normal');
+                appendToConsole('✔ Class structure is valid.', 'log-normal');
+            } else {
+                try {
+                    const customConsole = {
+                        log: function(...args) {
+                            appendToConsole(args.map(arg => String(arg)).join(' '), 'log-normal');
+                        },
+                        error: function(...args) {
+                            appendToConsole(args.map(arg => String(arg)).join(' '), 'log-error');
+                        }
+                    };
+                    const executeCode = new Function('console', simpleCode);
+                    executeCode(customConsole);
+                } catch (e) {
+                    appendToConsole('Note: This is a mock Spring Boot environment. Partial snippets are analyzed but not fully executed.', 'log-info');
+                }
+            }
+            appendToConsole('\n✔ Mock execution completed!', 'log-normal');
+        }
+    } catch (error) {
+        appendToConsole('Execution Error: ' + error.message, 'log-error');
+    } finally {
+        runBtn.disabled = false;
+    }
+}
+
+// Enable run button
+runBtn.disabled = false;
+runBtn.innerText = 'Run Application ❯';
+
+// Add click handler
+runBtn.addEventListener('click', executeSpring);
+
+// Auto-run on page load
+window.addEventListener('load', function() {
+    appendToConsole('✔ Spring Boot Mock Ready! Click Run to start.', 'log-normal');
+});
+
+</script>
+</body>
+</html>

@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live Django Editor - CareerPath</title>
+    <link rel="stylesheet" href="../../assets/css/editor.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    
+    <script src="https://cdn.jsdelivr.net/pyodide/v0.23.4/full/pyodide.js"></script>
+</head>
+<body>
+    
+    <nav class="editor-nav">
+        <div class="logo-area">
+            <img class="logo-icon" src="../../assets/images/path4career-icon.png" alt="Path4Career" style="width:32px;height:32px;border-radius:8px;">
+            <div class="logo-text">Path4Career</div>
+            <div class="title-badge">🎯 Django Workspace</div>
+        </div>
+        <button class="run-btn" id="runBtn" disabled>⏳ Loading Python...</button>
+    </nav>
+
+    <div class="workspace">
+        <div class="editor-pane">
+            <p class="pane-label">
+                <span>views.py</span>
+                <span class="status-text">MVT Simulator</span>
+            </p>
+            <textarea id="djangoInput" spellcheck="false" aria-label="Django Input"></textarea>
+        </div>
+        
+        <div class="result-pane">
+            <div class="visual-output">
+                <p class="pane-label">Live Web Preview</p>
+                <iframe id="previewFrame" title="Django Preview"></iframe>
+            </div>
+            <div class="console-output">
+                <p class="pane-label">Terminal / Server Logs</p>
+                <div id="consoleDiv">
+                    <span class="log-loading">Initializing WebAssembly Python Engine... please wait.</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+const djangoInput = document.getElementById('djangoInput');
+        const previewFrame = document.getElementById('previewFrame');
+        const consoleDiv = document.getElementById('consoleDiv');
+        const runBtn = document.getElementById('runBtn');
+        
+        let pyodideInstance = null;
+
+        // 1. Default Django Simulator Template
+        const defaultTemplate = `# Django Views & Templates Demo
+# This simulates Django's MVT (Model-View-Template) pattern!
+
+from datetime import datetime
+
+# 1. Simulated Django View Function
+def home_view(request):
+    # Context data that gets passed to the template
+    context = {
+        'title': 'Welcome to Django!',
+        'message': 'Hello from the Django Simulator! 🚀',
+        'users': [
+            {'name': 'Alice', 'age': 25},
+            {'name': 'Bob', 'age': 30},
+            {'name': 'Charlie', 'age': 35}
+        ],
+        'current_year': datetime.now().year,
+        'is_logged_in': True
+    }
+    
+    # Simulate template rendering
+    return render_template(context)
+
+# 2. Simulated Template Engine
+def render_template(context):
+    output = []
+    
+    # HTML Header
+    output.append('''
+<!DOCTYPE html>
+<html lang="en">
+<head>
+\x3C/head>
+<body>
+    <div class="container">
+        <h1>''' + context.get('title', '') + '''</h1>
+        <div class="message"><p>''' + context.get('message', '') + '''</p></div>
+        
+        <h2>Registered Users</h2>
+        <div class="user-list">
+''')
+    
+    # Simulate Django Template Tag: {% for user in users %}
+    for user in context.get('users', []):
+        output.append('''
+            <div class="user-item">
+                <span class="user-name">''' + user.get('name', '') + '''</span>
+                <span>Age: ''' + str(user.get('age', '')) + '''</span>
+            </div>
+''')
+    
+    output.append('''
+        </div>
+        <hr style="border-color: #334155; margin-top: 20px;">
+''')
+    
+    # Simulate Django Template Tag: {% if is_logged_in %}
+    if context.get('is_logged_in', False):
+        output.append('<p><span class="badge">✓ Logged In</span></p>')
+        
+    output.append('''
+        <p style="color: #94a3b8; font-size: 12px;">Copyright © ''' + str(context.get('current_year', '')) + '''</p>
+    </div>
+\x3C/body>
+\x3C/html>
+''')
+    
+    return ''.join(output)
+
+# 3. Execution
+result = home_view(None)
+
+print("✓ Server running smoothly!")
+print("✓ View generated Context Dictionary successfully.")
+print("✓ Template rendered and served to browser.")
+
+# We output the result so Pyodide can catch it and send it to the iframe!
+result`;
+
+        // Fetch saved code
+        const savedCode = localStorage.getItem('careerPathDjangoCode');
+        djangoInput.value = savedCode ? savedCode : defaultTemplate;
+
+        // 2. Smart Indentation Engine (Upgraded for Python ':' Colons)
+        djangoInput.addEventListener('keydown', function(e) {
+            if (e.key === 'Tab') {
+                e.preventDefault(); 
+                const start = this.selectionStart;
+                const end = this.selectionEnd;
+                const spaces = "    "; // 4 spaces
+                this.value = this.value.substring(0, start) + spaces + this.value.substring(end);
+                this.selectionStart = this.selectionEnd = start + spaces.length;
+                this.dispatchEvent(new Event('input'));
+            }
+            
+            if (e.key === 'Enter') {
+                e.preventDefault(); 
+                const start = this.selectionStart;
+                const end = this.selectionEnd;
+                const textBeforeCursor = this.value.substring(0, start);
+                const lines = textBeforeCursor.split(/\r?\n/);
+                const currentLine = lines[lines.length - 1] || "";
+                
+                const leadingSpacesMatch = currentLine.match(/^(\s*)/);
+                let indentSpaces = leadingSpacesMatch ? leadingSpacesMatch[1] : '';
+                
+                // If line ends with colon, auto-indent next line
+                if (currentLine.trim().endsWith(':')) {
+                    indentSpaces += "    ";
+                }
+                
+                const insertText = "\n" + indentSpaces;
+                this.value = this.value.substring(0, start) + insertText + this.value.substring(end);
+                this.selectionStart = this.selectionEnd = start + insertText.length;
+                this.dispatchEvent(new Event('input'));
+            }
+        });
+
+        // 3. Auto-Save
+        djangoInput.addEventListener('input', () => {
+            localStorage.setItem('careerPathDjangoCode', djangoInput.value);
+        });
+
+        function appendToConsole(text, className) {
+            const span = document.createElement('span');
+            span.className = className;
+            span.textContent = text + '\n';
+            consoleDiv.appendChild(span);
+            consoleDiv.scrollTop = consoleDiv.scrollHeight;
+        }
+
+        // 4. Initialize Pyodide Engine
+        async function main() {
+            try {
+                pyodideInstance = await loadPyodide({
+                    stdout: (text) => appendToConsole(text, 'log-normal'),
+                    stderr: (text) => appendToConsole(text, 'log-error')
+                });
+                
+                consoleDiv.innerHTML = '<span class="log-normal">✔ Django Simulator Ready! Click Run Code.</span>\n\n';
+                runBtn.disabled = false;
+                runBtn.innerHTML = "▶ Run Code";
+            } catch (err) {
+                consoleDiv.innerHTML = `<span class="log-error">Failed to load Python engine: ${err.message}</span>`;
+            }
+        }
+
+        // 5. Execute Django/Python Code
+        async function executeDjango() {
+            if (!pyodideInstance) return;
+            
+            const code = djangoInput.value.trim();
+            if (!code) return;
+            
+            consoleDiv.innerHTML = '<span class="log-loading">>>> Processing request...</span>\n';
+            runBtn.disabled = true;
+
+            try {
+                // Run the code and capture the final string output
+                const result = await pyodideInstance.runPythonAsync(code);
+                
+                // If the result is HTML, push it to the iframe visual preview!
+                if (result && typeof result === 'string') {
+                    const iframeDoc = previewFrame.contentDocument || previewFrame.contentWindow.document;
+                    iframeDoc.open();
+                    iframeDoc.write(result);
+                    iframeDoc.close();
+                }
+            } catch (err) {
+                appendToConsole(err, 'log-error');
+            } finally {
+                runBtn.disabled = false;
+            }
+        }
+
+        // Start initialization
+        main();
+</script>
+</body>
+</html>

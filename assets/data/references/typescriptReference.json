@@ -1,0 +1,45 @@
+{
+  "title": "TypeScript Reference",
+  "description": "Complete TypeScript types, interfaces, and generics reference.",
+  "sections": [
+    {
+      "title": "Basic Types",
+      "items": [
+        { "name": "string", "description": "Represents textual data.", "code": "let name: string = 'Alice';" },
+        { "name": "number", "description": "Represents numeric values (integer and floating-point).", "code": "let age: number = 30;" },
+        { "name": "boolean", "description": "Represents true/false values.", "code": "let active: boolean = true;" },
+        { "name": "any", "description": "Disables type checking for a variable.", "code": "let data: any = 'hello';\ndata = 42;" },
+        { "name": "void", "description": "Indicates a function does not return a value.", "code": "function log(msg: string): void {\n  console.log(msg);\n}" },
+        { "name": "null / undefined", "description": "Represent absence of value.", "code": "let u: undefined = undefined;\nlet n: null = null;" },
+        { "name": "Array", "description": "Typed arrays using generics or bracket syntax.", "code": "let nums: number[] = [1, 2, 3];\nlet names: Array<string> = ['a', 'b'];" },
+        { "name": "Tuple", "description": "Fixed-length array with specific types per index.", "code": "let pair: [string, number] = ['age', 25];" }
+      ]
+    },
+    {
+      "title": "Interfaces",
+      "items": [
+        { "name": "interface", "description": "Defines the shape of an object.", "code": "interface User {\n  name: string;\n  age: number;\n  email?: string; // optional\n}" },
+        { "name": "readonly", "description": "Prevents property modification after creation.", "code": "interface Point {\n  readonly x: number;\n  readonly y: number;\n}" },
+        { "name": "extends", "description": "Inherit properties from another interface.", "code": "interface Admin extends User {\n  role: string;\n}" }
+      ]
+    },
+    {
+      "title": "Generics",
+      "items": [
+        { "name": "Generic Function", "description": "Create reusable functions with type parameters.", "code": "function identity<T>(arg: T): T {\n  return arg;\n}" },
+        { "name": "Generic Interface", "description": "Interfaces with type parameters.", "code": "interface Box<T> {\n  value: T;\n}" },
+        { "name": "Constraints", "description": "Restrict generic types using extends.", "code": "function getLength<T extends { length: number }>(item: T): number {\n  return item.length;\n}" }
+      ]
+    },
+    {
+      "title": "Utility Types",
+      "items": [
+        { "name": "Partial<T>", "description": "Makes all properties optional.", "code": "const update: Partial<User> = { name: 'Bob' };" },
+        { "name": "Required<T>", "description": "Makes all properties required.", "code": "const full: Required<User> = { name: 'A', age: 1, email: 'a@b.c' };" },
+        { "name": "Pick<T, K>", "description": "Select specific properties from a type.", "code": "type NameOnly = Pick<User, 'name'>;" },
+        { "name": "Omit<T, K>", "description": "Exclude specific properties from a type.", "code": "type NoEmail = Omit<User, 'email'>;" },
+        { "name": "Record<K, V>", "description": "Create a type with specified keys and value type.", "code": "const scores: Record<string, number> = { math: 95, eng: 88 };" }
+      ]
+    }
+  ]
+}

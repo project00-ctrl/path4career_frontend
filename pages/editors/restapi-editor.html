@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>REST API Simulator - CareerPath</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../../assets/css/editor.css">
+    <style>
+        :root {
+            --rest-primary: #00ffb3;
+            --rest-bg: #0f172a;
+            --rest-surface: #1e293b;
+            --rest-text: #f8fafc;
+        }
+
+        .rest-simulator {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            padding: 20px;
+            height: calc(100vh - 80px);
+            background-color: var(--rest-bg);
+            color: var(--rest-text);
+        }
+
+        .request-panel {
+            background-color: var(--rest-surface);
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+
+        .url-bar {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        select.method-select {
+            background-color: #334155;
+            color: white;
+            border: 1px solid #475569;
+            border-radius: 6px;
+            padding: 10px 15px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        input.url-input {
+            flex: 1;
+            background-color: #334155;
+            color: white;
+            border: 1px solid #475569;
+            border-radius: 6px;
+            padding: 10px 15px;
+            font-family: monospace;
+        }
+
+        .send-btn {
+            background: linear-gradient(135deg, #05998b, #00ffb3);
+            color: #0f172a;
+            border: none;
+            border-radius: 6px;
+            padding: 10px 25px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .send-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 0 15px rgba(0, 255, 179, 0.4);
+        }
+
+        .tabs-container {
+            border-bottom: 1px solid #475569;
+            margin-bottom: 15px;
+        }
+
+        .tab {
+            padding: 8px 16px;
+            cursor: pointer;
+            border-bottom: 2px solid transparent;
+            display: inline-block;
+            color: #94a3b8;
+            transition: all 0.2s;
+        }
+
+        .tab:hover { color: #cbd5e1; }
+
+        .tab.active {
+            border-bottom-color: var(--rest-primary);
+            color: var(--rest-primary);
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        textarea.input-area {
+            width: 100%;
+            height: 150px;
+            background-color: #0f172a;
+            color: #8be9fd;
+            border: 1px solid #475569;
+            border-radius: 6px;
+            padding: 10px;
+            font-family: 'Courier New', Courier, monospace;
+            resize: vertical;
+        }
+
+        .response-panel {
+            flex: 1;
+            background-color: var(--rest-surface);
+            border-radius: 12px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .response-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .status-badge {
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 0.8rem;
+        }
+
+        .status-2xx { background-color: rgba(16, 185, 129, 0.2); color: #10b981; }
+        .status-4xx { background-color: rgba(239, 68, 68, 0.2); color: #ef4444; }
+
+        .response-content {
+            flex: 1;
+            background-color: #0f172a;
+            border-radius: 6px;
+            padding: 15px;
+            overflow-y: auto;
+            font-family: 'Courier New', Courier, monospace;
+            white-space: pre-wrap;
+            color: #cbd5e1;
+        }
+
+        .header h2 span { color: var(--rest-primary) !important; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div style="display: flex; align-items: center; gap: 15px;">
+            <a href="../index.html" style="color: var(--rest-primary); text-decoration: none; font-size: 14px;">← Back</a>
+            <h2><span>🌐</span> REST API Request Simulator</h2>
+        </div>
+    </div>
+
+    <div class="rest-simulator">
+        <div class="request-panel">
+            <div class="url-bar">
+                <select class="method-select" id="methodSelect">
+                    <option value="GET">GET</option>
+                    <option value="POST">POST</option>
+                    <option value="PUT">PUT</option>
+                    <option value="PATCH">PATCH</option>
+                    <option value="DELETE">DELETE</option>
+                </select>
+                <input type="text" class="url-input" id="urlInput" value="https://api.example.com/v1/users">
+                <button class="send-btn" id="sendBtn">Send</button>
+            </div>
+
+            <div class="tabs-container" id="tabsContainer">
+                <div class="tab active" data-tab="body">Body (JSON)</div>
+                <div class="tab" data-tab="headers">Headers</div>
+                <div class="tab" data-tab="params">Params</div>
+            </div>
+
+            <div id="bodyTab" class="tab-content active">
+                <textarea class="input-area" id="bodyInput" spellcheck="false">{
+  "name": "John Doe",
+  "email": "john@example.com"
+}</textarea>
+            </div>
+
+            <div id="headersTab" class="tab-content">
+                <textarea class="input-area" id="headersInput" spellcheck="false">Content-Type: application/json
+Authorization: Bearer mock-token-123</textarea>
+            </div>
+
+            <div id="paramsTab" class="tab-content">
+                <textarea class="input-area" id="paramsInput" spellcheck="false">limit=10
+sort=desc</textarea>
+            </div>
+        </div>
+
+        <div class="response-panel">
+            <div class="response-header">
+                <h3>Response</h3>
+                <div id="statusBadge" class="status-badge" style="display: none;">200 OK</div>
+            </div>
+            <div class="response-content" id="responseContent">
+                Click "Send" to test the request simulation...
+            </div>
+        </div>
+    </div>
+
+    <script>
+const methodSelect = document.getElementById('methodSelect');
+        const urlInput = document.getElementById('urlInput');
+        const bodyInput = document.getElementById('bodyInput');
+        const headersInput = document.getElementById('headersInput');
+        const paramsInput = document.getElementById('paramsInput');
+        const sendBtn = document.getElementById('sendBtn');
+        const responseContent = document.getElementById('responseContent');
+        const statusBadge = document.getElementById('statusBadge');
+        const tabs = document.querySelectorAll('.tab');
+        const tabContents = document.querySelectorAll('.tab-content');
+
+        // Tab Switching Logic
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                const target = tab.dataset.tab;
+                
+                tabs.forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
+                
+                tabContents.forEach(content => {
+                    content.classList.remove('active');
+                    if (content.id === target + 'Tab') {
+                        content.classList.add('active');
+                    }
+                });
+            });
+        });
+
+        // Load passed code from local storage
+        const savedCode = localStorage.getItem('careerPathRestApiCode');
+        if (savedCode) {
+            const lines = savedCode.split('\n');
+            const firstLine = lines[0].trim();
+            const parts = firstLine.split(' ');
+            
+            if (parts.length >= 2) {
+                const method = parts[0].toUpperCase();
+                const path = parts[1];
+                
+                if (['GET', 'POST', 'PUT', 'PATCH', 'DELETE'].includes(method)) {
+                    methodSelect.value = method;
+                    urlInput.value = "https://api.example.com" + path;
+                    
+                    // If there were headers in the snippet, try to extract them
+                    const extractedHeaders = lines.slice(1).filter(l => l.includes(':'));
+                    if (extractedHeaders.length > 0) {
+                        headersInput.value = extractedHeaders.join('\n');
+                    }
+                }
+            } else if (savedCode.trim().startsWith('{')) {
+                // If it's just JSON, put it in the body tab
+                bodyInput.value = savedCode.trim();
+            }
+        }
+
+        sendBtn.addEventListener('click', () => {
+            const method = methodSelect.value;
+            const url = urlInput.value;
+            
+            responseContent.innerHTML = '<span style="color: #8be9fd">Sending request...</span>';
+            statusBadge.style.display = 'none';
+
+            setTimeout(() => {
+                let response = {};
+                let status = "200 OK";
+                let statusClass = "status-2xx";
+
+                if (method === 'GET') {
+                    if (url.includes('/users/')) {
+                        response = { id: 123, name: "John Doe", email: "john@example.com", role: "Developer" };
+                    } else if (url.includes('/users')) {
+                        response = [{ id: 123, name: "John Doe" }, { id: 124, name: "Jane Smith" }];
+                    } else if (url.includes('/products')) {
+                        response = [{ id: 1, name: "Product A" }, { id: 2, name: "Product B" }];
+                    } else {
+                        response = { message: "Welcome to the Mock API" };
+                    }
+                } else if (method === 'POST') {
+                    status = "201 Created";
+                    try {
+                        const body = JSON.parse(bodyInput.value);
+                        response = { id: Math.floor(Math.random() * 1000), ...body, createdAt: new Date().toISOString() };
+                    } catch (e) {
+                        response = { error: "Invalid JSON body" };
+                        status = "400 Bad Request";
+                        statusClass = "status-4xx";
+                    }
+                } else if (method === 'DELETE') {
+                    status = "204 No Content";
+                    response = null;
+                } else {
+                    response = { success: true, method: method, message: "Request received successfully" };
+                }
+
+                statusBadge.textContent = status;
+                statusBadge.className = "status-badge " + statusClass;
+                statusBadge.style.display = 'block';
+                
+                if (response === null) {
+                    responseContent.textContent = "(No Content)";
+                } else {
+                    responseContent.textContent = JSON.stringify(response, null, 2);
+                }
+            }, 600);
+        });
+</script>
+</body>
+</html>

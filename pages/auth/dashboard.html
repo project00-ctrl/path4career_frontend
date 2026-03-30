@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard | Path4Career</title>
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../../assets/css/navbar.css">
+</head>
+
+<body>
+
+
+    <header>
+        <div class="brand">
+            <div class="hamburger" id="hamburger">☰</div>
+            <div class="logo">
+                <a href="../../index.html" aria-label="Path4Career Home">
+                    <img src="../../assets/images/path4career-icon.png" alt="Path4Career" style="width:44px;height:44px;display:block;object-fit:contain;">
+                </a>
+            </div>
+            Path4Career
+            <div class="reference">
+                <a href="../../index.html">Home</a>
+            </div>
+        </div>
+        <div class="search">
+            <input type="text" placeholder="Search skills, courses, roles..." id="search">
+            <button class="icon" id="search-btn">🔍</button>
+        </div>
+
+        <nav>
+            <a href="../jobs/jobs-listing.html" id="nav-jobs-link">Jobs</a>
+
+            <div class="profile" onclick="toggleProfileMenu(event)">
+                <div class="avatar" id="profileAvatar">U</div>
+                <span id="profileName">Loading...</span>
+
+                <div class="profile-menu" id="profileMenu">
+                    <a href="#" id="personal-details">📋 Personal Details</a>
+                    <a href="#" id="account-settings">⚙️ Account Settings</a>
+                    <a href="#" id="change-password">🔒 Change Password</a>
+                    <hr>
+                    <a href="#" class="logout" id="logout">🚪 Logout</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="mobile-nav" id="mobileNav">
+        <a href="../jobs/jobs-listing.html">Jobs</a>
+        <a href="login.html">Login</a>
+        <a href="register.html">Sign Up</a>
+    </div>
+
+
+
+    <div class="overlay " id="overlay"></div>
+
+    <div class="personal ">
+        <div class="container">
+            <h1>Personal Details </h1>
+            <div class="detail-close">
+                <button id="details-close">✕</button>
+            </div>
+
+            <form action="" id="profile-form">
+                <label>FULL NAME *</label>
+                <input type="text" id="fullName" required>
+
+                <label>Email *</label>
+                <div class="verify-group">
+                    <input type="email" id="email" readonly />
+                    <button type="button" id="verifyEmail">Verify</button>
+                    <button type="button" id="editEmail">Edit</button>
+                </div>
+
+                <label>Mobile Number *</label>
+                <div class="verify-group">
+                    <input type="tel" id="phone" />
+                    <button type="button" id="verifyPhone">Verify</button>
+                    <button type="button" id="editPhone">Edit</button>
+                </div>
+                <div class="otp-box" id="otpBox">
+                    <input type="text" id="otpInput" placeholder="Enter OTP" />
+                    <button type="button" id="confirmOtp">Confirm</button>
+                </div>
+
+                <label>Date of Birth</label>
+                <input type="date" id="dob" />
+
+                <label>Gender</label>
+                <select id="gender">
+                    <option value="">Select</option>
+                    <option>Male</option>
+                    <option>Female</option>
+                    <option>Other</option>
+                </select>
+
+                <label>Location / Country</label>
+                <input type="text" id="location" />
+
+                <label>Profile Picture</label>
+                <input type="file" id="profilePic" accept="image/*" />
+
+                <button type="submit" id="saveBtn" disabled>Save Changes</button>
+
+            </form>
+
+        </div>
+    </div>
+
+
+    <div class="account-overlay " id="account-overlay"></div>
+
+    <div class="account ">
+        <div class="container">
+            <h2>Account Settings</h2>
+            <div class="account-close">
+                <button id="accounts-close">✕</button>
+            </div>
+
+            <section>
+                <h3>Notifications</h3>
+                <label class="switch">
+                    <input type="checkbox" id="emailNotify">
+                    <span class="slider"></span>
+                    Email Notifications
+                </label>
+
+                <label class="switch">
+                    <input type="checkbox" id="platformNotify">
+                    <span class="slider"></span>
+                    Platform Notifications
+                </label>
+
+                <label class="switch">
+                    <input type="checkbox" id="jobAlerts">
+                    <span class="slider"></span>
+                    Job Alerts
+                </label>
+            </section>
+
+            <section>
+                <h3>Preferences</h3>
+                <label>Theme</label>
+                <select id="theme">
+                    <option value="system">System</option>
+                    <option value="light">Light</option>
+                    <option value="dark">Dark</option>
+                </select>
+
+                <label>Language</label>
+                <select disabled>
+                    <option>English (Coming Soon)</option>
+                </select>
+
+                <label>Default Learning Path</label>
+                <select id="learningPath">
+                    <option value="student">Student</option>
+                    <option value="jobseeker">Job Seeker</option>
+                </select>
+            </section>
+
+            <section>
+                <h3>Security</h3>
+                <p><strong>Last Login:</strong> <span id="lastLogin"></span></p>
+                <p><strong>Active Sessions:</strong> <span id="sessions">2</span></p>
+                <button class="danger" id="logoutAll">Logout From All Devices</button>
+            </section>
+
+        </div>
+    </div>
+
+    <div class="password-overlay" id="passwordOverlay"></div>
+
+    <div class="change-password" id="changePassword">
+        <h2>Change Password</h2>
+
+        <form id="passwordForm">
+            <label>
+                Current Password
+                <input type="password" id="currentPassword" required>
+            </label>
+
+            <label>
+                New Password
+                <input type="password" id="newPassword" required>
+            </label>
+
+            <label>
+                Confirm New Password
+                <input type="password" id="confirmPassword" required>
+            </label>
+            <p class="error" id="passwordError"></p>
+
+            <button type="submit">Update Password</button>
+        </form>
+
+        <button class="close-btn" id="passwordClose">✕</button>
+    </div>
+
+
+    <div class="hero-wrapper">
+        <div class="container">
+
+            <div class="hero">
+                <h1>Welcome back, <span id="heroUsername">Loading...</span> 👋</h1>
+                <p>Your career growth beautifully tracked</p>
+                <div class="hero-actions">
+                    <button id="continue-learning-btn" onclick="window.location.href='../roadmaps/courses.html'">Continue Learning</button>
+                    <button id="explore-jobs-btn" onclick="window.location.href='../jobs/jobs-listing.html'">Explore Jobs</button>
+                </div>
+            </div>
+
+            <div class="kpis">
+                <div class="kpi"><span>Learning Streak 🔥</span>
+                    <h2 id="kpi-streak">0</h2>
+                </div>
+                <div class="kpi"><span>Courses Completed</span>
+                    <h2 id="kpi-courses">0</h2>
+                </div>
+                <div class="kpi"><span>Jobs Applied</span>
+                    <h2 id="kpi-jobs">0</h2>
+                </div>
+                <div class="kpi"><span>Skill Level</span>
+                    <h2 id="kpi-level">-</h2>
+                </div>
+            </div>
+
+            <div class="grid">
+                <div class="card">
+                    <h3>Skill Progress</h3>
+                    <div class="progress-wrap">
+                        <div class="ring"><span id="overallSkillPercent">0%</span></div>
+                        <div class="skills" id="skills-container"></div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h3>Recent Activity</h3>
+                    <ul class="timeline" id="activity-list"></ul>
+                </div>
+
+                <div class="card">
+                    <h3>Achievements</h3>
+                    <div class="badges" id="achievement-box"></div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+
+    <script src="js/config.js"></script>
+    <script src="js/dashboard.js"></script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live Excel Editor - CareerPath</title>
+    <link rel="stylesheet" href="../../assets/css/editor.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+    
+    <nav class="editor-nav">
+        <div class="logo-area">
+            <img class="logo-icon" src="../../assets/images/path4career-icon.png" alt="Path4Career" style="width:32px;height:32px;border-radius:8px;">
+            <div class="logo-text">Path4Career</div>
+            <div class="title-badge">📊 Excel Workspace</div>
+        </div>
+        <button class="run-btn" id="runBtn" onclick="calculateAll()">▶ Calculate Sheet</button>
+    </nav>
+    
+    <div class="excel-workspace">
+        <div class="formula-bar">
+            <div class="formula-label" id="selectedCell">A1</div>
+            <input type="text" id="formulaInput" placeholder="Select a cell to enter a value, or type a formula (e.g., =SUM(A1:A5))" />
+        </div>
+        
+        <div class="spreadsheet-container">
+            <div class="spreadsheet" id="spreadsheet">
+                </div>
+        </div>
+
+        <div class="bottom-panel">
+            <div class="results-pane" id="resultsPane">
+                <h4>Calculation Log</h4>
+                <div id="logEntries"></div>
+            </div>
+
+            <div class="help-panel">
+                <h4>Supported Functions & Syntax</h4>
+                <p>=A1+B2 <span>(Basic Math: +, -, *, /)</span></p>
+                <p>=SUM(A1:A5) <span>(Adds range of cells)</span></p>
+                <p>=AVERAGE(B1:B10) <span>(Finds the mean)</span></p>
+                <p>=COUNT(C1:C5) <span>(Counts cells with numbers)</span></p>
+                <p>=MAX(A1:A5) / =MIN(A1:A5) <span>(Finds highest/lowest)</span></p>
+                <p>=IF(A1>10, "Yes", "No") <span>(Conditional logic)</span></p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+const ROWS = 20;
+        const COLS = 10;
+        const COL_LABELS = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'];
+        
+        let cellData = {}; // Stores { formula: "=A1+1", value: 42 }
+        let selectedCell = 'A1';
+        
+        const spreadsheet = document.getElementById('spreadsheet');
+        const formulaInput = document.getElementById('formulaInput');
+        const selectedCellLabel = document.getElementById('selectedCell');
+        const logEntries = document.getElementById('logEntries');
+
+        // 1. Initialize Grid
+        function initSpreadsheet() {
+            spreadsheet.innerHTML = '';
+            
+            // Top-Left Corner
+            const corner = document.createElement('div');
+            corner.className = 'cell-header corner-header';
+            spreadsheet.appendChild(corner);
+            
+            // Column Letters (A, B, C)
+            for (let c = 0; c < COLS; c++) {
+                const header = document.createElement('div');
+                header.className = 'cell-header';
+                header.textContent = COL_LABELS[c];
+                spreadsheet.appendChild(header);
+            }
+            
+            // Rows
+            for (let r = 1; r <= ROWS; r++) {
+                // Row Numbers (1, 2, 3)
+                const rowHeader = document.createElement('div');
+                rowHeader.className = 'cell-header row-header';
+                rowHeader.textContent = r;
+                spreadsheet.appendChild(rowHeader);
+                
+                // Input Cells
+                for (let c = 0; c < COLS; c++) {
+                    const cellId = `${COL_LABELS[c]}${r}`;
+                    const cell = document.createElement('div');
+                    cell.className = 'cell';
+                    cell.dataset.cell = cellId;
+                    
+                    const input = document.createElement('input');
+                    input.type = 'text';
+                    input.className = 'cell-input';
+                    input.dataset.cell = cellId;
+                    
+                    cell.appendChild(input);
+                    spreadsheet.appendChild(cell);
+                }
+            }
+            
+            // Event Listeners for Cells
+            document.querySelectorAll('.cell-input').forEach(input => {
+                input.addEventListener('focus', handleCellFocus);
+                input.addEventListener('blur', handleCellBlur);
+                input.addEventListener('keydown', handleCellKeydown);
+            });
+        }
+
+        // 2. Cell Interactions
+        function handleCellFocus(e) {
+            const cellId = e.target.dataset.cell;
+            selectedCell = cellId;
+            selectedCellLabel.textContent = cellId;
+            
+            // When focused, show the raw FORMULA (e.g., "=A1+B1") instead of the calculated value
+            const rawFormula = cellData[cellId]?.formula || '';
+            e.target.value = rawFormula;
+            formulaInput.value = rawFormula;
+            
+            if (rawFormula.startsWith('=')) {
+                e.target.parentElement.classList.add('formula-active');
+            }
+        }
+
+        function handleCellBlur(e) {
+            const cellId = e.target.dataset.cell;
+            const value = e.target.value.trim();
+            
+            e.target.parentElement.classList.remove('formula-active');
+
+            if (!cellData[cellId]) cellData[cellId] = {};
+            
+            // Save what they typed as the formula/raw data
+            cellData[cellId].formula = value;
+            
+            // Calculate everything to get the true value
+            calculateAll();
+            saveData();
+        }
+
+        function handleCellKeydown(e) {
+            if (e.key === 'Enter' || e.key === 'Tab') {
+                e.preventDefault();
+                e.target.blur(); // Triggers calculation
+                moveToNextCell(e.key === 'Enter');
+            }
+        }
+
+        function moveToNextCell(isEnter) {
+            const colIdx = COL_LABELS.indexOf(selectedCell.charAt(0));
+            const rowIdx = parseInt(selectedCell.substring(1));
+            
+            let nextCell;
+            if (isEnter) {
+                // Move down
+                if (rowIdx < ROWS) nextCell = `${COL_LABELS[colIdx]}${rowIdx + 1}`;
+            } else {
+                // Move right
+                if (colIdx < COLS - 1) nextCell = `${COL_LABELS[colIdx + 1]}${rowIdx}`;
+            }
+
+            if (nextCell) {
+                document.querySelector(`.cell-input[data-cell="${nextCell}"]`).focus();
+            }
+        }
+
+        // 3. Formula Bar Sync
+        formulaInput.addEventListener('input', function() {
+            const activeCell = document.querySelector(`.cell-input[data-cell="${selectedCell}"]`);
+            if (activeCell) activeCell.value = this.value;
+        });
+        formulaInput.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                const activeCell = document.querySelector(`.cell-input[data-cell="${selectedCell}"]`);
+                if (activeCell) activeCell.blur(); // Triggers calculateAll
+            }
+        });
+
+        // 4. The Calculation Engine
+        function calculateAll() {
+            logEntries.innerHTML = '';
+            let calculatedCount = 0;
+            
+            // Simple iteration to resolve dependencies (max 5 loops to prevent infinite circular ref crashes)
+            for (let iter = 0; iter < 5; iter++) {
+                let changed = false;
+                
+                for (const cellId in cellData) {
+                    const data = cellData[cellId];
+                    if (!data || !data.formula) {
+                        data.value = '';
+                        continue;
+                    }
+                    
+                    const formula = data.formula;
+                    let newValue;
+                    
+                    if (formula.startsWith('=')) {
+                        newValue = evaluateFormula(formula.substring(1), cellId);
+                    } else {
+                        // Parse as number if possible, else keep as string
+                        const num = parseFloat(formula);
+                        newValue = isNaN(num) ? formula : num;
+                    }
+                    
+                    if (data.value !== newValue) {
+                        data.value = newValue;
+                        changed = true;
+                        calculatedCount++;
+                    }
+                }
+                if (!changed) break; // Everything resolved
+            }
+            
+            // Render the calculated values to the screen
+            for (const cellId in cellData) {
+                const data = cellData[cellId];
+                const inputEl = document.querySelector(`.cell-input[data-cell="${cellId}"]`);
+                const cellContainer = inputEl.parentElement;
+                
+                if (inputEl && data.value !== undefined) {
+                    // Only show the calculated value if the cell is NOT currently focused
+                    if (document.activeElement !== inputEl) {
+                        let displayValue = data.value;
+                        if (typeof displayValue === 'number') {
+                            displayValue = Math.round(displayValue * 1000) / 1000; // Round to 3 decimals
+                        }
+                        inputEl.value = displayValue;
+                    }
+                    
+                    // Handle Error Styling
+                    if (data.value === '#ERROR!' || data.value === '#REF!') {
+                        cellContainer.classList.add('error');
+                    } else {
+                        cellContainer.classList.remove('error');
+                    }
+                }
+            }
+            
+            if (calculatedCount > 0) {
+                addLog(`✔ Recalculated ${calculatedCount} cell operations.`, 'log-success');
+            } else {
+                addLog(`Sheet is up to date.`, 'log-info');
+            }
+        }
+
+        // 5. Formula Logic Parsers
+        function evaluateFormula(expr, currentCell) {
+            try {
+                expr = expr.trim().toUpperCase();
+                
+                // Function Matchers
+                if (expr.startsWith('SUM(')) return executeFunction(expr, /SUM\(([^)]+)\)/, (vals) => vals.reduce((a, b) => a + b, 0));
+                if (expr.startsWith('AVERAGE(')) return executeFunction(expr, /AVERAGE\(([^)]+)\)/, (vals) => vals.length ? vals.reduce((a, b) => a + b, 0) / vals.length : 0);
+                if (expr.startsWith('COUNT(')) return executeFunction(expr, /COUNT\(([^)]+)\)/, (vals) => vals.length);
+                if (expr.startsWith('MAX(')) return executeFunction(expr, /MAX\(([^)]+)\)/, (vals) => vals.length ? Math.max(...vals) : 0);
+                if (expr.startsWith('MIN(')) return executeFunction(expr, /MIN\(([^)]+)\)/, (vals) => vals.length ? Math.min(...vals) : 0);
+                
+                // IF Statement: IF(A1>5, "Yes", "No")
+                if (expr.startsWith('IF(')) {
+                    const match = expr.match(/IF\(([^,]+),([^,]+),([^)]+)\)/);
+                    if (match) {
+                        const conditionStr = replaceRefsWithValue(match[1]);
+                        const trueVal = match[2].trim().replace(/"/g, '');
+                        const falseVal = match[3].trim().replace(/"/g, '');
+                        // Safely evaluate condition
+                        const result = new Function('return ' + conditionStr)();
+                        return result ? trueVal : falseVal;
+                    }
+                }
+                
+                // Basic Math (e.g., A1 + B2)
+                const mathExpr = replaceRefsWithValue(expr);
+                const finalResult = new Function('return ' + mathExpr)();
+                return isNaN(finalResult) ? '#ERROR!' : finalResult;
+                
+            } catch (e) {
+                return '#ERROR!';
+            }
+        }
+
+        function executeFunction(expr, regex, mathLogic) {
+            const match = expr.match(regex);
+            if (match) {
+                const range = match[1];
+                const values = parseRange(range).filter(v => typeof v === 'number');
+                return mathLogic(values);
+            }
+            return '#ERROR!';
+        }
+
+        function replaceRefsWithValue(expr) {
+            // Replaces A1 with its actual numeric value (e.g., 5) so it can be evaluated
+            return expr.replace(/[A-J]\d+/g, (match) => {
+                const val = cellData[match]?.value;
+                return (typeof val === 'number') ? val : 0;
+            });
+        }
+
+        function parseRange(rangeStr) {
+            const values = [];
+            if (rangeStr.includes(':')) {
+                const parts = rangeStr.split(':');
+                const startColIdx = COL_LABELS.indexOf(parts[0].charAt(0));
+                const startRow = parseInt(parts[0].substring(1));
+                const endColIdx = COL_LABELS.indexOf(parts[1].charAt(0));
+                const endRow = parseInt(parts[1].substring(1));
+                
+                for (let r = startRow; r <= endRow; r++) {
+                    for (let c = startColIdx; c <= endColIdx; c++) {
+                        const val = cellData[`${COL_LABELS[c]}${r}`]?.value;
+                        if (typeof val === 'number') values.push(val);
+                    }
+                }
+            } else {
+                rangeStr.split(',').forEach(cell => {
+                    const val = cellData[cell.trim()]?.value;
+                    if (typeof val === 'number') values.push(val);
+                });
+            }
+            return values;
+        }
+
+        // 6. Utility Functions
+        function addLog(message, className) {
+            const entry = document.createElement('div');
+            entry.className = `log-entry ${className}`;
+            entry.textContent = message;
+            logEntries.appendChild(entry);
+            logEntries.scrollTop = logEntries.scrollHeight;
+        }
+
+        function saveData() {
+            localStorage.setItem('careerPathExcelCode', JSON.stringify(cellData));
+        }
+
+        function loadSavedData() {
+            const savedData = localStorage.getItem('careerPathExcelCode');
+            if (savedData) {
+                try {
+                    cellData = JSON.parse(savedData);
+                    addLog('Session restored from cache.', 'log-info');
+                } catch (e) {
+                    addLog('Error parsing cache.', 'log-error');
+                }
+            } else {
+                // Default Starting Data
+                cellData = {
+                    'A1': { formula: 'Item', value: 'Item' }, 'B1': { formula: 'Cost', value: 'Cost' },
+                    'A2': { formula: 'Laptop', value: 'Laptop' }, 'B2': { formula: '1200', value: 1200 },
+                    'A3': { formula: 'Mouse', value: 'Mouse' }, 'B3': { formula: '45', value: 45 },
+                    'A4': { formula: 'Keyboard', value: 'Keyboard' }, 'B4': { formula: '85', value: 85 },
+                    'A6': { formula: 'Total:', value: 'Total:' }, 'B6': { formula: '=SUM(B2:B4)', value: 0 }
+                };
+                addLog('Default spreadsheet loaded.', 'log-info');
+            }
+            calculateAll();
+        }
+
+        // Initialize!
+        initSpreadsheet();
+        loadSavedData();
+</script>
+</body>
+</html>

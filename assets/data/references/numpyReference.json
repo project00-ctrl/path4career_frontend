@@ -1,0 +1,223 @@
+{
+  "sections": [
+    {
+      "title": "Array Creation",
+      "desc": "Functions for creating and initializing NumPy arrays.",
+      "type": "table",
+      "columns": ["Function", "Description", "Example"],
+      "rows": [
+        { "prop": "np.array()", "desc": "Creates an array from a list or nested lists", "ver": "np.array([1, 2, 3])" },
+        { "prop": "np.zeros()", "desc": "Creates an array filled with zeros", "ver": "np.zeros((3, 4))" },
+        { "prop": "np.ones()", "desc": "Creates an array filled with ones", "ver": "np.ones((2, 3))" },
+        { "prop": "np.full()", "desc": "Creates an array filled with a specified value", "ver": "np.full((3, 3), 7)" },
+        { "prop": "np.empty()", "desc": "Creates an uninitialized array (fast, contents undefined)", "ver": "np.empty((2, 2))" },
+        { "prop": "np.arange()", "desc": "Creates an array with evenly spaced values within a range", "ver": "np.arange(0, 10, 2)" },
+        { "prop": "np.linspace()", "desc": "Creates an array with evenly spaced values between start and stop", "ver": "np.linspace(0, 1, 5)" },
+        { "prop": "np.logspace()", "desc": "Creates an array with logarithmically spaced values", "ver": "np.logspace(0, 3, 4)" },
+        { "prop": "np.eye()", "desc": "Creates an identity matrix (ones on diagonal)", "ver": "np.eye(4)" },
+        { "prop": "np.diag()", "desc": "Creates a diagonal matrix or extracts diagonal from array", "ver": "np.diag([1, 2, 3])" },
+        { "prop": "np.zeros_like()", "desc": "Creates an array of zeros with same shape as input", "ver": "np.zeros_like(arr)" },
+        { "prop": "np.ones_like()", "desc": "Creates an array of ones with same shape as input", "ver": "np.ones_like(arr)" },
+        { "prop": "np.copy()", "desc": "Returns a deep copy of an array", "ver": "np.copy(arr)" },
+        { "prop": "np.fromfunction()", "desc": "Constructs an array by executing a function over each coordinate", "ver": "np.fromfunction(lambda i,j: i+j, (3,3))" },
+        { "prop": "np.tile()", "desc": "Repeats an array a specified number of times", "ver": "np.tile([1, 2], 3)" },
+        { "prop": "np.repeat()", "desc": "Repeats each element of an array a given number of times", "ver": "np.repeat([1, 2, 3], 2)" }
+      ]
+    },
+    {
+      "title": "Array Properties & Info",
+      "desc": "Attributes and functions for inspecting array shape, size, and type.",
+      "type": "table",
+      "columns": ["Function", "Description", "Example"],
+      "rows": [
+        { "prop": "arr.shape", "desc": "Returns a tuple of array dimensions", "ver": "(3, 4)" },
+        { "prop": "arr.ndim", "desc": "Returns the number of dimensions", "ver": "2" },
+        { "prop": "arr.size", "desc": "Returns total number of elements", "ver": "12" },
+        { "prop": "arr.dtype", "desc": "Returns the data type of elements", "ver": "float64" },
+        { "prop": "arr.itemsize", "desc": "Returns byte size of each element", "ver": "8" },
+        { "prop": "arr.nbytes", "desc": "Returns total bytes consumed by elements", "ver": "96" },
+        { "prop": "arr.T", "desc": "Returns the transpose of the array", "ver": "arr.T" },
+        { "prop": "arr.flat", "desc": "Returns a 1-D iterator over the array", "ver": "for x in arr.flat" },
+        { "prop": "np.info()", "desc": "Prints documentation for a NumPy function or dtype", "ver": "np.info(np.add)" },
+        { "prop": "arr.astype()", "desc": "Casts array to a specified data type", "ver": "arr.astype(np.int32)" }
+      ]
+    },
+    {
+      "title": "Indexing & Slicing",
+      "desc": "Techniques for accessing and selecting elements from arrays.",
+      "type": "table",
+      "columns": ["Function", "Description", "Example"],
+      "rows": [
+        { "prop": "arr[i]", "desc": "Access element at index i (0-based)", "ver": "arr[0] → first element" },
+        { "prop": "arr[i, j]", "desc": "Access element at row i, column j in 2D array", "ver": "arr[1, 2]" },
+        { "prop": "arr[start:stop]", "desc": "Slice elements from start to stop-1", "ver": "arr[1:4]" },
+        { "prop": "arr[start:stop:step]", "desc": "Slice with step size", "ver": "arr[::2] → every other" },
+        { "prop": "arr[:, n]", "desc": "Select entire column n from 2D array", "ver": "arr[:, 0]" },
+        { "prop": "arr[n, :]", "desc": "Select entire row n from 2D array", "ver": "arr[2, :]" },
+        { "prop": "arr[-1]", "desc": "Access the last element", "ver": "arr[-1]" },
+        { "prop": "arr[condition]", "desc": "Boolean indexing — select elements where condition is True", "ver": "arr[arr > 5]" },
+        { "prop": "arr[[0, 2, 4]]", "desc": "Fancy indexing — select elements at specified indices", "ver": "arr[[0, 2, 4]]" },
+        { "prop": "np.where()", "desc": "Returns indices where condition is True, or conditional values", "ver": "np.where(arr > 0, arr, 0)" },
+        { "prop": "np.nonzero()", "desc": "Returns indices of non-zero elements", "ver": "np.nonzero(arr)" },
+        { "prop": "np.argwhere()", "desc": "Returns indices of elements that are non-zero", "ver": "np.argwhere(arr > 3)" },
+        { "prop": "np.extract()", "desc": "Returns elements satisfying a condition", "ver": "np.extract(arr > 5, arr)" },
+        { "prop": "np.take()", "desc": "Takes elements from array along an axis at given indices", "ver": "np.take(arr, [0, 2])" },
+        { "prop": "np.put()", "desc": "Replaces specified elements of an array with given values", "ver": "np.put(arr, [0, 1], [10, 20])" }
+      ]
+    },
+    {
+      "title": "Reshaping & Manipulation",
+      "desc": "Functions for reshaping, combining, and rearranging arrays.",
+      "type": "table",
+      "columns": ["Function", "Description", "Example"],
+      "rows": [
+        { "prop": "arr.reshape()", "desc": "Reshapes array to new dimensions without changing data", "ver": "arr.reshape(3, 4)" },
+        { "prop": "arr.flatten()", "desc": "Returns a flattened 1-D copy of the array", "ver": "arr.flatten()" },
+        { "prop": "arr.ravel()", "desc": "Returns a flattened 1-D view (no copy if possible)", "ver": "arr.ravel()" },
+        { "prop": "np.concatenate()", "desc": "Joins arrays along an existing axis", "ver": "np.concatenate([a, b], axis=0)" },
+        { "prop": "np.vstack()", "desc": "Stacks arrays vertically (row-wise)", "ver": "np.vstack([a, b])" },
+        { "prop": "np.hstack()", "desc": "Stacks arrays horizontally (column-wise)", "ver": "np.hstack([a, b])" },
+        { "prop": "np.stack()", "desc": "Joins arrays along a new axis", "ver": "np.stack([a, b], axis=1)" },
+        { "prop": "np.split()", "desc": "Splits an array into multiple sub-arrays", "ver": "np.split(arr, 3)" },
+        { "prop": "np.hsplit()", "desc": "Splits array horizontally into sub-arrays", "ver": "np.hsplit(arr, 2)" },
+        { "prop": "np.vsplit()", "desc": "Splits array vertically into sub-arrays", "ver": "np.vsplit(arr, 2)" },
+        { "prop": "np.transpose()", "desc": "Permutes the dimensions of an array", "ver": "np.transpose(arr, (1, 0))" },
+        { "prop": "np.swapaxes()", "desc": "Swaps two axes of an array", "ver": "np.swapaxes(arr, 0, 1)" },
+        { "prop": "np.expand_dims()", "desc": "Adds a new axis at the specified position", "ver": "np.expand_dims(arr, axis=0)" },
+        { "prop": "np.squeeze()", "desc": "Removes single-dimensional entries from shape", "ver": "np.squeeze(arr)" },
+        { "prop": "np.flip()", "desc": "Reverses the order of elements along an axis", "ver": "np.flip(arr)" },
+        { "prop": "np.roll()", "desc": "Shifts elements along an axis, wrapping around", "ver": "np.roll(arr, 2)" },
+        { "prop": "np.resize()", "desc": "Returns a new array with the given shape, repeating if needed", "ver": "np.resize(arr, (4, 4))" }
+      ]
+    },
+    {
+      "title": "Math Operations",
+      "desc": "Element-wise arithmetic and mathematical functions.",
+      "type": "table",
+      "columns": ["Function", "Description", "Example"],
+      "rows": [
+        { "prop": "np.add()", "desc": "Element-wise addition of two arrays", "ver": "np.add(a, b) or a + b" },
+        { "prop": "np.subtract()", "desc": "Element-wise subtraction", "ver": "np.subtract(a, b) or a - b" },
+        { "prop": "np.multiply()", "desc": "Element-wise multiplication", "ver": "np.multiply(a, b) or a * b" },
+        { "prop": "np.divide()", "desc": "Element-wise division", "ver": "np.divide(a, b) or a / b" },
+        { "prop": "np.power()", "desc": "Raises elements to given powers element-wise", "ver": "np.power(a, 2)" },
+        { "prop": "np.sqrt()", "desc": "Returns the square root of each element", "ver": "np.sqrt(arr)" },
+        { "prop": "np.abs()", "desc": "Returns absolute value of each element", "ver": "np.abs(arr)" },
+        { "prop": "np.exp()", "desc": "Returns e raised to the power of each element", "ver": "np.exp(arr)" },
+        { "prop": "np.log()", "desc": "Returns natural logarithm of each element", "ver": "np.log(arr)" },
+        { "prop": "np.log2()", "desc": "Returns base-2 logarithm of each element", "ver": "np.log2(arr)" },
+        { "prop": "np.log10()", "desc": "Returns base-10 logarithm of each element", "ver": "np.log10(arr)" },
+        { "prop": "np.sin()", "desc": "Returns sine of each element (radians)", "ver": "np.sin(arr)" },
+        { "prop": "np.cos()", "desc": "Returns cosine of each element (radians)", "ver": "np.cos(arr)" },
+        { "prop": "np.floor()", "desc": "Rounds each element down to the nearest integer", "ver": "np.floor(arr)" },
+        { "prop": "np.ceil()", "desc": "Rounds each element up to the nearest integer", "ver": "np.ceil(arr)" },
+        { "prop": "np.round()", "desc": "Rounds each element to the given number of decimals", "ver": "np.round(arr, 2)" },
+        { "prop": "np.mod()", "desc": "Returns element-wise remainder of division", "ver": "np.mod(a, b)" },
+        { "prop": "np.clip()", "desc": "Clips (limits) values to a min and max range", "ver": "np.clip(arr, 0, 10)" },
+        { "prop": "np.dot()", "desc": "Dot product of two arrays (matrix multiplication for 2D)", "ver": "np.dot(a, b)" },
+        { "prop": "np.matmul()", "desc": "Matrix product of two arrays (@ operator)", "ver": "np.matmul(a, b) or a @ b" },
+        { "prop": "np.cross()", "desc": "Returns the cross product of two vectors", "ver": "np.cross(a, b)" }
+      ]
+    },
+    {
+      "title": "Statistics & Aggregation",
+      "desc": "Statistical functions and aggregate operations on arrays.",
+      "type": "table",
+      "columns": ["Function", "Description", "Example"],
+      "rows": [
+        { "prop": "np.sum()", "desc": "Returns the sum of array elements over a given axis", "ver": "np.sum(arr, axis=0)" },
+        { "prop": "np.mean()", "desc": "Returns the arithmetic mean along an axis", "ver": "np.mean(arr)" },
+        { "prop": "np.median()", "desc": "Returns the median value along an axis", "ver": "np.median(arr)" },
+        { "prop": "np.std()", "desc": "Returns the standard deviation", "ver": "np.std(arr)" },
+        { "prop": "np.var()", "desc": "Returns the variance", "ver": "np.var(arr)" },
+        { "prop": "np.min()", "desc": "Returns the minimum value", "ver": "np.min(arr)" },
+        { "prop": "np.max()", "desc": "Returns the maximum value", "ver": "np.max(arr)" },
+        { "prop": "np.argmin()", "desc": "Returns the index of the minimum value", "ver": "np.argmin(arr)" },
+        { "prop": "np.argmax()", "desc": "Returns the index of the maximum value", "ver": "np.argmax(arr)" },
+        { "prop": "np.cumsum()", "desc": "Returns the cumulative sum of elements", "ver": "np.cumsum(arr)" },
+        { "prop": "np.cumprod()", "desc": "Returns the cumulative product of elements", "ver": "np.cumprod(arr)" },
+        { "prop": "np.percentile()", "desc": "Returns the q-th percentile of array elements", "ver": "np.percentile(arr, 75)" },
+        { "prop": "np.corrcoef()", "desc": "Returns Pearson correlation coefficient matrix", "ver": "np.corrcoef(x, y)" },
+        { "prop": "np.histogram()", "desc": "Computes histogram of a dataset", "ver": "np.histogram(arr, bins=10)" },
+        { "prop": "np.unique()", "desc": "Returns sorted unique elements of an array", "ver": "np.unique(arr)" },
+        { "prop": "np.bincount()", "desc": "Counts occurrences of each non-negative integer", "ver": "np.bincount(arr)" }
+      ]
+    },
+    {
+      "title": "Random Number Generation",
+      "desc": "Functions for generating random numbers and sampling.",
+      "type": "table",
+      "columns": ["Function", "Description", "Example"],
+      "rows": [
+        { "prop": "np.random.rand()", "desc": "Returns random floats in [0, 1) with given shape", "ver": "np.random.rand(3, 4)" },
+        { "prop": "np.random.randn()", "desc": "Returns samples from standard normal distribution", "ver": "np.random.randn(3, 4)" },
+        { "prop": "np.random.randint()", "desc": "Returns random integers from low to high", "ver": "np.random.randint(0, 10, size=5)" },
+        { "prop": "np.random.random()", "desc": "Returns random floats in [0.0, 1.0) with given shape", "ver": "np.random.random((3, 3))" },
+        { "prop": "np.random.choice()", "desc": "Generates a random sample from a given 1-D array", "ver": "np.random.choice([1,2,3], size=2)" },
+        { "prop": "np.random.shuffle()", "desc": "Shuffles array elements in-place along first axis", "ver": "np.random.shuffle(arr)" },
+        { "prop": "np.random.permutation()", "desc": "Returns a shuffled copy of the array", "ver": "np.random.permutation(arr)" },
+        { "prop": "np.random.seed()", "desc": "Sets the random seed for reproducibility", "ver": "np.random.seed(42)" },
+        { "prop": "np.random.uniform()", "desc": "Draws samples from a uniform distribution", "ver": "np.random.uniform(0, 1, size=10)" },
+        { "prop": "np.random.normal()", "desc": "Draws samples from a normal (Gaussian) distribution", "ver": "np.random.normal(0, 1, 100)" },
+        { "prop": "np.random.binomial()", "desc": "Draws samples from a binomial distribution", "ver": "np.random.binomial(10, 0.5, 100)" },
+        { "prop": "np.random.poisson()", "desc": "Draws samples from a Poisson distribution", "ver": "np.random.poisson(5, 100)" },
+        { "prop": "default_rng()", "desc": "Creates a new-style Generator for random numbers (recommended)", "ver": "rng = np.random.default_rng(42)" }
+      ]
+    },
+    {
+      "title": "Sorting & Searching",
+      "desc": "Functions for sorting arrays and searching for values.",
+      "type": "table",
+      "columns": ["Function", "Description", "Example"],
+      "rows": [
+        { "prop": "np.sort()", "desc": "Returns a sorted copy of an array along an axis", "ver": "np.sort(arr)" },
+        { "prop": "np.argsort()", "desc": "Returns indices that would sort the array", "ver": "np.argsort(arr)" },
+        { "prop": "np.searchsorted()", "desc": "Finds insertion indices to maintain sorted order", "ver": "np.searchsorted([1,3,5], 4)" },
+        { "prop": "np.partition()", "desc": "Partially sorts array so element at k-th position is correct", "ver": "np.partition(arr, 3)" },
+        { "prop": "np.argpartition()", "desc": "Returns indices for partial sort", "ver": "np.argpartition(arr, 3)" },
+        { "prop": "np.lexsort()", "desc": "Sorts by multiple keys (last key is primary)", "ver": "np.lexsort((b, a))" },
+        { "prop": "np.where()", "desc": "Returns indices where condition is True or conditional elements", "ver": "np.where(arr > 5)" },
+        { "prop": "np.isin()", "desc": "Tests whether each element is in a set of values", "ver": "np.isin(arr, [1, 3, 5])" },
+        { "prop": "np.any()", "desc": "Returns True if any element evaluates to True", "ver": "np.any(arr > 0)" },
+        { "prop": "np.all()", "desc": "Returns True if all elements evaluate to True", "ver": "np.all(arr > 0)" }
+      ]
+    },
+    {
+      "title": "Linear Algebra",
+      "desc": "Linear algebra operations from numpy.linalg.",
+      "type": "table",
+      "columns": ["Function", "Description", "Example"],
+      "rows": [
+        { "prop": "np.linalg.inv()", "desc": "Computes the inverse of a square matrix", "ver": "np.linalg.inv(A)" },
+        { "prop": "np.linalg.det()", "desc": "Computes the determinant of a matrix", "ver": "np.linalg.det(A)" },
+        { "prop": "np.linalg.eig()", "desc": "Computes eigenvalues and eigenvectors", "ver": "vals, vecs = np.linalg.eig(A)" },
+        { "prop": "np.linalg.svd()", "desc": "Computes Singular Value Decomposition", "ver": "U, S, V = np.linalg.svd(A)" },
+        { "prop": "np.linalg.solve()", "desc": "Solves a system of linear equations Ax = b", "ver": "np.linalg.solve(A, b)" },
+        { "prop": "np.linalg.norm()", "desc": "Computes the norm (magnitude) of a vector or matrix", "ver": "np.linalg.norm(v)" },
+        { "prop": "np.linalg.matrix_rank()", "desc": "Returns the rank of a matrix", "ver": "np.linalg.matrix_rank(A)" },
+        { "prop": "np.linalg.qr()", "desc": "Computes QR factorization of a matrix", "ver": "Q, R = np.linalg.qr(A)" },
+        { "prop": "np.linalg.cholesky()", "desc": "Computes Cholesky decomposition of a positive-definite matrix", "ver": "np.linalg.cholesky(A)" },
+        { "prop": "np.linalg.lstsq()", "desc": "Computes least-squares solution to a linear equation", "ver": "np.linalg.lstsq(A, b)" },
+        { "prop": "np.trace()", "desc": "Returns the sum of diagonal elements", "ver": "np.trace(A)" }
+      ]
+    },
+    {
+      "title": "Broadcasting & Vectorization",
+      "desc": "Rules and techniques for efficient array operations without loops.",
+      "type": "table",
+      "columns": ["Function", "Description", "Example"],
+      "rows": [
+        { "prop": "Broadcasting", "desc": "NumPy auto-expands smaller arrays to match larger shapes for element-wise ops", "ver": "arr + 5" },
+        { "prop": "Scalar broadcast", "desc": "A scalar is broadcast to every element of an array", "ver": "arr * 2" },
+        { "prop": "1D + 2D broadcast", "desc": "1D array broadcast across rows/columns of 2D array", "ver": "(3,) + (3,4) → (3,4)" },
+        { "prop": "np.vectorize()", "desc": "Vectorizes a scalar function to work on arrays (convenience, not fast)", "ver": "vf = np.vectorize(func)" },
+        { "prop": "np.frompyfunc()", "desc": "Creates a NumPy ufunc from a Python function", "ver": "np.frompyfunc(func, 1, 1)" },
+        { "prop": "np.apply_along_axis()", "desc": "Applies a function along a specified axis of an array", "ver": "np.apply_along_axis(f, 0, arr)" },
+        { "prop": "np.meshgrid()", "desc": "Creates coordinate matrices from coordinate vectors", "ver": "X, Y = np.meshgrid(x, y)" },
+        { "prop": "np.broadcast_to()", "desc": "Broadcasts an array to a new shape", "ver": "np.broadcast_to(a, (3, 4))" },
+        { "prop": "np.newaxis", "desc": "Adds a new axis to expand array dimensions for broadcasting", "ver": "arr[:, np.newaxis]" },
+        { "prop": "np.einsum()", "desc": "Einstein summation convention for flexible multi-dimensional ops", "ver": "np.einsum('ij,jk->ik', A, B)" }
+      ]
+    }
+  ]
+}

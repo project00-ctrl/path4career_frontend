@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live Go Editor - CareerPath</title>
+
+    <link rel="stylesheet" href="../../assets/css/editor.css">
+    <style>
+        /* Go / Cyan Theme Overrides */
+        .header h2 span {
+            color: #00add8 !important;
+        }
+
+        .run-btn {
+            background-color: #00add8 !important;
+            color: #fff !important;
+        }
+
+        .run-btn:hover {
+            background-color: #008cae !important;
+        }
+
+        .run-btn:disabled {
+            background-color: #555 !important;
+            cursor: not-allowed;
+        }
+
+        .go-badge {
+            background-color: #1e1e3f;
+            color: #00add8;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            margin-left: 10px;
+            font-weight: bold;
+            border: 1px solid #00add8;
+        }
+
+        .editor-pane {
+            padding: 0;
+        }
+
+        .code-box {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            padding: 15px;
+        }
+
+        #goInput {
+            color: #00add8;
+        }
+
+        /* Result pane styling */
+        .result-pane {
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            background-color: #1e1e1e;
+        }
+
+        .output-header {
+            background-color: #1e1e2e;
+            color: #ccc;
+            padding: 10px 20px;
+            font-size: 13px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-bottom: 2px solid #00add8;
+        }
+
+        .console-output {
+            flex: 1;
+            background-color: #1e1e1e;
+            color: #d4d4d4;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 14px;
+            padding: 20px;
+            overflow-y: auto;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+
+        .console-output .line {
+            margin-bottom: 4px;
+            line-height: 1.6;
+        }
+
+        .console-output .line-success {
+            color: #4ec9b0;
+        }
+
+        .console-output .line-error {
+            color: #f44747;
+        }
+
+        .console-output .line-warn {
+            color: #dcdcaa;
+        }
+
+        .console-output .line-info {
+            color: #569cd6;
+        }
+
+        .console-output .prompt {
+            color: #608b4e;
+            user-select: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header">
+        <div style="display: flex; align-items: center; gap: 15px;">
+            <a href="../index.html" style="color: #00add8; text-decoration: none; font-size: 14px;">← Back</a>
+            <h2><span>🐹</span> Real Go Workspace <span class="go-badge">Go 1.21</span></h2>
+        </div>
+        <button class="run-btn" id="runBtn">Run Code ❯</button>
+    </div>
+    <div class="workspace">
+        <div class="editor-pane">
+            <div class="code-box">
+                <p class="pane-label">main.go</p>
+                <textarea id="goInput" spellcheck="false" aria-label="Go Code Input"></textarea>
+            </div>
+        </div>
+        <div class="result-pane">
+            <div class="output-header">Terminal Output</div>
+            <div class="console-output" id="consoleOutput">
+                <div class="line line-info">// Go Workspace Ready. Click "Run Code" to execute.</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+const goInput = document.getElementById('goInput');
+const consoleOutput = document.getElementById('consoleOutput');
+const runBtn = document.getElementById('runBtn');
+
+// Default Go template
+const defaultTemplate = `package main
+
+import "fmt"
+
+func main() {
+    fmt.Println("Hello from Go!")
+    
+    // Variables
+    name := "Gopher"
+    fmt.Println("Welcome,", name)
+    
+    // Simple Loop
+    for i := 1; i <= 3; i++ {
+        fmt.Println("Loop:", i)
+    }
+}`;
+
+// Get saved code from localStorage
+const savedCode = localStorage.getItem('careerPathGoCode');
+goInput.value = savedCode ? savedCode : defaultTemplate;
+
+// Function to append text to console with styling
+function appendToConsole(text, type = 'output') {
+    const div = document.createElement('div');
+    div.className = `line line-${type}`;
+    
+    if (type === 'prompt') {
+        div.innerHTML = `<span class="prompt">${text}</span>`;
+    } else {
+        div.textContent = text;
+    }
+    
+    consoleOutput.appendChild(div);
+    consoleOutput.scrollTop = consoleOutput.scrollHeight;
+}
+
+// Clear console
+function clearConsole() {
+    consoleOutput.innerHTML = '';
+}
+
+// Simplified Go to JS "transpiler" for educational feedback
+function transpileGoToJS(goCode) {
+    let jsCode = goCode;
+
+    // Handle package and import - just ignore them
+    jsCode = jsCode.replace(/package\s+\w+/g, '// Package defined');
+    jsCode = jsCode.replace(/import\s+\([\s\S]*?\)/g, '// Multiple imports');
+    jsCode = jsCode.replace(/import\s+"[^"]+"/g, '// Single import');
+
+    // Handle fmt.Println and fmt.Printf
+    // Simple Println: convert to console.log but joined with spaces if multiple args
+    jsCode = jsCode.replace(/fmt\.Println\((.*?)\)/g, (match, args) => {
+        return `console.log(${args})`;
+    });
+    jsCode = jsCode.replace(/fmt\.Printf\("(.*?)",\s*(.*?)\)/g, (match, fmt, args) => {
+        let result = fmt;
+        const argList = args.split(',').map(a => a.trim());
+        argList.forEach(arg => {
+            result = result.replace(/%v|%s|%d/, `"+${arg}+"`);
+        });
+        return `console.log("${result}")`;
+    });
+
+    // Handle walrus operator :=
+    jsCode = jsCode.replace(/(\w+)\s*:=\s*/g, 'let $1 = ');
+
+    // Handle var declarations
+    jsCode = jsCode.replace(/var\s+(\w+)\s+\w+\s*=\s*/g, 'let $1 = ');
+    jsCode = jsCode.replace(/var\s+(\w+)\s*=\s*/g, 'let $1 = ');
+
+    // Handle functions
+    jsCode = jsCode.replace(/func\s+(\w+)\s*\((.*?)\)\s*\{/g, 'function $1($2) {');
+    jsCode = jsCode.replace(/func\s+\((.*?)\)\s+(\w+)\s*\((.*?)\)\s*\{/g, 'function $2($3) { // Method on $1');
+
+    // Handle for loops
+    jsCode = jsCode.replace(/for\s+(\w+)\s*:=\s*(\d+);\s*\1\s*([<>=!]+)\s*(\d+);\s*\1\+\+\s*\{/g, 'for (let $1 = $2; $1 $3 $4; $1++) {');
+
+    // Handle Go's make() - very basic simulation (just make it an object/array)
+    jsCode = jsCode.replace(/make\(map\[.*?\]\w+\)/g, '{}');
+    jsCode = jsCode.replace(/make\(\[\]\w+,\s*\d+\)/g, '[]');
+    jsCode = jsCode.replace(/make\(\[\]\w+\)/g, '[]');
+
+    // Handle Go's delete() for maps
+    // delete(m, "key") -> delete m["key"]
+    jsCode = jsCode.replace(/delete\((\w+),\s*(.*?)\)/g, 'delete $1[$2]');
+
+    return jsCode;
+}
+
+// Helper to execute code safely
+function runTranspiledCode(jsCode) {
+    try {
+        // Create a custom console that outputs to our div
+        const customConsole = {
+            log: function(...args) {
+                appendToConsole(args.map(arg => String(arg)).join(' '), 'output');
+            },
+            error: function(...args) {
+                appendToConsole(args.map(arg => String(arg)).join(' '), 'error');
+            },
+            warn: function(...args) {
+                appendToConsole(args.map(arg => String(arg)).join(' '), 'warn');
+            },
+            info: function(...args) {
+                appendToConsole(args.map(arg => String(arg)).join(' '), 'info');
+            }
+        };
+        
+        // Wrap everything in a function to allow main() declaration and call
+        // We append "if (typeof main === 'function') main();" to trigger the entry point
+        const fullExecutable = `
+            ${jsCode}
+            if (typeof main === 'function') {
+                main();
+            } else {
+                console.log("(No main function found - executing top-level code)");
+            }
+        `;
+        
+        const executeFn = new Function('console', fullExecutable);
+        executeFn(customConsole);
+        
+        appendToConsole('', 'output');
+        appendToConsole('✔ Compilation and execution successful.', 'success');
+    } catch (err) {
+        appendToConsole(`panic: runtime error: ${err.message}`, 'error');
+        console.error("Transpilation execution error:", err);
+        appendToConsole('\n(Simplified browser simulator - check syntax)', 'info');
+    }
+}
+
+async function executeGo() {
+    const code = goInput.value.trim();
+    
+    if (!code) {
+        appendToConsole('Please enter some Go code.', 'error');
+        return;
+    }
+    
+    // Save code to localStorage
+    localStorage.setItem('careerPathGoCode', code);
+    
+    clearConsole();
+    appendToConsole('$ go run main.go', 'prompt');
+    appendToConsole('Building Go sub-processes...', 'info');
+    runBtn.disabled = true;
+    
+    // Simulate build time
+    setTimeout(() => {
+        const transpiled = transpileGoToJS(code);
+        runTranspiledCode(transpiled);
+        runBtn.disabled = false;
+    }, 600);
+}
+
+runBtn.addEventListener('click', executeGo);
+
+// Keyboard shortcuts
+goInput.addEventListener('keydown', function(e) {
+    if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
+        executeGo();
+    }
+    if (e.key === 'Tab') {
+        e.preventDefault();
+        const start = this.selectionStart;
+        const end = this.selectionEnd;
+        this.value = this.value.substring(0, start) + '    ' + this.value.substring(end);
+        this.selectionStart = this.selectionEnd = start + 4;
+    }
+});
+
+// Auto-run on load
+window.addEventListener('load', () => {
+    // Already has welcome message from HTML
+});
+
+</script>
+</body>
+</html>

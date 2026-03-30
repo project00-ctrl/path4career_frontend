@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Path4Career is an advanced AI Career Intelligence Platform offering career simulation, digital twins, and a mentor marketplace to accelerate your professional growth." />
+    <meta name="keywords" content="career AI, digital twin, job matching, mentorship, startup path, career simulator, professional growth" />
+    <meta property="og:title" content="AI Career Simulator" />
+    <meta property="og:description" content="Discover your exact career path, simulate your future, and connect with mentors using advanced AI." />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="AI Career Simulator" />
+    <meta name="twitter:description" content="Simulate your entire career path with our AI intelligence." />
+    <title>AI Career Simulator</title>
+    <!-- Add global navbar CSS -->
+    <link rel="stylesheet" href="../../assets/css/navbar.css" />
+  </head>
+  <body>
+    <!-- Global Navbar Container -->
+    <div id="navbar-container"></div>
+    
+    <div id="root"></div>
+    
+    <!-- Inject the global navbar script dynamically to ensure correct path resolution -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const script = document.createElement('script');
+            script.src = '../../assets/js/navbar.js';
+            document.body.appendChild(script);
+        });
+    </script>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

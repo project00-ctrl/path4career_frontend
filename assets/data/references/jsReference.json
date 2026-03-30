@@ -1,0 +1,1061 @@
+{
+  "sections": [
+    {
+      "title": "Arrays",
+      "desc": "Arrays are used to store multiple values in a single variable.",
+      "type": "grouped-list",
+      "groups": [
+        {
+          "title": "Constructor",
+          "items": [
+            "[] - Array literal",
+            "new Array() - Array constructor"
+          ]
+        },
+        {
+          "title": "Properties",
+          "items": [
+            "length - Returns the number of elements",
+            "constructor - Returns the function that created the Array prototype",
+            "prototype - Allows you to add properties and methods"
+          ]
+        },
+        {
+          "title": "Methods",
+          "items": [
+            "at() - Returns element at specified index (supports negative indexing)",
+            "concat() - Joins arrays and returns a new array",
+            "copyWithin() - Copies array elements within the array",
+            "entries() - Returns a key/value pair Array Iteration Object",
+            "every() - Checks if every element passes a test",
+            "fill() - Fill elements with a static value",
+            "filter() - Creates array with elements that pass a test",
+            "find() - Returns the first element that passes a test",
+            "findIndex() - Returns the index of the first element that passes a test",
+            "findLast() - Returns the last element that passes a test",
+            "findLastIndex() - Returns the index of the last element that passes a test",
+            "flat() - Flattens nested arrays to a specified depth",
+            "flatMap() - Maps each element, then flattens result",
+            "forEach() - Calls a function for each array element",
+            "from() - Creates array from an object",
+            "includes() - Checks if array contains a specified element",
+            "indexOf() - Returns the first index of a value",
+            "isArray() - Checks whether an object is an array",
+            "join() - Joins all array elements into a string",
+            "keys() - Returns Array Iterator Object with keys",
+            "lastIndexOf() - Returns the last position of a specified value",
+            "map() - Creates a new array by transforming elements",
+            "pop() - Removes the last element and returns it",
+            "push() - Adds elements to the end and returns new length",
+            "reduce() - Reduces array to a single value (left-to-right)",
+            "reduceRight() - Reduces array to a single value (right-to-left)",
+            "reverse() - Reverses array elements",
+            "shift() - Removes the first element and returns it",
+            "slice() - Selects part of an array and returns new array",
+            "some() - Checks if any element passes a test",
+            "sort() - Sorts array elements",
+            "splice() - Adds/removes elements from an array",
+            "toReversed() - Returns a reversed copy",
+            "toSorted() - Returns a sorted copy",
+            "toSpliced() - Returns a spliced copy",
+            "toString() - Converts array to string",
+            "unshift() - Adds elements to the beginning",
+            "valueOf() - Returns primitive value of array",
+            "values() - Returns Array Iterator Object with values",
+            "with() - Returns copy with element at index replaced"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Strings",
+      "desc": "Strings are used for storing and manipulating text.",
+      "type": "grouped-list",
+      "groups": [
+        {
+          "title": "Properties",
+          "items": [
+            "length - Returns the length of a string",
+            "constructor - Returns the string's constructor function",
+            "prototype - Allows you to add properties and methods"
+          ]
+        },
+        {
+          "title": "Methods",
+          "items": [
+            "at() - Returns character at specified index",
+            "charAt() - Returns the character at a specified index",
+            "charCodeAt() - Returns the Unicode of the character at index",
+            "codePointAt() - Returns Unicode value at index",
+            "concat() - Joins two or more strings",
+            "endsWith() - Checks whether string ends with specified string",
+            "fromCharCode() - Converts Unicode values to characters",
+            "includes() - Checks whether string contains specified string",
+            "indexOf() - Returns position of first found occurrence",
+            "isWellFormed() - Checks if string is well-formed Unicode",
+            "lastIndexOf() - Returns position of last found occurrence",
+            "localeCompare() - Compares two strings in current locale",
+            "match() - Searches string for a match against a RegExp",
+            "matchAll() - Returns iterator of all matches",
+            "padEnd() - Pads string from the end",
+            "padStart() - Pads string from the start",
+            "repeat() - Returns new string with repeated copies",
+            "replace() - Replaces matched value",
+            "replaceAll() - Replaces all matches of a pattern",
+            "search() - Searches string and returns position",
+            "slice() - Extracts part of a string",
+            "split() - Splits string into an array",
+            "startsWith() - Checks whether string begins with characters",
+            "substr() - Extracts characters (deprecated)",
+            "substring() - Extracts characters between indices",
+            "toLocaleLowerCase() - Converts to lowercase (locale aware)",
+            "toLocaleUpperCase() - Converts to uppercase (locale aware)",
+            "toLowerCase() - Converts to lowercase",
+            "toString() - Returns string representation",
+            "toUpperCase() - Converts to uppercase",
+            "toWellFormed() - Returns well-formed Unicode string",
+            "trim() - Removes whitespace from both ends",
+            "trimEnd() - Removes whitespace from end",
+            "trimStart() - Removes whitespace from beginning",
+            "valueOf() - Returns primitive value of String object"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Numbers",
+      "desc": "The Number object is a wrapper for primitive numeric values.",
+      "type": "grouped-list",
+      "groups": [
+        {
+          "title": "Properties",
+          "items": [
+            "EPSILON - Difference between 1 and the smallest value greater than 1",
+            "MAX_VALUE - Returns the largest number possible",
+            "MIN_VALUE - Returns the smallest number possible",
+            "MAX_SAFE_INTEGER - Maximum safe integer (2^53 minus 1)",
+            "MIN_SAFE_INTEGER - Minimum safe integer minus (2^53 minus 1)",
+            "NaN - Represents Not-a-Number",
+            "NEGATIVE_INFINITY - Represents negative infinity",
+            "POSITIVE_INFINITY - Represents positive infinity",
+            "constructor - Returns the function that created the Number prototype",
+            "prototype - Allows you to add properties and methods"
+          ]
+        },
+        {
+          "title": "Methods",
+          "items": [
+            "isFinite() - Checks whether value is a finite number",
+            "isInteger() - Checks whether value is an integer",
+            "isNaN() - Checks whether value is NaN",
+            "isSafeInteger() - Checks whether value is a safe integer",
+            "parseFloat() - Parses a string and returns a floating-point number",
+            "parseInt() - Parses a string and returns an integer",
+            "toExponential() - Converts number to exponential notation",
+            "toFixed() - Formats number using fixed decimals",
+            "toLocaleString() - Converts number to string using locale settings",
+            "toPrecision() - Formats number to specified precision",
+            "toString() - Converts number to string",
+            "valueOf() - Returns the primitive value of a Number object"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Math",
+      "desc": "Math object provides mathematical constants and functions.",
+      "type": "grouped-list",
+      "groups": [
+        {
+          "title": "Properties",
+          "items": [
+            "E - Euler's number (~2.718)",
+            "LN2 - Natural logarithm of 2",
+            "LN10 - Natural logarithm of 10",
+            "LOG2E - Base 2 logarithm of E",
+            "LOG10E - Base 10 logarithm of E",
+            "PI - Pi (~3.14159)",
+            "SQRT1_2 - Square root of 1/2",
+            "SQRT2 - Square root of 2"
+          ]
+        },
+        {
+          "title": "Methods",
+          "items": [
+            "abs(x) - Returns absolute value",
+            "acos(x) - Returns arccosine",
+            "acosh(x) - Returns hyperbolic arccosine",
+            "asin(x) - Returns arcsine",
+            "asinh(x) - Returns hyperbolic arcsine",
+            "atan(x) - Returns arctangent",
+            "atan2(y,x) - Returns arctangent of quotient",
+            "atanh(x) - Returns hyperbolic arctangent",
+            "cbrt(x) - Returns cubic root",
+            "ceil(x) - Rounds up to nearest integer",
+            "clz32(x) - Returns leading zero bits (32-bit)",
+            "cos(x) - Returns cosine",
+            "cosh(x) - Returns hyperbolic cosine",
+            "exp(x) - Returns e raised to x",
+            "expm1(x) - Returns e raised to x minus 1",
+            "f16round(x) - Returns nearest 16-bit float",
+            "floor(x) - Rounds down to nearest integer",
+            "fround(x) - Returns nearest 32-bit float",
+            "log(x) - Returns natural logarithm",
+            "log10(x) - Returns base-10 logarithm",
+            "log1p(x) - Returns natural logarithm of 1 + x",
+            "log2(x) - Returns base-2 logarithm",
+            "max(x1,x2) - Returns largest number",
+            "min(x1,x2) - Returns smallest number",
+            "pow(x,y) - Returns x to the power of y",
+            "random() - Returns random number between 0 and 1",
+            "round(x) - Rounds to nearest integer",
+            "sign(x) - Returns sign of number",
+            "sin(x) - Returns sine",
+            "sinh(x) - Returns hyperbolic sine",
+            "sqrt(x) - Returns square root",
+            "tan(x) - Returns tangent",
+            "tanh(x) - Returns hyperbolic tangent",
+            "trunc(x) - Returns integer part"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Date",
+      "desc": "Date object works with dates and times.",
+      "type": "grouped-list",
+      "groups": [
+        {
+          "title": "Constructor",
+          "items": [
+            "new Date() - Creates new Date object"
+          ]
+        },
+        {
+          "title": "Methods",
+          "items": [
+            "getDate() - Returns day of month (1-31)",
+            "getDay() - Returns day of week (0-6)",
+            "getFullYear() - Returns year (4 digits)",
+            "getHours() - Returns hour (0-23)",
+            "getMilliseconds() - Returns milliseconds (0-999)",
+            "getMinutes() - Returns minutes (0-59)",
+            "getMonth() - Returns month (0-11)",
+            "getSeconds() - Returns seconds (0-59)",
+            "getTime() - Returns milliseconds since January 1, 1970",
+            "getTimezoneOffset() - Returns time difference between UTC and local time",
+            "getUTCDate() - Returns day of month in UTC",
+            "getUTCDay() - Returns day of week in UTC",
+            "getUTCFullYear() - Returns year in UTC",
+            "getUTCHours() - Returns hour in UTC",
+            "getUTCMilliseconds() - Returns milliseconds in UTC",
+            "getUTCMinutes() - Returns minutes in UTC",
+            "getUTCMonth() - Returns month in UTC",
+            "getUTCSeconds() - Returns seconds in UTC",
+            "now() - Returns current timestamp",
+            "parse() - Parses date string and returns timestamp",
+            "setDate() - Sets day of month",
+            "setFullYear() - Sets year",
+            "setHours() - Sets hour",
+            "setMilliseconds() - Sets milliseconds",
+            "setMinutes() - Sets minutes",
+            "setMonth() - Sets month",
+            "setSeconds() - Sets seconds",
+            "setTime() - Sets time (ms since 1970)",
+            "setUTCDate() - Sets day of month in UTC",
+            "setUTCFullYear() - Sets year in UTC",
+            "setUTCHours() - Sets hour in UTC",
+            "setUTCMilliseconds() - Sets milliseconds in UTC",
+            "setUTCMinutes() - Sets minutes in UTC",
+            "setUTCMonth() - Sets month in UTC",
+            "setUTCSeconds() - Sets seconds in UTC",
+            "toDateString() - Converts date portion to string",
+            "toISOString() - Returns date in ISO format",
+            "toJSON() - Returns date as JSON string",
+            "toLocaleDateString() - Returns date using locale conventions",
+            "toLocaleString() - Converts to string using locale conventions",
+            "toLocaleTimeString() - Returns time using locale conventions",
+            "toString() - Converts to string",
+            "toTimeString() - Converts time portion to string",
+            "toUTCString() - Converts to UTC string",
+            "UTC() - Returns milliseconds since Jan 1, 1970 (UTC)",
+            "valueOf() - Returns primitive value"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Objects",
+      "desc": "Objects are containers for named values.",
+      "type": "grouped-list",
+      "groups": [
+        {
+          "title": "Methods",
+          "items": [
+            "assign() - Copies properties from source to target object",
+            "create() - Creates object using existing object as prototype",
+            "defineProperties() - Adds or modifies multiple properties",
+            "defineProperty() - Adds or modifies a single property",
+            "entries() - Returns array of key-value pairs",
+            "freeze() - Prevents modification of properties",
+            "fromEntries() - Creates object from key-value pairs",
+            "getOwnPropertyDescriptor() - Returns property descriptor",
+            "getOwnPropertyDescriptors() - Returns all property descriptors",
+            "getOwnPropertyNames() - Returns array of property names",
+            "groupBy() - Groups elements by callback result",
+            "isExtensible() - Checks if object is extensible",
+            "isFrozen() - Checks if object is frozen",
+            "isSealed() - Checks if object is sealed",
+            "keys() - Returns array of property names",
+            "preventExtensions() - Prevents adding new properties",
+            "seal() - Prevents adding or removing properties",
+            "toString() - Converts object to string",
+            "valueOf() - Returns primitive value",
+            "values() - Returns array of property values"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Functions",
+      "desc": "Functions are code blocks that perform specific tasks.",
+      "type": "grouped-list",
+      "groups": [
+        {
+          "title": "Methods",
+          "items": [
+            "apply() - Calls function with given this value and arguments array",
+            "bind() - Creates a new function with a specific this value",
+            "call() - Calls function with given this value and arguments",
+            "toString() - Returns string representing function source",
+            "valueOf() - Returns primitive value"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Boolean",
+      "desc": "Boolean object is a wrapper for boolean values.",
+      "type": "grouped-list",
+      "groups": [
+        {
+          "title": "Constructor",
+          "items": [
+            "Boolean() - Converts a value to boolean",
+            "new Boolean() - Creates a Boolean object"
+          ]
+        },
+        {
+          "title": "Methods",
+          "items": [
+            "toString() - Converts boolean to string",
+            "valueOf() - Returns primitive boolean value"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "RegExp (Regular Expressions)",
+      "desc": "Regular expressions are patterns used to match character combinations.",
+      "type": "grouped-list",
+      "groups": [
+        {
+          "title": "Flags",
+          "items": [
+            "/d - Generate indices for substring matches",
+            "/g - Global match",
+            "/i - Case-insensitive matching",
+            "/m - Multi-line matching",
+            "/s - Allows . to match newline characters",
+            "/u - Unicode matching",
+            "/v - Unicode sets matching",
+            "/y - Sticky matching"
+          ]
+        },
+        {
+          "title": "Character Classes",
+          "items": [
+            "[abc] - Match any character in brackets",
+            "[^abc] - Match any character NOT in brackets",
+            "[A-Z] - Match any character in range",
+            "[0-9] - Match any digit",
+            "\\w - Match word character",
+            "\\W - Match non-word character",
+            "\\d - Match digit",
+            "\\D - Match non-digit",
+            "\\s - Match whitespace",
+            "\\S - Match non-whitespace",
+            ". - Match any character except newline"
+          ]
+        },
+        {
+          "title": "Anchors",
+          "items": [
+            "^ - Match beginning of string",
+            "$ - Match end of string",
+            "\\b - Match word boundary",
+            "\\B - Match non-word boundary"
+          ]
+        },
+        {
+          "title": "Quantifiers",
+          "items": [
+            "+ - Match 1 or more",
+            "* - Match 0 or more",
+            "? - Match 0 or 1",
+            "{n} - Match exactly n times",
+            "{n,} - Match n or more times",
+            "{n,m} - Match between n and m times"
+          ]
+        },
+        {
+          "title": "Methods",
+          "items": [
+            "compile() - Compiles regular expression (deprecated)",
+            "exec() - Tests for match and returns result array",
+            "test() - Tests for match and returns true/false",
+            "toString() - Returns string representing regexp"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Sets",
+      "desc": "Set object stores unique values of any type.",
+      "type": "grouped-list",
+      "groups": [
+        {
+          "title": "Constructor",
+          "items": [
+            "new Set() - Creates a new Set"
+          ]
+        },
+        {
+          "title": "Properties",
+          "items": [
+            "size - Returns number of elements"
+          ]
+        },
+        {
+          "title": "Methods",
+          "items": [
+            "add() - Adds new element",
+            "clear() - Removes all elements",
+            "delete() - Removes specified element",
+            "difference() - Returns set of elements in this but not the other",
+            "entries() - Returns iterator with [value, value] pairs",
+            "forEach() - Calls function for each element",
+            "has() - Returns true if element exists",
+            "intersection() - Returns set of elements in both sets",
+            "isDisjointFrom() - Checks if sets have no common elements",
+            "isSubsetOf() - Checks if this set is a subset of another",
+            "isSupersetOf() - Checks if this set is a superset of another",
+            "keys() - Returns iterator with values",
+            "symmetricDifference() - Returns elements in either set but not both",
+            "union() - Returns set of all elements from both sets",
+            "values() - Returns iterator with values"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Maps",
+      "desc": "Map object holds key-value pairs.",
+      "type": "grouped-list",
+      "groups": [
+        {
+          "title": "Constructor",
+          "items": [
+            "new Map() - Creates a new Map"
+          ]
+        },
+        {
+          "title": "Properties",
+          "items": [
+            "size - Returns number of elements"
+          ]
+        },
+        {
+          "title": "Methods",
+          "items": [
+            "clear() - Removes all elements",
+            "delete() - Removes specified element",
+            "entries() - Returns iterator with [key, value] pairs",
+            "forEach() - Calls function for each element",
+            "get() - Returns value for specified key",
+            "groupBy() - Groups elements by callback result",
+            "has() - Returns true if key exists",
+            "keys() - Returns iterator with keys",
+            "set() - Sets value for key",
+            "values() - Returns iterator with values"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Promises",
+      "desc": "Promise object represents the eventual completion or failure of an asynchronous operation.",
+      "type": "grouped-list",
+      "groups": [
+        {
+          "title": "Methods",
+          "items": [
+            "all() - Returns a promise that resolves when all promises resolve",
+            "allSettled() - Returns a promise that resolves when all promises settle",
+            "any() - Returns a promise that resolves when any promise resolves",
+            "catch() - Handles rejected promises",
+            "finally() - Executes callback when promise is settled",
+            "race() - Returns a promise that settles when the first promise settles",
+            "reject() - Returns a rejected promise",
+            "resolve() - Returns a resolved promise",
+            "then() - Handles fulfilled promises",
+            "try() - Wraps a function in a promise",
+            "withResolvers() - Creates promise with exposed resolve/reject"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "JSON",
+      "desc": "JSON object contains methods for parsing and converting values to JSON.",
+      "type": "grouped-list",
+      "groups": [
+        {
+          "title": "Methods",
+          "items": [
+            "parse() - Parses a JSON string",
+            "stringify() - Converts a value to a JSON string"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Error",
+      "desc": "Error object represents runtime errors.",
+      "type": "grouped-list",
+      "groups": [
+        {
+          "title": "Constructor",
+          "items": [
+            "new Error() - Creates a new Error object"
+          ]
+        },
+        {
+          "title": "Properties",
+          "items": [
+            "cause - Indicates the specific cause of the error",
+            "message - Error message",
+            "name - Error name"
+          ]
+        },
+        {
+          "title": "Methods",
+          "items": [
+            "isError() - Checks if value is an error",
+            "toString() - Returns error as string"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Window Object",
+      "desc": "Window object represents the browser window.",
+      "type": "grouped-list",
+      "groups": [
+        {
+          "title": "Properties",
+          "items": [
+            "closed - Returns boolean indicating if window is closed",
+            "console - Returns Console object",
+            "defaultStatus - Sets or returns default text in status bar",
+            "document - Returns Document object",
+            "frameElement - Returns the iframe element the window is embedded in",
+            "frames - Returns all iframe elements",
+            "history - Returns History object",
+            "innerHeight - Returns interior height of window",
+            "innerWidth - Returns interior width of window",
+            "length - Returns number of iframe elements",
+            "localStorage - Allows saving key/value pairs with no expiration",
+            "location - Returns Location object",
+            "name - Sets or returns window name",
+            "navigator - Returns Navigator object",
+            "opener - Returns reference to window that created this window",
+            "outerHeight - Returns outer height including toolbars/scrollbars",
+            "outerWidth - Returns outer width including toolbars/scrollbars",
+            "pageXOffset - Returns horizontal scroll amount",
+            "pageYOffset - Returns vertical scroll amount",
+            "parent - Returns parent window",
+            "screen - Returns Screen object",
+            "screenLeft - Returns distance from left of screen",
+            "screenTop - Returns distance from top of screen",
+            "screenX - Returns horizontal distance from left of screen",
+            "screenY - Returns vertical distance from top of screen",
+            "scrollX - Returns horizontal scroll amount",
+            "scrollY - Returns vertical scroll amount",
+            "sessionStorage - Allows saving key/value pairs for session",
+            "self - Returns current window",
+            "status - Sets or returns text in status bar",
+            "top - Returns topmost browser window"
+          ]
+        },
+        {
+          "title": "Methods",
+          "items": [
+            "addEventListener() - Attaches an event handler",
+            "alert() - Displays alert box",
+            "atob() - Decodes base-64 encoded string",
+            "blur() - Removes focus from window",
+            "btoa() - Encodes string in base-64",
+            "clearInterval() - Clears interval set with setInterval()",
+            "clearTimeout() - Clears timeout set with setTimeout()",
+            "close() - Closes current window",
+            "confirm() - Displays OK/Cancel dialog box",
+            "focus() - Sets focus to window",
+            "getComputedStyle() - Gets computed CSS properties",
+            "matchMedia() - Returns MediaQueryList object",
+            "moveBy() - Moves window relative to current position",
+            "moveTo() - Moves window to specified position",
+            "open() - Opens a new browser window",
+            "print() - Prints content of current window",
+            "prompt() - Displays dialog box prompting for input",
+            "removeEventListener() - Removes event handler",
+            "resizeBy() - Resizes window by specified pixels",
+            "resizeTo() - Resizes window to specified dimensions",
+            "scrollBy() - Scrolls document by specified pixels",
+            "scrollTo() - Scrolls document to specified coordinates",
+            "setInterval() - Calls function repeatedly with delay",
+            "setTimeout() - Calls function after delay",
+            "stop() - Stops window from loading"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Console Object",
+      "desc": "Console object provides access to the browser's debugging console.",
+      "type": "grouped-list",
+      "groups": [
+        {
+          "title": "Methods",
+          "items": [
+            "assert() - Writes an error message if assertion is false",
+            "clear() - Clears the console",
+            "count() - Logs number of times count() has been called",
+            "error() - Outputs error message",
+            "group() - Creates a message group",
+            "groupCollapsed() - Creates a collapsed message group",
+            "groupEnd() - Ends message group",
+            "info() - Outputs informational message",
+            "log() - Outputs message to console",
+            "table() - Displays data as a table",
+            "time() - Starts a timer",
+            "timeEnd() - Stops the timer",
+            "trace() - Outputs a stack trace",
+            "warn() - Outputs warning message"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Location Object",
+      "desc": "Location object contains information about the current URL.",
+      "type": "grouped-list",
+      "groups": [
+        {
+          "title": "Properties",
+          "items": [
+            "hash - Sets or returns the anchor part (#)",
+            "host - Sets or returns the hostname and port",
+            "hostname - Sets or returns the hostname",
+            "href - Sets or returns the entire URL",
+            "origin - Returns protocol, hostname, and port",
+            "pathname - Sets or returns the path name",
+            "port - Sets or returns the port number",
+            "protocol - Sets or returns the protocol",
+            "search - Sets or returns the query string (?)"
+          ]
+        },
+        {
+          "title": "Methods",
+          "items": [
+            "assign() - Loads a new document",
+            "reload() - Reloads the current document",
+            "replace() - Replaces the current document with a new one"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "History Object",
+      "desc": "History object contains the URLs visited by the user.",
+      "type": "grouped-list",
+      "groups": [
+        {
+          "title": "Properties",
+          "items": [
+            "length - Returns the number of URLs in the history list"
+          ]
+        },
+        {
+          "title": "Methods",
+          "items": [
+            "back() - Loads the previous URL",
+            "forward() - Loads the next URL",
+            "go() - Loads a specific URL from the history list"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Navigator Object",
+      "desc": "Navigator object contains information about the browser.",
+      "type": "grouped-list",
+      "groups": [
+        {
+          "title": "Properties",
+          "items": [
+            "appCodeName - Returns the code name of the browser",
+            "appName - Returns the name of the browser",
+            "appVersion - Returns version information",
+            "cookieEnabled - Returns true if cookies are enabled",
+            "geolocation - Returns the Geolocation object",
+            "language - Returns the browser language",
+            "onLine - Returns true if the browser is online",
+            "platform - Returns the platform of the browser",
+            "product - Returns the browser engine name",
+            "userAgent - Returns the user-agent header"
+          ]
+        },
+        {
+          "title": "Methods",
+          "items": [
+            "javaEnabled() - Returns true if Java is enabled",
+            "taintEnabled() - Specifies if data tainting is enabled (deprecated)"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Screen Object",
+      "desc": "Screen object contains information about the user's screen.",
+      "type": "grouped-list",
+      "groups": [
+        {
+          "title": "Properties",
+          "items": [
+            "availHeight - Returns available height (excluding taskbar)",
+            "availWidth - Returns available width (excluding taskbar)",
+            "colorDepth - Returns bit depth of the color palette",
+            "height - Returns total screen height",
+            "pixelDepth - Returns color resolution",
+            "width - Returns total screen width"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Document Object",
+      "desc": "The document object represents the web page.",
+      "type": "grouped-list",
+      "groups": [
+        {
+          "title": "Properties",
+          "items": [
+            "activeElement - Returns the currently focused element",
+            "anchors - Returns a collection of anchor elements with name attribute",
+            "baseURI - Returns the absolute base URI",
+            "body - Returns the body element",
+            "characterSet - Returns character encoding",
+            "cookie - Returns all name/value pairs of cookies",
+            "defaultView - Returns the window object",
+            "designMode - Controls whether document is editable",
+            "doctype - Returns Document Type Declaration",
+            "documentElement - Returns the html element",
+            "documentURI - Returns the document URI",
+            "domain - Returns the domain name",
+            "forms - Returns collection of form elements",
+            "head - Returns the head element",
+            "images - Returns collection of img elements",
+            "lastModified - Returns last modified date/time",
+            "links - Returns anchor and area elements with href",
+            "readyState - Returns loading status",
+            "referrer - Returns URL of referring document",
+            "scripts - Returns collection of script elements",
+            "title - Returns the title element",
+            "URL - Returns full document URL"
+          ]
+        },
+        {
+          "title": "Methods",
+          "items": [
+            "addEventListener() - Attaches an event handler",
+            "adoptNode() - Adopts node from another document",
+            "close() - Closes output stream",
+            "createAttribute() - Creates an attribute node",
+            "createComment() - Creates a Comment node",
+            "createDocumentFragment() - Creates a DocumentFragment",
+            "createElement() - Creates an Element node",
+            "createEvent() - Creates an Event object",
+            "createTextNode() - Creates a Text node",
+            "execCommand() - Executes a command (deprecated)",
+            "getElementById() - Returns element with specified ID",
+            "getElementsByClassName() - Returns elements with class name",
+            "getElementsByName() - Returns elements with name",
+            "getElementsByTagName() - Returns elements with tag name",
+            "hasFocus() - Returns true if document has focus",
+            "importNode() - Imports node from another document",
+            "normalize() - Removes empty text nodes",
+            "normalizeDocument() - Normalizes document (deprecated)",
+            "open() - Opens output stream",
+            "querySelector() - Returns first matching element",
+            "querySelectorAll() - Returns all matching elements",
+            "removeEventListener() - Removes event handler",
+            "renameNode() - Renames node (deprecated)",
+            "write() - Writes HTML or JavaScript",
+            "writeln() - Writes with newline"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Element Object",
+      "desc": "The element object represents an HTML element.",
+      "type": "grouped-list",
+      "groups": [
+        {
+          "title": "Properties",
+          "items": [
+            "accessKey - Sets or returns accesskey attribute",
+            "attributes - Returns a NamedNodeMap of attributes",
+            "childElementCount - Returns number of child elements",
+            "childNodes - Returns collection of child nodes",
+            "children - Returns collection of child elements",
+            "classList - Returns class names as DOMTokenList",
+            "className - Sets or returns class attribute",
+            "clientHeight - Returns height including padding",
+            "clientLeft - Returns width of left border",
+            "clientTop - Returns width of top border",
+            "clientWidth - Returns width including padding",
+            "contentEditable - Sets or returns whether content is editable",
+            "dir - Sets or returns text direction",
+            "firstChild - Returns first child node",
+            "firstElementChild - Returns first child element",
+            "id - Sets or returns id attribute",
+            "innerHTML - Sets or returns content as HTML",
+            "innerText - Sets or returns text content",
+            "isContentEditable - Returns true if content is editable",
+            "lang - Sets or returns language attribute",
+            "lastChild - Returns last child node",
+            "lastElementChild - Returns last child element",
+            "namespaceURI - Returns namespace URI",
+            "nextSibling - Returns next node at same level",
+            "nextElementSibling - Returns next element at same level",
+            "nodeName - Returns node name",
+            "nodeType - Returns node type",
+            "nodeValue - Sets or returns node value",
+            "offsetHeight - Returns height incl. padding, border and scrollbar",
+            "offsetWidth - Returns width incl. padding, border and scrollbar",
+            "offsetLeft - Returns left position relative to offsetParent",
+            "offsetParent - Returns offsetParent element",
+            "offsetTop - Returns top position relative to offsetParent",
+            "outerHTML - Sets or returns HTML including element",
+            "outerText - Sets or returns text including element",
+            "ownerDocument - Returns document object",
+            "parentNode - Returns parent node",
+            "parentElement - Returns parent element",
+            "previousSibling - Returns previous node at same level",
+            "previousElementSibling - Returns previous element at same level",
+            "scrollHeight - Returns entire height including overflow",
+            "scrollLeft - Sets or returns horizontal scroll position",
+            "scrollTop - Sets or returns vertical scroll position",
+            "scrollWidth - Returns entire width including overflow",
+            "style - Sets or returns style attribute",
+            "tabIndex - Sets or returns tab order",
+            "tagName - Returns tag name",
+            "textContent - Sets or returns text including descendants",
+            "title - Sets or returns title attribute"
+          ]
+        },
+        {
+          "title": "Methods",
+          "items": [
+            "addEventListener() - Attaches event handler",
+            "after() - Inserts nodes after element",
+            "append() - Inserts nodes at end of element",
+            "appendChild() - Appends child node",
+            "before() - Inserts nodes before element",
+            "blur() - Removes focus",
+            "click() - Simulates mouse click",
+            "cloneNode() - Clones node",
+            "closest() - Returns closest ancestor matching selector",
+            "compareDocumentPosition() - Compares document position",
+            "contains() - Returns true if node is descendant",
+            "focus() - Gives focus to element",
+            "getAttribute() - Returns attribute value",
+            "getAttributeNode() - Returns attribute node",
+            "getBoundingClientRect() - Returns size and position relative to viewport",
+            "getElementsByClassName() - Returns elements with class",
+            "getElementsByTagName() - Returns elements with tag",
+            "hasAttribute() - Returns true if attribute exists",
+            "hasAttributes() - Returns true if node has attributes",
+            "hasChildNodes() - Returns true if node has children",
+            "insertAdjacentElement() - Inserts element at position",
+            "insertAdjacentHTML() - Inserts HTML at position",
+            "insertAdjacentText() - Inserts text at position",
+            "insertBefore() - Inserts node before another",
+            "isDefaultNamespace() - Checks default namespace",
+            "isEqualNode() - Checks if nodes are equal",
+            "isSameNode() - Checks if nodes are the same"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Events",
+      "desc": "The event object represents an event that occurs in the browser, such as a mouse click, key press, or page load.",
+      "type": "grouped-list",
+      "groups": [
+        {
+          "title": "Properties",
+          "items": [
+            "bubbles - Returns whether the event bubbles up",
+            "cancelable - Returns whether the event can be canceled",
+            "composed - Returns whether event crosses shadow DOM",
+            "currentTarget - Element whose event listeners are triggered",
+            "defaultPrevented - Returns true if default action was prevented",
+            "eventPhase - Returns current phase (capturing, target, bubbling)",
+            "isTrusted - Returns true if event was triggered by user",
+            "target - Element that triggered the event",
+            "timeStamp - Time when the event was created",
+            "type - Returns the event type (e.g., click, keydown)"
+          ]
+        },
+        {
+          "title": "Methods",
+          "items": [
+            "preventDefault() - Prevents default browser behavior",
+            "stopPropagation() - Stops event from bubbling up",
+            "stopImmediatePropagation() - Stops other listeners from running",
+            "composedPath() - Returns the event's path"
+          ]
+        },
+        {
+          "title": "Common Events",
+          "items": [
+            "click - Fired when an element is clicked",
+            "dblclick - Fired on double click",
+            "mouseover - Fired when mouse enters element",
+            "mouseout - Fired when mouse leaves element",
+            "mousemove - Fired when mouse moves",
+            "mousedown - Fired when mouse button is pressed",
+            "mouseup - Fired when mouse button is released",
+            "keydown - Fired when key is pressed",
+            "keyup - Fired when key is released",
+            "input - Fired when input value changes",
+            "change - Fired when input loses focus after change",
+            "submit - Fired when a form is submitted",
+            "focus - Fired when element gains focus",
+            "blur - Fired when element loses focus",
+            "load - Fired when page or resource finishes loading",
+            "DOMContentLoaded - Fired when HTML is fully loaded",
+            "resize - Fired when window is resized",
+            "scroll - Fired when document is scrolled"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Operators",
+      "desc": "Operators are symbols used to perform operations on values and variables in JavaScript.",
+      "type": "grouped-list",
+      "groups": [
+        {
+          "title": "Arithmetic Operators",
+          "items": [
+            "+ - Addition",
+            "- - Subtraction",
+            "* - Multiplication",
+            "/ - Division",
+            "% - Modulus (remainder)",
+            "** - Exponentiation",
+            "++ - Increment",
+            "-- - Decrement"
+          ]
+        },
+        {
+          "title": "Assignment Operators",
+          "items": [
+            "= - Assign value",
+            "+= - Add and assign",
+            "-= - Subtract and assign",
+            "*= - Multiply and assign",
+            "/= - Divide and assign",
+            "%= - Modulus and assign",
+            "**= - Exponent and assign"
+          ]
+        },
+        {
+          "title": "Comparison Operators",
+          "items": [
+            "== - Equal to",
+            "=== - Equal value and type",
+            "!= - Not equal",
+            "!== - Not equal value or type",
+            "> - Greater than",
+            "< - Less than",
+            ">= - Greater than or equal",
+            "<= - Less than or equal"
+          ]
+        },
+        {
+          "title": "Logical Operators",
+          "items": [
+            "&& - Logical AND",
+            "|| - Logical OR",
+            "! - Logical NOT"
+          ]
+        },
+        {
+          "title": "Bitwise Operators",
+          "items": [
+            "& - AND",
+            "| - OR",
+            "^ - XOR",
+            "~ - NOT",
+            "<< - Left shift",
+            ">> - Right shift",
+            ">>> - Unsigned right shift"
+          ]
+        },
+        {
+          "title": "String Operators",
+          "items": [
+            "+ - Concatenation",
+            "+= - Append string"
+          ]
+        },
+        {
+          "title": "Conditional (Ternary) Operator",
+          "items": [
+            "condition ? value1 : value2 - Returns value based on condition"
+          ]
+        },
+        {
+          "title": "Type Operators",
+          "items": [
+            "typeof - Returns data type",
+            "instanceof - Checks object type"
+          ]
+        },
+        {
+          "title": "Logical Assignment Operators",
+          "items": [
+            "&&= - Assign if truthy",
+            "||= - Assign if falsy",
+            "??= - Assign if null or undefined"
+          ]
+        }
+      ]
+    }
+  ]
+}

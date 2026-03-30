@@ -1,0 +1,362 @@
+[
+    {
+        "id": "jq-1",
+        "question": "What is jQuery?",
+        "options": [
+            "A server-side database.",
+            "A lightweight JavaScript library designed to simplify HTML DOM manipulation.",
+            "A completely new programming language.",
+            "A CSS preprocessor."
+        ],
+        "correctAnswer": 1,
+        "explanation": "jQuery is a fast, small, and feature-rich JavaScript library built to make things like HTML document traversal and manipulation much simpler."
+    },
+    {
+        "id": "jq-2",
+        "question": "What is the primary motto of jQuery?",
+        "options": [
+            "Write Everything, Do Nothing",
+            "Code Fast, Break Things",
+            "Write Less, Do More",
+            "JavaScript Made Harder"
+        ],
+        "correctAnswer": 2,
+        "explanation": "jQuery's motto \"Write Less, Do More\" reflects its ability to wrap many lines of vanilla JavaScript code into single-line methods."
+    },
+    {
+        "id": "jq-3",
+        "question": "How do you include jQuery in your web page?",
+        "options": [
+            "By installing it via a Windows executable file.",
+            "By importing it inside a CSS file.",
+            "By adding a <script> tag pointing to a CDN or local jQuery file in the HTML <head>.",
+            "By downloading a browser extension."
+        ],
+        "correctAnswer": 2,
+        "explanation": "You simply include the jQuery library file using a standard HTML <script> tag, often referencing a Content Delivery Network (CDN) like Google's."
+    },
+    {
+        "id": "jq-4",
+        "question": "Which symbol is used as the standard shorthand alias for the \"jQuery\" object?",
+        "options": [
+            "@",
+            "%",
+            "&",
+            "$"
+        ],
+        "correctAnswer": 3,
+        "explanation": "The dollar sign ($) is synonymous with jQuery. For example, $(selector) is the same as jQuery(selector)."
+    },
+    {
+        "id": "jq-5",
+        "question": "What is the standard jQuery syntax pattern for performing actions?",
+        "options": [
+            "action($(selector))",
+            "selector.action($)",
+            "$(selector).action()",
+            "$ -> action(selector)"
+        ],
+        "correctAnswer": 2,
+        "explanation": "The foundational syntax is $(selector).action(), where $ accesses jQuery, selector finds the HTML elements, and action() performs an operation on them."
+    },
+    {
+        "id": "jq-6",
+        "question": "Why is it best practice to wrap your jQuery code inside $(document).ready()?",
+        "options": [
+            "To make the code run faster.",
+            "To prevent the code from running before the HTML DOM has completely loaded.",
+            "To encrypt the JavaScript.",
+            "To connect to the database."
+        ],
+        "correctAnswer": 1,
+        "explanation": "Running code before the HTML elements exist will cause errors. Document ready ensures the browser has finished rendering the page first."
+    },
+    {
+        "id": "jq-7",
+        "question": "What are jQuery Selectors based on?",
+        "options": [
+            "SQL queries",
+            "Python dictionaries",
+            "Standard CSS Selectors",
+            "XML tags"
+        ],
+        "correctAnswer": 2,
+        "explanation": "If you know how to target elements using CSS (e.g., #id, .class, tag), you already know how to use jQuery Selectors."
+    },
+    {
+        "id": "jq-8",
+        "question": "Which selector targets an element with a specific ID of \"menu\"?",
+        "options": [
+            "$(\".menu\")",
+            "$(\"#menu\")",
+            "$(\"menu\")",
+            "$(\"*menu\")"
+        ],
+        "correctAnswer": 1,
+        "explanation": "Just like in CSS, the hash symbol (#) is used to select an element by its unique ID attribute."
+    },
+    {
+        "id": "jq-9",
+        "question": "Which selector targets all elements that have the CSS class \"active\"?",
+        "options": [
+            "$(\".active\")",
+            "$(\"#active\")",
+            "$(\"active\")",
+            "$(\":active\")"
+        ],
+        "correctAnswer": 0,
+        "explanation": "Just like in CSS, the period (.) prefix is used to select elements by their class name."
+    },
+    {
+        "id": "jq-10",
+        "question": "In an event handler, how do you select the exact specific element that triggered the event?",
+        "options": [
+            "$(\"target\")",
+            "$(\"element\")",
+            "$(that)",
+            "$(this)"
+        ],
+        "correctAnswer": 3,
+        "explanation": "The 'this' keyword refers to the DOM element that received the event, allowing you to manipulate it directly."
+    },
+    {
+        "id": "jq-11",
+        "question": "Which jQuery method is used to attach a click event to an element?",
+        "options": [
+            "onclick()",
+            "bindClick()",
+            "click()",
+            "addClick()"
+        ],
+        "correctAnswer": 2,
+        "explanation": "The click() method attaches an event handler function that fires when the user clicks the selected element."
+    },
+    {
+        "id": "jq-12",
+        "question": "Which of the following creates a fading effect to make a hidden element smoothly appear?",
+        "options": [
+            "show('fade')",
+            "appearSlow()",
+            "fadeIn()",
+            "fadeUp()"
+        ],
+        "correctAnswer": 2,
+        "explanation": "The fadeIn() method slowly shifts the opacity of an element until it is completely visible."
+    },
+    {
+        "id": "jq-13",
+        "question": "If an element is currently visible, what will the toggle() method do to it?",
+        "options": [
+            "It will change its color.",
+            "It will delete the element.",
+            "It will hide it.",
+            "It will do nothing."
+        ],
+        "correctAnswer": 2,
+        "explanation": "The toggle() method acts like a light switch. If the element is shown, it hides it. If hidden, it shows it."
+    },
+    {
+        "id": "jq-14",
+        "question": "Which jQuery method gets or sets the raw string content of an element (ignoring any HTML tags)?",
+        "options": [
+            "content()",
+            "text()",
+            "val()",
+            "html()"
+        ],
+        "correctAnswer": 1,
+        "explanation": "The text() method extracts purely string text, safely stripping out any HTML markup inside the element."
+    },
+    {
+        "id": "jq-15",
+        "question": "If you want to read the text that a user typed into an `<input>` field, which method must be used?",
+        "options": [
+            "text()",
+            "html()",
+            "val()",
+            "value()"
+        ],
+        "correctAnswer": 2,
+        "explanation": "Form input elements don't have text content in the DOM tree; they have a 'value' attribute, which is accessed using val()."
+    },
+    {
+        "id": "jq-16",
+        "question": "Which method would you use to change the \"src\" attribute of an image dynamically?",
+        "options": [
+            "changeSrc()",
+            "pic()",
+            "attr()",
+            "prop()"
+        ],
+        "correctAnswer": 2,
+        "explanation": "The attr() method gets or sets any HTML attribute on an element, including src, href, or title."
+    },
+    {
+        "id": "jq-17",
+        "question": "What does AJAX stand for in the context of jQuery?",
+        "options": [
+            "Asynchronous JavaScript and XML",
+            "Array JSON and XML",
+            "Advanced jQuery Application XML",
+            "Asynchronous jQuery and XHTML"
+        ],
+        "correctAnswer": 0,
+        "explanation": "AJAX allows web pages to communicate with servers asynchronously in the background without requiring a full page reload."
+    },
+    {
+        "id": "jq-18",
+        "question": "Which simple jQuery AJAX method is specifically used to request data from a server using an HTTP GET request?",
+        "options": [
+            "$.fetch()",
+            "$.request()",
+            "$.get()",
+            "$.receive()"
+        ],
+        "correctAnswer": 2,
+        "explanation": "$.get() is a shorthand AJAX method that requests data from a specified URL using a standard GET request."
+    },
+    {
+        "id": "jq-19",
+        "question": "Which traversing method is used to find the immediate parent of a selected element?",
+        "options": [
+            "father()",
+            "up()",
+            "parent()",
+            "ancestor()"
+        ],
+        "correctAnswer": 2,
+        "explanation": "The parent() method travels entirely one level up the DOM tree to return the immediate container of the selected element."
+    },
+    {
+        "id": "jq-20",
+        "question": "To add a new CSS class name to an element dynamically without overwriting its existing classes, use:",
+        "options": [
+            "class+",
+            "appendClass()",
+            "addClass()",
+            "cssClass()"
+        ],
+        "correctAnswer": 2,
+        "explanation": "The addClass() method appends one or more class names to the selected element's class attribute."
+    },
+    {
+        "id": "jq-21",
+        "question": "What does the toggleClass() method do?",
+        "options": [
+            "It turns a div into a span.",
+            "It automatically adds a class if it is missing, or removes it if it is already there.",
+            "It shuffles class names randomly.",
+            "It deletes all classes from the document."
+        ],
+        "correctAnswer": 1,
+        "explanation": "toggleClass() is perfect for things like Dark Mode toggles; it adds the class if absent, and strips it if present."
+    },
+    {
+        "id": "jq-22",
+        "question": "Which method directly modifies inline CSS styling on an element?",
+        "options": [
+            "style()",
+            "design()",
+            "css()",
+            "format()"
+        ],
+        "correctAnswer": 2,
+        "explanation": "The css() method allows you to retrieve a style property or inject new CSS rules directly onto the element's style attribute."
+    },
+    {
+        "id": "jq-23",
+        "question": "Which DOM manipulation method inserts new HTML content at the very END of the inside of a selected element?",
+        "options": [
+            "after()",
+            "append()",
+            "prepend()",
+            "post()"
+        ],
+        "correctAnswer": 1,
+        "explanation": "append() inserts content specifically as the last child inside the selected element (unlike after() which places it fully outside)."
+    },
+    {
+        "id": "jq-24",
+        "question": "What is the purpose of the $.noConflict() method?",
+        "options": [
+            "To prevent variables from crashing the browser.",
+            "To release the '$' alias back so other JavaScript libraries (like Prototype) can use it without clashing.",
+            "To fix CSS layout issues.",
+            "To stop animations from repeating."
+        ],
+        "correctAnswer": 1,
+        "explanation": "Other libraries also use the $ symbol. $.noConflict() surrenders jQuery's control of it to avoid syntax errors."
+    },
+    {
+        "id": "jq-25",
+        "question": "Which advanced selector targets only the very first paragraph tag on the entire page?",
+        "options": [
+            "$(\"p:first\")",
+            "$(\"p(1)\")",
+            "$(\"p^1\")",
+            "$(\"p.first\")"
+        ],
+        "correctAnswer": 0,
+        "explanation": "The :first pseudo-selector isolates the very first matching DOM element within the returned set."
+    },
+    {
+        "id": "jq-26",
+        "question": "If you want to select all `<li>` tags that contain the exact word 'Apple', what selector should you use?",
+        "options": [
+            "$(\"li:has('Apple')\")",
+            "$(\"li:contains('Apple')\")",
+            "$(\"li(Apple)\")",
+            "$(\"li:text('Apple')\")"
+        ],
+        "correctAnswer": 1,
+        "explanation": "The :contains() selector filters elements down to only those whose inner text includes the specified string."
+    },
+    {
+        "id": "jq-27",
+        "question": "What does the filter() method do?",
+        "options": [
+            "Deletes the element from the page permanently.",
+            "Removes malicious code from inputs.",
+            "Reduces a matched set of elements to only those that match a specific selector or pass a function's test.",
+            "Compresses images."
+        ],
+        "correctAnswer": 2,
+        "explanation": "filter() works perfectly after an initial broad selection to narrow the group down based on highly specific criteria."
+    },
+    {
+        "id": "jq-28",
+        "question": "Which keyboard event fires immediately when a key is pushed down?",
+        "options": [
+            "keypress",
+            "keydown",
+            "keyup",
+            "keypush"
+        ],
+        "correctAnswer": 1,
+        "explanation": "The keydown event fires the moment the physical key is depressed, before it is released (keyup)."
+    },
+    {
+        "id": "jq-29",
+        "question": "Which form event triggers when an input field is clicked into and becomes active?",
+        "options": [
+            "active()",
+            "blur()",
+            "select()",
+            "focus()"
+        ],
+        "correctAnswer": 3,
+        "explanation": "The focus() event occurs when an element (like a text box) gains cursor focus from the user."
+    },
+    {
+        "id": "jq-30",
+        "question": "Which generalized AJAX method is the core behind $.get() and allows full customization of headers, timeouts, and request body?",
+        "options": [
+            "$.ajax()",
+            "$.fetch()",
+            "$.connect()",
+            "$.server()"
+        ],
+        "correctAnswer": 0,
+        "explanation": "$.ajax() is the incredibly powerful underlying method that all other jQuery AJAX shorthand functions are built top of."
+    }
+]

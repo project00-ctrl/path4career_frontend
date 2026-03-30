@@ -1,0 +1,127 @@
+{
+    "language": "Node.js",
+    "icon": "Node",
+    "color": "#339933",
+    "exercises": [
+        {
+            "id": 1,
+            "title": "Console Log",
+            "difficulty": "basic",
+            "description": "Print <strong>Hello, Node.js!</strong> using console.log.",
+            "starterCode": "// Print Hello, Node.js!",
+            "expectedOutput": "",
+            "validationType": "outputContains",
+            "validationValue": "Hello, Node.js!",
+            "hint": "console.log('Hello, Node.js!');",
+            "solutionCode": "// The hint provides the solution:\n// console.log('Hello, Node.js!');"
+        },
+        {
+            "id": 2,
+            "title": "Variables",
+            "difficulty": "basic",
+            "description": "Create variables for name and version. Print them.",
+            "starterCode": "const name = 'Node';\nconst version = 18;\n// Print them",
+            "expectedOutput": "",
+            "validationType": "outputContains",
+            "validationValue": "Node",
+            "hint": "console.log(name, version);",
+            "solutionCode": "// The hint provides the solution:\n// console.log(name, version);"
+        },
+        {
+            "id": 3,
+            "title": "Arrow Function",
+            "difficulty": "basic",
+            "description": "Create an arrow function <code>greet</code> that returns 'Hello!'. Print it.",
+            "starterCode": "// Create arrow function\nconst greet = () => 'Hello!';\nconsole.log(greet());",
+            "expectedOutput": "",
+            "validationType": "outputContains",
+            "validationValue": "Hello!",
+            "hint": "const greet = () => 'Hello!';",
+            "solutionCode": "// The hint provides the solution:\n// const greet = () => 'Hello!';"
+        },
+        {
+            "id": 4,
+            "title": "Array Methods",
+            "difficulty": "basic",
+            "description": "Use <code>.map()</code> to double each number in [1,2,3,4,5]. Print result.",
+            "starterCode": "const nums = [1,2,3,4,5];\n// Map and print",
+            "expectedOutput": "",
+            "validationType": "outputContains",
+            "validationValue": "2,4,6,8,10",
+            "hint": "console.log(nums.map(n => n*2).join(','));",
+            "solutionCode": "// The hint provides the solution:\n// console.log(nums.map(n => n*2).join(','));"
+        },
+        {
+            "id": 5,
+            "title": "Template Literals",
+            "difficulty": "basic",
+            "description": "Use template literals to print <strong>Hello, World! Welcome to Node.js</strong>.",
+            "starterCode": "const name = 'World';\n// Use template literal",
+            "expectedOutput": "",
+            "validationType": "outputContains",
+            "validationValue": "Hello, World!",
+            "hint": "console.log(`Hello, ${name}! Welcome to Node.js`);",
+            "solutionCode": "// The hint provides the solution:\n// console.log(`Hello, ${name}! Welcome to Node.js`);"
+        },
+        {
+            "id": 6,
+            "title": "Destructuring",
+            "difficulty": "intermediate",
+            "description": "Destructure {name:'Alice', age:25} and print both values.",
+            "starterCode": "const person = {name:'Alice', age:25};\n// Destructure and print",
+            "expectedOutput": "",
+            "validationType": "outputContains",
+            "validationValue": "Alice",
+            "hint": "const {name, age} = person; console.log(name, age);",
+            "solutionCode": "// The hint provides the solution:\n// const {name, age} = person; console.log(name, age);"
+        },
+        {
+            "id": 7,
+            "title": "Spread Operator",
+            "difficulty": "intermediate",
+            "description": "Merge [1,2,3] and [4,5,6] using spread. Print result.",
+            "starterCode": "const a = [1,2,3];\nconst b = [4,5,6];\n// Merge and print",
+            "expectedOutput": "",
+            "validationType": "outputContains",
+            "validationValue": "1,2,3,4,5,6",
+            "hint": "console.log([...a, ...b].join(','));",
+            "solutionCode": "// The hint provides the solution:\n// console.log([...a, ...b].join(','));"
+        },
+        {
+            "id": 8,
+            "title": "Promises",
+            "difficulty": "intermediate",
+            "description": "Create a Promise that resolves with 'Done!'. Log the result.",
+            "starterCode": "// Create and resolve a promise\nconst p = new Promise((resolve) => resolve('Done!'));\np.then(val => console.log(val));",
+            "expectedOutput": "",
+            "validationType": "outputContains",
+            "validationValue": "Done!",
+            "hint": "Use new Promise((resolve) => resolve('Done!'))",
+            "solutionCode": "// The hint provides the solution:\n// Use new Promise((resolve) => resolve('Done!'))"
+        },
+        {
+            "id": 9,
+            "title": "JSON Parse",
+            "difficulty": "intermediate",
+            "description": "Parse '{\"name\":\"Node\",\"version\":18}' and print the name.",
+            "starterCode": "const json = '{\"name\":\"Node\",\"version\":18}';\n// Parse and print name",
+            "expectedOutput": "",
+            "validationType": "outputContains",
+            "validationValue": "Node",
+            "hint": "console.log(JSON.parse(json).name);",
+            "solutionCode": "// The hint provides the solution:\n// console.log(JSON.parse(json).name);"
+        },
+        {
+            "id": 10,
+            "title": "Error Handling",
+            "difficulty": "intermediate",
+            "description": "Use try-catch to catch a JSON.parse error on invalid JSON. Print <strong>Parse error</strong>.",
+            "starterCode": "// Try parsing invalid JSON\ntry {\n    JSON.parse('invalid');\n} catch(e) {\n    console.log('Parse error');\n}",
+            "expectedOutput": "",
+            "validationType": "outputContains",
+            "validationValue": "Parse error",
+            "hint": "try { JSON.parse('invalid'); } catch(e) { console.log('Parse error'); }",
+            "solutionCode": "// The hint provides the solution:\n// try { JSON.parse('invalid'); } catch(e) { console.log('Parse error'); }"
+        }
+    ]
+}

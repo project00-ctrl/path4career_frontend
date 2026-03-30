@@ -1,0 +1,1153 @@
+{
+  "sections": [
+    {
+      "title": "Arrays",
+      "desc": "",
+      "type": "table",
+      "columns": [
+        "Concept",
+        "Description",
+        "Complexity"
+      ],
+      "rows": [
+        {
+          "prop": "Array",
+          "desc": "A collection of elements stored at contiguous memory locations, accessed by index",
+          "ver": "O(1) access"
+        },
+        {
+          "prop": "Array Traversal",
+          "desc": "Iterating through each element of an array from start to end",
+          "ver": "O(n)"
+        },
+        {
+          "prop": "Array Insertion",
+          "desc": "Adding an element at a specific index, shifting subsequent elements",
+          "ver": "O(n)"
+        },
+        {
+          "prop": "Array Deletion",
+          "desc": "Removing an element at a specific index, shifting subsequent elements",
+          "ver": "O(n)"
+        },
+        {
+          "prop": "Array Search (Linear)",
+          "desc": "Scanning each element one by one to find a target value",
+          "ver": "O(n)"
+        },
+        {
+          "prop": "Array Search (Binary)",
+          "desc": "Dividing a sorted array in half repeatedly to locate a target value",
+          "ver": "O(log n)"
+        },
+        {
+          "prop": "2D Array",
+          "desc": "An array of arrays forming a grid/matrix structure accessed by row and column indices",
+          "ver": "O(1) access"
+        },
+        {
+          "prop": "Dynamic Array",
+          "desc": "A resizable array that doubles capacity when full (e.g., ArrayList, Python list)",
+          "ver": "O(1) amortized"
+        },
+        {
+          "prop": "Prefix Sum",
+          "desc": "Precomputed cumulative sums to answer range sum queries in constant time",
+          "ver": "O(1) query, O(n) build"
+        },
+        {
+          "prop": "Sliding Window",
+          "desc": "Technique to find subarrays/substrings satisfying a condition using a moving window",
+          "ver": "O(n)"
+        },
+        {
+          "prop": "Two Pointer",
+          "desc": "Using two indices moving toward each other or in the same direction to solve array problems",
+          "ver": "O(n)"
+        },
+        {
+          "prop": "Kadane's Algorithm",
+          "desc": "Finds the maximum sum contiguous subarray using dynamic programming",
+          "ver": "O(n)"
+        }
+      ]
+    },
+    {
+      "title": "Strings",
+      "desc": "",
+      "type": "table",
+      "columns": [
+        "Concept",
+        "Description",
+        "Complexity"
+      ],
+      "rows": [
+        {
+          "prop": "String",
+          "desc": "A sequence of characters stored as an array; immutable in many languages",
+          "ver": "O(n) copy"
+        },
+        {
+          "prop": "String Reversal",
+          "desc": "Reversing the order of characters in a string",
+          "ver": "O(n)"
+        },
+        {
+          "prop": "Palindrome Check",
+          "desc": "Verifying if a string reads the same forwards and backwards",
+          "ver": "O(n)"
+        },
+        {
+          "prop": "Anagram Check",
+          "desc": "Determining if two strings contain the same characters with the same frequencies",
+          "ver": "O(n)"
+        },
+        {
+          "prop": "String Hashing",
+          "desc": "Converting a string to a numeric hash for fast equality checks and pattern matching",
+          "ver": "O(n)"
+        },
+        {
+          "prop": "KMP Algorithm",
+          "desc": "Knuth-Morris-Pratt pattern searching using a failure function to avoid redundant comparisons",
+          "ver": "O(n + m)"
+        },
+        {
+          "prop": "Rabin-Karp Algorithm",
+          "desc": "Rolling hash-based substring search that checks multiple patterns efficiently",
+          "ver": "O(n + m) avg"
+        },
+        {
+          "prop": "Z Algorithm",
+          "desc": "Computes the Z-array to find all occurrences of a pattern in a string in linear time",
+          "ver": "O(n)"
+        },
+        {
+          "prop": "Longest Common Subsequence",
+          "desc": "Finding the longest sequence present in both strings in the same order (not necessarily contiguous)",
+          "ver": "O(n*m)"
+        },
+        {
+          "prop": "Longest Common Substring",
+          "desc": "Finding the longest contiguous sequence of characters common to two strings",
+          "ver": "O(n*m)"
+        },
+        {
+          "prop": "Edit Distance",
+          "desc": "Minimum number of insert, delete, replace operations to convert one string to another",
+          "ver": "O(n*m)"
+        },
+        {
+          "prop": "Trie (Prefix Tree)",
+          "desc": "Tree structure for efficient string storage and prefix-based search",
+          "ver": "O(L) insert/search"
+        }
+      ]
+    },
+    {
+      "title": "Linked Lists",
+      "desc": "",
+      "type": "table",
+      "columns": [
+        "Concept",
+        "Description",
+        "Complexity"
+      ],
+      "rows": [
+        {
+          "prop": "Singly Linked List",
+          "desc": "Linear data structure where each node points to the next node; no backward traversal",
+          "ver": "O(n) search"
+        },
+        {
+          "prop": "Doubly Linked List",
+          "desc": "Each node has pointers to both next and previous nodes, enabling bidirectional traversal",
+          "ver": "O(n) search"
+        },
+        {
+          "prop": "Circular Linked List",
+          "desc": "Last node points back to the first node, forming a circle",
+          "ver": "O(n) traversal"
+        },
+        {
+          "prop": "LL Insertion (Head)",
+          "desc": "Inserting a new node at the beginning of the linked list",
+          "ver": "O(1)"
+        },
+        {
+          "prop": "LL Insertion (Tail)",
+          "desc": "Inserting a new node at the end of the linked list",
+          "ver": "O(1) with tail ptr"
+        },
+        {
+          "prop": "LL Deletion",
+          "desc": "Removing a node by updating the previous node's next pointer to skip the target",
+          "ver": "O(n)"
+        },
+        {
+          "prop": "LL Reversal",
+          "desc": "Reversing the direction of all next pointers in a linked list iteratively or recursively",
+          "ver": "O(n)"
+        },
+        {
+          "prop": "Floyd's Cycle Detection",
+          "desc": "Using slow and fast pointers to detect if a linked list contains a cycle",
+          "ver": "O(n)"
+        },
+        {
+          "prop": "Merge Two Sorted Lists",
+          "desc": "Combining two sorted linked lists into a single sorted linked list",
+          "ver": "O(n + m)"
+        },
+        {
+          "prop": "Find Middle Node",
+          "desc": "Using slow/fast pointer technique to find the middle element of a linked list",
+          "ver": "O(n)"
+        },
+        {
+          "prop": "Nth Node from End",
+          "desc": "Finding the nth node from the tail using two pointers separated by n steps",
+          "ver": "O(n)"
+        }
+      ]
+    },
+    {
+      "title": "Stacks & Queues",
+      "desc": "",
+      "type": "table",
+      "columns": [
+        "Concept",
+        "Description",
+        "Complexity"
+      ],
+      "rows": [
+        {
+          "prop": "Stack",
+          "desc": "LIFO (Last In First Out) data structure supporting push and pop operations",
+          "ver": "O(1) push/pop"
+        },
+        {
+          "prop": "Queue",
+          "desc": "FIFO (First In First Out) data structure supporting enqueue and dequeue operations",
+          "ver": "O(1) enq/deq"
+        },
+        {
+          "prop": "Deque (Double-Ended Queue)",
+          "desc": "Allows insertion and deletion from both front and back ends",
+          "ver": "O(1) all ends"
+        },
+        {
+          "prop": "Priority Queue",
+          "desc": "Queue where each element has a priority; highest priority element is dequeued first",
+          "ver": "O(log n) insert"
+        },
+        {
+          "prop": "Monotonic Stack",
+          "desc": "Stack maintaining elements in increasing or decreasing order for next/previous greater problems",
+          "ver": "O(n)"
+        },
+        {
+          "prop": "Stack using Queues",
+          "desc": "Simulating LIFO behavior using one or two FIFO queues",
+          "ver": "O(n) push or pop"
+        },
+        {
+          "prop": "Queue using Stacks",
+          "desc": "Simulating FIFO behavior using two stacks with lazy transfer",
+          "ver": "O(1) amortized"
+        },
+        {
+          "prop": "Min Stack",
+          "desc": "Stack that supports retrieving the minimum element in constant time using auxiliary stack",
+          "ver": "O(1) getMin"
+        },
+        {
+          "prop": "Circular Queue",
+          "desc": "Fixed-size queue using an array in circular fashion to avoid wasted space",
+          "ver": "O(1) enq/deq"
+        },
+        {
+          "prop": "Balanced Parentheses",
+          "desc": "Using a stack to verify that all brackets open and close in correct order",
+          "ver": "O(n)"
+        }
+      ]
+    },
+    {
+      "title": "Trees",
+      "desc": "",
+      "type": "table",
+      "columns": [
+        "Concept",
+        "Description",
+        "Complexity"
+      ],
+      "rows": [
+        {
+          "prop": "Binary Tree",
+          "desc": "Tree where each node has at most two children (left and right)",
+          "ver": "O(n) traversal"
+        },
+        {
+          "prop": "Binary Search Tree",
+          "desc": "Binary tree where left subtree has smaller values and right subtree has larger values",
+          "ver": "O(log n) avg"
+        },
+        {
+          "prop": "Inorder Traversal",
+          "desc": "Visiting left subtree, then root, then right subtree; gives sorted output for BST",
+          "ver": "O(n)"
+        },
+        {
+          "prop": "Preorder Traversal",
+          "desc": "Visiting root, then left subtree, then right subtree; used to copy trees",
+          "ver": "O(n)"
+        },
+        {
+          "prop": "Postorder Traversal",
+          "desc": "Visiting left subtree, then right subtree, then root; used to delete trees",
+          "ver": "O(n)"
+        },
+        {
+          "prop": "Level Order Traversal",
+          "desc": "Breadth-first traversal of a tree level by level using a queue",
+          "ver": "O(n)"
+        },
+        {
+          "prop": "Height of Tree",
+          "desc": "Maximum depth from root to any leaf node, computed recursively",
+          "ver": "O(n)"
+        },
+        {
+          "prop": "Lowest Common Ancestor",
+          "desc": "Finding the deepest node that is an ancestor of two given nodes in a tree",
+          "ver": "O(n)"
+        },
+        {
+          "prop": "AVL Tree",
+          "desc": "Self-balancing BST where height difference between left and right subtrees is at most 1",
+          "ver": "O(log n) all ops"
+        },
+        {
+          "prop": "Red-Black Tree",
+          "desc": "Self-balancing BST with color properties ensuring O(log n) height",
+          "ver": "O(log n) all ops"
+        },
+        {
+          "prop": "Segment Tree",
+          "desc": "Tree for storing intervals, enabling range queries and point updates efficiently",
+          "ver": "O(log n) query"
+        },
+        {
+          "prop": "Fenwick Tree (BIT)",
+          "desc": "Binary Indexed Tree for prefix sum queries and point updates using binary representation",
+          "ver": "O(log n)"
+        },
+        {
+          "prop": "N-ary Tree",
+          "desc": "Tree where each node can have at most N children",
+          "ver": "O(n) traversal"
+        },
+        {
+          "prop": "Trie",
+          "desc": "Prefix tree for efficient string storage and retrieval, each edge represents a character",
+          "ver": "O(L) operations"
+        },
+        {
+          "prop": "Diameter of Tree",
+          "desc": "Longest path between any two nodes in a tree, may or may not pass through root",
+          "ver": "O(n)"
+        }
+      ]
+    },
+    {
+      "title": "Heaps",
+      "desc": "",
+      "type": "table",
+      "columns": [
+        "Concept",
+        "Description",
+        "Complexity"
+      ],
+      "rows": [
+        {
+          "prop": "Min Heap",
+          "desc": "Complete binary tree where parent node is always smaller than or equal to its children",
+          "ver": "O(log n) insert"
+        },
+        {
+          "prop": "Max Heap",
+          "desc": "Complete binary tree where parent node is always greater than or equal to its children",
+          "ver": "O(log n) insert"
+        },
+        {
+          "prop": "Heapify",
+          "desc": "Converting an arbitrary array into a valid heap structure in linear time",
+          "ver": "O(n)"
+        },
+        {
+          "prop": "Heap Insert",
+          "desc": "Adding an element to a heap and restoring heap property by bubbling up",
+          "ver": "O(log n)"
+        },
+        {
+          "prop": "Heap Extract",
+          "desc": "Removing the root element and restoring heap property by sifting down",
+          "ver": "O(log n)"
+        },
+        {
+          "prop": "Heap Sort",
+          "desc": "Sorting algorithm using a max heap to extract elements in descending order",
+          "ver": "O(n log n)"
+        },
+        {
+          "prop": "K Largest Elements",
+          "desc": "Finding top K largest elements using a min heap of size K",
+          "ver": "O(n log k)"
+        },
+        {
+          "prop": "Merge K Sorted Lists",
+          "desc": "Using a min heap to merge K sorted lists efficiently by extracting minimums",
+          "ver": "O(n log k)"
+        },
+        {
+          "prop": "Median of Stream",
+          "desc": "Maintaining two heaps (max-heap and min-heap) to find median of a data stream",
+          "ver": "O(log n) insert"
+        }
+      ]
+    },
+    {
+      "title": "Hashing",
+      "desc": "",
+      "type": "table",
+      "columns": [
+        "Concept",
+        "Description",
+        "Complexity"
+      ],
+      "rows": [
+        {
+          "prop": "Hash Table",
+          "desc": "Data structure mapping keys to values using a hash function for O(1) average lookup",
+          "ver": "O(1) avg"
+        },
+        {
+          "prop": "Hash Function",
+          "desc": "Function converting a key to an array index; good functions minimize collisions",
+          "ver": "O(k) key size"
+        },
+        {
+          "prop": "Chaining (Collision)",
+          "desc": "Handling hash collisions by storing multiple items at the same index using linked lists",
+          "ver": "O(1) avg"
+        },
+        {
+          "prop": "Open Addressing",
+          "desc": "Resolving collisions by probing for the next available slot (linear, quadratic, double hashing)",
+          "ver": "O(1) avg"
+        },
+        {
+          "prop": "Load Factor",
+          "desc": "Ratio of elements to table size; high load factor increases collision likelihood",
+          "ver": "N/A"
+        },
+        {
+          "prop": "Rehashing",
+          "desc": "Expanding the hash table and re-inserting all elements when load factor exceeds threshold",
+          "ver": "O(n)"
+        },
+        {
+          "prop": "HashMap",
+          "desc": "Key-value store using hashing; provides O(1) average insert, delete, and lookup",
+          "ver": "O(1) avg"
+        },
+        {
+          "prop": "HashSet",
+          "desc": "Collection of unique elements using hashing; supports O(1) membership checks",
+          "ver": "O(1) avg"
+        },
+        {
+          "prop": "Two Sum Problem",
+          "desc": "Finding two numbers that sum to a target using a hash map to store complements",
+          "ver": "O(n)"
+        },
+        {
+          "prop": "Frequency Count",
+          "desc": "Using a hash map to count occurrences of each element in a collection",
+          "ver": "O(n)"
+        }
+      ]
+    },
+    {
+      "title": "Graphs",
+      "desc": "",
+      "type": "table",
+      "columns": [
+        "Concept",
+        "Description",
+        "Complexity"
+      ],
+      "rows": [
+        {
+          "prop": "Graph",
+          "desc": "Non-linear data structure with vertices (nodes) and edges (connections) between them",
+          "ver": "O(V + E)"
+        },
+        {
+          "prop": "Directed Graph",
+          "desc": "Graph where edges have a direction, going from one vertex to another",
+          "ver": "O(V + E)"
+        },
+        {
+          "prop": "Undirected Graph",
+          "desc": "Graph where edges have no direction; connection is bidirectional",
+          "ver": "O(V + E)"
+        },
+        {
+          "prop": "Weighted Graph",
+          "desc": "Graph where each edge has an associated numerical weight or cost",
+          "ver": "O(V + E)"
+        },
+        {
+          "prop": "Adjacency Matrix",
+          "desc": "2D matrix representation of a graph where cell [i][j] indicates edge between i and j",
+          "ver": "O(V²) space"
+        },
+        {
+          "prop": "Adjacency List",
+          "desc": "Array of lists where each index stores the neighbors of that vertex; space efficient",
+          "ver": "O(V + E) space"
+        },
+        {
+          "prop": "BFS (Breadth-First Search)",
+          "desc": "Explores graph level by level using a queue; finds shortest path in unweighted graphs",
+          "ver": "O(V + E)"
+        },
+        {
+          "prop": "DFS (Depth-First Search)",
+          "desc": "Explores as far as possible along each branch before backtracking using a stack or recursion",
+          "ver": "O(V + E)"
+        },
+        {
+          "prop": "Topological Sort",
+          "desc": "Linear ordering of vertices in a DAG such that for every edge u→v, u comes before v",
+          "ver": "O(V + E)"
+        },
+        {
+          "prop": "Dijkstra's Algorithm",
+          "desc": "Finds shortest path from a source to all vertices in a graph with non-negative weights",
+          "ver": "O((V+E) log V)"
+        },
+        {
+          "prop": "Bellman-Ford Algorithm",
+          "desc": "Finds shortest paths even with negative edge weights; detects negative cycles",
+          "ver": "O(V * E)"
+        },
+        {
+          "prop": "Floyd-Warshall Algorithm",
+          "desc": "All-pairs shortest path algorithm using dynamic programming on a distance matrix",
+          "ver": "O(V³)"
+        },
+        {
+          "prop": "Kruskal's Algorithm",
+          "desc": "Builds Minimum Spanning Tree by greedily adding smallest edges that don't form a cycle",
+          "ver": "O(E log E)"
+        },
+        {
+          "prop": "Prim's Algorithm",
+          "desc": "Builds Minimum Spanning Tree by greedily expanding from a starting vertex",
+          "ver": "O(E log V)"
+        },
+        {
+          "prop": "Union-Find (DSU)",
+          "desc": "Disjoint Set Union structure to efficiently find if two elements are in the same set",
+          "ver": "O(α(n)) amortized"
+        },
+        {
+          "prop": "Cycle Detection",
+          "desc": "Detecting if a graph contains a cycle using DFS coloring or Union-Find",
+          "ver": "O(V + E)"
+        },
+        {
+          "prop": "Connected Components",
+          "desc": "Finding all groups of vertices where every vertex can reach every other in the group",
+          "ver": "O(V + E)"
+        },
+        {
+          "prop": "Bipartite Check",
+          "desc": "Verifying if a graph can be 2-colored such that no two adjacent vertices share a color",
+          "ver": "O(V + E)"
+        }
+      ]
+    },
+    {
+      "title": "Sorting",
+      "desc": "",
+      "type": "table",
+      "columns": [
+        "Concept",
+        "Description",
+        "Complexity"
+      ],
+      "rows": [
+        {
+          "prop": "Bubble Sort",
+          "desc": "Repeatedly swaps adjacent elements if in wrong order; simple but inefficient for large inputs",
+          "ver": "O(n²)"
+        },
+        {
+          "prop": "Selection Sort",
+          "desc": "Finds minimum element and places it at beginning; performs n-1 swaps total",
+          "ver": "O(n²)"
+        },
+        {
+          "prop": "Insertion Sort",
+          "desc": "Builds sorted array one element at a time; efficient for small or nearly sorted arrays",
+          "ver": "O(n²) / O(n) best"
+        },
+        {
+          "prop": "Merge Sort",
+          "desc": "Divide-and-conquer algorithm splitting array in half, sorting, then merging; stable sort",
+          "ver": "O(n log n)"
+        },
+        {
+          "prop": "Quick Sort",
+          "desc": "Picks a pivot, partitions array around it, recursively sorts subarrays; in-place",
+          "ver": "O(n log n) avg"
+        },
+        {
+          "prop": "Heap Sort",
+          "desc": "Uses a max heap to extract elements in sorted order; in-place but not stable",
+          "ver": "O(n log n)"
+        },
+        {
+          "prop": "Counting Sort",
+          "desc": "Non-comparison sort counting occurrences of each value; efficient for small integer ranges",
+          "ver": "O(n + k)"
+        },
+        {
+          "prop": "Radix Sort",
+          "desc": "Sorts integers digit by digit from least to most significant using counting sort each pass",
+          "ver": "O(d * (n + k))"
+        },
+        {
+          "prop": "Bucket Sort",
+          "desc": "Distributes elements into buckets, sorts each bucket, then concatenates results",
+          "ver": "O(n + k) avg"
+        },
+        {
+          "prop": "Shell Sort",
+          "desc": "Generalized insertion sort with decreasing gap sizes; faster than insertion sort",
+          "ver": "O(n log² n)"
+        },
+        {
+          "prop": "Tim Sort",
+          "desc": "Hybrid merge+insertion sort used in Python and Java; efficient on real-world data",
+          "ver": "O(n log n)"
+        }
+      ]
+    },
+    {
+      "title": "Searching",
+      "desc": "",
+      "type": "table",
+      "columns": [
+        "Concept",
+        "Description",
+        "Complexity"
+      ],
+      "rows": [
+        {
+          "prop": "Linear Search",
+          "desc": "Checks each element one by one until target is found; works on unsorted arrays",
+          "ver": "O(n)"
+        },
+        {
+          "prop": "Binary Search",
+          "desc": "Finds target in sorted array by repeatedly halving the search interval",
+          "ver": "O(log n)"
+        },
+        {
+          "prop": "Binary Search on Answer",
+          "desc": "Applying binary search to a monotonic answer space to find optimal value",
+          "ver": "O(log n * f(n))"
+        },
+        {
+          "prop": "Ternary Search",
+          "desc": "Finds max/min of unimodal function by dividing search space into three parts",
+          "ver": "O(log₃ n)"
+        },
+        {
+          "prop": "Exponential Search",
+          "desc": "Finds range where element may exist by doubling index, then applies binary search",
+          "ver": "O(log n)"
+        },
+        {
+          "prop": "Interpolation Search",
+          "desc": "Improved binary search for uniformly distributed data using interpolation formula",
+          "ver": "O(log log n) avg"
+        },
+        {
+          "prop": "Jump Search",
+          "desc": "Jumps ahead by fixed blocks then performs linear search within the identified block",
+          "ver": "O(√n)"
+        }
+      ]
+    },
+    {
+      "title": "Dynamic Programming",
+      "desc": "",
+      "type": "table",
+      "columns": [
+        "Concept",
+        "Description",
+        "Complexity"
+      ],
+      "rows": [
+        {
+          "prop": "Dynamic Programming",
+          "desc": "Technique to solve problems by breaking into overlapping subproblems and storing results",
+          "ver": "Problem dependent"
+        },
+        {
+          "prop": "Memoization (Top-Down)",
+          "desc": "Caching recursive call results to avoid recomputation of overlapping subproblems",
+          "ver": "O(n) states"
+        },
+        {
+          "prop": "Tabulation (Bottom-Up)",
+          "desc": "Filling a DP table iteratively from smallest subproblems to the main problem",
+          "ver": "O(n) space"
+        },
+        {
+          "prop": "0/1 Knapsack",
+          "desc": "Maximize value of items selected where each item can be taken at most once",
+          "ver": "O(n * W)"
+        },
+        {
+          "prop": "Unbounded Knapsack",
+          "desc": "Knapsack variant where each item can be taken multiple times",
+          "ver": "O(n * W)"
+        },
+        {
+          "prop": "Longest Increasing Subsequence",
+          "desc": "Finding the longest subsequence where each element is greater than the previous",
+          "ver": "O(n log n)"
+        },
+        {
+          "prop": "Coin Change",
+          "desc": "Finding minimum number of coins needed to make a given amount",
+          "ver": "O(n * amount)"
+        },
+        {
+          "prop": "Matrix Chain Multiplication",
+          "desc": "Finding optimal parenthesization to minimize scalar multiplications",
+          "ver": "O(n³)"
+        },
+        {
+          "prop": "Rod Cutting",
+          "desc": "Maximizing profit by cutting a rod into pieces and selling each piece",
+          "ver": "O(n²)"
+        },
+        {
+          "prop": "Subset Sum",
+          "desc": "Determining if a subset of given set sums to a target value",
+          "ver": "O(n * sum)"
+        },
+        {
+          "prop": "Partition Equal Subset",
+          "desc": "Checking if an array can be split into two subsets with equal sums",
+          "ver": "O(n * sum)"
+        },
+        {
+          "prop": "DP on Trees",
+          "desc": "Dynamic programming applied to tree structures, computing values for subtrees bottom-up",
+          "ver": "O(n)"
+        },
+        {
+          "prop": "DP on Grids",
+          "desc": "Computing values for each cell based on neighboring cells; e.g., unique paths, minimum path sum",
+          "ver": "O(m * n)"
+        },
+        {
+          "prop": "Bitmask DP",
+          "desc": "Using bitmasks to represent subsets of elements in exponential DP problems like TSP",
+          "ver": "O(2ⁿ * n)"
+        }
+      ]
+    },
+    {
+      "title": "Greedy",
+      "desc": "",
+      "type": "table",
+      "columns": [
+        "Concept",
+        "Description",
+        "Complexity"
+      ],
+      "rows": [
+        {
+          "prop": "Greedy Algorithm",
+          "desc": "Makes the locally optimal choice at each step hoping to find the global optimum",
+          "ver": "Problem dependent"
+        },
+        {
+          "prop": "Activity Selection",
+          "desc": "Selecting maximum number of non-overlapping activities sorted by end time",
+          "ver": "O(n log n)"
+        },
+        {
+          "prop": "Fractional Knapsack",
+          "desc": "Maximizing value by taking fractions of items sorted by value/weight ratio",
+          "ver": "O(n log n)"
+        },
+        {
+          "prop": "Huffman Coding",
+          "desc": "Building optimal prefix-free binary code using a greedy min-heap based approach",
+          "ver": "O(n log n)"
+        },
+        {
+          "prop": "Job Sequencing",
+          "desc": "Scheduling jobs with deadlines to maximize total profit",
+          "ver": "O(n log n)"
+        },
+        {
+          "prop": "Interval Scheduling",
+          "desc": "Finding maximum number of non-conflicting intervals from a given set",
+          "ver": "O(n log n)"
+        },
+        {
+          "prop": "Minimum Platforms",
+          "desc": "Finding minimum number of platforms needed so no train waits on a platform",
+          "ver": "O(n log n)"
+        },
+        {
+          "prop": "Gas Station",
+          "desc": "Finding starting position to complete circular tour using greedy difference tracking",
+          "ver": "O(n)"
+        }
+      ]
+    },
+    {
+      "title": "Backtracking",
+      "desc": "",
+      "type": "table",
+      "columns": [
+        "Concept",
+        "Description",
+        "Complexity"
+      ],
+      "rows": [
+        {
+          "prop": "Backtracking",
+          "desc": "Algorithmic technique exploring all options recursively, abandoning paths that fail constraints",
+          "ver": "O(b^d)"
+        },
+        {
+          "prop": "N-Queens Problem",
+          "desc": "Placing N queens on NxN board so no two queens attack each other",
+          "ver": "O(n!)"
+        },
+        {
+          "prop": "Sudoku Solver",
+          "desc": "Filling a 9x9 grid obeying row, column, and 3x3 box constraints using backtracking",
+          "ver": "O(9^m)"
+        },
+        {
+          "prop": "Rat in a Maze",
+          "desc": "Finding all paths from source to destination in a grid with obstacles",
+          "ver": "O(2^(n²))"
+        },
+        {
+          "prop": "Permutations",
+          "desc": "Generating all possible orderings of a given set of elements",
+          "ver": "O(n!)"
+        },
+        {
+          "prop": "Subsets",
+          "desc": "Generating all possible subsets (power set) of a given set of elements",
+          "ver": "O(2ⁿ)"
+        },
+        {
+          "prop": "Combination Sum",
+          "desc": "Finding all combinations of numbers that sum to a target value",
+          "ver": "O(2ⁿ)"
+        },
+        {
+          "prop": "Word Search",
+          "desc": "Searching for a word in a 2D character grid using DFS and backtracking",
+          "ver": "O(m*n*4^L)"
+        }
+      ]
+    },
+    {
+      "title": "Divide & Conquer",
+      "desc": "",
+      "type": "table",
+      "columns": [
+        "Concept",
+        "Description",
+        "Complexity"
+      ],
+      "rows": [
+        {
+          "prop": "Divide and Conquer",
+          "desc": "Solving problems by dividing into smaller subproblems, solving, and combining results",
+          "ver": "Problem dependent"
+        },
+        {
+          "prop": "Merge Sort",
+          "desc": "Sorts by splitting array in half, recursively sorting halves, then merging them",
+          "ver": "O(n log n)"
+        },
+        {
+          "prop": "Quick Sort",
+          "desc": "Sorts by partitioning around a pivot and recursively sorting subarrays",
+          "ver": "O(n log n) avg"
+        },
+        {
+          "prop": "Binary Search",
+          "desc": "Divides sorted array into halves to eliminate half the search space each step",
+          "ver": "O(log n)"
+        },
+        {
+          "prop": "Strassen's Matrix Multiplication",
+          "desc": "Multiplies two matrices using 7 recursive multiplications instead of 8",
+          "ver": "O(n^2.81)"
+        },
+        {
+          "prop": "Closest Pair of Points",
+          "desc": "Finds two closest points in a plane using divide and conquer with O(n log n) time",
+          "ver": "O(n log n)"
+        },
+        {
+          "prop": "Karatsuba Multiplication",
+          "desc": "Fast multiplication algorithm splitting large numbers into smaller parts recursively",
+          "ver": "O(n^1.585)"
+        },
+        {
+          "prop": "Maximum Subarray (D&C)",
+          "desc": "Finds maximum subarray sum by considering subarrays crossing the midpoint",
+          "ver": "O(n log n)"
+        }
+      ]
+    },
+    {
+      "title": "Bit Manipulation",
+      "desc": "",
+      "type": "table",
+      "columns": [
+        "Concept",
+        "Description",
+        "Complexity"
+      ],
+      "rows": [
+        {
+          "prop": "AND (&)",
+          "desc": "Bitwise AND; result bit is 1 only if both corresponding bits are 1",
+          "ver": "O(1)"
+        },
+        {
+          "prop": "OR (|)",
+          "desc": "Bitwise OR; result bit is 1 if at least one corresponding bit is 1",
+          "ver": "O(1)"
+        },
+        {
+          "prop": "XOR (^)",
+          "desc": "Bitwise XOR; result bit is 1 if exactly one corresponding bit is 1; used to find unique elements",
+          "ver": "O(1)"
+        },
+        {
+          "prop": "NOT (~)",
+          "desc": "Bitwise NOT; flips all bits of the operand (one's complement)",
+          "ver": "O(1)"
+        },
+        {
+          "prop": "Left Shift (<<)",
+          "desc": "Shifts bits left by n positions; equivalent to multiplying by 2ⁿ",
+          "ver": "O(1)"
+        },
+        {
+          "prop": "Right Shift (>>)",
+          "desc": "Shifts bits right by n positions; equivalent to dividing by 2ⁿ",
+          "ver": "O(1)"
+        },
+        {
+          "prop": "Check Bit",
+          "desc": "Checking if the kth bit is set using (n >> k) & 1",
+          "ver": "O(1)"
+        },
+        {
+          "prop": "Set Bit",
+          "desc": "Setting the kth bit to 1 using n | (1 << k)",
+          "ver": "O(1)"
+        },
+        {
+          "prop": "Clear Bit",
+          "desc": "Setting the kth bit to 0 using n & ~(1 << k)",
+          "ver": "O(1)"
+        },
+        {
+          "prop": "Toggle Bit",
+          "desc": "Flipping the kth bit using n ^ (1 << k)",
+          "ver": "O(1)"
+        },
+        {
+          "prop": "Count Set Bits",
+          "desc": "Counting number of 1-bits using Brian Kernighan's algorithm: n & (n-1) removes lowest set bit",
+          "ver": "O(log n)"
+        },
+        {
+          "prop": "Power of Two Check",
+          "desc": "Checking if n is a power of 2 using n > 0 && (n & (n-1)) == 0",
+          "ver": "O(1)"
+        },
+        {
+          "prop": "Bitmask Subsets",
+          "desc": "Using integers as bitmasks to represent and iterate over all subsets of a set",
+          "ver": "O(2ⁿ)"
+        }
+      ]
+    },
+    {
+      "title": "Math & Number Theory",
+      "desc": "",
+      "type": "table",
+      "columns": [
+        "Concept",
+        "Description",
+        "Complexity"
+      ],
+      "rows": [
+        {
+          "prop": "GCD (Euclidean)",
+          "desc": "Greatest Common Divisor using Euclidean algorithm: gcd(a, b) = gcd(b, a % b)",
+          "ver": "O(log min(a,b))"
+        },
+        {
+          "prop": "LCM",
+          "desc": "Least Common Multiple computed as (a * b) / gcd(a, b)",
+          "ver": "O(log min(a,b))"
+        },
+        {
+          "prop": "Sieve of Eratosthenes",
+          "desc": "Finds all primes up to N by iteratively marking multiples of each prime as composite",
+          "ver": "O(n log log n)"
+        },
+        {
+          "prop": "Prime Factorization",
+          "desc": "Decomposing a number into its prime factors by trial division up to square root",
+          "ver": "O(√n)"
+        },
+        {
+          "prop": "Modular Arithmetic",
+          "desc": "Performing arithmetic operations with a modulus; essential for large number computations",
+          "ver": "O(1)"
+        },
+        {
+          "prop": "Fast Power (Binary Exponentiation)",
+          "desc": "Computing aⁿ mod m efficiently by squaring and halving the exponent",
+          "ver": "O(log n)"
+        },
+        {
+          "prop": "Modular Inverse",
+          "desc": "Finding x such that a*x ≡ 1 (mod m) using Fermat's little theorem or extended GCD",
+          "ver": "O(log m)"
+        },
+        {
+          "prop": "Fibonacci (Matrix Exponentiation)",
+          "desc": "Computing nth Fibonacci number in O(log n) using 2x2 matrix exponentiation",
+          "ver": "O(log n)"
+        },
+        {
+          "prop": "Catalan Numbers",
+          "desc": "Sequence counting valid parentheses, BSTs, triangulations; Cₙ = C(2n,n)/(n+1)",
+          "ver": "O(n)"
+        },
+        {
+          "prop": "Chinese Remainder Theorem",
+          "desc": "Finding x satisfying multiple modular congruences simultaneously",
+          "ver": "O(n log n)"
+        }
+      ]
+    },
+    {
+      "title": "Complexity Analysis",
+      "desc": "",
+      "type": "table",
+      "columns": [
+        "Concept",
+        "Description",
+        "Complexity"
+      ],
+      "rows": [
+        {
+          "prop": "Big O Notation",
+          "desc": "Describes upper bound of time/space complexity as input size grows to infinity",
+          "ver": "—"
+        },
+        {
+          "prop": "Omega Notation (Ω)",
+          "desc": "Describes lower bound of time complexity; best case performance guarantee",
+          "ver": "—"
+        },
+        {
+          "prop": "Theta Notation (Θ)",
+          "desc": "Describes tight bound when upper and lower bounds are the same asymptotically",
+          "ver": "—"
+        },
+        {
+          "prop": "O(1) - Constant",
+          "desc": "Execution time does not depend on input size; e.g., array access, hash map lookup",
+          "ver": "O(1)"
+        },
+        {
+          "prop": "O(log n) - Logarithmic",
+          "desc": "Time grows logarithmically; each step halves the problem size; e.g., binary search",
+          "ver": "O(log n)"
+        },
+        {
+          "prop": "O(n) - Linear",
+          "desc": "Time grows proportionally to input size; e.g., linear search, array traversal",
+          "ver": "O(n)"
+        },
+        {
+          "prop": "O(n log n) - Linearithmic",
+          "desc": "Common in efficient sorting algorithms like merge sort and heap sort",
+          "ver": "O(n log n)"
+        },
+        {
+          "prop": "O(n²) - Quadratic",
+          "desc": "Time grows with square of input; e.g., bubble sort, nested loops over input",
+          "ver": "O(n²)"
+        },
+        {
+          "prop": "O(2ⁿ) - Exponential",
+          "desc": "Time doubles with each additional input element; e.g., recursive fibonacci, subset generation",
+          "ver": "O(2ⁿ)"
+        },
+        {
+          "prop": "O(n!) - Factorial",
+          "desc": "Extremely slow; e.g., generating all permutations of n elements",
+          "ver": "O(n!)"
+        },
+        {
+          "prop": "Space Complexity",
+          "desc": "Amount of memory an algorithm uses relative to input size, including auxiliary space",
+          "ver": "Varies"
+        },
+        {
+          "prop": "Amortized Analysis",
+          "desc": "Average cost per operation over a sequence of operations; e.g., dynamic array resizing",
+          "ver": "Avg per op"
+        },
+        {
+          "prop": "Master Theorem",
+          "desc": "Formula to determine time complexity of divide and conquer recurrences T(n) = aT(n/b) + f(n)",
+          "ver": "—"
+        }
+      ]
+    }
+  ]
+}

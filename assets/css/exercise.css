@@ -1,0 +1,111 @@
+:root {
+    /* Master Palette */
+    --primary: #214EA5;
+    --primary-hover: #1c4491;
+    --accent: #15803D;
+    --accent-soft: #15803D;
+    --bg-main: #FDFAF6;
+    --bg-section: #F5F2EB;
+    --bg-dark: #020617;
+    --bg-dark-secondary: #050B1C;
+    --bg-dark-card: #0F172A;
+    --card-bg: #FFFFFF;
+    --card-dark: #0F172A;
+    --surface: #F8FAFC;
+    --border: rgba(0, 0, 0, 0.08);
+    --border-dark: rgba(255, 255, 255, 0.14);
+    --text-heading: #0B192C;
+    --text-main: #475569;
+    --text-secondary: #64748B;
+    --text-muted: #94A3B8;
+    --text-light: #FFFFFF;
+    --success: #15803D;
+    --warning: #F59E0B;
+    --danger: #EF4444;
+    --primary-gradient: linear-gradient(135deg, #214EA5, #15803D);
+    --shadow-soft: 0 4px 16px rgba(0, 0, 0, 0.05);
+    --shadow-hover: 0 10px 25px rgba(0, 0, 0, 0.08);
+    --shadow-glow: 0 0 30px rgba(33, 78, 165, 0.15);
+}
+
+
+.exercise-page {
+  background: var(--card-bg);
+  padding: 2rem;
+  border-radius: 12px;
+  margin: 2rem auto;
+  max-width: 900px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.35);
+}
+
+.exercise-page h2 {
+  color: var(--primary);
+  text-align: center;
+  margin-bottom: 0.5rem;
+}
+
+.tagline {
+  text-align: center;
+  color: var(--accent);
+  font-weight: 600;
+  margin-bottom: 2rem;
+}
+
+.exercise-tabs {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.exercise-tabs button {
+  padding: 0.6rem 1.2rem;
+  border: none;
+  border-radius: 8px;
+  background: var(--surface);
+  color: var(--text-main);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.exercise-tabs button.active {
+  background: var(--accent);
+  color: var(--bg-main);
+  transform: scale(1.05);
+}
+
+.exercise-editor {
+  width: 100%;
+  height: 200px;
+  background: var(--surface);
+  color: var(--text-main);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 1rem;
+  font-family: monospace;
+  margin-bottom: 1rem;
+}
+
+.btn-run {
+  background: var(--accent);
+  color: var(--bg-main);
+  border: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+.btn-run:hover {
+  background: #00e09c;
+  transform: translateY(-2px);
+}
+
+iframe {
+  width: 100%;
+  height: 200px;
+  background: var(--bg-main);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  margin-top: 1rem;
+}

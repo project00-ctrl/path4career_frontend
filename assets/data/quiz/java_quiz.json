@@ -1,0 +1,362 @@
+[
+    {
+        "id": "java-1",
+        "question": "What is the primary characteristic that makes Java 'platform-independent'?",
+        "options": [
+            "It runs directly on the operating system's hardware.",
+            "It is compiled into bytecode that runs on any Java Virtual Machine (JVM).",
+            "It uses a web browser to execute all code.",
+            "It is an interpreted language that requires no compilation."
+        ],
+        "correctAnswer": 1,
+        "explanation": "Java code is compiled into bytecode, which can run on any device that has a Java Virtual Machine (JVM), giving it the 'write once, run anywhere' capability."
+    },
+    {
+        "id": "java-2",
+        "question": "Which method serves as the entry point for every Java application?",
+        "options": [
+            "public void start()",
+            "public static void main(String[] args)",
+            "public static main()",
+            "void init()"
+        ],
+        "correctAnswer": 1,
+        "explanation": "Every Java application must contain a public static void main(String[] args) method where the program begins executing."
+    },
+    {
+        "id": "java-3",
+        "question": "In Java, what must match exactly for the code to compile successfully?",
+        "options": [
+            "The class name and the file name (e.g., Main.java).",
+            "The method name and the class name.",
+            "The package name and the directory name.",
+            "The variable names and their data types."
+        ],
+        "correctAnswer": 0,
+        "explanation": "Java is strict; all code must be inside a class, and the name of the file must exactly match the public class name."
+    },
+    {
+        "id": "java-4",
+        "question": "Which data type is used to store text in Java?",
+        "options": [
+            "text",
+            "String",
+            "char",
+            "str"
+        ],
+        "correctAnswer": 1,
+        "explanation": "In Java, the String data type (which is a non-primitive object type) is used to store text."
+    },
+    {
+        "id": "java-5",
+        "question": "What does it mean that Java is 'statically typed'?",
+        "options": [
+            "Variables cannot change their value once assigned.",
+            "You must declare the data type of a variable before you can use it.",
+            "Types are determined automatically at runtime.",
+            "All variables must be strings."
+        ],
+        "correctAnswer": 1,
+        "explanation": "In statically typed languages like Java, the data type of a variable (like int, String, boolean) must be explicitly declared before it is used."
+    },
+    {
+        "id": "java-6",
+        "question": "Which logical operator represents 'AND' in Java?",
+        "options": [
+            "||",
+            "!",
+            "&",
+            "&&"
+        ],
+        "correctAnswer": 3,
+        "explanation": "The && operator is the logical AND operator in Java, used to return true if both statements are true."
+    },
+    {
+        "id": "java-7",
+        "question": "What is the purpose of the 'break' statement in a switch case?",
+        "options": [
+            "It exits the entire program.",
+            "It stops the code from running into the next case.",
+            "It skips the current iteration of a loop.",
+            "It causes a runtime error."
+        ],
+        "correctAnswer": 1,
+        "explanation": "The break statement breaks out of the switch block, stopping the execution of more cases inside the block."
+    },
+    {
+        "id": "java-8",
+        "question": "When should you primarily use a 'for' loop instead of a 'while' loop?",
+        "options": [
+            "When you want to loop infinitely.",
+            "When you want to loop until a complex condition is met.",
+            "When you know exactly how many times you want to loop through a block of code.",
+            "When you are reading lines from a file."
+        ],
+        "correctAnswer": 2,
+        "explanation": "A for loop is best used when you know the exact number of iterations beforehand."
+    },
+    {
+        "id": "java-9",
+        "question": "Which statement about standard Java arrays is true?",
+        "options": [
+            "They can automatically grow in size when new elements are added.",
+            "They have a fixed size that cannot be changed after creation.",
+            "They can store values of different data types in the same array.",
+            "They do not require the 'new' keyword for instantiation."
+        ],
+        "correctAnswer": 1,
+        "explanation": "Standard arrays in Java have a fixed size, meaning once you set how many items it holds, you cannot change its size."
+    },
+    {
+        "id": "java-10",
+        "question": "What is a 'method' in Java?",
+        "options": [
+            "A variable that holds multiple values.",
+            "The entry point of the program.",
+            "A block of code that only runs when it is called, often taking parameters and returning a result.",
+            "A special type of loop."
+        ],
+        "correctAnswer": 2,
+        "explanation": "A method is a reusable block of code that performs a specific task when called."
+    },
+    {
+        "id": "java-11",
+        "question": "In Object-Oriented Programming, what is a Class?",
+        "options": [
+            "A physical instance of data.",
+            "A blueprint or template for creating objects.",
+            "A function that returns a value.",
+            "A primitive data type."
+        ],
+        "correctAnswer": 1,
+        "explanation": "A Class acts as a blueprint or template from which individual objects (instances) are created."
+    },
+    {
+        "id": "java-12",
+        "question": "What is the concept of Encapsulation in Java?",
+        "options": [
+            "Inheriting properties from a parent class.",
+            "Hiding complex implementation details and showing only essential features.",
+            "Wrapping data (variables) and code acting on data (methods) together as a single unit.",
+            "Allowing multiple methods to have the same name."
+        ],
+        "correctAnswer": 2,
+        "explanation": "Encapsulation wraps data and methods into a single unit, often hiding the data (making variables private) and providing public getter and setter methods to access it."
+    },
+    {
+        "id": "java-13",
+        "question": "Which keyword is used to inherit from a superclass in Java?",
+        "options": [
+            "inherits",
+            "implements",
+            "super",
+            "extends"
+        ],
+        "correctAnswer": 3,
+        "explanation": "The 'extends' keyword is used to perform inheritance, allowing a subclass to inherit fields and methods from a superclass."
+    },
+    {
+        "id": "java-14",
+        "question": "What does Polymorphism allow you to do?",
+        "options": [
+            "Hide private variables from other classes.",
+            "Perform a single action in different ways, such as overriding a method.",
+            "Create multiple classes with the exact same name.",
+            "Prevent a class from being inherited."
+        ],
+        "correctAnswer": 1,
+        "explanation": "Polymorphism ('many forms') allows objects of different classes to be treated as objects of a common superclass, enabling method overriding."
+    },
+    {
+        "id": "java-15",
+        "question": "Which of the following cannot be instantiated directly using the 'new' keyword?",
+        "options": [
+            "A concrete class",
+            "A String",
+            "An abstract class",
+            "An array"
+        ],
+        "correctAnswer": 2,
+        "explanation": "An abstract class cannot be instantiated directly; it must be subclassed by another class that implements its abstract methods."
+    },
+    {
+        "id": "java-16",
+        "question": "What is the purpose of the 'try...catch' block?",
+        "options": [
+            "To test for specific values in an array.",
+            "To handle runtime errors (exceptions) gracefully without crashing the program.",
+            "To define an alternative execution path for true/false conditions.",
+            "To execute a block of code repeatedly."
+        ],
+        "correctAnswer": 1,
+        "explanation": "The try block tests code for errors, and the catch block handles the error if one occurs, preventing the program from crashing."
+    },
+    {
+        "id": "java-17",
+        "question": "Which class is commonly used to read input from the console?",
+        "options": [
+            "java.io.Console",
+            "java.lang.System",
+            "java.util.Scanner",
+            "java.util.Input"
+        ],
+        "correctAnswer": 2,
+        "explanation": "The Scanner class in the java.util package is widely used to obtain input from the user via the console."
+    },
+    {
+        "id": "java-18",
+        "question": "What will `\"Hello\".indexOf(\"l\")` return?",
+        "options": [
+            "1",
+            "2",
+            "3",
+            "0"
+        ],
+        "correctAnswer": 1,
+        "explanation": "String indices are zero-based. 'H' is 0, 'e' is 1, and the first 'l' is at index 2."
+    },
+    {
+        "id": "java-19",
+        "question": "What is an ArrayList in Java?",
+        "options": [
+            "A fixed-size array.",
+            "A resizable array from the Collections framework.",
+            "A collection that maps keys to values.",
+            "A collection that does not allow duplicate elements."
+        ],
+        "correctAnswer": 1,
+        "explanation": "ArrayList is a dynamic, resizable array implementation in the Java Collections Framework."
+    },
+    {
+        "id": "java-20",
+        "question": "Which data structure stores items in 'key/value' pairs, providing fast lookup?",
+        "options": [
+            "ArrayList",
+            "LinkedList",
+            "HashSet",
+            "HashMap"
+        ],
+        "correctAnswer": 3,
+        "explanation": "A HashMap stores items in key/value pairs, allowing for incredibly fast data retrieval using the key."
+    },
+    {
+        "id": "java-21",
+        "question": "What is the main benefit of using Threads in Java?",
+        "options": [
+            "They reduce the memory usage of an application.",
+            "They allow a program to perform multiple tasks simultaneously.",
+            "They prevent errors during file I/O operations.",
+            "They compile code faster."
+        ],
+        "correctAnswer": 1,
+        "explanation": "Threads enable multitasking within an application, allowing it to perform complicated or time-consuming tasks in the background."
+    },
+    {
+        "id": "java-22",
+        "question": "What does the 'synchronized' keyword do?",
+        "options": [
+            "It synchronizes the system clock with the JVM.",
+            "It ensures that a block of code runs on the main thread.",
+            "It controls access to shared resources, ensuring only one thread can access a method or block at a time.",
+            "It links two separate classes together."
+        ],
+        "correctAnswer": 2,
+        "explanation": "Synchronization prevents thread interference and memory consistency errors by restricting access to a shared resource to one thread at a time."
+    },
+    {
+        "id": "java-23",
+        "question": "What is the purpose of JDBC (Java Database Connectivity)?",
+        "options": [
+            "To format data into JSON.",
+            "To provide a standard API for connecting Java applications to relational databases.",
+            "To secure web applications against SQL injection.",
+            "To handle HTTP requests in a web server."
+        ],
+        "correctAnswer": 1,
+        "explanation": "JDBC is an API that enables Java programs to connect to, query, and update relational databases."
+    },
+    {
+        "id": "java-24",
+        "question": "Why is PreparedStatement preferred over a regular Statement in JDBC?",
+        "options": [
+            "It executes faster for single queries.",
+            "It uses less memory.",
+            "It protects against SQL Injection attacks by safely escaping input.",
+            "It does not require a database connection."
+        ],
+        "correctAnswer": 2,
+        "explanation": "PreparedStatement precompiles the SQL query and safely handles parameters, preventing SQL injection."
+    },
+    {
+        "id": "java-25",
+        "question": "In JDBC Transactions, what does 'conn.rollback()' do?",
+        "options": [
+            "It restarts the database server.",
+            "It undoes all changes made in the current transaction if an error occurs.",
+            "It commits the data permanently to the tables.",
+            "It deletes all data in the database."
+        ],
+        "correctAnswer": 1,
+        "explanation": "If a transaction fails, rollback() reverts the database to its state prior to the transaction's start, ensuring data integrity."
+    },
+    {
+        "id": "java-26",
+        "question": "What is a Java Servlet?",
+        "options": [
+            "A client-side script running in the browser.",
+            "A database management tool.",
+            "A server-side Java program that handles HTTP requests and generates dynamic web content.",
+            "A framework for creating desktop UIs."
+        ],
+        "correctAnswer": 2,
+        "explanation": "Servlets are Java classes that execute on a web server, processing incoming HTTP requests and generating responses."
+    },
+    {
+        "id": "java-27",
+        "question": "Which servlet lifecycle method is called every time a new HTTP request is received?",
+        "options": [
+            "init()",
+            "service()",
+            "destroy()",
+            "doRequest()"
+        ],
+        "correctAnswer": 1,
+        "explanation": "The service() method is invoked to handle the request, and it typically dispatches to specific methods like doGet() or doPost()."
+    },
+    {
+        "id": "java-28",
+        "question": "What is the primary advantage of JavaServer Pages (JSP)?",
+        "options": [
+            "It completely replaces JavaScript on the frontend.",
+            "It allows embedding Java logic directly inside HTML files for easier presentation layer development.",
+            "It runs independently of a web server.",
+            "It is faster than Servlets because it is not compiled."
+        ],
+        "correctAnswer": 1,
+        "explanation": "JSP simplifies adding dynamic content to HTML by allowing Java code to be embedded directly within HTML pages."
+    },
+    {
+        "id": "java-29",
+        "question": "In the MVC pattern, what layer do Servlets typically represent?",
+        "options": [
+            "The Model (Data)",
+            "The View (Presentation)",
+            "The Controller (Logic & Routing)",
+            "The Database Schema"
+        ],
+        "correctAnswer": 2,
+        "explanation": "Servlets act as the Controller, processing user input, interacting with the Model, and determining which View to render."
+    },
+    {
+        "id": "java-30",
+        "question": "What is Dependency Injection (DI) as used in frameworks like Spring?",
+        "options": [
+            "A vulnerability where malicious code is injected into the database.",
+            "A design pattern where an external container automatically creates and 'injects' object dependencies at runtime.",
+            "A method to manually map Java objects to database tables.",
+            "A tool to inject CSS styles into Java classes."
+        ],
+        "correctAnswer": 1,
+        "explanation": "DI provides Inversion of Control; instead of classes creating their own dependencies, an external container provides them, leading to loosely coupled code."
+    }
+]

@@ -1,0 +1,134 @@
+{
+  "sections": [
+    {
+      "title": "Core Services",
+      "desc": "Essential AWS services for compute, storage, and networking.",
+      "type": "table",
+      "columns": ["SERVICE", "DESCRIPTION", "USE CASE"],
+      "rows": [
+        { "property": "EC2", "desc": "Elastic Compute Cloud — virtual servers in the cloud", "version": "Web servers, Application hosting" },
+        { "property": "S3", "desc": "Simple Storage Service — object storage with 99.999999999% durability", "version": "File storage, Static hosting, Backups" },
+        { "property": "RDS", "desc": "Relational Database Service — managed SQL databases", "version": "MySQL, PostgreSQL, SQL Server, Aurora" },
+        { "property": "Lambda", "desc": "Serverless compute — run code without managing servers", "version": "Event-driven functions, APIs, Automation" },
+        { "property": "VPC", "desc": "Virtual Private Cloud — isolated network in AWS", "version": "Network isolation, Security" },
+        { "property": "CloudFront", "desc": "CDN — global content delivery with edge caching", "version": "Static assets, API acceleration" },
+        { "property": "Route 53", "desc": "DNS service — domain name management and routing", "version": "Domain registration, DNS routing" },
+        { "property": "ELB", "desc": "Elastic Load Balancer — distribute traffic across instances", "version": "High availability, Auto-scaling" },
+        { "property": "EBS", "desc": "Elastic Block Store — persistent block storage for EC2", "version": "Database storage, Boot volumes" },
+        { "property": "EFS", "desc": "Elastic File System — managed NFS file storage", "version": "Shared file storage across instances" },
+        { "property": "DynamoDB", "desc": "NoSQL database — fully managed key-value and document DB", "version": "Real-time apps, Gaming, IoT" },
+        { "property": "ElastiCache", "desc": "Managed Redis or Memcached caching", "version": "Session caching, Real-time analytics" }
+      ]
+    },
+    {
+      "title": "Compute Services",
+      "desc": "AWS compute options from servers to serverless.",
+      "type": "table",
+      "columns": ["SERVICE", "DESCRIPTION", "KEY FEATURES"],
+      "rows": [
+        { "property": "EC2 Instance Types", "desc": "Various instance families for different workloads", "version": "t3 (general), c5 (compute), r5 (memory), p3 (GPU)" },
+        { "property": "EC2 Auto Scaling", "desc": "Automatically adjust number of instances based on demand", "version": "Min/max instances, Scaling policies" },
+        { "property": "Lambda", "desc": "Run code in response to events — pay per invocation", "version": "Max 15 min runtime, 10GB memory" },
+        { "property": "ECS", "desc": "Elastic Container Service — run Docker containers", "version": "Task definitions, Services, Clusters" },
+        { "property": "EKS", "desc": "Elastic Kubernetes Service — managed Kubernetes", "version": "K8s clusters, Node groups" },
+        { "property": "Fargate", "desc": "Serverless compute for containers — no server management", "version": "ECS and EKS compatible" },
+        { "property": "Elastic Beanstalk", "desc": "PaaS — deploy apps without managing infrastructure", "version": "Supports Java, .NET, Node, Python, Docker" },
+        { "property": "Lightsail", "desc": "Simple virtual servers with fixed monthly pricing", "version": "Small apps, Websites, Dev environments" },
+        { "property": "Batch", "desc": "Run batch computing jobs at any scale", "version": "Data processing, ML training" },
+        { "property": "App Runner", "desc": "Deploy containerized web apps without infrastructure", "version": "Auto-scaling, HTTPS, Load balancing" }
+      ]
+    },
+    {
+      "title": "Storage & Database",
+      "desc": "AWS storage and database services.",
+      "type": "table",
+      "columns": ["SERVICE", "DESCRIPTION", "KEY FEATURES"],
+      "rows": [
+        { "property": "S3 Standard", "desc": "General purpose object storage", "version": "High durability, Low latency" },
+        { "property": "S3 Glacier", "desc": "Low-cost archive storage", "version": "Retrieval: minutes to hours" },
+        { "property": "S3 Intelligent-Tiering", "desc": "Auto-moves objects between access tiers", "version": "Cost optimization for variable access" },
+        { "property": "RDS Aurora", "desc": "MySQL/PostgreSQL compatible — 5x faster than MySQL", "version": "Auto-scaling, Multi-AZ, Serverless v2" },
+        { "property": "DynamoDB", "desc": "Serverless NoSQL — single-digit ms latency", "version": "On-demand/provisioned capacity, Global tables" },
+        { "property": "Redshift", "desc": "Data warehouse for analytics — petabyte scale", "version": "Columnar storage, SQL queries" },
+        { "property": "DocumentDB", "desc": "MongoDB-compatible document database", "version": "Managed, Scalable, JSON documents" },
+        { "property": "Neptune", "desc": "Managed graph database", "version": "Social networks, Knowledge graphs" },
+        { "property": "Keyspaces", "desc": "Managed Apache Cassandra service", "version": "Wide-column NoSQL" },
+        { "property": "MemoryDB for Redis", "desc": "Redis-compatible in-memory database", "version": "Microsecond reads, Durability" }
+      ]
+    },
+    {
+      "title": "Security & IAM",
+      "desc": "Identity, access management, and security services.",
+      "type": "table",
+      "columns": ["SERVICE / CONCEPT", "DESCRIPTION", "EXAMPLE"],
+      "rows": [
+        { "property": "IAM User", "desc": "Individual AWS account user with credentials", "version": "Console and programmatic access" },
+        { "property": "IAM Role", "desc": "Temporary credentials for services/applications", "version": "EC2 instance role, Lambda execution role" },
+        { "property": "IAM Policy", "desc": "JSON document defining allowed/denied actions", "version": "{ Effect: Allow, Action: s3:GetObject, Resource: * }" },
+        { "property": "IAM Group", "desc": "Collection of users sharing same permissions", "version": "Developers group, Admin group" },
+        { "property": "MFA", "desc": "Multi-Factor Authentication for account security", "version": "Virtual MFA, Hardware tokens" },
+        { "property": "KMS", "desc": "Key Management Service — create and manage encryption keys", "version": "Encrypt S3, RDS, EBS data" },
+        { "property": "Secrets Manager", "desc": "Store and rotate secrets (passwords, API keys)", "version": "Database credentials rotation" },
+        { "property": "WAF", "desc": "Web Application Firewall — protect against web exploits", "version": "SQL injection, XSS protection" },
+        { "property": "Shield", "desc": "DDoS protection for AWS resources", "version": "Standard (free) and Advanced" },
+        { "property": "Security Groups", "desc": "Virtual firewall for EC2 instances", "version": "Inbound/outbound traffic rules" },
+        { "property": "ACM", "desc": "Certificate Manager — provision SSL/TLS certificates", "version": "Free public certificates" },
+        { "property": "CloudTrail", "desc": "Audit log of all API calls in account", "version": "Compliance, Security analysis" }
+      ]
+    },
+    {
+      "title": "Networking",
+      "desc": "AWS networking components and configurations.",
+      "type": "table",
+      "columns": ["COMPONENT", "DESCRIPTION", "PURPOSE"],
+      "rows": [
+        { "property": "VPC", "desc": "Isolated virtual network you define in AWS", "version": "Network foundation for all resources" },
+        { "property": "Subnet", "desc": "Range of IP addresses in your VPC", "version": "Public subnet, Private subnet" },
+        { "property": "Internet Gateway", "desc": "Enables internet access for VPC resources", "version": "Attach to VPC for public access" },
+        { "property": "NAT Gateway", "desc": "Allows private subnet resources to access internet", "version": "Outbound-only internet access" },
+        { "property": "Security Group", "desc": "Stateful firewall at instance level", "version": "Allow port 443 from 0.0.0.0/0" },
+        { "property": "NACL", "desc": "Network ACL — stateless firewall at subnet level", "version": "Allow/deny rules by IP range" },
+        { "property": "Route Table", "desc": "Rules that determine where network traffic is directed", "version": "Route to IGW, NAT, VPN" },
+        { "property": "VPC Peering", "desc": "Connect two VPCs privately", "version": "Cross-account or cross-region" },
+        { "property": "Transit Gateway", "desc": "Hub to connect multiple VPCs and on-premises", "version": "Large-scale network connectivity" },
+        { "property": "Elastic IP", "desc": "Static public IPv4 address", "version": "Fixed IP for EC2 instances" }
+      ]
+    },
+    {
+      "title": "DevOps & Deployment",
+      "desc": "AWS services for CI/CD, monitoring, and infrastructure as code.",
+      "type": "table",
+      "columns": ["SERVICE", "DESCRIPTION", "USE CASE"],
+      "rows": [
+        { "property": "CloudFormation", "desc": "Infrastructure as Code — define resources in YAML/JSON", "version": "Repeatable deployments" },
+        { "property": "CDK", "desc": "Cloud Development Kit — define infrastructure in code", "version": "TypeScript, Python, Java" },
+        { "property": "CodePipeline", "desc": "Continuous delivery pipeline", "version": "Automate build, test, deploy" },
+        { "property": "CodeBuild", "desc": "Fully managed build service", "version": "Build and test code" },
+        { "property": "CodeDeploy", "desc": "Automated deployment to EC2, Lambda, ECS", "version": "Blue/green, Rolling deployments" },
+        { "property": "CloudWatch", "desc": "Monitoring and observability — metrics, logs, alarms", "version": "CPU usage, Error rates, Custom metrics" },
+        { "property": "SNS", "desc": "Simple Notification Service — pub/sub messaging", "version": "Email, SMS, Push notifications" },
+        { "property": "SQS", "desc": "Simple Queue Service — message queuing", "version": "Decoupling, Async processing" },
+        { "property": "EventBridge", "desc": "Serverless event bus for event-driven architectures", "version": "Event routing, Scheduling" },
+        { "property": "Step Functions", "desc": "Orchestrate serverless workflows visually", "version": "Multi-step processing, Error handling" }
+      ]
+    },
+    {
+      "title": "AWS CLI Commands",
+      "desc": "Common AWS CLI commands for service management.",
+      "type": "table",
+      "columns": ["COMMAND", "DESCRIPTION", "EXAMPLE"],
+      "rows": [
+        { "property": "aws configure", "desc": "Set up AWS credentials and region", "version": "aws configure" },
+        { "property": "aws s3 ls", "desc": "List S3 buckets or bucket contents", "version": "aws s3 ls s3://my-bucket/" },
+        { "property": "aws s3 cp", "desc": "Copy files to/from S3", "version": "aws s3 cp file.txt s3://my-bucket/" },
+        { "property": "aws s3 sync", "desc": "Sync local directory with S3", "version": "aws s3 sync ./dist s3://my-bucket/" },
+        { "property": "aws ec2 describe-instances", "desc": "List EC2 instances", "version": "aws ec2 describe-instances --filters Name=tag:Name,Values=web" },
+        { "property": "aws lambda invoke", "desc": "Invoke a Lambda function", "version": "aws lambda invoke --function-name myFunc out.json" },
+        { "property": "aws logs tail", "desc": "Tail CloudWatch log group", "version": "aws logs tail /aws/lambda/myFunc --follow" },
+        { "property": "aws sts get-caller-identity", "desc": "Show current IAM identity", "version": "aws sts get-caller-identity" },
+        { "property": "aws cloudformation deploy", "desc": "Deploy CloudFormation stack", "version": "aws cloudformation deploy --template-file template.yml --stack-name myStack" },
+        { "property": "aws iam list-users", "desc": "List IAM users", "version": "aws iam list-users" }
+      ]
+    }
+  ]
+}

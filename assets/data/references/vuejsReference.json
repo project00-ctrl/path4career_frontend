@@ -1,0 +1,175 @@
+{
+  "sections": [
+    {
+      "title": "Composition API",
+      "desc": "Vue 3 Composition API functions for building reactive components.",
+      "type": "grouped-list",
+      "groups": [
+        {
+          "title": "Reactivity Core",
+          "items": [
+            { "code": "ref(value)", "desc": "Creates a reactive reference — access via .value" },
+            { "code": "reactive(object)", "desc": "Creates a deeply reactive proxy object" },
+            { "code": "computed(() => expr)", "desc": "Creates a cached computed value — auto-tracks dependencies" },
+            { "code": "readonly(target)", "desc": "Creates a read-only proxy of a reactive object" },
+            { "code": "shallowRef(value)", "desc": "Ref that only tracks .value replacement (not deep)" },
+            { "code": "toRef(obj, key)", "desc": "Creates a ref linked to a reactive object property" },
+            { "code": "toRefs(reactiveObj)", "desc": "Converts all properties to individual refs" },
+            { "code": "toRaw(proxy)", "desc": "Returns the original raw object from a reactive proxy" },
+            { "code": "unref(val)", "desc": "Returns .value if ref, otherwise returns val as-is" }
+          ]
+        },
+        {
+          "title": "Watchers",
+          "items": [
+            { "code": "watch(source, callback)", "desc": "Watches a reactive source and runs callback on change" },
+            { "code": "watch(() => obj.prop, cb)", "desc": "Watch a getter function" },
+            { "code": "watch([refA, refB], cb)", "desc": "Watch multiple sources simultaneously" },
+            { "code": "watch(source, cb, { deep: true })", "desc": "Deep watch nested property changes" },
+            { "code": "watch(source, cb, { immediate: true })", "desc": "Run callback immediately on creation" },
+            { "code": "watchEffect(() => { ... })", "desc": "Auto-tracks dependencies and re-runs on change" }
+          ]
+        },
+        {
+          "title": "Lifecycle Hooks",
+          "items": [
+            { "code": "onMounted(() => {})", "desc": "Called after component is mounted to DOM" },
+            { "code": "onUpdated(() => {})", "desc": "Called after component re-renders" },
+            { "code": "onUnmounted(() => {})", "desc": "Called when component is destroyed" },
+            { "code": "onBeforeMount(() => {})", "desc": "Called before component mounts" },
+            { "code": "onBeforeUpdate(() => {})", "desc": "Called before component re-renders" },
+            { "code": "onBeforeUnmount(() => {})", "desc": "Called before component is destroyed" },
+            { "code": "onErrorCaptured((err) => {})", "desc": "Called when descendant error is captured" }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Template Directives",
+      "desc": "Built-in Vue directives for controlling rendering and behaviour.",
+      "type": "table",
+      "columns": ["DIRECTIVE", "DESCRIPTION", "EXAMPLE"],
+      "rows": [
+        { "property": "v-bind:attr / :attr", "desc": "Dynamically bind an attribute or prop", "version": ":href='url'" },
+        { "property": "v-on:event / @event", "desc": "Attach event listener", "version": "@click='handleClick'" },
+        { "property": "v-model", "desc": "Two-way data binding for form inputs", "version": "v-model='username'" },
+        { "property": "v-if", "desc": "Conditionally render element (removes from DOM)", "version": "v-if='isLoggedIn'" },
+        { "property": "v-else-if", "desc": "Else-if block for conditional chain", "version": "v-else-if='isAdmin'" },
+        { "property": "v-else", "desc": "Else block for v-if chain", "version": "v-else" },
+        { "property": "v-show", "desc": "Toggle visibility via CSS display", "version": "v-show='isVisible'" },
+        { "property": "v-for", "desc": "Render list of items from array", "version": "v-for='item in items' :key='item.id'" },
+        { "property": "v-html", "desc": "Render raw HTML string", "version": "v-html='rawHtml'" },
+        { "property": "v-slot / #", "desc": "Named slot content for child components", "version": "#header" },
+        { "property": "v-pre", "desc": "Skip compilation for the element", "version": "v-pre" },
+        { "property": "v-once", "desc": "Render element only once", "version": "v-once" },
+        { "property": "v-memo", "desc": "Memoize a sub-tree for performance (3.2+)", "version": "v-memo='[item.id]'" }
+      ]
+    },
+    {
+      "title": "Component System",
+      "desc": "Component props, emits, slots, and provide/inject.",
+      "type": "grouped-list",
+      "groups": [
+        {
+          "title": "Props & Emits",
+          "items": [
+            { "code": "defineProps(['title', 'count'])", "desc": "Declare props with array syntax" },
+            { "code": "defineProps<{ title: string }>()", "desc": "Typed props with TypeScript" },
+            { "code": "withDefaults(defineProps<Props>(), { count: 0 })", "desc": "Default values for typed props" },
+            { "code": "defineEmits(['update', 'delete'])", "desc": "Declare custom events" },
+            { "code": "emit('update', newValue)", "desc": "Emit a custom event with payload" },
+            { "code": "defineModel()", "desc": "Macro for v-model prop + emit (3.4+)" }
+          ]
+        },
+        {
+          "title": "Slots & Provide/Inject",
+          "items": [
+            { "code": "<slot />", "desc": "Default slot outlet" },
+            { "code": "<slot name='header' />", "desc": "Named slot" },
+            { "code": "<slot :item='item' />", "desc": "Scoped slot — passes data to parent" },
+            { "code": "provide('key', value)", "desc": "Provide value to descendant components" },
+            { "code": "inject('key')", "desc": "Inject value from ancestor" },
+            { "code": "defineExpose({ method })", "desc": "Expose methods to parent via ref" }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Vue Router",
+      "desc": "Vue Router 4 components, hooks, and navigation guards.",
+      "type": "table",
+      "columns": ["API / COMPONENT", "DESCRIPTION", "EXAMPLE"],
+      "rows": [
+        { "property": "<RouterView />", "desc": "Renders matched route component", "version": "<RouterView />" },
+        { "property": "<RouterLink to='/path'>", "desc": "Declarative navigation link", "version": "<RouterLink to='/about'>" },
+        { "property": "useRouter()", "desc": "Access router for programmatic navigation", "version": "const router = useRouter()" },
+        { "property": "useRoute()", "desc": "Access current route (params, query, path)", "version": "const route = useRoute()" },
+        { "property": "router.push('/path')", "desc": "Navigate to a new route", "version": "router.push({ name: 'user', params: { id: 1 } })" },
+        { "property": "router.replace('/path')", "desc": "Navigate without adding to history", "version": "router.replace('/login')" },
+        { "property": "path: '/user/:id'", "desc": "Dynamic route parameter", "version": "route.params.id" },
+        { "property": "beforeEach(guard)", "desc": "Global navigation guard", "version": "router.beforeEach((to, from) => {})" },
+        { "property": "children: [...]", "desc": "Nested routes configuration", "version": "{ path: '/user', children: [...] }" }
+      ]
+    },
+    {
+      "title": "Pinia State Management",
+      "desc": "Pinia store definition, state, getters, and actions.",
+      "type": "table",
+      "columns": ["API", "DESCRIPTION", "EXAMPLE"],
+      "rows": [
+        { "property": "defineStore('id', { ... })", "desc": "Define a Pinia store with options syntax", "version": "defineStore('counter', { state, getters, actions })" },
+        { "property": "defineStore('id', () => {})", "desc": "Store with setup/composition syntax", "version": "const count = ref(0); return { count }" },
+        { "property": "state: () => ({ count: 0 })", "desc": "Define reactive store state", "version": "state: () => ({ items: [] })" },
+        { "property": "getters: { double: s => s.count*2 }", "desc": "Computed properties from state", "version": "getters: { total(s) { return s.items.length } }" },
+        { "property": "actions: { increment() {} }", "desc": "Methods to mutate state", "version": "actions: { async fetchItems() {} }" },
+        { "property": "const store = useStore()", "desc": "Use store in a component", "version": "const counter = useCounterStore()" },
+        { "property": "store.$reset()", "desc": "Reset store state to initial values", "version": "counter.$reset()" },
+        { "property": "storeToRefs(store)", "desc": "Extract state/getters as refs", "version": "const { count } = storeToRefs(store)" }
+      ]
+    },
+    {
+      "title": "Built-in Components",
+      "desc": "Vue built-in components for transitions, teleport, and suspense.",
+      "type": "table",
+      "columns": ["COMPONENT", "DESCRIPTION", "EXAMPLE"],
+      "rows": [
+        { "property": "<Transition>", "desc": "Applies enter/leave animations to single element", "version": "<Transition name='fade'>" },
+        { "property": "<TransitionGroup>", "desc": "Applies animations to v-for list changes", "version": "<TransitionGroup name='list' tag='ul'>" },
+        { "property": "<KeepAlive>", "desc": "Caches inactive component instances", "version": "<KeepAlive><component :is='tab' /></KeepAlive>" },
+        { "property": "<Teleport to='#modal'>", "desc": "Renders content in different DOM location", "version": "<Teleport to='body'>" },
+        { "property": "<Suspense>", "desc": "Handles async components with fallback", "version": "<Suspense><template #fallback>Loading</template></Suspense>" },
+        { "property": "<component :is='comp'>", "desc": "Dynamic component rendering", "version": "<component :is='currentComponent' />" }
+      ]
+    },
+    {
+      "title": "Utility & App Functions",
+      "desc": "Vue utility functions and application setup.",
+      "type": "table",
+      "columns": ["FUNCTION", "DESCRIPTION", "EXAMPLE"],
+      "rows": [
+        { "property": "isRef(val)", "desc": "Check if value is a ref", "version": "isRef(count)" },
+        { "property": "isReactive(val)", "desc": "Check if value is a reactive proxy", "version": "isReactive(state)" },
+        { "property": "nextTick()", "desc": "Wait for next DOM update cycle", "version": "await nextTick()" },
+        { "property": "h('div', props, children)", "desc": "Create virtual DOM node (render function)", "version": "h('div', { class: 'box' }, 'Hello')" },
+        { "property": "createApp(App).mount('#app')", "desc": "Create and mount Vue app instance", "version": "createApp(App).use(router).mount('#app')" },
+        { "property": "app.use(plugin)", "desc": "Install a Vue plugin", "version": "app.use(createPinia())" },
+        { "property": "app.component('name', Comp)", "desc": "Register a global component", "version": "app.component('MyButton', MyButton)" },
+        { "property": "app.directive('name', def)", "desc": "Register a custom directive", "version": "app.directive('focus', { mounted(el) { el.focus() } })" }
+      ]
+    },
+    {
+      "title": "CLI & Build Commands",
+      "desc": "Vue CLI and Vite commands for project setup and development.",
+      "type": "table",
+      "columns": ["COMMAND", "DESCRIPTION", "EXAMPLE"],
+      "rows": [
+        { "property": "npm create vue@latest", "desc": "Create new Vue 3 project", "version": "npm create vue@latest my-app" },
+        { "property": "npm create vite@latest", "desc": "Create Vue project with Vite", "version": "npm create vite@latest -- --template vue" },
+        { "property": "npm run dev", "desc": "Start Vite development server", "version": "localhost:5173" },
+        { "property": "npm run build", "desc": "Build for production", "version": "output in dist/" },
+        { "property": "npm run preview", "desc": "Preview production build locally", "version": "localhost:4173" },
+        { "property": "npx nuxi init", "desc": "Create new Nuxt 3 project", "version": "npx nuxi init my-nuxt-app" }
+      ]
+    }
+  ]
+}

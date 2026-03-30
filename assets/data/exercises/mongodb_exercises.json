@@ -1,0 +1,127 @@
+{
+    "language": "MongoDB",
+    "icon": "\ud83c\udf43",
+    "color": "#47A248",
+    "exercises": [
+        {
+            "id": 1,
+            "title": "Insert Document",
+            "difficulty": "basic",
+            "description": "Write the MongoDB command to insert a document with name \"John\" and age 25.",
+            "starterCode": "// MongoDB query",
+            "expectedOutput": "",
+            "validationType": "contains",
+            "validationValue": "insertOne",
+            "hint": "db.users.insertOne({name: \"John\", age: 25})",
+            "solutionCode": "// The hint provides the solution:\n// db.users.insertOne({name: \"John\", age: 25})"
+        },
+        {
+            "id": 2,
+            "title": "Find All",
+            "difficulty": "basic",
+            "description": "Write the command to find all documents in the users collection.",
+            "starterCode": "// MongoDB query",
+            "expectedOutput": "",
+            "validationType": "contains",
+            "validationValue": "find",
+            "hint": "db.users.find()",
+            "solutionCode": "// The hint provides the solution:\n// db.users.find()"
+        },
+        {
+            "id": 3,
+            "title": "Find with Filter",
+            "difficulty": "basic",
+            "description": "Find all users where age is greater than 20.",
+            "starterCode": "// MongoDB query",
+            "expectedOutput": "",
+            "validationType": "contains",
+            "validationValue": "$gt",
+            "hint": "db.users.find({age: {$gt: 20}})",
+            "solutionCode": "// The hint provides the solution:\n// db.users.find({age: {$gt: 20}})"
+        },
+        {
+            "id": 4,
+            "title": "Update Document",
+            "difficulty": "basic",
+            "description": "Update John's age to 26.",
+            "starterCode": "// MongoDB query",
+            "expectedOutput": "",
+            "validationType": "contains",
+            "validationValue": "updateOne",
+            "hint": "db.users.updateOne({name:\"John\"},{$set:{age:26}})",
+            "solutionCode": "// The hint provides the solution:\n// db.users.updateOne({name:\"John\"},{$set:{age:26}})"
+        },
+        {
+            "id": 5,
+            "title": "Delete Document",
+            "difficulty": "basic",
+            "description": "Delete the user named \"John\".",
+            "starterCode": "// MongoDB query",
+            "expectedOutput": "",
+            "validationType": "contains",
+            "validationValue": "deleteOne",
+            "hint": "db.users.deleteOne({name: \"John\"})",
+            "solutionCode": "// The hint provides the solution:\n// db.users.deleteOne({name: \"John\"})"
+        },
+        {
+            "id": 6,
+            "title": "Sort Results",
+            "difficulty": "intermediate",
+            "description": "Find all users sorted by age descending.",
+            "starterCode": "// MongoDB query",
+            "expectedOutput": "",
+            "validationType": "contains",
+            "validationValue": "sort",
+            "hint": "db.users.find().sort({age: -1})",
+            "solutionCode": "// The hint provides the solution:\n// db.users.find().sort({age: -1})"
+        },
+        {
+            "id": 7,
+            "title": "Limit Results",
+            "difficulty": "intermediate",
+            "description": "Find only the first 5 users.",
+            "starterCode": "// MongoDB query",
+            "expectedOutput": "",
+            "validationType": "contains",
+            "validationValue": "limit",
+            "hint": "db.users.find().limit(5)",
+            "solutionCode": "// The hint provides the solution:\n// db.users.find().limit(5)"
+        },
+        {
+            "id": 8,
+            "title": "Count Documents",
+            "difficulty": "intermediate",
+            "description": "Count total documents in the users collection.",
+            "starterCode": "// MongoDB query",
+            "expectedOutput": "",
+            "validationType": "contains",
+            "validationValue": "countDocuments",
+            "hint": "db.users.countDocuments()",
+            "solutionCode": "// The hint provides the solution:\n// db.users.countDocuments()"
+        },
+        {
+            "id": 9,
+            "title": "Create Index",
+            "difficulty": "intermediate",
+            "description": "Create an index on the email field.",
+            "starterCode": "// MongoDB query",
+            "expectedOutput": "",
+            "validationType": "contains",
+            "validationValue": "createIndex",
+            "hint": "db.users.createIndex({email: 1})",
+            "solutionCode": "// The hint provides the solution:\n// db.users.createIndex({email: 1})"
+        },
+        {
+            "id": 10,
+            "title": "Aggregation",
+            "difficulty": "intermediate",
+            "description": "Use aggregation to group users by country and count them.",
+            "starterCode": "// MongoDB query",
+            "expectedOutput": "",
+            "validationType": "contains",
+            "validationValue": "$group",
+            "hint": "db.users.aggregate([{$group:{_id:\"$country\",count:{$sum:1}}}])",
+            "solutionCode": "// The hint provides the solution:\n// db.users.aggregate([{$group:{_id:\"$country\",count:{$sum:1}}}])"
+        }
+    ]
+}

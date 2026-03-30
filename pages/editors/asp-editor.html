@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live ASP.NET Editor - CareerPath</title>
+
+    <link rel="stylesheet" href="../../assets/css/editor.css">
+    <style>
+        /* ASP.NET / .NET Purple Theme Overrides */
+        .header h2 span {
+            color: #512bd4 !important;
+        }
+
+        .run-btn {
+            background-color: #512bd4 !important;
+            color: #fff !important;
+        }
+
+        .run-btn:hover {
+            background-color: #3b1f99 !important;
+        }
+
+        .run-btn:disabled {
+            background-color: #555 !important;
+            cursor: not-allowed;
+        }
+
+        .dotnet-badge {
+            background-color: #1e1e3f;
+            color: #512bd4;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            margin-left: 10px;
+            font-weight: bold;
+            border: 1px solid #512bd4;
+        }
+
+        .editor-pane {
+            padding: 0;
+        }
+
+        .code-box {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            padding: 15px;
+        }
+
+        .code-box:first-child {
+            border-bottom: 2px solid #333;
+        }
+
+        #csharpInput {
+            color: #c3e88d;
+        }
+
+        #razorInput {
+            color: #ffb86c;
+        }
+
+        /* Result pane styling */
+        .result-pane {
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .output-header {
+            background-color: #1e1e2e;
+            color: #ccc;
+            padding: 10px 20px;
+            font-size: 13px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-bottom: 2px solid #512bd4;
+        }
+
+        .console-output {
+            flex: 1;
+            background-color: #1e1e1e;
+            color: #d4d4d4;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 14px;
+            padding: 20px;
+            overflow-y: auto;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+
+        .console-output .line {
+            margin-bottom: 4px;
+            line-height: 1.6;
+        }
+
+        .console-output .line-success {
+            color: #4ec9b0;
+        }
+
+        .console-output .line-error {
+            color: #f44747;
+        }
+
+        .console-output .line-warn {
+            color: #dcdcaa;
+        }
+
+        .console-output .line-info {
+            color: #569cd6;
+        }
+
+        .console-output .line-output {
+            color: #d4d4d4;
+        }
+
+        .console-output .prompt {
+            color: #608b4e;
+            user-select: none;
+        }
+
+        /* Razor preview iframe */
+        .razor-preview {
+            flex: 1;
+            border: none;
+            background: #fff;
+        }
+
+        /* Tab buttons */
+        .output-tabs {
+            display: flex;
+            background-color: #1e1e2e;
+            border-bottom: 1px solid #333;
+        }
+
+        .output-tab {
+            padding: 8px 20px;
+            background: transparent;
+            border: none;
+            color: #888;
+            font-size: 13px;
+            cursor: pointer;
+            border-bottom: 2px solid transparent;
+            font-weight: bold;
+        }
+
+        .output-tab.active {
+            color: #512bd4;
+            border-bottom: 2px solid #512bd4;
+        }
+
+        .output-tab:hover {
+            color: #fff;
+        }
+
+        #razorPreviewPane {
+            display: none;
+            flex: 1;
+        }
+
+        #consolePane {
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header">
+        <div style="display: flex; align-items: center; gap: 15px;">
+            <a href="../index.html" style="color: #512bd4; text-decoration: none; font-size: 14px;">← Back</a>
+            <h2><span>≡</span> Real ASP.NET Workspace <span class="dotnet-badge">.NET / C#</span></h2>
+        </div>
+        <button class="run-btn" id="runBtn">Run Code ❯</button>
+    </div>
+    <div class="workspace">
+        <div class="editor-pane">
+            <div class="code-box">
+                <p class="pane-label">C# (Program.cs / Controller)</p>
+                <textarea id="csharpInput" spellcheck="false" aria-label="C# Code Input"></textarea>
+            </div>
+            <div class="code-box">
+                <p class="pane-label">Razor View (.cshtml)</p>
+                <textarea id="razorInput" spellcheck="false" aria-label="Razor View Input"></textarea>
+            </div>
+        </div>
+        <div class="result-pane">
+            <div class="output-tabs">
+                <button class="output-tab active" data-tab="console" id="consoleTab">Console Output</button>
+                <button class="output-tab" data-tab="razor" id="razorTab">Razor Preview</button>
+            </div>
+            <div id="consolePane">
+                <div class="console-output" id="consoleOutput">
+                    <div class="line line-info">// ASP.NET Workspace Ready. Click "Run Code" to execute.</div>
+                </div>
+            </div>
+            <div id="razorPreviewPane">
+                <iframe class="razor-preview" id="razorOutput" title="Razor Preview"></iframe>
+            </div>
+        </div>
+    </div>
+
+    <script>
+const csharpInput = document.getElementById('csharpInput');
+        const razorInput = document.getElementById('razorInput');
+        const consoleOutput = document.getElementById('consoleOutput');
+        const razorOutput = document.getElementById('razorOutput');
+        const runBtn = document.getElementById('runBtn');
+        const consoleTab = document.getElementById('consoleTab');
+        const razorTab = document.getElementById('razorTab');
+        const consolePane = document.getElementById('consolePane');
+        const razorPreviewPane = document.getElementById('razorPreviewPane');
+
+        // Tab switching
+        document.querySelectorAll('.output-tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                document.querySelectorAll('.output-tab').forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
+                if (tab.dataset.tab === 'console') {
+                    consolePane.style.display = 'flex';
+                    razorPreviewPane.style.display = 'none';
+                } else {
+                    consolePane.style.display = 'none';
+                    razorPreviewPane.style.display = 'flex';
+                }
+            });
+        });
+
+        // Load saved code or defaults
+        const savedCSharp = localStorage.getItem('careerPathAspCSharp');
+        const savedRazor = localStorage.getItem('careerPathAspRazor');
+
+        csharpInput.value = savedCSharp ? savedCSharp : `using System;
+
+namespace MyWebApp
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.WriteLine("Hello, ASP.NET!");
+            Console.WriteLine("Welcome to CareerPath.");
+
+            string name = "Developer";
+            int year = 2026;
+
+            Console.WriteLine($"Hello {name}, welcome to {year}!");
+
+            // Loop example
+            for (int i = 1; i <= 5; i++)
+            {
+                Console.WriteLine($"Item {i}");
+            }
+
+            // Array example
+            string[] frameworks = { "ASP.NET", "Blazor", "MVC", "Web API" };
+            foreach (string fw in frameworks)
+            {
+                Console.WriteLine($"Framework: {fw}");
+            }
+        }
+    }
+}`;
+
+        razorInput.value = savedRazor ? savedRazor : `@page
+@model IndexModel
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My ASP.NET Page</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: #f0f2f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+        .card {
+            background: white;
+            padding: 30px 40px;
+            border-radius: 12px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+            text-align: center;
+            max-width: 450px;
+        }
+        h1 { color: #512bd4; margin-top: 0; }
+        .badge {
+            display: inline-block;
+            background: #512bd4;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 13px;
+            margin: 5px;
+        }
+        ul { text-align: left; color: #555; }
+        li { margin-bottom: 8px; }
+    \x3C/style>
+\x3C/head>
+<body>
+    <div class="card">
+        <h1>Welcome to ASP.NET</h1>
+        <p>This is a Razor page preview.</p>
+        <div>
+            <span class="badge">C#</span>
+            <span class="badge">.NET 8</span>
+            <span class="badge">Razor</span>
+        </div>
+        <h3 style="color:#333; margin-top:20px;">Features:</h3>
+        <ul>
+            <li>MVC Architecture</li>
+            <li>Dependency Injection</li>
+            <li>Entity Framework Core</li>
+            <li>Middleware Pipeline</li>
+        </ul>
+    </div>
+\x3C/body>
+\x3C/html>`;
+
+        // C# Console Simulator
+        function executeCSharp() {
+            const code = csharpInput.value;
+            let lines = [];
+
+            lines.push({ text: '$ dotnet run', type: 'prompt' });
+            lines.push({ text: '', type: 'output' });
+
+            try {
+                // Extract Console.WriteLine statements
+                const writeLineRegex = /Console\.WriteLine\((.+?)\);/g;
+                let match;
+                let hasOutput = false;
+
+                while ((match = writeLineRegex.exec(code)) !== null) {
+                    hasOutput = true;
+                    let arg = match[1].trim();
+                    let output = resolveOutput(arg, code);
+                    lines.push({ text: output, type: 'output' });
+                }
+
+                // Extract Console.Write statements (no newline)
+                const writeRegex = /Console\.Write\((.+?)\);/g;
+                while ((match = writeRegex.exec(code)) !== null) {
+                    hasOutput = true;
+                    let arg = match[1].trim();
+                    let output = resolveOutput(arg, code);
+                    lines.push({ text: output, type: 'output' });
+                }
+
+                if (!hasOutput) {
+                    lines.push({ text: '(No console output produced)', type: 'warn' });
+                }
+
+                lines.push({ text: '', type: 'output' });
+                lines.push({ text: 'Build succeeded.', type: 'success' });
+                lines.push({ text: `    0 Warning(s)`, type: 'info' });
+                lines.push({ text: `    0 Error(s)`, type: 'info' });
+                lines.push({ text: '', type: 'output' });
+                lines.push({ text: `Time Elapsed 00:00:0${(Math.random() * 3 + 1).toFixed(1)}`, type: 'info' });
+
+            } catch (err) {
+                lines.push({ text: `error CS0001: ${err.message}`, type: 'error' });
+                lines.push({ text: '', type: 'output' });
+                lines.push({ text: 'Build FAILED.', type: 'error' });
+            }
+
+            // Render output
+            consoleOutput.innerHTML = '';
+            lines.forEach(line => {
+                const div = document.createElement('div');
+                div.className = `line line-${line.type}`;
+                if (line.type === 'prompt') {
+                    div.innerHTML = `<span class="prompt">${line.text}</span>`;
+                } else {
+                    div.textContent = line.text;
+                }
+                consoleOutput.appendChild(div);
+            });
+
+            // Save state
+            localStorage.setItem('careerPathAspCSharp', csharpInput.value);
+        }
+
+        // Resolve C# string output (handles string interpolation, concatenation, and literals)
+        function resolveOutput(arg, code) {
+            // String interpolation: $"Hello {name}"
+            if (arg.startsWith('$"') || arg.startsWith('$@"')) {
+                let str = arg.slice(arg.indexOf('"') + 1, arg.lastIndexOf('"'));
+                // Replace {expression} with resolved values
+                str = str.replace(/\{([^}]+)\}/g, (_, expr) => {
+                    return resolveVariable(expr.trim(), code);
+                });
+                return str;
+            }
+
+            // Plain string: "Hello"
+            if (arg.startsWith('"') && arg.endsWith('"')) {
+                return arg.slice(1, -1);
+            }
+
+            // String concatenation: "Hello " + name
+            if (arg.includes(' + ')) {
+                let parts = arg.split('+').map(p => p.trim());
+                return parts.map(p => {
+                    if (p.startsWith('"') && p.endsWith('"')) {
+                        return p.slice(1, -1);
+                    }
+                    return resolveVariable(p, code);
+                }).join('');
+            }
+
+            // Variable reference
+            return resolveVariable(arg, code);
+        }
+
+        // Resolve a variable name from code context
+        function resolveVariable(name, code) {
+            // Handle simple property access like name.Length
+            if (name.includes('.')) {
+                const parts = name.split('.');
+                const baseVal = resolveVariable(parts[0], code);
+                if (parts[1] === 'Length') return String(baseVal.length);
+                return name;
+            }
+
+            // Look for variable declarations
+            const patterns = [
+                new RegExp(`string\\s+${name}\\s*=\\s*"([^"]*)"`, 'g'),
+                new RegExp(`int\\s+${name}\\s*=\\s*(\\d+)`, 'g'),
+                new RegExp(`double\\s+${name}\\s*=\\s*([\\d.]+)`, 'g'),
+                new RegExp(`var\\s+${name}\\s*=\\s*"([^"]*)"`, 'g'),
+                new RegExp(`var\\s+${name}\\s*=\\s*(\\d+)`, 'g'),
+                new RegExp(`bool\\s+${name}\\s*=\\s*(true|false)`, 'gi'),
+            ];
+
+            for (const pattern of patterns) {
+                const m = pattern.exec(code);
+                if (m) return m[1];
+            }
+
+            return `{${name}}`;
+        }
+
+        // Execute Razor preview
+        function executeRazor() {
+            let razorCode = razorInput.value;
+
+            // Strip @page, @model directives for preview
+            let htmlContent = razorCode
+                .replace(/@page\b/g, '')
+                .replace(/@model\s+\w+/g, '')
+                .replace(/@using\s+[\w.]+/g, '')
+                .replace(/@\{[\s\S]*?\}/g, '') // Remove code blocks
+                .replace(/@ViewData\["Title"\]/g, 'ASP.NET Page')
+                .replace(/@ViewBag\.\w+/g, 'Sample Data')
+                .replace(/@Html\.Raw\(([^)]+)\)/g, '$1')
+                .replace(/@RenderBody\(\)/g, '<p>Page content renders here.</p>');
+
+            const iframeDoc = razorOutput.contentWindow.document;
+            iframeDoc.open();
+            iframeDoc.write(htmlContent);
+            iframeDoc.close();
+
+            // Save state
+            localStorage.setItem('careerPathAspRazor', razorInput.value);
+        }
+
+        // Run both
+        function executeCode() {
+            executeCSharp();
+            executeRazor();
+        }
+
+        // Run button
+        runBtn.addEventListener('click', executeCode);
+
+        // Keyboard shortcuts
+        const handleKeyDown = function (e) {
+            if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
+                executeCode();
+            }
+            if (e.key === 'Tab') {
+                e.preventDefault();
+                const start = this.selectionStart;
+                const end = this.selectionEnd;
+                this.value = this.value.substring(0, start) + '    ' + this.value.substring(end);
+                this.selectionStart = this.selectionEnd = start + 4;
+            }
+        };
+
+        csharpInput.addEventListener('keydown', handleKeyDown);
+        razorInput.addEventListener('keydown', handleKeyDown);
+
+        // Auto-run on load
+        executeCode();
+</script>
+</body>
+</html>

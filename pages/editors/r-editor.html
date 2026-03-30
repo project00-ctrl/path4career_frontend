@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live R Editor - CareerPath</title>
+    <link rel="stylesheet" href="../../assets/css/editor.css">
+    <style>
+        #rInput { color: #276cb0; }
+        
+        .console-output {
+            flex: 1;
+            background-color: #1e1e2f;
+            display: flex;
+            flex-direction: column;
+        }
+
+        #consoleDiv {
+            flex: 1;
+            padding: 10px 20px;
+            font-family: 'Courier New', Courier, monospace;
+            overflow-y: auto;
+            color: #cbd5e1;
+            font-size: 14px;
+            white-space: pre-wrap; 
+        }
+
+        .log-error { color: #ff4757; }
+        .log-normal { color: #00ffb3; }
+        .log-loading { color: #8be9fd; font-style: italic; }
+        .log-info { color: #ffb86c; }
+        .log-success { color: #50fa7b; }
+        
+        #rOutput {
+            display: none; /* R usually outputs to console, or plots which we'll handle differently if needed */
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h2><span style="color: #276cb0;">R</span> Programming Workspace</h2>
+        <button class="run-btn" id="runBtn" disabled>Loading WebR Engine...</button>
+    </div>
+    <div class="workspace">
+        <div class="editor-pane">
+            <p class="pane-label">script.R</p>
+            <textarea id="rInput" spellcheck="false" aria-label="R Input"></textarea>
+        </div>
+        
+        <div class="result-pane">
+            <div class="console-output">
+                <p class="pane-label" style="padding:10px 20px 0;">Console / Output</p>
+                <div id="consoleDiv">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="r-editor.js"></script>
+</body>
+</html>

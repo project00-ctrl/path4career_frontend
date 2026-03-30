@@ -1,0 +1,162 @@
+{
+  "sections": [
+    {
+      "title": "Core Concepts",
+      "desc": "Kubernetes fundamental objects and architecture components.",
+      "type": "table",
+      "columns": ["CONCEPT", "DESCRIPTION", "DETAILS"],
+      "rows": [
+        { "property": "Cluster", "desc": "Set of nodes running containerized applications", "version": "Control plane + worker nodes" },
+        { "property": "Node", "desc": "Worker machine (physical or virtual) running Pods", "version": "Runs kubelet, kube-proxy, container runtime" },
+        { "property": "Pod", "desc": "Smallest deployable unit — one or more containers", "version": "Shared network and storage" },
+        { "property": "Deployment", "desc": "Manages ReplicaSets — handles rollouts and scaling", "version": "Declarative updates for Pods" },
+        { "property": "Service", "desc": "Stable network endpoint to access Pods", "version": "ClusterIP, NodePort, LoadBalancer" },
+        { "property": "Namespace", "desc": "Virtual cluster for resource isolation", "version": "default, kube-system, custom namespaces" },
+        { "property": "ReplicaSet", "desc": "Ensures specified number of Pod replicas are running", "version": "Managed by Deployment" },
+        { "property": "ConfigMap", "desc": "Store non-sensitive configuration data", "version": "Key-value pairs, mounted as files or env vars" },
+        { "property": "Secret", "desc": "Store sensitive data (passwords, tokens)", "version": "Base64 encoded, mounted as files or env vars" },
+        { "property": "Volume", "desc": "Directory accessible to containers in a Pod", "version": "emptyDir, hostPath, PVC, NFS" },
+        { "property": "PersistentVolume (PV)", "desc": "Cluster-level storage resource", "version": "Provisioned by admin or dynamically" },
+        { "property": "PersistentVolumeClaim (PVC)", "desc": "Request for storage by a user", "version": "Binds to a PV with matching specs" },
+        { "property": "Ingress", "desc": "HTTP/HTTPS routing to Services based on rules", "version": "Host-based, path-based routing" },
+        { "property": "StatefulSet", "desc": "Manages stateful applications with stable identities", "version": "Databases, clustered applications" },
+        { "property": "DaemonSet", "desc": "Ensures all nodes run a copy of a Pod", "version": "Logging agents, monitoring" },
+        { "property": "Job / CronJob", "desc": "Run one-off or scheduled batch tasks", "version": "Data processing, Backups" }
+      ]
+    },
+    {
+      "title": "kubectl Core Commands",
+      "desc": "Essential kubectl commands for cluster interaction.",
+      "type": "table",
+      "columns": ["COMMAND", "DESCRIPTION", "EXAMPLE"],
+      "rows": [
+        { "property": "kubectl get pods", "desc": "List pods in current namespace", "version": "kubectl get pods -o wide" },
+        { "property": "kubectl get all", "desc": "List all resources", "version": "kubectl get all -n my-namespace" },
+        { "property": "kubectl get services", "desc": "List services", "version": "kubectl get svc" },
+        { "property": "kubectl get deployments", "desc": "List deployments", "version": "kubectl get deploy" },
+        { "property": "kubectl get nodes", "desc": "List cluster nodes", "version": "kubectl get nodes" },
+        { "property": "kubectl get namespaces", "desc": "List all namespaces", "version": "kubectl get ns" },
+        { "property": "kubectl describe pod name", "desc": "Detailed info about a pod", "version": "kubectl describe pod my-app-xyz" },
+        { "property": "kubectl logs pod-name", "desc": "View pod logs", "version": "kubectl logs -f my-app-xyz" },
+        { "property": "kubectl logs pod -c container", "desc": "View logs of specific container in pod", "version": "kubectl logs my-pod -c sidecar" },
+        { "property": "kubectl exec -it pod -- cmd", "desc": "Execute command inside pod", "version": "kubectl exec -it my-app -- bash" },
+        { "property": "kubectl apply -f file.yaml", "desc": "Apply configuration from YAML file", "version": "kubectl apply -f deployment.yaml" },
+        { "property": "kubectl delete -f file.yaml", "desc": "Delete resources defined in YAML", "version": "kubectl delete -f deployment.yaml" },
+        { "property": "kubectl delete pod name", "desc": "Delete a specific pod", "version": "kubectl delete pod my-app-xyz" },
+        { "property": "kubectl port-forward pod port:port", "desc": "Forward local port to pod", "version": "kubectl port-forward my-app 8080:80" },
+        { "property": "kubectl cp file pod:/path", "desc": "Copy files to/from pod", "version": "kubectl cp file.txt my-pod:/tmp/" }
+      ]
+    },
+    {
+      "title": "Deployments & Scaling",
+      "desc": "Managing deployments, rollouts, and scaling.",
+      "type": "table",
+      "columns": ["COMMAND / CONCEPT", "DESCRIPTION", "EXAMPLE"],
+      "rows": [
+        { "property": "kubectl create deployment", "desc": "Create deployment imperatively", "version": "kubectl create deployment web --image=nginx --replicas=3" },
+        { "property": "kubectl scale deployment", "desc": "Scale number of replicas", "version": "kubectl scale deployment web --replicas=5" },
+        { "property": "kubectl rollout status", "desc": "Watch rollout progress", "version": "kubectl rollout status deployment/web" },
+        { "property": "kubectl rollout history", "desc": "View rollout revision history", "version": "kubectl rollout history deployment/web" },
+        { "property": "kubectl rollout undo", "desc": "Rollback to previous version", "version": "kubectl rollout undo deployment/web" },
+        { "property": "kubectl rollout undo --to-revision=n", "desc": "Rollback to specific revision", "version": "kubectl rollout undo deployment/web --to-revision=2" },
+        { "property": "kubectl set image deployment", "desc": "Update container image", "version": "kubectl set image deployment/web web=nginx:1.25" },
+        { "property": "RollingUpdate (default)", "desc": "Gradually replace old pods with new ones", "version": "maxSurge: 1, maxUnavailable: 0" },
+        { "property": "Recreate strategy", "desc": "Kill all old pods before creating new ones", "version": "Brief downtime during update" },
+        { "property": "HorizontalPodAutoscaler", "desc": "Auto-scale pods based on CPU/memory metrics", "version": "kubectl autoscale deployment web --min=2 --max=10 --cpu-percent=50" }
+      ]
+    },
+    {
+      "title": "Services & Networking",
+      "desc": "Service types and networking configuration.",
+      "type": "table",
+      "columns": ["TYPE / FEATURE", "DESCRIPTION", "EXAMPLE"],
+      "rows": [
+        { "property": "ClusterIP (default)", "desc": "Internal service — accessible only within cluster", "version": "type: ClusterIP" },
+        { "property": "NodePort", "desc": "Expose service on each node's IP at static port", "version": "type: NodePort (range 30000-32767)" },
+        { "property": "LoadBalancer", "desc": "Expose service via cloud provider load balancer", "version": "type: LoadBalancer" },
+        { "property": "ExternalName", "desc": "Map service to external DNS name", "version": "type: ExternalName, externalName: db.example.com" },
+        { "property": "Ingress Controller", "desc": "Routes external HTTP/S traffic to services", "version": "nginx-ingress, traefik, AWS ALB" },
+        { "property": "Ingress Rules", "desc": "Path and host-based routing rules", "version": "host: api.example.com, path: /users" },
+        { "property": "NetworkPolicy", "desc": "Control pod-to-pod traffic flow", "version": "Allow traffic only from specific namespaces" },
+        { "property": "DNS Resolution", "desc": "Services discoverable via DNS within cluster", "version": "service-name.namespace.svc.cluster.local" },
+        { "property": "kubectl expose deployment", "desc": "Create service for deployment", "version": "kubectl expose deployment web --port=80 --type=LoadBalancer" }
+      ]
+    },
+    {
+      "title": "Configuration & Storage",
+      "desc": "ConfigMaps, Secrets, and persistent storage.",
+      "type": "table",
+      "columns": ["COMMAND / CONCEPT", "DESCRIPTION", "EXAMPLE"],
+      "rows": [
+        { "property": "kubectl create configmap", "desc": "Create ConfigMap from literal or file", "version": "kubectl create configmap app-config --from-literal=KEY=VALUE" },
+        { "property": "kubectl create secret generic", "desc": "Create Secret from literal or file", "version": "kubectl create secret generic db-creds --from-literal=password=secret" },
+        { "property": "envFrom: configMapRef", "desc": "Load all ConfigMap keys as env vars", "version": "envFrom: - configMapRef: name: app-config" },
+        { "property": "envFrom: secretRef", "desc": "Load all Secret keys as env vars", "version": "envFrom: - secretRef: name: db-creds" },
+        { "property": "volumeMounts + configMap", "desc": "Mount ConfigMap as files in pod", "version": "Mount at /etc/config/" },
+        { "property": "PersistentVolumeClaim", "desc": "Request storage allocation", "version": "storage: 10Gi, accessModes: ReadWriteOnce" },
+        { "property": "StorageClass", "desc": "Define storage provisioner and parameters", "version": "provisioner: kubernetes.io/aws-ebs" },
+        { "property": "emptyDir volume", "desc": "Temporary storage — deleted when pod is removed", "version": "volumes: - name: tmp emptyDir: {}" },
+        { "property": "hostPath volume", "desc": "Mount host filesystem into pod", "version": "path: /var/log" }
+      ]
+    },
+    {
+      "title": "YAML Manifests",
+      "desc": "Common YAML manifest structure for Kubernetes resources.",
+      "type": "grouped-list",
+      "groups": [
+        {
+          "title": "Required Fields",
+          "items": [
+            { "code": "apiVersion:", "desc": "API version for the resource (apps/v1, v1, networking.k8s.io/v1)" },
+            { "code": "kind:", "desc": "Resource type (Deployment, Service, Pod, Ingress, etc.)" },
+            { "code": "metadata:", "desc": "Name, namespace, labels, annotations" },
+            { "code": "spec:", "desc": "Desired state specification for the resource" }
+          ]
+        },
+        {
+          "title": "Pod Spec Fields",
+          "items": [
+            { "code": "spec.containers[]", "desc": "List of containers in the pod" },
+            { "code": "container.image", "desc": "Container image to run (e.g., nginx:1.25)" },
+            { "code": "container.ports[].containerPort", "desc": "Port the container listens on" },
+            { "code": "container.env[]", "desc": "Environment variables (name, value or valueFrom)" },
+            { "code": "container.resources.requests", "desc": "Minimum CPU/memory requested" },
+            { "code": "container.resources.limits", "desc": "Maximum CPU/memory allowed" },
+            { "code": "container.livenessProbe", "desc": "Check if container is alive (restart if fails)" },
+            { "code": "container.readinessProbe", "desc": "Check if container is ready to accept traffic" },
+            { "code": "container.startupProbe", "desc": "Check if container has started (K8s 1.18+)" }
+          ]
+        },
+        {
+          "title": "Labels & Selectors",
+          "items": [
+            { "code": "metadata.labels", "desc": "Key-value pairs for identification and grouping" },
+            { "code": "spec.selector.matchLabels", "desc": "Select pods by labels (used by Deployments, Services)" },
+            { "code": "kubectl get pods -l key=value", "desc": "Filter resources by label" },
+            { "code": "metadata.annotations", "desc": "Non-identifying metadata (build info, config)" }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Cluster Management",
+      "desc": "Cluster administration and debugging commands.",
+      "type": "table",
+      "columns": ["COMMAND", "DESCRIPTION", "EXAMPLE"],
+      "rows": [
+        { "property": "kubectl cluster-info", "desc": "Display cluster endpoint info", "version": "kubectl cluster-info" },
+        { "property": "kubectl config get-contexts", "desc": "List available cluster contexts", "version": "kubectl config get-contexts" },
+        { "property": "kubectl config use-context", "desc": "Switch to different cluster context", "version": "kubectl config use-context prod" },
+        { "property": "kubectl top nodes", "desc": "Show node CPU and memory usage", "version": "kubectl top nodes (requires metrics-server)" },
+        { "property": "kubectl top pods", "desc": "Show pod CPU and memory usage", "version": "kubectl top pods -n my-namespace" },
+        { "property": "kubectl drain node", "desc": "Safely evict all pods from a node", "version": "kubectl drain node-1 --ignore-daemonsets" },
+        { "property": "kubectl cordon node", "desc": "Mark node as unschedulable", "version": "kubectl cordon node-1" },
+        { "property": "kubectl uncordon node", "desc": "Mark node as schedulable again", "version": "kubectl uncordon node-1" },
+        { "property": "kubectl api-resources", "desc": "List all available resource types", "version": "kubectl api-resources" },
+        { "property": "kubectl explain resource", "desc": "Show documentation for resource fields", "version": "kubectl explain deployment.spec" },
+        { "property": "kubectl diff -f file.yaml", "desc": "Show diff between current and applied config", "version": "kubectl diff -f deployment.yaml" },
+        { "property": "Helm", "desc": "Package manager for Kubernetes", "version": "helm install my-release chart-name" }
+      ]
+    }
+  ]
+}

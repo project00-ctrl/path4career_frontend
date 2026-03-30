@@ -1,0 +1,137 @@
+{
+  "sections": [
+    {
+      "title": "Machine Learning Fundamentals",
+      "desc": "Core machine learning concepts, algorithms, and terminology.",
+      "type": "table",
+      "columns": ["CONCEPT / ALGORITHM", "DESCRIPTION", "USE CASE"],
+      "rows": [
+        { "property": "Supervised Learning", "desc": "Model learns from labeled training data (input-output pairs)", "version": "Classification, Regression" },
+        { "property": "Unsupervised Learning", "desc": "Model finds patterns in unlabeled data", "version": "Clustering, Dimensionality Reduction" },
+        { "property": "Reinforcement Learning", "desc": "Agent learns by interacting with environment and receiving rewards", "version": "Game AI, Robotics" },
+        { "property": "Linear Regression", "desc": "Predicts continuous value using linear relationship", "version": "House prices, Sales forecasting" },
+        { "property": "Logistic Regression", "desc": "Predicts probability of binary outcome", "version": "Spam detection, Disease diagnosis" },
+        { "property": "Decision Tree", "desc": "Tree-based model that splits data on feature conditions", "version": "Customer churn, Loan approval" },
+        { "property": "Random Forest", "desc": "Ensemble of decision trees — reduces overfitting", "version": "Feature importance, Classification" },
+        { "property": "K-Nearest Neighbors (KNN)", "desc": "Classifies based on majority vote of k nearest points", "version": "Recommendation, Pattern recognition" },
+        { "property": "Support Vector Machine (SVM)", "desc": "Finds optimal hyperplane to separate classes", "version": "Text classification, Image recognition" },
+        { "property": "K-Means Clustering", "desc": "Partitions data into k clusters based on distance", "version": "Customer segmentation, Image compression" },
+        { "property": "Gradient Boosting (XGBoost)", "desc": "Sequentially builds trees to correct previous errors", "version": "Competitions, Tabular data" },
+        { "property": "Naive Bayes", "desc": "Probabilistic classifier based on Bayes' theorem", "version": "Text classification, Spam filtering" },
+        { "property": "Principal Component Analysis (PCA)", "desc": "Reduces dimensions while preserving variance", "version": "Feature reduction, Visualization" }
+      ]
+    },
+    {
+      "title": "Deep Learning & Neural Networks",
+      "desc": "Neural network architectures and deep learning concepts.",
+      "type": "table",
+      "columns": ["CONCEPT / ARCHITECTURE", "DESCRIPTION", "USE CASE"],
+      "rows": [
+        { "property": "Artificial Neural Network (ANN)", "desc": "Network of interconnected nodes (neurons) in layers", "version": "General classification, Regression" },
+        { "property": "Convolutional Neural Network (CNN)", "desc": "Specialised for spatial data using convolutional filters", "version": "Image recognition, Object detection" },
+        { "property": "Recurrent Neural Network (RNN)", "desc": "Processes sequential data with memory of previous inputs", "version": "Time series, Text generation" },
+        { "property": "LSTM (Long Short-Term Memory)", "desc": "RNN variant that handles long-range dependencies", "version": "Speech recognition, Translation" },
+        { "property": "Transformer", "desc": "Attention-based architecture — processes all tokens in parallel", "version": "NLP, LLMs, Vision Transformers" },
+        { "property": "GAN (Generative Adversarial Network)", "desc": "Two networks (generator + discriminator) competing", "version": "Image generation, Style transfer" },
+        { "property": "Autoencoder", "desc": "Learns compressed representation of input data", "version": "Anomaly detection, Denoising" },
+        { "property": "Transfer Learning", "desc": "Use pre-trained model as starting point for new task", "version": "Fine-tuning BERT, ResNet" },
+        { "property": "Activation Functions", "desc": "Non-linear functions applied at each neuron", "version": "ReLU, Sigmoid, Tanh, Softmax" },
+        { "property": "Backpropagation", "desc": "Algorithm to calculate gradients for weight updates", "version": "Training all neural networks" },
+        { "property": "Dropout", "desc": "Randomly deactivate neurons during training to prevent overfitting", "version": "Regularization technique" },
+        { "property": "Batch Normalization", "desc": "Normalise layer inputs to stabilise and speed up training", "version": "Deep network training" }
+      ]
+    },
+    {
+      "title": "Natural Language Processing",
+      "desc": "NLP techniques, models, and common tasks.",
+      "type": "table",
+      "columns": ["CONCEPT / TECHNIQUE", "DESCRIPTION", "USE CASE"],
+      "rows": [
+        { "property": "Tokenization", "desc": "Split text into tokens (words, subwords, characters)", "version": "Text preprocessing" },
+        { "property": "Word Embeddings", "desc": "Dense vector representations of words (Word2Vec, GloVe)", "version": "Semantic similarity" },
+        { "property": "TF-IDF", "desc": "Term Frequency-Inverse Document Frequency weighting", "version": "Document search, Keyword extraction" },
+        { "property": "Named Entity Recognition (NER)", "desc": "Identify entities (person, org, location) in text", "version": "Information extraction" },
+        { "property": "Sentiment Analysis", "desc": "Determine emotional tone of text", "version": "Review analysis, Social media monitoring" },
+        { "property": "Text Classification", "desc": "Assign categories to text documents", "version": "Spam detection, Topic labeling" },
+        { "property": "Machine Translation", "desc": "Translate text between languages", "version": "Google Translate, DeepL" },
+        { "property": "BERT", "desc": "Bidirectional Encoder Representations from Transformers", "version": "Question answering, Classification" },
+        { "property": "GPT", "desc": "Generative Pre-trained Transformer — autoregressive LLM", "version": "Text generation, Chatbots" },
+        { "property": "Attention Mechanism", "desc": "Allows model to focus on relevant parts of input", "version": "Core of Transformer architecture" },
+        { "property": "RAG (Retrieval-Augmented Generation)", "desc": "Combine retrieval from knowledge base with LLM generation", "version": "Enterprise chatbots, Q&A systems" },
+        { "property": "Fine-tuning", "desc": "Adapt pre-trained model to specific task/domain", "version": "Domain-specific AI applications" }
+      ]
+    },
+    {
+      "title": "Computer Vision",
+      "desc": "Computer vision tasks, models, and techniques.",
+      "type": "table",
+      "columns": ["CONCEPT / TASK", "DESCRIPTION", "EXAMPLE MODEL"],
+      "rows": [
+        { "property": "Image Classification", "desc": "Assign labels to entire images", "version": "ResNet, EfficientNet, ViT" },
+        { "property": "Object Detection", "desc": "Locate and classify objects within images", "version": "YOLO, Faster R-CNN, SSD" },
+        { "property": "Image Segmentation", "desc": "Classify each pixel in an image", "version": "U-Net, Mask R-CNN, SAM" },
+        { "property": "Face Recognition", "desc": "Identify or verify faces in images", "version": "FaceNet, ArcFace, DeepFace" },
+        { "property": "Image Generation", "desc": "Generate new images from noise or text", "version": "Stable Diffusion, DALL-E, Midjourney" },
+        { "property": "Optical Character Recognition (OCR)", "desc": "Extract text from images", "version": "Tesseract, PaddleOCR" },
+        { "property": "Data Augmentation", "desc": "Apply transformations to increase training dataset", "version": "Rotation, flip, crop, color jitter" },
+        { "property": "Feature Extraction", "desc": "Extract meaningful features from images using CNN layers", "version": "Using pre-trained ResNet features" }
+      ]
+    },
+    {
+      "title": "Model Evaluation Metrics",
+      "desc": "Metrics for evaluating machine learning model performance.",
+      "type": "table",
+      "columns": ["METRIC", "DESCRIPTION", "FORMULA / NOTE"],
+      "rows": [
+        { "property": "Accuracy", "desc": "Proportion of correct predictions", "version": "(TP + TN) / Total" },
+        { "property": "Precision", "desc": "Proportion of true positives among predicted positives", "version": "TP / (TP + FP)" },
+        { "property": "Recall (Sensitivity)", "desc": "Proportion of actual positives correctly identified", "version": "TP / (TP + FN)" },
+        { "property": "F1 Score", "desc": "Harmonic mean of precision and recall", "version": "2 × (P × R) / (P + R)" },
+        { "property": "AUC-ROC", "desc": "Area under Receiver Operating Characteristic curve", "version": "Higher is better (0.5 = random)" },
+        { "property": "Mean Squared Error (MSE)", "desc": "Average of squared prediction errors", "version": "Lower is better" },
+        { "property": "Mean Absolute Error (MAE)", "desc": "Average of absolute prediction errors", "version": "Lower is better" },
+        { "property": "R² Score", "desc": "Proportion of variance explained by the model", "version": "1 = perfect, 0 = baseline" },
+        { "property": "Confusion Matrix", "desc": "Table of TP, TN, FP, FN counts", "version": "Visual performance summary" },
+        { "property": "Cross-Validation", "desc": "Evaluate model on multiple train/test splits", "version": "K-fold cross-validation (k=5 or 10)" },
+        { "property": "BLEU Score", "desc": "Evaluate machine translation quality", "version": "Compares n-grams with reference" },
+        { "property": "Perplexity", "desc": "Evaluate language model quality", "version": "Lower is better" }
+      ]
+    },
+    {
+      "title": "Python AI/ML Libraries",
+      "desc": "Popular Python libraries and frameworks for AI and machine learning.",
+      "type": "table",
+      "columns": ["LIBRARY", "DESCRIPTION", "USE CASE"],
+      "rows": [
+        { "property": "scikit-learn", "desc": "Classical ML algorithms, preprocessing, evaluation", "version": "Classification, Regression, Clustering" },
+        { "property": "TensorFlow", "desc": "Google's deep learning framework", "version": "Neural networks, Production ML" },
+        { "property": "PyTorch", "desc": "Facebook's deep learning framework — dynamic computation graph", "version": "Research, NLP, Computer Vision" },
+        { "property": "Keras", "desc": "High-level API for building neural networks (part of TensorFlow)", "version": "Rapid prototyping" },
+        { "property": "Hugging Face Transformers", "desc": "Pre-trained NLP models (BERT, GPT, T5, etc.)", "version": "NLP, Text generation, Translation" },
+        { "property": "OpenCV", "desc": "Computer vision library — image and video processing", "version": "Object detection, Image processing" },
+        { "property": "LangChain", "desc": "Framework for building LLM-powered applications", "version": "Chatbots, Agents, RAG" },
+        { "property": "NLTK", "desc": "Natural Language Toolkit — text processing", "version": "Tokenization, Stemming, POS tagging" },
+        { "property": "spaCy", "desc": "Industrial-strength NLP library", "version": "NER, Dependency parsing" },
+        { "property": "XGBoost", "desc": "Optimised gradient boosting library", "version": "Tabular data, Competitions" },
+        { "property": "MLflow", "desc": "ML experiment tracking and model management", "version": "Model versioning, Deployment" },
+        { "property": "FastAI", "desc": "High-level deep learning library built on PyTorch", "version": "Quick model training" }
+      ]
+    },
+    {
+      "title": "AI Ethics & Best Practices",
+      "desc": "Responsible AI development principles and considerations.",
+      "type": "table",
+      "columns": ["CONCEPT", "DESCRIPTION", "CONSIDERATION"],
+      "rows": [
+        { "property": "Bias & Fairness", "desc": "Models can inherit and amplify data biases", "version": "Audit training data, Test across demographics" },
+        { "property": "Explainability (XAI)", "desc": "Understanding why a model makes specific predictions", "version": "SHAP, LIME, Attention visualization" },
+        { "property": "Data Privacy", "desc": "Protect personal information in training data", "version": "Anonymization, Differential privacy" },
+        { "property": "Overfitting", "desc": "Model memorises training data — fails on new data", "version": "Use regularization, More data, Cross-validation" },
+        { "property": "Underfitting", "desc": "Model too simple to capture data patterns", "version": "Increase complexity, Better features" },
+        { "property": "Data Leakage", "desc": "Test data information leaks into training", "version": "Strict train/test split, Pipeline validation" },
+        { "property": "Hallucination", "desc": "LLM generates plausible but incorrect information", "version": "Use RAG, Grounding, Fact-checking" },
+        { "property": "Model Monitoring", "desc": "Track model performance in production over time", "version": "Detect drift, Retrain when needed" }
+      ]
+    }
+  ]
+}

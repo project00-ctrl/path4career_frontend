@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live Vue.js Editor - CareerPath</title>
+
+    <link rel="stylesheet" href="../../assets/css/editor.css">
+    <style>
+        .editor-pane {
+            padding: 0;
+        }
+
+        /* Reset padding for the split boxes */
+        .code-box {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            padding: 15px;
+        }
+
+        .code-box:first-child {
+            border-bottom: 2px solid #333;
+        }
+
+        #htmlInput {
+            color: #ffb86c;
+        }
+
+        #jsInput {
+            color: #f1fa8c;
+        }
+
+        /* Vue.js specific styling tweaks based on nodejs-editor.html */
+        .header h2 span {
+            color: #41b883 !important;
+        }
+
+        .run-btn {
+            background-color: #41b883 !important;
+            color: #fff !important;
+        }
+
+        .run-btn:hover {
+            background-color: #34495e !important;
+            color: #fff !important;
+        }
+
+        /* Vue.js Badge */
+        .vue-badge {
+            background-color: #34495e;
+            color: #41b883;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            margin-left: 10px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header">
+        <div style="display: flex; align-items: center; gap: 15px;">
+            <a href="../index.html" style="color: #41b883; text-decoration: none; font-size: 14px;">← Back</a>
+            <h2><span>V</span> Real Vue.js Workspace <span class="vue-badge">Vue 3 (CDN)</span></h2>
+        </div>
+        <button class="run-btn" id="runBtn">Run Code ❯</button>
+    </div>
+    <div class="workspace">
+        <div class="editor-pane">
+            <div class="code-box">
+                <p class="pane-label">index.html (Template)</p>
+                <textarea id="htmlInput" spellcheck="false" aria-label="HTML Input">
+<div id="app">
+  <div class="card">
+    <h2>{{ title }}</h2>
+    <p>{{ message }}</p>
+    
+    <div class="counter-box">
+      <button @click="decrement">-</button>
+      <span class="count">{{ count }}</span>
+      <button @click="increment">+</button>
+    </div>
+
+    <p :class="countClass" class="status-text">
+        {{ countMessage }}
+    </p>
+
+    <div class="list-section">
+      <h3>Frameworks:</h3>
+      <ul>
+        <li v-for="(item, index) in frameworks" :key="index">
+          {{ item }}
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+                </textarea>
+            </div>
+            <div class="code-box">
+                <p class="pane-label">app.js (Vue Instance)</p>
+                <textarea id="jsInput" spellcheck="false" aria-label="JavaScript Input"></textarea>
+            </div>
+        </div>
+        <div class="result-pane">
+            <iframe id="htmlOutput" title="Live Preview"></iframe>
+        </div>
+    </div>
+
+    <script>
+const htmlInput = document.getElementById('htmlInput');
+        const jsInput = document.getElementById('jsInput');
+        const htmlOutput = document.getElementById('htmlOutput');
+        const runBtn = document.getElementById('runBtn');
+
+        // Fetch the code passed from the main app or saved state
+        const savedHtml = localStorage.getItem('careerPathVueHtml');
+        const savedJs = localStorage.getItem('careerPathVueCode');
+
+        if (savedHtml) {
+            htmlInput.value = savedHtml;
+        }
+
+        // If there's saved code, use it. Otherwise, use a default!
+        jsInput.value = savedJs ? savedJs : `const { createApp, ref, computed } = Vue
+
+createApp({
+  setup() {
+    const title = ref('Hello, Vue 3!')
+    const message = ref('Start building interactive UIs.')
+    const count = ref(0)
+    
+    const frameworks = ref(['Vue.js', 'React', 'Angular', 'Svelte'])
+
+    const increment = () => { count.value++ }
+    const decrement = () => { count.value-- }
+
+    const countMessage = computed(() => {
+        if (count.value === 0) return 'Counter is zero.'
+        if (count.value > 0) return 'Counter is positive!'
+        return 'Counter is negative.'
+    })
+
+    const countClass = computed(() => {
+        if (count.value > 0) return 'positive'
+        if (count.value < 0) return 'negative'
+        return 'zero'
+    })
+
+    return {
+      title,
+      message,
+      count,
+      frameworks,
+      increment,
+      decrement,
+      countMessage,
+      countClass
+    }
+  }
+}).mount('#app')`;
+
+        // Default styles for the Vue preview
+        const defaultCss = `
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f0f2f5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+}
+
+.card {
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+    text-align: center;
+    max-width: 400px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+h2 { color: #34495e; margin-top: 0; }
+p { color: #666; }
+
+.counter-box {
+    margin: 20px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+}
+
+button {
+    background-color: #41b883;
+    color: white;
+    border: none;
+    width: 40px;
+    height: 40px;
+    font-size: 20px;
+    font-weight: bold;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.1s;
+}
+
+button:hover { background-color: #34495e; }
+button:active { transform: scale(0.95); }
+
+.count {
+    font-size: 24px;
+    font-weight: bold;
+    color: #34495e;
+    min-width: 30px;
+}
+
+.status-text {
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+.positive { color: #41b883; }
+.negative { color: #e74c3c; }
+.zero { color: #95a5a6; }
+
+.list-section {
+    margin-top: 25px;
+    text-align: left;
+    background: #f8f9fa;
+    padding: 15px;
+    border-radius: 8px;
+}
+
+.list-section h3 { margin-top: 0; font-size: 16px; color: #34495e; }
+ul { padding-left: 20px; margin-bottom: 0; color: #555;}
+li { margin-bottom: 5px; }
+`;
+
+        // Combine HTML and JS into the iframe
+        function executeCode() {
+            let html = htmlInput.value;
+            let js = jsInput.value;
+
+            // To support users pasting in Vue Single File Component (SFC) style from the tutorial
+            // Check if JS input is actually an SFC containing <script setup> or <template>
+            if (js.includes('<script') || js.includes('<template>')) {
+                // Try to extract template
+                const templateMatch = js.match(/<template>([\s\S]*?)<\/template>/i);
+                if (templateMatch) {
+                    html = `
+<div id="app">
+${templateMatch[1].trim()}
+</div>
+`;
+                }
+
+                // Try to extract script setup
+                const scriptMatch = js.match(/<script setup>([\s\S]*?)<\/script>/i);
+                if (scriptMatch) {
+                    let scriptContent = scriptMatch[1].trim();
+                    // Basic simulation: convert "import { ref } from 'vue'" to "const { ref } = Vue"
+                    scriptContent = scriptContent.replace(/import\s+{([^}]+)}\s+from\s+['"]vue['"]/gi, "const {$1} = Vue");
+
+                    // Extract variable and function names defined in the root of setup to return them
+                    const varRegex = /(?:const|let|var|function)\s+([a-zA-Z0-9_$]+)/g;
+                    let varsToReturn = [];
+                    let match;
+                    while ((match = varRegex.exec(scriptContent)) !== null) {
+                        varsToReturn.push(match[1]);
+                    }
+
+                    // Deduplicate
+                    varsToReturn = [...new Set(varsToReturn)];
+
+                    js = `
+const { createApp } = Vue;
+
+const App = {
+    setup() {
+        ${scriptContent}
+        
+        return { ${varsToReturn.join(', ')} };
+    }
+};
+
+createApp(App).mount('#app');
+`;
+                }
+            }
+
+            // Fallback: If html contains just Vue syntax without #app, wrap it
+            if (html.includes('{{') && !html.includes('id="app"')) {
+                html = `<div id="app">${html}</div>`;
+            }
+
+            // We inject Vue 3 CDN, add base CSS, and append the user's JS via DOM
+            const combinedCode = `<!DOCTYPE html><html><head>
+                    <style>${defaultCss}\x3C/style>
+                \x3C/head><body>${html}\x3C/body>\x3C/html>`;
+
+            const iframeDoc = htmlOutput.contentWindow.document;
+            iframeDoc.open();
+            iframeDoc.write(combinedCode);
+            iframeDoc.close();
+
+            // Inject Vue CDN via DOM, then execute user code after it loads
+            const vueCdn = iframeDoc.createElement('script');
+            vueCdn.src = 'https://unpkg.com/vue@3/dist/vue.global.js';
+            vueCdn.onload = () => {
+                const userScript = iframeDoc.createElement('script');
+                userScript.textContent = `
+                    try {
+                        ${js}
+                    } catch(e) {
+                        document.body.innerHTML += '<div style="color:red; margin-top:20px; padding:10px; border:1px solid red;"><strong>Vue Error:</strong> ' + e.message + '</div>';
+                    }
+                `;
+                iframeDoc.body.appendChild(userScript);
+            };
+            iframeDoc.head.appendChild(vueCdn);
+
+            // Save state
+            localStorage.setItem('careerPathVueHtml', htmlInput.value);
+            localStorage.setItem('careerPathVueCode', jsInput.value);
+        }
+
+        // Run when button is clicked
+        runBtn.addEventListener('click', executeCode);
+
+        // Handle keyboard shortcuts
+        const handleKeyDown = function (e) {
+            // Ctrl/Cmd + Enter to run code
+            if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
+                executeCode();
+            }
+            // Tab key for indentation
+            if (e.key === 'Tab') {
+                e.preventDefault();
+                const start = this.selectionStart;
+                const end = this.selectionEnd;
+                this.value = this.value.substring(0, start) + '  ' + this.value.substring(end);
+                this.selectionStart = this.selectionEnd = start + 2;
+            }
+        };
+
+        htmlInput.addEventListener('keydown', handleKeyDown);
+        jsInput.addEventListener('keydown', handleKeyDown);
+
+        // Auto-run on load
+        executeCode();
+</script>
+</body>
+
+</html>

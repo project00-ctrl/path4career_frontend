@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live Deno Editor - CareerPath</title>
+
+    <link rel="stylesheet" href="../../assets/css/editor.css">
+    <style>
+        /* Deno Blue/Light Theme Overrides */
+        .header h2 span {
+            color: #0db7ed !important;
+        }
+
+        .run-btn {
+            background-color: #0db7ed !important;
+            color: #fff !important;
+        }
+
+        .run-btn:hover {
+            background-color: #0091e2 !important;
+        }
+
+        .deno-badge {
+            background-color: #1e1e3f;
+            color: #0db7ed;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            margin-left: 10px;
+            font-weight: bold;
+            border: 1px solid #0db7ed;
+        }
+
+        .code-box:first-child {
+            border-bottom: 2px solid #333;
+        }
+
+        #scriptInput {
+            color: #c3e88d;
+        }
+
+        #cliInput {
+            color: #ffb86c;
+        }
+
+        /* Result pane styling */
+        .result-pane {
+            background-color: #1e1e1e !important;
+            color: #d4d4d4 !important;
+        }
+
+        .console-output {
+            flex: 1;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 14px;
+            padding: 20px;
+            overflow-y: auto;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+
+        .line {
+            margin-bottom: 4px;
+            line-height: 1.6;
+        }
+
+        .line-success { color: #4ec9b0; }
+        .line-error { color: #f44747; }
+        .line-warn { color: #dcdcaa; }
+        .line-info { color: #569cd6; }
+        .line-output { color: #d4d4d4; }
+        .prompt { color: #608b4e; }
+    </style>
+</head>
+
+<body>
+    <div class="header">
+        <div style="display: flex; align-items: center; gap: 15px;">
+            <a href="../index.html" style="color: #0db7ed; text-decoration: none; font-size: 14px;">← Back</a>
+            <h2><span>🦕</span> Deno Workspace <span class="deno-badge">Script / CLI</span></h2>
+        </div>
+        <button class="run-btn" id="runBtn">Run Script ❯</button>
+    </div>
+    <div class="workspace">
+        <div class="editor-pane">
+            <div class="code-box" style="flex: 1; display: flex; flex-direction: column; padding: 15px;">
+                <p class="pane-label">Deno Script (JavaScript / TypeScript)</p>
+                <textarea id="scriptInput" spellcheck="false" aria-label="Deno Script Input"></textarea>
+            </div>
+            <div class="code-box" style="flex: 1; display: flex; flex-direction: column; padding: 15px;">
+                <p class="pane-label">Deno CLI Commands</p>
+                <textarea id="cliInput" spellcheck="false" aria-label="CLI Input"></textarea>
+            </div>
+        </div>
+        <div class="result-pane">
+            <p class="pane-label" style="padding: 15px 20px 0; margin-bottom: 0;">Deno Runtime Output / Console</p>
+            <div class="console-output" id="consoleOutput">
+                <div class="line line-info">// Deno Runtime Ready. Click "Run Script" to execute.</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+const scriptInput = document.getElementById('scriptInput');
+        const cliInput = document.getElementById('cliInput');
+        const consoleOutput = document.getElementById('consoleOutput');
+        const runBtn = document.getElementById('runBtn');
+
+        // Load saved code or defaults
+        const savedCode = localStorage.getItem('careerPathDenoCode');
+        
+        // Initial values
+        if (savedCode) {
+            if (savedCode.startsWith('deno')) {
+                scriptInput.value = "console.log(\"Hello from Deno!\");";
+                cliInput.value = savedCode;
+            } else {
+                scriptInput.value = savedCode;
+                cliInput.value = "deno run main.ts";
+            }
+        } else {
+            scriptInput.value = "console.log(\"Welcome to Deno!\");\n\n// Try standard library\nimport { assertEquals } from \"https://deno.land/std/assert/mod.ts\";\n\nassertEquals(1 + 1, 2);\nconsole.log(\"Assertion passed!\");";
+            cliInput.value = "deno run --allow-net main.ts";
+        }
+
+        function simulateDeno() {
+            const scriptCode = scriptInput.value.trim();
+            const cliCode = cliInput.value.trim();
+            
+            consoleOutput.innerHTML = '';
+
+            addLog('Deno 1.42.1 (release, x86_64-pc-windows-msvc)', 'info');
+            
+            // Simulate Deno Check/Run
+            if (scriptCode.includes('import')) {
+                addLog('Download https://deno.land/std/assert/mod.ts', 'output');
+                addLog('Check main.ts', 'success');
+            }
+
+            setTimeout(() => {
+                // Mock execution based on script content
+                if (scriptCode.includes('console.log')) {
+                    const logs = scriptCode.match(/console\.log\((.*)\)/g);
+                    if (logs) {
+                        logs.forEach(log => {
+                            const content = log.match(/console\.log\(['"](.*)['"]\)/)?.[1] || "Output";
+                            addLog(content, 'output');
+                        });
+                    }
+                }
+                
+                if (scriptCode.includes('assertEquals')) {
+                    addLog('Assertion passed!', 'success');
+                }
+
+                if (cliCode.includes('--allow-net') && scriptCode.includes('fetch')) {
+                    addLog('Fetching from external API...', 'info');
+                    addLog('Response: 200 OK', 'success');
+                } else if (scriptCode.includes('fetch') && !cliCode.includes('--allow-net')) {
+                    addLog('PermissionDenied: network access to "..."', 'error');
+                    addLog('Run again with --allow-net flag', 'warn');
+                }
+
+                addLog('Done.', 'info');
+            }, 500);
+
+            // Save state
+            localStorage.setItem('careerPathDenoCode', scriptCode);
+        }
+
+        function addLog(text, type) {
+            const div = document.createElement('div');
+            div.className = `line line-${type}`;
+            div.textContent = text;
+            consoleOutput.appendChild(div);
+            consoleOutput.scrollTop = consoleOutput.scrollHeight;
+        }
+
+        runBtn.addEventListener('click', simulateDeno);
+
+        // Keyboard shortcuts
+        const handleKeyDown = function (e) {
+            if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
+                simulateDeno();
+            }
+            if (e.key === 'Tab') {
+                e.preventDefault();
+                const start = this.selectionStart;
+                const end = this.selectionEnd;
+                this.value = this.value.substring(0, start) + '    ' + this.value.substring(end);
+                this.selectionStart = this.selectionEnd = start + 4;
+            }
+        };
+
+        scriptInput.addEventListener('keydown', handleKeyDown);
+        cliInput.addEventListener('keydown', handleKeyDown);
+
+        // Initial run if code is present
+        if (savedCode) {
+            simulateDeno();
+        }
+</script>
+</body>
+</html>

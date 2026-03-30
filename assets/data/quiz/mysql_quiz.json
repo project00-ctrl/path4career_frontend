@@ -1,0 +1,362 @@
+[
+    {
+        "id": "mysql-1",
+        "question": "What does RDBMS stand for?",
+        "options": [
+            "Relational Database Management System",
+            "Random Data Backup Management Service",
+            "Real-time Data Base Modeling System",
+            "Record Delivery Block Multiple Syntax"
+        ],
+        "correctAnswer": 0,
+        "explanation": "MySQL is a Relational Database Management System (RDBMS) which strictly organizes data into connected tables rather than loose documents."
+    },
+    {
+        "id": "mysql-2",
+        "question": "How does an RDBMS connect two different tables together?",
+        "options": [
+            "By using identical table names.",
+            "By storing the exact same data twice in both tables.",
+            "Using JSON array nesting.",
+            "Through unique Primary Keys and Foreign Keys."
+        ],
+        "correctAnswer": 3,
+        "explanation": "Relationships are established by placing the Primary Key of one table into another table as a Foreign Key (e.g., storing a user_id inside an orders table)."
+    },
+    {
+        "id": "mysql-3",
+        "question": "What is SQL primarily used for?",
+        "options": [
+            "Creating web graphics.",
+            "Communicating with and querying relational databases.",
+            "Writing mobile applications.",
+            "Styling HTML documents."
+        ],
+        "correctAnswer": 1,
+        "explanation": "Structured Query Language (SQL) is the standardized language for defining and manipulating data inside relational databases like MySQL."
+    },
+    {
+        "id": "mysql-4",
+        "question": "Which category of SQL commands is used to define the STRUCTURE of tables (like CREATE or DROP)?",
+        "options": [
+            "DML (Data Manipulation Language)",
+            "DCL (Data Control Language)",
+            "DDL (Data Definition Language)",
+            "HTTP (Hypertext Transfer Protocol)"
+        ],
+        "correctAnswer": 2,
+        "explanation": "DDL includes statements that define database schema structure, such as CREATE TABLE, ALTER TABLE, and DROP TABLE."
+    },
+    {
+        "id": "mysql-5",
+        "question": "Which of the following commands creates a brand new table with strict typed columns?",
+        "options": [
+            "MAKE TABLE users (...) ;",
+            "CREATE TABLE users (...) ;",
+            "NEW TABLE users (...) ;",
+            "INSERT TABLE users (...) ;"
+        ],
+        "correctAnswer": 1,
+        "explanation": "The CREATE TABLE statement is used to define a new table and strictly outline the names and data types of its columns."
+    },
+    {
+        "id": "mysql-6",
+        "question": "What does the 'PRIMARY KEY' constraint do for a column?",
+        "options": [
+            "It hides the column from hackers.",
+            "It encrypts the column data.",
+            "It guarantees that every row has a completely unique, non-null value in that column used for identification.",
+            "It automatically limits the length of text in the column."
+        ],
+        "correctAnswer": 2,
+        "explanation": "A Primary Key acts as the absolute unique identifier for a row (like a user's ID number) preventing duplicate records."
+    },
+    {
+        "id": "mysql-7",
+        "question": "Which command is used to add new rows of data into an existing table?",
+        "options": [
+            "ADD INTO",
+            "PUSH INTO",
+            "INSERT INTO",
+            "UPDATE INTO"
+        ],
+        "correctAnswer": 2,
+        "explanation": "The INSERT INTO statement appends new records into a table, assigning specific values to the columns."
+    },
+    {
+        "id": "mysql-8",
+        "question": "Why is it incredibly dangerous to run an 'UPDATE' command WITHOUT a WHERE clause?",
+        "options": [
+            "The database will automatically delete the table.",
+            "It will update every single row in the entire table to the new value.",
+            "It will silently fail and do nothing.",
+            "The database will crash instantly."
+        ],
+        "correctAnswer": 1,
+        "explanation": "An UPDATE without a WHERE filter applies the change universally, accidentally overwriting data for all users/records instead of just the intended one."
+    },
+    {
+        "id": "mysql-9",
+        "question": "Which command completely removes existing rows from a table?",
+        "options": [
+            "REMOVE",
+            "DROP",
+            "DELETE",
+            "ERASE"
+        ],
+        "correctAnswer": 2,
+        "explanation": "The DELETE FROM statement deletes existing rows from a table. The DROP statement, on the other hand, deletes the entire table structure itself."
+    },
+    {
+        "id": "mysql-10",
+        "question": "Which SQL statement is used to fetch and read data from a table?",
+        "options": [
+            "FETCH",
+            "GET",
+            "PULL",
+            "SELECT"
+        ],
+        "correctAnswer": 3,
+        "explanation": "The SELECT statement is the core querying command. It retrieves a result set from one or more tables."
+    },
+    {
+        "id": "mysql-11",
+        "question": "What does the asterisk (*) do in this query: SELECT * FROM users;",
+        "options": [
+            "Multiplies all numerical values by ten.",
+            "Selects every single column in the table.",
+            "Deletes all rows.",
+            "Requires a password to view the table."
+        ],
+        "correctAnswer": 1,
+        "explanation": "The asterisk is a wildcard shorthand meaning \"All Columns\". While convenient, specifying exact column names is faster and uses less bandwidth in production."
+    },
+    {
+        "id": "mysql-12",
+        "question": "Which clause is used to filter SELECT results based on specific conditions?",
+        "options": [
+            "ORDER BY",
+            "LIMIT",
+            "WHERE",
+            "GROUP BY"
+        ],
+        "correctAnswer": 2,
+        "explanation": "The WHERE clause acts as a filter, ensuring the query only returns rows that meet a strict logical condition (like WHERE city = 'Chennai')."
+    },
+    {
+        "id": "mysql-13",
+        "question": "What is the purpose of an INNER JOIN?",
+        "options": [
+            "To connect rows from two tables together based on a matching column, discarding rows that don't find a match.",
+            "To combine two tables into one massive new table permanently.",
+            "To shuffle the rows inside a table.",
+            "To delete rows that appear in two tables."
+        ],
+        "correctAnswer": 0,
+        "explanation": "INNER JOIN stitches tables together in a query by matching the Primary Key of one table to the Foreign Key of another."
+    },
+    {
+        "id": "mysql-14",
+        "question": "Which Aggregate Function would calculate the absolute highest calorie count in a table of recipes?",
+        "options": [
+            "BIGGEST()",
+            "PEAK()",
+            "TOP()",
+            "MAX()"
+        ],
+        "correctAnswer": 3,
+        "explanation": "MAX() analyzes an entire column and returns the single largest numerical or alphabetical value."
+    },
+    {
+        "id": "mysql-15",
+        "question": "Which Aggregate Function calculates the total number of rows in a table?",
+        "options": [
+            "TOTAL()",
+            "COUNT(*)",
+            "SUM()",
+            "AMOUNT()"
+        ],
+        "correctAnswer": 1,
+        "explanation": "COUNT(*) simply tallies up how many rows exist based on the query, ignoring the actual contents of the rows."
+    },
+    {
+        "id": "mysql-16",
+        "question": "What does the GROUP BY clause do?",
+        "options": [
+            "It groups users into chat rooms.",
+            "It clumps rows with identical values together into summary rows (e.g., counting users per city).",
+            "It organizes the database server files.",
+            "It sorts records alphabetically."
+        ],
+        "correctAnswer": 1,
+        "explanation": "GROUP BY is used alongside aggregate functions like COUNT() or AVG() to split data into specific buckets based on column values."
+    },
+    {
+        "id": "mysql-17",
+        "question": "Why must you use HAVING instead of WHERE when filtering the results of an aggregate function like COUNT()?",
+        "options": [
+            "Because WHERE is trademarked.",
+            "Because WHERE evaluates row-by-row before grouping, while HAVING evaluates the conditions AFTER grouping has occurred.",
+            "They are identical and can be used interchangeably.",
+            "HAVING is only used for sorting."
+        ],
+        "correctAnswer": 1,
+        "explanation": "The WHERE clause cannot read the aggregated totals generated by GROUP BY. HAVING processes the data conditionally after grouping."
+    },
+    {
+        "id": "mysql-18",
+        "question": "What does the 'AS' keyword do?",
+        "options": [
+            "It assigns an Alias—a temporary, cleaner name for a table or column in the query results.",
+            "It adds security to a table.",
+            "It changes the data type of a column to Ascii.",
+            "It forces a JOIN operation to occur."
+        ],
+        "correctAnswer": 0,
+        "explanation": "Aliasing (e.g., SELECT first_name AS Name) is used to drastically simplify code readability, especially when dealing with complex JOINs."
+    },
+    {
+        "id": "mysql-19",
+        "question": "When using the LIKE operator, what does the percentage symbol '%' wildcard mean?",
+        "options": [
+            "Only exact matches are allowed.",
+            "It calculates percentages mathematically.",
+            "It represents zero, one, or multiple arbitrary characters before or after your search term.",
+            "It means the string must be lowercase."
+        ],
+        "correctAnswer": 2,
+        "explanation": "Searching for '%Cake' will find 'Chocolate Cake', 'Vanilla Cake', or just 'Cake', as the % swallows any preceding characters."
+    },
+    {
+        "id": "mysql-20",
+        "question": "If your table has millions of rows and searching for a user’s email is terribly slow, what should you do?",
+        "options": [
+            "Delete the database and use Excel.",
+            "Create an Index on the email column.",
+            "Restart the server hourly.",
+            "Double the RAM on your laptop."
+        ],
+        "correctAnswer": 1,
+        "explanation": "Creating an Index builds an optimized internal data structure that drastically accelerates query speeds on massive tables."
+    },
+    {
+        "id": "mysql-21",
+        "question": "What is the secret trade-off or downside to creating Indexes?",
+        "options": [
+            "They make SELECT queries very slow.",
+            "They cost money to use.",
+            "They slow down INSERT and UPDATE operations because the hidden index must be rewritten every time data changes.",
+            "They occasionally delete random data."
+        ],
+        "correctAnswer": 2,
+        "explanation": "Indexes are brilliant for reading (SELECT), but they add overhead to writing (INSERT/UPDATE), meaning you should only index highly-searched columns."
+    },
+    {
+        "id": "mysql-22",
+        "question": "In MySQL, what is a 'View'?",
+        "options": [
+            "A visual GUI application.",
+            "A virtual table based on the result-set of an SQL statement, often used to hide complexity.",
+            "The front-end React code.",
+            "A command that exports the database to a PDF."
+        ],
+        "correctAnswer": 1,
+        "explanation": "Views hide massive, ugly JOIN queries behind the facade of a virtual, readable table that updates dynamically alongside the real data."
+    },
+    {
+        "id": "mysql-23",
+        "question": "Which built-in MySQL function glues two strings together (e.g., turning first name and last name into a full name)?",
+        "options": [
+            "JOIN()",
+            "MERGE()",
+            "CONCAT()",
+            "PLUS()"
+        ],
+        "correctAnswer": 2,
+        "explanation": "CONCAT() smoothly appends various strings, variables, or column contents into one continuous string before returning."
+    },
+    {
+        "id": "mysql-24",
+        "question": "What does the LIMIT clause do?",
+        "options": [
+            "Stops hackers from accessing data.",
+            "Restricts the maximum number of rows returned by a query, essential for pagination.",
+            "Limits the size of a column to 50 characters.",
+            "Deletes old databases."
+        ],
+        "correctAnswer": 1,
+        "explanation": "LIMIT 10 combined with an OFFSET is the fundamental backbone for pagination, preventing APIs from crashing apps by loading 10,000 rows at once."
+    },
+    {
+        "id": "mysql-25",
+        "question": "Which operator provides a cleaner alternative to writing many chained OR statements (e.g., WHERE city='Chennai' OR city='Delhi' OR city='Mumbai')?",
+        "options": [
+            "EXISTS",
+            "IN",
+            "ALL",
+            "WITH"
+        ],
+        "correctAnswer": 1,
+        "explanation": "The IN operator (e.g., WHERE city IN('Chennai', 'Delhi')) provides immense readability over repetitive OR logic."
+    },
+    {
+        "id": "mysql-26",
+        "question": "What is a MySQL Trigger?",
+        "options": [
+            "A gun emoji used in table names.",
+            "A button pressed on the server box.",
+            "A special block of SQL code that automatically fires in response to an INSERT, UPDATE, or DELETE event.",
+            "An alarm clock function."
+        ],
+        "correctAnswer": 2,
+        "explanation": "Triggers act autonomously to enforce business rules or logging without waiting for the backend application server to issue manual queries."
+    },
+    {
+        "id": "mysql-27",
+        "question": "When configuring a Trigger, which keywords allow you to access the incoming changes versus the pre-existing row data?",
+        "options": [
+            "LATEST and PREVIOUS",
+            "NEW and OLD",
+            "NEXT and LAST",
+            "IN and OUT"
+        ],
+        "correctAnswer": 1,
+        "explanation": "Inside a trigger, NEW.column provides the data about to be inserted, while OLD.column provides the legacy data before the update."
+    },
+    {
+        "id": "mysql-28",
+        "question": "What is a Stored Procedure?",
+        "options": [
+            "A saved backup of the database.",
+            "A prepared, reusable block of compiled SQL code saved directly on the database engine.",
+            "A tutorial PDF sent to junior devs.",
+            "A password management technique."
+        ],
+        "correctAnswer": 1,
+        "explanation": "Stored procedures encapsulate complex logistics directly into the database engine, reducing massive network overhead entirely."
+    },
+    {
+        "id": "mysql-29",
+        "question": "Which keyword must be used from your backend application (like Python or PHP) to execute a Stored Procedure?",
+        "options": [
+            "RUN",
+            "EXECUTE",
+            "START",
+            "CALL"
+        ],
+        "correctAnswer": 3,
+        "explanation": "Sending 'CALL ProcedureName()' replaces thousands of lines of raw SQL text transfers over the network, drastically speeding up applications."
+    },
+    {
+        "id": "mysql-30",
+        "question": "Which of the following is a key advantage of adopting Stored Procedures in enterprise apps?",
+        "options": [
+            "It makes the app run entirely without internet.",
+            "It caches execution plans for extreme speed and allows granting execution permission without granting direct table access.",
+            "It turns SQL into HTML automatically.",
+            "It shrinks file sizes by 99%."
+        ],
+        "correctAnswer": 1,
+        "explanation": "Because they compile on save, Stored procedures perform significantly faster, providing rigid security controls over raw underlying data exposure."
+    }
+]

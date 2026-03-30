@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Track your job applications on Path4Career.">
+    <title>My Applications - Path4Career</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../assets/css/navbar.css">
+    <link rel="stylesheet" href="../../assets/css/jobs.css">
+    <style>
+        .jobs-toast { position: fixed; bottom: 24px; right: 24px; z-index: 9999; background: var(--surface); color: var(--text-main); padding: 1rem 1.5rem; border-radius: var(--radius-md); box-shadow: var(--shadow-lg); display: flex; align-items: center; gap: 0.75rem; transform: translateX(110%); transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); border-left: 4px solid var(--success); }
+        .jobs-toast-error { border-left-color: var(--error); }
+        .jobs-toast-show { transform: translateX(0); }
+        .jobs-page-wrapper { padding-top: 10px; }
+        .jobs-page-wrapper .container { max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; }
+        .apps-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; flex-wrap: wrap; gap: 1rem; }
+        .apps-header h2 { color: var(--text-main); font-size: 1.75rem; }
+        .email-filter { display: flex; gap: 0.5rem; }
+        .email-filter input { background: var(--bg-main); border: 1px solid var(--border); color: var(--text-main); padding: 0.6rem 1rem; border-radius: var(--radius-md); outline: none; font-size: 0.9rem; min-width: 250px; }
+        .email-filter input:focus { border-color: var(--primary); }
+        .apps-table { width: 100%; border-collapse: collapse; background: var(--card-bg); border-radius: var(--radius-lg); overflow: hidden; border: 1px solid var(--border); }
+        .apps-table thead { background: var(--surface); }
+        .apps-table th, .apps-table td { padding: 1rem 1.25rem; text-align: left; font-size: 0.9rem; }
+        .apps-table th { color: var(--text-secondary); font-weight: 600; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 0.5px; }
+        .apps-table td { color: var(--text-main); border-top: 1px solid var(--border); }
+        .apps-table tr:hover td { background: rgba(74, 108, 247, 0.05); }
+    </style>
+</head>
+<body>
+    <div id="navbar-root"></div>
+
+    <div class="jobs-page-wrapper">
+        <div class="container" style="padding-top: 1rem;">
+            <a href="jobs-listing.html" style="color: var(--text-muted); text-decoration:none; display:inline-flex; align-items:center; gap:0.5rem; margin-bottom:1rem;">← Back to Jobs</a>
+
+            <div class="apps-header">
+                <h2>📋 My Applications</h2>
+                <div class="email-filter">
+                    <input type="email" id="emailInput" placeholder="Enter your email to view applications">
+                    <button class="btn btn-primary" id="filterBtn">🔍 Find</button>
+                </div>
+            </div>
+
+            <div id="appsContainer">
+                <div class="empty-state">
+                    <h4>Enter your email to view applications</h4>
+                    <p>Type the email you used when applying to see your application status.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer><p>&copy; 2026 Path4Career. All rights reserved.</p></footer>
+
+    <script src="../../assets/js/navbar.js"></script>
+    <script src="../../assets/js/jobs-api.js"></script>
+    <script src="../../assets/js/my-applications.js"></script>
+</body>
+</html>

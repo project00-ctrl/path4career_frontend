@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live CSS Editor - CareerPath</title>
+    <link rel="stylesheet" href="../../assets/css/editor.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+    
+    <nav class="editor-nav">
+        <div class="logo-area">
+            <img class="logo-icon" src="../../assets/images/path4career-icon.png" alt="Path4Career" style="width:32px;height:32px;border-radius:8px;">
+            <div class="logo-text">Path4Career</div>
+            <div class="title-badge">🎨 CSS Workspace</div>
+        </div>
+        <button class="run-btn" id="runBtn" onclick="executeCode()">▶ Force Refresh</button>
+    </nav>
+
+    <div class="workspace">
+        <div class="editor-pane">
+            <div class="code-box">
+                <p class="pane-label">index.html (Structure)</p>
+                <textarea id="htmlInput" spellcheck="false" aria-label="HTML Input"></textarea>
+            </div>
+            <div class="code-box">
+                <p class="pane-label">styles.css (Styling)</p>
+                <textarea id="cssInput" spellcheck="false" aria-label="CSS Input"></textarea>
+            </div>
+        </div>
+        <div class="result-pane">
+            <p class="pane-label">
+                <span>Live Browser Output</span>
+                <span class="status-text">● Auto-updating</span>
+            </p>
+            <iframe id="htmlOutput" title="Live Preview"></iframe>
+        </div>
+    </div>
+
+    <script>
+const htmlInput = document.getElementById('htmlInput');
+        const cssInput = document.getElementById('cssInput');
+        const htmlOutput = document.getElementById('htmlOutput');
+
+        // 1. Fetch saved code or provide a beautiful default state
+        const savedHtmlCode = localStorage.getItem('careerPathHtmlState');
+        const savedCssCode = localStorage.getItem('careerPathCssCode');
+
+        const defaultHtml = `<div class="card">
+  <h2>CSS is Awesome! 🚀</h2>
+  <p>Style this card using the CSS panel below. Watch it update instantly as you type!</p>
+  <button class="action-btn">Click Me</button>
+</div>`;
+
+        const defaultCss = `body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f1f5f9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.card {
+    background: white;
+    padding: 40px;
+    border-radius: 16px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    text-align: center;
+    max-width: 400px;
+    transition: transform 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+h2 {
+    color: #0f172a;
+    margin-top: 0;
+}
+
+p {
+    color: #475569;
+    line-height: 1.6;
+}
+
+.action-btn {
+    background-color: #00ffb3;
+    color: #000;
+    border: none;
+    padding: 12px 24px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 15px;
+    transition: 0.2s;
+}
+
+.action-btn:hover {
+    background-color: #00cc8f;
+    box-shadow: 0 4px 12px rgba(0, 255, 179, 0.4);
+}`;
+
+        htmlInput.value = savedHtmlCode ? savedHtmlCode : defaultHtml;
+        cssInput.value = savedCssCode ? savedCssCode : defaultCss;
+
+        // 2. The Engine: Combines HTML and CSS into the iframe
+        function executeCode() {
+            const html = htmlInput.value;
+            const css = cssInput.value;
+            
+            const combinedCode = `
+                <!DOCTYPE html>
+                <html>
+                <head>
+                    <style>${css}\x3C/style>
+                \x3C/head>
+                <body>
+                    ${html}
+                \x3C/body>
+                \x3C/html>
+            `;
+            
+            const iframeDoc = htmlOutput.contentWindow.document;
+            iframeDoc.open();
+            iframeDoc.write(combinedCode);
+            iframeDoc.close();
+        }
+
+        // 3. Smart Indentation for BOTH inputs
+        function handleTab(e) {
+            if (e.key === 'Tab') {
+                e.preventDefault();
+                const start = this.selectionStart;
+                const end = this.selectionEnd;
+                const spaces = "    "; 
+                this.value = this.value.substring(0, start) + spaces + this.value.substring(end);
+                this.selectionStart = this.selectionEnd = start + spaces.length;
+                executeCode(); // Update preview
+            }
+        }
+        htmlInput.addEventListener('keydown', handleTab);
+        cssInput.addEventListener('keydown', handleTab);
+
+        // 4. Real-time Live Reload Engine & Auto-Save
+        function onCodeChange() {
+            // Save to local storage
+            localStorage.setItem('careerPathHtmlState', htmlInput.value);
+            localStorage.setItem('careerPathCssCode', cssInput.value);
+            // Execute instantly
+            executeCode();
+        }
+
+        htmlInput.addEventListener('input', onCodeChange);
+        cssInput.addEventListener('input', onCodeChange);
+
+        // 5. Run on initial load
+        executeCode();
+</script>
+</body>
+</html>

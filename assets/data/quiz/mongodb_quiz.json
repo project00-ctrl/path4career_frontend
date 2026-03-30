@@ -1,0 +1,362 @@
+[
+    {
+        "id": "mongo-1",
+        "question": "What type of database is MongoDB?",
+        "options": [
+            "A relational SQL database.",
+            "A document-oriented NoSQL database.",
+            "A graph database.",
+            "A pure in-memory cache."
+        ],
+        "correctAnswer": 1,
+        "explanation": "MongoDB is classified as a NoSQL database because it stores data in flexible, document-oriented structures rather than rigid tables and rows."
+    },
+    {
+        "id": "mongo-2",
+        "question": "In what format does MongoDB store its documents?",
+        "options": [
+            "XML",
+            "CSV",
+            "BSON (Binary JSON)",
+            "YAML"
+        ],
+        "correctAnswer": 2,
+        "explanation": "MongoDB stores data internally in BSON, a binary representation of JSON that allows for faster traversal and more data types (like Dates and ObjectIds)."
+    },
+    {
+        "id": "mongo-3",
+        "question": "Which concept in MongoDB is analogous to a 'Table' in a traditional SQL database?",
+        "options": [
+            "Document",
+            "Collection",
+            "Cluster",
+            "Index"
+        ],
+        "correctAnswer": 1,
+        "explanation": "In MongoDB, a Collection acts like a SQL Table. It groups together multiple related Documents (which act like Rows)."
+    },
+    {
+        "id": "mongo-4",
+        "question": "Which concept in MongoDB is analogous to a 'Row' in a SQL database?",
+        "options": [
+            "Field",
+            "Collection",
+            "Database",
+            "Document"
+        ],
+        "correctAnswer": 3,
+        "explanation": "A Document in MongoDB represents a single record of data, much like a single row in a SQL table."
+    },
+    {
+        "id": "mongo-5",
+        "question": "Does MongoDB enforce a strict schema on collections by default?",
+        "options": [
+            "Yes, every document must have the exact same fields.",
+            "Yes, but only for the _id field.",
+            "No, collections can hold documents with entirely different fields.",
+            "Yes, if you configure it during installation."
+        ],
+        "correctAnswer": 2,
+        "explanation": "MongoDB is schema-less (or \"flexible schema\") by default. Different documents simply store whatever fields you pass them, even inside the same collection."
+    },
+    {
+        "id": "mongo-6",
+        "question": "How do you create a Database in the mongosh terminal?",
+        "options": [
+            "CREATE DATABASE db_name;",
+            "make db db_name",
+            "use db_name",
+            "init db_name"
+        ],
+        "correctAnswer": 2,
+        "explanation": "Using the 'use' command switches to the database. If it doesn't exist, MongoDB creates it automatically as soon as you save data into it."
+    },
+    {
+        "id": "mongo-7",
+        "question": "Which method is used to add a single new document into a collection?",
+        "options": [
+            "db.collection.addOne()",
+            "db.collection.insertOne()",
+            "db.collection.put()",
+            "db.collection.create()"
+        ],
+        "correctAnswer": 1,
+        "explanation": "The insertOne() method takes a single JSON-style object and pushes it as a new document into the specified collection."
+    },
+    {
+        "id": "mongo-8",
+        "question": "Which method is used to retrieve documents from a collection that match specific criteria?",
+        "options": [
+            "db.collection.find()",
+            "db.collection.get()",
+            "db.collection.select()",
+            "db.collection.read()"
+        ],
+        "correctAnswer": 0,
+        "explanation": "find() is the primary tool for querying collections. Supplying a filter object returns all matching documents."
+    },
+    {
+        "id": "mongo-9",
+        "question": "What is 'Projection' in a MongoDB query?",
+        "options": [
+            "Estimating how large the database will grow.",
+            "Connecting MongoDB to a projector.",
+            "Specifying exactly which fields to return (include or exclude) in the matched documents.",
+            "A way to sort documents alphabetically."
+        ],
+        "correctAnswer": 2,
+        "explanation": "Projection allows you to limit the data sent back by the database (e.g., return only the 'title' field, hiding the rest)."
+    },
+    {
+        "id": "mongo-10",
+        "question": "Which default field is always returned in a projection unless explicitly excluded with a 0?",
+        "options": [
+            "created_at",
+            "timestamp",
+            "_id",
+            "id_num"
+        ],
+        "correctAnswer": 2,
+        "explanation": "MongoDB automatically assigns and always includes the unique '_id' field in query results unless you intentionally suppress it using {_id: 0}."
+    },
+    {
+        "id": "mongo-11",
+        "question": "Which query operator is used to find documents where a value is \"Greater Than\" a specific number?",
+        "options": [
+            "$greater",
+            "$gt",
+            ">",
+            "$more"
+        ],
+        "correctAnswer": 1,
+        "explanation": "The $gt operator stands for 'greater than'. For example: { age: { $gt: 18 } }."
+    },
+    {
+        "id": "mongo-12",
+        "question": "How do you modify an existing document in a collection?",
+        "options": [
+            "db.collection.change()",
+            "db.collection.editOne()",
+            "db.collection.updateOne()",
+            "db.collection.modify()"
+        ],
+        "correctAnswer": 2,
+        "explanation": "updateOne() finds the first document matching a filter and applies updates using an operator like $set."
+    },
+    {
+        "id": "mongo-13",
+        "question": "Which operator do you use inside updateOne() to change the value of a specific field without replacing the whole document?",
+        "options": [
+            "$put",
+            "$update",
+            "$change",
+            "$set"
+        ],
+        "correctAnswer": 3,
+        "explanation": "The $set operator tells MongoDB to only update or add the specified fields, leaving the rest of the document intact."
+    },
+    {
+        "id": "mongo-14",
+        "question": "Which method deletes multiple documents that match a query?",
+        "options": [
+            "db.collection.deleteAll()",
+            "db.collection.deleteMany()",
+            "db.collection.removeMany()",
+            "db.collection.drop()"
+        ],
+        "correctAnswer": 1,
+        "explanation": "deleteMany() removes every single document from the collection that meets the filter criteria."
+    },
+    {
+        "id": "mongo-15",
+        "question": "What is the purpose of an 'Aggregation Pipeline'?",
+        "options": [
+            "To connect Python and Node.js together.",
+            "To process data through multiple stages (like matching, grouping, and sorting) to compute complex results.",
+            "To compress the database files.",
+            "To backup the database automatically."
+        ],
+        "correctAnswer": 1,
+        "explanation": "An aggregation pipeline functions like an assembly line for data, passing documents through stages that filter, reshape, group, and sort them."
+    },
+    {
+        "id": "mongo-16",
+        "question": "Which aggregation pipeline stage acts just like a standard find() query to filter documents?",
+        "options": [
+            "$filter",
+            "$where",
+            "$match",
+            "$query"
+        ],
+        "correctAnswer": 2,
+        "explanation": "The $match stage is usually the first step in a pipeline. It filters the document stream so subsequent stages process less data."
+    },
+    {
+        "id": "mongo-17",
+        "question": "Which aggregation stage groups documents together by a specified key to compute totals or averages?",
+        "options": [
+            "$aggregate",
+            "$group",
+            "$sum",
+            "$combine"
+        ],
+        "correctAnswer": 1,
+        "explanation": "The $group stage functions identically to the SQL 'GROUP BY' clause, clustering documents that share a specific value."
+    },
+    {
+        "id": "mongo-18",
+        "question": "In an aggregation pipeline, what does $sort: { price: -1 } do?",
+        "options": [
+            "Sorts the 'price' field alphabetically.",
+            "Deletes the 'price' field.",
+            "Sorts the documents by 'price' in Ascending order.",
+            "Sorts the documents by 'price' in Descending order."
+        ],
+        "correctAnswer": 3,
+        "explanation": "A value of -1 denotes descending order (highest to lowest), while 1 indicates ascending order."
+    },
+    {
+        "id": "mongo-19",
+        "question": "Which aggregation stage performs a Left Outer Join to merge data from another collection?",
+        "options": [
+            "$join",
+            "$merge",
+            "$lookup",
+            "$bind"
+        ],
+        "correctAnswer": 2,
+        "explanation": "The $lookup stage relates documents between collections in the same database, effectively executing a JOIN."
+    },
+    {
+        "id": "mongo-20",
+        "question": "Why would you create an Index in a MongoDB collection?",
+        "options": [
+            "To improve read/query performance when searching by specific fields.",
+            "To make the database smaller.",
+            "To convert BSON to JSON.",
+            "To prevent users from deleting data."
+        ],
+        "correctAnswer": 0,
+        "explanation": "Indexes act like the index of a book, allowing MongoDB to instantly find documents without scanning the entire collection."
+    },
+    {
+        "id": "mongo-21",
+        "question": "What is 'mongosh'?",
+        "options": [
+            "A cloud hosting provider.",
+            "The official modern MongoDB Shell (command-line interface).",
+            "A Node.js web framework.",
+            "A MongoDB GUI application."
+        ],
+        "correctAnswer": 1,
+        "explanation": "mongosh is the interactive JavaScript terminal used to connect directly to your MongoDB deployments and run commands."
+    },
+    {
+        "id": "mongo-22",
+        "question": "What happens if you run insertOne() on a collection that doesn't exist yet?",
+        "options": [
+            "An error is thrown stating 'Collection Not Found'.",
+            "The document is inserted into a 'default' collection.",
+            "MongoDB automatically creates the collection and then inserts the document.",
+            "The database crashes."
+        ],
+        "correctAnswer": 2,
+        "explanation": "MongoDB handles collections lazily. Calling an insert operation on a non-existent collection prompts MongoDB to create it instantly."
+    },
+    {
+        "id": "mongo-23",
+        "question": "What is the primary benefit of a 'Document-Oriented' database like MongoDB?",
+        "options": [
+            "It requires you to define a strict table layout before entering data.",
+            "It maps naturally to object-oriented programming code (like JSON objects/Python dictionaries).",
+            "It organizes data strictly in rows and columns.",
+            "It cannot be used with Node.js."
+        ],
+        "correctAnswer": 1,
+        "explanation": "Developers love document databases because a JSON document perfectly matches the data objects used in modern programming languages."
+    },
+    {
+        "id": "mongo-24",
+        "question": "If you are using Node.js, how do you install the MongoDB driver?",
+        "options": [
+            "pip install mongodb",
+            "apt-get mongodb",
+            "npm install mongodb",
+            "yarn mongosh"
+        ],
+        "correctAnswer": 2,
+        "explanation": "Since Node.js relies on npm (Node Package Manager), 'npm install mongodb' installs the required database driver."
+    },
+    {
+        "id": "mongo-25",
+        "question": "What class in the Node.js MongoDB driver is responsible for maintaining the connection to the database?",
+        "options": [
+            "DBConnection",
+            "MongoClient",
+            "MongoConnector",
+            "ServerClient"
+        ],
+        "correctAnswer": 1,
+        "explanation": "The MongoClient object is instantiated with your connection URI and handles all communication with the MongoDB servers."
+    },
+    {
+        "id": "mongo-26",
+        "question": "If you are using Python, what is the official MongoDB driver called?",
+        "options": [
+            "python-mongo",
+            "mongopy",
+            "pymongo",
+            "bson-py"
+        ],
+        "correctAnswer": 2,
+        "explanation": "Installing 'pymongo' via pip gives your Python applications complete programmatic access to MongoDB."
+    },
+    {
+        "id": "mongo-27",
+        "question": "When querying MongoDB from a Python app using PyMongo, what data structure is returned?",
+        "options": [
+            "A JavaScript Array.",
+            "A Pandas DataFrame.",
+            "A Python Dictionary.",
+            "A raw String."
+        ],
+        "correctAnswer": 2,
+        "explanation": "Because Python Dictionaries mimic BSON structure naturally, PyMongo translates documents directly into dictionaries."
+    },
+    {
+        "id": "mongo-28",
+        "question": "What does Schema Validation do in MongoDB?",
+        "options": [
+            "It checks your JavaScript code for syntax errors.",
+            "It allows you to enforce rules (like required fields and data types) rejecting documents that don't comply.",
+            "It deletes documents that haven't been accessed recently.",
+            "It guarantees that a string is a valid email."
+        ],
+        "correctAnswer": 1,
+        "explanation": "While MongoDB is schema-less by default, Schema Validation allows you to lock down collections for stricter data integrity."
+    },
+    {
+        "id": "mongo-29",
+        "question": "Which aggregation pipeline stage is responsible for writing the final results into a new collection?",
+        "options": [
+            "$save",
+            "$export",
+            "$out",
+            "$dump"
+        ],
+        "correctAnswer": 2,
+        "explanation": "The $out stage (which must always be the final stage) takes all documents passing through the pipeline and commits them permanently into a collection."
+    },
+    {
+        "id": "mongo-30",
+        "question": "What tool allows you to create visual dashboards, pie charts, and graphs directly from MongoDB data?",
+        "options": [
+            "MongoClient",
+            "mongosh",
+            "MongoDB Validation",
+            "MongoDB Charts"
+        ],
+        "correctAnswer": 3,
+        "explanation": "MongoDB Charts is an integrated tool designed to natively read your database and produce visual analytics simply."
+    }
+]

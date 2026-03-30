@@ -1,0 +1,163 @@
+{
+    "language": "Python",
+    "icon": "\ud83d\udc0d",
+    "color": "#3776AB",
+    "exercises": [
+        {
+            "id": 1,
+            "title": "Hello World",
+            "difficulty": "basic",
+            "description": "Print <strong>Hello, World!</strong> to the console.",
+            "starterCode": "# Print Hello, World!\n",
+            "expectedOutput": "Hello, World!",
+            "validationType": "outputContains",
+            "validationValue": "Hello, World!",
+            "hint": "Use the print() function.",
+            "solutionCode": "print('Hello, World!')"
+        },
+        {
+            "id": 2,
+            "title": "Variables & Arithmetic",
+            "difficulty": "basic",
+            "description": "Create variables <code>x = 15</code> and <code>y = 4</code>. Print their sum, difference, and product on separate lines.",
+            "starterCode": "# Declare x and y, print sum, difference, product\n",
+            "expectedOutput": "19\n11\n60",
+            "validationType": "outputContainsAll",
+            "validationValue": [
+                "19",
+                "11",
+                "60"
+            ],
+            "hint": "Use print(x + y), print(x - y), print(x * y).",
+            "solutionCode": "x = 15\ny = 4\nprint(x + y)\nprint(x - y)\nprint(x * y)"
+        },
+        {
+            "id": 3,
+            "title": "String Formatting",
+            "difficulty": "basic",
+            "description": "Create a variable <code>name = \"Python\"</code>. Print <strong>I love Python!</strong> using an f-string.",
+            "starterCode": "# Use an f-string to print the message\n",
+            "expectedOutput": "I love Python!",
+            "validationType": "outputContains",
+            "validationValue": "I love Python!",
+            "hint": "Use f\"I love {name}!\" inside print().",
+            "solutionCode": "name = 'Python'\nprint(f'I love {name}!')"
+        },
+        {
+            "id": 4,
+            "title": "List Operations",
+            "difficulty": "basic",
+            "description": "Create a list <code>fruits = [\"apple\", \"banana\", \"cherry\"]</code>. Add <strong>\"date\"</strong> to the list and print the full list.",
+            "starterCode": "# Create list, add an item, and print\n",
+            "expectedOutput": "['apple', 'banana', 'cherry', 'date']",
+            "validationType": "outputContainsAll",
+            "validationValue": [
+                "apple",
+                "banana",
+                "cherry",
+                "date"
+            ],
+            "hint": "Use the .append() method to add items to a list.",
+            "solutionCode": "fruits = ['apple', 'banana', 'cherry']\nfruits.append('date')\nprint(fruits)"
+        },
+        {
+            "id": 5,
+            "title": "For Loop & Range",
+            "difficulty": "basic",
+            "description": "Use a <code>for</code> loop with <code>range()</code> to print numbers from <strong>1 to 5</strong>.",
+            "starterCode": "# Print 1 to 5 using a for loop\n",
+            "expectedOutput": "1\n2\n3\n4\n5",
+            "validationType": "outputContainsAll",
+            "validationValue": [
+                "1",
+                "2",
+                "3",
+                "4",
+                "5"
+            ],
+            "hint": "Use for i in range(1, 6): print(i)",
+            "solutionCode": "for i in range(1, 6):\n    print(i)"
+        },
+        {
+            "id": 6,
+            "title": "Function \u2014 Factorial",
+            "difficulty": "basic",
+            "description": "Write a function <code>factorial(n)</code> that returns the factorial of <code>n</code>. Print <code>factorial(5)</code>.",
+            "starterCode": "# Define factorial function and test it\n",
+            "expectedOutput": "120",
+            "validationType": "outputContains",
+            "validationValue": "120",
+            "hint": "Use a loop or recursion: if n <= 1 return 1, else return n * factorial(n-1).",
+            "solutionCode": "def factorial(n):\n    if n == 0:\n        return 1\n    return n * factorial(n-1)\n\nprint(factorial(5))"
+        },
+        {
+            "id": 7,
+            "title": "Dictionary",
+            "difficulty": "basic",
+            "description": "Create a dictionary <code>student = {\"name\": \"Alice\", \"grade\": \"A\", \"age\": 20}</code>. Print each key-value pair on a separate line in the format <strong>key: value</strong>.",
+            "starterCode": "# Create dictionary and print key-value pairs\n",
+            "expectedOutput": "name: Alice\ngrade: A\nage: 20",
+            "validationType": "outputContainsAll",
+            "validationValue": [
+                "name: Alice",
+                "grade: A",
+                "age: 20"
+            ],
+            "hint": "Use a for loop: for key, value in student.items(): print(f\"{key}: {value}\")",
+            "solutionCode": "student = {'name': 'Alice', 'grade': 'A', 'age': 20}\nfor key, value in student.items():\n    print(f'{key}: {value}')"
+        },
+        {
+            "id": 8,
+            "title": "List Comprehension",
+            "difficulty": "intermediate",
+            "description": "Use a list comprehension to create a list of squares from 1 to 10. Print the result.",
+            "starterCode": "# Create squares using list comprehension\n",
+            "expectedOutput": "[1, 4, 9, 16, 25, 36, 49, 64, 81, 100]",
+            "validationType": "outputContainsAll",
+            "validationValue": [
+                "1",
+                "4",
+                "9",
+                "16",
+                "25",
+                "36",
+                "49",
+                "64",
+                "81",
+                "100"
+            ],
+            "hint": "squares = [x**2 for x in range(1, 11)]",
+            "solutionCode": "squares = [x**2 for x in range(1, 11)]\nprint(squares)"
+        },
+        {
+            "id": 9,
+            "title": "Class & Object",
+            "difficulty": "intermediate",
+            "description": "Create a class <code>Dog</code> with <code>__init__</code> taking <code>name</code> and <code>breed</code>. Add a method <code>bark()</code> that returns <strong>\"Woof!\"</strong>. Create an instance and print its name and bark.",
+            "starterCode": "# Create the Dog class\n",
+            "expectedOutput": "Buddy\nWoof!",
+            "validationType": "outputContainsAll",
+            "validationValue": [
+                "Buddy",
+                "Woof!"
+            ],
+            "hint": "class Dog: def __init__(self, name, breed): ...",
+            "solutionCode": "class Dog:\n    def __init__(self, name, breed):\n        self.name = name\n        self.breed = breed\n    def bark(self):\n        return 'Woof!'\n\nmydog = Dog('Buddy', 'Golden Retriever')\nprint(mydog.name)\nprint(mydog.bark())"
+        },
+        {
+            "id": 10,
+            "title": "File-like Operations & Error Handling",
+            "difficulty": "intermediate",
+            "description": "Write a function <code>safe_divide(a, b)</code> that returns <code>a / b</code> but catches <code>ZeroDivisionError</code> and returns <strong>\"Cannot divide by zero\"</strong>. Test with <code>safe_divide(10, 0)</code> and <code>safe_divide(10, 2)</code>.",
+            "starterCode": "# Create safe_divide with error handling\n",
+            "expectedOutput": "Cannot divide by zero\n5.0",
+            "validationType": "outputContainsAll",
+            "validationValue": [
+                "Cannot divide by zero",
+                "5.0"
+            ],
+            "hint": "Use try/except ZeroDivisionError inside the function.",
+            "solutionCode": "def safe_divide(a, b):\n    try:\n        return a / b\n    except ZeroDivisionError:\n        return 'Cannot divide by zero'\n\nprint(safe_divide(10, 0))\nprint(safe_divide(10, 2))"
+        }
+    ]
+}

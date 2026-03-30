@@ -1,0 +1,127 @@
+{
+    "language": "Git",
+    "icon": "git",
+    "color": "#F05032",
+    "exercises": [
+        {
+            "id": 1,
+            "title": "Initialize Repo",
+            "difficulty": "basic",
+            "description": "Write the command to initialize a new Git repository.",
+            "starterCode": "# Git command here",
+            "expectedOutput": "",
+            "validationType": "contains",
+            "validationValue": "git init",
+            "hint": "git init",
+            "solutionCode": "# The hint provides the solution:\n# git init"
+        },
+        {
+            "id": 2,
+            "title": "Stage Files",
+            "difficulty": "basic",
+            "description": "Write the command to stage all files for commit.",
+            "starterCode": "# Git command here",
+            "expectedOutput": "",
+            "validationType": "contains",
+            "validationValue": "git add",
+            "hint": "git add . or git add -A",
+            "solutionCode": "# The hint provides the solution:\n# git add . or git add -A"
+        },
+        {
+            "id": 3,
+            "title": "Commit",
+            "difficulty": "basic",
+            "description": "Write the command to commit with message \"Initial commit\".",
+            "starterCode": "# Git command here",
+            "expectedOutput": "",
+            "validationType": "contains",
+            "validationValue": "git commit",
+            "hint": "git commit -m \"Initial commit\"",
+            "solutionCode": "# The hint provides the solution:\n# git commit -m \"Initial commit\""
+        },
+        {
+            "id": 4,
+            "title": "Check Status",
+            "difficulty": "basic",
+            "description": "Write the command to check the status of your repo.",
+            "starterCode": "# Git command here",
+            "expectedOutput": "",
+            "validationType": "contains",
+            "validationValue": "git status",
+            "hint": "git status",
+            "solutionCode": "# The hint provides the solution:\n# git status"
+        },
+        {
+            "id": 5,
+            "title": "View Log",
+            "difficulty": "basic",
+            "description": "Write the command to view commit history.",
+            "starterCode": "# Git command here",
+            "expectedOutput": "",
+            "validationType": "contains",
+            "validationValue": "git log",
+            "hint": "git log or git log --oneline",
+            "solutionCode": "# The hint provides the solution:\n# git log or git log --oneline"
+        },
+        {
+            "id": 6,
+            "title": "Create Branch",
+            "difficulty": "intermediate",
+            "description": "Write the command to create a new branch called feature.",
+            "starterCode": "# Git command here",
+            "expectedOutput": "",
+            "validationType": "contains",
+            "validationValue": "git branch",
+            "hint": "git branch feature or git checkout -b feature",
+            "solutionCode": "# The hint provides the solution:\n# git branch feature or git checkout -b feature"
+        },
+        {
+            "id": 7,
+            "title": "Merge Branch",
+            "difficulty": "intermediate",
+            "description": "Write the command to merge the feature branch into current branch.",
+            "starterCode": "# Git command here",
+            "expectedOutput": "",
+            "validationType": "contains",
+            "validationValue": "git merge",
+            "hint": "git merge feature",
+            "solutionCode": "# The hint provides the solution:\n# git merge feature"
+        },
+        {
+            "id": 8,
+            "title": "Clone Repo",
+            "difficulty": "intermediate",
+            "description": "Write the command to clone a repository from a URL.",
+            "starterCode": "# Git command here",
+            "expectedOutput": "",
+            "validationType": "contains",
+            "validationValue": "git clone",
+            "hint": "git clone https://github.com/user/repo.git",
+            "solutionCode": "# The hint provides the solution:\n# git clone https://github.com/user/repo.git"
+        },
+        {
+            "id": 9,
+            "title": "Push Changes",
+            "difficulty": "intermediate",
+            "description": "Write the command to push to the main branch on origin.",
+            "starterCode": "# Git command here",
+            "expectedOutput": "",
+            "validationType": "contains",
+            "validationValue": "git push",
+            "hint": "git push origin main",
+            "solutionCode": "# The hint provides the solution:\n# git push origin main"
+        },
+        {
+            "id": 10,
+            "title": "Pull Changes",
+            "difficulty": "intermediate",
+            "description": "Write the command to pull latest changes from remote.",
+            "starterCode": "# Git command here",
+            "expectedOutput": "",
+            "validationType": "contains",
+            "validationValue": "git pull",
+            "hint": "git pull origin main",
+            "solutionCode": "# The hint provides the solution:\n# git pull origin main"
+        }
+    ]
+}

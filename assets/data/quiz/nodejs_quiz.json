@@ -1,0 +1,362 @@
+[
+    {
+        "id": "nodejs-1",
+        "question": "What is Node.js?",
+        "options": [
+            "A frontend JavaScript framework",
+            "A JavaScript runtime built on Chrome's V8 engine",
+            "A relational database management system",
+            "A markup language"
+        ],
+        "correctAnswer": 1,
+        "explanation": "Node.js allows you to run JavaScript on the server side, outside of a web browser."
+    },
+    {
+        "id": "nodejs-2",
+        "question": "Which engine powers Node.js?",
+        "options": [
+            "SpiderMonkey",
+            "Chakra",
+            "V8",
+            "JavaScriptCore"
+        ],
+        "correctAnswer": 2,
+        "explanation": "Node.js runs on Google Chrome's fast V8 JavaScript engine."
+    },
+    {
+        "id": "nodejs-3",
+        "question": "How do you check your currently installed Node.js version in the terminal?",
+        "options": [
+            "node version",
+            "node -v",
+            "node --version",
+            "Both B and C"
+        ],
+        "correctAnswer": 3,
+        "explanation": "You can use either 'node -v' or 'node --version' to check the installed version."
+    },
+    {
+        "id": "nodejs-4",
+        "question": "How do you execute a Node.js script called 'app.js' from the terminal?",
+        "options": [
+            "run app.js",
+            "node app.js",
+            "start app.js",
+            "execute app.js"
+        ],
+        "correctAnswer": 1,
+        "explanation": "The 'node' command followed by the filename executes the JavaScript file."
+    },
+    {
+        "id": "nodejs-5",
+        "question": "How do you import a built-in module like 'fs' in Node.js?",
+        "options": [
+            "import fs from 'fs';",
+            "include 'fs';",
+            "const fs = require('fs');",
+            "using fs;"
+        ],
+        "correctAnswer": 2,
+        "explanation": "The require() function is used in CommonJS to import modules in Node.js."
+    },
+    {
+        "id": "nodejs-6",
+        "question": "Which object is used to expose functions or variables from a custom Node.js module?",
+        "options": [
+            "module.exports",
+            "exports.all",
+            "window.export",
+            "global.send"
+        ],
+        "correctAnswer": 0,
+        "explanation": "module.exports makes properties and methods available to other files that require() the module."
+    },
+    {
+        "id": "nodejs-7",
+        "question": "Which Node.js module is used to interact with the file system?",
+        "options": [
+            "sys",
+            "file",
+            "fs",
+            "os"
+        ],
+        "correctAnswer": 2,
+        "explanation": "The 'fs' (File System) module allows you to read, write, and manipulate files."
+    },
+    {
+        "id": "nodejs-8",
+        "question": "What is the difference between fs.readFile and fs.readFileSync?",
+        "options": [
+            "readFile is faster.",
+            "readFileSync blocks execution until the file is read.",
+            "readFile only reads text files.",
+            "There is no difference."
+        ],
+        "correctAnswer": 1,
+        "explanation": "readFileSync is synchronous and blocks the thread, while readFile is asynchronous."
+    },
+    {
+        "id": "nodejs-9",
+        "question": "Which module allows you to easily create a web server in raw Node.js?",
+        "options": [
+            "web",
+            "http",
+            "server",
+            "tcp"
+        ],
+        "correctAnswer": 1,
+        "explanation": "The built-in 'http' module allows Node.js to transfer data over the Hyper Text Transfer Protocol."
+    },
+    {
+        "id": "nodejs-10",
+        "question": "What does NPM stand for?",
+        "options": [
+            "Node Package Manager",
+            "Network Protocol Manager",
+            "New Project Maker",
+            "Node Process Module"
+        ],
+        "correctAnswer": 0,
+        "explanation": "NPM is the default package manager for Node.js, used to install external libraries."
+    },
+    {
+        "id": "nodejs-11",
+        "question": "Which command initializes a new Node.js project and creates a package.json file?",
+        "options": [
+            "npm start",
+            "npm new",
+            "node init",
+            "npm init"
+        ],
+        "correctAnswer": 3,
+        "explanation": "'npm init' interactively creates a package.json file for your project."
+    },
+    {
+        "id": "nodejs-12",
+        "question": "What is Express in the Node.js ecosystem?",
+        "options": [
+            "A database engine",
+            "A fast, unopinionated web framework",
+            "A testing tool",
+            "An authentication library"
+        ],
+        "correctAnswer": 1,
+        "explanation": "Express is a minimal web application framework that builds on Node.js's http module."
+    },
+    {
+        "id": "nodejs-13",
+        "question": "How do you define a GET route in Express?",
+        "options": [
+            "app.receive('/', ...)",
+            "app.get('/', ...)",
+            "app.route('GET', '/', ...)",
+            "server.get('/', ...)"
+        ],
+        "correctAnswer": 1,
+        "explanation": "app.get() defines a route handler for HTTP GET requests at the specified path."
+    },
+    {
+        "id": "nodejs-14",
+        "question": "What is Middleware in Express?",
+        "options": [
+            "Hardware that sits physically between the server and the database.",
+            "A function that has access to the request, response, and the next middleware function.",
+            "The middle tier of a database.",
+            "A special type of HTML."
+        ],
+        "correctAnswer": 1,
+        "explanation": "Middleware functions can execute code, modify requests/responses, and end the cycle or pass control."
+    },
+    {
+        "id": "nodejs-15",
+        "question": "Which built-in Express middleware parses incoming JSON payloads?",
+        "options": [
+            "express.parseJSON()",
+            "express.json()",
+            "bodyParser.parse()",
+            "JSON.parse()"
+        ],
+        "correctAnswer": 1,
+        "explanation": "app.use(express.json()) allows Express to read JSON data sent in the request body."
+    },
+    {
+        "id": "nodejs-16",
+        "question": "Which popular Object Data Modeling (ODM) library is used to connect Node.js to MongoDB?",
+        "options": [
+            "Sequelize",
+            "Postgres",
+            "Mongoose",
+            "MongoConnect"
+        ],
+        "correctAnswer": 2,
+        "explanation": "Mongoose provides a straight-forward, schema-based solution to model MongoDB application data."
+    },
+    {
+        "id": "nodejs-17",
+        "question": "What does a Mongoose Schema define?",
+        "options": [
+            "The network architecture of the database cluster.",
+            "The shape, fields, and constraints of documents within a collection.",
+            "The server port configuration.",
+            "The HTML template for the frontend."
+        ],
+        "correctAnswer": 1,
+        "explanation": "A Schema maps to a MongoDB collection and defines the shape of the documents within."
+    },
+    {
+        "id": "nodejs-18",
+        "question": "In a REST API, which HTTP method is typically used to create a new resource?",
+        "options": [
+            "GET",
+            "POST",
+            "PUT",
+            "DELETE"
+        ],
+        "correctAnswer": 1,
+        "explanation": "POST is used to submit an entity to the specified resource, often causing a change in state or side effects."
+    },
+    {
+        "id": "nodejs-19",
+        "question": "Which Node.js structure allows you to handle asynchronous operations cleanly without 'callback hell'?",
+        "options": [
+            "Timeouts",
+            "Promises and Async/Await",
+            "Synchronous threads",
+            "Event Loopers"
+        ],
+        "correctAnswer": 1,
+        "explanation": "Promises and Async/Await syntax provide a readable way to handle async data flow."
+    },
+    {
+        "id": "nodejs-20",
+        "question": "What keyword is used inside an async function to pause execution until a Promise settles?",
+        "options": [
+            "pause",
+            "wait",
+            "await",
+            "defer"
+        ],
+        "correctAnswer": 2,
+        "explanation": "The 'await' keyword pauses the async function execution until the Promise resolves or rejects."
+    },
+    {
+        "id": "nodejs-21",
+        "question": "The core of Node.js's asynchronous architecture relies on which built-in class?",
+        "options": [
+            "ThreadManager",
+            "EventEmitter",
+            "AsyncHandler",
+            "EventRunner"
+        ],
+        "correctAnswer": 1,
+        "explanation": "Much of the Node.js core API is built around an idiomatic asynchronous event-driven architecture using the EventEmitter class."
+    },
+    {
+        "id": "nodejs-22",
+        "question": "What is a Stream in Node.js?",
+        "options": [
+            "A continuous video file.",
+            "An object that lets you read data from or write data to a source continuously.",
+            "A memory leak error.",
+            "A type of database."
+        ],
+        "correctAnswer": 1,
+        "explanation": "Streams handle reading/writing files, network communications, or end-to-end info exchange efficiently."
+    },
+    {
+        "id": "nodejs-23",
+        "question": "How do you handle errors for synchronous code blocks in Node.js?",
+        "options": [
+            "With .catch()",
+            "By ignoring them",
+            "With a try...catch block",
+            "With an event listener"
+        ],
+        "correctAnswer": 2,
+        "explanation": "Standard try...catch blocks are used to catch errors thrown by synchronous code execution."
+    },
+    {
+        "id": "nodejs-24",
+        "question": "In Express, an Error Handling Middleware function takes how many arguments?",
+        "options": [
+            "Two (req, res)",
+            "Three (req, res, next)",
+            "Four (err, req, res, next)",
+            "One (err)"
+        ],
+        "correctAnswer": 2,
+        "explanation": "Express recognizes a middleware as an error handler strictly by it having exactly 4 arguments."
+    },
+    {
+        "id": "nodejs-25",
+        "question": "Which library is commonly used in Node.js to generate and verify JWTs?",
+        "options": [
+            "jsonwebtoken",
+            "auth-jwt",
+            "node-jwt",
+            "express-jwt-token"
+        ],
+        "correctAnswer": 0,
+        "explanation": "The 'jsonwebtoken' package is widely used to create securely signed tokens for authentication."
+    },
+    {
+        "id": "nodejs-26",
+        "question": "What does helmet.js do in an Express application?",
+        "options": [
+            "It tests the code for bugs.",
+            "It secures the app by setting various HTTP headers.",
+            "It encrypts passwords in the database.",
+            "It handles routing automatically."
+        ],
+        "correctAnswer": 1,
+        "explanation": "Helmet helps secure your Express apps by setting various HTTP headers to mitigate common attacks."
+    },
+    {
+        "id": "nodejs-27",
+        "question": "Which popular library is used for testing Node.js applications?",
+        "options": [
+            "Helmet",
+            "Jest",
+            "Sequelize",
+            "Mongoose"
+        ],
+        "correctAnswer": 1,
+        "explanation": "Jest (along with Mocha/Chai) is a highly popular JavaScript testing framework."
+    },
+    {
+        "id": "nodejs-28",
+        "question": "Which tool allows you to easily test Express API endpoints in your test suite?",
+        "options": [
+            "Nodemon",
+            "Supertest",
+            "ExpressTest",
+            "ApiRunner"
+        ],
+        "correctAnswer": 1,
+        "explanation": "Supertest provides a high-level abstraction for testing HTTP, integrating smoothly with Express."
+    },
+    {
+        "id": "nodejs-29",
+        "question": "Which production process manager keeps Node.js applications alive forever and handles reloads?",
+        "options": [
+            "nodemon",
+            "forever",
+            "pm2",
+            "taskmaster"
+        ],
+        "correctAnswer": 2,
+        "explanation": "PM2 is an advanced, production-ready process manager for Node.js applications."
+    },
+    {
+        "id": "nodejs-30",
+        "question": "What file is typically used to store sensitive environment variables in a Node.js project?",
+        "options": [
+            "config.json",
+            "env.xml",
+            ".env",
+            "secrets.txt"
+        ],
+        "correctAnswer": 2,
+        "explanation": "A .env file is mapped into process.env using tools like 'dotenv' to safely manage sensitive configurations."
+    }
+]

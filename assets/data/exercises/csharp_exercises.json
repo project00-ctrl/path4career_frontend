@@ -1,0 +1,152 @@
+{
+    "language": "C#",
+    "icon": "C#",
+    "color": "#239120",
+    "exercises": [
+        {
+            "id": 1,
+            "title": "Hello World",
+            "difficulty": "basic",
+            "description": "Print <strong>Hello, World!</strong> using <code>Console.WriteLine</code>.",
+            "starterCode": "using System;\n\nclass Program {\n    static void Main() {\n        // Print Hello, World!\n    }\n}",
+            "expectedOutput": "Hello, World!",
+            "validationType": "outputContains",
+            "validationValue": "Hello, World!",
+            "hint": "Console.WriteLine(\"Hello, World!\");",
+            "solutionCode": "using System;\nclass Program { static void Main() { Console.WriteLine(\"Hello, World!\"); } }"
+        },
+        {
+            "id": 2,
+            "title": "Variables",
+            "difficulty": "basic",
+            "description": "Declare <code>int age = 25</code> and <code>string name = \"CSharp\"</code>. Print both.",
+            "starterCode": "using System;\n\nclass Program {\n    static void Main() {\n        // Declare and print\n    }\n}",
+            "expectedOutput": "25",
+            "validationType": "outputContainsAll",
+            "validationValue": [
+                "25",
+                "CSharp"
+            ],
+            "hint": "Console.WriteLine(age); Console.WriteLine(name);",
+            "solutionCode": "using System;\nclass Program {\n    static void Main() {\n        int age = 25;\n        string name = \"CSharp\";\n        Console.WriteLine(age);\n        Console.WriteLine(name);\n    }\n}"
+        },
+        {
+            "id": 3,
+            "title": "If-Else",
+            "difficulty": "basic",
+            "description": "Given <code>int score = 90</code>, print <strong>Pass</strong> if >= 60, else <strong>Fail</strong>.",
+            "starterCode": "using System;\n\nclass Program {\n    static void Main() {\n        int score = 90;\n        // Write if-else\n    }\n}",
+            "expectedOutput": "Pass",
+            "validationType": "outputContains",
+            "validationValue": "Pass",
+            "hint": "if (score >= 60) Console.WriteLine(\"Pass\");",
+            "solutionCode": "using System;\nclass Program {\n    static void Main() {\n        int score = 90;\n        if (score >= 60) {\n            Console.WriteLine(\"Pass\");\n        } else {\n            Console.WriteLine(\"Fail\");\n        }\n    }\n}"
+        },
+        {
+            "id": 4,
+            "title": "For Loop",
+            "difficulty": "basic",
+            "description": "Print numbers <strong>1 to 5</strong> using a for loop.",
+            "starterCode": "using System;\n\nclass Program {\n    static void Main() {\n        // Print 1 to 5\n    }\n}",
+            "expectedOutput": "1",
+            "validationType": "outputContainsAll",
+            "validationValue": [
+                "1",
+                "2",
+                "3",
+                "4",
+                "5"
+            ],
+            "hint": "for (int i = 1; i <= 5; i++) Console.WriteLine(i);",
+            "solutionCode": "using System;\nclass Program { static void Main() { for (int i = 1; i <= 5; i++) Console.WriteLine(i); } }"
+        },
+        {
+            "id": 5,
+            "title": "Arrays",
+            "difficulty": "basic",
+            "description": "Create <code>int[] nums = {10, 20, 30}</code> and print each element.",
+            "starterCode": "using System;\n\nclass Program {\n    static void Main() {\n        // Create array and print\n    }\n}",
+            "expectedOutput": "10",
+            "validationType": "outputContainsAll",
+            "validationValue": [
+                "10",
+                "20",
+                "30"
+            ],
+            "hint": "foreach (int n in nums) Console.WriteLine(n);",
+            "solutionCode": "using System;\nclass Program {\n    static void Main() {\n        int[] nums = {10, 20, 30};\n        foreach (int n in nums) {\n            Console.WriteLine(n);\n        }\n    }\n}"
+        },
+        {
+            "id": 6,
+            "title": "Methods",
+            "difficulty": "basic",
+            "description": "Create a static method <code>Greet()</code> that prints <strong>Hello from C#!</strong>. Call it.",
+            "starterCode": "using System;\n\nclass Program {\n    // Define Greet method\n\n    static void Main() {\n        // Call Greet\n    }\n}",
+            "expectedOutput": "Hello from C#!",
+            "validationType": "outputContains",
+            "validationValue": "Hello from C#!",
+            "hint": "static void Greet() { Console.WriteLine(\"Hello from C#!\"); }",
+            "solutionCode": "using System;\nclass Program {\n    static void Greet() {\n        Console.WriteLine(\"Hello from C#!\");\n    }\n    static void Main() {\n        Greet();\n    }\n}"
+        },
+        {
+            "id": 7,
+            "title": "String Methods",
+            "difficulty": "basic",
+            "description": "Given <code>string s = \"Hello, CSharp!\"</code>, print its length and uppercase version.",
+            "starterCode": "using System;\n\nclass Program {\n    static void Main() {\n        string s = \"Hello, CSharp!\";\n        // Print length and uppercase\n    }\n}",
+            "expectedOutput": "14",
+            "validationType": "outputContainsAll",
+            "validationValue": [
+                "14",
+                "HELLO, CSHARP!"
+            ],
+            "hint": "Console.WriteLine(s.Length); Console.WriteLine(s.ToUpper());",
+            "solutionCode": "using System;\nclass Program {\n    static void Main() {\n        string s = \"Hello, CSharp!\";\n        Console.WriteLine(s.Length);\n        Console.WriteLine(s.ToUpper());\n    }\n}"
+        },
+        {
+            "id": 8,
+            "title": "Classes",
+            "difficulty": "intermediate",
+            "description": "Create a <code>Car</code> class with <code>Brand</code> and <code>Year</code>. Instantiate with <strong>Toyota</strong> and <strong>2024</strong>. Print them.",
+            "starterCode": "using System;\n\nclass Car {\n    // Define fields and constructor\n}\n\nclass Program {\n    static void Main() {\n        // Create Car and print\n    }\n}",
+            "expectedOutput": "Toyota",
+            "validationType": "outputContainsAll",
+            "validationValue": [
+                "Toyota",
+                "2024"
+            ],
+            "hint": "public string Brand; public int Year; Use a constructor.",
+            "solutionCode": "using System;\nclass Car {\n    public string Brand;\n    public int Year;\n    public Car(string brand, int year) { Brand = brand; Year = year; }\n}\nclass Program {\n    static void Main() {\n        Car c = new Car(\"Toyota\", 2024);\n        Console.WriteLine(c.Brand);\n        Console.WriteLine(c.Year);\n    }\n}"
+        },
+        {
+            "id": 9,
+            "title": "Lists",
+            "difficulty": "intermediate",
+            "description": "Create a <code>List&lt;string&gt;</code>, add <strong>Apple</strong>, <strong>Banana</strong>, <strong>Cherry</strong>. Remove Banana and print the list.",
+            "starterCode": "using System;\nusing System.Collections.Generic;\n\nclass Program {\n    static void Main() {\n        // Create List, add, remove, print\n    }\n}",
+            "expectedOutput": "Apple",
+            "validationType": "outputContainsAll",
+            "validationValue": [
+                "Apple",
+                "Cherry"
+            ],
+            "hint": "List<string> fruits = new List<string>(); fruits.Add(\"Apple\"); fruits.Remove(\"Banana\");",
+            "solutionCode": "using System;\nusing System.Collections.Generic;\nclass Program {\n    static void Main() {\n        List<string> fruits = new List<string>();\n        fruits.Add(\"Apple\");\n        fruits.Add(\"Banana\");\n        fruits.Add(\"Cherry\");\n        fruits.Remove(\"Banana\");\n        foreach (string f in fruits) {\n            Console.WriteLine(f);\n        }\n    }\n}"
+        },
+        {
+            "id": 10,
+            "title": "Try-Catch",
+            "difficulty": "intermediate",
+            "description": "Write a try-catch that attempts to parse <strong>\"abc\"</strong> as int. Catch FormatException and print <strong>Invalid format!</strong>. Then parse <strong>\"42\"</strong> and print it.",
+            "starterCode": "using System;\n\nclass Program {\n    static void Main() {\n        // Try parsing\n    }\n}",
+            "expectedOutput": "Invalid format!",
+            "validationType": "outputContainsAll",
+            "validationValue": [
+                "Invalid format!",
+                "42"
+            ],
+            "hint": "try { int.Parse(\"abc\"); } catch (FormatException) { Console.WriteLine(\"Invalid format!\"); }",
+            "solutionCode": "using System;\nclass Program {\n    static void Main() {\n        try {\n            int.Parse(\"abc\");\n        } catch (FormatException) {\n            Console.WriteLine(\"Invalid format!\");\n        }\n        int num = int.Parse(\"42\");\n        Console.WriteLine(num);\n    }\n}"
+        }
+    ]
+}

@@ -1,0 +1,136 @@
+{
+  "sections": [
+    {
+      "title": "Project Structure",
+      "desc": "ASP.NET Core project structure and key files.",
+      "type": "table",
+      "columns": ["FILE / FOLDER", "DESCRIPTION", "PURPOSE"],
+      "rows": [
+        { "property": "Program.cs", "desc": "Application entry point — configures services and middleware", "version": "var builder = WebApplication.CreateBuilder(args);" },
+        { "property": "appsettings.json", "desc": "Configuration file for app settings", "version": "ConnectionStrings, Logging, etc." },
+        { "property": "Startup.cs (legacy)", "desc": "Configures services and request pipeline (pre-.NET 6)", "version": "ConfigureServices() and Configure()" },
+        { "property": "Controllers/", "desc": "MVC and API controllers", "version": "HomeController.cs, ApiController.cs" },
+        { "property": "Models/", "desc": "Data models and view models", "version": "User.cs, LoginViewModel.cs" },
+        { "property": "Views/", "desc": "Razor views for MVC pages", "version": "Views/Home/Index.cshtml" },
+        { "property": "wwwroot/", "desc": "Static files (CSS, JS, images)", "version": "wwwroot/css/site.css" },
+        { "property": "Pages/", "desc": "Razor Pages (page-focused model)", "version": "Pages/Index.cshtml" },
+        { "property": "Migrations/", "desc": "Entity Framework database migrations", "version": "dotnet ef migrations add InitialCreate" },
+        { "property": "Properties/launchSettings.json", "desc": "Development launch profiles", "version": "applicationUrl, environmentVariables" }
+      ]
+    },
+    {
+      "title": "Dependency Injection",
+      "desc": "Built-in dependency injection container and service lifetimes.",
+      "type": "table",
+      "columns": ["METHOD", "DESCRIPTION", "EXAMPLE"],
+      "rows": [
+        { "property": "builder.Services.AddScoped<T>()", "desc": "Register scoped service (per-request lifetime)", "version": "builder.Services.AddScoped<IUserService, UserService>();" },
+        { "property": "builder.Services.AddTransient<T>()", "desc": "Register transient service (new instance each time)", "version": "builder.Services.AddTransient<IEmailService, EmailService>();" },
+        { "property": "builder.Services.AddSingleton<T>()", "desc": "Register singleton service (one instance for app)", "version": "builder.Services.AddSingleton<ICacheService, CacheService>();" },
+        { "property": "Constructor Injection", "desc": "Inject services via constructor parameters", "version": "public UserController(IUserService service) { }" },
+        { "property": "builder.Services.AddDbContext<T>()", "desc": "Register Entity Framework DbContext", "version": "builder.Services.AddDbContext<AppDbContext>(o => o.UseSqlServer(conn));" },
+        { "property": "builder.Services.AddHttpClient()", "desc": "Register typed HTTP client", "version": "builder.Services.AddHttpClient<IApiClient, ApiClient>();" },
+        { "property": "builder.Services.Configure<T>()", "desc": "Bind configuration section to options class", "version": "builder.Services.Configure<SmtpSettings>(config.GetSection(\"Smtp\"));" },
+        { "property": "IOptions<T>", "desc": "Inject configuration options", "version": "public MyService(IOptions<SmtpSettings> options) { }" }
+      ]
+    },
+    {
+      "title": "Controllers & Routing",
+      "desc": "MVC and API controller patterns with attribute routing.",
+      "type": "table",
+      "columns": ["ATTRIBUTE / METHOD", "DESCRIPTION", "EXAMPLE"],
+      "rows": [
+        { "property": "[ApiController]", "desc": "Marks class as API controller with automatic model validation", "version": "[ApiController] public class UsersController" },
+        { "property": "[Route(\"api/[controller]\")]", "desc": "Base route template for controller", "version": "[Route(\"api/users\")]" },
+        { "property": "[HttpGet]", "desc": "Handle GET requests", "version": "[HttpGet] public IActionResult GetAll()" },
+        { "property": "[HttpGet(\"{id}\")]", "desc": "Handle GET with route parameter", "version": "[HttpGet(\"{id}\")] public IActionResult Get(int id)" },
+        { "property": "[HttpPost]", "desc": "Handle POST requests", "version": "[HttpPost] public IActionResult Create([FromBody] UserDto dto)" },
+        { "property": "[HttpPut(\"{id}\")]", "desc": "Handle PUT requests", "version": "[HttpPut(\"{id}\")] public IActionResult Update(int id, UserDto dto)" },
+        { "property": "[HttpDelete(\"{id}\")]", "desc": "Handle DELETE requests", "version": "[HttpDelete(\"{id}\")] public IActionResult Delete(int id)" },
+        { "property": "Ok(data)", "desc": "Return 200 OK with data", "version": "return Ok(users);" },
+        { "property": "NotFound()", "desc": "Return 404 Not Found", "version": "return NotFound();" },
+        { "property": "BadRequest(errors)", "desc": "Return 400 Bad Request", "version": "return BadRequest(ModelState);" },
+        { "property": "CreatedAtAction()", "desc": "Return 201 Created with location header", "version": "return CreatedAtAction(nameof(Get), new { id }, user);" },
+        { "property": "NoContent()", "desc": "Return 204 No Content", "version": "return NoContent();" },
+        { "property": "[FromBody]", "desc": "Bind parameter from request body", "version": "public IActionResult Create([FromBody] UserDto dto)" },
+        { "property": "[FromQuery]", "desc": "Bind parameter from query string", "version": "public IActionResult Search([FromQuery] string q)" },
+        { "property": "[Authorize]", "desc": "Require authentication for controller/action", "version": "[Authorize(Roles = \"Admin\")]" }
+      ]
+    },
+    {
+      "title": "Middleware",
+      "desc": "Request pipeline middleware configuration.",
+      "type": "table",
+      "columns": ["MIDDLEWARE", "DESCRIPTION", "EXAMPLE"],
+      "rows": [
+        { "property": "app.UseRouting()", "desc": "Adds route matching to the pipeline", "version": "app.UseRouting();" },
+        { "property": "app.UseAuthentication()", "desc": "Enables authentication middleware", "version": "app.UseAuthentication();" },
+        { "property": "app.UseAuthorization()", "desc": "Enables authorization middleware", "version": "app.UseAuthorization();" },
+        { "property": "app.UseStaticFiles()", "desc": "Serves files from wwwroot", "version": "app.UseStaticFiles();" },
+        { "property": "app.UseCors()", "desc": "Enables Cross-Origin Resource Sharing", "version": "app.UseCors(policy);" },
+        { "property": "app.UseHttpsRedirection()", "desc": "Redirects HTTP requests to HTTPS", "version": "app.UseHttpsRedirection();" },
+        { "property": "app.UseExceptionHandler()", "desc": "Global exception handling", "version": "app.UseExceptionHandler(\"/Error\");" },
+        { "property": "app.MapControllers()", "desc": "Maps attribute-routed controllers", "version": "app.MapControllers();" },
+        { "property": "app.MapGet(\"/\", handler)", "desc": "Minimal API endpoint", "version": "app.MapGet(\"/api/hello\", () => \"Hello World\");" },
+        { "property": "Custom Middleware", "desc": "Create custom middleware with Invoke/InvokeAsync", "version": "app.UseMiddleware<LoggingMiddleware>();" }
+      ]
+    },
+    {
+      "title": "Entity Framework Core",
+      "desc": "ORM patterns for database access with EF Core.",
+      "type": "table",
+      "columns": ["API / COMMAND", "DESCRIPTION", "EXAMPLE"],
+      "rows": [
+        { "property": "DbContext", "desc": "Database session — manages entity lifecycle", "version": "public class AppDbContext : DbContext" },
+        { "property": "DbSet<T>", "desc": "Collection property representing a table", "version": "public DbSet<User> Users { get; set; }" },
+        { "property": "context.SaveChanges()", "desc": "Persist all tracked changes to database", "version": "await context.SaveChangesAsync();" },
+        { "property": "context.Add(entity)", "desc": "Track new entity for insertion", "version": "context.Users.Add(user);" },
+        { "property": "context.Update(entity)", "desc": "Track entity for update", "version": "context.Users.Update(user);" },
+        { "property": "context.Remove(entity)", "desc": "Track entity for deletion", "version": "context.Users.Remove(user);" },
+        { "property": ".Where(predicate)", "desc": "Filter query results", "version": "context.Users.Where(u => u.Active);" },
+        { "property": ".Include(nav)", "desc": "Eager-load related entities", "version": "context.Users.Include(u => u.Orders);" },
+        { "property": ".FirstOrDefaultAsync()", "desc": "Get first matching entity or null", "version": "await context.Users.FirstOrDefaultAsync(u => u.Id == id);" },
+        { "property": ".ToListAsync()", "desc": "Execute query and return list", "version": "var users = await context.Users.ToListAsync();" },
+        { "property": "dotnet ef migrations add", "desc": "Create a new migration", "version": "dotnet ef migrations add AddUserTable" },
+        { "property": "dotnet ef database update", "desc": "Apply pending migrations to database", "version": "dotnet ef database update" },
+        { "property": "Fluent API", "desc": "Configure model in OnModelCreating", "version": "modelBuilder.Entity<User>().HasKey(u => u.Id);" }
+      ]
+    },
+    {
+      "title": "Authentication & Identity",
+      "desc": "ASP.NET Core Identity and JWT authentication.",
+      "type": "table",
+      "columns": ["API / CONCEPT", "DESCRIPTION", "EXAMPLE"],
+      "rows": [
+        { "property": "AddIdentity<TUser, TRole>()", "desc": "Register Identity services", "version": "builder.Services.AddIdentity<User, IdentityRole>()" },
+        { "property": "UserManager<TUser>", "desc": "Manage users — create, find, update, delete", "version": "await userManager.CreateAsync(user, password);" },
+        { "property": "SignInManager<TUser>", "desc": "Manage sign-in operations", "version": "await signInManager.PasswordSignInAsync(user, pw, false, false);" },
+        { "property": "RoleManager<TRole>", "desc": "Manage roles — create, assign, remove", "version": "await roleManager.CreateAsync(new IdentityRole(\"Admin\"));" },
+        { "property": "AddJwtBearer()", "desc": "Configure JWT Bearer authentication", "version": "builder.Services.AddAuthentication().AddJwtBearer(opts => {});" },
+        { "property": "[Authorize]", "desc": "Require authenticated user", "version": "[Authorize] public IActionResult SecurePage()" },
+        { "property": "[Authorize(Roles = \"Admin\")]", "desc": "Require specific role", "version": "[Authorize(Roles = \"Admin\")]" },
+        { "property": "[AllowAnonymous]", "desc": "Allow unauthenticated access", "version": "[AllowAnonymous] public IActionResult Login()" },
+        { "property": "Claims", "desc": "Key-value pairs associated with user identity", "version": "User.FindFirst(ClaimTypes.NameIdentifier)?.Value" },
+        { "property": "Policy-based Authorization", "desc": "Custom authorization policies", "version": "builder.Services.AddAuthorization(o => o.AddPolicy(\"Admin\", p => p.RequireRole(\"Admin\")));" }
+      ]
+    },
+    {
+      "title": "CLI Commands",
+      "desc": ".NET CLI commands for project management.",
+      "type": "table",
+      "columns": ["COMMAND", "DESCRIPTION", "EXAMPLE"],
+      "rows": [
+        { "property": "dotnet new webapi", "desc": "Create new Web API project", "version": "dotnet new webapi -n MyApi" },
+        { "property": "dotnet new mvc", "desc": "Create new MVC project", "version": "dotnet new mvc -n MyApp" },
+        { "property": "dotnet new razor", "desc": "Create Razor Pages project", "version": "dotnet new razor -n MyPages" },
+        { "property": "dotnet run", "desc": "Build and run the project", "version": "dotnet run" },
+        { "property": "dotnet watch run", "desc": "Run with hot reload on file changes", "version": "dotnet watch run" },
+        { "property": "dotnet build", "desc": "Build the project", "version": "dotnet build" },
+        { "property": "dotnet publish", "desc": "Publish for deployment", "version": "dotnet publish -c Release" },
+        { "property": "dotnet add package", "desc": "Add NuGet package", "version": "dotnet add package Microsoft.EntityFrameworkCore" },
+        { "property": "dotnet test", "desc": "Run unit tests", "version": "dotnet test" },
+        { "property": "dotnet ef migrations add", "desc": "Create EF Core migration", "version": "dotnet ef migrations add Init" }
+      ]
+    }
+  ]
+}

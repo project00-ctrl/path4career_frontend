@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Path4Career - Register</title>
+    <link rel="stylesheet" href="css/register.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="css/register.css">
+</head>
+
+<body>
+    <div class="container">
+        <!-- Left Banner Area -->
+        <div class="left-panel">
+            <h1 class="brand">Path4Career</h1>
+            <p class="tagline">Learn. Build. Get Hired.</p>
+        </div>
+
+        <!-- Right Form Area -->
+        <div class="right-panel">
+            <div class="form-wrapper">
+
+                <!-- Initial Role Selection -->
+                <div id="roleSelectBox">
+                    <h2>Join Path4Career</h2>
+                    <select id="mainRole">
+                        <option value="">I am joining as</option>
+                        <option value="student">Student</option>
+                        <option value="job">Job Seeker</option>
+                        <option value="recruiter">Recruiter</option>
+                        <option value="mentor">Mentor</option>
+                    </select>
+
+                    <div id="studentTypeBox" class="hide">
+                        <select id="studentType">
+                            <option value="">Select Level</option>
+                            <option value="school">School</option>
+                            <option value="college">College</option>
+                        </select>
+                    </div>
+
+                    <p class="login-txt">Already a member? <a href="login.html">Sign In</a></p>
+                </div>
+
+                <!-- Step: School Details -->
+                <form class="roleForm hide" id="schoolForm">
+                    <h3>School Details</h3>
+                    <input type="text" class="input" placeholder="School Name">
+                    <small class="error"></small>
+                    <input type="number" class="input" placeholder="Class / Grade">
+                    <small class="error"></small>
+                    <button type="button" id="schoolContinue">Continue</button>
+                </form>
+
+                <!-- Step: College Details -->
+                <form class="roleForm hide" id="collegeForm">
+                    <h3>College Details</h3>
+                    <input type="text" class="input" placeholder="College Name">
+                    <small class="error"></small>
+                    <input type="text" class="input" placeholder="Qualification">
+                    <small class="error"></small>
+                    <input type="text" class="input" placeholder="Specialization">
+                    <small class="error"></small>
+                    <input type="number" class="input" placeholder="Year of Graduation">
+                    <small class="error"></small>
+                    <button type="button" id="collegeContinue">Continue</button>
+                </form>
+
+                <!-- Final Registration Form: Student -->
+                <form class="register hide" id="studentRegister">
+                    <h3>Create Student Account</h3>
+                    <input type="text" class="input" id="studentName" placeholder="Full Name">
+                    <small class="error"></small>
+                    <input type="email" class="input" id="studentEmail" placeholder="Email Address">
+                    <small class="error"></small>
+                    <input type="password" class="input" id="studentPassword" placeholder="Password">
+                    <small class="error"></small>
+                    <input type="password" class="input" placeholder="Confirm Password">
+                    <small class="error"></small>
+
+                    <div class="terms-box">
+                        <input type="checkbox" class="termsCheck">
+                        <div>
+                            <label>I agree to the <a href="#">Terms & Conditions</a> and <a href="#">Privacy
+                                    Policy</a></label>
+                            <span class="terms-error error"></span>
+                        </div>
+                    </div>
+                    <button type="submit">Complete Registration</button>
+                </form>
+
+                <!-- Final Registration Form: Job Seeker -->
+                <form class="register hide" id="jobForm">
+                    <h3>Create Job Seeker Account</h3>
+                    <input type="text" class="input" id="jobName" placeholder="Full Name">
+                    <small class="error"></small>
+                    <input type="email" class="input" id="jobEmail" placeholder="Email Address">
+                    <small class="error"></small>
+                    <input type="password" class="input" id="jobPassword" placeholder="Password">
+                    <small class="error"></small>
+                    <input type="password" class="input" placeholder="Confirm Password">
+                    <small class="error"></small>
+                    <input type="number" placeholder="Years of Experience">
+                    <input type="text" placeholder="Domain Expertise">
+
+                    <div class="terms-box">
+                        <input type="checkbox" class="termsCheck">
+                        <div>
+                            <label>I agree to the <a href="#">Terms & Conditions</a> and <a href="#">Privacy
+                                    Policy</a></label>
+                            <span class="terms-error error"></span>
+                        </div>
+                    </div>
+                    <button type="submit">Complete Registration</button>
+                </form>
+
+                <!-- Final Registration Form: Recruiter -->
+                <form class="register hide" id="recruiterForm">
+                    <h3>Create Recruiter Account</h3>
+                    <input type="text" class="input" id="recruiterName" placeholder="Full Name">
+                    <small class="error"></small>
+                    <input type="email" class="input" id="recruiterEmail" placeholder="Work Email">
+                    <small class="error"></small>
+                    <input type="password" class="input" id="recruiterPassword" placeholder="Password">
+                    <small class="error"></small>
+                    <input type="password" class="input" placeholder="Confirm Password">
+                    <small class="error"></small>
+                    <input type="text" placeholder="Company Name">
+
+                    <div class="terms-box">
+                        <input type="checkbox" class="termsCheck">
+                        <div>
+                            <label>I agree to the <a href="#">Terms & Conditions</a> and <a href="#">Privacy
+                                    Policy</a></label>
+                            <span class="terms-error error"></span>
+                        </div>
+                    </div>
+                    <button type="submit">Complete Registration</button>
+                </form>
+
+                <!-- Final Registration Form: Mentor -->
+                <form class="register hide" id="mentorForm">
+                    <h3>Create Mentor Account</h3>
+                    <input type="text" class="input" id="mentorName" placeholder="Full Name">
+                    <small class="error"></small>
+                    <input type="email" class="input" id="mentorEmail" placeholder="Email Address">
+                    <small class="error"></small>
+                    <input type="password" class="input" id="mentorPassword" placeholder="Password">
+                    <small class="error"></small>
+                    <input type="password" class="input" placeholder="Confirm Password">
+                    <small class="error"></small>
+                    <input type="text" placeholder="Current Role / Title">
+                    <input type="text" placeholder="Specialization">
+                    <input type="text" placeholder="LinkedIn Profile URL">
+
+                    <div class="terms-box">
+                        <input type="checkbox" class="termsCheck">
+                        <div>
+                            <label>I agree to the <a href="#">Terms & Conditions</a> and <a href="#">Privacy
+                                    Policy</a></label>
+                            <span class="terms-error error"></span>
+                        </div>
+                    </div>
+                    <button type="submit">Complete Registration</button>
+                </form>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/config.js"></script>
+    <script src="js/registration.js"></script>
+</body>
+
+</html>

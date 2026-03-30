@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plus | Path4Career</title>
+    <link rel="stylesheet" href="../assets/css/plususer.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/navbar.css">
+</head>
+
+<body>
+    <!-- HEADER -->
+
+    <div id="navbar-root"></div>
+
+    <!-- <nav>
+        <div>
+            <a href="">Home</a>
+            <span class="g-arrow">
+                >
+            </span>
+            <span>Today's Deals</span>
+        </div>
+    </nav> -->
+
+    <h1 class="collection-title">Courses</h1>
+
+    <main>
+
+        <div class="main-wrapper">
+            <div class="course-filters">
+                <select id="levelFilter">
+                    <option value="all">All Levels</option>
+                    <option value="beginner">Beginner</option>
+                    <option value="intermediate">Intermediate</option>
+                    <option value="advanced">Advanced</option>
+                </select>
+                <input type="text" id="searchInput" placeholder="Search courses..." />
+                <p id="noResults" style="display:none;">No courses found</p>
+
+            </div>
+
+            <div class="container course-grid">
+
+                <!-- HTML-COURSE -->
+                <div class="course-card" data-title="html for beginners" data-level="beginner"
+                    data-keywords="html web frontend markup">
+                    <a href="./tutorial.html" class="course-image html">
+                        <img src="../assets/images/icons/icons8-html-5.svg" alt="">
+                    </a>
+                    <!-- CONTENT -->
+                    <div class="course-content">
+                        <h3>HTML for Beginners</h3>
+                        <p>
+                            Learn the fundamentals of HTML and build the structure of modern
+                            websites step by step.
+                        </p>
+
+                        <span class="level beginner">Beginner</span>
+                    </div>
+
+                    <!-- BUTTON -->
+                    <a href="" class="pay-btn">Enroll Now</a>
+                </div>
+
+                <!-- CSS-COURSE -->
+                <div class="course-card" data-title="CSS Mastery" data-level="Beginner" data-keywords="CSS Mastery">
+                    <a href="" class="course-image css">
+                        <img src="../assets/images/icons/icons8-css-logo.svg" alt="">
+                    </a>
+                    <!-- CONTENT -->
+                    <div class="course-content">
+                        <h3>CSS Mastery</h3>
+                        <p>
+                            Learn modern CSS from scratch. Flexbox, Grid,
+                            animations and responsive design.
+                        </p>
+
+                        <span class="level beginner">Beginner</span>
+                    </div>
+
+                    <!-- BUTTON -->
+                    <a href="" class="pay-btn">Enroll Now</a>
+                </div>
+
+                <!-- JS-COURSE -->
+                <div class="course-card" data-title="javascript essentials" data-level="intermediate"
+                    data-keywords="JS javascript essentials">
+                    <a href="" class="course-image javascript">
+                        <img src="../assets/images/icons/icons8-javascript.svg" alt="">
+                    </a>
+                    <!-- CONTENT -->
+                    <div class="course-content">
+                        <h3>JavaScript Essentials</h3>
+                        <p>
+                            Make websites interactive using modern JavaScript.
+                        </p>
+
+                        <span class="level beginner">Intermediate</span>
+                    </div>
+
+                    <!-- BUTTON -->
+                    <a href="" class="pay-btn">Enroll Now</a>
+                </div>
+
+
+                <!-- BOOTSTRAP-COURSE -->
+                <div class="course-card" data-title="Bootstrap essentials" data-level="intermediate"
+                    data-keywords="Bootstrap essentials">
+                    <a href="" class="course-image Bootstrap">
+                        <img src="../assets/images/icons/icons8-bootstrap-100.png" alt="">
+                    </a>
+                    <!-- CONTENT -->
+                    <div class="course-content">
+                        <h3>Bootstrap Essentials</h3>
+                        <p>
+                            Build fast, responsive websites using Bootstrap’s grid,
+                            components, and utility classes.
+                        </p>
+
+                        <span class="level beginner">Intermediate</span>
+                    </div>
+
+                    <!-- BUTTON -->
+                    <a href="" class="pay-btn">Enroll Now</a>
+                </div>
+
+                <!-- REACT-COURSE -->
+                <div class="course-card" data-title="react mastery" data-level="advanced" data-keywords="Reactjs">
+                    <a href="" class="course-image React">
+                        <img src="../assets/images/icons/icons8-react.svg" alt="">
+                    </a>
+                    <!-- CONTENT -->
+                    <div class="course-content">
+                        <h3>React.js</h3>
+                        <p>
+                            Build modern, scalable user interfaces using React.
+                            Learn components, hooks, state management, and real-world projects.
+                        </p>
+
+                        <span class="level beginner">advanced</span>
+                    </div>
+
+                    <!-- BUTTON -->
+                    <a href="" class="pay-btn">Enroll Now</a>
+                </div>
+
+
+                <!-- PYTHON-COURSE -->
+                <div class="course-card" data-title="Python Fundamentals" data-level="Beginner"
+                    data-keywords="Python mastery">
+                    <a href="" class="course-image python">
+                        <img src="../assets/images/icons/icons8-python-50.png" alt="">
+                    </a>
+                    <!-- CONTENT -->
+                    <div class="course-content">
+                        <h3>Python Fundamentals</h3>
+                        <p>
+                            Learn Python from scratch. Master variables, loops, functions,
+                            data structures and build real-world programs..
+                        </p>
+
+                        <span class="level beginner">Beginner</span>
+                    </div>
+
+                    <!-- BUTTON -->
+                    <a href="" class="pay-btn">Enroll Now</a>
+                </div>
+
+                <!-- JAVA-COURSE -->
+                <div class="course-card" data-title="Java Programming" data-level="Beginner" data-keywords="java">
+                    <a href="" class="course-image java">
+                        <img src="../assets/images/icons/icons8-java-50.png" alt="">
+                    </a>
+                    <!-- CONTENT -->
+                    <div class="course-content">
+                        <h3>Java Programming</h3>
+                        <p>
+                            Learn Java from basics to OOP concepts. Build strong foundations
+                            in classes, objects, collections, and exception handling.
+                        </p>
+
+                        <span class="level beginner">Beginner</span>
+                    </div>
+
+                    <!-- BUTTON -->
+                    <a href="" class="pay-btn">Enroll Now</a>
+                </div>
+
+
+                <!-- C-Pro-COURSE -->
+
+                <div class="course-card" data-title="C programming" data-level="Beginner" data-keywords="C programming">
+                    <a href="" class="course-image c-pro">
+                        <img src="../assets/images/icons/icons8-c-programming-100.png" alt="">
+                    </a>
+                    <!-- CONTENT -->
+                    <div class="course-content">
+                        <h3>C Programming</h3>
+                        <p>
+                            Learn C programming from scratch. Understand memory management,
+                        </p>
+
+                        <span class="level beginner">Beginner</span>
+                    </div>
+
+                    <!-- BUTTON -->
+                    <a href="" class="pay-btn">Enroll Now</a>
+                </div>
+
+
+                <!-- C++-COURSE -->
+
+                <div class="course-card" data-title="javascript essentials" data-level="intermediate"
+                    data-keywords="C++">
+                    <a href="" class="course-image cPlus-pro">
+                        <img src="../assets/images/icons/icons8-c++.svg" alt="">
+                    </a>
+                    <!-- CONTENT -->
+                    <div class="course-content">
+                        <h3>C++ Programming</h3>
+                        <p>
+                            Master C++ concepts including OOP, STL, pointers, memory management,
+                            and competitive programming fundamentals.
+                        </p>
+
+                        <span class="level beginner">Intermediate</span>
+                    </div>
+
+                    <!-- BUTTON -->
+                    <a href="" class="pay-btn">Enroll Now</a>
+                </div>
+
+                <!-- SQL-COURSE -->
+
+                <div class="course-card" data-title="SQL Fundamentals" data-level="Beginner" data-keywords="SQL">
+                    <a href="" class="course-image sql">
+                        <img src="../assets/images/icons/icons8-sql-60.png" alt="">
+                    </a>
+                    <!-- CONTENT -->
+                    <div class="course-content">
+                        <h3>SQL Fundamentals</h3>
+                        <p>
+                            Learn how to store, query, and manage data using SQL.
+                            Understand SELECT, JOIN, GROUP BY and real-world databases.
+                        </p>
+
+                        <span class="level beginner">Beginner</span>
+                    </div>
+
+                    <!-- BUTTON -->
+                    <a href="" class="pay-btn">Enroll Now</a>
+                </div>
+
+
+
+
+            </div>
+        </div>
+
+
+    </main>
+    <script src="../assets/js/plus.js"></script>
+    <script src="../assets/js/navbar.js"></script>
+</body>
+
+</html>

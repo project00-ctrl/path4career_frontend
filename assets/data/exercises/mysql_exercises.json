@@ -1,0 +1,127 @@
+{
+    "language": "MySQL",
+    "icon": "\ud83d\udc2c",
+    "color": "#4479A1",
+    "exercises": [
+        {
+            "id": 1,
+            "title": "SELECT All",
+            "difficulty": "basic",
+            "description": "Select all records from the Customers table.",
+            "starterCode": "-- Write query\n",
+            "expectedOutput": "",
+            "validationType": "sqlExec",
+            "validationValue": "",
+            "hint": "SELECT * FROM Customers;",
+            "solutionCode": "-- The hint provides the solution:\n-- SELECT * FROM Customers;"
+        },
+        {
+            "id": 2,
+            "title": "SELECT Columns",
+            "difficulty": "basic",
+            "description": "Select only CustomerName and Country from Customers.",
+            "starterCode": "-- Write query\n",
+            "expectedOutput": "",
+            "validationType": "sqlExec",
+            "validationValue": "",
+            "hint": "SELECT CustomerName, Country FROM Customers;",
+            "solutionCode": "-- The hint provides the solution:\n-- SELECT CustomerName, Country FROM Customers;"
+        },
+        {
+            "id": 3,
+            "title": "WHERE Clause",
+            "difficulty": "basic",
+            "description": "Select customers from Mexico.",
+            "starterCode": "-- Write query\n",
+            "expectedOutput": "",
+            "validationType": "sqlExec",
+            "validationValue": "",
+            "hint": "SELECT * FROM Customers WHERE Country = 'Mexico';",
+            "solutionCode": "-- The hint provides the solution:\n-- SELECT * FROM Customers WHERE Country = 'Mexico';"
+        },
+        {
+            "id": 4,
+            "title": "ORDER BY",
+            "difficulty": "basic",
+            "description": "Select all customers ordered by CustomerName alphabetically.",
+            "starterCode": "-- Write query\n",
+            "expectedOutput": "",
+            "validationType": "sqlExec",
+            "validationValue": "",
+            "hint": "SELECT * FROM Customers ORDER BY CustomerName;",
+            "solutionCode": "-- The hint provides the solution:\n-- SELECT * FROM Customers ORDER BY CustomerName;"
+        },
+        {
+            "id": 5,
+            "title": "COUNT",
+            "difficulty": "basic",
+            "description": "Count the total number of customers.",
+            "starterCode": "-- Write query\n",
+            "expectedOutput": "",
+            "validationType": "sqlExec",
+            "validationValue": "",
+            "hint": "SELECT COUNT(*) FROM Customers;",
+            "solutionCode": "-- The hint provides the solution:\n-- SELECT COUNT(*) FROM Customers;"
+        },
+        {
+            "id": 6,
+            "title": "DISTINCT",
+            "difficulty": "intermediate",
+            "description": "Select distinct countries from Customers.",
+            "starterCode": "-- Write query\n",
+            "expectedOutput": "",
+            "validationType": "sqlExec",
+            "validationValue": "",
+            "hint": "SELECT DISTINCT Country FROM Customers;",
+            "solutionCode": "-- The hint provides the solution:\n-- SELECT DISTINCT Country FROM Customers;"
+        },
+        {
+            "id": 7,
+            "title": "LIKE Pattern",
+            "difficulty": "intermediate",
+            "description": "Find customers whose name starts with 'A'.",
+            "starterCode": "-- Write query\n",
+            "expectedOutput": "",
+            "validationType": "sqlExec",
+            "validationValue": "",
+            "hint": "SELECT * FROM Customers WHERE CustomerName LIKE 'A%';",
+            "solutionCode": "-- The hint provides the solution:\n-- SELECT * FROM Customers WHERE CustomerName LIKE 'A%';"
+        },
+        {
+            "id": 8,
+            "title": "INSERT",
+            "difficulty": "intermediate",
+            "description": "Insert a new customer: 'CareerPath Corp', 'Admin', 'India'.",
+            "starterCode": "-- Write query\n",
+            "expectedOutput": "",
+            "validationType": "sqlExec",
+            "validationValue": "",
+            "hint": "INSERT INTO Customers VALUES (6,'CareerPath Corp','Admin','India');",
+            "solutionCode": "-- The hint provides the solution:\n-- INSERT INTO Customers VALUES (6,'CareerPath Corp','Admin','India');"
+        },
+        {
+            "id": 9,
+            "title": "UPDATE",
+            "difficulty": "intermediate",
+            "description": "Update the country of CustomerID 1 to 'USA'.",
+            "starterCode": "-- Write query\n",
+            "expectedOutput": "",
+            "validationType": "sqlExec",
+            "validationValue": "",
+            "hint": "UPDATE Customers SET Country = 'USA' WHERE CustomerID = 1;",
+            "solutionCode": "-- The hint provides the solution:\n-- UPDATE Customers SET Country = 'USA' WHERE CustomerID = 1;"
+        },
+        {
+            "id": 10,
+            "title": "DELETE",
+            "difficulty": "intermediate",
+            "description": "Delete the customer with CustomerID 6.",
+            "starterCode": "-- Write query\n",
+            "expectedOutput": "",
+            "validationType": "sqlExec",
+            "validationValue": "",
+            "hint": "DELETE FROM Customers WHERE CustomerID = 6;",
+            "solutionCode": "-- The hint provides the solution:\n-- DELETE FROM Customers WHERE CustomerID = 6;"
+        }
+    ]
+}

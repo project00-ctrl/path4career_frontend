@@ -1,0 +1,128 @@
+{
+  "sections": [
+    {
+      "title": "Application & Routing",
+      "desc": "FastAPI application setup, path operations, and request handling.",
+      "type": "table",
+      "columns": ["API / DECORATOR", "DESCRIPTION", "EXAMPLE"],
+      "rows": [
+        { "property": "FastAPI()", "desc": "Create FastAPI application instance", "version": "app = FastAPI(title='My API', version='1.0')" },
+        { "property": "@app.get('/path')", "desc": "Handle GET requests", "version": "@app.get('/users') async def get_users():" },
+        { "property": "@app.post('/path')", "desc": "Handle POST requests", "version": "@app.post('/users') async def create_user(user: UserCreate):" },
+        { "property": "@app.put('/path/{id}')", "desc": "Handle PUT requests", "version": "@app.put('/users/{id}') async def update_user(id: int):" },
+        { "property": "@app.delete('/path/{id}')", "desc": "Handle DELETE requests", "version": "@app.delete('/users/{id}') async def delete_user(id: int):" },
+        { "property": "@app.patch('/path/{id}')", "desc": "Handle PATCH requests", "version": "@app.patch('/users/{id}')" },
+        { "property": "Path parameter", "desc": "Dynamic URL segments with type validation", "version": "@app.get('/items/{item_id}') async def get(item_id: int):" },
+        { "property": "Query parameter", "desc": "Optional URL query string params", "version": "async def get(skip: int = 0, limit: int = 10):" },
+        { "property": "Request body", "desc": "Pydantic model for JSON body validation", "version": "async def create(item: ItemCreate):" },
+        { "property": "response_model", "desc": "Define response schema", "version": "@app.get('/users', response_model=list[UserOut])" },
+        { "property": "status_code", "desc": "Set response status code", "version": "@app.post('/users', status_code=201)" },
+        { "property": "tags", "desc": "Group endpoints in docs", "version": "@app.get('/users', tags=['users'])" }
+      ]
+    },
+    {
+      "title": "Pydantic Models",
+      "desc": "Data validation, serialization, and settings with Pydantic.",
+      "type": "table",
+      "columns": ["FEATURE", "DESCRIPTION", "EXAMPLE"],
+      "rows": [
+        { "property": "BaseModel", "desc": "Base class for data models", "version": "class User(BaseModel): name: str; age: int" },
+        { "property": "Field()", "desc": "Add validation and metadata to fields", "version": "age: int = Field(gt=0, le=150, description='User age')" },
+        { "property": "Optional[T]", "desc": "Field that can be None", "version": "email: Optional[str] = None" },
+        { "property": "list[T]", "desc": "List of typed items", "version": "tags: list[str] = []" },
+        { "property": "@field_validator('field')", "desc": "Custom field validation", "version": "@field_validator('email') def validate_email(cls, v):" },
+        { "property": "@model_validator", "desc": "Validate across multiple fields", "version": "@model_validator(mode='after')" },
+        { "property": "model_config", "desc": "Model configuration (formerly Config class)", "version": "model_config = ConfigDict(from_attributes=True)" },
+        { "property": ".model_dump()", "desc": "Convert model to dictionary", "version": "user.model_dump()" },
+        { "property": ".model_validate(data)", "desc": "Create model from dict with validation", "version": "User.model_validate({'name': 'John', 'age': 30})" },
+        { "property": "Inheritance", "desc": "Create schemas by extending base models", "version": "class UserCreate(UserBase): password: str" }
+      ]
+    },
+    {
+      "title": "Dependency Injection",
+      "desc": "FastAPI dependency injection system for shared logic.",
+      "type": "table",
+      "columns": ["FEATURE", "DESCRIPTION", "EXAMPLE"],
+      "rows": [
+        { "property": "Depends(func)", "desc": "Inject dependency function result", "version": "async def get(db: Session = Depends(get_db)):" },
+        { "property": "Sub-dependencies", "desc": "Dependencies can depend on other dependencies", "version": "Depends(get_current_user)" },
+        { "property": "Yield dependencies", "desc": "Setup/teardown with yield (like context manager)", "version": "def get_db(): db = SessionLocal(); yield db; db.close()" },
+        { "property": "Class dependencies", "desc": "Use class instances as dependencies", "version": "class Pagination: def __init__(self, skip: int = 0):" },
+        { "property": "Global dependencies", "desc": "Apply dependency to all routes", "version": "app = FastAPI(dependencies=[Depends(verify_token)])" },
+        { "property": "Router dependencies", "desc": "Apply dependency to all router routes", "version": "router = APIRouter(dependencies=[Depends(auth)])" },
+        { "property": "HTTPException", "desc": "Raise HTTP error with status code", "version": "raise HTTPException(status_code=404, detail='Not found')" },
+        { "property": "Header()", "desc": "Extract request header as parameter", "version": "async def get(x_token: str = Header()):" },
+        { "property": "Cookie()", "desc": "Extract cookie as parameter", "version": "async def get(session: str = Cookie()):" }
+      ]
+    },
+    {
+      "title": "Database (SQLAlchemy)",
+      "desc": "Database integration with SQLAlchemy ORM.",
+      "type": "table",
+      "columns": ["API / PATTERN", "DESCRIPTION", "EXAMPLE"],
+      "rows": [
+        { "property": "create_engine(url)", "desc": "Create database engine", "version": "engine = create_engine('postgresql://user:pass@localhost/db')" },
+        { "property": "SessionLocal", "desc": "Session factory for database connections", "version": "SessionLocal = sessionmaker(bind=engine)" },
+        { "property": "declarative_base()", "desc": "Base class for ORM models", "version": "Base = declarative_base()" },
+        { "property": "Column(Type)", "desc": "Define table column", "version": "name = Column(String, nullable=False)" },
+        { "property": "relationship()", "desc": "Define relationship between models", "version": "posts = relationship('Post', back_populates='author')" },
+        { "property": "ForeignKey()", "desc": "Foreign key constraint", "version": "user_id = Column(Integer, ForeignKey('users.id'))" },
+        { "property": "db.query(Model)", "desc": "Query records from table", "version": "db.query(User).filter(User.active == True).all()" },
+        { "property": "db.add(obj)", "desc": "Add record to session", "version": "db.add(user); db.commit()" },
+        { "property": "db.delete(obj)", "desc": "Delete record from session", "version": "db.delete(user); db.commit()" },
+        { "property": "Alembic", "desc": "Database migration tool for SQLAlchemy", "version": "alembic revision --autogenerate -m 'add users'" }
+      ]
+    },
+    {
+      "title": "Authentication & Security",
+      "desc": "Security utilities, OAuth2, and JWT authentication.",
+      "type": "table",
+      "columns": ["FEATURE", "DESCRIPTION", "EXAMPLE"],
+      "rows": [
+        { "property": "OAuth2PasswordBearer", "desc": "OAuth2 password flow token extraction", "version": "oauth2_scheme = OAuth2PasswordBearer(tokenUrl='token')" },
+        { "property": "OAuth2PasswordRequestForm", "desc": "Form data for username/password login", "version": "form: OAuth2PasswordRequestForm = Depends()" },
+        { "property": "python-jose (JWT)", "desc": "Create and verify JWT tokens", "version": "jwt.encode(payload, SECRET, algorithm='HS256')" },
+        { "property": "passlib (hashing)", "desc": "Password hashing utilities", "version": "pwd_context.hash(password)" },
+        { "property": "HTTPBearer", "desc": "Extract Bearer token from Authorization header", "version": "security = HTTPBearer()" },
+        { "property": "CORSMiddleware", "desc": "Enable Cross-Origin Resource Sharing", "version": "app.add_middleware(CORSMiddleware, allow_origins=['*'])" },
+        { "property": "APIKey", "desc": "API key authentication", "version": "APIKeyHeader(name='X-API-Key')" },
+        { "property": "HTTPS Redirect", "desc": "Redirect HTTP to HTTPS", "version": "app.add_middleware(HTTPSRedirectMiddleware)" }
+      ]
+    },
+    {
+      "title": "Advanced Features",
+      "desc": "Background tasks, WebSockets, middleware, and file handling.",
+      "type": "table",
+      "columns": ["FEATURE", "DESCRIPTION", "EXAMPLE"],
+      "rows": [
+        { "property": "BackgroundTasks", "desc": "Run tasks after returning response", "version": "async def create(bg: BackgroundTasks): bg.add_task(send_email)" },
+        { "property": "WebSocket", "desc": "WebSocket endpoint support", "version": "@app.websocket('/ws') async def ws(websocket: WebSocket):" },
+        { "property": "UploadFile", "desc": "Handle file uploads", "version": "async def upload(file: UploadFile):" },
+        { "property": "FileResponse", "desc": "Return file as response", "version": "return FileResponse('file.pdf')" },
+        { "property": "StreamingResponse", "desc": "Stream response data", "version": "StreamingResponse(generate(), media_type='text/plain')" },
+        { "property": "APIRouter", "desc": "Group routes into sub-applications", "version": "router = APIRouter(prefix='/api/v1')" },
+        { "property": "app.include_router()", "desc": "Mount router to application", "version": "app.include_router(users_router, prefix='/users')" },
+        { "property": "@app.on_event('startup')", "desc": "Run code on application startup", "version": "@app.on_event('startup') async def startup():" },
+        { "property": "Middleware", "desc": "Custom request/response middleware", "version": "@app.middleware('http') async def add_headers(req, call_next):" },
+        { "property": "Auto docs (/docs)", "desc": "Swagger UI auto-generated API documentation", "version": "http://localhost:8000/docs" },
+        { "property": "Redoc (/redoc)", "desc": "ReDoc alternative API documentation", "version": "http://localhost:8000/redoc" }
+      ]
+    },
+    {
+      "title": "CLI & Deployment",
+      "desc": "Running, testing, and deploying FastAPI applications.",
+      "type": "table",
+      "columns": ["COMMAND", "DESCRIPTION", "EXAMPLE"],
+      "rows": [
+        { "property": "pip install fastapi[all]", "desc": "Install FastAPI with all dependencies", "version": "pip install fastapi[all]" },
+        { "property": "uvicorn main:app --reload", "desc": "Start development server with hot reload", "version": "uvicorn main:app --reload --port 8000" },
+        { "property": "uvicorn main:app --workers 4", "desc": "Start production server with multiple workers", "version": "uvicorn main:app --host 0.0.0.0 --workers 4" },
+        { "property": "gunicorn -k uvicorn.workers.UvicornWorker", "desc": "Production ASGI server", "version": "gunicorn main:app -k uvicorn.workers.UvicornWorker" },
+        { "property": "pytest", "desc": "Run tests", "version": "pytest tests/ -v" },
+        { "property": "TestClient(app)", "desc": "Test client for API testing", "version": "client = TestClient(app); response = client.get('/users')" },
+        { "property": "httpx.AsyncClient", "desc": "Async test client", "version": "async with AsyncClient(app=app) as client:" },
+        { "property": "alembic upgrade head", "desc": "Apply database migrations", "version": "alembic upgrade head" }
+      ]
+    }
+  ]
+}

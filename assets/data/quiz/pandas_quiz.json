@@ -1,0 +1,362 @@
+[
+    {
+        "id": "pandas-1",
+        "question": "What is Pandas?",
+        "options": [
+            "A cute bear.",
+            "An open-source data manipulation and analysis library built on top of NumPy.",
+            "A web hosting framework.",
+            "A JavaScript library for HTML manipulation."
+        ],
+        "correctAnswer": 1,
+        "explanation": "Pandas is the absolute standard in Python for handling formatted, tabular data (like spreadsheets or SQL tables) efficiently."
+    },
+    {
+        "id": "pandas-2",
+        "question": "What are the two primary data structures utilized heavily within Pandas?",
+        "options": [
+            "Lists and Dictionaries",
+            "Arrays and Matrices",
+            "Series and DataFrame",
+            "Strings and Integers"
+        ],
+        "correctAnswer": 2,
+        "explanation": "A Series is a 1-dimensional column of data, while a DataFrame is a full 2-dimensional table built from multiple Series."
+    },
+    {
+        "id": "pandas-3",
+        "question": "Which of the following effectively describes a Pandas 'Series'?",
+        "options": [
+            "A one-dimensional labeled array capable of holding any data type.",
+            "A three-dimensional matrix.",
+            "A function that cleans data.",
+            "A database connection object."
+        ],
+        "correctAnswer": 0,
+        "explanation": "You can think of a Series as exactly a single column pulled out of an Excel spreadsheet."
+    },
+    {
+        "id": "pandas-4",
+        "question": "Which construct does a basic Pandas DataFrame most closely resemble?",
+        "options": [
+            "A simple text file.",
+            "A JSON object.",
+            "A 2D spreadsheet or SQL table.",
+            "A Python tuple."
+        ],
+        "correctAnswer": 2,
+        "explanation": "DataFrames consist of neatly aligned rows and columns, making them analogous to a standard database table."
+    },
+    {
+        "id": "pandas-5",
+        "question": "How do you safely create a DataFrame from a standard Python dictionary named 'data'?",
+        "options": [
+            "pd.Table(data)",
+            "pd.DataFrame(data)",
+            "pd.create(data)",
+            "pd.from_dict(data)"
+        ],
+        "correctAnswer": 1,
+        "explanation": "pd.DataFrame() takes dictionaries, lists of dictionaries, or NumPy arrays and casts them instantly into a structured tabular grid."
+    },
+    {
+        "id": "pandas-6",
+        "question": "Which highly-used Pandas function reads a comma-separated values file and converts it into a DataFrame?",
+        "options": [
+            "pd.import_csv()",
+            "pd.open_csv()",
+            "pd.load_csv()",
+            "pd.read_csv()"
+        ],
+        "correctAnswer": 3,
+        "explanation": "pd.read_csv('file.csv') is the absolute most common method used by data scientists to ingest local text data."
+    },
+    {
+        "id": "pandas-7",
+        "question": "Can Pandas directly read tables embedded inside HTML websites?",
+        "options": [
+            "No, it requires BeautifulSoup.",
+            "Yes, using pd.read_html().",
+            "Yes, using pd.extract_web().",
+            "No, Pandas only reads local files."
+        ],
+        "correctAnswer": 1,
+        "explanation": "pd.read_html() scrapes a URL natively and extracts any <table> elements it finds directly into a list of DataFrames."
+    },
+    {
+        "id": "pandas-8",
+        "question": "If you have a DataFrame named 'df', which method is used to extract a single column named 'Age'?",
+        "options": [
+            "df['Age']",
+            "df.get('Age')",
+            "df.column('Age')",
+            "df(Age)"
+        ],
+        "correctAnswer": 0,
+        "explanation": "Using bracket notation df['Age'] (or the dot notation df.Age) isolates and returns that specific column as a Series."
+    },
+    {
+        "id": "pandas-9",
+        "question": "Which DataFrame property is used to meticulously locate rows by their numeric INTEGER index position?",
+        "options": [
+            "df.loc[]",
+            "df.iloc[]",
+            "df.get_row()",
+            "df.index[]"
+        ],
+        "correctAnswer": 1,
+        "explanation": ".iloc stands for 'Integer Location' and selects rows strictly based on their 0-indexed integer position."
+    },
+    {
+        "id": "pandas-10",
+        "question": "How is df.loc[] fundamentally different from df.iloc[]?",
+        "options": [
+            "loc[] selects by Label/Name; iloc[] selects blindly by Integer Position.",
+            "loc[] is for columns; iloc[] is for rows.",
+            "iloc[] is faster but less accurate.",
+            "There is no difference."
+        ],
+        "correctAnswer": 0,
+        "explanation": "If a row's label index is 'Apple', you must use df.loc['Apple'], whereas df.iloc[0] would just grab whatever is simply in the very first slot."
+    },
+    {
+        "id": "pandas-11",
+        "question": "What happens when you run `df[df['Age'] > 25]`?",
+        "options": [
+            "It deletes rows where Age > 25.",
+            "It filters the DataFrame, returning only rows where the highly specific condition (Age strictly greater than 25) is fulfilled.",
+            "It returns a DataFrame of Booleans.",
+            "It throws an error."
+        ],
+        "correctAnswer": 1,
+        "explanation": "This performs Boolean Indexing, yielding a fully filtered DataFrame subset based exactly on the provided logical criteria."
+    },
+    {
+        "id": "pandas-12",
+        "question": "When chaining multiple complex boolean filters together in Pandas, which operators MUST you use?",
+        "options": [
+            "and / or",
+            "&& / ||",
+            "& / |",
+            "+ / -"
+        ],
+        "correctAnswer": 2,
+        "explanation": "Pandas requires bitwise operators (& and |) because standard Python 'and'/'or' cannot evaluate truth vectors element-wise across a Series."
+    },
+    {
+        "id": "pandas-13",
+        "question": "Which method easily extracts rows where a column's value matches ANY item inside a provided list?",
+        "options": [
+            "df['City'].contains(['NYC', 'LA'])",
+            "df['City'].isin(['NYC', 'LA'])",
+            "df['City'].match(['NYC', 'LA'])",
+            "df['City'].in_list(['NYC', 'LA'])"
+        ],
+        "correctAnswer": 1,
+        "explanation": ".isin() gracefully prevents having to write massive chained 'or' statements when filtering."
+    },
+    {
+        "id": "pandas-14",
+        "question": "How does Pandas explicitly represent missing or empty data cells?",
+        "options": [
+            "With the string 'None'.",
+            "With an empty space.",
+            "With NaN (Not a Number) or NaT (Not a Time).",
+            "With the integer 0."
+        ],
+        "correctAnswer": 2,
+        "explanation": "Pandas utilizes NumPy's NaN object internally as the absolute standard marker for missing/null values."
+    },
+    {
+        "id": "pandas-15",
+        "question": "Which aggressive method instantly removes entirely any row containing at least one missing (NaN) value?",
+        "options": [
+            "df.remove_nan()",
+            "df.dropna()",
+            "df.clean()",
+            "df.drop_missing()"
+        ],
+        "correctAnswer": 1,
+        "explanation": "df.dropna() simply drops the rows that contain nulls. Be careful—it can severely shrink your dataset!"
+    },
+    {
+        "id": "pandas-16",
+        "question": "Instead of dropping missing values, which method lets you artificially replace them with a default value (like 0 or the column mean)?",
+        "options": [
+            "df.replace_nan()",
+            "df.fillna()",
+            "df.insert()",
+            "df.default()"
+        ],
+        "correctAnswer": 1,
+        "explanation": "df.fillna(value) elegantly swoops through the data, swapping out scary NaN markers with a unified replacement."
+    },
+    {
+        "id": "pandas-17",
+        "question": "Which method applies an arbitrary complex function individually to every element in a specific Series?",
+        "options": [
+            "df['Age'].apply()",
+            "df['Age'].execute()",
+            "df['Age'].run()",
+            "df['Age'].each()"
+        ],
+        "correctAnswer": 0,
+        "explanation": ".apply(function) takes a custom Python lambda or function and rigorously maps it iteratively across the data."
+    },
+    {
+        "id": "pandas-18",
+        "question": "To perform vectorized string operations (like forcing a column to uppercase letters), what accessor must you use?",
+        "options": [
+            "df['Name'].text.upper()",
+            "df['Name'].string.upper()",
+            "df['Name'].str.upper()",
+            "df['Name'].char.upper()"
+        ],
+        "correctAnswer": 2,
+        "explanation": "The .str accessor unlocks a massive suite of string-specific formatting methods that cleanly operate across the entire DataFrame column."
+    },
+    {
+        "id": "pandas-19",
+        "question": "To group rows together by a shared category (e.g., aggregating user salaries strictly by Department), what method is used?",
+        "options": [
+            "df.cluster('Department')",
+            "df.combine('Department')",
+            "df.groupby('Department')",
+            "df.aggregate('Department')"
+        ],
+        "correctAnswer": 2,
+        "explanation": "df.groupby() works exactly identically to the SQL 'GROUP BY' clause, preparing data for statistical aggregation."
+    },
+    {
+        "id": "pandas-20",
+        "question": "Which method is the Pandas equivalent of a SQL JOIN, fusing two DataFrames together based on a shared ID column?",
+        "options": [
+            "pd.combine()",
+            "pd.merge()",
+            "pd.append()",
+            "pd.fuse()"
+        ],
+        "correctAnswer": 1,
+        "explanation": "pd.merge(df1, df2, on='ID') executes a high-performance relational database-style join."
+    },
+    {
+        "id": "pandas-21",
+        "question": "If you just want to clumsily stack one DataFrame physically on top of another (assuming similar columns), what function should you use?",
+        "options": [
+            "pd.concat()",
+            "pd.stack()",
+            "pd.merge()",
+            "pd.build()"
+        ],
+        "correctAnswer": 0,
+        "explanation": "pd.concat() is generally used for 'gluing' datasets vertically along the rows or horizontally along the columns."
+    },
+    {
+        "id": "pandas-22",
+        "question": "Which method sorts a DataFrame utilizing the values trapped inside a specific column?",
+        "options": [
+            "df.order_by()",
+            "df.sort_values()",
+            "df.sort()",
+            "df.arrange()"
+        ],
+        "correctAnswer": 1,
+        "explanation": "df.sort_values('ColumnName') reorganizes the rows. Passing ascending=False easily reverses the layout."
+    },
+    {
+        "id": "pandas-23",
+        "question": "What is the primary action of the heavily-used df.melt() function?",
+        "options": [
+            "It severely heats the API.",
+            "It drops all numerical columns.",
+            "It fundamentally unpivots a DataFrame from a 'wide' format into a neatly condensed 'long' format.",
+            "It converts Strings to Floats."
+        ],
+        "correctAnswer": 2,
+        "explanation": "Melting compresses multiple measurement columns into a highly unpivoted key-value pair format suitable for charting frameworks."
+    },
+    {
+        "id": "pandas-24",
+        "question": "How do you check the overarching data types of every column inside the DataFrame?",
+        "options": [
+            "df.dtypes",
+            "df.info_types()",
+            "df.types",
+            "df.check()"
+        ],
+        "correctAnswer": 0,
+        "explanation": "The .dtypes property provides a swift breakdown of whether columns are inferred as int64, float64, boolean, or generically typed 'object' strings."
+    },
+    {
+        "id": "pandas-25",
+        "question": "If you import data and the 'Age' column reads as text (e.g., '25'), how do you cast it forcefully to integers?",
+        "options": [
+            "df['Age'].to_int()",
+            "df['Age'].as_type('integer')",
+            "pd.to_numeric(df['Age']) or df['Age'].astype(int)",
+            "df.cast('Age', int)"
+        ],
+        "correctAnswer": 2,
+        "explanation": ".astype() acts as a universal caster, while pd.to_numeric() safely handles parsing bizarre edge cases."
+    },
+    {
+        "id": "pandas-26",
+        "question": "Which tremendously helpful method prints an instant statistical summary (count, mean, std, min, max, quartiles) for all numeric columns?",
+        "options": [
+            "df.summary()",
+            "df.stats()",
+            "df.overview()",
+            "df.describe()"
+        ],
+        "correctAnswer": 3,
+        "explanation": "df.describe() acts as the ultimate sanity check, immediately exposing outliers, averages, and missing data."
+    },
+    {
+        "id": "pandas-27",
+        "question": "To perform time-series analysis natively, you must forcefully convert string dates into Timestamp objects using which method?",
+        "options": [
+            "pd.to_datetime()",
+            "pd.timestamp()",
+            "pd.parse_date()",
+            "pd.date_cast()"
+        ],
+        "correctAnswer": 0,
+        "explanation": "pd.to_datetime() intelligently parses complex string formats and transforms them into native datetime64 objects, unlocking the .dt accessor."
+    },
+    {
+        "id": "pandas-28",
+        "question": "Once a column is securely converted to datetime objects, how can you effortlessly strip out just the 'Year' from the full timestamp?",
+        "options": [
+            "df['Date'].year()",
+            "df['Date'].str.year",
+            "df['Date'].dt.year",
+            "df['Date'].get('year')"
+        ],
+        "correctAnswer": 2,
+        "explanation": "The highly specific .dt accessor exposes methods (like .month, .day, .dayofweek) specifically meant for Timestamp manipulation."
+    },
+    {
+        "id": "pandas-29",
+        "question": "What does the df.corr() method compute?",
+        "options": [
+            "The correction of errors.",
+            "The pairwise Pearson correlation coefficient indicating linear relationships between all numerical columns.",
+            "The corresponding rows matching the index.",
+            "It drops corrupted cells."
+        ],
+        "correctAnswer": 1,
+        "explanation": "df.corr() is pivotal in data science. It immediately exposes whether variables (like 'Years of Study' and 'Salary') rise and fall together."
+    },
+    {
+        "id": "pandas-30",
+        "question": "Which method writes the fully processed DataFrame forcefully out to a CSV file on your hard drive?",
+        "options": [
+            "df.write_csv('output.csv')",
+            "df.save_csv('output.csv')",
+            "df.to_csv('output.csv')",
+            "df.export('output.csv')"
+        ],
+        "correctAnswer": 2,
+        "explanation": ".to_csv() exports the highly formatted tabular data back out into a simple, universally readable text format."
+    }
+]

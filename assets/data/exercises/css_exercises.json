@@ -1,0 +1,197 @@
+{
+    "language": "CSS",
+    "icon": "{ }",
+    "color": "#264DE4",
+    "exercises": [
+        {
+            "id": 1,
+            "title": "Change Text Color",
+            "difficulty": "basic",
+            "description": "Write CSS to make the <code>h1</code> text color <strong>red</strong>.",
+            "starterCode": "/* Style the h1 element */\n",
+            "starterHTML": "<h1>Hello World</h1>",
+            "validationType": "containsAll",
+            "validationValue": [
+                "h1",
+                "color",
+                "red"
+            ],
+            "hint": "Use the color property: h1 { color: red; }",
+            "solutionCode": "h1 { color: red; }"
+        },
+        {
+            "id": 2,
+            "title": "Background Color",
+            "difficulty": "basic",
+            "description": "Set the <code>body</code> background color to <strong>#f0f0f0</strong>.",
+            "starterCode": "/* Set the body background */\n",
+            "starterHTML": "<h1>Styled Page</h1><p>This page has a background color.</p>",
+            "validationType": "containsAll",
+            "validationValue": [
+                "body",
+                "background",
+                "#f0f0f0"
+            ],
+            "hint": "Use background-color property on the body selector.",
+            "solutionCode": "p { font-size: 18px; }"
+        },
+        {
+            "id": 3,
+            "title": "Font Size & Family",
+            "difficulty": "basic",
+            "description": "Set the <code>p</code> element's font size to <strong>18px</strong> and font family to <strong>Arial</strong>.",
+            "starterCode": "/* Style the paragraph */\n",
+            "starterHTML": "<p>This paragraph needs styling.</p>",
+            "validationType": "containsAll",
+            "validationValue": [
+                "p",
+                "font-size",
+                "18px",
+                "font-family",
+                "Arial"
+            ],
+            "hint": "Use font-size and font-family properties.",
+            "solutionCode": ".box { background-color: blue; }"
+        },
+        {
+            "id": 4,
+            "title": "Box Model \u2014 Padding & Margin",
+            "difficulty": "basic",
+            "description": "Give the <code>.box</code> class a padding of <strong>20px</strong> and a margin of <strong>10px</strong>.",
+            "starterCode": "/* Style the box */\n",
+            "starterHTML": "<div class=\"box\">I am a box!</div>",
+            "validationType": "containsAll",
+            "validationValue": [
+                ".box",
+                "padding",
+                "20px",
+                "margin",
+                "10px"
+            ],
+            "hint": "Use the padding and margin properties on the .box selector.",
+            "solutionCode": "#main-title { font-weight: bold; }"
+        },
+        {
+            "id": 5,
+            "title": "Border Styling",
+            "difficulty": "basic",
+            "description": "Add a <strong>2px solid #333</strong> border and <strong>border-radius: 10px</strong> to the <code>.card</code> class.",
+            "starterCode": "/* Style the card border */\n",
+            "starterHTML": "<div class=\"card\"><h2>Card Title</h2><p>Card content goes here.</p></div>",
+            "validationType": "containsAll",
+            "validationValue": [
+                ".card",
+                "border",
+                "2px",
+                "solid",
+                "#333",
+                "border-radius",
+                "10px"
+            ],
+            "hint": "Use the border shorthand and border-radius properties.",
+            "solutionCode": ".container { display: flex; justify-content: center; }"
+        },
+        {
+            "id": 6,
+            "title": "Flexbox Center",
+            "difficulty": "basic",
+            "description": "Use Flexbox on the <code>.container</code> to center its content both horizontally and vertically.",
+            "starterCode": "/* Center content with Flexbox */\n.container {\n  height: 200px;\n  background: #eee;\n}\n",
+            "starterHTML": "<div class=\"container\"><p>I am centered!</p></div>",
+            "validationType": "containsAll",
+            "validationValue": [
+                ".container",
+                "display",
+                "flex",
+                "justify-content",
+                "center",
+                "align-items",
+                "center"
+            ],
+            "hint": "Use display: flex with justify-content: center and align-items: center.",
+            "solutionCode": ".grid { display: grid; grid-template-columns: 1fr 1fr; }"
+        },
+        {
+            "id": 7,
+            "title": "Hover Effect",
+            "difficulty": "basic",
+            "description": "Create a <code>.btn</code> class with a background of <strong>#4A6CF7</strong> and on hover change it to <strong>#00C985</strong>.",
+            "starterCode": "/* Style the button with a hover effect */\n",
+            "starterHTML": "<button class=\"btn\">Hover Me</button>",
+            "validationType": "containsAll",
+            "validationValue": [
+                ".btn",
+                "background",
+                "#4A6CF7",
+                ".btn:hover",
+                "#00C985"
+            ],
+            "hint": "Use .btn for the base style and .btn:hover for the hover state.",
+            "solutionCode": ".box { margin: 20px; padding: 10px; border: 1px solid black; }"
+        },
+        {
+            "id": 8,
+            "title": "CSS Grid Layout",
+            "difficulty": "intermediate",
+            "description": "Create a 3-column grid layout using <code>.grid</code> class with <strong>grid-template-columns: repeat(3, 1fr)</strong> and a gap of <strong>16px</strong>.",
+            "starterCode": "/* Create a grid layout */\n",
+            "starterHTML": "<div class=\"grid\"><div>1</div><div>2</div><div>3</div><div>4</div><div>5</div><div>6</div></div>",
+            "validationType": "containsAll",
+            "validationValue": [
+                ".grid",
+                "display",
+                "grid",
+                "grid-template-columns",
+                "repeat(3, 1fr)",
+                "gap",
+                "16px"
+            ],
+            "hint": "Use display: grid with grid-template-columns and gap.",
+            "solutionCode": ".btn:hover { background-color: yellow; }"
+        },
+        {
+            "id": 9,
+            "title": "CSS Animation",
+            "difficulty": "intermediate",
+            "description": "Create a <code>@keyframes fadeIn</code> animation that goes from <strong>opacity: 0</strong> to <strong>opacity: 1</strong>. Apply it to the <code>.fade</code> class with duration <strong>2s</strong>.",
+            "starterCode": "/* Create a fade-in animation */\n",
+            "starterHTML": "<div class=\"fade\"><h2>I fade in!</h2></div>",
+            "validationType": "containsAll",
+            "validationValue": [
+                "@keyframes",
+                "fadeIn",
+                "opacity",
+                "0",
+                "1",
+                ".fade",
+                "animation",
+                "2s"
+            ],
+            "hint": "Define @keyframes fadeIn { from { opacity: 0 } to { opacity: 1 } } and apply with animation property.",
+            "solutionCode": "@media (max-width: 600px) { body { flex-direction: column; } }"
+        },
+        {
+            "id": 10,
+            "title": "Responsive Card Component",
+            "difficulty": "intermediate",
+            "description": "Build a complete card component with class <code>.card</code>: white background, <strong>box-shadow</strong>, <strong>border-radius: 12px</strong>, padding <strong>24px</strong>, and a <strong>@media</strong> query that changes padding to <strong>16px</strong> below <strong>768px</strong> width.",
+            "starterCode": "/* Build a responsive card */\n",
+            "starterHTML": "<div class=\"card\"><h2>Responsive Card</h2><p>Resize the window to see the change!</p></div>",
+            "validationType": "containsAll",
+            "validationValue": [
+                ".card",
+                "background",
+                "box-shadow",
+                "border-radius",
+                "12px",
+                "padding",
+                "24px",
+                "@media",
+                "768px",
+                "16px"
+            ],
+            "hint": "Style the .card class and add @media (max-width: 768px) { .card { padding: 16px; } }.",
+            "solutionCode": ".box { position: absolute; top: 50px; left: 100px; }"
+        }
+    ]
+}

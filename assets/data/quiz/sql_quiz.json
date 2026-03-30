@@ -1,0 +1,362 @@
+[
+    {
+        "id": "sql-1",
+        "question": "What does SQL stand for?",
+        "options": [
+            "Strong Question Language",
+            "Structured Query Language",
+            "System Query Logic",
+            "Standard Query Language"
+        ],
+        "correctAnswer": 1,
+        "explanation": "SQL stands for Structured Query Language, the standard language for relational database management systems."
+    },
+    {
+        "id": "sql-2",
+        "question": "Which of the following describes the case sensitivity of SQL statements (like SELECT)?",
+        "options": [
+            "SQL keywords are completely case-sensitive.",
+            "Only table names are case-sensitive.",
+            "SQL keywords are NOT case-sensitive, though capitalizing them is best practice.",
+            "SQL requires all text to be in lowercase."
+        ],
+        "correctAnswer": 2,
+        "explanation": "SQL keywords like 'select' and 'SELECT' mean the exact same thing to the database engine."
+    },
+    {
+        "id": "sql-3",
+        "question": "What character should end every SQL statement?",
+        "options": [
+            "A period (.)",
+            "A comma (,)",
+            "A colon (:)",
+            "A semicolon (;)"
+        ],
+        "correctAnswer": 3,
+        "explanation": "In standard SQL, a semicolon (;) is used to terminate each individual statement."
+    },
+    {
+        "id": "sql-4",
+        "question": "Which SQL statement is used to retrieve (or read) data from a database?",
+        "options": [
+            "GET",
+            "OPEN",
+            "SELECT",
+            "FETCH"
+        ],
+        "correctAnswer": 2,
+        "explanation": "The SELECT statement is the primary means of querying and retrieving data from tables."
+    },
+    {
+        "id": "sql-5",
+        "question": "If you want to select ALL columns from a table named 'Customers', which symbol do you use?",
+        "options": [
+            "ALL",
+            "%",
+            "->",
+            "*"
+        ],
+        "correctAnswer": 3,
+        "explanation": "The asterisk (*) acts as a wildcard meaning 'all columns' in a SELECT query."
+    },
+    {
+        "id": "sql-6",
+        "question": "Which clause is used to filter records and extract only those that fulfill a specified condition?",
+        "options": [
+            "FILTER",
+            "HAVING",
+            "SORT",
+            "WHERE"
+        ],
+        "correctAnswer": 3,
+        "explanation": "The WHERE clause restricts the rows returned by a query based on a specific boolean condition."
+    },
+    {
+        "id": "sql-7",
+        "question": "Which keyword is used to sort the result-set of a query?",
+        "options": [
+            "SORT BY",
+            "ORDER BY",
+            "ORGANIZE",
+            "ALIGN BY"
+        ],
+        "correctAnswer": 1,
+        "explanation": "The ORDER BY keyword is used to sort the retrieved data in ascending or descending sequence."
+    },
+    {
+        "id": "sql-8",
+        "question": "By default, what order does the ORDER BY keyword sort the result set?",
+        "options": [
+            "Descending",
+            "Ascending",
+            "Randomly",
+            "Chronologically"
+        ],
+        "correctAnswer": 1,
+        "explanation": "Unless physically specified with DESC, ORDER BY will always sort data in Ascending (ASC) order."
+    },
+    {
+        "id": "sql-9",
+        "question": "Which SQL statement is used to insert new data into a database?",
+        "options": [
+            "ADD ROW",
+            "INSERT INTO",
+            "CREATE ROW",
+            "ADD NEW"
+        ],
+        "correctAnswer": 1,
+        "explanation": "The INSERT INTO statement appends new rows of data to the specified table."
+    },
+    {
+        "id": "sql-10",
+        "question": "What is the most critical clause to include when using the UPDATE statement?",
+        "options": [
+            "SELECT",
+            "FROM",
+            "ORDER BY",
+            "WHERE"
+        ],
+        "correctAnswer": 3,
+        "explanation": "If you omit the WHERE clause in an UPDATE statement, you will accidentally overwrite EVERY single record in the table!"
+    },
+    {
+        "id": "sql-11",
+        "question": "Which SQL statement is used to remove existing rows from a table?",
+        "options": [
+            "REMOVE",
+            "DELETE",
+            "DROP ROW",
+            "TRASH"
+        ],
+        "correctAnswer": 1,
+        "explanation": "The DELETE statement erases one or more existing records from a table."
+    },
+    {
+        "id": "sql-12",
+        "question": "Which SQL keyword is utilized to restrict the maximum number of rows returned by a query?",
+        "options": [
+            "TOP",
+            "MAX",
+            "LIMIT",
+            "CAP"
+        ],
+        "correctAnswer": 2,
+        "explanation": "The LIMIT clause (common in MySQL and SQLite) ensures that only a specified number of records are returned, preventing database crashes on large tables."
+    },
+    {
+        "id": "sql-13",
+        "question": "Which aggregate function returns the total sum of a numeric column?",
+        "options": [
+            "TOTAL()",
+            "SUM()",
+            "ADD()",
+            "COUNT()"
+        ],
+        "correctAnswer": 1,
+        "explanation": "The SUM() function adds up all the numeric values within a specific column."
+    },
+    {
+        "id": "sql-14",
+        "question": "Which aggregate function returns the total number of rows that match a specified criterion?",
+        "options": [
+            "SUM()",
+            "ROWS()",
+            "NUMBER()",
+            "COUNT()"
+        ],
+        "correctAnswer": 3,
+        "explanation": "The COUNT() function simply tallies how many rows exist within the result set."
+    },
+    {
+        "id": "sql-15",
+        "question": "Which statement is used alongside aggregate functions to collapse rows sharing the same values into summary rows?",
+        "options": [
+            "COLLAPSE",
+            "SUMMARIZE",
+            "GROUP BY",
+            "ORDER BY"
+        ],
+        "correctAnswer": 2,
+        "explanation": "GROUP BY clusters identical data into groups, often so an aggregate function (like COUNT) can be applied to each distinct group."
+    },
+    {
+        "id": "sql-16",
+        "question": "Why was the HAVING clause introduced to SQL?",
+        "options": [
+            "To replace the WHERE clause.",
+            "Because the WHERE clause cannot be used directly with Aggregate Functions.",
+            "To speed up database connections.",
+            "To join tables together."
+        ],
+        "correctAnswer": 1,
+        "explanation": "The WHERE clause filters rows BEFORE grouping occurs. The HAVING clause was added specifically to filter aggregate data AFTER the GROUP BY has executed."
+    },
+    {
+        "id": "sql-17",
+        "question": "Which SQL clause is used to combine rows from multiple tables based on a related common column between them?",
+        "options": [
+            "CONNECT",
+            "JOIN",
+            "MERGE",
+            "LINK"
+        ],
+        "correctAnswer": 1,
+        "explanation": "The JOIN clause bridges different tables together usually by matching a Primary Key with a Foreign Key."
+    },
+    {
+        "id": "sql-18",
+        "question": "What is the command to create an entirely new table inside a database?",
+        "options": [
+            "NEW TABLE",
+            "BUILD TABLE",
+            "CREATE TABLE",
+            "INIT TABLE"
+        ],
+        "correctAnswer": 2,
+        "explanation": "The CREATE TABLE statement defines a new table and its specific columns and data types."
+    },
+    {
+        "id": "sql-19",
+        "question": "Which statement completely destroys an existing table, instantly wiping out both its structure and all of its data?",
+        "options": [
+            "DELETE TABLE",
+            "ERASE TABLE",
+            "REMOVE TABLE",
+            "DROP TABLE"
+        ],
+        "correctAnswer": 3,
+        "explanation": "DROP TABLE is a highly destructive command that removes a table from the database architecture permanently."
+    },
+    {
+        "id": "sql-20",
+        "question": "What does the 'NOT NULL' constraint enforce on a column?",
+        "options": [
+            "That the column must contain unique values.",
+            "That the column can only contain numbers.",
+            "That the column cannot be left empty (NULL) when a record is inserted.",
+            "That the column is the Primary Key."
+        ],
+        "correctAnswer": 2,
+        "explanation": "NOT NULL ensures that a field must definitely contain data, preventing an INSERT attempt if a value is not provided."
+    },
+    {
+        "id": "sql-21",
+        "question": "Which SQL constraint uniquely identifies each record in a table, guaranteeing the value is totally UNIQUE and NOT NULL?",
+        "options": [
+            "UNIQUE ID",
+            "MASTER KEY",
+            "PRIMARY KEY",
+            "FOREIGN KEY"
+        ],
+        "correctAnswer": 2,
+        "explanation": "A PRIMARY KEY is the ultimate identifier for a row. A table can only have one, and its value must be absolutely unique and exist."
+    },
+    {
+        "id": "sql-22",
+        "question": "What is the purpose of a FOREIGN KEY?",
+        "options": [
+            "To automatically assign a random number to a row.",
+            "To link two tables together by referring to the PRIMARY KEY of another table.",
+            "To encrypt data inside the table.",
+            "To speed up text searches."
+        ],
+        "correctAnswer": 1,
+        "explanation": "A FOREIGN KEY establishes a definitive relationship between tables by referencing the primary identifier of another table."
+    },
+    {
+        "id": "sql-23",
+        "question": "Which statement is used to add, delete, or modify columns inside an ALREADY existing table?",
+        "options": [
+            "CHANGE TABLE",
+            "REDEFINE TABLE",
+            "ALTER TABLE",
+            "UPDATE TABLE"
+        ],
+        "correctAnswer": 2,
+        "explanation": "The ALTER TABLE command manipulates the skeleton/structure of an existing table without having to drop and recreate it."
+    },
+    {
+        "id": "sql-24",
+        "question": "Which statement is used to return only completely different (unique) values from a column that might contain duplicates?",
+        "options": [
+            "SELECT UNIQUE",
+            "SELECT DISTINCT",
+            "SELECT DIFFERENT",
+            "SELECT ISOLATED"
+        ],
+        "correctAnswer": 1,
+        "explanation": "SELECT DISTINCT collapses duplicate rows in the result-set so you only see the unique values present in the column."
+    },
+    {
+        "id": "sql-25",
+        "question": "Which operator intuitively selects values within a specific range (like numbers or dates)?",
+        "options": [
+            "RANGE",
+            "WITHIN",
+            "THROUGH",
+            "BETWEEN"
+        ],
+        "correctAnswer": 3,
+        "explanation": "The BETWEEN operator filters data falling within a specified lower and upper bound (inclusive)."
+    },
+    {
+        "id": "sql-26",
+        "question": "When querying text, which operator is used in a WHERE clause to search for a specific pattern (often using the % wildcard)?",
+        "options": [
+            "LIKE",
+            "MATCHES",
+            "SIMILAR TO",
+            "CONTAINS"
+        ],
+        "correctAnswer": 0,
+        "explanation": "The LIKE operator looks for patterns in strings, such as searching for all names starting with 'A' (LIKE 'A%')."
+    },
+    {
+        "id": "sql-27",
+        "question": "Which operator provides a shorthand way to specify multiple OR conditions simultaneously?",
+        "options": [
+            "AND",
+            "ANY",
+            "IN",
+            "GROUP"
+        ],
+        "correctAnswer": 2,
+        "explanation": "The IN operator checks if a value matches any value within a specified list (e.g., WHERE Country IN ('USA', 'UK'))."
+    },
+    {
+        "id": "sql-28",
+        "question": "What does a NULL value mean in SQL?",
+        "options": [
+            "The number 0.",
+            "A string that is completely blank (like \"\").",
+            "The data is physically broken and unreadable.",
+            "The data is genuinely missing or unknown."
+        ],
+        "correctAnswer": 3,
+        "explanation": "NULL represents a total absence of data. It does not equal zero or an empty string; it means 'unknown/missing'."
+    },
+    {
+        "id": "sql-29",
+        "question": "What is a 'View' in SQL?",
+        "options": [
+            "A specific visual theme for the database editor.",
+            "A temporary database that deletes itself upon logout.",
+            "A virtual table based directly on the result-set of an underlying SQL query.",
+            "A physical backup of a table on the hard drive."
+        ],
+        "correctAnswer": 2,
+        "explanation": "A View acts exactly like a table when querying, but its data is dynamically constructed from a stored SELECT statement rather than being physically stored."
+    },
+    {
+        "id": "sql-30",
+        "question": "What is the sole purpose of creating an Index on an SQL column?",
+        "options": [
+            "To encrypt the data automatically.",
+            "To completely hide the column from lower-level users.",
+            "To dramatically speed up data retrieval/searches against that specific column.",
+            "To enforce primary key uniqueness."
+        ],
+        "correctAnswer": 2,
+        "explanation": "Indexes act like the index of a book, allowing the database engine to find specific data instantly without having to scan every single row."
+    }
+]

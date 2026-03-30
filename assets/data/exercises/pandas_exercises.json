@@ -1,0 +1,127 @@
+{
+    "language": "Pandas",
+    "icon": "Pa",
+    "color": "#150458",
+    "exercises": [
+        {
+            "id": 1,
+            "title": "Create DataFrame",
+            "difficulty": "basic",
+            "description": "Create a DataFrame with columns Name and Age. Print it.",
+            "starterCode": "import pandas as pd\ndata = {'Name':['Alice','Bob'],'Age':[25,30]}\n# Create and print DataFrame",
+            "expectedOutput": "",
+            "validationType": "outputContains",
+            "validationValue": "Alice",
+            "hint": "df = pd.DataFrame(data); print(df)",
+            "solutionCode": "# The hint provides the solution:\n# df = pd.DataFrame(data); print(df)"
+        },
+        {
+            "id": 2,
+            "title": "Read Column",
+            "difficulty": "basic",
+            "description": "Print just the Name column from the DataFrame.",
+            "starterCode": "import pandas as pd\ndf = pd.DataFrame({'Name':['Alice','Bob'],'Age':[25,30]})\n# Print Name column",
+            "expectedOutput": "",
+            "validationType": "outputContains",
+            "validationValue": "Alice",
+            "hint": "print(df['Name'])",
+            "solutionCode": "# The hint provides the solution:\n# print(df['Name'])"
+        },
+        {
+            "id": 3,
+            "title": "Head Method",
+            "difficulty": "basic",
+            "description": "Create a DataFrame with 5 rows and print the first 3 using .head(3).",
+            "starterCode": "import pandas as pd\ndf = pd.DataFrame({'X':[1,2,3,4,5]})\n# Print head(3)",
+            "expectedOutput": "",
+            "validationType": "outputContains",
+            "validationValue": "1",
+            "hint": "print(df.head(3))",
+            "solutionCode": "# The hint provides the solution:\n# print(df.head(3))"
+        },
+        {
+            "id": 4,
+            "title": "Describe",
+            "difficulty": "basic",
+            "description": "Use .describe() on a numeric DataFrame and print stats.",
+            "starterCode": "import pandas as pd\ndf = pd.DataFrame({'Score':[85,90,78,92,88]})\n# Print describe",
+            "expectedOutput": "",
+            "validationType": "outputContains",
+            "validationValue": "mean",
+            "hint": "print(df.describe())",
+            "solutionCode": "# The hint provides the solution:\n# print(df.describe())"
+        },
+        {
+            "id": 5,
+            "title": "Filter Rows",
+            "difficulty": "basic",
+            "description": "Filter rows where Age > 25 and print.",
+            "starterCode": "import pandas as pd\ndf = pd.DataFrame({'Name':['Alice','Bob','Charlie'],'Age':[25,30,22]})\n# Filter and print",
+            "expectedOutput": "",
+            "validationType": "outputContains",
+            "validationValue": "Bob",
+            "hint": "print(df[df['Age'] > 25])",
+            "solutionCode": "# The hint provides the solution:\n# print(df[df['Age'] > 25])"
+        },
+        {
+            "id": 6,
+            "title": "Add Column",
+            "difficulty": "intermediate",
+            "description": "Add a 'Grade' column with values ['A','B','C']. Print DataFrame.",
+            "starterCode": "import pandas as pd\ndf = pd.DataFrame({'Name':['Alice','Bob','Charlie'],'Score':[90,80,70]})\n# Add Grade column",
+            "expectedOutput": "",
+            "validationType": "outputContains",
+            "validationValue": "A",
+            "hint": "df['Grade'] = ['A','B','C']; print(df)",
+            "solutionCode": "# The hint provides the solution:\n# df['Grade'] = ['A','B','C']; print(df)"
+        },
+        {
+            "id": 7,
+            "title": "Sort Values",
+            "difficulty": "intermediate",
+            "description": "Sort DataFrame by Score descending. Print it.",
+            "starterCode": "import pandas as pd\ndf = pd.DataFrame({'Name':['Alice','Bob','Charlie'],'Score':[78,92,85]})\n# Sort and print",
+            "expectedOutput": "",
+            "validationType": "outputContains",
+            "validationValue": "92",
+            "hint": "print(df.sort_values('Score', ascending=False))",
+            "solutionCode": "# The hint provides the solution:\n# print(df.sort_values('Score', ascending=False))"
+        },
+        {
+            "id": 8,
+            "title": "Group By",
+            "difficulty": "intermediate",
+            "description": "Group by Department and calculate mean Salary. Print it.",
+            "starterCode": "import pandas as pd\ndf = pd.DataFrame({'Dept':['IT','HR','IT','HR'],'Salary':[70000,60000,80000,65000]})\n# Group and print mean",
+            "expectedOutput": "",
+            "validationType": "outputContains",
+            "validationValue": "IT",
+            "hint": "print(df.groupby('Dept')['Salary'].mean())",
+            "solutionCode": "# The hint provides the solution:\n# print(df.groupby('Dept')['Salary'].mean())"
+        },
+        {
+            "id": 9,
+            "title": "Drop Column",
+            "difficulty": "intermediate",
+            "description": "Drop the Age column and print the DataFrame.",
+            "starterCode": "import pandas as pd\ndf = pd.DataFrame({'Name':['Alice'],'Age':[25],'City':['NYC']})\n# Drop Age and print",
+            "expectedOutput": "",
+            "validationType": "outputContains",
+            "validationValue": "NYC",
+            "hint": "print(df.drop('Age', axis=1))",
+            "solutionCode": "# The hint provides the solution:\n# print(df.drop('Age', axis=1))"
+        },
+        {
+            "id": 10,
+            "title": "Null Check",
+            "difficulty": "intermediate",
+            "description": "Check for null values and print the result.",
+            "starterCode": "import pandas as pd\nimport numpy as np\ndf = pd.DataFrame({'A':[1,np.nan,3],'B':[4,5,np.nan]})\n# Check nulls",
+            "expectedOutput": "",
+            "validationType": "outputContains",
+            "validationValue": "True",
+            "hint": "print(df.isnull().any())",
+            "solutionCode": "# The hint provides the solution:\n# print(df.isnull().any())"
+        }
+    ]
+}

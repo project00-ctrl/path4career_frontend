@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live Python Editor - CareerPath</title>
+    <link rel="stylesheet" href="../../assets/css/editor.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    
+    <script src="https://cdn.jsdelivr.net/npm/skulpt@1.2.0/dist/skulpt.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/skulpt@1.2.0/dist/skulpt-stdlib.js"></script>
+</head>
+<body>
+    
+    <nav class="editor-nav">
+        <div class="logo-area">
+            <img class="logo-icon" src="../../assets/images/path4career-icon.png" alt="Path4Career" style="width:32px;height:32px;border-radius:8px;">
+            <div class="logo-text">Path4Career</div>
+            <div class="title-badge">🐍 Python Workspace</div>
+        </div>
+        <button class="run-btn" id="runBtn" onclick="executePython()">▶ Run Code</button>
+    </nav>
+
+    <div class="workspace">
+        <div class="editor-pane">
+            <p class="pane-label">
+                <span>main.py</span>
+                <span class="status-text">Skulpt Interactive Engine</span>
+            </p>
+            <textarea id="pythonInput" spellcheck="false" aria-label="Python Input"></textarea>
+        </div>
+        
+        <div class="result-pane">
+            <p class="pane-label">Interactive Terminal</p>
+            <div id="consoleDiv" onclick="focusTerminalInput()">
+                <span class="log-system">✔ Python Engine Ready! Click Run Code.</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+const pythonInput = document.getElementById('pythonInput');
+        const consoleDiv = document.getElementById('consoleDiv');
+        const runBtn = document.getElementById('runBtn');
+
+        // 1. Fetch saved code or use default template
+        const savedCode = localStorage.getItem('careerPathPythonCode');
+        const defaultCode = `print("Enter your name:")
+name = input()
+print(f"Hello {name}!")`;
+        
+        pythonInput.value = savedCode ? savedCode : defaultCode;
+
+        // 2. Smart Indentation Engine (Upgraded for Python ':' Colons)
+        pythonInput.addEventListener('keydown', function(e) {
+            if (e.key === 'Tab') {
+                e.preventDefault(); 
+                const start = this.selectionStart;
+                const end = this.selectionEnd;
+                const spaces = "    "; // 4 spaces
+                this.value = this.value.substring(0, start) + spaces + this.value.substring(end);
+                this.selectionStart = this.selectionEnd = start + spaces.length;
+                this.dispatchEvent(new Event('input'));
+            }
+            
+            if (e.key === 'Enter') {
+                e.preventDefault(); 
+                const start = this.selectionStart;
+                const end = this.selectionEnd;
+                const textBeforeCursor = this.value.substring(0, start);
+                const lines = textBeforeCursor.split(/\r?\n/);
+                const currentLine = lines[lines.length - 1] || "";
+                
+                const leadingSpacesMatch = currentLine.match(/^(\s*)/);
+                let indentSpaces = leadingSpacesMatch ? leadingSpacesMatch[1] : '';
+                
+                // Auto-indent after colon
+                if (currentLine.trim().endsWith(':')) {
+                    indentSpaces += "    ";
+                }
+                
+                const insertText = "\n" + indentSpaces;
+                this.value = this.value.substring(0, start) + insertText + this.value.substring(end);
+                this.selectionStart = this.selectionEnd = start + insertText.length;
+                this.dispatchEvent(new Event('input'));
+            }
+        });
+
+        // 3. Auto-Save
+        pythonInput.addEventListener('input', () => {
+            localStorage.setItem('careerPathPythonCode', pythonInput.value);
+        });
+
+        // Helper to output to console
+        function appendToConsole(text, className) {
+            const span = document.createElement('span');
+            span.className = className;
+            span.textContent = text;
+            consoleDiv.appendChild(span);
+            consoleDiv.scrollTop = consoleDiv.scrollHeight;
+        }
+
+        // Helper to focus the terminal input if user clicks anywhere in the black box
+        function focusTerminalInput() {
+            const activeInput = document.querySelector('.terminal-input');
+            if (activeInput) {
+                activeInput.focus();
+            }
+        }
+
+        // 4. Initialize & Execute Skulpt Engine
+        function executePython() {
+            const code = pythonInput.value.trim();
+            if (!code) {
+                consoleDiv.innerHTML = '<span class="log-error">Please enter some Python code.\n</span>';
+                return;
+            }
+
+            // Reset console and UI state
+            consoleDiv.innerHTML = '<span class="log-loading">>>> Running script...\n</span>';
+            runBtn.disabled = true;
+
+            // Configure Skulpt
+            Sk.configure({
+                // Normal print() output
+                output: function(text) {
+                    appendToConsole(text, 'log-normal');
+                },
+                // Required for standard library imports (math, random, etc)
+                read: function(x) {
+                    if (Sk.builtinFiles === undefined || Sk.builtinFiles["files"][x] === undefined)
+                        throw "File not found: '" + x + "'";
+                    return Sk.builtinFiles["files"][x];
+                },
+                // 🚀 THE MAGIC: Interactive inline input() interceptor
+                inputfun: function(promptText) {
+                    return new Promise((resolve) => {
+                        // 1. Print the prompt (e.g., "Enter name: ")
+                        if (promptText) {
+                            appendToConsole(promptText, 'log-normal');
+                        }
+
+                        // 2. Create the inline input element
+                        const inputEl = document.createElement('input');
+                        inputEl.type = 'text';
+                        inputEl.className = 'terminal-input';
+                        inputEl.autocomplete = 'off';
+                        inputEl.spellcheck = false;
+                        
+                        consoleDiv.appendChild(inputEl);
+                        inputEl.focus();
+                        consoleDiv.scrollTop = consoleDiv.scrollHeight;
+
+                        // 3. Wait for the user to press Enter
+                        inputEl.addEventListener('keydown', function(e) {
+                            if (e.key === 'Enter') {
+                                const val = inputEl.value;
+                                
+                                // Replace the text box with static green text to leave a visual history
+                                const valSpan = document.createElement('span');
+                                valSpan.className = 'log-input-echo';
+                                valSpan.textContent = val + '\n';
+                                
+                                consoleDiv.insertBefore(valSpan, inputEl);
+                                consoleDiv.removeChild(inputEl);
+                                
+                                // Resume Python execution!
+                                resolve(val);
+                            }
+                        });
+                    });
+                }
+            });
+
+            // Run the code!
+            const myPromise = Sk.misceval.asyncToPromise(function() {
+                return Sk.importMainWithBody("<stdin>", false, code, true);
+            });
+
+            myPromise.then(function(mod) {
+                // Success
+                appendToConsole('\n--- Execution Finished ---\n', 'log-loading');
+                runBtn.disabled = false;
+            }, function(err) {
+                // Error
+                appendToConsole('\n' + err.toString() + '\n', 'log-error');
+                runBtn.disabled = false;
+            });
+        }
+</script>
+</body>
+</html>

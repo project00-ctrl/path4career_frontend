@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live Data Science Editor - CareerPath</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../../assets/css/editor.css">
+    
+    <script src="https://cdn.jsdelivr.net/pyodide/v0.23.4/full/pyodide.js"></script>
+    
+    <style>
+        .header h2 span {
+            color: #00ffb3 !important;
+        }
+
+        .run-btn {
+            background: linear-gradient(135deg, #00ffb3, #00d4ff) !important;
+            color: #0f172a !important;
+            font-weight: bold;
+        }
+
+        .run-btn:hover {
+            background: linear-gradient(135deg, #00e6a1, #00c2eb) !important;
+        }
+
+        .run-btn:disabled {
+            background: #475569 !important;
+            color: #94a3b8 !important;
+            cursor: not-allowed;
+        }
+
+        .ds-badge {
+            background-color: #1e293b;
+            color: #00ffb3;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            margin-left: 10px;
+            font-weight: bold;
+            border: 1px solid #00ffb3;
+        }
+
+        #dsInput { color: #f1fa8c; } 
+        
+        .console-output {
+            flex: 1;
+            background-color: #0f172a;
+            display: flex;
+            flex-direction: column;
+        }
+
+        #consoleDiv {
+            flex: 1;
+            padding: 10px 20px;
+            font-family: 'Fira Code', 'Courier New', Courier, monospace;
+            overflow-y: auto;
+            color: #e2e8f0;
+            font-size: 14px;
+            white-space: pre-wrap; 
+        }
+
+        .log-error { color: #ff5555; }
+        .log-normal { color: #50fa7b; }
+        .log-loading { color: #8be9fd; font-style: italic; }
+
+        .packages-note {
+            background: rgba(0, 255, 179, 0.05);
+            border: 1px solid rgba(0, 255, 179, 0.2);
+            border-radius: 6px;
+            padding: 8px 14px;
+            margin: 0 15px;
+            font-size: 12px;
+            color: #94a3b8;
+        }
+
+        .packages-note strong { color: #00ffb3; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div style="display: flex; align-items: center; gap: 15px;">
+            <a href="../index.html" style="color: #00ffb3; text-decoration: none; font-size: 14px;">← Back</a>
+            <h2><span>📊</span> Data Science Workspace <span class="ds-badge">DS / ML</span></h2>
+        </div>
+        <button class="run-btn" id="runBtn" disabled>Loading Engine...</button>
+    </div>
+    <div class="packages-note">
+        💡 Data Science Stack: <strong>numpy</strong>, <strong>pandas</strong>, <strong>scikit-learn</strong>, <strong>matplotlib</strong> are being loaded in the browser.
+    </div>
+    <div class="workspace">
+        <div class="editor-pane">
+            <p class="pane-label">analysis.py</p>
+            <textarea id="dsInput" spellcheck="false" aria-label="Data Science Python Input"></textarea>
+        </div>
+        
+        <div class="result-pane">
+            <div class="console-output">
+                <p class="pane-label" style="padding:10px 20px 0;">Standard Output</p>
+                <div id="consoleDiv">
+                    <span class="log-loading">Initializing Data Science Environment...</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+const dsInput = document.getElementById('dsInput');
+        const consoleDiv = document.getElementById('consoleDiv');
+        const runBtn = document.getElementById('runBtn');
+        
+        let pyodideInstance = null;
+
+        // Fetch saved code or default DS template
+        const savedCode = localStorage.getItem('careerPathDataScienceCode');
+        dsInput.value = savedCode ? savedCode : `# 📊 Data Science Quickstart
+import numpy as np
+import pandas as pd
+
+# 1. Create a dataset
+data = {
+    'Topic': ['Pandas', 'NumPy', 'Scikit-learn', 'Matplotlib'],
+    'Difficulty': [3, 2, 4, 3],
+    'Importance': [5, 5, 5, 4]
+}
+
+df = pd.DataFrame(data)
+
+# 2. Analyze data
+print("=== Data Summary ===")
+print(df.describe())
+print("\\n=== Insights ===")
+print(f"Most Important Topic: {df.loc[df['Importance'].idxmax(), 'Topic']}")`;
+
+        function appendToConsole(text, className) {
+            const span = document.createElement('span');
+            span.className = className;
+            span.textContent = text + '\n';
+            consoleDiv.appendChild(span);
+            consoleDiv.scrollTop = consoleDiv.scrollHeight;
+        }
+
+        async function main() {
+            try {
+                pyodideInstance = await loadPyodide({
+                    stdout: (text) => appendToConsole(text, 'log-normal'),
+                    stderr: (text) => appendToConsole(text, 'log-error')
+                });
+                
+                consoleDiv.innerHTML = '<span class="log-loading">Loading Data Science Stack (Pandas, NumPy, Scikit-learn)...</span>\n';
+                await pyodideInstance.loadPackage(['numpy', 'pandas', 'scikit-learn', 'matplotlib']);
+                
+                consoleDiv.innerHTML = '<span class="log-normal">✔ Data Science Environment Ready!\\nAll packages loaded. Click Run Code to execute analysis.</span>\\n\\n';
+                runBtn.disabled = false;
+                runBtn.innerText = "Run Code ❯";
+            } catch (err) {
+                consoleDiv.innerHTML = `<span class="log-error">Failed to load environment: ${err.message}</span>`;
+            }
+        }
+
+        async function executePython() {
+            if (!pyodideInstance) return;
+            
+            const code = dsInput.value.trim();
+            if (!code) {
+                consoleDiv.innerHTML = '<span class="log-error">Please enter some code to analyze.</span>\\n';
+                return;
+            }
+
+            consoleDiv.innerHTML = '<span class="log-loading">>>> Executing Analysis...</span>\\n';
+            runBtn.disabled = true;
+
+            localStorage.setItem('careerPathDataScienceCode', dsInput.value);
+
+            try {
+                await pyodideInstance.runPythonAsync(code);
+            } catch (err) {
+                appendToConsole(err, 'log-error');
+            } finally {
+                runBtn.disabled = false;
+            }
+        }
+
+        runBtn.addEventListener('click', executePython);
+
+        // Tab and shortcuts
+        dsInput.addEventListener('keydown', function(e) {
+            if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') executePython();
+            if (e.key === 'Tab') {
+                e.preventDefault();
+                const start = this.selectionStart;
+                const end = this.selectionEnd;
+                this.value = this.value.substring(0, start) + '    ' + this.value.substring(end);
+                this.selectionStart = this.selectionEnd = start + 4;
+            }
+        });
+
+        main();
+</script>
+</body>
+</html>

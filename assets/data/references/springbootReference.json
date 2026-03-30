@@ -1,0 +1,123 @@
+{
+  "sections": [
+    {
+      "title": "Project Structure & Annotations",
+      "desc": "Spring Boot project structure and core annotations.",
+      "type": "table",
+      "columns": ["ANNOTATION / FILE", "DESCRIPTION", "EXAMPLE"],
+      "rows": [
+        { "property": "@SpringBootApplication", "desc": "Main entry point — combines @Configuration, @EnableAutoConfiguration, @ComponentScan", "version": "@SpringBootApplication public class App { }" },
+        { "property": "application.properties", "desc": "Configuration file for app settings", "version": "server.port=8080, spring.datasource.url=..." },
+        { "property": "application.yml", "desc": "YAML format configuration file", "version": "server:\\n  port: 8080" },
+        { "property": "@Component", "desc": "Generic Spring-managed bean", "version": "@Component public class MyService { }" },
+        { "property": "@Service", "desc": "Service layer bean (specialization of @Component)", "version": "@Service public class UserService { }" },
+        { "property": "@Repository", "desc": "Data access layer bean with exception translation", "version": "@Repository public class UserRepo { }" },
+        { "property": "@Configuration", "desc": "Configuration class defining @Bean methods", "version": "@Configuration public class AppConfig { }" },
+        { "property": "@Bean", "desc": "Define a bean in a configuration class", "version": "@Bean public RestTemplate restTemplate() { }" },
+        { "property": "@Autowired", "desc": "Auto-inject dependency (constructor preferred)", "version": "@Autowired private UserService userService;" },
+        { "property": "@Value(\"${prop}\")", "desc": "Inject value from properties file", "version": "@Value(\"${app.name}\") private String appName;" },
+        { "property": "pom.xml", "desc": "Maven build file — dependencies, plugins", "version": "<dependency>spring-boot-starter-web</dependency>" },
+        { "property": "build.gradle", "desc": "Gradle build file alternative", "version": "implementation 'org.springframework.boot:spring-boot-starter-web'" }
+      ]
+    },
+    {
+      "title": "REST Controllers",
+      "desc": "Building REST API endpoints with Spring MVC.",
+      "type": "table",
+      "columns": ["ANNOTATION / METHOD", "DESCRIPTION", "EXAMPLE"],
+      "rows": [
+        { "property": "@RestController", "desc": "REST controller — combines @Controller + @ResponseBody", "version": "@RestController @RequestMapping(\"/api\")" },
+        { "property": "@RequestMapping(\"/path\")", "desc": "Base URL mapping for controller", "version": "@RequestMapping(\"/api/users\")" },
+        { "property": "@GetMapping", "desc": "Handle GET requests", "version": "@GetMapping public List<User> getAll() { }" },
+        { "property": "@GetMapping(\"/{id}\")", "desc": "Handle GET with path variable", "version": "@GetMapping(\"/{id}\") public User getById(@PathVariable Long id)" },
+        { "property": "@PostMapping", "desc": "Handle POST requests", "version": "@PostMapping public User create(@RequestBody UserDto dto)" },
+        { "property": "@PutMapping(\"/{id}\")", "desc": "Handle PUT requests", "version": "@PutMapping(\"/{id}\") public User update(...)" },
+        { "property": "@DeleteMapping(\"/{id}\")", "desc": "Handle DELETE requests", "version": "@DeleteMapping(\"/{id}\") public void delete(@PathVariable Long id)" },
+        { "property": "@PathVariable", "desc": "Bind URL path segment to parameter", "version": "@PathVariable Long id" },
+        { "property": "@RequestParam", "desc": "Bind query parameter", "version": "@RequestParam(defaultValue=\"0\") int page" },
+        { "property": "@RequestBody", "desc": "Bind request JSON body to object", "version": "@RequestBody UserDto dto" },
+        { "property": "ResponseEntity<T>", "desc": "Full HTTP response with status, headers, body", "version": "return ResponseEntity.ok(user);" },
+        { "property": "ResponseEntity.status(201).body()", "desc": "Custom status code response", "version": "ResponseEntity.status(HttpStatus.CREATED).body(user)" },
+        { "property": "@ResponseStatus", "desc": "Set default response status", "version": "@ResponseStatus(HttpStatus.NO_CONTENT)" },
+        { "property": "@ExceptionHandler", "desc": "Handle exceptions in controller", "version": "@ExceptionHandler(NotFoundException.class)" }
+      ]
+    },
+    {
+      "title": "Spring Data JPA",
+      "desc": "Database access with Spring Data JPA and Hibernate.",
+      "type": "table",
+      "columns": ["ANNOTATION / INTERFACE", "DESCRIPTION", "EXAMPLE"],
+      "rows": [
+        { "property": "@Entity", "desc": "Mark class as JPA entity (database table)", "version": "@Entity public class User { }" },
+        { "property": "@Table(name = \"users\")", "desc": "Specify table name", "version": "@Table(name = \"users\")" },
+        { "property": "@Id", "desc": "Mark field as primary key", "version": "@Id @GeneratedValue private Long id;" },
+        { "property": "@GeneratedValue", "desc": "Auto-generate primary key value", "version": "@GeneratedValue(strategy = GenerationType.IDENTITY)" },
+        { "property": "@Column", "desc": "Configure column properties", "version": "@Column(nullable = false, unique = true)" },
+        { "property": "@OneToMany", "desc": "One-to-many relationship", "version": "@OneToMany(mappedBy = \"user\") List<Post> posts;" },
+        { "property": "@ManyToOne", "desc": "Many-to-one relationship", "version": "@ManyToOne @JoinColumn(name = \"user_id\") User user;" },
+        { "property": "@ManyToMany", "desc": "Many-to-many relationship", "version": "@ManyToMany List<Role> roles;" },
+        { "property": "JpaRepository<T, ID>", "desc": "Repository interface with CRUD operations", "version": "interface UserRepo extends JpaRepository<User, Long> { }" },
+        { "property": "findById(id)", "desc": "Find entity by primary key", "version": "Optional<User> user = repo.findById(1L);" },
+        { "property": "findAll()", "desc": "Get all entities", "version": "List<User> users = repo.findAll();" },
+        { "property": "save(entity)", "desc": "Save or update entity", "version": "repo.save(user);" },
+        { "property": "deleteById(id)", "desc": "Delete entity by ID", "version": "repo.deleteById(1L);" },
+        { "property": "Query method naming", "desc": "Auto-generate queries from method name", "version": "List<User> findByNameAndAge(String name, int age);" },
+        { "property": "@Query(\"JPQL\")", "desc": "Custom JPQL or native SQL query", "version": "@Query(\"SELECT u FROM User u WHERE u.email = ?1\")" }
+      ]
+    },
+    {
+      "title": "Security",
+      "desc": "Spring Security authentication and authorization.",
+      "type": "table",
+      "columns": ["ANNOTATION / CLASS", "DESCRIPTION", "EXAMPLE"],
+      "rows": [
+        { "property": "spring-boot-starter-security", "desc": "Add security dependency — auto-secures all endpoints", "version": "pom.xml dependency" },
+        { "property": "SecurityFilterChain", "desc": "Configure security rules (Spring Security 6+)", "version": "@Bean SecurityFilterChain filterChain(HttpSecurity http)" },
+        { "property": "http.authorizeHttpRequests()", "desc": "Define URL authorization rules", "version": ".requestMatchers(\"/api/**\").authenticated()" },
+        { "property": ".permitAll()", "desc": "Allow access without authentication", "version": ".requestMatchers(\"/public/**\").permitAll()" },
+        { "property": ".hasRole(\"ADMIN\")", "desc": "Require specific role", "version": ".requestMatchers(\"/admin/**\").hasRole(\"ADMIN\")" },
+        { "property": "UserDetailsService", "desc": "Service to load user data for authentication", "version": "implements UserDetailsService { loadUserByUsername() }" },
+        { "property": "PasswordEncoder", "desc": "Password hashing (BCrypt recommended)", "version": "@Bean PasswordEncoder encoder() { return new BCryptPasswordEncoder(); }" },
+        { "property": "JWT Authentication", "desc": "Stateless token-based auth with JSON Web Tokens", "version": "Custom JwtAuthFilter, JwtUtil classes" },
+        { "property": "@PreAuthorize", "desc": "Method-level security check", "version": "@PreAuthorize(\"hasRole('ADMIN')\")" },
+        { "property": "CORS configuration", "desc": "Cross-Origin Resource Sharing setup", "version": "http.cors(c -> c.configurationSource(corsConfig))" }
+      ]
+    },
+    {
+      "title": "Validation & Exception Handling",
+      "desc": "Input validation and global exception handling.",
+      "type": "table",
+      "columns": ["ANNOTATION / CLASS", "DESCRIPTION", "EXAMPLE"],
+      "rows": [
+        { "property": "@Valid", "desc": "Trigger validation on request body", "version": "public User create(@Valid @RequestBody UserDto dto)" },
+        { "property": "@NotNull", "desc": "Field must not be null", "version": "@NotNull String name;" },
+        { "property": "@NotBlank", "desc": "String must not be null or empty", "version": "@NotBlank String email;" },
+        { "property": "@Size(min, max)", "desc": "String/collection size constraints", "version": "@Size(min=2, max=50) String name;" },
+        { "property": "@Email", "desc": "Must be valid email format", "version": "@Email String email;" },
+        { "property": "@Min(value) / @Max(value)", "desc": "Numeric range constraints", "version": "@Min(0) @Max(150) int age;" },
+        { "property": "@Pattern(regexp)", "desc": "Must match regex pattern", "version": "@Pattern(regexp=\"\\\\d{10}\") String phone;" },
+        { "property": "@ControllerAdvice", "desc": "Global exception handler class", "version": "@ControllerAdvice public class GlobalHandler { }" },
+        { "property": "@ExceptionHandler", "desc": "Handle specific exception type", "version": "@ExceptionHandler(NotFoundException.class)" },
+        { "property": "ResponseStatusException", "desc": "Throw exception with HTTP status", "version": "throw new ResponseStatusException(HttpStatus.NOT_FOUND);" }
+      ]
+    },
+    {
+      "title": "CLI & Build Commands",
+      "desc": "Maven/Gradle commands and Spring Boot CLI.",
+      "type": "table",
+      "columns": ["COMMAND", "DESCRIPTION", "EXAMPLE"],
+      "rows": [
+        { "property": "start.spring.io", "desc": "Spring Initializr — generate project from web UI", "version": "https://start.spring.io" },
+        { "property": "mvn spring-boot:run", "desc": "Run Spring Boot app with Maven", "version": "mvn spring-boot:run" },
+        { "property": "mvn clean install", "desc": "Clean, compile, test, and package", "version": "mvn clean install" },
+        { "property": "mvn package", "desc": "Build JAR/WAR file", "version": "mvn package -DskipTests" },
+        { "property": "mvn test", "desc": "Run unit tests", "version": "mvn test" },
+        { "property": "gradle bootRun", "desc": "Run Spring Boot app with Gradle", "version": "./gradlew bootRun" },
+        { "property": "gradle build", "desc": "Build project with Gradle", "version": "./gradlew build" },
+        { "property": "java -jar app.jar", "desc": "Run packaged Spring Boot application", "version": "java -jar target/app-0.0.1.jar" },
+        { "property": "--spring.profiles.active=prod", "desc": "Activate specific configuration profile", "version": "java -jar app.jar --spring.profiles.active=prod" },
+        { "property": "spring-boot-devtools", "desc": "Auto-restart on file changes (dev dependency)", "version": "Add to pom.xml as optional dependency" }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,362 @@
+[
+    {
+        "id": "numpy-1",
+        "question": "What is NumPy?",
+        "options": [
+            "A web development framework.",
+            "A fundamental library for scientific computing in Python providing support for arrays.",
+            "A database management system.",
+            "A tool to compile Python to C."
+        ],
+        "correctAnswer": 1,
+        "explanation": "NumPy (Numerical Python) is the foundation of scientific computing in Python, offering powerful multi-dimensional array objects."
+    },
+    {
+        "id": "numpy-2",
+        "question": "Why is NumPy generally faster than standard Python lists?",
+        "options": [
+            "Because Python lists encrypt their data.",
+            "Because NumPy runs directly on the GPU.",
+            "Because NumPy uses contiguous memory and vectorized operations implemented in C.",
+            "Because NumPy deletes old data automatically."
+        ],
+        "correctAnswer": 2,
+        "explanation": "Standard lists store pointers to objects scattered in memory. NumPy arrays store uniform data in contiguous memory chunks, executing operations swiftly in C."
+    },
+    {
+        "id": "numpy-3",
+        "question": "Which function is strictly used to create a new NumPy array from a standard Python list?",
+        "options": [
+            "np.create()",
+            "np.list_to_array()",
+            "np.array()",
+            "np.matrix()"
+        ],
+        "correctAnswer": 2,
+        "explanation": "The primary method for turning a list into a NumPy array is calling np.array([your_list])."
+    },
+    {
+        "id": "numpy-4",
+        "question": "Which NumPy function creates an array filled entirely with zeros?",
+        "options": [
+            "np.zero()",
+            "np.empty()",
+            "np.null()",
+            "np.zeros()"
+        ],
+        "correctAnswer": 3,
+        "explanation": "np.zeros(shape) quickly allocates an array of the specified dimensions filled completely with the number 0."
+    },
+    {
+        "id": "numpy-5",
+        "question": "Which NumPy function creates an array of evenly spaced values within a given interval, similar to Python's built-in range()?",
+        "options": [
+            "np.sequence()",
+            "np.range()",
+            "np.arange()",
+            "np.linspace()"
+        ],
+        "correctAnswer": 2,
+        "explanation": "np.arange(start, stop, step) generates sequences of numbers natively as NumPy arrays."
+    },
+    {
+        "id": "numpy-6",
+        "question": "Which array attribute tells you the exact dimensions (e.g., 2 rows, 3 columns) of the array?",
+        "options": [
+            "arr.size",
+            "arr.shape",
+            "arr.ndim",
+            "arr.matrix"
+        ],
+        "correctAnswer": 1,
+        "explanation": "The .shape attribute returns a tuple indicating the length of the array along each dimension (like (2,3))."
+    },
+    {
+        "id": "numpy-7",
+        "question": "What does the ndim attribute of a NumPy array return?",
+        "options": [
+            "The data type of the array.",
+            "The number of elements in the array.",
+            "The memory size of the array.",
+            "The number of dimensions (axes) the array has."
+        ],
+        "correctAnswer": 3,
+        "explanation": ".ndim simply returns an integer representing how many dimensions exist (e.g., 1 for a flat array, 2 for a matrix)."
+    },
+    {
+        "id": "numpy-8",
+        "question": "How do you explicitly set the data type of an array to a 64-bit float when creating it?",
+        "options": [
+            "np.array([1, 2], type=np.float64)",
+            "np.array([1, 2], dtype=np.float64)",
+            "np.float64(np.array([1, 2]))",
+            "np.array([1, 2]).set_type('float64')"
+        ],
+        "correctAnswer": 1,
+        "explanation": "Passing the 'dtype=' argument during array creation forces NumPy to allocate the exact memory footprint requested."
+    },
+    {
+        "id": "numpy-9",
+        "question": "Which method takes an existing array and converts its elements to a different data type?",
+        "options": [
+            "arr.convert()",
+            "arr.cast()",
+            "arr.astype()",
+            "arr.to_type()"
+        ],
+        "correctAnswer": 2,
+        "explanation": "The .astype(new_type) method creates a copy of the array, casting all its values into the newly specified type."
+    },
+    {
+        "id": "numpy-10",
+        "question": "In a 1D NumPy array named 'arr', how would you extract all items from index 1 to 4 (exclusive)?",
+        "options": [
+            "arr[1, 4]",
+            "arr[1:4]",
+            "arr(1 to 4)",
+            "arr.slice(1, 4)"
+        ],
+        "correctAnswer": 1,
+        "explanation": "Slicing in NumPy works identically to native Python strings and lists, using the start:stop:step syntax."
+    },
+    {
+        "id": "numpy-11",
+        "question": "What does arr[::-1] do to a 1-dimensional array?",
+        "options": [
+            "Removes the last element.",
+            "Sorts it from smallest to largest.",
+            "Reverses the array entirely.",
+            "Squares every element."
+        ],
+        "correctAnswer": 2,
+        "explanation": "A slice of ::-1 tells NumPy to traverse the full array using a negative step size of 1, effectively turning it backwards."
+    },
+    {
+        "id": "numpy-12",
+        "question": "If 'arr2d' is a 2-dimensional array (matrix), how do you extract the item residing at the second row and first column?",
+        "options": [
+            "arr2d[2][1]",
+            "arr2d[1, 0]",
+            "arr2d(2, 1)",
+            "arr2d.get(1, 0)"
+        ],
+        "correctAnswer": 1,
+        "explanation": "Because Python is 0-indexed, the second row is index 1, and the first column is index 0. NumPy prefers comma-separated tuples for multi-dimensional indexing."
+    },
+    {
+        "id": "numpy-13",
+        "question": "What happens when you run np.array([1, 2, 3]) + 5?",
+        "options": [
+            "An error is thrown.",
+            "It appends the number 5 to the end of the array.",
+            "It adds 5 to every single element, resulting in [6, 7, 8].",
+            "It just returns 5."
+        ],
+        "correctAnswer": 2,
+        "explanation": "NumPy uses Broadcasting to automatically expand the scalar '5' and apply it element-wise across the entire array."
+    },
+    {
+        "id": "numpy-14",
+        "question": "What does the arr.reshape() method do?",
+        "options": [
+            "It deletes random elements to make the array smaller.",
+            "It changes the physical values inside the array.",
+            "It alters the dimensional structure (e.g., turning a 1D array of 6 items into a 2x3 matrix) without changing the data.",
+            "It sorts the array."
+        ],
+        "correctAnswer": 2,
+        "explanation": ".reshape() gives a new view of the same underlying data layout by altering how the dimensions are structured."
+    },
+    {
+        "id": "numpy-15",
+        "question": "Which array method takes a multi-dimensional matrix and violently flattens it into a 1-dimensional array?",
+        "options": [
+            "arr.reduce()",
+            "arr.compress()",
+            "arr.flatten()",
+            "arr.line()"
+        ],
+        "correctAnswer": 2,
+        "explanation": ".flatten() collapses all axes, returning a clean 1D copy containing all the original elements."
+    },
+    {
+        "id": "numpy-16",
+        "question": "What does the .T attribute do to a 2D array?",
+        "options": [
+            "Calculates the Total sum.",
+            "Transposes it, swapping rows into columns.",
+            "Truncates decimals.",
+            "Returns True."
+        ],
+        "correctAnswer": 1,
+        "explanation": ".T is a shortcut for the transpose() method, which flips the matrix over its diagonal axis."
+    },
+    {
+        "id": "numpy-17",
+        "question": "What is 'Broadcasting' in NumPy?",
+        "options": [
+            "Sending data over a network socket.",
+            "Printing array contents to the console.",
+            "A mechanism that allows NumPy to magically perform math on arrays of different shapes by conceptually expanding the smaller one.",
+            "Writing the array to a file."
+        ],
+        "correctAnswer": 2,
+        "explanation": "Broadcasting prevents the need to manually replicate data to match shapes (like stretching a 1D row to match a 2D matrix) before doing math."
+    },
+    {
+        "id": "numpy-18",
+        "question": "Which of the following creates a boolean array highlighting exactly where values are strictly greater than 3?",
+        "options": [
+            "arr.find(> 3)",
+            "arr > 3",
+            "np.where(arr, 3)",
+            "arr.filter(3)"
+        ],
+        "correctAnswer": 1,
+        "explanation": "Comparison operators in NumPy are vectorized. Running 'arr > 3' evaluates every element and returns an array of True/False values."
+    },
+    {
+        "id": "numpy-19",
+        "question": "Which function computes the average value of an entire array?",
+        "options": [
+            "np.average()",
+            "np.mean()",
+            "np.median()",
+            "np.mid()"
+        ],
+        "correctAnswer": 1,
+        "explanation": "np.mean() calculates the mathematical mean (average) of the array elements."
+    },
+    {
+        "id": "numpy-20",
+        "question": "If you have a 2D array and you want to compute the sum of each COLUMN individually, what argument do you pass to np.sum()?",
+        "options": [
+            "axis=0",
+            "axis=1",
+            "axis='col'",
+            "columns=True"
+        ],
+        "correctAnswer": 0,
+        "explanation": "axis=0 tells NumPy to collapse the rows by adding them down vertically, effectively yielding the sum of each column."
+    },
+    {
+        "id": "numpy-21",
+        "question": "If you want to create an array with exactly 5 random integers between 1 and 10, which method is best?",
+        "options": [
+            "np.random.rand(1, 10, 5)",
+            "np.random.int(1, 10, 5)",
+            "np.random.randint(1, 10, 5)",
+            "np.random.choice(10, 5)"
+        ],
+        "correctAnswer": 2,
+        "explanation": "np.random.randint(low, high, size) generates arrays filled with random integers bound by the constraints."
+    },
+    {
+        "id": "numpy-22",
+        "question": "How do you ensure your random number generation produces the exact same sequence every time you run the script?",
+        "options": [
+            "np.random.lock()",
+            "np.random.seed(42)",
+            "np.random.static(True)",
+            "np.random.freeze()"
+        ],
+        "correctAnswer": 1,
+        "explanation": "Setting a seed initializes the random number generator's deterministic algorithm, guaranteeing reproducible results."
+    },
+    {
+        "id": "numpy-23",
+        "question": "Which method performs matrix multiplication (the dot product) between matrices A and B?",
+        "options": [
+            "A * B",
+            "np.multiply(A, B)",
+            "np.cross(A, B)",
+            "np.dot(A, B)"
+        ],
+        "correctAnswer": 3,
+        "explanation": "While A * B performs element-wise multiplication, np.dot() (or the @ operator) strictly performs linear algebra matrix multiplication."
+    },
+    {
+        "id": "numpy-24",
+        "question": "Which function stacks multiple 1D arrays horizontally into a 2D array?",
+        "options": [
+            "np.hstack()",
+            "np.vstack()",
+            "np.append()",
+            "np.merge()"
+        ],
+        "correctAnswer": 0,
+        "explanation": "np.hstack() glues arrays together horizontally (side-by-side), while vstack() stacks them vertically (on top of one another)."
+    },
+    {
+        "id": "numpy-25",
+        "question": "When slicing, what does `arr[arr > 5]` do?",
+        "options": [
+            "Sorts the array so items greater than 5 are at the end.",
+            "Deletes all items greater than 5.",
+            "Returns a new array containing ONLY the elements from `arr` that are strictly greater than 5.",
+            "Throws an error."
+        ],
+        "correctAnswer": 2,
+        "explanation": "This is called Boolean Indexing. Passing a conditional expression into brackets acts as an extreme filter."
+    },
+    {
+        "id": "numpy-26",
+        "question": "What exactly does np.where(arr > 3, arr * 2, arr) execute?",
+        "options": [
+            "It throws an error.",
+            "It multiplies every element by 2.",
+            "If an element > 3, it doubles it. Otherwise, it leaves it alone.",
+            "It searches for the number 3."
+        ],
+        "correctAnswer": 2,
+        "explanation": "np.where(condition, x, y) yields elements chosen from x or y depending heavily on the condition."
+    },
+    {
+        "id": "numpy-27",
+        "question": "Which function returns the INDEX arrays that would sort the original array, rather than returning the sorted values themselves?",
+        "options": [
+            "np.sort_index()",
+            "np.argsort()",
+            "np.order()",
+            "np.index_sort()"
+        ],
+        "correctAnswer": 1,
+        "explanation": "np.argsort() returns exactly the indices that you would use to correctly align the matrix in sorted order."
+    },
+    {
+        "id": "numpy-28",
+        "question": "What is the crucial difference between a NumPy View and a Copy?",
+        "options": [
+            "Views are read-only; Copies are modifiable.",
+            "Modifying a View heavily alters the original data. Modifying a Copy leaves the original totally untouched.",
+            "Copies are faster than Views.",
+            "There is no difference."
+        ],
+        "correctAnswer": 1,
+        "explanation": "Slicing an array creates a View that points to the identical memory blocks. .copy() allocates entirely new memory."
+    },
+    {
+        "id": "numpy-29",
+        "question": "Which specialized sub-module within NumPy houses functions like inverse (inv) and determinant (det)?",
+        "options": [
+            "numpy.math",
+            "numpy.stats",
+            "numpy.matrix",
+            "numpy.linalg"
+        ],
+        "correctAnswer": 3,
+        "explanation": "The linear algebra module (numpy.linalg) holds advanced matrix decomposition and factorization tools."
+    },
+    {
+        "id": "numpy-30",
+        "question": "Which function creates an Identity Matrix (a square matrix with ones on the main diagonal and zeros elsewhere)?",
+        "options": [
+            "np.identity()",
+            "np.eye()",
+            "np.ones_diagonal()",
+            "Both np.identity() and np.eye()"
+        ],
+        "correctAnswer": 3,
+        "explanation": "Both np.eye(N) and np.identity(N) strictly generate a 2D array representing a formal mathematical identity matrix."
+    }
+]

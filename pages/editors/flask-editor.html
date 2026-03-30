@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live Flask Editor - CareerPath</title>
+
+    <link rel="stylesheet" href="../../assets/css/editor.css">
+    <style>
+        /* Flask / Green Theme Overrides */
+        .header h2 span {
+            color: #05998b !important;
+        }
+
+        .run-btn {
+            background-color: #05998b !important;
+            color: #fff !important;
+        }
+
+        .run-btn:hover {
+            background-color: #04887a !important;
+        }
+
+        .run-btn:disabled {
+            background-color: #555 !important;
+            cursor: not-allowed;
+        }
+
+        .flask-badge {
+            background-color: #1e1e3f;
+            color: #05998b;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            margin-left: 10px;
+            font-weight: bold;
+            border: 1px solid #05998b;
+        }
+
+        .editor-pane {
+            padding: 0;
+        }
+
+        .code-box {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            padding: 15px;
+        }
+
+        #flaskInput {
+            color: #05998b;
+        }
+
+        /* Result pane styling */
+        .result-pane {
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            background-color: #1e1e1e;
+        }
+
+        .output-header {
+            background-color: #1e1e2e;
+            color: #ccc;
+            padding: 10px 20px;
+            font-size: 13px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-bottom: 2px solid #05998b;
+        }
+
+        .console-output {
+            flex: 1;
+            background-color: #1e1e1e;
+            color: #d4d4d4;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 14px;
+            padding: 20px;
+            overflow-y: auto;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+
+        .console-output .line {
+            margin-bottom: 4px;
+            line-height: 1.6;
+        }
+
+        .console-output .line-success {
+            color: #4ec9b0;
+        }
+
+        .console-output .line-error {
+            color: #f44747;
+        }
+
+        .console-output .line-warn {
+            color: #dcdcaa;
+        }
+
+        .console-output .line-info {
+            color: #569cd6;
+        }
+
+        .console-output .prompt {
+            color: #608b4e;
+            user-select: none;
+        }
+
+        .flask-note {
+            background: rgba(5, 153, 139, 0.1);
+            border-top: 1px solid rgba(5, 153, 139, 0.3);
+            padding: 8px 14px;
+            font-size: 12px;
+            color: #05998b;
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/pyodide/v0.23.4/full/pyodide.js"></script>
+</head>
+
+<body>
+    <div class="header">
+        <div style="display: flex; align-items: center; gap: 15px;">
+            <a href="../index.html" style="color: #05998b; text-decoration: none; font-size: 14px;">← Back</a>
+            <h2><span>🌶️</span> Flask Workspace <span class="flask-badge">Flask Mock</span></h2>
+        </div>
+        <button class="run-btn" id="runBtn">Run Code ❯</button>
+    </div>
+    <div class="workspace">
+        <div class="editor-pane">
+            <div class="code-box">
+                <p class="pane-label">app.py</p>
+                <textarea id="flaskInput" spellcheck="false" aria-label="Flask Code Input"></textarea>
+            </div>
+            <div class="flask-note">
+                💡 This workspace uses <strong>Pyodide</strong> to run Python in the browser. 
+                Full WSGI servers cannot run in-browser, but you can test your Flask logic here!
+            </div>
+        </div>
+        <div class="result-pane">
+            <div class="output-header">Terminal Output</div>
+            <div class="console-output" id="consoleOutput">
+                <div class="line line-info">// Flask Workspace Ready. Initializing Python engine...</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+const flaskInput = document.getElementById('flaskInput');
+const consoleOutput = document.getElementById('consoleOutput');
+const runBtn = document.getElementById('runBtn');
+
+let pyodideInstance = null;
+
+// Fetch saved code or use a default Flask template
+const savedCode = localStorage.getItem('careerPathFlaskCode');
+flaskInput.value = savedCode ? savedCode : `# 🌶️ Flask Workspace
+from flask import Flask, request, session
+
+app = Flask(__name__)
+app.secret_key = "secret"
+
+@app.route("/")
+def home():
+    return "Hello Flask from the browser!"
+
+@app.route("/greet/<name>")
+def greet(name):
+    return f"Hello, {name}!"
+
+# Test the app logic
+print("Mocking Flask Calls...")
+print(f"GET / -> {home()}")
+print(f"GET /greet/Sanjith -> {greet('Sanjith')}")`;
+
+// Function to append text to our visual console
+function appendToConsole(text, type = 'normal') {
+    const line = document.createElement('div');
+    line.className = `line line-${type}`;
+    
+    // Add prompt for normal output
+    if (type === 'normal' && text.trim() && !text.includes('---')) {
+        const prompt = document.createElement('span');
+        prompt.className = 'prompt';
+        prompt.textContent = '>>> ';
+        line.appendChild(prompt);
+        line.appendChild(document.createTextNode(text));
+    } else {
+        line.textContent = text;
+    }
+    
+    consoleOutput.appendChild(line);
+    consoleOutput.scrollTop = consoleOutput.scrollHeight;
+}
+
+// Initialize Pyodide
+async function initPyodide() {
+    try {
+        runBtn.disabled = true;
+        runBtn.innerText = "Loading...";
+        
+        pyodideInstance = await loadPyodide({
+            stdout: (text) => appendToConsole(text, 'normal'),
+            stderr: (text) => appendToConsole(text, 'error')
+        });
+        
+        appendToConsole("Configuring Flask Mock Environment...", "info");
+        
+        const mockCode = `
+import sys
+from types import ModuleType
+
+# Mock Flask
+flask = ModuleType("flask")
+class Flask:
+    def __init__(self, name):
+        self.name = name
+        self.routes = {}
+        self.secret_key = None
+    def route(self, path, methods=['GET']):
+        def decorator(f):
+            self.routes[path] = f
+            return f
+        return decorator
+    def run(self, **kwargs):
+        print(f" * Serving Flask app '{self.name}'")
+        print(f" * Debug mode: {kwargs.get('debug', False)}")
+
+flask.Flask = Flask
+flask.render_template = lambda t, **kwargs: f"Rendering {t} with {kwargs}"
+flask.url_for = lambda f, **kwargs: f"/{f}"
+flask.request = ModuleType("request")
+flask.request.method = "GET"
+flask.request.args = {}
+flask.request.form = {}
+flask.session = {}
+flask.make_response = lambda x: x
+sys.modules["flask"] = flask
+
+print("Flask Simulator Initialized.")
+`;
+        await pyodideInstance.runPythonAsync(mockCode);
+        
+        appendToConsole("✔ Flask Python Simulator Ready!", "success");
+        runBtn.disabled = false;
+        runBtn.innerText = "Run Code ❯";
+    } catch (err) {
+        appendToConsole(`Failed to load Flask simulator: ${err.message}`, "error");
+    }
+}
+
+// Execute Python code
+async function executePython() {
+    if (!pyodideInstance) return;
+    
+    const code = flaskInput.value.trim();
+    if (!code) {
+        appendToConsole("Please enter some Python code.", "warn");
+        return;
+    }
+
+    consoleOutput.innerHTML = '';
+    appendToConsole(">>> Running Flask script...", "info");
+    runBtn.disabled = true;
+
+    localStorage.setItem('careerPathFlaskCode', flaskInput.value);
+
+    try {
+        const result = await pyodideInstance.runPythonAsync(code);
+        
+        // Display result if it's not undefined/None
+        if (result !== undefined && result !== null && typeof result !== 'function') {
+            appendToConsole(String(result), 'success');
+        }
+        
+        const discoverRoutesCode = `
+try:
+    if 'app' in globals() and hasattr(app, 'routes') and app.routes:
+        print("\\n--- Registered Routes ---")
+        for path in app.routes:
+            print(f"✔ {path}")
+except Exception:
+    pass
+`;
+        await pyodideInstance.runPythonAsync(discoverRoutesCode);
+
+    } catch (err) {
+        appendToConsole(err.message, 'error');
+    } finally {
+        runBtn.disabled = false;
+    }
+}
+
+runBtn.addEventListener('click', executePython);
+
+// Keyboard shortcuts
+flaskInput.addEventListener('keydown', function(e) {
+    if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
+        executePython();
+    }
+    if (e.key === 'Tab') {
+        e.preventDefault();
+        const start = this.selectionStart;
+        const end = this.selectionEnd;
+        this.value = this.value.substring(0, start) + '    ' + this.value.substring(end);
+        this.selectionStart = this.selectionEnd = start + 4;
+    }
+});
+
+initPyodide();
+
+</script>
+</body>
+</html>

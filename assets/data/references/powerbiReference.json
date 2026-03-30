@@ -1,0 +1,143 @@
+{
+  "sections": [
+    {
+      "title": "Interface & Navigation",
+      "desc": "Power BI Desktop interface components and key views.",
+      "type": "table",
+      "columns": ["COMPONENT", "DESCRIPTION", "PURPOSE"],
+      "rows": [
+        { "property": "Report View", "desc": "Design canvas for creating interactive visualizations", "version": "Build dashboards, Add visuals, Format pages" },
+        { "property": "Data View", "desc": "Table view of loaded data — inspect and edit", "version": "View raw data, Add columns, Change types" },
+        { "property": "Model View", "desc": "Manage relationships between tables", "version": "Create joins, Set cardinality" },
+        { "property": "Fields Pane", "desc": "List of tables, columns, and measures", "version": "Drag fields to visuals" },
+        { "property": "Visualizations Pane", "desc": "Choose and configure chart types", "version": "Bar, Line, Pie, Table, Card, etc." },
+        { "property": "Filters Pane", "desc": "Apply filters at visual, page, or report level", "version": "Filter by date, category, value" },
+        { "property": "Format Pane", "desc": "Customize visual appearance — colors, fonts, axes", "version": "Titles, Labels, Legends, Data colors" },
+        { "property": "Bookmarks", "desc": "Save report state for navigation and storytelling", "version": "Toggle between views" },
+        { "property": "Drill Through", "desc": "Navigate to detail page by right-clicking data point", "version": "Click product → see detailed sales" },
+        { "property": "Sync Slicers", "desc": "Synchronize slicer selections across pages", "version": "Date slicer applies to all pages" }
+      ]
+    },
+    {
+      "title": "Data Sources & Connections",
+      "desc": "Connecting to various data sources in Power BI.",
+      "type": "table",
+      "columns": ["SOURCE TYPE", "DESCRIPTION", "EXAMPLE"],
+      "rows": [
+        { "property": "Excel", "desc": "Import from Excel workbooks", "version": "Get Data → Excel → Select file" },
+        { "property": "CSV / Text", "desc": "Import delimited text files", "version": "Get Data → Text/CSV" },
+        { "property": "SQL Server", "desc": "Connect to SQL Server databases", "version": "DirectQuery or Import mode" },
+        { "property": "PostgreSQL", "desc": "Connect to PostgreSQL databases", "version": "Get Data → PostgreSQL database" },
+        { "property": "MySQL", "desc": "Connect to MySQL databases", "version": "Get Data → MySQL database" },
+        { "property": "Web", "desc": "Connect to web pages or REST APIs", "version": "Get Data → Web → Enter URL" },
+        { "property": "SharePoint", "desc": "Connect to SharePoint lists and files", "version": "Get Data → SharePoint Online List" },
+        { "property": "Azure SQL", "desc": "Connect to Azure SQL databases", "version": "Get Data → Azure SQL Database" },
+        { "property": "OData", "desc": "Connect to OData feeds", "version": "Get Data → OData Feed" },
+        { "property": "Dataflows", "desc": "Connect to Power BI dataflows", "version": "Reusable data prep in Power BI Service" },
+        { "property": "Import Mode", "desc": "Load data into Power BI memory — fastest queries", "version": "Default mode for most sources" },
+        { "property": "DirectQuery", "desc": "Query source directly — real-time but slower", "version": "Large datasets, Live databases" }
+      ]
+    },
+    {
+      "title": "Power Query (M Language)",
+      "desc": "Data transformation in Power Query Editor using M language.",
+      "type": "table",
+      "columns": ["OPERATION", "DESCRIPTION", "EXAMPLE"],
+      "rows": [
+        { "property": "Remove Columns", "desc": "Delete unwanted columns from dataset", "version": "Right-click column → Remove" },
+        { "property": "Rename Columns", "desc": "Rename columns for clarity", "version": "Double-click column header" },
+        { "property": "Change Type", "desc": "Convert column data type", "version": "Text, Whole Number, Decimal, Date, etc." },
+        { "property": "Filter Rows", "desc": "Remove rows that don't meet criteria", "version": "Column dropdown → Filter by value" },
+        { "property": "Sort Rows", "desc": "Sort data by column values", "version": "Sort ascending / descending" },
+        { "property": "Group By", "desc": "Aggregate rows by column values", "version": "Group By → Sum, Count, Average, etc." },
+        { "property": "Merge Queries", "desc": "Join two tables (like SQL JOIN)", "version": "Left Outer, Inner, Full Outer join types" },
+        { "property": "Append Queries", "desc": "Stack tables vertically (like UNION)", "version": "Append existing or new queries" },
+        { "property": "Pivot Column", "desc": "Convert rows to columns", "version": "Select column → Pivot" },
+        { "property": "Unpivot Columns", "desc": "Convert columns to rows", "version": "Select columns → Unpivot" },
+        { "property": "Add Custom Column", "desc": "Create computed column with M formula", "version": "= [Price] * [Quantity]" },
+        { "property": "Replace Values", "desc": "Replace specific values in a column", "version": "Replace null with 0" },
+        { "property": "Split Column", "desc": "Split column by delimiter or position", "version": "Split by comma, space, etc." },
+        { "property": "Close & Apply", "desc": "Save transformations and load data", "version": "Home → Close & Apply" }
+      ]
+    },
+    {
+      "title": "DAX Formulas",
+      "desc": "Data Analysis Expressions for calculated columns and measures.",
+      "type": "table",
+      "columns": ["FUNCTION", "DESCRIPTION", "EXAMPLE"],
+      "rows": [
+        { "property": "SUM(column)", "desc": "Sum of a column", "version": "Total Sales = SUM(Sales[Amount])" },
+        { "property": "AVERAGE(column)", "desc": "Average of a column", "version": "Avg Price = AVERAGE(Products[Price])" },
+        { "property": "COUNT(column)", "desc": "Count non-blank values", "version": "Order Count = COUNT(Orders[OrderID])" },
+        { "property": "COUNTROWS(table)", "desc": "Count rows in a table", "version": "Total Rows = COUNTROWS(Sales)" },
+        { "property": "DISTINCTCOUNT(column)", "desc": "Count unique values", "version": "Unique Customers = DISTINCTCOUNT(Sales[CustomerID])" },
+        { "property": "CALCULATE(expr, filter)", "desc": "Evaluate expression with modified filter context", "version": "US Sales = CALCULATE(SUM(Sales[Amount]), Sales[Country]=\"US\")" },
+        { "property": "FILTER(table, condition)", "desc": "Return filtered table", "version": "FILTER(Products, Products[Price] > 100)" },
+        { "property": "ALL(table/column)", "desc": "Remove filters from table/column", "version": "Total = CALCULATE(SUM(Sales[Amount]), ALL(Sales))" },
+        { "property": "RELATED(column)", "desc": "Get value from related table", "version": "RELATED(Products[Category])" },
+        { "property": "IF(condition, true, false)", "desc": "Conditional expression", "version": "Status = IF(Sales[Amount] > 1000, \"High\", \"Low\")" },
+        { "property": "SWITCH(expr, val1, result1, ...)", "desc": "Multi-condition branching", "version": "SWITCH(Month, 1, \"Jan\", 2, \"Feb\", \"Other\")" },
+        { "property": "FORMAT(value, format)", "desc": "Format value as text", "version": "FORMAT(Sales[Date], \"YYYY-MM\")" },
+        { "property": "DIVIDE(num, denom, alt)", "desc": "Safe division (avoids divide by zero)", "version": "DIVIDE(Sales[Profit], Sales[Revenue], 0)" },
+        { "property": "RANKX(table, expr)", "desc": "Rank values in a table", "version": "RANKX(ALL(Products), SUM(Sales[Amount]))" }
+      ]
+    },
+    {
+      "title": "DAX Time Intelligence",
+      "desc": "Time-based calculations and comparisons.",
+      "type": "table",
+      "columns": ["FUNCTION", "DESCRIPTION", "EXAMPLE"],
+      "rows": [
+        { "property": "TOTALYTD(expr, date)", "desc": "Year-to-date total", "version": "YTD Sales = TOTALYTD(SUM(Sales[Amount]), Dates[Date])" },
+        { "property": "TOTALQTD(expr, date)", "desc": "Quarter-to-date total", "version": "QTD Sales = TOTALQTD(SUM(Sales[Amount]), Dates[Date])" },
+        { "property": "TOTALMTD(expr, date)", "desc": "Month-to-date total", "version": "MTD Sales = TOTALMTD(SUM(Sales[Amount]), Dates[Date])" },
+        { "property": "SAMEPERIODLASTYEAR(dates)", "desc": "Same period in previous year", "version": "LY Sales = CALCULATE(SUM(Sales[Amount]), SAMEPERIODLASTYEAR(Dates[Date]))" },
+        { "property": "DATEADD(dates, n, interval)", "desc": "Shift dates by n intervals", "version": "DATEADD(Dates[Date], -1, MONTH)" },
+        { "property": "DATESYTD(dates)", "desc": "Returns year-to-date dates", "version": "CALCULATE(SUM(Sales[Amount]), DATESYTD(Dates[Date]))" },
+        { "property": "PARALLELPERIOD(dates, n, interval)", "desc": "Parallel period shifted by n intervals", "version": "PARALLELPERIOD(Dates[Date], -1, YEAR)" },
+        { "property": "PREVIOUSMONTH(dates)", "desc": "Dates in the previous month", "version": "CALCULATE(SUM(Sales[Amount]), PREVIOUSMONTH(Dates[Date]))" },
+        { "property": "PREVIOUSYEAR(dates)", "desc": "Dates in the previous year", "version": "CALCULATE(SUM(Sales[Amount]), PREVIOUSYEAR(Dates[Date]))" },
+        { "property": "Date Table (calendar)", "desc": "Dedicated date dimension table required for time intelligence", "version": "Dates = CALENDAR(DATE(2020,1,1), DATE(2025,12,31))" }
+      ]
+    },
+    {
+      "title": "Visualizations",
+      "desc": "Chart types and visual best practices.",
+      "type": "table",
+      "columns": ["VISUAL TYPE", "DESCRIPTION", "BEST FOR"],
+      "rows": [
+        { "property": "Bar/Column Chart", "desc": "Horizontal/vertical bars for categorical comparison", "version": "Sales by region, Product comparison" },
+        { "property": "Line Chart", "desc": "Trends over continuous time or sequence", "version": "Monthly revenue, Stock prices" },
+        { "property": "Pie/Donut Chart", "desc": "Proportions of a whole (limited categories)", "version": "Market share, Budget allocation" },
+        { "property": "Card", "desc": "Single large KPI number", "version": "Total revenue, Customer count" },
+        { "property": "Table / Matrix", "desc": "Tabular data with drill-down", "version": "Detailed reports, Pivot-style views" },
+        { "property": "Scatter Plot", "desc": "Relationship between two numeric values", "version": "Correlation analysis" },
+        { "property": "Map", "desc": "Geographic data visualization", "version": "Sales by country/state" },
+        { "property": "Gauge", "desc": "Progress toward a target", "version": "KPI vs target" },
+        { "property": "Treemap", "desc": "Hierarchical data as nested rectangles", "version": "Category breakdown" },
+        { "property": "Waterfall Chart", "desc": "Show incremental positive/negative changes", "version": "Profit breakdown, Budget variance" },
+        { "property": "Funnel Chart", "desc": "Sequential stages with drop-off", "version": "Sales pipeline, Conversion rates" },
+        { "property": "Slicer", "desc": "Interactive filter control for report users", "version": "Date range, Category selector" },
+        { "property": "KPI Visual", "desc": "Key performance indicator with trend", "version": "Sales vs target with trend" }
+      ]
+    },
+    {
+      "title": "Publishing & Sharing",
+      "desc": "Publishing reports to Power BI Service and sharing.",
+      "type": "table",
+      "columns": ["FEATURE", "DESCRIPTION", "HOW TO"],
+      "rows": [
+        { "property": "Publish to Service", "desc": "Upload report to Power BI workspace", "version": "Home → Publish → Select workspace" },
+        { "property": "Workspace", "desc": "Collaborative area for reports and datasets", "version": "Create workspace in Power BI Service" },
+        { "property": "Dashboard", "desc": "Pin visuals from reports to single dashboard", "version": "Pin visual → Select/create dashboard" },
+        { "property": "Scheduled Refresh", "desc": "Auto-refresh data on schedule", "version": "Dataset settings → Schedule refresh" },
+        { "property": "Row-Level Security (RLS)", "desc": "Restrict data access per user/role", "version": "Modeling → Manage Roles → Define filters" },
+        { "property": "Embed in Teams", "desc": "Embed Power BI report in Microsoft Teams", "version": "Teams tab → Power BI" },
+        { "property": "App", "desc": "Package workspace content as distributable app", "version": "Workspace → Create App" },
+        { "property": "Export to PDF/PPT", "desc": "Export report pages to PDF or PowerPoint", "version": "File → Export → PDF/PowerPoint" },
+        { "property": "Gateway", "desc": "Connect on-premises data sources to cloud service", "version": "Install On-premises Data Gateway" },
+        { "property": "Dataflow", "desc": "Reusable data preparation in Power BI Service", "version": "Create dataflow → define transformations" }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1863 @@
+{
+  "sections": [
+    {
+      "title": "XML Syntax & Structure",
+      "desc": "",
+      "type": "table",
+      "columns": [
+        "SYNTAX / RULE",
+        "DESCRIPTION",
+        "EXAMPLE"
+      ],
+      "rows": [
+        {
+          "property": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>",
+          "desc": "XML declaration — should be first line of every XML document",
+          "version": "prolog"
+        },
+        {
+          "property": "<?xml version=\"1.0\" standalone=\"yes\"?>",
+          "desc": "Standalone declaration — yes means no external DTD required",
+          "version": "prolog"
+        },
+        {
+          "property": "<root>...</root>",
+          "desc": "Every XML document must have exactly one root element",
+          "version": "structure"
+        },
+        {
+          "property": "<element>content</element>",
+          "desc": "Element with opening and closing tag enclosing content",
+          "version": "element"
+        },
+        {
+          "property": "<element />",
+          "desc": "Self-closing (empty) element — no content or children",
+          "version": "element"
+        },
+        {
+          "property": "<element attr=\"value\">",
+          "desc": "Element with attribute — value must be quoted (single or double)",
+          "version": "attribute"
+        },
+        {
+          "property": "<!-- comment -->",
+          "desc": "XML comment — not parsed or rendered",
+          "version": "comment"
+        },
+        {
+          "property": "<![CDATA[ raw text ]]>",
+          "desc": "CDATA section — content treated as raw character data, not markup",
+          "version": "CDATA"
+        },
+        {
+          "property": "Case sensitivity",
+          "desc": "XML is case-sensitive: <Name> and <name> are different elements",
+          "version": "rule"
+        },
+        {
+          "property": "Proper nesting",
+          "desc": "Elements must be properly nested: <a><b></b></a> — never overlap",
+          "version": "rule"
+        },
+        {
+          "property": "Attribute quoting",
+          "desc": "All attribute values must be enclosed in single or double quotes",
+          "version": "rule"
+        },
+        {
+          "property": "Single root",
+          "desc": "XML document must have exactly one root element",
+          "version": "rule"
+        },
+        {
+          "property": "Closing tags required",
+          "desc": "Every opening tag must have a matching closing tag",
+          "version": "rule"
+        },
+        {
+          "property": "Well-formed XML",
+          "desc": "XML that follows all syntax rules and can be parsed without errors",
+          "version": "concept"
+        },
+        {
+          "property": "Valid XML",
+          "desc": "Well-formed XML that also conforms to a DTD or XML Schema",
+          "version": "concept"
+        },
+        {
+          "property": "Whitespace preserved",
+          "desc": "XML preserves whitespace inside element content by default",
+          "version": "rule"
+        },
+        {
+          "property": "xml:space=\"preserve\"",
+          "desc": "Attribute instructing processors to preserve whitespace",
+          "version": "attribute"
+        },
+        {
+          "property": "Processing instruction",
+          "desc": "<?target instruction?> — directs XML processor",
+          "version": "<?pi?>"
+        },
+        {
+          "property": "<?xml-stylesheet type=\"text/css\" href=\"style.css\"?>",
+          "desc": "Link XML document to a CSS or XSLT stylesheet",
+          "version": "PI"
+        },
+        {
+          "property": "Text content",
+          "desc": "Character data between tags — must not contain < or &",
+          "version": "content"
+        }
+      ]
+    },
+    {
+      "title": "Elements & Attributes",
+      "desc": "",
+      "type": "table",
+      "columns": [
+        "SYNTAX / RULE",
+        "DESCRIPTION",
+        "NOTES"
+      ],
+      "rows": [
+        {
+          "property": "Element name rules",
+          "desc": "Must start with letter or underscore; can contain letters, digits, hyphens, underscores, periods",
+          "version": "naming"
+        },
+        {
+          "property": "No spaces in names",
+          "desc": "Element and attribute names cannot contain spaces",
+          "version": "naming"
+        },
+        {
+          "property": "No reserved prefixes",
+          "desc": "Names must not start with 'xml' (reserved for W3C)",
+          "version": "naming"
+        },
+        {
+          "property": "<book id=\"1\" lang=\"en\">",
+          "desc": "Multiple attributes on a single element",
+          "version": "attributes"
+        },
+        {
+          "property": "Attribute order",
+          "desc": "Attribute order in an element has no significance in XML",
+          "version": "attributes"
+        },
+        {
+          "property": "Unique attributes",
+          "desc": "Each attribute name must be unique within a single element",
+          "version": "attributes"
+        },
+        {
+          "property": "id attribute",
+          "desc": "Common attribute to uniquely identify an element",
+          "version": "attributes"
+        },
+        {
+          "property": "class attribute",
+          "desc": "Groups elements by category; used with XSLT/CSS styling",
+          "version": "attributes"
+        },
+        {
+          "property": "Empty element",
+          "desc": "<br/> or <br></br> — element with no content",
+          "version": "element"
+        },
+        {
+          "property": "Nested elements",
+          "desc": "Child elements inside parent: <library><book/></library>",
+          "version": "element"
+        },
+        {
+          "property": "Mixed content",
+          "desc": "Element containing both text and child elements",
+          "version": "element"
+        },
+        {
+          "property": "Element vs attribute",
+          "desc": "Use elements for data; attributes for metadata about the element",
+          "version": "best practice"
+        },
+        {
+          "property": "PCDATA",
+          "desc": "Parsed Character DATA — text parsed by the XML processor",
+          "version": "content type"
+        },
+        {
+          "property": "CDATA (attribute type)",
+          "desc": "Character DATA in DTD — attribute value not parsed as XML",
+          "version": "DTD type"
+        },
+        {
+          "property": "Text node",
+          "desc": "The text content inside an element is a text node in the DOM",
+          "version": "DOM"
+        },
+        {
+          "property": "Parent / child / sibling",
+          "desc": "Relationship terms for elements in the XML tree hierarchy",
+          "version": "tree terms"
+        },
+        {
+          "property": "Ancestor / descendant",
+          "desc": "Any element above/below in the hierarchy",
+          "version": "tree terms"
+        },
+        {
+          "property": "Root element",
+          "desc": "Top-level element that contains all others",
+          "version": "tree terms"
+        },
+        {
+          "property": "Leaf element",
+          "desc": "Element with no child elements",
+          "version": "tree terms"
+        },
+        {
+          "property": "Document node",
+          "desc": "Root of the DOM tree — parent of the root element",
+          "version": "DOM"
+        }
+      ]
+    },
+    {
+      "title": "Namespaces",
+      "desc": "",
+      "type": "table",
+      "columns": [
+        "SYNTAX / ATTRIBUTE",
+        "DESCRIPTION",
+        "EXAMPLE"
+      ],
+      "rows": [
+        {
+          "property": "xmlns=\"URI\"",
+          "desc": "Declare default namespace for element and descendants",
+          "version": "namespace"
+        },
+        {
+          "property": "xmlns:prefix=\"URI\"",
+          "desc": "Declare prefixed namespace",
+          "version": "namespace"
+        },
+        {
+          "property": "<ns:element>",
+          "desc": "Use prefixed namespace on element",
+          "version": "namespace"
+        },
+        {
+          "property": "ns:attribute",
+          "desc": "Use namespace prefix on attribute",
+          "version": "namespace"
+        },
+        {
+          "property": "Default namespace",
+          "desc": "xmlns declared without prefix applies to all unprefixed elements",
+          "version": "concept"
+        },
+        {
+          "property": "Namespace scope",
+          "desc": "Namespace declared on element applies to that element and all descendants",
+          "version": "concept"
+        },
+        {
+          "property": "Namespace URI",
+          "desc": "Identifier URI — used for uniqueness, not for retrieval",
+          "version": "concept"
+        },
+        {
+          "property": "xmlns:xml",
+          "desc": "Reserved prefix — always bound to http://www.w3.org/XML/1998/namespace",
+          "version": "reserved"
+        },
+        {
+          "property": "xmlns:xs=\"http://www.w3.org/2001/XMLSchema\"",
+          "desc": "Standard XSD namespace prefix declaration",
+          "version": "XSD"
+        },
+        {
+          "property": "xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"",
+          "desc": "XML Schema Instance namespace",
+          "version": "XSD"
+        },
+        {
+          "property": "xsi:schemaLocation",
+          "desc": "Hint to validator pointing to XSD file location",
+          "version": "XSD"
+        },
+        {
+          "property": "xsi:noNamespaceSchemaLocation",
+          "desc": "Schema location when no target namespace is used",
+          "version": "XSD"
+        },
+        {
+          "property": "xmlns:xsl=\"http://www.w3.org/1999/XSL/Transform\"",
+          "desc": "Standard XSLT namespace prefix declaration",
+          "version": "XSLT"
+        },
+        {
+          "property": "Namespace collision",
+          "desc": "Same local name from two namespaces — resolved by different prefixes",
+          "version": "concept"
+        },
+        {
+          "property": "Local name",
+          "desc": "Element name without the namespace prefix",
+          "version": "concept"
+        },
+        {
+          "property": "Qualified name (QName)",
+          "desc": "Full name including prefix: prefix:localname",
+          "version": "concept"
+        }
+      ]
+    },
+    {
+      "title": "DTD (Document Type Definition)",
+      "desc": "",
+      "type": "table",
+      "columns": [
+        "SYNTAX / DECLARATION",
+        "DESCRIPTION",
+        "TYPE"
+      ],
+      "rows": [
+        {
+          "property": "<!DOCTYPE root SYSTEM \"file.dtd\">",
+          "desc": "Link external DTD file to XML document",
+          "version": "external"
+        },
+        {
+          "property": "<!DOCTYPE root PUBLIC \"id\" \"url\">",
+          "desc": "Reference public external DTD",
+          "version": "external"
+        },
+        {
+          "property": "<!DOCTYPE root [ declarations ]>",
+          "desc": "Inline internal DTD within the XML document",
+          "version": "internal"
+        },
+        {
+          "property": "<!ELEMENT name (content)>",
+          "desc": "Declare an element and its allowed content model",
+          "version": "element decl"
+        },
+        {
+          "property": "<!ELEMENT name (#PCDATA)>",
+          "desc": "Element containing only parsed character data (text)",
+          "version": "element decl"
+        },
+        {
+          "property": "<!ELEMENT name EMPTY>",
+          "desc": "Declare element that must be empty",
+          "version": "element decl"
+        },
+        {
+          "property": "<!ELEMENT name ANY>",
+          "desc": "Declare element that can contain any content",
+          "version": "element decl"
+        },
+        {
+          "property": "<!ELEMENT name (child1, child2)>",
+          "desc": "Sequence — child1 then child2 in that order",
+          "version": "content model"
+        },
+        {
+          "property": "<!ELEMENT name (child1 | child2)>",
+          "desc": "Choice — either child1 or child2",
+          "version": "content model"
+        },
+        {
+          "property": "element?",
+          "desc": "Optional — element appears zero or one time",
+          "version": "occurrence"
+        },
+        {
+          "property": "element*",
+          "desc": "Zero or more occurrences",
+          "version": "occurrence"
+        },
+        {
+          "property": "element+",
+          "desc": "One or more occurrences",
+          "version": "occurrence"
+        },
+        {
+          "property": "<!ATTLIST elem attr CDATA #REQUIRED>",
+          "desc": "Declare required text attribute on element",
+          "version": "attribute decl"
+        },
+        {
+          "property": "<!ATTLIST elem attr CDATA #IMPLIED>",
+          "desc": "Declare optional attribute with no default",
+          "version": "attribute decl"
+        },
+        {
+          "property": "<!ATTLIST elem attr CDATA #FIXED \"val\">",
+          "desc": "Declare attribute with fixed constant value",
+          "version": "attribute decl"
+        },
+        {
+          "property": "<!ATTLIST elem attr CDATA \"default\">",
+          "desc": "Declare attribute with default value",
+          "version": "attribute decl"
+        },
+        {
+          "property": "ID attribute type",
+          "desc": "Unique identifier within the document",
+          "version": "attr type"
+        },
+        {
+          "property": "IDREF attribute type",
+          "desc": "Reference to another element's ID attribute",
+          "version": "attr type"
+        },
+        {
+          "property": "NMTOKEN attribute type",
+          "desc": "Attribute value restricted to XML name token",
+          "version": "attr type"
+        },
+        {
+          "property": "NOTATION attribute type",
+          "desc": "Attribute value is a declared notation name",
+          "version": "attr type"
+        },
+        {
+          "property": "<!ENTITY name \"value\">",
+          "desc": "Declare an internal entity (text shortcut)",
+          "version": "entity decl"
+        },
+        {
+          "property": "<!ENTITY name SYSTEM \"file\">",
+          "desc": "Declare external parsed entity",
+          "version": "entity decl"
+        },
+        {
+          "property": "&entityname;",
+          "desc": "Reference a declared entity in content",
+          "version": "entity ref"
+        },
+        {
+          "property": "<!NOTATION name SYSTEM \"helper\">",
+          "desc": "Declare a notation for non-XML data format",
+          "version": "notation"
+        }
+      ]
+    },
+    {
+      "title": "XML Schema (XSD)",
+      "desc": "",
+      "type": "table",
+      "columns": [
+        "ELEMENT / ATTRIBUTE",
+        "DESCRIPTION",
+        "NOTES"
+      ],
+      "rows": [
+        {
+          "property": "<xs:schema xmlns:xs=\"...\">",
+          "desc": "Root element of every XSD document",
+          "version": "structure"
+        },
+        {
+          "property": "<xs:element name=\"n\" type=\"xs:string\">",
+          "desc": "Declare an XML element with a type",
+          "version": "element"
+        },
+        {
+          "property": "<xs:attribute name=\"id\" type=\"xs:int\">",
+          "desc": "Declare an attribute with a type",
+          "version": "attribute"
+        },
+        {
+          "property": "<xs:complexType>",
+          "desc": "Define element that contains child elements or attributes",
+          "version": "type"
+        },
+        {
+          "property": "<xs:simpleType>",
+          "desc": "Define element/attribute with restricted simple content",
+          "version": "type"
+        },
+        {
+          "property": "<xs:sequence>",
+          "desc": "Children must appear in the declared order",
+          "version": "compositor"
+        },
+        {
+          "property": "<xs:all>",
+          "desc": "Children can appear in any order, each once",
+          "version": "compositor"
+        },
+        {
+          "property": "<xs:choice>",
+          "desc": "Exactly one of the declared children must appear",
+          "version": "compositor"
+        },
+        {
+          "property": "minOccurs=\"0\"",
+          "desc": "Element is optional (zero or more)",
+          "version": "occurrence"
+        },
+        {
+          "property": "maxOccurs=\"unbounded\"",
+          "desc": "Element can repeat unlimited times",
+          "version": "occurrence"
+        },
+        {
+          "property": "use=\"required\"",
+          "desc": "Attribute is mandatory",
+          "version": "attribute"
+        },
+        {
+          "property": "use=\"optional\"",
+          "desc": "Attribute is optional (default)",
+          "version": "attribute"
+        },
+        {
+          "property": "use=\"prohibited\"",
+          "desc": "Attribute must not appear",
+          "version": "attribute"
+        },
+        {
+          "property": "xs:string",
+          "desc": "Any sequence of Unicode characters",
+          "version": "built-in type"
+        },
+        {
+          "property": "xs:integer",
+          "desc": "Arbitrary-precision integer",
+          "version": "built-in type"
+        },
+        {
+          "property": "xs:decimal",
+          "desc": "Arbitrary-precision decimal number",
+          "version": "built-in type"
+        },
+        {
+          "property": "xs:float / xs:double",
+          "desc": "Single / double precision floating point",
+          "version": "built-in type"
+        },
+        {
+          "property": "xs:boolean",
+          "desc": "true or false (also 1 or 0)",
+          "version": "built-in type"
+        },
+        {
+          "property": "xs:date",
+          "desc": "Calendar date: YYYY-MM-DD",
+          "version": "built-in type"
+        },
+        {
+          "property": "xs:dateTime",
+          "desc": "Date and time: YYYY-MM-DDTHH:MM:SS",
+          "version": "built-in type"
+        },
+        {
+          "property": "xs:time",
+          "desc": "Time: HH:MM:SS",
+          "version": "built-in type"
+        },
+        {
+          "property": "xs:duration",
+          "desc": "Time duration: PnYnMnDTnHnMnS",
+          "version": "built-in type"
+        },
+        {
+          "property": "xs:anyURI",
+          "desc": "Uniform resource identifier value",
+          "version": "built-in type"
+        },
+        {
+          "property": "xs:ID / xs:IDREF",
+          "desc": "Unique identifier / reference to ID",
+          "version": "built-in type"
+        },
+        {
+          "property": "<xs:restriction base=\"xs:string\">",
+          "desc": "Restrict a base type with facets",
+          "version": "restriction"
+        },
+        {
+          "property": "<xs:enumeration value=\"val\">",
+          "desc": "Restrict to specific enumerated value",
+          "version": "facet"
+        },
+        {
+          "property": "<xs:pattern value=\"[A-Z]{3}\">",
+          "desc": "Restrict value to a regular expression pattern",
+          "version": "facet"
+        },
+        {
+          "property": "<xs:minLength value=\"1\">",
+          "desc": "Minimum string length",
+          "version": "facet"
+        },
+        {
+          "property": "<xs:maxLength value=\"100\">",
+          "desc": "Maximum string length",
+          "version": "facet"
+        },
+        {
+          "property": "<xs:minInclusive value=\"0\">",
+          "desc": "Minimum numeric value (inclusive)",
+          "version": "facet"
+        },
+        {
+          "property": "<xs:maxInclusive value=\"100\">",
+          "desc": "Maximum numeric value (inclusive)",
+          "version": "facet"
+        },
+        {
+          "property": "<xs:extension base=\"baseType\">",
+          "desc": "Extend a base type with additional elements",
+          "version": "extension"
+        },
+        {
+          "property": "<xs:import namespace=\"URI\" schemaLocation=\"f.xsd\">",
+          "desc": "Import schema from another namespace",
+          "version": "import"
+        },
+        {
+          "property": "<xs:include schemaLocation=\"f.xsd\">",
+          "desc": "Include another XSD in the same namespace",
+          "version": "include"
+        }
+      ]
+    },
+    {
+      "title": "XPath",
+      "desc": "",
+      "type": "table",
+      "columns": [
+        "EXPRESSION",
+        "DESCRIPTION",
+        "EXAMPLE"
+      ],
+      "rows": [
+        {
+          "property": "nodename",
+          "desc": "Selects all child nodes with that name",
+          "version": "book"
+        },
+        {
+          "property": "/",
+          "desc": "Selects from the root node (absolute path)",
+          "version": "/library"
+        },
+        {
+          "property": "//",
+          "desc": "Selects nodes anywhere in the document",
+          "version": "//book"
+        },
+        {
+          "property": ".",
+          "desc": "Selects the current node",
+          "version": "./title"
+        },
+        {
+          "property": "..",
+          "desc": "Selects the parent of the current node",
+          "version": "../author"
+        },
+        {
+          "property": "@",
+          "desc": "Selects an attribute",
+          "version": "@lang"
+        },
+        {
+          "property": "*",
+          "desc": "Wildcard — matches any element node",
+          "version": "book/*"
+        },
+        {
+          "property": "@*",
+          "desc": "Wildcard — matches any attribute",
+          "version": "@*"
+        },
+        {
+          "property": "node()",
+          "desc": "Matches any node (element, text, comment etc.)",
+          "version": "//node()"
+        },
+        {
+          "property": "text()",
+          "desc": "Selects text node children",
+          "version": "title/text()"
+        },
+        {
+          "property": "comment()",
+          "desc": "Selects comment nodes",
+          "version": "//comment()"
+        },
+        {
+          "property": "processing-instruction()",
+          "desc": "Selects processing instruction nodes",
+          "version": "//processing-instruction()"
+        },
+        {
+          "property": "[predicate]",
+          "desc": "Filter nodes by condition",
+          "version": "book[1]"
+        },
+        {
+          "property": "[position()=1]",
+          "desc": "Select node at specific position",
+          "version": "book[1]"
+        },
+        {
+          "property": "[last()]",
+          "desc": "Select last node in selection",
+          "version": "book[last()]"
+        },
+        {
+          "property": "[position()<3]",
+          "desc": "Select first two nodes",
+          "version": "book[position()<3]"
+        },
+        {
+          "property": "[@attr]",
+          "desc": "Select elements that have a specific attribute",
+          "version": "book[@lang]"
+        },
+        {
+          "property": "[@attr='val']",
+          "desc": "Select elements where attribute equals value",
+          "version": "book[@lang='en']"
+        },
+        {
+          "property": "[price>30]",
+          "desc": "Select elements where child element value satisfies condition",
+          "version": "book[price>30]"
+        },
+        {
+          "property": "[contains(@attr,'val')]",
+          "desc": "Select elements where attribute contains substring",
+          "version": "contains(@id,'main')"
+        },
+        {
+          "property": "[starts-with(@attr,'val')]",
+          "desc": "Select elements where attribute starts with value",
+          "version": "starts-with(@id,'hdr')"
+        },
+        {
+          "property": "parent::node",
+          "desc": "Select parent of current node (axis)",
+          "version": "parent::book"
+        },
+        {
+          "property": "child::node",
+          "desc": "Select children (default axis)",
+          "version": "child::title"
+        },
+        {
+          "property": "ancestor::node",
+          "desc": "Select all ancestors up to root",
+          "version": "ancestor::library"
+        },
+        {
+          "property": "descendant::node",
+          "desc": "Select all descendants",
+          "version": "descendant::price"
+        },
+        {
+          "property": "following-sibling::node",
+          "desc": "Select siblings after current node",
+          "version": "following-sibling::book"
+        },
+        {
+          "property": "preceding-sibling::node",
+          "desc": "Select siblings before current node",
+          "version": "preceding-sibling::book"
+        },
+        {
+          "property": "following::node",
+          "desc": "All nodes after closing tag of current node",
+          "version": "following::*"
+        },
+        {
+          "property": "preceding::node",
+          "desc": "All nodes before start of current node",
+          "version": "preceding::*"
+        },
+        {
+          "property": "self::node",
+          "desc": "Current node itself",
+          "version": "self::book"
+        },
+        {
+          "property": "attribute::name",
+          "desc": "Select named attribute (same as @name)",
+          "version": "attribute::lang"
+        },
+        {
+          "property": "| (union)",
+          "desc": "Combines two node-set expressions",
+          "version": "//book | //magazine"
+        },
+        {
+          "property": "not(expr)",
+          "desc": "Negates a predicate expression",
+          "version": "book[not(@lang)]"
+        },
+        {
+          "property": "count(nodeset)",
+          "desc": "Returns count of nodes in node-set",
+          "version": "count(//book)"
+        },
+        {
+          "property": "string(node)",
+          "desc": "Converts node to string",
+          "version": "string(price)"
+        },
+        {
+          "property": "number(node)",
+          "desc": "Converts node to number",
+          "version": "number(price)"
+        },
+        {
+          "property": "sum(nodeset)",
+          "desc": "Returns sum of numeric values in node-set",
+          "version": "sum(//price)"
+        },
+        {
+          "property": "concat(s1, s2)",
+          "desc": "Concatenates two or more strings",
+          "version": "concat(first,' ',last)"
+        },
+        {
+          "property": "substring(str, start, len)",
+          "desc": "Returns substring starting at position",
+          "version": "substring(name,1,3)"
+        },
+        {
+          "property": "substring-before(str, char)",
+          "desc": "Returns substring before first occurrence of char",
+          "version": "substring-before(date,'-')"
+        },
+        {
+          "property": "substring-after(str, char)",
+          "desc": "Returns substring after first occurrence of char",
+          "version": "substring-after(date,'-')"
+        },
+        {
+          "property": "string-length(str)",
+          "desc": "Returns length of string",
+          "version": "string-length(name)"
+        },
+        {
+          "property": "translate(str, from, to)",
+          "desc": "Replaces characters in string",
+          "version": "translate(s,'abc','ABC')"
+        },
+        {
+          "property": "normalize-space(str)",
+          "desc": "Strips leading/trailing spaces and collapses internal whitespace",
+          "version": "normalize-space(name)"
+        },
+        {
+          "property": "boolean(expr)",
+          "desc": "Converts expression to boolean",
+          "version": "boolean(price)"
+        },
+        {
+          "property": "true() / false()",
+          "desc": "Boolean constants",
+          "version": "[@active=true()]"
+        },
+        {
+          "property": "floor(n) / ceiling(n) / round(n)",
+          "desc": "Numeric rounding functions",
+          "version": "floor(price)"
+        },
+        {
+          "property": "local-name(node)",
+          "desc": "Returns local name without namespace prefix",
+          "version": "local-name(.)"
+        },
+        {
+          "property": "namespace-uri(node)",
+          "desc": "Returns namespace URI of node",
+          "version": "namespace-uri(.)"
+        },
+        {
+          "property": "name(node)",
+          "desc": "Returns qualified name of node including prefix",
+          "version": "name(.)"
+        }
+      ]
+    },
+    {
+      "title": "XSLT",
+      "desc": "",
+      "type": "table",
+      "columns": [
+        "ELEMENT / ATTRIBUTE",
+        "DESCRIPTION",
+        "CONTEXT"
+      ],
+      "rows": [
+        {
+          "property": "<xsl:stylesheet version=\"1.0\" xmlns:xsl=\"...\">",
+          "desc": "Root element of every XSLT stylesheet",
+          "version": "structure"
+        },
+        {
+          "property": "<xsl:template match=\"/\">",
+          "desc": "Template matching the root node",
+          "version": "template"
+        },
+        {
+          "property": "<xsl:template match=\"book\">",
+          "desc": "Template matching all book elements",
+          "version": "template"
+        },
+        {
+          "property": "<xsl:template name=\"myTmpl\">",
+          "desc": "Named template called by xsl:call-template",
+          "version": "template"
+        },
+        {
+          "property": "<xsl:apply-templates />",
+          "desc": "Process child nodes with matching templates",
+          "version": "instruction"
+        },
+        {
+          "property": "<xsl:apply-templates select=\"book\">",
+          "desc": "Process only matching children",
+          "version": "instruction"
+        },
+        {
+          "property": "<xsl:call-template name=\"myTmpl\">",
+          "desc": "Call a named template",
+          "version": "instruction"
+        },
+        {
+          "property": "<xsl:value-of select=\"title\">",
+          "desc": "Output text value of selected node",
+          "version": "instruction"
+        },
+        {
+          "property": "<xsl:for-each select=\"//book\">",
+          "desc": "Loop over all selected nodes",
+          "version": "instruction"
+        },
+        {
+          "property": "<xsl:sort select=\"title\" order=\"ascending\">",
+          "desc": "Sort nodes during for-each or apply-templates",
+          "version": "instruction"
+        },
+        {
+          "property": "<xsl:if test=\"price > 30\">",
+          "desc": "Conditional output — no else branch",
+          "version": "instruction"
+        },
+        {
+          "property": "<xsl:choose>",
+          "desc": "Multi-branch conditional — like switch/case",
+          "version": "instruction"
+        },
+        {
+          "property": "<xsl:when test=\"condition\">",
+          "desc": "Branch inside xsl:choose",
+          "version": "instruction"
+        },
+        {
+          "property": "<xsl:otherwise>",
+          "desc": "Default branch inside xsl:choose",
+          "version": "instruction"
+        },
+        {
+          "property": "<xsl:element name=\"p\">",
+          "desc": "Create output element with dynamic name",
+          "version": "instruction"
+        },
+        {
+          "property": "<xsl:attribute name=\"href\">",
+          "desc": "Create attribute on the current output element",
+          "version": "instruction"
+        },
+        {
+          "property": "<xsl:text>literal text</xsl:text>",
+          "desc": "Output literal text including whitespace",
+          "version": "instruction"
+        },
+        {
+          "property": "<xsl:comment>text</xsl:comment>",
+          "desc": "Output an XML comment node",
+          "version": "instruction"
+        },
+        {
+          "property": "<xsl:copy>",
+          "desc": "Shallow copy of current node to output",
+          "version": "instruction"
+        },
+        {
+          "property": "<xsl:copy-of select=\".\">",
+          "desc": "Deep copy of selected node(s) to output",
+          "version": "instruction"
+        },
+        {
+          "property": "<xsl:variable name=\"x\" select=\"expr\">",
+          "desc": "Declare a variable (immutable)",
+          "version": "variable"
+        },
+        {
+          "property": "$variableName",
+          "desc": "Reference an xsl:variable or xsl:param value",
+          "version": "variable"
+        },
+        {
+          "property": "<xsl:param name=\"p\" select=\"default\">",
+          "desc": "Declare a parameter with optional default",
+          "version": "param"
+        },
+        {
+          "property": "<xsl:with-param name=\"p\" select=\"val\">",
+          "desc": "Pass parameter to template call",
+          "version": "param"
+        },
+        {
+          "property": "<xsl:import href=\"other.xsl\">",
+          "desc": "Import another stylesheet (lower priority)",
+          "version": "import"
+        },
+        {
+          "property": "<xsl:include href=\"other.xsl\">",
+          "desc": "Include another stylesheet (same priority)",
+          "version": "include"
+        },
+        {
+          "property": "<xsl:output method=\"html\" indent=\"yes\">",
+          "desc": "Configure output method and formatting",
+          "version": "output"
+        },
+        {
+          "property": "<xsl:output method=\"text\">",
+          "desc": "Output plain text instead of XML/HTML",
+          "version": "output"
+        },
+        {
+          "property": "<xsl:strip-space elements=\"*\">",
+          "desc": "Remove whitespace-only text nodes from source",
+          "version": "whitespace"
+        },
+        {
+          "property": "<xsl:preserve-space elements=\"pre\">",
+          "desc": "Preserve whitespace in specified elements",
+          "version": "whitespace"
+        },
+        {
+          "property": "<xsl:key name=\"k\" match=\"book\" use=\"@id\">",
+          "desc": "Declare key for fast node lookup with key() function",
+          "version": "key"
+        },
+        {
+          "property": "key('keyname', value)",
+          "desc": "XPath function to look up nodes by key",
+          "version": "XPath fn"
+        },
+        {
+          "property": "format-number(num, pattern)",
+          "desc": "Format a number using picture pattern (e.g. #,##0.00)",
+          "version": "XPath fn"
+        },
+        {
+          "property": "generate-id(node)",
+          "desc": "Generate unique identifier string for a node",
+          "version": "XPath fn"
+        }
+      ]
+    },
+    {
+      "title": "XML DOM",
+      "desc": "",
+      "type": "table",
+      "columns": [
+        "PROPERTY / METHOD",
+        "DESCRIPTION",
+        "NODE TYPE"
+      ],
+      "rows": [
+        {
+          "property": "document.documentElement",
+          "desc": "Root element of the XML document",
+          "version": "Document"
+        },
+        {
+          "property": "document.createElement(tagName)",
+          "desc": "Create new element node",
+          "version": "Document"
+        },
+        {
+          "property": "document.createTextNode(text)",
+          "desc": "Create new text node",
+          "version": "Document"
+        },
+        {
+          "property": "document.createAttribute(name)",
+          "desc": "Create new attribute node",
+          "version": "Document"
+        },
+        {
+          "property": "document.createComment(data)",
+          "desc": "Create new comment node",
+          "version": "Document"
+        },
+        {
+          "property": "document.createCDATASection(data)",
+          "desc": "Create new CDATA section node",
+          "version": "Document"
+        },
+        {
+          "property": "document.getElementById(id)",
+          "desc": "Get element by its ID attribute",
+          "version": "Document"
+        },
+        {
+          "property": "document.getElementsByTagName(name)",
+          "desc": "Get all elements with given tag name",
+          "version": "Document"
+        },
+        {
+          "property": "node.nodeName",
+          "desc": "Name of the node (tag name for elements, #text for text nodes)",
+          "version": "Node"
+        },
+        {
+          "property": "node.nodeValue",
+          "desc": "Value of node (text for text nodes, null for elements)",
+          "version": "Node"
+        },
+        {
+          "property": "node.nodeType",
+          "desc": "Integer: 1=Element, 2=Attribute, 3=Text, 8=Comment, 9=Document",
+          "version": "Node"
+        },
+        {
+          "property": "node.parentNode",
+          "desc": "Parent node of this node",
+          "version": "Node"
+        },
+        {
+          "property": "node.childNodes",
+          "desc": "NodeList of all child nodes",
+          "version": "Node"
+        },
+        {
+          "property": "node.firstChild",
+          "desc": "First child node",
+          "version": "Node"
+        },
+        {
+          "property": "node.lastChild",
+          "desc": "Last child node",
+          "version": "Node"
+        },
+        {
+          "property": "node.nextSibling",
+          "desc": "Next sibling node",
+          "version": "Node"
+        },
+        {
+          "property": "node.previousSibling",
+          "desc": "Previous sibling node",
+          "version": "Node"
+        },
+        {
+          "property": "node.attributes",
+          "desc": "NamedNodeMap of element's attributes",
+          "version": "Element"
+        },
+        {
+          "property": "node.getAttribute(name)",
+          "desc": "Returns value of named attribute",
+          "version": "Element"
+        },
+        {
+          "property": "node.setAttribute(name, value)",
+          "desc": "Set or add attribute with value",
+          "version": "Element"
+        },
+        {
+          "property": "node.removeAttribute(name)",
+          "desc": "Remove named attribute",
+          "version": "Element"
+        },
+        {
+          "property": "node.hasAttribute(name)",
+          "desc": "Returns true if attribute exists",
+          "version": "Element"
+        },
+        {
+          "property": "node.textContent",
+          "desc": "All text content of node and descendants",
+          "version": "Node"
+        },
+        {
+          "property": "node.innerHTML",
+          "desc": "HTML/XML markup of node content (browser DOM)",
+          "version": "Element"
+        },
+        {
+          "property": "node.appendChild(child)",
+          "desc": "Append child node to end of children",
+          "version": "Node"
+        },
+        {
+          "property": "node.insertBefore(new, ref)",
+          "desc": "Insert new node before reference node",
+          "version": "Node"
+        },
+        {
+          "property": "node.removeChild(child)",
+          "desc": "Remove and return child node",
+          "version": "Node"
+        },
+        {
+          "property": "node.replaceChild(new, old)",
+          "desc": "Replace old child with new child",
+          "version": "Node"
+        },
+        {
+          "property": "node.cloneNode(deep)",
+          "desc": "Clone node; deep=true clones all descendants",
+          "version": "Node"
+        },
+        {
+          "property": "node.hasChildNodes()",
+          "desc": "Returns true if node has any children",
+          "version": "Node"
+        },
+        {
+          "property": "node.getElementsByTagName(name)",
+          "desc": "Get descendant elements by tag name",
+          "version": "Element"
+        },
+        {
+          "property": "node.ownerDocument",
+          "desc": "Document object that this node belongs to",
+          "version": "Node"
+        },
+        {
+          "property": "NodeList[i]",
+          "desc": "Access node by index in NodeList",
+          "version": "NodeList"
+        },
+        {
+          "property": "NodeList.length",
+          "desc": "Number of nodes in NodeList",
+          "version": "NodeList"
+        },
+        {
+          "property": "node.normalize()",
+          "desc": "Merge adjacent text nodes into one",
+          "version": "Node"
+        }
+      ]
+    },
+    {
+      "title": "SAX Parser",
+      "desc": "",
+      "type": "table",
+      "columns": [
+        "EVENT / HANDLER",
+        "DESCRIPTION",
+        "NOTES"
+      ],
+      "rows": [
+        {
+          "property": "SAX (Simple API for XML)",
+          "desc": "Event-driven streaming parser — does not build a tree in memory",
+          "version": "concept"
+        },
+        {
+          "property": "startDocument()",
+          "desc": "Fired at the beginning of the document",
+          "version": "ContentHandler"
+        },
+        {
+          "property": "endDocument()",
+          "desc": "Fired at the end of the document",
+          "version": "ContentHandler"
+        },
+        {
+          "property": "startElement(uri, localName, qName, attrs)",
+          "desc": "Fired when an opening tag is encountered",
+          "version": "ContentHandler"
+        },
+        {
+          "property": "endElement(uri, localName, qName)",
+          "desc": "Fired when a closing tag is encountered",
+          "version": "ContentHandler"
+        },
+        {
+          "property": "characters(ch, start, length)",
+          "desc": "Fired for text content between tags",
+          "version": "ContentHandler"
+        },
+        {
+          "property": "ignorableWhitespace(ch, start, length)",
+          "desc": "Fired for whitespace in element-only content",
+          "version": "ContentHandler"
+        },
+        {
+          "property": "processingInstruction(target, data)",
+          "desc": "Fired when processing instruction is encountered",
+          "version": "ContentHandler"
+        },
+        {
+          "property": "startPrefixMapping(prefix, uri)",
+          "desc": "Fired when namespace prefix mapping starts",
+          "version": "ContentHandler"
+        },
+        {
+          "property": "endPrefixMapping(prefix)",
+          "desc": "Fired when namespace prefix mapping ends",
+          "version": "ContentHandler"
+        },
+        {
+          "property": "warning(exception)",
+          "desc": "Fired for recoverable XML warnings",
+          "version": "ErrorHandler"
+        },
+        {
+          "property": "error(exception)",
+          "desc": "Fired for recoverable XML errors",
+          "version": "ErrorHandler"
+        },
+        {
+          "property": "fatalError(exception)",
+          "desc": "Fired for non-recoverable XML errors",
+          "version": "ErrorHandler"
+        },
+        {
+          "property": "notationDecl(name, publicId, systemId)",
+          "desc": "Fired when notation declaration is encountered",
+          "version": "DTDHandler"
+        },
+        {
+          "property": "unparsedEntityDecl(...)",
+          "desc": "Fired when unparsed entity is declared in DTD",
+          "version": "DTDHandler"
+        },
+        {
+          "property": "resolveEntity(publicId, systemId)",
+          "desc": "Called to resolve external entity references",
+          "version": "EntityResolver"
+        },
+        {
+          "property": "SAX vs DOM",
+          "desc": "SAX: fast, low memory, forward-only. DOM: random access, modifiable tree",
+          "version": "comparison"
+        },
+        {
+          "property": "StAX (Streaming API for XML)",
+          "desc": "Pull-based streaming parser — developer controls iteration",
+          "version": "variant"
+        },
+        {
+          "property": "XMLReader interface",
+          "desc": "Core SAX interface for parsing XML documents",
+          "version": "Java SAX"
+        },
+        {
+          "property": "InputSource",
+          "desc": "Encapsulates XML source (stream, reader, or URI)",
+          "version": "Java SAX"
+        }
+      ]
+    },
+    {
+      "title": "Encoding & Entities",
+      "desc": "",
+      "type": "table",
+      "columns": [
+        "ENTITY / ENCODING",
+        "DESCRIPTION",
+        "CHARACTER"
+      ],
+      "rows": [
+        {
+          "property": "&lt;",
+          "desc": "Less-than sign — must be escaped in XML content",
+          "version": "< "
+        },
+        {
+          "property": "&gt;",
+          "desc": "Greater-than sign",
+          "version": ">"
+        },
+        {
+          "property": "&amp;",
+          "desc": "Ampersand — must always be escaped",
+          "version": "&"
+        },
+        {
+          "property": "&quot;",
+          "desc": "Double quotation mark",
+          "version": "\""
+        },
+        {
+          "property": "&apos;",
+          "desc": "Single quotation mark / apostrophe",
+          "version": "'"
+        },
+        {
+          "property": "&#decimal;",
+          "desc": "Character reference by decimal Unicode code point",
+          "version": "&#169; = ©"
+        },
+        {
+          "property": "&#xHex;",
+          "desc": "Character reference by hexadecimal Unicode code point",
+          "version": "&#xA9; = ©"
+        },
+        {
+          "property": "encoding=\"UTF-8\"",
+          "desc": "Most common encoding — supports all Unicode characters",
+          "version": "recommended"
+        },
+        {
+          "property": "encoding=\"UTF-16\"",
+          "desc": "16-bit Unicode encoding — each char 2 or 4 bytes",
+          "version": "encoding"
+        },
+        {
+          "property": "encoding=\"ISO-8859-1\"",
+          "desc": "Latin-1 encoding for Western European languages",
+          "version": "encoding"
+        },
+        {
+          "property": "encoding=\"US-ASCII\"",
+          "desc": "7-bit ASCII encoding — only basic Latin characters",
+          "version": "encoding"
+        },
+        {
+          "property": "BOM (Byte Order Mark)",
+          "desc": "Optional marker at start of UTF-16 files to indicate byte order",
+          "version": "UTF-16"
+        },
+        {
+          "property": "xml:lang=\"en\"",
+          "desc": "Attribute specifying natural language of element content",
+          "version": "attribute"
+        },
+        {
+          "property": "xml:space=\"preserve\"",
+          "desc": "Instruct processor to preserve whitespace in element",
+          "version": "attribute"
+        },
+        {
+          "property": "xml:id",
+          "desc": "Attribute providing a unique identifier (like DTD ID type)",
+          "version": "XML 1.1"
+        },
+        {
+          "property": "xml:base",
+          "desc": "Base URI for resolving relative URIs in element",
+          "version": "attribute"
+        },
+        {
+          "property": "<![CDATA[ data ]]>",
+          "desc": "CDATA section — any characters allowed; no entity escaping needed",
+          "version": "CDATA"
+        },
+        {
+          "property": "Numeric character refs in attributes",
+          "desc": "&#decimal; and &#xHex; are valid inside attribute values",
+          "version": "rule"
+        },
+        {
+          "property": "NFC normalization",
+          "desc": "XML 1.1 requires Unicode NFC normalization of names",
+          "version": "XML 1.1"
+        },
+        {
+          "property": "XML 1.0 vs XML 1.1",
+          "desc": "XML 1.1 allows more Unicode characters in names and control characters",
+          "version": "versions"
+        }
+      ]
+    },
+    {
+      "title": "XQuery",
+      "desc": "",
+      "type": "table",
+      "columns": [
+        "EXPRESSION / FUNCTION",
+        "DESCRIPTION",
+        "EXAMPLE"
+      ],
+      "rows": [
+        {
+          "property": "doc(\"file.xml\")",
+          "desc": "Load XML document for querying",
+          "version": "fn"
+        },
+        {
+          "property": "collection(\"uri\")",
+          "desc": "Access a collection of XML documents",
+          "version": "fn"
+        },
+        {
+          "property": "for $x in expr",
+          "desc": "FLWOR: iterate over sequence binding each item to variable",
+          "version": "FLWOR"
+        },
+        {
+          "property": "let $x := expr",
+          "desc": "FLWOR: bind expression result to variable",
+          "version": "FLWOR"
+        },
+        {
+          "property": "where condition",
+          "desc": "FLWOR: filter items by condition",
+          "version": "FLWOR"
+        },
+        {
+          "property": "order by expr",
+          "desc": "FLWOR: sort results",
+          "version": "FLWOR"
+        },
+        {
+          "property": "return expr",
+          "desc": "FLWOR: expression to return for each iteration",
+          "version": "FLWOR"
+        },
+        {
+          "property": "FLWOR expression",
+          "desc": "For-Let-Where-Order by-Return — core XQuery construct",
+          "version": "concept"
+        },
+        {
+          "property": "if (cond) then expr else expr",
+          "desc": "Conditional expression — else branch is mandatory",
+          "version": "expression"
+        },
+        {
+          "property": "some $x in seq satisfies cond",
+          "desc": "Existential quantifier — true if any item satisfies condition",
+          "version": "quantifier"
+        },
+        {
+          "property": "every $x in seq satisfies cond",
+          "desc": "Universal quantifier — true if all items satisfy condition",
+          "version": "quantifier"
+        },
+        {
+          "property": "element name { content }",
+          "desc": "Constructor: create a new element node",
+          "version": "constructor"
+        },
+        {
+          "property": "attribute name { value }",
+          "desc": "Constructor: create a new attribute node",
+          "version": "constructor"
+        },
+        {
+          "property": "text { string }",
+          "desc": "Constructor: create a text node",
+          "version": "constructor"
+        },
+        {
+          "property": "fn:count(seq)",
+          "desc": "Count items in sequence",
+          "version": "fn:count(//book)"
+        },
+        {
+          "property": "fn:sum(seq)",
+          "desc": "Sum of numeric sequence",
+          "version": "fn:sum(//price)"
+        },
+        {
+          "property": "fn:avg(seq)",
+          "desc": "Average of numeric sequence",
+          "version": "fn:avg(//price)"
+        },
+        {
+          "property": "fn:max(seq) / fn:min(seq)",
+          "desc": "Maximum / minimum of sequence",
+          "version": "fn:max(//price)"
+        },
+        {
+          "property": "fn:string-length(str)",
+          "desc": "Length of string",
+          "version": "fn"
+        },
+        {
+          "property": "fn:upper-case(str) / fn:lower-case(str)",
+          "desc": "Convert string to upper/lower case",
+          "version": "fn"
+        },
+        {
+          "property": "fn:contains(str, substr)",
+          "desc": "True if str contains substr",
+          "version": "fn"
+        },
+        {
+          "property": "fn:starts-with(str, prefix)",
+          "desc": "True if str starts with prefix",
+          "version": "fn"
+        },
+        {
+          "property": "fn:ends-with(str, suffix)",
+          "desc": "True if str ends with suffix",
+          "version": "fn"
+        },
+        {
+          "property": "fn:substring(str, start, len)",
+          "desc": "Return part of string",
+          "version": "fn"
+        },
+        {
+          "property": "fn:tokenize(str, pattern)",
+          "desc": "Split string by regex pattern into sequence",
+          "version": "fn"
+        },
+        {
+          "property": "fn:distinct-values(seq)",
+          "desc": "Returns sequence with duplicates removed",
+          "version": "fn"
+        },
+        {
+          "property": "fn:empty(seq)",
+          "desc": "True if sequence is empty",
+          "version": "fn"
+        },
+        {
+          "property": "fn:exists(seq)",
+          "desc": "True if sequence has one or more items",
+          "version": "fn"
+        },
+        {
+          "property": "fn:position()",
+          "desc": "Position of current item in sequence (1-based)",
+          "version": "fn"
+        },
+        {
+          "property": "fn:last()",
+          "desc": "Size of current sequence",
+          "version": "fn"
+        },
+        {
+          "property": "declare variable $v := expr",
+          "desc": "Declare module-level variable",
+          "version": "prolog"
+        },
+        {
+          "property": "declare function prefix:name($p) { body }",
+          "desc": "Declare user-defined function",
+          "version": "prolog"
+        },
+        {
+          "property": "declare namespace p = \"uri\"",
+          "desc": "Declare namespace prefix in query prolog",
+          "version": "prolog"
+        }
+      ]
+    },
+    {
+      "title": "XML Keywords & Declarations",
+      "desc": "",
+      "type": "table",
+      "columns": [
+        "KEYWORD / TOKEN",
+        "DESCRIPTION",
+        "CONTEXT"
+      ],
+      "rows": [
+        {
+          "property": "<?xml",
+          "desc": "Start of XML declaration (prolog)",
+          "version": "prolog"
+        },
+        {
+          "property": "version",
+          "desc": "XML version attribute in declaration (1.0 or 1.1)",
+          "version": "prolog"
+        },
+        {
+          "property": "encoding",
+          "desc": "Character encoding declaration in prolog",
+          "version": "prolog"
+        },
+        {
+          "property": "standalone",
+          "desc": "Declares whether document relies on external DTD",
+          "version": "prolog"
+        },
+        {
+          "property": "<!DOCTYPE",
+          "desc": "Document Type Declaration linking to DTD",
+          "version": "DTD"
+        },
+        {
+          "property": "SYSTEM",
+          "desc": "Keyword for referencing external DTD by system URI",
+          "version": "DTD"
+        },
+        {
+          "property": "PUBLIC",
+          "desc": "Keyword for referencing public external DTD",
+          "version": "DTD"
+        },
+        {
+          "property": "<!ELEMENT",
+          "desc": "DTD element type declaration",
+          "version": "DTD"
+        },
+        {
+          "property": "<!ATTLIST",
+          "desc": "DTD attribute list declaration",
+          "version": "DTD"
+        },
+        {
+          "property": "<!ENTITY",
+          "desc": "DTD entity declaration",
+          "version": "DTD"
+        },
+        {
+          "property": "<!NOTATION",
+          "desc": "DTD notation declaration",
+          "version": "DTD"
+        },
+        {
+          "property": "#REQUIRED",
+          "desc": "Attribute must be present",
+          "version": "DTD"
+        },
+        {
+          "property": "#IMPLIED",
+          "desc": "Attribute is optional with no default",
+          "version": "DTD"
+        },
+        {
+          "property": "#FIXED",
+          "desc": "Attribute has a fixed unchangeable value",
+          "version": "DTD"
+        },
+        {
+          "property": "#PCDATA",
+          "desc": "Parsed Character DATA — text content",
+          "version": "DTD"
+        },
+        {
+          "property": "EMPTY",
+          "desc": "Element must contain no content",
+          "version": "DTD"
+        },
+        {
+          "property": "ANY",
+          "desc": "Element may contain any content",
+          "version": "DTD"
+        },
+        {
+          "property": "CDATA (DTD type)",
+          "desc": "Attribute value is character data (not parsed for child elements)",
+          "version": "DTD"
+        },
+        {
+          "property": "ID",
+          "desc": "Attribute value is a unique document identifier",
+          "version": "DTD"
+        },
+        {
+          "property": "IDREF / IDREFS",
+          "desc": "Attribute references one or more ID values",
+          "version": "DTD"
+        },
+        {
+          "property": "NMTOKEN / NMTOKENS",
+          "desc": "Attribute value is valid XML name token(s)",
+          "version": "DTD"
+        },
+        {
+          "property": "ENTITY / ENTITIES",
+          "desc": "Attribute references declared unparsed entity",
+          "version": "DTD"
+        },
+        {
+          "property": "xmlns",
+          "desc": "Namespace declaration attribute",
+          "version": "namespace"
+        },
+        {
+          "property": "xml:lang",
+          "desc": "Built-in attribute for language identification",
+          "version": "xml: prefix"
+        },
+        {
+          "property": "xml:space",
+          "desc": "Built-in attribute for whitespace handling",
+          "version": "xml: prefix"
+        },
+        {
+          "property": "xml:base",
+          "desc": "Built-in attribute for base URI",
+          "version": "xml: prefix"
+        },
+        {
+          "property": "xml:id",
+          "desc": "Built-in attribute providing unique ID",
+          "version": "xml: prefix"
+        },
+        {
+          "property": "xsi:type",
+          "desc": "Override schema type of element at instance level",
+          "version": "xsi: prefix"
+        },
+        {
+          "property": "xsi:nil=\"true\"",
+          "desc": "Mark element as nil (null value) in schema instance",
+          "version": "xsi: prefix"
+        },
+        {
+          "property": "W3C XML 1.0",
+          "desc": "Original XML specification (1998) — most widely supported",
+          "version": "standard"
+        },
+        {
+          "property": "W3C XML 1.1",
+          "desc": "Updated spec (2004) allowing more Unicode in names",
+          "version": "standard"
+        },
+        {
+          "property": "XSD 1.0 / 1.1",
+          "desc": "XML Schema Definition versions from W3C",
+          "version": "standard"
+        },
+        {
+          "property": "XSLT 1.0 / 2.0 / 3.0",
+          "desc": "XSL Transformations versions — 2.0+ adds functions and types",
+          "version": "standard"
+        },
+        {
+          "property": "XPath 1.0 / 2.0 / 3.1",
+          "desc": "XML Path Language versions",
+          "version": "standard"
+        },
+        {
+          "property": "XQuery 1.0 / 3.1",
+          "desc": "XML Query Language versions",
+          "version": "standard"
+        },
+        {
+          "property": "DOM Level 1 / 2 / 3",
+          "desc": "Document Object Model specification versions",
+          "version": "standard"
+        },
+        {
+          "property": "SAX 1.0 / 2.0",
+          "desc": "Simple API for XML parser interface versions",
+          "version": "standard"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,366 @@
+{
+    "moduleId": "javascript",
+    "moduleName": "JavaScript Essentials",
+    "questions": [
+        {
+            "id": 1,
+            "question": "Which keyword is used to declare a variable that cannot be reassigned?",
+            "options": [
+                "var",
+                "let",
+                "const",
+                "static"
+            ],
+            "correctAnswer": 2,
+            "explanation": "'const' declares a variable whose value cannot be reassigned after initialization."
+        },
+        {
+            "id": 2,
+            "question": "What is the output of typeof null?",
+            "options": [
+                "'null'",
+                "'undefined'",
+                "'object'",
+                "'boolean'"
+            ],
+            "correctAnswer": 2,
+            "explanation": "typeof null returns 'object'. This is a well-known bug in JavaScript that has persisted for historical reasons."
+        },
+        {
+            "id": 3,
+            "question": "Which method is used to add an element at the end of an array?",
+            "options": [
+                "append()",
+                "push()",
+                "add()",
+                "insert()"
+            ],
+            "correctAnswer": 1,
+            "explanation": "The push() method adds one or more elements to the end of an array and returns the new length."
+        },
+        {
+            "id": 4,
+            "question": "How do you write a single-line comment in JavaScript?",
+            "options": [
+                "<!-- comment -->",
+                "// comment",
+                "/* comment */",
+                "# comment"
+            ],
+            "correctAnswer": 1,
+            "explanation": "Single-line comments in JavaScript start with //. Everything after // on that line is ignored."
+        },
+        {
+            "id": 5,
+            "question": "Which operator is used for strict equality comparison?",
+            "options": [
+                "==",
+                "===",
+                "!=",
+                "="
+            ],
+            "correctAnswer": 1,
+            "explanation": "The === operator checks both value and type, unlike == which performs type coercion."
+        },
+        {
+            "id": 6,
+            "question": "What does the 'isNaN()' function do?",
+            "options": [
+                "Checks if a value is null",
+                "Checks if a value is Not-a-Number",
+                "Converts a string to a number",
+                "Checks if a value is undefined"
+            ],
+            "correctAnswer": 1,
+            "explanation": "isNaN() determines whether a value is NaN (Not-a-Number)."
+        },
+        {
+            "id": 7,
+            "question": "Which method converts a JSON string into a JavaScript object?",
+            "options": [
+                "JSON.stringify()",
+                "JSON.parse()",
+                "JSON.convert()",
+                "JSON.toObject()"
+            ],
+            "correctAnswer": 1,
+            "explanation": "JSON.parse() parses a JSON string and returns the corresponding JavaScript object."
+        },
+        {
+            "id": 8,
+            "question": "What is the correct way to write an arrow function?",
+            "options": [
+                "function => ()",
+                "() => {}",
+                "=> function()",
+                "function() =>"
+            ],
+            "correctAnswer": 1,
+            "explanation": "Arrow functions use the syntax () => {} and provide a shorter way to write function expressions."
+        },
+        {
+            "id": 9,
+            "question": "Which method is used to select an element by its id in the DOM?",
+            "options": [
+                "document.querySelector()",
+                "document.getElementById()",
+                "document.getElement()",
+                "document.findById()"
+            ],
+            "correctAnswer": 1,
+            "explanation": "document.getElementById() returns the element with the specified id attribute."
+        },
+        {
+            "id": 10,
+            "question": "What does 'addEventListener' do?",
+            "options": [
+                "Creates a new HTML element",
+                "Attaches an event handler to an element",
+                "Removes an event from an element",
+                "Triggers an event manually"
+            ],
+            "correctAnswer": 1,
+            "explanation": "addEventListener() attaches an event handler function to a specified element without overwriting existing handlers."
+        },
+        {
+            "id": 11,
+            "question": "Which array method creates a new array with elements that pass a test?",
+            "options": [
+                "map()",
+                "filter()",
+                "reduce()",
+                "find()"
+            ],
+            "correctAnswer": 1,
+            "explanation": "filter() creates a new array with all elements that pass the test implemented by the provided function."
+        },
+        {
+            "id": 12,
+            "question": "What is a closure in JavaScript?",
+            "options": [
+                "A way to close the browser window",
+                "A function that has access to its outer scope variables even after the outer function has returned",
+                "A method to end a loop",
+                "A syntax error handler"
+            ],
+            "correctAnswer": 1,
+            "explanation": "A closure is a function that retains access to variables from its outer (enclosing) scope even after the outer function has finished executing."
+        },
+        {
+            "id": 13,
+            "question": "Which keyword is used to handle exceptions in JavaScript?",
+            "options": [
+                "catch",
+                "try...catch",
+                "error",
+                "handle"
+            ],
+            "correctAnswer": 1,
+            "explanation": "The try...catch statement allows you to handle errors gracefully by catching exceptions thrown in the try block."
+        },
+        {
+            "id": 14,
+            "question": "What does the 'map()' method do?",
+            "options": [
+                "Creates a map data structure",
+                "Filters array elements",
+                "Creates a new array by transforming each element",
+                "Sorts the array"
+            ],
+            "correctAnswer": 2,
+            "explanation": "map() creates a new array by calling a function on every element of the original array and collecting the results."
+        },
+        {
+            "id": 15,
+            "question": "What is the output of '2' + 2 in JavaScript?",
+            "options": [
+                "4",
+                "22",
+                "'22'",
+                "NaN"
+            ],
+            "correctAnswer": 2,
+            "explanation": "When a string is added to a number, JavaScript converts the number to a string and concatenates them, resulting in '22'."
+        },
+        {
+            "id": 16,
+            "question": "Which method is used to remove the last element from an array?",
+            "options": [
+                "pop()",
+                "shift()",
+                "splice()",
+                "delete()"
+            ],
+            "correctAnswer": 0,
+            "explanation": "pop() removes the last element from an array and returns that element."
+        },
+        {
+            "id": 17,
+            "question": "What is a Promise in JavaScript?",
+            "options": [
+                "A guarantee that code will run",
+                "An object representing the eventual completion or failure of an asynchronous operation",
+                "A type of loop",
+                "A variable declaration"
+            ],
+            "correctAnswer": 1,
+            "explanation": "A Promise is an object that represents the eventual result of an asynchronous operation, which can be fulfilled, rejected, or pending."
+        },
+        {
+            "id": 18,
+            "question": "Which method converts a JavaScript object to a JSON string?",
+            "options": [
+                "JSON.parse()",
+                "JSON.stringify()",
+                "JSON.toString()",
+                "JSON.convert()"
+            ],
+            "correctAnswer": 1,
+            "explanation": "JSON.stringify() converts a JavaScript object or value to a JSON string."
+        },
+        {
+            "id": 19,
+            "question": "What does the 'spread operator' (...) do?",
+            "options": [
+                "Declares a rest parameter",
+                "Expands an iterable into individual elements",
+                "Creates a new variable",
+                "Defines a default parameter"
+            ],
+            "correctAnswer": 1,
+            "explanation": "The spread operator (...) expands an iterable (like an array) into individual elements in places where arguments or elements are expected."
+        },
+        {
+            "id": 20,
+            "question": "Which keyword is used to create a class in JavaScript?",
+            "options": [
+                "function",
+                "object",
+                "class",
+                "constructor"
+            ],
+            "correctAnswer": 2,
+            "explanation": "The 'class' keyword (ES6) is used to create a class in JavaScript, providing syntactic sugar over prototype-based inheritance."
+        },
+        {
+            "id": 21,
+            "question": "What is 'hoisting' in JavaScript?",
+            "options": [
+                "Moving code to a server",
+                "The behavior where declarations are moved to the top of their scope before execution",
+                "Optimizing code performance",
+                "Importing external modules"
+            ],
+            "correctAnswer": 1,
+            "explanation": "Hoisting is JavaScript's behavior of moving variable and function declarations to the top of their containing scope during compilation."
+        },
+        {
+            "id": 22,
+            "question": "Which method is used to find the first element in an array that satisfies a condition?",
+            "options": [
+                "search()",
+                "filter()",
+                "find()",
+                "indexOf()"
+            ],
+            "correctAnswer": 2,
+            "explanation": "find() returns the first element in an array that satisfies the provided testing function."
+        },
+        {
+            "id": 23,
+            "question": "What does 'async/await' do?",
+            "options": [
+                "Runs code synchronously",
+                "Makes asynchronous code look and behave like synchronous code",
+                "Pauses the entire application",
+                "Creates a new thread"
+            ],
+            "correctAnswer": 1,
+            "explanation": "async/await is syntactic sugar over Promises that makes asynchronous code easier to write and read by allowing you to use await to pause execution until a Promise resolves."
+        },
+        {
+            "id": 24,
+            "question": "Which of these is NOT a JavaScript data type?",
+            "options": [
+                "undefined",
+                "boolean",
+                "float",
+                "symbol"
+            ],
+            "correctAnswer": 2,
+            "explanation": "JavaScript does not have a 'float' data type. Numbers (both integer and decimal) are represented by the 'number' type."
+        },
+        {
+            "id": 25,
+            "question": "What does 'localStorage' do?",
+            "options": [
+                "Stores data on the server",
+                "Stores key-value pairs in the browser with no expiration",
+                "Creates temporary variables",
+                "Saves files to the user's computer"
+            ],
+            "correctAnswer": 1,
+            "explanation": "localStorage stores key-value pairs in the browser that persist even after the browser is closed, with no expiration date."
+        },
+        {
+            "id": 26,
+            "question": "Which method is used to join all elements of an array into a string?",
+            "options": [
+                "concat()",
+                "join()",
+                "merge()",
+                "combine()"
+            ],
+            "correctAnswer": 1,
+            "explanation": "join() joins all elements of an array into a string, separated by a specified separator (comma by default)."
+        },
+        {
+            "id": 27,
+            "question": "What is the purpose of 'use strict'?",
+            "options": [
+                "Enables HTML strict mode",
+                "Enforces stricter parsing and error handling in JavaScript",
+                "Disables all warnings",
+                "Activates TypeScript mode"
+            ],
+            "correctAnswer": 1,
+            "explanation": "'use strict' enables strict mode, which catches common coding mistakes, prevents unsafe actions, and disables some confusing features."
+        },
+        {
+            "id": 28,
+            "question": "Which event fires when the entire page has fully loaded including images?",
+            "options": [
+                "DOMContentLoaded",
+                "onready",
+                "window.onload",
+                "document.onstart"
+            ],
+            "correctAnswer": 2,
+            "explanation": "window.onload fires when the complete page is fully loaded, including all frames, objects, images, and scripts."
+        },
+        {
+            "id": 29,
+            "question": "What does the 'reduce()' method do?",
+            "options": [
+                "Removes elements from an array",
+                "Reduces the size of the array",
+                "Executes a reducer function on each element, resulting in a single output value",
+                "Filters out duplicate values"
+            ],
+            "correctAnswer": 2,
+            "explanation": "reduce() applies a reducer function against an accumulator and each element to reduce the array to a single value."
+        },
+        {
+            "id": 30,
+            "question": "Which method is used to convert a string to lowercase?",
+            "options": [
+                "toLower()",
+                "toLowerCase()",
+                "caseLower()",
+                "lowerCase()"
+            ],
+            "correctAnswer": 1,
+            "explanation": "toLowerCase() returns the string converted to lowercase letters."
+        }
+    ]
+}

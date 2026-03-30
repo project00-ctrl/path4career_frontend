@@ -1,0 +1,324 @@
+/* ==========================================
+   UNIVERSAL EDITOR UI (editor.css)
+   ========================================== */
+
+body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    font-family: sans-serif;
+    background-color: #0a0a23;
+}
+
+/* --- HEADER --- */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 30px;
+    background-color: #2a2a40;
+    border-bottom: 2px solid #00ffb3;
+    color: #fff;
+}
+
+.header h2 {
+    margin: 0;
+    font-size: 24px;
+}
+
+/* --- RUN BUTTON --- */
+.run-btn {
+    background-color: #00ffb3;
+    color: #000;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.run-btn:hover {
+    background-color: #00cc90;
+}
+
+.run-btn:disabled {
+    background-color: #555;
+    cursor: not-allowed;
+}
+
+/* --- WORKSPACE & PANES --- */
+.workspace {
+    display: flex;
+    flex: 1;
+    height: 100%;
+}
+
+/* Left Pane (Code) */
+.editor-pane {
+    flex: 1; 
+    background-color: #0a0a23;
+    padding: 20px;
+    border-right: 2px solid #333;
+    display: flex;
+    flex-direction: column;
+}
+
+.pane-label {
+    color: #888;
+    text-transform: uppercase;
+    font-size: 12px;
+    letter-spacing: 1px;
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+/* Shared Textarea Styling */
+textarea {
+    flex: 1;
+    width: 100%;
+    background-color: transparent;
+    color: #fff;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 16px;
+    border: none;
+    resize: none;
+    outline: none;
+}
+
+/* Right Pane (Results) */
+.result-pane {
+    flex: 1; 
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    color: #000;
+    overflow-y: auto; /* Required for SQL scrolling */
+}
+
+/* Shared iFrame Styling */
+iframe {
+    flex: 1;
+    width: 100%;
+    height: 100%;
+    border: none;
+    background-color: #fff;
+}
+
+/* --- CONSOLE OUTPUT PANEL --- */
+.console-output {
+    flex: 1;
+    background-color: #1e1e2f;
+    display: flex;
+    flex-direction: column;
+}
+
+#consoleDiv {
+    flex: 1;
+    padding: 10px 20px;
+    font-family: 'Courier New', Courier, monospace;
+    overflow-y: auto;
+    color: #cbd5e1;
+    font-size: 14px;
+    white-space: pre-wrap;
+}
+
+/* --- LOG LINE COLORS --- */
+.log-line { padding: 4px 0; border-bottom: 1px solid #333; }
+.log-error { color: #ff4757; }
+.log-normal { color: #00ffb3; }
+.log-loading { color: #8be9fd; font-style: italic; }
+.log-info { color: #ffb86c; }
+.log-warn, .log-warning { color: #f1fa8c; }
+.log-command { color: #bd93f9; }
+.log-output { color: #f8f8f2; }
+.log-success { color: #00ffb3; }
+.log-table { color: #bd93f9; }
+.log-column { color: #ff79c6; }
+
+/* --- VISUAL OUTPUT (split pane editors like JS) --- */
+.visual-output {
+    flex: 1;
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    border-bottom: 2px solid #333;
+}
+
+/* --- PREVIEW FRAME (jQuery, Django, Bootstrap) --- */
+.preview-frame {
+    flex: 1;
+    width: 100%;
+    height: 100%;
+    border: none;
+    background-color: #ffffff;
+}
+
+/* --- OUTPUT LABEL --- */
+.output-label {
+    padding: 10px 20px 0;
+    color: #888;
+    text-transform: uppercase;
+    font-size: 12px;
+    letter-spacing: 1px;
+    font-weight: bold;
+    background-color: #1e1e2f;
+    margin: 0;
+}
+
+/* --- OUTPUT FRAME (Bootstrap) --- */
+.output-frame {
+    flex: 1;
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: column;
+}
+
+/* --- XML-SPECIFIC OUTPUT --- */
+.xml-output {
+    flex: 1;
+    background-color: #1e1e2f;
+    display: flex;
+    flex-direction: column;
+}
+
+#outputDiv {
+    flex: 1;
+    padding: 10px 20px;
+    font-family: 'Courier New', Courier, monospace;
+    overflow-y: auto;
+    color: #cbd5e1;
+    font-size: 14px;
+    white-space: pre-wrap;
+}
+
+.xml-tag { color: #ff79c6; }
+.xml-attr { color: #50fa7b; }
+.xml-value { color: #f1fa8c; }
+.xml-text { color: #f8f8f2; }
+.xml-error { color: #ff4757; }
+.xml-success { color: #00ffb3; }
+
+/* --- TERMINAL HEADER (Git) --- */
+.terminal-header {
+    background-color: #282a36;
+    padding: 8px 20px;
+    border-bottom: 1px solid #44475a;
+    color: #f8f8f2;
+    font-size: 12px;
+}
+
+/* --- NODE.JS BADGE --- */
+.node-badge {
+    background-color: #339933;
+    color: white;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    margin-left: 10px;
+}
+
+/* --- MOBILE: CODE / OUTPUT TABS (Programiz-style) --- */
+@media (max-width: 768px) {
+    .workspace {
+        flex-direction: column;
+    }
+
+    .header {
+        padding: 10px 16px;
+    }
+
+    .header h2 {
+        font-size: 18px;
+    }
+
+    .run-btn {
+        padding: 8px 14px;
+        font-size: 14px;
+    }
+
+    .editor-pane {
+        padding: 12px;
+        border-right: none;
+        border-bottom: 2px solid #333;
+    }
+
+    .pane-label {
+        font-size: 11px;
+        margin-bottom: 6px;
+    }
+
+    textarea {
+        font-size: 14px;
+    }
+
+    .mobile-editor-tabs {
+        display: flex;
+        border-bottom: 1px solid #333;
+    }
+
+    .mobile-editor-tab-btn {
+        flex: 1;
+        padding: 10px 12px;
+        background: #1f2937;
+        border: none;
+        color: #9ca3af;
+        font-size: 13px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        cursor: pointer;
+        transition: all 0.2s;
+    }
+
+    .mobile-editor-tab-btn.active {
+        background: #111827;
+        color: #ffffff;
+        border-bottom: 2px solid #00ffb3;
+    }
+
+    .mobile-hidden {
+        display: none !important;
+    }
+
+    /* Console / output adjustments */
+    #consoleDiv,
+    #outputDiv {
+        font-size: 13px;
+        padding: 8px 14px;
+    }
+}
+
+/* --- VERY SMALL MOBILE (≤480px) --- */
+@media (max-width: 480px) {
+    .header {
+        padding: 8px 12px;
+    }
+
+    .header h2 {
+        font-size: 15px;
+    }
+
+    .run-btn {
+        padding: 6px 10px;
+        font-size: 13px;
+    }
+
+    .editor-pane {
+        padding: 8px;
+    }
+
+    textarea {
+        font-size: 13px;
+    }
+
+    .mobile-editor-tab-btn {
+        padding: 8px 8px;
+        font-size: 12px;
+    }
+}

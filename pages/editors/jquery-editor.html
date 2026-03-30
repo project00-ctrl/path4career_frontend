@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live jQuery Editor - CareerPath</title>
+    <link rel="stylesheet" href="../../assets/css/editor.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+    
+    <nav class="editor-nav">
+        <div class="logo-area">
+            <img class="logo-icon" src="../../assets/images/path4career-icon.png" alt="Path4Career" style="width:32px;height:32px;border-radius:8px;">
+            <div class="logo-text">Path4Career</div>
+            <div class="title-badge"><span style="color: #a8e6cf;">🔶</span> jQuery Workspace</div>
+        </div>
+        <button class="run-btn" id="runBtn">▶ Run Code</button>
+    </nav>
+
+    <div class="workspace">
+        <div class="editor-pane">
+            <p class="pane-label">
+                <span>script.js</span>
+                <span style="color:#a8e6cf; font-size:11px;">jQuery v3.7 Loaded</span>
+            </p>
+            <textarea id="jqueryInput" spellcheck="false" aria-label="jQuery Input"></textarea>
+        </div>
+        
+        <div class="result-pane">
+            <p class="pane-label">Live Browser Output (Interactive Sandbox)</p>
+            <iframe id="previewFrame" title="jQuery Preview"></iframe>
+        </div>
+    </div>
+
+    <!-- Editor logic loaded from external file to avoid parser bugs -->
+    <script src="jquery-editor-engine.js"></script>
+</body>
+</html>

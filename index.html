@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Path4Career - Learn Skills That Build Careers</title>
+    <link rel="stylesheet" href="./assets/css/navbar.css">
+    <link rel="stylesheet" href="./assets/css/index.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- SHARED NAVBAR (injected by navbar.js) -->
+    <div id="navbar-root"></div>
+
+    <!-- hero section -->
+    <section class="hero">
+        <div class="hero-wrapper">
+            <div class="hero-inner">
+                <div class="container">
+                    <h1>Learn skills that actually build <span>careers</span></h1>
+                    <p>
+                        <span>Discover courses designed around real job roles, guided learning paths, and</span>
+                        <span>skill-based growth — all without distractions.</span>
+                    </p>
+
+                    <div class="hero-btn">
+                        <button class="hero-btn1"><a href="#Courses">Explore Courses</a></button>
+                        <button class="hero-btn2"><a href="./pages/auth/register.html">Get Started</a></button>
+                    </div>
+                </div>
+
+                <a href="./pages/roadmaps/whereto.html" class="where-start">Where to Start?</a>
+            </div>
+        </div>
+    </section>
+
+    <div class="chat" id="chatMsg">
+        <div class="container">
+            <img src="./assets/images/chatbot-walle.png" alt="Chat Bot"
+                style="width: 50px; height: 50px; border-radius: 50%; object-fit: cover;">
+        </div>
+    </div>
+
+    <div class="chat-widget" id="chat-widget">
+        <div class="chat-header">
+            <div class="chat-header-title">
+                <div class="chat-header-status"></div>
+                <span>Chat Online</span>
+            </div>
+            <button id="chat-close">✖</button>
+        </div>
+        <div class="chat-body">
+            <p><strong>Hi!</strong> Quick answers to common questions:</p>
+            <div class="chat-quick" id="chatQuick">
+                <button type="button" data-q="How do I start?">How do I start?</button>
+                <button type="button" data-q="Where are courses?">Where are courses?</button>
+                <button type="button" data-q="I want to learn Python">Learn Python</button>
+                <button type="button" data-q="Show me tutorials">Tutorials</button>
+                <button type="button" data-q="How do certificates work?">Certificates</button>
+                <button type="button" data-q="I need a resume">Resume Builder</button>
+                <button type="button" data-q="I want to practice exercises">Exercises</button>
+                <button type="button" data-q="How do I contact support?">Support</button>
+            </div>
+            <div id="chatThread"></div>
+        </div>
+        <div class="chat-input" id="chat-input">
+            <input type="text" id="chatText" placeholder="Type your question..." autocomplete="off">
+            <button type="button" id="chatSend" class="chat-send-btn" aria-label="Send">➤</button>
+        </div>
+    </div>
+
+    <!-- DYNAMIC TUTORIALS GRID -->
+    <section class="tutorials-showcase reveal" id="tutorials-showcase">
+        <div class="container">
+            <h2>Explore Tutorials</h2>
+            <p class="tutorials-subtitle">Master any technology with our hands-on, step-by-step tutorials</p>
+
+            <!-- Category Filter Tabs -->
+            <div class="tutorials-filter" id="tutorials-filter">
+                <button class="filter-tab active" data-filter="all">All</button>
+            </div>
+
+            <!-- Tutorial Cards Grid -->
+            <div class="tutorials-grid" id="tutorials-grid">
+                <!-- Populated dynamically by JS -->
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Log in and sign up -->
+    <section class="signup-section reveal">
+        <h2>Join Path4Career</h2>
+        <p>Sign up to track your progress, earn certificates, and access personalized tutorials.</p>
+
+        <div class="signup-content">
+            <ul class="signup-benefits">
+                <li>📈 Track your learning progress</li>
+                <li>🎓 Earn certificates to boost your resume</li>
+                <li>🤝 Join a community of learners</li>
+            </ul>
+            <div class="signup-buttons">
+                <button class="btn-log"><a href="./pages/auth/login.html"
+                        style="text-decoration:none;color:inherit;">Login</a></button>
+                <button class="btn-sign"><a href="./pages/auth/register.html"
+                        style="text-decoration:none;color:inherit;">Sign Up</a></button>
+            </div>
+        </div>
+    </section>
+
+    <!-- editor section -->
+    <section class="code-editor-section reveal">
+        <h2>Try It Yourself</h2>
+        <p class="editor-tagline">Switch between Frontend & Backend code 👩‍💻</p>
+
+        <!-- Toggle Buttons -->
+        <div class="editor-tabs">
+            <button id="btn-frontend" class="active">Frontend</button>
+            <button id="btn-backend">Backend</button>
+        </div>
+
+        <!-- Code Editor -->
+        <textarea id="code-editor">
+<!DOCTYPE html>
+<html>
+<body>
+  <h1>Hello Frontend!</h1>
+  <p>This is a sample HTML snippet.</p>
+</body>
+</html>
+</textarea>
+
+        <!-- Run Button -->
+        <button class="btn-run" onclick="runCode()">▶ Run Code</button>
+
+        <!-- Output -->
+        <iframe id="output-box"></iframe>
+    </section>
+
+    <!-- Exercise and Quiz section -->
+    <section class="practice-section reveal">
+        <h2>Exercises & Quizzes</h2>
+        <p class="practice-tagline">Test your skills with hands-on practice and quick challenges!</p>
+
+        <div class="practice-cards">
+            <!-- Exercises Card -->
+            <div class="card exercise-card">
+                <div class="card-icon">💪</div>
+                <h3>Exercises</h3>
+                <p>Sharpen your skills with structured challenges. Build clarity, accuracy, and confidence through
+                    hands‑on practice.</p>
+                <a href="./pages/exercise.html" class="btn-exercise">Level Up Skills</a>
+            </div>
+            <!-- Quizzes Card -->
+            <div class="card quiz-card">
+                <div class="card-icon">🧠</div>
+                <h3>Quizzes</h3>
+                <p>Test your knowledge with smart quizzes. Measure progress, boost confidence, and earn certificates as
+                    you master topics.</p>
+                <a href="./pages/quizzes.html" class="btn-quiz">Test My Knowledge</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- AI Career Shield section -->
+    <section class="ai-shield-section reveal" style="background: linear-gradient(135deg, rgba(74, 108, 247, 0.05), rgba(0, 201, 133, 0.05)); padding: 60px 0; text-align: center; border-top: 1px solid rgba(255,255,255,0.05); border-bottom: 1px solid rgba(255,255,255,0.05); margin: 40px 0;">
+        <div class="container">
+            <h2 style="color: #E5EDFF; margin-bottom: 15px;"><span style="color: #4A6CF7;">AI Career Shield</span></h2>
+            <p style="color: #9AA4B2; max-width: 600px; margin: 0 auto 30px; line-height: 1.6;">Is your career AI-proof? Upload your resume to get an instant AI Career Safety Score, discover vulnerabilities, and receive a personalized learning roadmap.</p>
+            <a href="./pages/ai-career-shield/index.html" style="display: inline-block; background: linear-gradient(135deg, #4A6CF7, #00C985); color: #fff; padding: 12px 28px; border-radius: 30px; font-weight: 600; text-decoration: none; box-shadow: 0 4px 15px rgba(74, 108, 247, 0.3); transition: transform 0.2s;">Analyze My Resume</a>
+        </div>
+    </section>
+
+    <!-- AI Career Simulator section -->
+    <section class="ai-simulator-section reveal" style="background: linear-gradient(135deg, rgba(108, 92, 231, 0.05), rgba(0, 184, 148, 0.05)); padding: 60px 0; text-align: center; border-top: 1px solid rgba(255,255,255,0.05); border-bottom: 1px solid rgba(255,255,255,0.05); margin: 40px 0;">
+        <div class="container">
+            <h2 style="color: #E5EDFF; margin-bottom: 15px;"><span style="color: #6c5ce7;">AI Career Simulator</span></h2>
+            <p style="color: #9AA4B2; max-width: 600px; margin: 0 auto 30px; line-height: 1.6;">Simulate your 10-year career trajectory, connect with mentors, analyze career risks, and build your digital twin — all powered by advanced AI intelligence.</p>
+            <a href="./pages/path4career-simulator/index.html" style="display: inline-block; background: linear-gradient(135deg, #6c5ce7, #00B894); color: #fff; padding: 12px 28px; border-radius: 30px; font-weight: 600; text-decoration: none; box-shadow: 0 4px 15px rgba(108, 92, 231, 0.3); transition: transform 0.2s;">Launch AI Career Simulator</a>
+        </div>
+    </section>
+
+    <!-- featured courses -->
+    <section class="features reveal" id="Courses">
+        <div class="container">
+            <h2>Featured Courses</h2>
+            <p>industry-relevant courses focused on skill mastery.</p>
+
+            <div class="feature-wrapper" id="course-card">
+                <!-- Populated from backend -->
+            </div>
+            <div class="view">
+                <button class="category-btns"><a href="./pages/roadmaps/courses.html">View More</a></button>
+            </div>
+        </div>
+    </section>
+
+    <!-- explore roadmaps -->
+    <section class="features reveal" id="Roadmaps">
+        <div class="container">
+            <h2>Explore Roadmaps</h2>
+            <p>Structured learning paths designed for real job roles.</p>
+
+            <div class="feature-wrapper" id="roadmap-card">
+                <!-- Populated from backend -->
+            </div>
+            <div class="view">
+                <button class="category-btns"><a href="./pages/roadmaps/roadmaps.html">View All Roadmaps</a></button>
+            </div>
+        </div>
+    </section>
+
+    <!-- career-path -->
+    <section class="career reveal">
+        <div class="container">
+            <h2>How path4career Helps</h2>
+            <p>Designed for every role in the ecosystem.</p>
+            <div class="career-wrapper">
+                <div class="student-card">
+                    <div>
+                        <img src="" alt="">
+                        <h4>Students</h4>
+                        <p>
+                            <span>Explore career-focused learning paths designed to take you from fundamentals to
+                                job-ready</span>
+                            <span>skills. Learn through structured courses, hands-on projects, real-world assessments,
+                                and</span>
+                            <span>guided road maps aligned with industry roles. Track your progress, build a strong
+                                portfolio,</span>
+                            <span>and gain clarity on what to learn, when to learn, and why it matters for your future
+                                career.</span>
+                        </p>
+                    </div>
+                </div>
+                <div class="jobseeker-card">
+                    <div>
+                        <img src="" alt="">
+                        <h4>Job Seekers</h4>
+                        <p>
+                            <span>Explore career-focused learning paths designed to take you from fundamentals to
+                                job-ready</span>
+                            <span>skills. Learn through structured courses, hands-on projects, real-world assessments,
+                                and</span>
+                            <span>guided road maps aligned with industry roles. Track your progress, build a strong
+                                portfolio,</span>
+                            <span>and gain clarity on what to learn, when to learn, and why it matters for your future
+                                career.</span>
+                        </p>
+                    </div>
+                </div>
+                <div class="hirers-card">
+                    <div>
+                        <img src="" alt="">
+                        <h4>Hirers</h4>
+                        <p>
+                            <span>Explore career-focused learning paths designed to take you from fundamentals to
+                                job-ready</span>
+                            <span>skills. Learn through structured courses, hands-on projects, real-world assessments,
+                                and</span>
+                            <span>guided road maps aligned with industry roles. Track your progress, build a strong
+                                portfolio,</span>
+                            <span>and gain clarity on what to learn, when to learn, and why it matters for your future
+                                career.</span>
+                        </p>
+                    </div>
+                </div>
+                <div class="mentor-card">
+                    <div>
+                        <img src="" alt="">
+                        <h4>Mentors</h4>
+                        <p>
+                            <span>Explore career-focused learning paths designed to take you from fundamentals to
+                                job-ready</span>
+                            <span>skills. Learn through structured courses, hands-on projects, real-world assessments,
+                                and</span>
+                            <span>guided road maps aligned with industry roles. Track your progress, build a strong
+                                portfolio,</span>
+                            <span>and gain clarity on what to learn, when to learn, and why it matters for your future
+                                career.</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <!-- CERTIFICATE -->
+    <section class="certificate reveal">
+        <div>
+            <h2><span>Kickstart</span> your career</h2>
+            <p>Get certified by completing a course</p>
+            <button><a href="./pages/roadmaps/courses.html">Get started</a></button>
+        </div>
+    </section>
+
+    <footer class="p4c-footer">
+        <div class="p4c-footer-inner">
+            <a class="p4c-footer-brand" href="./index.html" aria-label="Path4Career Home">
+                <span class="p4c-footer-logo" aria-hidden="true">
+                    <img src="./assets/images/path4career-icon.png" alt="Path4Career logo"
+                        style="width:34px;height:34px;object-fit:contain;display:block;">
+                </span>
+                <span class="p4c-footer-name">Path4Career</span>
+            </a>
+
+            <nav class="p4c-footer-links" aria-label="Footer">
+                <a href="./pages/tutorial.html">Tutorials</a>
+                <a href="./pages/reference.html">References</a>
+                <a href="./pages/roadmaps/roadmaps.html">Roadmaps</a>
+                <a href="./pages/roadmaps/courses.html">Courses</a>
+            </nav>
+
+            <p class="p4c-footer-copy">© 2026 Path4Career. Learn · Build · Grow</p>
+        </div>
+    </footer>
+
+    <script src="./assets/js/navbar.js"></script>
+    <script src="./assets/js/landingpage.js"></script>
+    <script>
+        /* ── Icon picker: returns an SVG string based on keywords in title ── */
+        function getCardIcon(title) {
+            const t = (title || '').toLowerCase();
+            // Web / HTML / CSS
+            if (/web|html|css/.test(t)) return `<svg xmlns="http://www.w3.org/2000/svg" width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10A15.3 15.3 0 0 1 12 2z"/></svg>`;
+            // Frontend / React / Bootstrap / jQuery
+            if (/front|react|bootstrap|jquery|ui|angular|vue/.test(t)) return `<svg xmlns="http://www.w3.org/2000/svg" width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/><line x1="14" y1="4" x2="10" y2="20"/></svg>`;
+            // Python / Data / ML
+            if (/python|data|machine|ml|ai|pandas|numpy/.test(t)) return `<svg xmlns="http://www.w3.org/2000/svg" width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>`;
+            // Java / Enterprise / C#
+            if (/java|enterprise|c#|spring|\.net/.test(t)) return `<svg xmlns="http://www.w3.org/2000/svg" width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2" ry="2"/><rect x="9" y="9" width="6" height="6"/><line x1="9" y1="1" x2="9" y2="4"/><line x1="15" y1="1" x2="15" y2="4"/><line x1="9" y1="20" x2="9" y2="23"/><line x1="15" y1="20" x2="15" y2="23"/><line x1="20" y1="9" x2="23" y2="9"/><line x1="20" y1="14" x2="23" y2="14"/><line x1="1" y1="9" x2="4" y2="9"/><line x1="1" y1="14" x2="4" y2="14"/></svg>`;
+            // Backend / Server / API / Node
+            if (/back|server|api|node|express|django/.test(t)) return `<svg xmlns="http://www.w3.org/2000/svg" width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="8" rx="2" ry="2"/><rect x="2" y="14" width="20" height="8" rx="2" ry="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/></svg>`;
+            // Full-stack
+            if (/full\s*stack/.test(t)) return `<svg xmlns="http://www.w3.org/2000/svg" width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>`;
+            // Database / SQL
+            if (/database|sql|mongo|postgre/.test(t)) return `<svg xmlns="http://www.w3.org/2000/svg" width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>`;
+            // Security / Cyber
+            if (/secur|cyber|hack/.test(t)) return `<svg xmlns="http://www.w3.org/2000/svg" width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>`;
+            // Cloud / DevOps
+            if (/cloud|devops|docker|aws|azure/.test(t)) return `<svg xmlns="http://www.w3.org/2000/svg" width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/></svg>`;
+            // Mobile / Android / iOS
+            if (/mobile|android|ios|flutter|swift/.test(t)) return `<svg xmlns="http://www.w3.org/2000/svg" width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>`;
+            // Default — generic code icon
+            return `<svg xmlns="http://www.w3.org/2000/svg" width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>`;
+        }
+
+        /* ── Gradient palettes ── */
+        const courseGradients = [
+            'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+            'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)',
+            'linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)',
+            'linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)'
+        ];
+        const roadmapGradients = [
+            'linear-gradient(135deg, #a18cd1 0%, #fbc2eb 100%)',
+            'linear-gradient(135deg, #fccb90 0%, #d57eeb 100%)',
+            'linear-gradient(135deg, #e0c3fc 0%, #8ec5fc 100%)',
+            'linear-gradient(135deg, #f5576c 0%, #ff6a00 100%)'
+        ];
+
+        function difficultyBadge(level) {
+            if (!level) return '';
+            const l = level.toLowerCase();
+            let color = '#64748b';
+            if (l === 'beginner') color = '#22c55e';
+            else if (l === 'intermediate') color = '#f59e0b';
+            else if (l === 'advanced') color = '#ef4444';
+            return `<span class="difficulty-badge" style="background:${color}15; color:${color}; border:1px solid ${color}30;">${level}</span>`;
+        }
+
+        // Featured Courses — fetch from backend and link to modules
+        (async function loadFeaturedCourses() {
+            const container = document.getElementById("course-card");
+            if (!container) return;
+
+            try {
+                const res = await fetch("https://path4career-backend.onrender.com/api/user/modules");
+                if (!res.ok) throw new Error("API error");
+                const modules = await res.json();
+
+                const featured = modules.slice(0, 4);
+
+                container.innerHTML = featured.map((m, i) => {
+                    const icon = getCardIcon(m.name);
+                    const grad = courseGradients[i % courseGradients.length];
+                    const duration = m.durationValue
+                        ? `${m.durationValue} ${(m.durationUnit || "").toLowerCase()}`
+                        : "";
+                    return `
+                    <a href="./pages/roadmaps/skills.html?courseId=${m.id}" class="course-card">
+                        <div class="card-head" style="background:${grad}">
+                            <div class="card-icon-wrap">${icon}</div>
+                        </div>
+                        <div class="card-body-content">
+                            <h4>${m.name}</h4>
+                            <p class="card-desc">${m.description || ""}</p>
+                            <div class="card-meta">
+                                ${difficultyBadge(m.difficulty)}
+                                ${duration ? `<span class="card-duration">⏱ ${duration}</span>` : ''}
+                            </div>
+                        </div>
+                    </a>`;
+                }).join("");
+
+            } catch (err) {
+                console.warn("Could not load featured courses:", err);
+            }
+        })();
+
+        // Explore Roadmaps — fetch from backend
+        (async function loadFeaturedRoadmaps() {
+            const container = document.getElementById("roadmap-card");
+            if (!container) return;
+
+            try {
+                const res = await fetch("https://path4career-backend.onrender.com/api/user/roadmaps");
+                if (!res.ok) throw new Error("API error");
+                const roadmaps = await res.json();
+
+                const featured = roadmaps.slice(0, 4);
+
+                container.innerHTML = featured.map((r, i) => {
+                    const icon = getCardIcon(r.title);
+                    const grad = roadmapGradients[i % roadmapGradients.length];
+                    const duration = r.durationValue
+                        ? `${r.durationValue} ${(r.durationUnit || "").toLowerCase()}`
+                        : "";
+                    return `
+                    <a href="./pages/roadmaps/modules.html?roadmapId=${r.id}" class="course-card">
+                        <div class="card-head" style="background:${grad}">
+                            <div class="card-icon-wrap">${icon}</div>
+                        </div>
+                        <div class="card-body-content">
+                            <h4>${r.title}</h4>
+                            <p class="card-desc">${r.jobRole || ""}</p>
+                            <div class="card-meta">
+                                ${difficultyBadge(r.difficulty)}
+                                ${duration ? `<span class="card-duration">⏱ ${duration}</span>` : ''}
+                            </div>
+                        </div>
+                    </a>`;
+                }).join("");
+
+            } catch (err) {
+                console.warn("Could not load featured roadmaps:", err);
+            }
+        })();
+    </script>
+</body>
+
+</html>

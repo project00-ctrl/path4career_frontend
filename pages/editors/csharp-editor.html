@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live C# Editor - CareerPath</title>
+    <link rel="stylesheet" href="../../assets/css/editor.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+    
+    <nav class="editor-nav">
+        <div class="logo-area">
+            <img class="logo-icon" src="../../assets/images/path4career-icon.png" alt="Path4Career" style="width:32px;height:32px;border-radius:8px;">
+            <div class="logo-text">Path4Career</div>
+            <div class="title-badge">🔷 C# Workspace</div>
+        </div>
+        <button class="run-btn" id="runBtn" onclick="executeCSharp()">▶ Compile & Run</button>
+    </nav>
+
+    <div class="workspace">
+        <div class="editor-pane">
+            <p class="pane-label">
+                <span>Program.cs</span>
+                <span class="status-text">Virtual .NET Simulator</span>
+            </p>
+            <textarea id="csharpInput" spellcheck="false" aria-label="C# Input"></textarea>
+        </div>
+        
+        <div class="result-pane">
+            <p class="pane-label">Terminal Output</p>
+            <div id="consoleDiv">
+                <span class="log-system">✔ Virtual .NET Simulator Ready. Click "Compile & Run" to execute instantly in the browser.</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+const csharpInput = document.getElementById('csharpInput');
+        const consoleDiv = document.getElementById('consoleDiv');
+        const runBtn = document.getElementById('runBtn');
+
+        // 1. Fetch saved code or use default C# template
+        const savedCode = localStorage.getItem('careerPathCSharpCode');
+        const defaultCode = `using System;
+
+namespace MyProgram
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            // Hello World
+            Console.WriteLine("Hello from your serverless C# engine! 🚀");
+            
+            // Variables and Data Types
+            string name = "Developer";
+            int age = 25;
+            
+            Console.WriteLine(name + " is " + age + " years old.");
+            
+            // For Loop
+            for (int i = 1; i <= 3; i++)
+            {
+                Console.WriteLine("Processing cycle: " + i);
+            }
+            
+            // Arrays
+            int[] numbers = { 10, 20, 30 };
+            Console.WriteLine("Successfully created array of length: " + numbers.Length);
+        }
+    }
+}`;
+
+        csharpInput.value = savedCode ? savedCode : defaultCode;
+
+        // 2. Smart Indentation Engine (Upgraded for C# '{' Brackets)
+        csharpInput.addEventListener('keydown', function(e) {
+            
+            // Handle the 'Tab' Key
+            if (e.key === 'Tab') {
+                e.preventDefault(); 
+                const start = this.selectionStart;
+                const end = this.selectionEnd;
+                const spaces = "    "; // 4 spaces
+                
+                this.value = this.value.substring(0, start) + spaces + this.value.substring(end);
+                this.selectionStart = this.selectionEnd = start + spaces.length;
+                this.dispatchEvent(new Event('input'));
+            }
+            
+            // Handle the 'Enter' Key
+            if (e.key === 'Enter') {
+                e.preventDefault(); 
+                
+                const start = this.selectionStart;
+                const end = this.selectionEnd;
+                
+                const textBeforeCursor = this.value.substring(0, start);
+                const lines = textBeforeCursor.split(/\r?\n/);
+                const currentLine = lines[lines.length - 1] || "";
+                
+                const leadingSpacesMatch = currentLine.match(/^(\s*)/);
+                let indentSpaces = leadingSpacesMatch ? leadingSpacesMatch[1] : '';
+                
+                // MAGIC: If the line ends with an opening bracket '{', add 4 MORE spaces!
+                if (currentLine.trim().endsWith('{')) {
+                    indentSpaces += "    ";
+                }
+                
+                const insertText = "\n" + indentSpaces;
+                
+                this.value = this.value.substring(0, start) + insertText + this.value.substring(end);
+                this.selectionStart = this.selectionEnd = start + insertText.length;
+                this.dispatchEvent(new Event('input'));
+            }
+        });
+
+        // 3. Auto-Save
+        csharpInput.addEventListener('input', () => {
+            localStorage.setItem('careerPathCSharpCode', csharpInput.value);
+        });
+
+        // Helper to format output to the terminal
+        function appendToConsole(text, className) {
+            const span = document.createElement('span');
+            span.className = className;
+            span.textContent = text + '\n';
+            consoleDiv.appendChild(span);
+            consoleDiv.scrollTop = consoleDiv.scrollHeight;
+        }
+
+        // 4. The Engine: Serverless C# to JS Transpiler
+        function executeCSharp() {
+            const code = csharpInput.value.trim();
+            
+            if (!code) {
+                consoleDiv.innerHTML = '<span class="log-error">Please enter some C# code.</span>';
+                return;
+            }
+
+            consoleDiv.innerHTML = '<span class="log-loading">>>> Compiling in Virtual .NET...</span>\n';
+
+            try {
+                // --- C# SYNTAX PARSER --- //
+                
+                // 1. Locate and isolate the Main method body
+                const mainHeader = "static void Main";
+                const mainIndex = code.indexOf(mainHeader);
+                if (mainIndex === -1) {
+                    throw new Error("Execution Error: Could not find 'static void Main(string[] args)' method.");
+                }
+                
+                const openBrace = code.indexOf('{', mainIndex);
+                let braceCount = 1;
+                let closeBrace = -1;
+                
+                for (let i = openBrace + 1; i < code.length; i++) {
+                    if (code[i] === '{') braceCount++;
+                    if (code[i] === '}') braceCount--;
+                    if (braceCount === 0) {
+                        closeBrace = i;
+                        break;
+                    }
+                }
+                
+                if (closeBrace === -1) {
+                    throw new Error("Syntax Error: Mismatched braces inside the Main method.");
+                }
+                
+                let coreCode = code.substring(openBrace + 1, closeBrace);
+
+                // 2. Transpile C# Syntax to Native JavaScript
+                
+                // Remove single-line comments
+                coreCode = coreCode.replace(/\/\/.*$/gm, '');
+
+                // Transpile Console.WriteLine and Console.Write
+                coreCode = coreCode.replace(/Console\.WriteLine\s*\((.*?)\)\s*;/g, 'console.log($1);');
+                coreCode = coreCode.replace(/Console\.Write\s*\((.*?)\)\s*;/g, 'console.log($1);');
+                
+                // Transpile String Interpolation: $"Hello {name}" → `Hello ${name}`
+                coreCode = coreCode.replace(/\$"([^"]*)"/g, function(match, content) {
+                    let result = content.replace(/\{([^}]+)\}/g, '${$1}');
+                    return '`' + result + '`';
+                });
+
+                // Transpile Variable Declarations (int, string, double, bool, char, float, var → let)
+                coreCode = coreCode.replace(/\b(int|double|float|bool|string|char|long|short|byte|decimal|var)\s+([a-zA-Z_][a-zA-Z0-9_]*)\s*=/g, 'let $2 =');
+                coreCode = coreCode.replace(/\b(int|double|float|bool|string|char|long|short|byte|decimal|var)\s+([a-zA-Z_][a-zA-Z0-9_]*)\s*;/g, 'let $2;');
+                
+                // Transpile Arrays: int[] arr = { 1, 2 }; → let arr = [1, 2];
+                coreCode = coreCode.replace(/\b(int|double|float|bool|string|char|long|short|byte|decimal)\s*\[\]\s*([a-zA-Z_][a-zA-Z0-9_]*)\s*=\s*\{([^}]*)\}\s*;/g, 'let $2 = [$3];');
+                // new int[] { 1, 2 }; → [1, 2]
+                coreCode = coreCode.replace(/new\s+\w+\[\]\s*\{([^}]*)\}/g, '[$1]');
+                
+                // Transpile Lists: List<int> list = new List<int> { 1, 2 }; → let list = [1, 2];
+                coreCode = coreCode.replace(/List<[^>]+>\s+([a-zA-Z_][a-zA-Z0-9_]*)\s*=\s*new\s+List<[^>]+>\s*\{([^}]*)\}\s*;/g, 'let $1 = [$2];');
+                coreCode = coreCode.replace(/List<[^>]+>\s+([a-zA-Z_][a-zA-Z0-9_]*)\s*=\s*new\s+List<[^>]+>\s*\(\)\s*;/g, 'let $1 = [];');
+
+                // Transpile .Length → .length
+                coreCode = coreCode.replace(/\.Length\b/g, '.length');
+                
+                // Transpile .Count → .length
+                coreCode = coreCode.replace(/\.Count\b/g, '.length');
+
+                // Transpile .Add() → .push()
+                coreCode = coreCode.replace(/\.Add\s*\(/g, '.push(');
+
+                // Transpile .Contains() → .includes()
+                coreCode = coreCode.replace(/\.Contains\s*\(/g, '.includes(');
+
+                // Transpile .ToUpper() → .toUpperCase()
+                coreCode = coreCode.replace(/\.ToUpper\s*\(\)/g, '.toUpperCase()');
+                coreCode = coreCode.replace(/\.ToLower\s*\(\)/g, '.toLowerCase()');
+
+                // Transpile .Substring → .substring
+                coreCode = coreCode.replace(/\.Substring\s*\(/g, '.substring(');
+
+                // Transpile .ToString() → .toString() or String()
+                coreCode = coreCode.replace(/\.ToString\s*\(\)/g, '.toString()');
+
+                // Transpile .Equals(x) → === x
+                coreCode = coreCode.replace(/\.Equals\s*\((.*?)\)/g, '=== $1');
+
+                // Transpile Math methods (C# and JS match closely)
+                coreCode = coreCode.replace(/Math\.Abs\s*\(/g, 'Math.abs(');
+                coreCode = coreCode.replace(/Math\.Sqrt\s*\(/g, 'Math.sqrt(');
+                coreCode = coreCode.replace(/Math\.Round\s*\(/g, 'Math.round(');
+                coreCode = coreCode.replace(/Math\.Ceiling\s*\(/g, 'Math.ceil(');
+                coreCode = coreCode.replace(/Math\.Floor\s*\(/g, 'Math.floor(');
+                coreCode = coreCode.replace(/Math\.Max\s*\(/g, 'Math.max(');
+                coreCode = coreCode.replace(/Math\.Min\s*\(/g, 'Math.min(');
+                coreCode = coreCode.replace(/Math\.Pow\s*\(/g, 'Math.pow(');
+
+                // Transpile boolean literals
+                coreCode = coreCode.replace(/\btrue\b/g, 'true');
+                coreCode = coreCode.replace(/\bfalse\b/g, 'false');
+
+                // 3. Create a safe console interceptor
+                const customConsole = {
+                    log: function(...args) {
+                        const message = args.map(arg => typeof arg === 'object' ? JSON.stringify(arg) : String(arg)).join(' ');
+                        appendToConsole(message, 'log-normal');
+                    }
+                };
+
+                // 4. Execute the translated code instantly in the browser
+                const executeFn = new Function('console', `"use strict";\n${coreCode}`);
+                executeFn(customConsole);
+                
+                appendToConsole('\n--- Execution Finished ---', 'log-system');
+
+            } catch (err) {
+                appendToConsole('\n' + err.message, 'log-error');
+            }
+        }
+</script>
+</body>
+</html>

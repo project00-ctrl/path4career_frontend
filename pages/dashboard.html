@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard | Path4Career</title>
+    <link rel="stylesheet" href="../assets/css/dashboard.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="../assets/css/navbar.css">
+</head>
+
+<body>
+
+    <div id="navbar-root"></div>
+
+
+
+
+    <div class="overlay " id="overlay"></div>
+    <!-- PERSONAL DETAILS -->
+    <div class="personal ">
+        <div class="container">
+            <h1>Personal Details </h1>
+            <div class="detail-close">
+                <button id="details-close">✕</button>
+            </div>
+
+            <!-- personal form -->
+            <form action="" id="profile-form">
+                <label>FULL NAME *</label>
+                <input type="text" id="fullName" required>
+
+                <label>Email *</label>
+                <div class="verify-group">
+                    <input type="email" id="email" readonly />
+                    <button type="button" id="verifyEmail">Verify</button>
+                    <button type="button" id="editEmail">Edit</button>
+                </div>
+
+                <label>Mobile Number *</label>
+                <div class="verify-group">
+                    <input type="tel" id="phone" />
+                    <button type="button" id="verifyPhone">Verify</button>
+                    <button type="button" id="editPhone">Edit</button>
+                </div>
+                <div class="otp-box" id="otpBox">
+                    <input type="text" id="otpInput" placeholder="Enter OTP" />
+                    <button type="button" id="confirmOtp">Confirm</button>
+                </div>
+
+
+                <label>Date of Birth</label>
+                <input type="date" id="dob" />
+
+                <label>Gender</label>
+                <select id="gender">
+                    <option value="">Select</option>
+                    <option>Male</option>
+                    <option>Female</option>
+                    <option>Other</option>
+                </select>
+
+                <label>Location / Country</label>
+                <input type="text" id="location" />
+
+                <label>Profile Picture</label>
+                <input type="file" id="profilePic" accept="image/*" />
+
+                <button type="submit" id="saveBtn" disabled>Save Changes</button>
+
+            </form>
+
+        </div>
+    </div>
+
+
+    <div class="account-overlay " id="account-overlay"></div>
+    <!-- ACCOUNT SETTINGS -->
+    <div class="account ">
+        <div class="container">
+            <h2>Account Settings</h2>
+            <div class="account-close">
+                <button id="accounts-close">✕</button>
+            </div>
+
+            <!-- notification -->
+            <section>
+
+                <h3>Notifications</h3>
+                <label class="switch">
+                    <input type="checkbox" id="emailNotify">
+                    <span class="slider"></span>
+                    Email Notifications
+                </label>
+
+                <label class="switch">
+                    <input type="checkbox" id="platformNotify">
+                    <span class="slider"></span>
+                    Platform Notifications
+                </label>
+
+                <label class="switch">
+                    <input type="checkbox" id="jobAlerts">
+                    <span class="slider"></span>
+                    Job Alerts
+                </label>
+
+            </section>
+
+            <!-- Preferences -->
+            <section>
+                <h3>Preferences</h3>
+
+                <label>Theme</label>
+                <select id="theme">
+                    <option value="system">System</option>
+                    <option value="light">Light</option>
+                    <option value="dark">Dark</option>
+                </select>
+
+                <label>Language</label>
+                <select disabled>
+                    <option>English (Coming Soon)</option>
+                </select>
+
+                <label>Default Learning Path</label>
+                <select id="learningPath">
+                    <option value="student">Student</option>
+                    <option value="jobseeker">Job Seeker</option>
+                </select>
+            </section>
+
+            <!-- Security -->
+            <section>
+                <h3>Security</h3>
+
+                <p><strong>Last Login:</strong> <span id="lastLogin"></span></p>
+                <p><strong>Active Sessions:</strong> <span id="sessions">2</span></p>
+
+                <button class="danger" id="logoutAll">Logout From All Devices</button>
+            </section>
+
+        </div>
+    </div>
+
+    <!-- CHANGE PASSWORD -->
+    <div class="password-overlay" id="passwordOverlay"></div>
+
+    <div class="change-password" id="changePassword">
+        <h2>Change Password</h2>
+
+        <form id="passwordForm">
+            <label>
+                Current Password
+                <input type="password" id="currentPassword" required>
+            </label>
+
+            <label>
+                New Password
+                <input type="password" id="newPassword" required>
+            </label>
+
+            <label>
+                Confirm New Password
+                <input type="password" id="confirmPassword" required>
+            </label>
+            <p class="error" id="passwordError"></p>
+
+            <button type="submit">Update Password</button>
+        </form>
+
+        <button class="close-btn" id="passwordClose">✕</button>
+    </div>
+
+    <!-- hero cards -->
+
+    <div class="hero-wrapper">
+        <div class="container">
+
+            <div class="hero">
+                <h1>Welcome back, <span>Pranitha</span> 👋</h1>
+                <p>Your career growth — beautifully tracked</p>
+            </div>
+
+            <div class="kpis">
+                <div class="kpi"><span>Learning Streak 🔥</span>
+                    <h2>12 Days</h2>
+                </div>
+                <div class="kpi"><span>Courses Completed</span>
+                    <h2>5</h2>
+                </div>
+                <div class="kpi"><span>Jobs Applied</span>
+                    <h2>18</h2>
+                </div>
+                <div class="kpi"><span>Skill Level</span>
+                    <h2>Intermediate</h2>
+                </div>
+            </div>
+
+            <div class="grid">
+
+                <div class="card">
+                    <h3>Skill Progress</h3>
+                    <div class="progress-wrap">
+                        <div class="ring"><span>78%</span></div>
+                        <div class="skills">
+                            <div class="skill"><label>HTML</label>
+                                <div class="bar">
+                                    <div style="width:95%"></div>
+                                </div>
+                            </div>
+                            <div class="skill"><label>CSS</label>
+                                <div class="bar">
+                                    <div style="width:80%"></div>
+                                </div>
+                            </div>
+                            <div class="skill"><label>JavaScript</label>
+                                <div class="bar">
+                                    <div style="width:60%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h3>Recent Activity</h3>
+                    <div class="timeline">
+                        <div class="event">
+                            <div class="dot"></div>
+                            <div>
+                                <p>Completed HTML Module</p><span>1 hour ago</span>
+                            </div>
+                        </div>
+                        <div class="event">
+                            <div class="dot"></div>
+                            <div>
+                                <p>Earned CSS Badge</p><span>Yesterday</span>
+                            </div>
+                        </div>
+                        <div class="event">
+                            <div class="dot"></div>
+                            <div>
+                                <p>Applied for Frontend Job</p><span>2 days ago</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h3>Achievements</h3>
+                    <div class="badges">
+                        <div class="badge">🔥 7-Day Streak</div>
+                        <div class="badge">🏆 HTML Pro</div>
+                        <div class="badge">⚡ Fast Learner</div>
+                        <div class="badge">💼 Job Ready</div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+    <div class="fab">
+        <button>Continue Learning</button>
+        <button>Explore Jobs</button>
+    </div>
+
+    <!-- chat -->
+    <div class="chat" id="chatMsg">
+        <div class="container">
+            <img src="../assets/images/chatbot-walle.png" alt="Chat Bot"
+                style="width: 50px; height: 50px; border-radius: 50%; object-fit: cover;">
+        </div>
+    </div>
+
+    <div class="chat-widget" id="chat-widget">
+        <div class="chat-header">
+            <div class="chat-header-title">
+                <div class="chat-header-status"></div>
+                <span>Chat Online</span>
+            </div>
+            <button id="chat-close">✖</button>
+        </div>
+        <div class="chat-body">
+            <p><strong>Hi!</strong> Quick answers to common questions:</p>
+            <div class="chat-quick" id="chatQuick">
+                <button type="button" data-q="Where is the code editor?">Code Editor</button>
+                <button type="button" data-q="How do I find jobs?">Jobs</button>
+                <button type="button" data-q="How do I start?">Getting Started</button>
+                <button type="button" data-q="How do I contact support?">Support</button>
+            </div>
+            <div id="chatThread"></div>
+            <div class="chat-input" id="chat-input">
+                <input type="text" id="chatText" placeholder="enter question" autocomplete="off">
+            </div>
+        </div>
+    </div>
+
+    <script src="../assets/js/dashboard.js"></script>
+
+    <script src="../assets/js/navbar.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,161 @@
+{
+    "language": "jQuery",
+    "icon": "jQ",
+    "color": "#0769AD",
+    "exercises": [
+        {
+            "id": 1,
+            "title": "Document Ready",
+            "difficulty": "basic",
+            "description": "Write a jQuery <code>$(document).ready()</code> that changes the text of <code>#demo</code> to <strong>jQuery is ready!</strong>.",
+            "starterCode": "<p id=\"demo\">Waiting...</p>\n<script>\n// Use jQuery to change #demo text\n</script>",
+            "expectedOutput": "",
+            "validationType": "containsAll",
+            "validationValue": [
+                "$(document).ready",
+                "#demo",
+                "jQuery is ready!"
+            ],
+            "hint": "$(document).ready(function(){ $(\"#demo\").text(\"jQuery is ready!\"); });",
+            "solutionCode": "$(document).ready(function() { $('#msg').text('Ready!'); });"
+        },
+        {
+            "id": 2,
+            "title": "Click Event",
+            "difficulty": "basic",
+            "description": "Create a button that when clicked, changes <code>#result</code> text to <strong>Button clicked!</strong>.",
+            "starterCode": "<button id=\"btn\">Click Me</button>\n<p id=\"result\">Not clicked</p>\n<script>\n// Add click handler\n</script>",
+            "expectedOutput": "",
+            "validationType": "containsAll",
+            "validationValue": [
+                ".click",
+                "#result",
+                "Button clicked!"
+            ],
+            "hint": "$(\"#btn\").click(function(){ $(\"#result\").text(\"Button clicked!\"); });",
+            "solutionCode": "$('#btn').click(function() { $('#box').hide(); });"
+        },
+        {
+            "id": 3,
+            "title": "Hide Element",
+            "difficulty": "basic",
+            "description": "Create a button that hides the paragraph <code>#text</code> when clicked using <code>.hide()</code>.",
+            "starterCode": "<p id=\"text\">This will disappear!</p>\n<button id=\"hideBtn\">Hide</button>\n<script>\n// Hide #text on click\n</script>",
+            "expectedOutput": "",
+            "validationType": "containsAll",
+            "validationValue": [
+                ".hide()",
+                "#hideBtn",
+                "#text"
+            ],
+            "hint": "$(\"#hideBtn\").click(function(){ $(\"#text\").hide(); });",
+            "solutionCode": "$('#btn').click(function() { $('#box').addClass('active'); });"
+        },
+        {
+            "id": 4,
+            "title": "Toggle",
+            "difficulty": "basic",
+            "description": "Use <code>.toggle()</code> to show/hide <code>#box</code> when a button is clicked.",
+            "starterCode": "<div id=\"box\" style=\"background:#00ffb3;padding:20px;\">Toggle Me</div>\n<button id=\"toggleBtn\">Toggle</button>\n<script>\n// Toggle #box\n</script>",
+            "expectedOutput": "",
+            "validationType": "containsAll",
+            "validationValue": [
+                ".toggle()",
+                "#toggleBtn"
+            ],
+            "hint": "$(\"#toggleBtn\").click(function(){ $(\"#box\").toggle(); });",
+            "solutionCode": "$('#btn').click(function() { $('#box').fadeIn(); });"
+        },
+        {
+            "id": 5,
+            "title": "CSS Manipulation",
+            "difficulty": "basic",
+            "description": "Use <code>.css()</code> to change the color of <code>#heading</code> to <strong>red</strong>.",
+            "starterCode": "<h2 id=\"heading\">Styled Heading</h2>\n<script>\n// Change color to red\n</script>",
+            "expectedOutput": "",
+            "validationType": "containsAll",
+            "validationValue": [
+                ".css(",
+                "color",
+                "red"
+            ],
+            "hint": "$(\"#heading\").css(\"color\", \"red\");",
+            "solutionCode": "$('#list').append('<li>New Item</li>');"
+        },
+        {
+            "id": 6,
+            "title": "Add Class",
+            "difficulty": "basic",
+            "description": "Use <code>.addClass()</code> to add class <strong>highlight</strong> to <code>#box</code>.",
+            "starterCode": "<style>.highlight { background: yellow; padding: 10px; }</style>\n<div id=\"box\">Add class to me</div>\n<script>\n// Add highlight class\n</script>",
+            "expectedOutput": "",
+            "validationType": "containsAll",
+            "validationValue": [
+                ".addClass",
+                "highlight"
+            ],
+            "hint": "$(\"#box\").addClass(\"highlight\");",
+            "solutionCode": "let text = $('#input').val();"
+        },
+        {
+            "id": 7,
+            "title": "Append HTML",
+            "difficulty": "basic",
+            "description": "Use <code>.append()</code> to add a new <code>&lt;li&gt;</code> with text <strong>Item 3</strong> to <code>#list</code>.",
+            "starterCode": "<ul id=\"list\">\n  <li>Item 1</li>\n  <li>Item 2</li>\n</ul>\n<script>\n// Append Item 3\n</script>",
+            "expectedOutput": "",
+            "validationType": "containsAll",
+            "validationValue": [
+                ".append",
+                "Item 3"
+            ],
+            "hint": "$(\"#list\").append(\"<li>Item 3</li>\");",
+            "solutionCode": "$('#msg').css('color', 'red');"
+        },
+        {
+            "id": 8,
+            "title": "FadeIn/FadeOut",
+            "difficulty": "intermediate",
+            "description": "Use <code>.fadeOut()</code> followed by <code>.fadeIn()</code> on <code>#box</code>.",
+            "starterCode": "<div id=\"box\" style=\"background:#61DAFB;padding:20px;\">Fade Me</div>\n<button id=\"fadeBtn\">Fade</button>\n<script>\n// Fade out then fade in\n</script>",
+            "expectedOutput": "",
+            "validationType": "containsAll",
+            "validationValue": [
+                ".fadeOut",
+                ".fadeIn"
+            ],
+            "hint": "$(\"#fadeBtn\").click(function(){ $(\"#box\").fadeOut().fadeIn(); });",
+            "solutionCode": "$.get('data.txt', function(data) { console.log(data); });"
+        },
+        {
+            "id": 9,
+            "title": "AJAX Get",
+            "difficulty": "intermediate",
+            "description": "Write a <code>$.get()</code> call to fetch from a URL placeholder and log the response.",
+            "starterCode": "<script>\n// Use $.get to fetch data\n</script>",
+            "expectedOutput": "",
+            "validationType": "containsAll",
+            "validationValue": [
+                "$.get",
+                "function"
+            ],
+            "hint": "$.get(\"https://api.example.com/data\", function(data){ console.log(data); });",
+            "solutionCode": "$('#box').animate({ left: '250px' });"
+        },
+        {
+            "id": 10,
+            "title": "Each Loop",
+            "difficulty": "intermediate",
+            "description": "Use <code>$.each()</code> to iterate over an array <code>[10, 20, 30]</code> and append each to <code>#output</code>.",
+            "starterCode": "<div id=\"output\"></div>\n<script>\n// Use $.each to iterate and append\n</script>",
+            "expectedOutput": "",
+            "validationType": "containsAll",
+            "validationValue": [
+                "$.each",
+                "#output"
+            ],
+            "hint": "$.each([10, 20, 30], function(i, val){ $(\"#output\").append(val + \" \"); });",
+            "solutionCode": "$('#btn').on('mouseenter', function() { $(this).css('background', 'yellow'); });"
+        }
+    ]
+}

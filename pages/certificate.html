@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Certificate Catalog — Path4Career</title>
+    <meta name="description" content="Earn verified certificates by completing courses on Path4Career. View and download your certificates.">
+    <link rel="stylesheet" href="../assets/css/navbar.css">
+    <link rel="stylesheet" href="../assets/css/certificate.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,800;1,400;1,600&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- SHARED NAVBAR -->
+    <div id="navbar-root"></div>
+
+    <!-- ══ PAGE HEADER ══ -->
+    <header class="cert-page-header">
+        <div class="cert-ph-inner">
+            <div class="cert-ph-left">
+                <div>
+                    <span class="cert-ph-brand">Path4Career</span>
+                    <span class="cert-ph-sub">Certificate Catalog</span>
+                </div>
+            </div>
+            <p class="cert-ph-tagline">Earn verified certificates. Prove your expertise.</p>
+        </div>
+    </header>
+
+    <!-- ══ CONTROLS ══ -->
+    <div class="controls-bar">
+        <div class="controls-inner">
+            <div class="search-wrap">
+                <svg class="search-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                <input type="text" id="searchInput" placeholder="Search courses, skills…">
+            </div>
+            <div class="filter-row">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="beginner">Beginner</button>
+                <button class="filter-btn" data-filter="intermediate">Intermediate</button>
+                <button class="filter-btn" data-filter="advanced">Advanced</button>
+            </div>
+            <div class="course-counter"><span id="courseCount">0</span> Courses</div>
+            <button class="filter-btn" id="btnRefreshCerts" onclick="refreshCertificates()" style="background:#C9A84C;color:#020617;border-color:#C9A84C;font-weight:700;">🔄 Refresh Certificates</button>
+        </div>
+    </div>
+
+    <!-- ══ LOADING STATE ══ -->
+    <div class="cert-loading" id="certLoading">
+        <div class="loader-spinner"></div>
+        <p>Loading certificate catalog...</p>
+    </div>
+
+    <!-- ══ ERROR STATE ══ -->
+    <div class="cert-error" id="certError" style="display:none;">
+        <div class="error-icon">❌</div>
+        <h3>Could not load certificates</h3>
+        <p>Please make sure the backend server is running and you are logged in.</p>
+        <button class="btn-retry" onclick="loadCatalogData()">🔄 Retry</button>
+    </div>
+
+    <!-- ══ CATALOG ══ -->
+    <main class="catalog-section">
+        <div class="catalog-grid" id="catalogGrid"></div>
+    </main>
+
+    <!-- ══ CERTIFICATE PREVIEW MODAL ══ -->
+    <div class="modal-backdrop" id="certModal">
+        <div class="modal-overlay" id="modalOverlay"></div>
+        <div class="modal-shell">
+            <div class="modal-body">
+                <div id="certContainer"></div>
+            </div>
+            <div class="modal-toolbar">
+                <span class="toolbar-label">Certificate Preview</span>
+                <div class="toolbar-actions">
+                    <button class="tb-btn" id="btnDownload" onclick="downloadCert()">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                        Download PDF
+                    </button>
+                    <button class="tb-btn" id="btnPrint" onclick="window.print()">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+                        Print
+                    </button>
+                    <button class="tb-btn tb-close" id="btnClose" onclick="closeModal()">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                        Close
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="../assets/js/navbar.js"></script>
+    <script src="../assets/js/certificate.js"></script>
+</body>
+
+</html>

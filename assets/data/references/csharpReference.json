@@ -1,0 +1,40 @@
+{
+  "title": "C# Reference",
+  "description": "C# language features, LINQ, async programming, and .NET classes reference.",
+  "sections": [
+    {
+      "title": "Data Types",
+      "items": [
+        { "name": "int", "description": "32-bit signed integer.", "code": "int age = 25;" },
+        { "name": "string", "description": "Sequence of Unicode characters.", "code": "string name = \"Alice\";" },
+        { "name": "bool", "description": "Boolean true/false.", "code": "bool isActive = true;" },
+        { "name": "double", "description": "64-bit floating-point.", "code": "double price = 19.99;" },
+        { "name": "var", "description": "Implicitly typed local variable.", "code": "var items = new List<string>();" }
+      ]
+    },
+    {
+      "title": "OOP",
+      "items": [
+        { "name": "class", "description": "Define a class with properties and methods.", "code": "public class Person {\n  public string Name { get; set; }\n  public int Age { get; set; }\n}" },
+        { "name": "interface", "description": "Define a contract that classes must implement.", "code": "public interface IAnimal {\n  void Speak();\n}" },
+        { "name": "inheritance", "description": "Derive a class from a base class.", "code": "public class Dog : Animal, IAnimal {\n  public void Speak() => Console.WriteLine(\"Woof\");\n}" }
+      ]
+    },
+    {
+      "title": "LINQ",
+      "items": [
+        { "name": "Where", "description": "Filter elements.", "code": "var adults = people.Where(p => p.Age >= 18);" },
+        { "name": "Select", "description": "Project elements.", "code": "var names = people.Select(p => p.Name);" },
+        { "name": "OrderBy", "description": "Sort elements.", "code": "var sorted = people.OrderBy(p => p.Name);" },
+        { "name": "GroupBy", "description": "Group elements by key.", "code": "var groups = people.GroupBy(p => p.City);" }
+      ]
+    },
+    {
+      "title": "Async/Await",
+      "items": [
+        { "name": "async/await", "description": "Asynchronous method pattern.", "code": "public async Task<string> FetchDataAsync() {\n  var result = await httpClient.GetStringAsync(url);\n  return result;\n}" },
+        { "name": "Task", "description": "Represents an asynchronous operation.", "code": "Task.Run(() => HeavyWork());" }
+      ]
+    }
+  ]
+}

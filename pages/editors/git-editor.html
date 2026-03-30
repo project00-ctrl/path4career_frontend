@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live Git Simulator - CareerPath</title>
+    <link rel="stylesheet" href="../../assets/css/editor.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+    
+    <nav class="editor-nav">
+        <div class="logo-area">
+            <img class="logo-icon" src="../../assets/images/path4career-icon.png" alt="Path4Career" style="width:32px;height:32px;border-radius:8px;">
+            <div class="logo-text">Path4Career</div>
+            <div class="title-badge">🔀 Git Workspace</div>
+        </div>
+        <div class="nav-actions">
+            <button class="reset-btn" onclick="resetGit()">↻ Reset Terminal</button>
+            <button class="run-btn" id="runBtn" onclick="executeGit()">▶ Run Commands</button>
+        </div>
+    </nav>
+
+    <div class="workspace">
+        <div class="editor-pane">
+            <p class="pane-label">
+                <span>terminal.sh</span>
+                <span class="status-text">Git Simulator</span>
+            </p>
+            <textarea id="gitInput" spellcheck="false" aria-label="Git Input" placeholder="Enter Git commands here..."></textarea>
+        </div>
+        
+        <div class="result-pane">
+            <p class="pane-label">Terminal Output</p>
+            <div id="consoleDiv">
+                <span class="log-system">✔ Git Simulator Ready! Try running 'git init'.</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+const gitInput = document.getElementById('gitInput');
+        const consoleDiv = document.getElementById('consoleDiv');
+        const runBtn = document.getElementById('runBtn');
+
+        // Git simulator state
+        let gitState = {
+            initialized: false,
+            staged: [],
+            committed: [],
+            branch: 'main',
+            remote: null,
+            user: { name: null, email: null }
+        };
+
+        // 1. Default Git template
+        const defaultTemplate = `# Git Terminal Simulator
+# Write your commands below and click "Run Commands"
+
+git init
+git config --global user.name "Developer"
+git config --global user.email "dev@careerpath.com"
+
+git add index.html
+git commit -m "Initial commit with layout"
+git status
+git log
+`;
+
+        const savedCode = localStorage.getItem('careerPathGitCode');
+        gitInput.value = savedCode ? savedCode : defaultTemplate;
+
+        // 2. Helper to append text to console
+        function appendToConsole(text, className) {
+            const span = document.createElement('span');
+            span.className = className;
+            span.textContent = text + '\n';
+            consoleDiv.appendChild(span);
+            consoleDiv.scrollTop = consoleDiv.scrollHeight;
+        }
+
+        // 3. Reset the Git Environment completely
+        function resetGit() {
+            gitState = {
+                initialized: false,
+                staged: [],
+                committed: [],
+                branch: 'main',
+                remote: null,
+                user: { name: null, email: null }
+            };
+            consoleDiv.innerHTML = '<span class="log-system">✔ Terminal cleared. Git repository destroyed. Ready for new commands.</span>\n';
+        }
+
+        // 4. Git command simulator logic
+        function executeGitCommand(command) {
+            const cmd = command.trim();
+            
+            if (!cmd) return;
+
+            // Display the command with a simulated terminal prompt
+            appendToConsole(`student@careerpath:~/project$ ${cmd}`, 'log-command');
+
+            const parts = cmd.split(/\s+/);
+            const gitCmd = parts[0];
+
+            if (gitCmd !== 'git') {
+                appendToConsole(`bash: ${gitCmd}: command not found - did you mean 'git'?`, 'log-error');
+                return;
+            }
+
+            const subCmd = parts[1];
+            const args = parts.slice(2);
+
+            switch (subCmd) {
+                case 'init':
+                    if (!gitState.initialized) {
+                        gitState.initialized = true;
+                        appendToConsole('Initialized empty Git repository in /home/student/project/.git/', 'log-normal');
+                    } else {
+                        appendToConsole('Reinitialized existing Git repository in /home/student/project/.git/', 'log-info');
+                    }
+                    break;
+
+                case 'config':
+                    if (args[0] === '--global' && args[1] === 'user.name') {
+                        gitState.user.name = args.slice(2).join(' ').replace(/["']/g, '') || 'User';
+                        appendToConsole(`Git config: user.name = "${gitState.user.name}"`, 'log-normal');
+                    } else if (args[0] === '--global' && args[1] === 'user.email') {
+                        gitState.user.email = args[2]?.replace(/["']/g, '') || 'user@example.com';
+                        appendToConsole(`Git config: user.email = "${gitState.user.email}"`, 'log-normal');
+                    } else {
+                        appendToConsole('Usage: git config --global user.name "Name" / user.email "email@example.com"', 'log-info');
+                    }
+                    break;
+
+                case 'status':
+                    if (!gitState.initialized) {
+                        appendToConsole('fatal: not a git repository (run git init first)', 'log-error');
+                    } else {
+                        let status = `On branch ${gitState.branch}\n`;
+                        if (gitState.staged.length === 0 && gitState.committed.length === 0) {
+                            status += '\nNo commits yet\n\nnothing to commit (create/modify files first)';
+                        } else if (gitState.staged.length > 0) {
+                            status += '\nChanges to be committed:\n  (use "git restore --staged <file>..." to unstage)\n';
+                            gitState.staged.forEach(file => {
+                                status += `        new file:   ${file}\n`;
+                            });
+                        } else {
+                            status += '\nnothing to commit, working tree clean';
+                        }
+                        appendToConsole(status, 'log-output');
+                    }
+                    break;
+
+                case 'add':
+                    if (!gitState.initialized) {
+                        appendToConsole('fatal: not a git repository (run git init first)', 'log-error');
+                    } else if (args[0] === '.' || args[0] === '-A' || args[0] === '--all') {
+                        gitState.staged = ['index.html', 'style.css', 'app.js'];
+                        appendToConsole('Added all modified files to staging area.', 'log-normal');
+                    } else if (args[0]) {
+                        const file = args[0];
+                        if (!gitState.staged.includes(file)) gitState.staged.push(file);
+                        appendToConsole(`Added ${file} to staging area.`, 'log-normal');
+                    } else {
+                        appendToConsole('Nothing specified, nothing added.\nusage: git add <file> or git add .', 'log-info');
+                    }
+                    break;
+
+                case 'commit':
+                    if (!gitState.initialized) {
+                        appendToConsole('fatal: not a git repository (run git init first)', 'log-error');
+                    } else if (gitState.staged.length === 0) {
+                        appendToConsole('nothing to commit, working tree clean', 'log-info');
+                    } else if (args[0] === '-m') {
+                        // Extract message between quotes
+                        const messageMatch = cmd.match(/-m\s+["']([^"']+)["']/);
+                        const message = messageMatch ? messageMatch[1] : 'Update files';
+                        const commitHash = Math.random().toString(16).substring(2, 9);
+                        
+                        const commit = {
+                            hash: commitHash,
+                            message: message,
+                            author: gitState.user.name || 'Developer',
+                            email: gitState.user.email || 'dev@careerpath.com',
+                            date: new Date().toString().substring(0, 24)
+                        };
+                        
+                        gitState.committed.push(commit);
+                        const fileCount = gitState.staged.length;
+                        gitState.staged = []; // Clear staging
+                        
+                        appendToConsole(`[${gitState.branch} ${commitHash}] ${message}`, 'log-normal');
+                        appendToConsole(` ${fileCount} file(s) changed, insertions(+)`, 'log-output');
+                    } else {
+                        appendToConsole('error: please specify a commit message with -m "message"', 'log-error');
+                    }
+                    break;
+
+                case 'log':
+                    if (!gitState.initialized) {
+                        appendToConsole('fatal: not a git repository (run git init first)', 'log-error');
+                    } else if (gitState.committed.length === 0) {
+                        appendToConsole('fatal: your current branch does not have any commits yet', 'log-error');
+                    } else {
+                        gitState.committed.slice().reverse().forEach(commit => {
+                            appendToConsole(`commit ${commit.hash} (HEAD -> ${gitState.branch})`, 'log-command');
+                            appendToConsole(`Author: ${commit.author} <${commit.email}>`, 'log-output');
+                            appendToConsole(`Date:   ${commit.date}`, 'log-output');
+                            appendToConsole(`\n    ${commit.message}\n`, 'log-normal');
+                        });
+                    }
+                    break;
+
+                case 'branch':
+                    if (!gitState.initialized) {
+                        appendToConsole('fatal: not a git repository (run git init first)', 'log-error');
+                    } else if (args[0] === '-d' || args[0] === '-D') {
+                        const branch = args[1];
+                        if (branch === gitState.branch) {
+                            appendToConsole(`error: Cannot delete branch '${branch}' checked out`, 'log-error');
+                        } else {
+                            appendToConsole(`Deleted branch ${branch}.`, 'log-normal');
+                        }
+                    } else if (args[0]) {
+                        appendToConsole(`Created branch ${args[0]}`, 'log-normal');
+                    } else {
+                        let branches = `  main\n`;
+                        if (gitState.branch !== 'main') branches += `* ${gitState.branch}\n`;
+                        else branches = `* main\n`;
+                        appendToConsole(branches, 'log-output');
+                    }
+                    break;
+
+                case 'checkout':
+                    if (!gitState.initialized) {
+                        appendToConsole('fatal: not a git repository (run git init first)', 'log-error');
+                    } else if (args[0] === '-b') {
+                        gitState.branch = args[1];
+                        appendToConsole(`Switched to a new branch '${args[1]}'`, 'log-normal');
+                    } else if (args[0]) {
+                        gitState.branch = args[0];
+                        appendToConsole(`Switched to branch '${args[0]}'`, 'log-normal');
+                    }
+                    break;
+
+                case 'push':
+                    if (!gitState.initialized) {
+                        appendToConsole('fatal: not a git repository (run git init first)', 'log-error');
+                    } else if (gitState.committed.length === 0) {
+                        appendToConsole('error: failed to push some refs to remote', 'log-error');
+                        appendToConsole('hint: You have uncommitted changes that must be committed first', 'log-info');
+                    } else {
+                        gitState.remote = args[1] || 'origin';
+                        appendToConsole(`Enumerating objects: ${gitState.committed.length * 3}, done.`, 'log-output');
+                        appendToConsole(`Writing objects: 100% (${gitState.committed.length * 3}/${gitState.committed.length * 3}), done.`, 'log-output');
+                        appendToConsole(`To https://github.com/careerpath/project.git`, 'log-info');
+                        appendToConsole(` * [new branch]      ${gitState.branch} -> ${gitState.branch}`, 'log-normal');
+                    }
+                    break;
+
+                case 'help':
+                    appendToConsole('Git commands simulated here:', 'log-normal');
+                    appendToConsole('  init     - Initialize a new repository', 'log-output');
+                    appendToConsole('  config   - Configure user.name and user.email', 'log-output');
+                    appendToConsole('  status   - Show working tree status', 'log-output');
+                    appendToConsole('  add      - Add files to staging', 'log-output');
+                    appendToConsole('  commit   - Record changes to repository', 'log-output');
+                    appendToConsole('  log      - Show commit history', 'log-output');
+                    appendToConsole('  branch   - List/create/delete branches', 'log-output');
+                    appendToConsole('  checkout - Switch branches', 'log-output');
+                    appendToConsole('  push     - Push to remote', 'log-output');
+                    break;
+
+                default:
+                    appendToConsole(`git: '${subCmd}' is not a simulated command. Try 'git help'.`, 'log-error');
+            }
+        }
+
+        // 5. Main Execution Flow
+        function executeGit() {
+            const code = gitInput.value.trim();
+            
+            if (!code) {
+                appendToConsole('Please enter a Git command.', 'log-error');
+                return;
+            }
+
+            localStorage.setItem('careerPathGitCode', code);
+            
+            // Add a visual separator between runs
+            appendToConsole('\n----------------------------------------', 'log-output');
+            
+            // Execute line by line
+            const lines = code.split('\n');
+            lines.forEach(line => {
+                if (line.trim() && !line.trim().startsWith('#')) {
+                    executeGitCommand(line.trim());
+                }
+            });
+        }
+
+        // Keyboard shortcut (Ctrl+Enter to run)
+        gitInput.addEventListener('keydown', function(e) {
+            if (e.ctrlKey && e.key === 'Enter') {
+                executeGit();
+            }
+        });
+</script>
+</body>
+</html>

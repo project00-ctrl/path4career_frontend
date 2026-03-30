@@ -1,0 +1,362 @@
+[
+    {
+        "id": "git-1",
+        "question": "What is Git?",
+        "options": [
+            "A popular programming language.",
+            "A distributed version control system.",
+            "A web hosting service for websites.",
+            "An operating system."
+        ],
+        "correctAnswer": 1,
+        "explanation": "Git is a distributed version control system that tracks changes in source code and helps developers collaborate."
+    },
+    {
+        "id": "git-2",
+        "question": "Who created Git in 2005?",
+        "options": [
+            "Bill Gates",
+            "Steve Jobs",
+            "Linus Torvalds",
+            "Mark Zuckerberg"
+        ],
+        "correctAnswer": 2,
+        "explanation": "Git was created by Linus Torvalds in 2005 to help manage the development of the Linux kernel."
+    },
+    {
+        "id": "git-3",
+        "question": "Where is Git primarily used?",
+        "options": [
+            "Only on the cloud.",
+            "Locally on your computer and with remote hosting services like GitHub.",
+            "Only inside code editors.",
+            "Exclusively on Linux servers."
+        ],
+        "correctAnswer": 1,
+        "explanation": "Git runs locally to manage versions on your machine and communicates with remote servers (like GitHub or GitLab) for team collaboration."
+    },
+    {
+        "id": "git-4",
+        "question": "How do you check if Git is installed on your system?",
+        "options": [
+            "git status",
+            "git check",
+            "git --version",
+            "git info"
+        ],
+        "correctAnswer": 2,
+        "explanation": "Running 'git --version' in the terminal returns the installed version of Git, confirming it is ready to use."
+    },
+    {
+        "id": "git-5",
+        "question": "Which command is used to set your name for all local Git repositories?",
+        "options": [
+            "git config --global user.name \"Your Name\"",
+            "git name \"Your Name\"",
+            "git set user \"Your Name\"",
+            "git user --global \"Your Name\""
+        ],
+        "correctAnswer": 0,
+        "explanation": "The 'git config --global user.name' command tells Git who is making the commits across your system."
+    },
+    {
+        "id": "git-6",
+        "question": "Why does Git require you to configure your email address?",
+        "options": [
+            "To send you marketing emails.",
+            "To log into GitHub.",
+            "To associate your identity with the commits you make.",
+            "To send error reports automatically."
+        ],
+        "correctAnswer": 2,
+        "explanation": "Git embeds your name and email into every commit you create so teams know exactly who made which changes."
+    },
+    {
+        "id": "git-7",
+        "question": "Which command initializes a new Git repository in a directory?",
+        "options": [
+            "git start",
+            "git new",
+            "git create",
+            "git init"
+        ],
+        "correctAnswer": 3,
+        "explanation": "Running 'git init' creates a hidden .git directory where all the version control tracking and history are securely stored."
+    },
+    {
+        "id": "git-8",
+        "question": "What is an 'untracked' file in Git?",
+        "options": [
+            "A file that has been deleted.",
+            "A file that is corrupted.",
+            "A newly created file that Git is not yet monitoring.",
+            "A file pushed to GitHub."
+        ],
+        "correctAnswer": 2,
+        "explanation": "When you create a new file, it is untracked until you intentionally tell Git to start monitoring it by adding it to the staging area."
+    },
+    {
+        "id": "git-9",
+        "question": "Which command lets you view the current state of untracked, modified, and staged files?",
+        "options": [
+            "git state",
+            "git status",
+            "git log",
+            "git show"
+        ],
+        "correctAnswer": 1,
+        "explanation": "'git status' gives a comprehensive overview of what files are staged, unstaged, or untracked in your working directory."
+    },
+    {
+        "id": "git-10",
+        "question": "What is the purpose of the 'Staging Area' in Git?",
+        "options": [
+            "It is a backup folder.",
+            "It permanently saves code to the cloud.",
+            "It is where you prepare and group changes before committing them.",
+            "It deletes old files."
+        ],
+        "correctAnswer": 2,
+        "explanation": "The staging area acts as a \"prep zone\" where you organize specific file modifications that will go into your next commit."
+    },
+    {
+        "id": "git-11",
+        "question": "How do you stage all untracked and modified files at once?",
+        "options": [
+            "git stage all",
+            "git add --all",
+            "git commit -all",
+            "git push all"
+        ],
+        "correctAnswer": 1,
+        "explanation": "'git add --all' (or 'git add -A' or 'git add .') moves all current changes into the staging area."
+    },
+    {
+        "id": "git-12",
+        "question": "If you nervously staged a file by mistake, how can you unstage it?",
+        "options": [
+            "git delete <file>",
+            "git unstage <file>",
+            "git restore --staged <file>",
+            "git clear <file>"
+        ],
+        "correctAnswer": 2,
+        "explanation": "'git restore --staged <file>' removes the file from the staging area without modifying the actual file contents."
+    },
+    {
+        "id": "git-13",
+        "question": "What does a 'git commit' actually do?",
+        "options": [
+            "Uploads code to the internet.",
+            "Saves a permanent snapshot of the staged changes along with a descriptive message.",
+            "Restores deleted files.",
+            "Merges two branches together."
+        ],
+        "correctAnswer": 1,
+        "explanation": "A commit writes your staged changes into Git's local database history as an immutable snapshot."
+    },
+    {
+        "id": "git-14",
+        "question": "Which command both stages modified tracked files AND commits them in one step?",
+        "options": [
+            "git commit -am \"message\"",
+            "git push -m \"message\"",
+            "git add-commit \"message\"",
+            "git save \"message\""
+        ],
+        "correctAnswer": 0,
+        "explanation": "Adding the '-a' flag to 'git commit' automatically stages all tracked files that have been modified before committing."
+    },
+    {
+        "id": "git-15",
+        "question": "How can you view the built-in manual page for the 'commit' command?",
+        "options": [
+            "git man commit",
+            "git manual commit",
+            "git commit --info",
+            "git help commit"
+        ],
+        "correctAnswer": 3,
+        "explanation": "'git help <command>' or 'git <command> --help' opens the detailed documentation for that specific Git tool."
+    },
+    {
+        "id": "git-16",
+        "question": "Which command uploads your local repository commits to a remote server like GitHub?",
+        "options": [
+            "git pull",
+            "git upload",
+            "git push",
+            "git send"
+        ],
+        "correctAnswer": 2,
+        "explanation": "'git push' pushes your local branch commits to the corresponding branch on the remote repository."
+    },
+    {
+        "id": "git-17",
+        "question": "What does 'origin' usually refer to in Git?",
+        "options": [
+            "The first commit you ever made.",
+            "The default name given to the remote repository you cloned from.",
+            "The master branch.",
+            "The local computer you are typing on."
+        ],
+        "correctAnswer": 1,
+        "explanation": "When you clone a repo, Git automatically creates a remote connection called 'origin' pointing back to the source URL."
+    },
+    {
+        "id": "git-18",
+        "question": "Which command safely undoes a past commit by creating a brand NEW commit with the opposite changes?",
+        "options": [
+            "git revert",
+            "git reset",
+            "git undo",
+            "git delete"
+        ],
+        "correctAnswer": 0,
+        "explanation": "'git revert' is safe for shared history because it doesn't delete the old commit; it just adds a new one that nullifies it."
+    },
+    {
+        "id": "git-19",
+        "question": "What does 'git reset --hard' do?",
+        "options": [
+            "Formats your hard drive.",
+            "Moves HEAD back to a previous commit and discards all newer changes completely.",
+            "Keeps your file changes but unstages them.",
+            "Pushes forcefully to the remote server."
+        ],
+        "correctAnswer": 1,
+        "explanation": "A 'hard' reset is destructive. It moves the branch pointer back and forcefully overwrites your working directory to match that old commit."
+    },
+    {
+        "id": "git-20",
+        "question": "If you accidentally ran a --hard reset and lost commits, which tool can help you find and recover them?",
+        "options": [
+            "git recover",
+            "git restore",
+            "git log",
+            "git reflog"
+        ],
+        "correctAnswer": 3,
+        "explanation": "'git reflog' keeps a diary of everywhere HEAD has pointed recently, allowing you to jump back to \"lost\" commits."
+    },
+    {
+        "id": "git-21",
+        "question": "Which command allows you to modify the most recently made commit (e.g., to fix a typo in the message or add a forgotten file)?",
+        "options": [
+            "git commit --amend",
+            "git commit --edit",
+            "git update",
+            "git fix"
+        ],
+        "correctAnswer": 0,
+        "explanation": "'git commit --amend' rewrites the last commit, replacing it with the newly staged files and updated message."
+    },
+    {
+        "id": "git-22",
+        "question": "What is the purpose of a .gitignore file?",
+        "options": [
+            "To hide the repository from internet users.",
+            "To tell Git which files or directories to permanently ignore and never track.",
+            "To delete corrupted files automatically.",
+            "To stop Git from printing error messages."
+        ],
+        "correctAnswer": 1,
+        "explanation": "Adding file patterns (like node_modules/ or .env) to .gitignore prevents those files from ever being staged or committed."
+    },
+    {
+        "id": "git-23",
+        "question": "What does Git LFS stand for?",
+        "options": [
+            "Git Local File System",
+            "Git Large File Storage",
+            "Git Log Format Standard",
+            "Git Live File Sync"
+        ],
+        "correctAnswer": 1,
+        "explanation": "Git Large File Storage (LFS) replaces massive files (like video or audio) with tiny text pointers in Git, storing the heavy file content elsewhere."
+    },
+    {
+        "id": "git-24",
+        "question": "Why would a repository need Git LFS?",
+        "options": [
+            "Because standard Git slows down and balloons in size if it tracks huge binary/media files.",
+            "To write code faster.",
+            "To host web pages.",
+            "To encrypt passwords."
+        ],
+        "correctAnswer": 0,
+        "explanation": "Git is designed for text changes. Tracking gigabytes of changing video files bloats the repo history, making LFS essential."
+    },
+    {
+        "id": "git-25",
+        "question": "If you want to unstage files but keep the modifications in your working directory, which reset flag should you use?",
+        "options": [
+            "--hard",
+            "--mixed",
+            "--soft",
+            "--keep"
+        ],
+        "correctAnswer": 1,
+        "explanation": "'git reset --mixed' (which is the default if no flag is given) moves the HEAD and unstages changes, but leaves your files physically altered."
+    },
+    {
+        "id": "git-26",
+        "question": "Where does Git store all of its internal version control tracking data for your project?",
+        "options": [
+            "In your Documents folder.",
+            "In a hidden '.git' folder inside your project directory.",
+            "On the Windows Registry.",
+            "Inside the .gitignore file."
+        ],
+        "correctAnswer": 1,
+        "explanation": "The 'git init' command creates a hidden directory named '.git' which contains the complete history and configuration of the repository."
+    },
+    {
+        "id": "git-27",
+        "question": "What happens if you run 'git commit' without the '-m' flag?",
+        "options": [
+            "The commit fails instantly with an error.",
+            "Git automatically writes 'Update' as the message.",
+            "Git opens your default terminal text editor to let you type a multi-line message.",
+            "The commit is saved with a blank message."
+        ],
+        "correctAnswer": 2,
+        "explanation": "If you omit '-m', Git opens an editor (like Vim or Nano) so you can formulate a detailed commit message."
+    },
+    {
+        "id": "git-28",
+        "question": "How is 'git revert' different from 'git reset'?",
+        "options": [
+            "There is no difference.",
+            "Revert pushes to the remote; Reset pulls from the remote.",
+            "Revert deletes old history; Reset keeps it.",
+            "Revert moves forward by adding a new undo-commit; Reset moves backward by discarding commits."
+        ],
+        "correctAnswer": 3,
+        "explanation": "Revert is safe for shared branches because it preserves history, whereas Reset actually rewrites history."
+    },
+    {
+        "id": "git-29",
+        "question": "Which of the following describes the difference between Local and Remote repositories?",
+        "options": [
+            "Local is on your computer; Remote is hosted on a server like GitHub.",
+            "Local requires an internet connection; Remote does not.",
+            "Local only tracks text; Remote handles images.",
+            "Local is read-only; Remote is writable."
+        ],
+        "correctAnswer": 0,
+        "explanation": "A local repository lives on your physical machine, allowing offline work. A remote repository exists on a server to facilitate team sharing."
+    },
+    {
+        "id": "git-30",
+        "question": "Which file specifies rules for preventing temporary files from being tracked by Git?",
+        "options": [
+            "git.config",
+            ".gitmodules",
+            ".gitignore",
+            "git.rules"
+        ],
+        "correctAnswer": 2,
+        "explanation": "A .gitignore file consists of patterns that tell Git to ignore files, such as compiled binaries or IDE settings."
+    }
+]

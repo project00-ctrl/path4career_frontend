@@ -1,0 +1,30 @@
+{
+  "title": "GraphQL Reference",
+  "description": "GraphQL queries, mutations, schemas, and resolver patterns.",
+  "sections": [
+    {
+      "title": "Queries",
+      "items": [
+        { "name": "Basic Query", "description": "Fetch data from the server.", "code": "query {\n  users {\n    id\n    name\n    email\n  }\n}" },
+        { "name": "Query with Arguments", "description": "Pass arguments to filter results.", "code": "query {\n  user(id: \"1\") {\n    name\n    email\n  }\n}" },
+        { "name": "Aliases", "description": "Rename returned fields.", "code": "query {\n  admin: user(role: \"ADMIN\") { name }\n  member: user(role: \"MEMBER\") { name }\n}" }
+      ]
+    },
+    {
+      "title": "Mutations",
+      "items": [
+        { "name": "Create", "description": "Create new data on the server.", "code": "mutation {\n  createUser(input: { name: \"Alice\", email: \"a@b.c\" }) {\n    id\n    name\n  }\n}" },
+        { "name": "Update", "description": "Modify existing data.", "code": "mutation {\n  updateUser(id: \"1\", input: { name: \"Bob\" }) {\n    id\n    name\n  }\n}" },
+        { "name": "Delete", "description": "Remove data from the server.", "code": "mutation {\n  deleteUser(id: \"1\") {\n    success\n  }\n}" }
+      ]
+    },
+    {
+      "title": "Schema Definition",
+      "items": [
+        { "name": "Type", "description": "Define an object type.", "code": "type User {\n  id: ID!\n  name: String!\n  email: String\n  posts: [Post!]!\n}" },
+        { "name": "Input Type", "description": "Define input for mutations.", "code": "input CreateUserInput {\n  name: String!\n  email: String!\n}" },
+        { "name": "Enum", "description": "Define a set of allowed values.", "code": "enum Role {\n  ADMIN\n  MEMBER\n  GUEST\n}" }
+      ]
+    }
+  ]
+}

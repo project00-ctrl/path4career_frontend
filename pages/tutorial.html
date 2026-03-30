@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tutorials | Path4Career</title>
+    <link rel="stylesheet" href="../assets/css/navbar.css">
+    <link rel="stylesheet" href="../assets/css/tutorial.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- SHARED NAVBAR (injected by navbar.js) -->
+    <div id="navbar-root"></div>
+
+    <!-- Sidebar Toggle Button (visible on mobile) -->
+    <button class="sidebar-toggle" id="sidebarToggle" aria-label="Toggle sidebar menu">
+        <span class="sidebar-toggle-icon">☰</span>
+        <span class="sidebar-toggle-label">Menu</span>
+    </button>
+
+    <!-- Sidebar Overlay (for mobile) -->
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <div class="main-layout">
+
+        <aside class="left-sidebar" id="leftSidebar">
+            <div class="sidebar-close-wrap">
+                <button class="sidebar-close-btn" id="sidebarClose" aria-label="Close sidebar">✕</button>
+            </div>
+            <ul class="sidebar-menu">
+            </ul>
+        </aside>
+
+        <main class="content-area">
+        </main>
+
+        <aside class="right-sidebar" id="rightSidebar">
+            <!-- Populated dynamically by tutorial.js from /api/user/modules -->
+        </aside>
+
+    </div>
+
+    <script src="../assets/js/navbar.js"></script>
+    <script src="../assets/js/tutorial.js"></script>
+</body>
+
+</html>

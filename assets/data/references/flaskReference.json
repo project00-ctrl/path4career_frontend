@@ -1,0 +1,117 @@
+{
+  "sections": [
+    {
+      "title": "Application & Routing",
+      "desc": "Flask application setup, routing, and request handling.",
+      "type": "table",
+      "columns": ["API / DECORATOR", "DESCRIPTION", "EXAMPLE"],
+      "rows": [
+        { "property": "Flask(__name__)", "desc": "Create Flask application instance", "version": "app = Flask(__name__)" },
+        { "property": "@app.route('/path')", "desc": "Register a URL route to a view function", "version": "@app.route('/') def index(): return 'Hello'" },
+        { "property": "@app.route('/path', methods=['GET','POST'])", "desc": "Specify allowed HTTP methods", "version": "methods=['GET', 'POST']" },
+        { "property": "app.run(debug=True)", "desc": "Start development server with debug mode", "version": "app.run(host='0.0.0.0', port=5000, debug=True)" },
+        { "property": "<variable> in route", "desc": "Dynamic URL parameters", "version": "@app.route('/user/<int:id>')" },
+        { "property": "url_for('function_name')", "desc": "Generate URL for a view function", "version": "url_for('index')" },
+        { "property": "redirect(url)", "desc": "Redirect to another URL", "version": "return redirect(url_for('login'))" },
+        { "property": "abort(code)", "desc": "Abort request with HTTP error code", "version": "abort(404)" },
+        { "property": "@app.errorhandler(404)", "desc": "Custom error handler for HTTP status", "version": "@app.errorhandler(404) def not_found(e): ..." },
+        { "property": "@app.before_request", "desc": "Run function before each request", "version": "@app.before_request def check_auth(): ..." },
+        { "property": "@app.after_request", "desc": "Run function after each request", "version": "@app.after_request def add_headers(response): ..." }
+      ]
+    },
+    {
+      "title": "Request & Response",
+      "desc": "Accessing request data and building responses.",
+      "type": "table",
+      "columns": ["OBJECT / METHOD", "DESCRIPTION", "EXAMPLE"],
+      "rows": [
+        { "property": "request.method", "desc": "HTTP method (GET, POST, etc.)", "version": "if request.method == 'POST':" },
+        { "property": "request.args", "desc": "Query string parameters (GET)", "version": "request.args.get('page', 1, type=int)" },
+        { "property": "request.form", "desc": "Form data from POST request", "version": "request.form['username']" },
+        { "property": "request.json", "desc": "Parsed JSON body", "version": "data = request.json" },
+        { "property": "request.files", "desc": "Uploaded files", "version": "file = request.files['upload']" },
+        { "property": "request.headers", "desc": "Request headers", "version": "request.headers.get('Authorization')" },
+        { "property": "request.cookies", "desc": "Request cookies", "version": "request.cookies.get('session_id')" },
+        { "property": "jsonify(data)", "desc": "Return JSON response with correct content-type", "version": "return jsonify({'status': 'ok'})" },
+        { "property": "make_response(body, code)", "desc": "Create custom response object", "version": "resp = make_response(render_template('page.html'), 200)" },
+        { "property": "response.set_cookie()", "desc": "Set a cookie on the response", "version": "resp.set_cookie('token', value)" },
+        { "property": "send_file(path)", "desc": "Send a file as response", "version": "return send_file('report.pdf')" }
+      ]
+    },
+    {
+      "title": "Templates (Jinja2)",
+      "desc": "Jinja2 template engine syntax for rendering HTML.",
+      "type": "table",
+      "columns": ["SYNTAX", "DESCRIPTION", "EXAMPLE"],
+      "rows": [
+        { "property": "render_template('file.html', **ctx)", "desc": "Render Jinja2 template with context variables", "version": "return render_template('index.html', title='Home')" },
+        { "property": "{{ variable }}", "desc": "Output a variable value", "version": "{{ user.name }}" },
+        { "property": "{% if condition %}", "desc": "Conditional rendering", "version": "{% if user.is_admin %} Admin {% endif %}" },
+        { "property": "{% for item in list %}", "desc": "Loop through items", "version": "{% for post in posts %} {{ post.title }} {% endfor %}" },
+        { "property": "{% extends 'base.html' %}", "desc": "Template inheritance — extend a base layout", "version": "{% extends 'layout.html' %}" },
+        { "property": "{% block content %}", "desc": "Define overridable block in template", "version": "{% block content %} ... {% endblock %}" },
+        { "property": "{% include 'partial.html' %}", "desc": "Include another template", "version": "{% include 'navbar.html' %}" },
+        { "property": "{{ variable | filter }}", "desc": "Apply filter to variable", "version": "{{ name | upper }}" },
+        { "property": "{% macro name(args) %}", "desc": "Define reusable template macro", "version": "{% macro input(name, type) %}" },
+        { "property": "{{ url_for('static', filename='style.css') }}", "desc": "Generate URL for static file", "version": "Link to CSS, JS, images" }
+      ]
+    },
+    {
+      "title": "Blueprints & Extensions",
+      "desc": "Organizing large applications with blueprints and popular extensions.",
+      "type": "table",
+      "columns": ["API / EXTENSION", "DESCRIPTION", "EXAMPLE"],
+      "rows": [
+        { "property": "Blueprint('name', __name__)", "desc": "Create a modular component of the app", "version": "auth_bp = Blueprint('auth', __name__)" },
+        { "property": "app.register_blueprint(bp)", "desc": "Register blueprint with the app", "version": "app.register_blueprint(auth_bp, url_prefix='/auth')" },
+        { "property": "Flask-SQLAlchemy", "desc": "SQLAlchemy ORM integration", "version": "db = SQLAlchemy(app)" },
+        { "property": "Flask-Migrate", "desc": "Database migrations with Alembic", "version": "flask db migrate" },
+        { "property": "Flask-Login", "desc": "User session management", "version": "login_manager = LoginManager(app)" },
+        { "property": "Flask-WTF", "desc": "Form handling with CSRF protection", "version": "FlaskForm, StringField, validators" },
+        { "property": "Flask-CORS", "desc": "Cross-Origin Resource Sharing support", "version": "CORS(app)" },
+        { "property": "Flask-Mail", "desc": "Email sending support", "version": "Mail(app)" },
+        { "property": "Flask-RESTful", "desc": "Build REST APIs with resource classes", "version": "Api(app)" },
+        { "property": "Flask-JWT-Extended", "desc": "JWT authentication support", "version": "JWTManager(app)" }
+      ]
+    },
+    {
+      "title": "Database (Flask-SQLAlchemy)",
+      "desc": "ORM patterns for database operations with Flask-SQLAlchemy.",
+      "type": "table",
+      "columns": ["API / METHOD", "DESCRIPTION", "EXAMPLE"],
+      "rows": [
+        { "property": "db.Model", "desc": "Base class for database models", "version": "class User(db.Model):" },
+        { "property": "db.Column(type, ...)", "desc": "Define a table column", "version": "name = db.Column(db.String(100), nullable=False)" },
+        { "property": "db.Integer", "desc": "Integer column type", "version": "id = db.Column(db.Integer, primary_key=True)" },
+        { "property": "db.String(n)", "desc": "Variable-length string column", "version": "email = db.Column(db.String(120), unique=True)" },
+        { "property": "db.relationship()", "desc": "Define relationship between models", "version": "posts = db.relationship('Post', backref='author')" },
+        { "property": "db.ForeignKey()", "desc": "Define foreign key constraint", "version": "user_id = db.Column(db.Integer, db.ForeignKey('user.id'))" },
+        { "property": "db.create_all()", "desc": "Create all tables from models", "version": "with app.app_context(): db.create_all()" },
+        { "property": "db.session.add(obj)", "desc": "Add object to session for insert", "version": "db.session.add(user)" },
+        { "property": "db.session.commit()", "desc": "Commit changes to database", "version": "db.session.commit()" },
+        { "property": "Model.query.all()", "desc": "Get all records", "version": "users = User.query.all()" },
+        { "property": "Model.query.filter_by()", "desc": "Filter records by column value", "version": "User.query.filter_by(active=True).all()" },
+        { "property": "Model.query.get(id)", "desc": "Get record by primary key", "version": "user = User.query.get(1)" }
+      ]
+    },
+    {
+      "title": "Configuration & CLI",
+      "desc": "Flask configuration and command-line interface.",
+      "type": "table",
+      "columns": ["COMMAND / CONFIG", "DESCRIPTION", "EXAMPLE"],
+      "rows": [
+        { "property": "app.config['KEY'] = val", "desc": "Set configuration variable", "version": "app.config['SECRET_KEY'] = 'mysecret'" },
+        { "property": "app.config.from_object()", "desc": "Load config from Python object", "version": "app.config.from_object('config.ProductionConfig')" },
+        { "property": "app.config.from_envvar()", "desc": "Load config from environment variable file", "version": "app.config.from_envvar('APP_SETTINGS')" },
+        { "property": "FLASK_APP", "desc": "Environment variable pointing to app module", "version": "export FLASK_APP=app.py" },
+        { "property": "FLASK_ENV", "desc": "Set environment (development/production)", "version": "export FLASK_ENV=development" },
+        { "property": "flask run", "desc": "Start Flask development server", "version": "flask run --host=0.0.0.0 --port=5000" },
+        { "property": "flask shell", "desc": "Start interactive Python shell with app context", "version": "flask shell" },
+        { "property": "flask db init", "desc": "Initialize migration repository", "version": "flask db init" },
+        { "property": "flask db migrate", "desc": "Generate migration from model changes", "version": "flask db migrate -m 'add users table'" },
+        { "property": "flask db upgrade", "desc": "Apply migrations to database", "version": "flask db upgrade" },
+        { "property": "pip install flask", "desc": "Install Flask", "version": "pip install flask" }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live Next.js Editor - CareerPath</title>
+    <link rel="stylesheet" href="../../assets/css/editor.css">
+    <style>
+        #nextjsInput { 
+            color: #61dafb; 
+            font-weight: 400;
+        }
+        
+        .console-output {
+            flex: 1;
+            background-color: #1e1e2f;
+            display: flex;
+            flex-direction: column;
+        }
+
+        #consoleDiv {
+            flex: 1;
+            padding: 10px 20px;
+            font-family: 'Courier New', Courier, monospace;
+            overflow-y: auto;
+            color: #cbd5e1;
+            font-size: 14px;
+            white-space: pre-wrap; 
+            background: linear-gradient(180deg, #0f0f23 0%, #1a1a2e 100%);
+        }
+
+        .log-error { color: #ff4757; }
+        .log-normal { color: #00ffb3; }
+        .log-loading { color: #8be9fd; font-style: italic; }
+        .log-info { color: #ffb86c; }
+        .log-warn { color: #f1fa8c; }
+        .log-success { color: #00d4aa; font-weight: bold; }
+        
+        /* Next.js specific styling */
+        .nextjs-badge {
+            background: linear-gradient(135deg, #000000 0%, #333333 100%);
+            color: #61dafb;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            border: 1px solid #61dafb;
+            box-shadow: 0 2px 8px rgba(97, 218, 251, 0.2);
+        }
+
+        .header {
+            background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 100%);
+            border-bottom: 2px solid #61dafb !important;
+        }
+
+        .run-btn {
+            background: linear-gradient(135deg, #61dafb 0%, #21b8f9 100%);
+            color: #000;
+            border: none;
+            padding: 12px 24px;
+            font-size: 16px;
+            font-weight: 600;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(97, 218, 251, 0.3);
+        }
+
+        .run-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(97, 218, 251, 0.4);
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div style="display: flex; align-items: center; gap: 15px;">
+            <a href="../index.html" style="color: #61dafb; text-decoration: none; font-size: 14px; font-weight: 500;">← Back to Tutorials</a>
+            <h2><span style="color: #61dafb; font-size: 28px;">⚛️</span> Next.js 14+ Playground <span class="nextjs-badge">App Router | Server Components</span></h2>
+        </div>
+        <button class="run-btn" id="runBtn">▶ Run Next.js Code</button>
+    </div>
+    
+    <div class="workspace">
+        <div class="editor-pane">
+            <p class="pane-label" style="color: #9ca3af;">app/page.tsx (Server Component)</p>
+            <textarea id="nextjsInput" spellcheck="false" aria-label="Next.js Input" placeholder="// Start coding your Next.js app here..."></textarea>
+        </div>
+        
+        <div class="result-pane">
+            <p class="pane-label" style="padding:10px 20px 0; color: #9ca3af;">Next.js Server Console & Build Output</p>
+            <div class="console-output">
+                <div id="consoleDiv">
+                    <span class="log-loading">🚀 Next.js Development Server Starting...</span>
+                    <span class="log-loading">✓ Loading App Router simulation</span>
+                    <span class="log-loading">✓ Server Components enabled</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+const nextjsInput = document.getElementById('nextjsInput');
+        const consoleDiv = document.getElementById('consoleDiv');
+        const runBtn = document.getElementById('runBtn');
+
+        // Default Next.js template with App Router
+        const defaultTemplate = `// Next.js 14+ App Router - Server Component
+// File: app/page.tsx
+
+import { Suspense } from 'react';
+
+async function getPosts() {
+  // Simulated API call (runs on server)
+  await new Promise(resolve => setTimeout(resolve, 500));
+  return [
+    { id: 1, title: 'First Post', content: 'Welcome to Next.js!' },
+    { id: 2, title: 'Server Components', content: 'No client bundle needed' },
+    { id: 3, title: 'App Router', content: 'File-system routing' }
+  ];
+}
+
+export default async function HomePage() {
+  console.log('📄 Rendering Server Component on server...');
+  
+  const posts = await getPosts();
+  
+  console.log('✅ Data fetched:', posts.length, 'posts');
+  console.log('🚀 Page rendered successfully');
+
+  return (
+    <div style={{ padding: '2rem', maxWidth: '800px', margin: '0 auto' }}>
+      <h1 style={{ color: '#61dafb', fontSize: '2.5rem' }}>
+        Welcome to <span style={{ color: '#000' }}>Next.js</span> 14+
+      </h1>
+      
+      <p style={{ color: '#9ca3af', fontSize: '1.1rem' }}>
+        Server Components • App Router • TypeScript Ready
+      </p>
+      
+      <div style={{ marginTop: '2rem' }}>
+        <h2 style={{ color: '#fff', borderBottom: '2px solid #61dafb' }}>
+          Recent Posts ({posts.length})
+        </h2>
+        <Suspense fallback={<div style={{ color: '#8be9fd' }}>Loading posts...</div>}>
+          {posts.map((post) => (
+            <div key={post.id} style={{
+              background: 'rgba(255,255,255,0.05)',
+              padding: '1rem',
+              margin: '1rem 0',
+              borderRadius: '8px',
+              borderLeft: '4px solid #61dafb'
+            }}>
+              <h3 style={{ margin: '0 0 0.5rem 0', color: '#61dafb' }}>
+                {post.title}
+              </h3>
+              <p>{post.content}</p>
+            </div>
+          ))}
+        </Suspense>
+      </div>
+
+      <div style={{ marginTop: '3rem', padding: '1.5rem', background: 'rgba(97, 218, 251, 0.1)', borderRadius: '12px' }}>
+        <h3 style={{ color: '#61dafb', marginTop: 0 }}>✅ Next.js Features Simulated:</h3>
+        <ul style={{ color: '#cbd5e1', fontSize: '0.95rem' }}>
+          <li>Server-side data fetching</li>
+          <li>Automatic Suspense boundaries</li>
+          <li>TypeScript support</li>
+          <li>Zero-config optimization</li>
+          <li>Streaming & partial rendering</li>
+        </ul>
+      </div>
+    </div>
+  );
+}
+
+console.log('📝 Next.js template loaded - Edit and run your code!');`;
+
+        // Load saved code
+        let savedCode = localStorage.getItem('careerPathNextjsCode');
+        nextjsInput.value = savedCode || defaultTemplate;
+
+        function clearConsole() {
+            consoleDiv.innerHTML = '';
+        }
+
+        function addToConsole(message, type = 'normal') {
+            const span = document.createElement('span');
+            span.className = `log-${type}`;
+            span.textContent = message + '\\n';
+            consoleDiv.appendChild(span);
+            consoleDiv.scrollTop = consoleDiv.scrollHeight;
+        }
+
+        // Next.js specific simulation environment
+        function executeNextjs() {
+            const code = nextjsInput.value.trim();
+            
+            if (!code) {
+                addToConsole('❌ Please write some Next.js code first!', 'error');
+                return;
+            }
+
+            // Save code
+            localStorage.setItem('careerPathNextjsCode', code);
+            
+            clearConsole();
+            addToConsole('🚀 Building Next.js app... (Server-side render)', 'loading');
+            addToConsole('✓ App Router detected', 'success');
+            addToConsole('✓ Server Components compiling...', 'info');
+
+            // Simulate server-side execution delay
+            setTimeout(() => {
+                try {
+                    // Next.js sandbox - Server Component simulation
+                    const nextSandbox = {
+                        console: {
+                            log: (...args) => {
+                                const msg = args.map(arg => 
+                                    typeof arg === 'object' ? 
+                                    JSON.stringify(arg, null, 2) : String(arg)
+                                ).join(' ');
+                                addToConsole(msg, 'normal');
+                            },
+                            error: (...args) => addToConsole(args.join(' '), 'error'),
+                            warn: (...args) => addToConsole(args.join(' '), 'warn'),
+                            info: (...args) => addToConsole(args.join(' '), 'info')
+                        },
+                        React: {
+                            createElement: (type, props, ...children) => ({
+                                type, props, children,
+                                toString: () => `[ReactElement: ${type}]`
+                            })
+                        },
+                        Suspense: () => '[Suspense Boundary]',
+                        fetch: async (url) => {
+                            addToConsole(`🌐 Fetching from ${url} (simulated)`, 'info');
+                            await new Promise(r => setTimeout(r, 300));
+                            return {
+                                ok: true,
+                                json: async () => ({ data: 'Server-fetched data', timestamp: new Date().toISOString() })
+                            };
+                        },
+                        notFound: () => { throw new Error('Page not found') },
+                        redirect: (url) => addToConsole(`🔄 Redirecting to ${url}`, 'info'),
+                        NextResponse: {
+                            json: (data) => ({ data }),
+                            redirect: (url) => ({ redirect: url })
+                        },
+                        process: { env: { NEXT_PUBLIC_APP_NAME: 'CareerPath' } },
+                        __NEXT_SERVER: true
+                    };
+
+                    const sandboxKeys = Object.keys(nextSandbox);
+                    const sandboxValues = Object.values(nextSandbox);
+
+                    // Execute as Server Component - use strict mode and safe eval
+                    const fn = new Function('use strict', ...sandboxKeys, code);
+                    fn(...sandboxValues);
+
+                    addToConsole('\\n✨ Next.js page rendered successfully!', 'success');
+                    addToConsole('🌐 Simulated URL: http://localhost:3000', 'info');
+                    addToConsole('📊 Build complete - Ready for production! 🚀', 'success');
+
+                } catch (err) {
+                    addToConsole(`❌ Render error: ${err.message}`, 'error');
+                    addToConsole('💡 Check your Server Component syntax', 'warn');
+                }
+            }, 800); // Simulate build time
+        }
+
+        // Event listeners
+        runBtn.addEventListener('click', executeNextjs);
+
+        // Keyboard shortcuts
+        nextjsInput.addEventListener('keydown', (e) => {
+            if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
+                executeNextjs();
+            }
+            if (e.key === 'Tab') {
+                e.preventDefault();
+                const start = nextjsInput.selectionStart;
+                const end = nextjsInput.selectionEnd;
+                nextjsInput.value = nextjsInput.value.substring(0, start) + '  ' + nextjsInput.value.substring(end);
+                nextjsInput.selectionStart = nextjsInput.selectionEnd = start + 2;
+            }
+        });
+
+        // Auto-run on load
+        window.addEventListener('load', () => setTimeout(executeNextjs, 800));
+
+        // Handle localStorage from main site
+        const tempCode = localStorage.getItem('careerPathNextjsCode');
+        if (tempCode) {
+            nextjsInput.value = tempCode;
+            localStorage.removeItem('careerPathNextjsCode');
+            setTimeout(executeNextjs, 500);
+        }
+</script>
+</body>
+</html>

@@ -1,0 +1,1399 @@
+{
+  "sections": [
+    {
+      "title": "Basic HTML",
+      "desc": "Essential tags for creating the structure of an HTML document.",
+      "type": "table",
+      "columns": [
+        "Tag",
+        "Description",
+        "HTML5"
+      ],
+      "rows": [
+        {
+          "tag": "<!DOCTYPE>",
+          "desc": "Defines the document type",
+          "html5": "✓"
+        },
+        {
+          "tag": "<html>",
+          "desc": "Defines an HTML document",
+          "html5": "✓"
+        },
+        {
+          "tag": "<head>",
+          "desc": "Contains metadata/information for the document",
+          "html5": "✓"
+        },
+        {
+          "tag": "<title>",
+          "desc": "Defines a title for the document",
+          "html5": "✓"
+        },
+        {
+          "tag": "<body>",
+          "desc": "Defines the document's body",
+          "html5": "✓"
+        },
+        {
+          "tag": "<h1> To <h6>",
+          "desc": "Defines HTML headings",
+          "html5": "✓"
+        },
+        {
+          "tag": "<p>",
+          "desc": "Defines a paragraph",
+          "html5": "✓"
+        },
+        {
+          "tag": "<br>",
+          "desc": "Inserts a single line break",
+          "html5": "✓"
+        },
+        {
+          "tag": "<hr>",
+          "desc": "Defines a thematic change in the content",
+          "html5": "✓"
+        },
+        {
+          "tag": "<!--...-->",
+          "desc": "Defines a comment",
+          "html5": "✓"
+        }
+      ]
+    },
+    {
+      "title": "Formatting Tags",
+      "desc": "Tags used to format and style text content.",
+      "type": "table",
+      "columns": [
+        "Tag",
+        "Description",
+        "HTML5"
+      ],
+      "rows": [
+        {
+          "tag": "<abbr>",
+          "desc": "Defines an abbreviation or an acronym",
+          "html5": "✓"
+        },
+        {
+          "tag": "<acronym>",
+          "desc": "Defines an acronym (use &lt;abbr&gt; instead)",
+          "html5": "✗"
+        },
+        {
+          "tag": "<address>",
+          "desc": "Defines contact information for the author/owner",
+          "html5": "✓"
+        },
+        {
+          "tag": "<b>",
+          "desc": "Defines bold text",
+          "html5": "✓"
+        },
+        {
+          "tag": "<bdi>",
+          "desc": "Isolates text that might be formatted in a different direction",
+          "html5": "✓"
+        },
+        {
+          "tag": "<bdo>",
+          "desc": "Overrides the current text direction",
+          "html5": "✓"
+        },
+        {
+          "tag": "<big>",
+          "desc": "Defines big text (use CSS instead)",
+          "html5": "✗"
+        },
+        {
+          "tag": "<blockquote>",
+          "desc": "Defines a section quoted from another source",
+          "html5": "✓"
+        },
+        {
+          "tag": "<center>",
+          "desc": "Defines centered text (use CSS instead)",
+          "html5": "✗"
+        },
+        {
+          "tag": "<cite>",
+          "desc": "Defines the title of a work",
+          "html5": "✓"
+        },
+        {
+          "tag": "<code>",
+          "desc": "Defines a piece of computer code",
+          "html5": "✓"
+        },
+        {
+          "tag": "<del>",
+          "desc": "Defines text that has been deleted from a document",
+          "html5": "✓"
+        },
+        {
+          "tag": "<dfn>",
+          "desc": "Specifies a term to be defined within content",
+          "html5": "✓"
+        },
+        {
+          "tag": "<em>",
+          "desc": "Defines emphasized text",
+          "html5": "✓"
+        },
+        {
+          "tag": "<font>",
+          "desc": "Defines font, color, and size (use CSS instead)",
+          "html5": "✗"
+        },
+        {
+          "tag": "<i>",
+          "desc": "Defines text in an alternate voice or mood",
+          "html5": "✓"
+        },
+        {
+          "tag": "<ins>",
+          "desc": "Defines text that has been inserted into a document",
+          "html5": "✓"
+        },
+        {
+          "tag": "<kbd>",
+          "desc": "Defines keyboard input",
+          "html5": "✓"
+        },
+        {
+          "tag": "<mark>",
+          "desc": "Defines marked/highlighted text",
+          "html5": "✓"
+        },
+        {
+          "tag": "<meter>",
+          "desc": "Defines a scalar measurement within a known range",
+          "html5": "✓"
+        },
+        {
+          "tag": "<pre>",
+          "desc": "Defines preformatted text",
+          "html5": "✓"
+        },
+        {
+          "tag": "<progress>",
+          "desc": "Represents the progress of a task",
+          "html5": "✓"
+        },
+        {
+          "tag": "<q>",
+          "desc": "Defines a short quotation",
+          "html5": "✓"
+        },
+        {
+          "tag": "<rp>",
+          "desc": "Defines what to show in browsers without ruby annotations",
+          "html5": "✓"
+        },
+        {
+          "tag": "<rt>",
+          "desc": "Defines explanation/pronunciation of characters",
+          "html5": "✓"
+        },
+        {
+          "tag": "<ruby>",
+          "desc": "Defines a ruby annotation (East Asian typography)",
+          "html5": "✓"
+        },
+        {
+          "tag": "<s>",
+          "desc": "Defines text that is no longer correct",
+          "html5": "✓"
+        },
+        {
+          "tag": "<samp>",
+          "desc": "Defines sample output from a computer program",
+          "html5": "✓"
+        },
+        {
+          "tag": "<small>",
+          "desc": "Defines smaller text",
+          "html5": "✓"
+        },
+        {
+          "tag": "<strike>",
+          "desc": "Defines strikethrough text (use &lt;del&gt; or &lt;s&gt;)",
+          "html5": "✗"
+        },
+        {
+          "tag": "<strong>",
+          "desc": "Defines important text",
+          "html5": "✓"
+        },
+        {
+          "tag": "<sub>",
+          "desc": "Defines subscripted text",
+          "html5": "✓"
+        },
+        {
+          "tag": "<sup>",
+          "desc": "Defines superscripted text",
+          "html5": "✓"
+        },
+        {
+          "tag": "<template>",
+          "desc": "Defines content hidden when page loads",
+          "html5": "✓"
+        },
+        {
+          "tag": "<time>",
+          "desc": "Defines a specific time or datetime",
+          "html5": "✓"
+        },
+        {
+          "tag": "<tt>",
+          "desc": "Defines teletype text (use CSS instead)",
+          "html5": "✗"
+        },
+        {
+          "tag": "<u>",
+          "desc": "Defines unarticulated text styled differently",
+          "html5": "✓"
+        },
+        {
+          "tag": "<var>",
+          "desc": "Defines a variable",
+          "html5": "✓"
+        },
+        {
+          "tag": "<wbr>",
+          "desc": "Defines a possible line-break",
+          "html5": "✓"
+        }
+      ]
+    },
+    {
+      "title": "Forms and Input",
+      "desc": "Tags for creating interactive forms and input controls.",
+      "type": "table",
+      "columns": [
+        "Tag",
+        "Description",
+        "HTML5"
+      ],
+      "rows": [
+        {
+          "tag": "<form>",
+          "desc": "Defines an HTML form for user input",
+          "html5": "✓"
+        },
+        {
+          "tag": "<input>",
+          "desc": "Defines an input control",
+          "html5": "✓"
+        },
+        {
+          "tag": "<textarea>",
+          "desc": "Defines a multiline input control",
+          "html5": "✓"
+        },
+        {
+          "tag": "<button>",
+          "desc": "Defines a clickable button",
+          "html5": "✓"
+        },
+        {
+          "tag": "<select>",
+          "desc": "Defines a drop-down list",
+          "html5": "✓"
+        },
+        {
+          "tag": "<optgroup>",
+          "desc": "Defines a group of related options in a drop-down list",
+          "html5": "✓"
+        },
+        {
+          "tag": "<option>",
+          "desc": "Defines an option in a drop-down list",
+          "html5": "✓"
+        },
+        {
+          "tag": "<label>",
+          "desc": "Defines a label for an &lt;input&gt; element",
+          "html5": "✓"
+        },
+        {
+          "tag": "<fieldset>",
+          "desc": "Groups related elements in a form",
+          "html5": "✓"
+        },
+        {
+          "tag": "<legend>",
+          "desc": "Defines a caption for a &lt;fieldset&gt; element",
+          "html5": "✓"
+        },
+        {
+          "tag": "<datalist>",
+          "desc": "Specifies a list of pre-defined options for input controls",
+          "html5": "✓"
+        },
+        {
+          "tag": "<output>",
+          "desc": "Defines the result of a calculation",
+          "html5": "✓"
+        }
+      ]
+    },
+    {
+      "title": "Frames",
+      "desc": "Tags for creating frames (mostly deprecated in HTML5).",
+      "type": "table",
+      "columns": [
+        "Tag",
+        "Description",
+        "HTML5"
+      ],
+      "rows": [
+        {
+          "tag": "<frame>",
+          "desc": "Defines a window (frame) in a frameset",
+          "html5": "✗"
+        },
+        {
+          "tag": "<frameset>",
+          "desc": "Defines a set of frames",
+          "html5": "✗"
+        },
+        {
+          "tag": "<noframes>",
+          "desc": "Defines alternate content for users without frame support",
+          "html5": "✗"
+        },
+        {
+          "tag": "<iframe>",
+          "desc": "Defines an inline frame",
+          "html5": "✓"
+        }
+      ]
+    },
+    {
+      "title": "Images",
+      "desc": "Tags for embedding and managing images.",
+      "type": "table",
+      "columns": [
+        "Tag",
+        "Description",
+        "HTML5"
+      ],
+      "rows": [
+        {
+          "tag": "<img>",
+          "desc": "Defines an image",
+          "html5": "✓"
+        },
+        {
+          "tag": "<map>",
+          "desc": "Defines a client-side image map",
+          "html5": "✓"
+        },
+        {
+          "tag": "<area>",
+          "desc": "Defines an area inside an image map",
+          "html5": "✓"
+        },
+        {
+          "tag": "<canvas>",
+          "desc": "Used to draw graphics via scripting (usually JavaScript)",
+          "html5": "✓"
+        },
+        {
+          "tag": "<figcaption>",
+          "desc": "Defines a caption for a &lt;figure&gt; element",
+          "html5": "✓"
+        },
+        {
+          "tag": "<figure>",
+          "desc": "Specifies self-contained content",
+          "html5": "✓"
+        },
+        {
+          "tag": "<picture>",
+          "desc": "Defines a container for multiple image resources",
+          "html5": "✓"
+        },
+        {
+          "tag": "<svg>",
+          "desc": "Defines a container for SVG graphics",
+          "html5": "✓"
+        }
+      ]
+    },
+    {
+      "title": "Audio / Video",
+      "desc": "Tags for embedding audio and video content.",
+      "type": "table",
+      "columns": [
+        "Tag",
+        "Description",
+        "HTML5"
+      ],
+      "rows": [
+        {
+          "tag": "<audio>",
+          "desc": "Defines sound content",
+          "html5": "✓"
+        },
+        {
+          "tag": "<source>",
+          "desc": "Defines multiple media resources for media elements",
+          "html5": "✓"
+        },
+        {
+          "tag": "<track>",
+          "desc": "Defines text tracks for media elements",
+          "html5": "✓"
+        },
+        {
+          "tag": "<video>",
+          "desc": "Defines a video or movie",
+          "html5": "✓"
+        }
+      ]
+    },
+    {
+      "title": "Links",
+      "desc": "Tags for creating hyperlinks and navigation.",
+      "type": "table",
+      "columns": [
+        "Tag",
+        "Description",
+        "HTML5"
+      ],
+      "rows": [
+        {
+          "tag": "<a>",
+          "desc": "Defines a hyperlink",
+          "html5": "✓"
+        },
+        {
+          "tag": "<link>",
+          "desc": "Defines relationship between document and external resource",
+          "html5": "✓"
+        },
+        {
+          "tag": "<nav>",
+          "desc": "Defines navigation links",
+          "html5": "✓"
+        }
+      ]
+    },
+    {
+      "title": "Lists",
+      "desc": "Tags for creating ordered, unordered, and description lists.",
+      "type": "table",
+      "columns": [
+        "Tag",
+        "Description",
+        "HTML5"
+      ],
+      "rows": [
+        {
+          "tag": "<ul>",
+          "desc": "Defines an unordered list",
+          "html5": "✓"
+        },
+        {
+          "tag": "<ol>",
+          "desc": "Defines an ordered list",
+          "html5": "✓"
+        },
+        {
+          "tag": "<li>",
+          "desc": "Defines a list item",
+          "html5": "✓"
+        },
+        {
+          "tag": "<dl>",
+          "desc": "Defines a description list",
+          "html5": "✓"
+        },
+        {
+          "tag": "<dt>",
+          "desc": "Defines a term/name in a description list",
+          "html5": "✓"
+        },
+        {
+          "tag": "<dd>",
+          "desc": "Defines a description of a term/name",
+          "html5": "✓"
+        },
+        {
+          "tag": "<menu>",
+          "desc": "Defines an alternative unordered list",
+          "html5": "✓"
+        },
+        {
+          "tag": "<dir>",
+          "desc": "Defines a directory list (use &lt;ul&gt; instead)",
+          "html5": "✗"
+        }
+      ]
+    },
+    {
+      "title": "Tables",
+      "desc": "Tags for creating and structuring tables.",
+      "type": "table",
+      "columns": [
+        "Tag",
+        "Description",
+        "HTML5"
+      ],
+      "rows": [
+        {
+          "tag": "<table>",
+          "desc": "Defines a table",
+          "html5": "✓"
+        },
+        {
+          "tag": "<caption>",
+          "desc": "Defines a table caption",
+          "html5": "✓"
+        },
+        {
+          "tag": "<th>",
+          "desc": "Defines a header cell in a table",
+          "html5": "✓"
+        },
+        {
+          "tag": "<tr>",
+          "desc": "Defines a row in a table",
+          "html5": "✓"
+        },
+        {
+          "tag": "<td>",
+          "desc": "Defines a cell in a table",
+          "html5": "✓"
+        },
+        {
+          "tag": "<thead>",
+          "desc": "Groups the header content in a table",
+          "html5": "✓"
+        },
+        {
+          "tag": "<tbody>",
+          "desc": "Groups the body content in a table",
+          "html5": "✓"
+        },
+        {
+          "tag": "<tfoot>",
+          "desc": "Groups the footer content in a table",
+          "html5": "✓"
+        },
+        {
+          "tag": "<col>",
+          "desc": "Specifies column properties for each column",
+          "html5": "✓"
+        },
+        {
+          "tag": "<colgroup>",
+          "desc": "Specifies a group of columns in a table",
+          "html5": "✓"
+        }
+      ]
+    },
+    {
+      "title": "Styles and Semantics",
+      "desc": "Tags for structuring content semantically and adding styles.",
+      "type": "table",
+      "columns": [
+        "Tag",
+        "Description",
+        "HTML5"
+      ],
+      "rows": [
+        {
+          "tag": "<style>",
+          "desc": "Defines style information for a document",
+          "html5": "✓"
+        },
+        {
+          "tag": "<div>",
+          "desc": "Defines a section in a document",
+          "html5": "✓"
+        },
+        {
+          "tag": "<span>",
+          "desc": "Defines a section in a document",
+          "html5": "✓"
+        },
+        {
+          "tag": "<header>",
+          "desc": "Defines a header for a document or section",
+          "html5": "✓"
+        },
+        {
+          "tag": "<hgroup>",
+          "desc": "Defines a header and related content",
+          "html5": "✓"
+        },
+        {
+          "tag": "<footer>",
+          "desc": "Defines a footer for a document or section",
+          "html5": "✓"
+        },
+        {
+          "tag": "<main>",
+          "desc": "Specifies the main content of a document",
+          "html5": "✓"
+        },
+        {
+          "tag": "<section>",
+          "desc": "Defines a section in a document",
+          "html5": "✓"
+        },
+        {
+          "tag": "<search>",
+          "desc": "Defines a search section",
+          "html5": "✓"
+        },
+        {
+          "tag": "<article>",
+          "desc": "Defines an article",
+          "html5": "✓"
+        },
+        {
+          "tag": "<aside>",
+          "desc": "Defines content aside from the page content",
+          "html5": "✓"
+        },
+        {
+          "tag": "<details>",
+          "desc": "Defines additional details user can view/hide",
+          "html5": "✓"
+        },
+        {
+          "tag": "<dialog>",
+          "desc": "Defines a dialog box or window",
+          "html5": "✓"
+        },
+        {
+          "tag": "<summary>",
+          "desc": "Defines a visible heading for a &lt;details&gt; element",
+          "html5": "✓"
+        },
+        {
+          "tag": "<data>",
+          "desc": "Adds a machine-readable translation of content",
+          "html5": "✓"
+        }
+      ]
+    },
+    {
+      "title": "Meta Info",
+      "desc": "Tags for defining metadata about the HTML document.",
+      "type": "table",
+      "columns": [
+        "Tag",
+        "Description",
+        "HTML5"
+      ],
+      "rows": [
+        {
+          "tag": "<head>",
+          "desc": "Defines information about the document",
+          "html5": "✓"
+        },
+        {
+          "tag": "<meta>",
+          "desc": "Defines metadata about an HTML document",
+          "html5": "✓"
+        },
+        {
+          "tag": "<base>",
+          "desc": "Specifies the base URL/target for all relative URLs",
+          "html5": "✓"
+        },
+        {
+          "tag": "<basefont>",
+          "desc": "Specifies default color, size, font (use CSS instead)",
+          "html5": "✗"
+        }
+      ]
+    },
+    {
+      "title": "Programming",
+      "desc": "Tags for embedding scripts and external applications.",
+      "type": "table",
+      "columns": [
+        "Tag",
+        "Description",
+        "HTML5"
+      ],
+      "rows": [
+        {
+          "tag": "<script>",
+          "desc": "Defines a client-side script",
+          "html5": "✓"
+        },
+        {
+          "tag": "<noscript>",
+          "desc": "Defines alternate content for non-script users",
+          "html5": "✓"
+        },
+        {
+          "tag": "<embed>",
+          "desc": "Defines a container for an external resource",
+          "html5": "✓"
+        },
+        {
+          "tag": "<object>",
+          "desc": "Defines a container for an external resource",
+          "html5": "✓"
+        },
+        {
+          "tag": "<param>",
+          "desc": "Defines a parameter for an object",
+          "html5": "✓"
+        },
+        {
+          "tag": "<applet>",
+          "desc": "Defines an embedded applet (use &lt;embed&gt; or &lt;object&gt;)",
+          "html5": "✗"
+        }
+      ]
+    },
+    {
+      "title": "Complete Tag List (A-D)",
+      "desc": "Alphabetical listing of all HTML tags A-D.",
+      "type": "table",
+      "columns": [
+        "Tag",
+        "Description"
+      ],
+      "rows": [
+        {
+          "tag": "<!--...-->",
+          "desc": "Comment"
+        },
+        {
+          "tag": "<!DOCTYPE>",
+          "desc": "Document type declaration"
+        },
+        {
+          "tag": "<a>",
+          "desc": "Anchor/Hyperlink"
+        },
+        {
+          "tag": "<abbr>",
+          "desc": "Abbreviation"
+        },
+        {
+          "tag": "<acronym>",
+          "desc": "Acronym (deprecated)"
+        },
+        {
+          "tag": "<address>",
+          "desc": "Contact information"
+        },
+        {
+          "tag": "<applet>",
+          "desc": "Java applet (deprecated)"
+        },
+        {
+          "tag": "<area>",
+          "desc": "Image map area"
+        },
+        {
+          "tag": "<article>",
+          "desc": "Article content"
+        },
+        {
+          "tag": "<aside>",
+          "desc": "Aside content"
+        },
+        {
+          "tag": "<audio>",
+          "desc": "Audio content"
+        },
+        {
+          "tag": "<b>",
+          "desc": "Bold text"
+        },
+        {
+          "tag": "<base>",
+          "desc": "Base URL"
+        },
+        {
+          "tag": "<basefont>",
+          "desc": "Base font (deprecated)"
+        },
+        {
+          "tag": "<bdi>",
+          "desc": "Bi-directional isolation"
+        },
+        {
+          "tag": "<bdo>",
+          "desc": "Bi-directional override"
+        },
+        {
+          "tag": "<big>",
+          "desc": "Big text (deprecated)"
+        },
+        {
+          "tag": "<blockquote>",
+          "desc": "Block quotation"
+        },
+        {
+          "tag": "<body>",
+          "desc": "Document body"
+        },
+        {
+          "tag": "<br>",
+          "desc": "Line break"
+        },
+        {
+          "tag": "<button>",
+          "desc": "Button"
+        },
+        {
+          "tag": "<canvas>",
+          "desc": "Graphics canvas"
+        },
+        {
+          "tag": "<caption>",
+          "desc": "Table caption"
+        },
+        {
+          "tag": "<center>",
+          "desc": "Centered text (deprecated)"
+        },
+        {
+          "tag": "<cite>",
+          "desc": "Citation"
+        },
+        {
+          "tag": "<code>",
+          "desc": "Computer code"
+        },
+        {
+          "tag": "<col>",
+          "desc": "Table column"
+        },
+        {
+          "tag": "<colgroup>",
+          "desc": "Table column group"
+        },
+        {
+          "tag": "<data>",
+          "desc": "Machine-readable data"
+        },
+        {
+          "tag": "<datalist>",
+          "desc": "Input options list"
+        },
+        {
+          "tag": "<dd>",
+          "desc": "Description list description"
+        },
+        {
+          "tag": "<del>",
+          "desc": "Deleted text"
+        },
+        {
+          "tag": "<details>",
+          "desc": "Disclosure widget"
+        },
+        {
+          "tag": "<dfn>",
+          "desc": "Definition term"
+        },
+        {
+          "tag": "<dialog>",
+          "desc": "Dialog box"
+        },
+        {
+          "tag": "<dir>",
+          "desc": "Directory list (deprecated)"
+        },
+        {
+          "tag": "<div>",
+          "desc": "Division/section"
+        },
+        {
+          "tag": "<dl>",
+          "desc": "Description list"
+        },
+        {
+          "tag": "<dt>",
+          "desc": "Description list term"
+        }
+      ]
+    },
+    {
+      "title": "Complete Tag List (E-M)",
+      "desc": "Alphabetical listing of all HTML tags E-M.",
+      "type": "table",
+      "columns": [
+        "Tag",
+        "Description"
+      ],
+      "rows": [
+        {
+          "tag": "<em>",
+          "desc": "Emphasized text"
+        },
+        {
+          "tag": "<embed>",
+          "desc": "Embedded content"
+        },
+        {
+          "tag": "<fieldset>",
+          "desc": "Form field grouping"
+        },
+        {
+          "tag": "<figcaption>",
+          "desc": "Figure caption"
+        },
+        {
+          "tag": "<figure>",
+          "desc": "Figure with caption"
+        },
+        {
+          "tag": "<font>",
+          "desc": "Font styling (deprecated)"
+        },
+        {
+          "tag": "<footer>",
+          "desc": "Footer section"
+        },
+        {
+          "tag": "<form>",
+          "desc": "HTML form"
+        },
+        {
+          "tag": "<frame>",
+          "desc": "Frame (deprecated)"
+        },
+        {
+          "tag": "<frameset>",
+          "desc": "Frameset (deprecated)"
+        },
+        {
+          "tag": "<h1> to <h6>",
+          "desc": "Headings"
+        },
+        {
+          "tag": "<head>",
+          "desc": "Document head"
+        },
+        {
+          "tag": "<header>",
+          "desc": "Header section"
+        },
+        {
+          "tag": "<hgroup>",
+          "desc": "Heading group"
+        },
+        {
+          "tag": "<hr>",
+          "desc": "Horizontal rule"
+        },
+        {
+          "tag": "<html>",
+          "desc": "HTML document root"
+        },
+        {
+          "tag": "<i>",
+          "desc": "Italic text"
+        },
+        {
+          "tag": "<iframe>",
+          "desc": "Inline frame"
+        },
+        {
+          "tag": "<img>",
+          "desc": "Image"
+        },
+        {
+          "tag": "<input>",
+          "desc": "Input control"
+        },
+        {
+          "tag": "<ins>",
+          "desc": "Inserted text"
+        },
+        {
+          "tag": "<kbd>",
+          "desc": "Keyboard input"
+        },
+        {
+          "tag": "<label>",
+          "desc": "Form label"
+        },
+        {
+          "tag": "<legend>",
+          "desc": "Fieldset legend"
+        },
+        {
+          "tag": "<li>",
+          "desc": "List item"
+        },
+        {
+          "tag": "<link>",
+          "desc": "External resource link"
+        },
+        {
+          "tag": "<main>",
+          "desc": "Main content"
+        },
+        {
+          "tag": "<map>",
+          "desc": "Image map"
+        },
+        {
+          "tag": "<mark>",
+          "desc": "Marked text"
+        },
+        {
+          "tag": "<menu>",
+          "desc": "Menu list"
+        },
+        {
+          "tag": "<meta>",
+          "desc": "Metadata"
+        },
+        {
+          "tag": "<meter>",
+          "desc": "Scalar measurement"
+        }
+      ]
+    },
+    {
+      "title": "Complete Tag List (N-Z)",
+      "desc": "Alphabetical listing of all HTML tags N-Z.",
+      "type": "table",
+      "columns": [
+        "Tag",
+        "Description"
+      ],
+      "rows": [
+        {
+          "tag": "<nav>",
+          "desc": "Navigation links"
+        },
+        {
+          "tag": "<noframes>",
+          "desc": "No frames fallback (deprecated)"
+        },
+        {
+          "tag": "<noscript>",
+          "desc": "No script fallback"
+        },
+        {
+          "tag": "<object>",
+          "desc": "Embedded object"
+        },
+        {
+          "tag": "<ol>",
+          "desc": "Ordered list"
+        },
+        {
+          "tag": "<optgroup>",
+          "desc": "Option group"
+        },
+        {
+          "tag": "<option>",
+          "desc": "Select option"
+        },
+        {
+          "tag": "<output>",
+          "desc": "Output result"
+        },
+        {
+          "tag": "<p>",
+          "desc": "Paragraph"
+        },
+        {
+          "tag": "<param>",
+          "desc": "Object parameter"
+        },
+        {
+          "tag": "<picture>",
+          "desc": "Picture container"
+        },
+        {
+          "tag": "<pre>",
+          "desc": "Preformatted text"
+        },
+        {
+          "tag": "<progress>",
+          "desc": "Progress indicator"
+        },
+        {
+          "tag": "<q>",
+          "desc": "Short quotation"
+        },
+        {
+          "tag": "<rp>",
+          "desc": "Ruby parenthesis"
+        },
+        {
+          "tag": "<rt>",
+          "desc": "Ruby text"
+        },
+        {
+          "tag": "<ruby>",
+          "desc": "Ruby annotation"
+        },
+        {
+          "tag": "<s>",
+          "desc": "Strikethrough"
+        },
+        {
+          "tag": "<samp>",
+          "desc": "Sample output"
+        },
+        {
+          "tag": "<script>",
+          "desc": "Client-side script"
+        },
+        {
+          "tag": "<search>",
+          "desc": "Search section"
+        },
+        {
+          "tag": "<section>",
+          "desc": "Document section"
+        },
+        {
+          "tag": "<select>",
+          "desc": "Selection list"
+        },
+        {
+          "tag": "<small>",
+          "desc": "Small text"
+        },
+        {
+          "tag": "<source>",
+          "desc": "Media source"
+        },
+        {
+          "tag": "<span>",
+          "desc": "Inline container"
+        },
+        {
+          "tag": "<strike>",
+          "desc": "Strikethrough (deprecated)"
+        },
+        {
+          "tag": "<strong>",
+          "desc": "Strong importance"
+        },
+        {
+          "tag": "<style>",
+          "desc": "Style information"
+        },
+        {
+          "tag": "<sub>",
+          "desc": "Subscript"
+        },
+        {
+          "tag": "<summary>",
+          "desc": "Details summary"
+        },
+        {
+          "tag": "<sup>",
+          "desc": "Superscript"
+        },
+        {
+          "tag": "<svg>",
+          "desc": "SVG graphics"
+        },
+        {
+          "tag": "<table>",
+          "desc": "Table"
+        },
+        {
+          "tag": "<tbody>",
+          "desc": "Table body"
+        },
+        {
+          "tag": "<td>",
+          "desc": "Table data cell"
+        },
+        {
+          "tag": "<template>",
+          "desc": "Template content"
+        },
+        {
+          "tag": "<textarea>",
+          "desc": "Multi-line text input"
+        },
+        {
+          "tag": "<tfoot>",
+          "desc": "Table footer"
+        },
+        {
+          "tag": "<th>",
+          "desc": "Table header cell"
+        },
+        {
+          "tag": "<thead>",
+          "desc": "Table head"
+        },
+        {
+          "tag": "<time>",
+          "desc": "Date/time"
+        },
+        {
+          "tag": "<title>",
+          "desc": "Document title"
+        },
+        {
+          "tag": "<tr>",
+          "desc": "Table row"
+        },
+        {
+          "tag": "<track>",
+          "desc": "Text track"
+        },
+        {
+          "tag": "<tt>",
+          "desc": "Teletype text (deprecated)"
+        },
+        {
+          "tag": "<u>",
+          "desc": "Underlined text"
+        },
+        {
+          "tag": "<ul>",
+          "desc": "Unordered list"
+        },
+        {
+          "tag": "<var>",
+          "desc": "Variable"
+        },
+        {
+          "tag": "<video>",
+          "desc": "Video content"
+        },
+        {
+          "tag": "<wbr>",
+          "desc": "Word break opportunity"
+        }
+      ]
+    },
+    {
+      "title": "Additional HTML References",
+      "desc": "Useful resources for learning more about HTML.",
+      "type": "grouped-list",
+      "groups": [
+        {
+          "heading": "Resources",
+          "items": [
+            {
+              "code": "HTML Attributes Reference",
+              "desc": "Complete list of all HTML attributes"
+            },
+            {
+              "code": "HTML Global Attributes",
+              "desc": "Attributes that can be used on any HTML element"
+            },
+            {
+              "code": "HTML Event Attributes",
+              "desc": "Event handler attributes for interactive elements"
+            },
+            {
+              "code": "HTML Colors",
+              "desc": "Color names and codes reference"
+            },
+            {
+              "code": "HTML Canvas Reference",
+              "desc": "Canvas API methods and properties"
+            },
+            {
+              "code": "HTML Audio/Video DOM",
+              "desc": "Audio and video DOM reference"
+            },
+            {
+              "code": "HTML Character Sets",
+              "desc": "Character encoding references"
+            },
+            {
+              "code": "HTML Doctypes",
+              "desc": "Document type declarations"
+            },
+            {
+              "code": "HTML URL Encode",
+              "desc": "URL encoding reference"
+            },
+            {
+              "code": "HTML Language Codes",
+              "desc": "ISO language code"
+            },
+            {
+              "code": "HTML Country Codes",
+              "desc": "ISO country codes"
+            },
+            {
+              "code": "HTTP Messages",
+              "desc": "HTTP status codes and messages"
+            },
+            {
+              "code": "HTTP Methods",
+              "desc": "HTTP request methods (GET, POST, etc.)"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Summary Statistics",
+      "desc": "Quick statistics about HTML tags and support.",
+      "type": "grouped-list",
+      "groups": [
+        {
+          "heading": "Statistics",
+          "items": [
+            "Total Tags: 107+",
+            "Deprecated Tags: 12",
+            "New in HTML5: <dialog>, <article>, <aside>, <figure>, <footer>, <audio>, <canvas>, <datalist>, <header>, <main>, <mark>, <meter>, <details>, <nav>, <output>, <picture>, <progress>, <search>, <section>, <summary>, <template>, <time>, <video>"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Notes",
+      "desc": "Important notes about HTML.",
+      "type": "grouped-list",
+      "groups": [
+        {
+          "heading": "Deprecated Tags:",
+          "items": [
+            "Tags marked as \"Not supported in HTML5\" will still work in most browsers but are not recommended for new projects. Use CSS or modern alternatives instead."
+          ]
+        },
+        {
+          "heading": "Semantic HTML: ",
+          "items": [
+            "HTML5 introduced many semantic tags ( &lt;article&gt; , &lt;aside&gt; , &lt;header&gt; , &lt;footer&gt; , &lt;nav&gt; , &lt;section&gt; ) that provide meaning to your content and improve accessibility and SEO"
+          ]
+        },
+        {
+          "heading": "Best Practices:",
+          "items": [
+            "Always use lowercase tag names",
+            "Close all tags properly",
+            "Use semantic tags when appropriate",
+            "Include alt attributes for images",
+            "Use proper heading hierarchy (h1-h6)",
+            "Validate your HTML"
+          ]
+        },
+        {
+          "heading": "Browser Support:",
+          "items": [
+            "While deprecated tags may still render in browsers, it's best to follow W3C recommendations and use HTML5-compliant markup."
+          ]
+        }
+      ]
+    }
+  ]
+}

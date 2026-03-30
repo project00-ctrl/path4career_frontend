@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live NestJS Editor - CareerPath</title>
+    <link rel="stylesheet" href="../../assets/css/editor.css">
+    <style>
+        #nestInput { color: #f1fa8c; }
+        
+        .console-output {
+            flex: 1;
+            background-color: #1e1e2f;
+            display: flex;
+            flex-direction: column;
+        }
+
+        #consoleDiv {
+            flex: 1;
+            padding: 10px 20px;
+            font-family: 'Courier New', Courier, monospace;
+            overflow-y: auto;
+            color: #cbd5e1;
+            font-size: 14px;
+            white-space: pre-wrap; 
+        }
+
+        .log-error { color: #ff4757; }
+        .log-normal { color: #00ffb3; }
+        .log-loading { color: #8be9fd; font-style: italic; }
+        .log-info { color: #ffb86c; }
+        .log-warn { color: #f1fa8c; }
+        
+        .nest-badge {
+            background-color: #e0234e;
+            color: white;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            margin-left: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div style="display: flex; align-items: center; gap: 15px;">
+            <a href="../index.html" style="color: #00ffb3; text-decoration: none; font-size: 14px;">← Back</a>
+            <h2><span style="color: #e0234e;">❤</span> NestJS Workspace <span class="nest-badge">Progressive Framework</span></h2>
+        </div>
+        <button class="run-btn" id="runBtn">Run Code ❯</button>
+    </div>
+    <div class="workspace">
+        <div class="editor-pane">
+            <p class="pane-label">app.controller.ts</p>
+            <textarea id="nestInput" spellcheck="false" aria-label="NestJS Input"></textarea>
+        </div>
+        
+        <div class="result-pane">
+            <p class="pane-label" style="padding:10px 20px 0;">Console Output</p>
+            <div class="console-output">
+                <div id="consoleDiv">
+                    <span class="log-loading">// Loading NestJS runtime simulation...</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+const nestInput = document.getElementById('nestInput');
+        const consoleDiv = document.getElementById('consoleDiv');
+        const runBtn = document.getElementById('runBtn');
+
+        // Default NestJS template
+        const defaultTemplate = `import { Controller, Get, Injectable, Module } from '@nestjs/common';
+
+// Service (Provider)
+@Injectable()
+export class AppService {
+    getHello(): string {
+        return 'Hello from NestJS! 🚀';
+    }
+}
+
+// Controller
+@Controller()
+export class AppController {
+    constructor(private readonly appService: AppService) {}
+
+    @Get()
+    getHello(): string {
+        return this.appService.getHello();
+    }
+}
+
+// Module
+@Module({
+    controllers: [AppController],
+    providers: [AppService],
+})
+export class AppModule {}
+
+// --- EXECUTION SIMULATION ---
+console.log("Starting NestJS application...");
+const app = new AppController(new AppService());
+console.log("Route: GET /");
+console.log("Response:", app.getHello());
+
+console.log("\\n--- Testing Dependency Injection ---");
+const service = new AppService();
+console.log("Service test:", service.getHello());`;
+
+        // Get saved code from localStorage
+        const savedCode = localStorage.getItem('careerPathNestCode');
+        nestInput.value = savedCode ? savedCode : defaultTemplate;
+
+        // Clear console
+        function clearConsole() {
+            consoleDiv.innerHTML = '';
+        }
+
+        // Add log to console
+        function addToConsole(message, type = 'normal') {
+            const span = document.createElement('span');
+            span.className = 'log-' + type;
+            span.textContent = message + '\n';
+            consoleDiv.appendChild(span);
+            consoleDiv.scrollTop = consoleDiv.scrollHeight;
+        }
+
+        // Custom console for simulation
+        const customConsole = {
+            log: function(...args) {
+                const message = args.map(arg => {
+                    if (typeof arg === 'object') {
+                        try {
+                            return JSON.stringify(arg, null, 2);
+                        } catch(e) {
+                            return String(arg);
+                        }
+                    }
+                    return String(arg);
+                }).join(' ');
+                addToConsole(message, 'normal');
+            },
+            error: function(...args) {
+                const message = args.map(arg => String(arg)).join(' ');
+                addToConsole(message, 'error');
+            },
+            warn: function(...args) {
+                const message = args.map(arg => String(arg)).join(' ');
+                addToConsole(message, 'warn');
+            },
+            info: function(...args) {
+                const message = args.map(arg => String(arg)).join(' ');
+                addToConsole(message, 'info');
+            }
+        };
+
+        // Simulated NestJS runtime
+        function executeNestJS() {
+            const code = nestInput.value.trim();
+            
+            if (!code) {
+                addToConsole('Please enter some NestJS code.', 'error');
+                return;
+            }
+            
+            // Save code to localStorage
+            localStorage.setItem('careerPathNestCode', code);
+            
+            // Clear previous output and show status
+            clearConsole();
+            addToConsole('▶ Running NestJS runtime simulation...', 'loading');
+
+            // Brief delay for UI feedback
+            setTimeout(() => {
+                try {
+                    // Strip decorators and TS syntax more robustly
+                    const executableCode = code
+                        .replace(/@[a-zA-Z]+\s*\([^)]*\)/g, '') // @Decorator(args)
+                        .replace(/@[a-zA-Z]+/g, '')             // @Decorator
+                        .replace(/import\s+[\s\S]*?\s+from\s+['"][^'"]+['"];?/g, '')
+                        .replace(/import\s+['"][^'"]+['"];?/g, '')
+                        .replace(/:\s*[A-Z][a-zA-Z0-9<>\[\]]*/g, '') 
+                        .replace(/:\s*(string|number|boolean|any|void|unknown|never)/g, '')
+                        .replace(/implements\s+[A-Z][a-zA-Z0-9<>\[\]]*/g, '')
+                        .replace(/public\s+|private\s+|protected\s+|readonly\s+/g, '')
+                        .replace(/export\s+/g, '')
+                        .replace(/<[A-Z][a-zA-Z0-9, \s]*>/g, '');
+
+                    if (!executableCode.trim()) {
+                        addToConsole('No executable code found. Ensure classes and logic are present.', 'warn');
+                        return;
+                    }
+
+                    // Create a sandboxed environment
+                    const sandbox = {
+                        console: customConsole,
+                        setTimeout: setTimeout,
+                        setInterval: setInterval,
+                        JSON: JSON,
+                        Math: Math,
+                        Array: Array,
+                        Object: Object,
+                        String: String,
+                        Number: Number,
+                        Boolean: Boolean,
+                        Date: Date,
+                        Error: Error,
+                        Promise: Promise
+                    };
+
+                    const sandboxKeys = Object.keys(sandbox);
+                    const sandboxValues = Object.values(sandbox);
+                    
+                    const fn = new Function(...sandboxKeys, executableCode);
+                    fn(...sandboxValues);
+                    
+                    addToConsole('\n✓ Execution completed.', 'info');
+                    
+                } catch (err) {
+                    addToConsole('\n✗ Runtime Error: ' + err.message, 'error');
+                    console.error('NestJS Simulation Failure:', err);
+                }
+            }, 50);
+        }
+
+        runBtn.addEventListener('click', executeNestJS);
+
+        window.addEventListener('load', function() {
+            setTimeout(executeNestJS, 500);
+        });
+
+        nestInput.addEventListener('keydown', function(e) {
+            if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
+                executeNestJS();
+            }
+            if (e.key === 'Tab') {
+                e.preventDefault();
+                const start = this.selectionStart;
+                const end = this.selectionEnd;
+                this.value = this.value.substring(0, start) + '    ' + this.value.substring(end);
+                this.selectionStart = this.selectionEnd = start + 4;
+            }
+        });
+</script>
+</body>
+</html>

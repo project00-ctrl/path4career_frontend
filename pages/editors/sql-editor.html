@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live SQL Editor - CareerPath</title>
+    <link rel="stylesheet" href="../../assets/css/editor.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.8.0/sql-wasm.js"></script>
+</head>
+<body>
+    
+    <nav class="editor-nav">
+        <div class="logo-area">
+            <img class="logo-icon" src="../../assets/images/path4career-icon.png" alt="Path4Career" style="width:32px;height:32px;border-radius:8px;">
+            <div class="logo-text">Path4Career</div>
+            <div class="title-badge">💾 SQL Workspace</div>
+        </div>
+        <button class="run-btn" id="runBtn" onclick="executeSQL()" disabled>⏳ Loading Database...</button>
+    </nav>
+
+    <div class="workspace">
+        <div class="editor-pane">
+            <p class="pane-label">
+                <span>query.sql</span>
+                <span class="status-text">SQLite WebAssembly</span>
+            </p>
+            <textarea id="sqlInput" spellcheck="false" aria-label="SQL Input"></textarea>
+        </div>
+        
+        <div class="result-pane">
+            <p class="pane-label">
+                <span>Database Explorer</span>
+                <button class="reset-db-btn" onclick="initDatabase()">↻ Reset DB</button>
+            </p>
+            <div id="consoleDiv">
+                <span class="log-loading">Initializing in-memory SQL database...</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+const sqlInput = document.getElementById('sqlInput');
+        const consoleDiv = document.getElementById('consoleDiv');
+        const runBtn = document.getElementById('runBtn');
+        
+        let db; // Global database instance
+
+        // 1. Default SQL template
+        const defaultCode = `-- Try deleting a row and watch the table update automatically!
+DELETE FROM Customers WHERE CustomerID = 3;
+
+-- Or add a new row:
+-- INSERT INTO Customers VALUES (6, 'Tech Corp', 'Sanji', 'India');
+
+-- Or create a totally new table:
+-- CREATE TABLE Products (ID int, Name text);
+`;
+        const savedCode = localStorage.getItem('careerPathSqlCode');
+        sqlInput.value = savedCode ? savedCode : defaultCode;
+
+        // 2. Initialize the Database
+        async function initDatabase() {
+            runBtn.disabled = true;
+            runBtn.innerText = "⏳ Loading Database...";
+            consoleDiv.innerHTML = '<span class="log-loading">Creating fresh database...</span>';
+            
+            try {
+                const SQL = await initSqlJs({
+                    locateFile: file => `https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.8.0/${file}`
+                });
+                
+                // Create a new empty database
+                db = new SQL.Database();
+                
+                // Seed it with default CareerPath data
+                const initScript = `
+                    CREATE TABLE Customers (
+                        CustomerID INTEGER PRIMARY KEY,
+                        CustomerName TEXT,
+                        ContactName TEXT,
+                        Country TEXT
+                    );
+                    INSERT INTO Customers VALUES (1, 'Alfreds Futterkiste', 'Maria Anders', 'Germany');
+                    INSERT INTO Customers VALUES (2, 'Ana Trujillo Emparedados', 'Ana Trujillo', 'Mexico');
+                    INSERT INTO Customers VALUES (3, 'Antonio Moreno Taqueria', 'Antonio Moreno', 'Mexico');
+                    INSERT INTO Customers VALUES (4, 'Around the Horn', 'Thomas Hardy', 'UK');
+                    INSERT INTO Customers VALUES (5, 'Berglunds snabbkop', 'Christina Berglund', 'Sweden');
+                `;
+                
+                db.run(initScript);
+                
+                runBtn.disabled = false;
+                runBtn.innerText = "▶ Run SQL";
+                
+                // Render the initial view
+                renderDatabaseState('<span class="log-normal">✔ Database initialized successfully!</span><br><br>');
+                
+            } catch (err) {
+                consoleDiv.innerHTML = `<span class="log-error">Failed to initialize database: ${err.message}</span>`;
+            }
+        }
+
+        // 3. Render Database State (The Magic Feature)
+        function renderDatabaseState(queryStatusHtml = "") {
+            let html = queryStatusHtml;
+            
+            html += '<div style="border-bottom: 2px solid #334155; margin-bottom: 20px;"></div>';
+            html += '<h3 style="color: #94a3b8; font-size: 12px; text-transform: uppercase; letter-spacing: 1px;">Live Database Tables</h3>';
+
+            try {
+                // Find all tables that exist in the database right now
+                const tablesResult = db.exec("SELECT name FROM sqlite_master WHERE type='table' AND name NOT LIKE 'sqlite_%';");
+                
+                if (tablesResult.length === 0) {
+                    html += `<p style="color: #ff5555; margin-top: 15px;">No tables found. The database is empty.</p>`;
+                } else {
+                    const tableNames = tablesResult[0].values;
+                    
+                    tableNames.forEach(tableNameArr => {
+                        const tableName = tableNameArr[0];
+                        html += `<h4 class="table-title">🗄️ ${tableName}</h4>`;
+                        
+                        try {
+                            // Get all rows for this specific table
+                            const rows = db.exec(`SELECT * FROM ${tableName}`);
+                            
+                            if (rows.length > 0) {
+                                html += generateTableHTML(rows[0].columns, rows[0].values);
+                            } else {
+                                html += `<p style="color: #94a3b8; margin-bottom: 20px;"><em>Table exists but has 0 rows.</em></p>`;
+                            }
+                        } catch (e) {
+                            html += `<p class="log-error">Error reading table ${tableName}</p>`;
+                        }
+                    });
+                }
+            } catch (e) {
+                html += `<p class="log-error">Failed to read database schema.</p>`;
+            }
+            
+            consoleDiv.innerHTML = html;
+        }
+
+        // Helper to turn SQL results into nice HTML tables
+        function generateTableHTML(columns, values) {
+            let table = '<div class="sql-table-container"><table class="sql-table">';
+            table += '<thead><tr>';
+            columns.forEach(col => { table += `<th>${col}</th>`; });
+            table += '</tr></thead><tbody>';
+
+            values.forEach(row => {
+                table += '<tr>';
+                row.forEach(val => { 
+                    // Handle null values cleanly
+                    const displayVal = val === null ? '<span style="color: #64748b; font-style: italic;">NULL</span>' : escapeHTML(String(val));
+                    table += `<td>${displayVal}</td>`; 
+                });
+                table += '</tr>';
+            });
+            table += '</tbody></table></div>';
+            return table;
+        }
+
+        // Helper to format output safely
+        function escapeHTML(str) {
+            return str ? str.replace(/</g, '&lt;').replace(/>/g, '&gt;') : "";
+        }
+
+        // 4. Execute User SQL
+        function executeSQL() {
+            if (!db) return;
+            
+            const code = sqlInput.value.trim();
+            if (!code) {
+                renderDatabaseState('<span class="log-error">Please enter a SQL query.</span><br><br>');
+                return;
+            }
+            
+            let statusHtml = "";
+            
+            try {
+                // If it's a SELECT query, we want to specifically show its results FIRST
+                if (code.toLowerCase().startsWith('select')) {
+                    const result = db.exec(code);
+                    if (result.length > 0) {
+                        statusHtml = `<span class="log-normal">✔ SELECT Query executed successfully.</span><br><br>`;
+                        statusHtml += `<h4 class="table-title" style="color:#00ffb3;">🔍 Query Result</h4>`;
+                        statusHtml += generateTableHTML(result[0].columns, result[0].values);
+                    } else {
+                        statusHtml = `<span class="log-normal">✔ SELECT Query executed successfully. 0 rows returned.</span><br><br>`;
+                    }
+                } 
+                // For INSERT, UPDATE, DELETE, CREATE, DROP, etc.
+                else {
+                    db.run(code); // Run it
+                    statusHtml = `<span class="log-normal">✔ Query executed successfully. Database updated.</span><br><br>`;
+                }
+            } catch (err) {
+                statusHtml = `<span class="log-error">SQL Error: ${escapeHTML(err.message)}</span><br><br>`;
+            }
+            
+            // ALWAYS re-render the entire database state beneath the status!
+            renderDatabaseState(statusHtml);
+        }
+
+        // 5. Smart Indentation Engine
+        sqlInput.addEventListener('keydown', function(e) {
+            if (e.key === 'Tab') {
+                e.preventDefault(); 
+                const start = this.selectionStart;
+                const end = this.selectionEnd;
+                const spaces = "    "; // 4 spaces
+                this.value = this.value.substring(0, start) + spaces + this.value.substring(end);
+                this.selectionStart = this.selectionEnd = start + spaces.length;
+                this.dispatchEvent(new Event('input'));
+            }
+        });
+
+        // 6. Auto-Save
+        sqlInput.addEventListener('input', () => {
+            localStorage.setItem('careerPathSqlCode', sqlInput.value);
+        });
+
+        // Start initialization on page load
+        window.addEventListener('load', initDatabase);
+</script>
+</body>
+</html>

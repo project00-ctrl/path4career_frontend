@@ -1,0 +1,127 @@
+{
+    "language": "DSA",
+    "icon": "\ud83d\udd04",
+    "color": "#FF9900",
+    "exercises": [
+        {
+            "id": 1,
+            "title": "Linear Search",
+            "difficulty": "basic",
+            "description": "Search for <strong>30</strong> in <code>[10,20,30,40,50]</code>. Print its index.",
+            "starterCode": "arr = [10,20,30,40,50]\ntarget = 30\n# Find and print index",
+            "expectedOutput": "",
+            "validationType": "outputContains",
+            "validationValue": "2",
+            "hint": "print(arr.index(target))",
+            "solutionCode": "# The hint provides the solution:\n# print(arr.index(target))"
+        },
+        {
+            "id": 2,
+            "title": "Bubble Sort",
+            "difficulty": "basic",
+            "description": "Sort <code>[64,34,25,12,22]</code> using bubble sort. Print the sorted list.",
+            "starterCode": "arr = [64,34,25,12,22]\n# Implement bubble sort\nprint(arr)",
+            "expectedOutput": "",
+            "validationType": "outputContains",
+            "validationValue": "[12, 22, 25, 34, 64]",
+            "hint": "Use nested loops and swap arr[j], arr[j+1]",
+            "solutionCode": "# The hint provides the solution:\n# Use nested loops and swap arr[j], arr[j+1]"
+        },
+        {
+            "id": 3,
+            "title": "Reverse Array",
+            "difficulty": "basic",
+            "description": "Reverse <code>[1,2,3,4,5]</code> and print it.",
+            "starterCode": "arr = [1,2,3,4,5]\n# Reverse and print",
+            "expectedOutput": "",
+            "validationType": "outputContains",
+            "validationValue": "[5, 4, 3, 2, 1]",
+            "hint": "print(arr[::-1])",
+            "solutionCode": "# The hint provides the solution:\n# print(arr[::-1])"
+        },
+        {
+            "id": 4,
+            "title": "Find Maximum",
+            "difficulty": "basic",
+            "description": "Find the max value in <code>[3,7,2,9,1]</code> and print it.",
+            "starterCode": "arr = [3,7,2,9,1]\n# Find and print max",
+            "expectedOutput": "",
+            "validationType": "outputContains",
+            "validationValue": "9",
+            "hint": "print(max(arr))",
+            "solutionCode": "# The hint provides the solution:\n# print(max(arr))"
+        },
+        {
+            "id": 5,
+            "title": "Stack Push/Pop",
+            "difficulty": "basic",
+            "description": "Implement a stack. Push 1,2,3 then pop and print the popped value.",
+            "starterCode": "stack = []\nstack.append(1)\nstack.append(2)\nstack.append(3)\n# Pop and print",
+            "expectedOutput": "",
+            "validationType": "outputContains",
+            "validationValue": "3",
+            "hint": "print(stack.pop())",
+            "solutionCode": "# The hint provides the solution:\n# print(stack.pop())"
+        },
+        {
+            "id": 6,
+            "title": "Queue Operations",
+            "difficulty": "intermediate",
+            "description": "Implement a queue using list. Enqueue A,B,C then dequeue and print.",
+            "starterCode": "from collections import deque\nq = deque()\nq.append('A')\nq.append('B')\nq.append('C')\n# Dequeue and print",
+            "expectedOutput": "",
+            "validationType": "outputContains",
+            "validationValue": "A",
+            "hint": "print(q.popleft())",
+            "solutionCode": "# The hint provides the solution:\n# print(q.popleft())"
+        },
+        {
+            "id": 7,
+            "title": "Binary Search",
+            "difficulty": "intermediate",
+            "description": "Search for <strong>7</strong> in sorted <code>[1,3,5,7,9,11]</code>. Print its index.",
+            "starterCode": "arr = [1,3,5,7,9,11]\ntarget = 7\n# Binary search",
+            "expectedOutput": "",
+            "validationType": "outputContains",
+            "validationValue": "3",
+            "hint": "Use low, high, mid approach",
+            "solutionCode": "# The hint provides the solution:\n# Use low, high, mid approach"
+        },
+        {
+            "id": 8,
+            "title": "Fibonacci",
+            "difficulty": "intermediate",
+            "description": "Print the first <strong>8</strong> Fibonacci numbers.",
+            "starterCode": "# Print first 8 fibonacci numbers",
+            "expectedOutput": "",
+            "validationType": "outputContains",
+            "validationValue": "0 1 1 2 3 5 8 13",
+            "hint": "Use a loop with a, b = 0, 1",
+            "solutionCode": "# The hint provides the solution:\n# Use a loop with a, b = 0, 1"
+        },
+        {
+            "id": 9,
+            "title": "Count Characters",
+            "difficulty": "intermediate",
+            "description": "Count occurrences of each character in <strong>hello</strong>. Print the counts.",
+            "starterCode": "s = 'hello'\n# Count and print characters",
+            "expectedOutput": "",
+            "validationType": "outputContains",
+            "validationValue": "l",
+            "hint": "Use a dictionary to count",
+            "solutionCode": "# The hint provides the solution:\n# Use a dictionary to count"
+        },
+        {
+            "id": 10,
+            "title": "Two Sum",
+            "difficulty": "intermediate",
+            "description": "Find two numbers in <code>[2,7,11,15]</code> that sum to <strong>9</strong>. Print them.",
+            "starterCode": "nums = [2,7,11,15]\ntarget = 9\n# Find and print pair",
+            "expectedOutput": "",
+            "validationType": "outputContains",
+            "validationValue": "2",
+            "hint": "Check each pair or use a hashmap",
+            "solutionCode": "# The hint provides the solution:\n# Check each pair or use a hashmap"
+        }
+    ]
+}

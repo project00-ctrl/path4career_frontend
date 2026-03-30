@@ -1,0 +1,362 @@
+[
+    {
+        "id": "php-1",
+        "question": "What does PHP stand for?",
+        "options": [
+            "Personal Home Page",
+            "Pretext Hypertext Processor",
+            "PHP: Hypertext Preprocessor",
+            "Private Hypertext Process"
+        ],
+        "correctAnswer": 2,
+        "explanation": "PHP is a recursive acronym that originally stood for Personal Home Page, but now officially stands for PHP: Hypertext Preprocessor."
+    },
+    {
+        "id": "php-2",
+        "question": "Where does PHP code execute?",
+        "options": [
+            "In the user's web browser",
+            "On the web server",
+            "Inside a MySQL database",
+            "Within an operating system kernel"
+        ],
+        "correctAnswer": 1,
+        "explanation": "Unlike JavaScript which runs in the browser (client-side), PHP is a server-side language. The server executes it and sends plain HTML back to the browser."
+    },
+    {
+        "id": "php-3",
+        "question": "What is the correct file extension for a PHP file?",
+        "options": [
+            ".html",
+            ".js",
+            ".py",
+            ".php"
+        ],
+        "correctAnswer": 3,
+        "explanation": "PHP files must be saved with the .php extension so the server knows they need to be pre-processed before sending them to the user."
+    },
+    {
+        "id": "php-4",
+        "question": "How do you start and end a block of PHP code embedded in HTML?",
+        "options": [
+            "<php> </php>",
+            "<script> </script>",
+            "<?php ?>",
+            "<% %>"
+        ],
+        "correctAnswer": 2,
+        "explanation": "A PHP block ALWAYS starts with <?php and ends with ?>."
+    },
+    {
+        "id": "php-5",
+        "question": "Which symbol is used to declare a variable in PHP?",
+        "options": [
+            "var",
+            "const",
+            "let",
+            "$"
+        ],
+        "correctAnswer": 3,
+        "explanation": "In PHP, every variable name must begin with a dollar sign ($)."
+    },
+    {
+        "id": "php-6",
+        "question": "PHP is considered a 'loosely typed' language. What does this mean?",
+        "options": [
+            "You cannot use strict logic operators.",
+            "You do not need to constantly declare variable types (like int or string) before assigning values.",
+            "Variables can be accessed without the $ sign.",
+            "Errors are ignored by the server."
+        ],
+        "correctAnswer": 1,
+        "explanation": "Because PHP is loosely typed, it automatically associates a data type to the variable based on its assigned value."
+    },
+    {
+        "id": "php-7",
+        "question": "What is the industry-standard way to output text to the browser in PHP?",
+        "options": [
+            "console.log()",
+            "System.out.print()",
+            "echo",
+            "document.write()"
+        ],
+        "correctAnswer": 2,
+        "explanation": "While 'print' also works, 'echo' is the industry standard for outputting text and HTML elements in PHP because it is marginally faster."
+    },
+    {
+        "id": "php-8",
+        "question": "Which operator is identical to 'equal to' but also severely ensures the DATA TYPES are strictly identical?",
+        "options": [
+            "==",
+            "=",
+            "!==",
+            "==="
+        ],
+        "correctAnswer": 3,
+        "explanation": "The === (Identical) operator checks if two values are equal AND of the exact same data type (e.g., 5 === '5' is false)."
+    },
+    {
+        "id": "php-9",
+        "question": "How do you write a single-line comment in PHP?",
+        "options": [
+            "<!-- comment -->",
+            "// comment",
+            "** comment",
+            "## comment"
+        ],
+        "correctAnswer": 1,
+        "explanation": "A single-line comment in PHP starts with two forward slashes (//) or a hash symbol (#)."
+    },
+    {
+        "id": "php-10",
+        "question": "In PHP, which of the following is an Associative Array?",
+        "options": [
+            "$cars = array(\"Volvo\", \"BMW\", \"Toyota\");",
+            "$ages = array(\"Peter\"=>\"35\", \"Ben\"=>\"37\");",
+            "$data = [10, 20, 30];",
+            "$matrix = array(array(1,2), array(3,4));"
+        ],
+        "correctAnswer": 1,
+        "explanation": "An Associative Array uses named string keys (Key=>Value pairs) instead of linear numeric indexes."
+    },
+    {
+        "id": "php-11",
+        "question": "Which loop is specifically designed to easily iterate through an entire array?",
+        "options": [
+            "for loop",
+            "while loop",
+            "do...while loop",
+            "foreach loop"
+        ],
+        "correctAnswer": 3,
+        "explanation": "The foreach loop provides the simplest way to iterate through all elements in an array or an object."
+    },
+    {
+        "id": "php-12",
+        "question": "To collect sensitive data sent from an HTML form (like passwords), which superglobal should you ALWAYS use?",
+        "options": [
+            "$_GET",
+            "$_POST",
+            "$_REQUEST",
+            "$_SERVER"
+        ],
+        "correctAnswer": 1,
+        "explanation": "The $_POST superglobal handles form data completely invisibly, unlike $_GET which exposes the sent data directly in the URL."
+    },
+    {
+        "id": "php-13",
+        "question": "What happens if a required file in PHP is missing when using the 'include' statement?",
+        "options": [
+            "The program throws a Fatal Error and completely halts execution.",
+            "The program automatically creates the missing file.",
+            "The program throws a Warning but continues to execute the rest of the script.",
+            "The missing file is simply ignored with no error messages."
+        ],
+        "correctAnswer": 2,
+        "explanation": "The 'include' statement produces a Warning but allows the script to continue. The 'require' statement, conversely, will halt execution completely."
+    },
+    {
+        "id": "php-14",
+        "question": "A PHP 'Session' is a way to store data across multiple pages. Where is this data physically stored?",
+        "options": [
+            "Directly in the URL of the browser.",
+            "As a permanent text file locally on the server.",
+            "Securely on the Web Server's temporary memory.",
+            "Within a browser Cookie on the user's computer."
+        ],
+        "correctAnswer": 2,
+        "explanation": "Sessions store data severely on the server side instead of exposing it to the client side. The server only sends a temporary Session ID cookie to the browser to track them."
+    },
+    {
+        "id": "php-15",
+        "question": "What MUST be the very first function called in a script before you can use the $_SESSION superglobal?",
+        "options": [
+            "session_create();",
+            "session_init();",
+            "session_start();",
+            "start_session();"
+        ],
+        "correctAnswer": 2,
+        "explanation": "You must call session_start() at the absolute beginning of your PHP document before any HTML or output is sent to the browser."
+    },
+    {
+        "id": "php-16",
+        "question": "What is the primary difference between a Session and a Cookie?",
+        "options": [
+            "Sessions are completely permanent, Cookies are temporary.",
+            "Cookies store data securely on the server; Sessions store data on the user's machine.",
+            "Sessions store data securely on the server; Cookies store data in the user's browser.",
+            "There is no difference between them."
+        ],
+        "correctAnswer": 2,
+        "explanation": "Cookies are small files saved directly to the user's browser (client-side), whereas Sessions securely store data in the server's memory."
+    },
+    {
+        "id": "php-17",
+        "question": "Which PHP function is used to create a Cookie?",
+        "options": [
+            "createcookie()",
+            "setcookie()",
+            "make_cookie()",
+            "new_cookie()"
+        ],
+        "correctAnswer": 1,
+        "explanation": "The setcookie() function sets a cookie to be sent along with the rest of the HTTP headers."
+    },
+    {
+        "id": "php-18",
+        "question": "When handling files in PHP, what should you invariably do after opening and manipulating a file?",
+        "options": [
+            "Leave it open so it loads faster next time.",
+            "Encrypt the file instantly.",
+            "Restart the server.",
+            "Always close the file using fclose() immediately."
+        ],
+        "correctAnswer": 3,
+        "explanation": "Failing to close an opened file can lead to extreme server memory leaks and corrupted data. Always use fclose()."
+    },
+    {
+        "id": "php-19",
+        "question": "Which PHP extension is most commonly used to interact natively with MySQL databases in Modern Object-Oriented PHP?",
+        "options": [
+            "mysql_connect",
+            "ODBC",
+            "mysqli",
+            "db_connect"
+        ],
+        "correctAnswer": 2,
+        "explanation": "The 'mysqli' (MySQL Improved) extension and PDO (PHP Data Objects) are the two modern, secure ways to interface with MySQL."
+    },
+    {
+        "id": "php-20",
+        "question": "What do the letters CRUD stand for in database manipulation?",
+        "options": [
+            "Create, Relate, Upload, Delete",
+            "Create, Read, Update, Delete",
+            "Connect, Read, Understand, Drop",
+            "Copy, Rearrange, Update, Drop"
+        ],
+        "correctAnswer": 1,
+        "explanation": "CRUD represents the four fundamental operations of persistent storage: Create (INSERT), Read (SELECT), Update (UPDATE), and Delete (DELETE)."
+    },
+    {
+        "id": "php-21",
+        "question": "In Object-Oriented PHP, what is 'new' keyword utilized for?",
+        "options": [
+            "To declare a brand new variable.",
+            "To instantiate (create) a new object from a Class blueprint.",
+            "To create a new array.",
+            "To open a new file."
+        ],
+        "correctAnswer": 1,
+        "explanation": "The 'new' keyword is fundamentally used to create an actual Object instance based on a designed Class blueprint."
+    },
+    {
+        "id": "php-22",
+        "question": "Within an Object-Oriented PHP class blueprint, what does the keyword '$this' refer to?",
+        "options": [
+            "The entire PHP server process.",
+            "The specific property being executed.",
+            "The current object instance itself.",
+            "A superglobal array."
+        ],
+        "correctAnswer": 2,
+        "explanation": "The pseudo-variable $this is highly critical—it refers strictly to the current calling object itself, allowing you to access its own properties."
+    },
+    {
+        "id": "php-23",
+        "question": "Which special method runs completely automatically the instant an object is created from a class?",
+        "options": [
+            "__destroy()",
+            "__init()",
+            "__construct()",
+            "__setup()"
+        ],
+        "correctAnswer": 2,
+        "explanation": "The __construct() method (constructor) automatically executes initialization code immediately upon object creation."
+    },
+    {
+        "id": "php-24",
+        "question": "Because PHP only supports single inheritance (a child can have only ONE parent class), what feature was introduced to allow methods to be shared across many completely unrelated classes?",
+        "options": [
+            "Namespaces",
+            "Traits",
+            "Interfaces",
+            "Constants"
+        ],
+        "correctAnswer": 1,
+        "explanation": "Traits overcome PHP's single inheritance limitation by allowing code chunks to be injected seamlessly into multiple unrelated classes."
+    },
+    {
+        "id": "php-25",
+        "question": "What array function lets you combine the contents of two separate arrays into one?",
+        "options": [
+            "array_combine()",
+            "array_merge()",
+            "array_join()",
+            "array_mix()"
+        ],
+        "correctAnswer": 1,
+        "explanation": "The array_merge() function literally merges the elements of one or more arrays tightly together."
+    },
+    {
+        "id": "php-26",
+        "question": "Which PHP superglobal is an array that contains data comprehensively from $_GET, $_POST, and $_COOKIE?",
+        "options": [
+            "$_SERVER",
+            "$_ALL",
+            "$_REQUEST",
+            "$_SYSTEM"
+        ],
+        "correctAnswer": 2,
+        "explanation": "The $_REQUEST superglobal acts as an umbrella, combining inputs submitted either via URL parameters, form data, or browser cookies."
+    },
+    {
+        "id": "php-27",
+        "question": "What is the primary purpose of Namespaces in PHP?",
+        "options": [
+            "To organize files into visual folders in the UI.",
+            "To format text automatically.",
+            "To encrypt passwords securely.",
+            "To group related classes together and strictly prevent naming collisions between them."
+        ],
+        "correctAnswer": 3,
+        "explanation": "Namespaces act as virtual encapsulators preventing classes with the identical name (like a 'User' class in two different libraries) from colliding."
+    },
+    {
+        "id": "php-28",
+        "question": "When defining unchanging global configuration settings (like an API Key or Site Name), what should you use?",
+        "options": [
+            "A standard $variable.",
+            "A Constant (using define() or the const keyword).",
+            "A Session token.",
+            "A hidden HTML input."
+        ],
+        "correctAnswer": 1,
+        "explanation": "Constants are designed to hold values that must never change during execution, making them perfect for secure configurations."
+    },
+    {
+        "id": "php-29",
+        "question": "How do you handle severe errors gracefully in modern PHP to heavily prevent server crashes?",
+        "options": [
+            "By relying blindly on the default PHP compiler.",
+            "Using try/catch blocks to trap and manage Exceptions before they crash the script.",
+            "By manually setting error_reporting(0).",
+            "Using the die() command continuously."
+        ],
+        "correctAnswer": 1,
+        "explanation": "Exception Handling (try/catch blocks) allows you to deliberately 'catch' disastrous errors and manage them safely without ending the application abruptly."
+    },
+    {
+        "id": "php-30",
+        "question": "When a PHP backend builds data for a React Native mobile App or Vue.js frontend, how does it securely package the data?",
+        "options": [
+            "By echoing standard HTML pages.",
+            "By directly injecting SQL strings into the browser.",
+            "By encoding associative arrays into JSON using json_encode().",
+            "By saving text to a server-side file."
+        ],
+        "correctAnswer": 2,
+        "explanation": "APIs transfer data overwhelmingly in JSON format. PHP uses json_encode() to rapidly convert its internal arrays and objects into universally readable JSON strings."
+    }
+]

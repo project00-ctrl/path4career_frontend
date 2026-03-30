@@ -1,0 +1,228 @@
+{
+  "sections": [
+    {
+      "id": "crud-operations",
+      "title": "CRUD Operations",
+      "type": "table",
+      "columns": ["COMMAND", "DESCRIPTION", "EXAMPLE"],
+      "rows": [
+        { "property": "db.collection.insertOne(doc)", "desc": "Inserts a single document", "version": "db.users.insertOne({name:'Dev', age:25})" },
+        { "property": "db.collection.insertMany([docs])", "desc": "Inserts multiple documents", "version": "db.users.insertMany([{name:'A'}, {name:'B'}])" },
+        { "property": "db.collection.find(query)", "desc": "Retrieves documents matching query", "version": "db.users.find({age: {$gt: 18}})" },
+        { "property": "db.collection.findOne(query)", "desc": "Retrieves first matching document", "version": "db.users.findOne({name: 'Dev'})" },
+        { "property": "db.collection.find().pretty()", "desc": "Displays results in formatted JSON", "version": "db.users.find().pretty()" },
+        { "property": "db.collection.countDocuments(q)", "desc": "Counts documents matching query", "version": "db.users.countDocuments({active: true})" },
+        { "property": "db.collection.estimatedDocumentCount()", "desc": "Fast estimated count of all documents", "version": "db.users.estimatedDocumentCount()" },
+        { "property": "db.collection.distinct(field, q)", "desc": "Returns distinct values for a field", "version": "db.users.distinct('country')" },
+        { "property": "db.collection.updateOne(q, update)", "desc": "Updates first matching document", "version": "db.users.updateOne({name:'Dev'}, {$set:{age:26}})" },
+        { "property": "db.collection.updateMany(q, update)", "desc": "Updates all matching documents", "version": "db.users.updateMany({active:false}, {$set:{status:'inactive'}})" },
+        { "property": "db.collection.replaceOne(q, doc)", "desc": "Replaces entire document (except _id)", "version": "db.users.replaceOne({name:'Dev'}, {name:'Dev', age:26})" },
+        { "property": "db.collection.deleteOne(query)", "desc": "Deletes first matching document", "version": "db.users.deleteOne({name: 'Dev'})" },
+        { "property": "db.collection.deleteMany(query)", "desc": "Deletes all matching documents", "version": "db.users.deleteMany({active: false})" },
+        { "property": "db.collection.findOneAndUpdate(q, u)", "desc": "Finds, updates, and returns the document", "version": "db.users.findOneAndUpdate({name:'Dev'}, {$set:{age:26}})" },
+        { "property": "db.collection.findOneAndDelete(q)", "desc": "Finds and deletes a document, returns it", "version": "db.users.findOneAndDelete({name: 'Dev'})" },
+        { "property": "db.collection.findOneAndReplace(q, d)", "desc": "Finds and replaces document, returns it", "version": "db.users.findOneAndReplace({name:'Dev'}, newDoc)" },
+        { "property": "db.collection.bulkWrite([ops])", "desc": "Executes multiple write operations in bulk", "version": "db.users.bulkWrite([{insertOne:{doc:{...}}}])" }
+      ]
+    },
+    {
+      "id": "query-operators",
+      "title": "Query & Comparison Operators",
+      "type": "table",
+      "columns": ["OPERATOR", "DESCRIPTION", "EXAMPLE"],
+      "rows": [
+        { "property": "$eq", "desc": "Matches values equal to specified value", "version": "{age: {$eq: 25}}" },
+        { "property": "$ne", "desc": "Matches values not equal to specified value", "version": "{status: {$ne: 'inactive'}}" },
+        { "property": "$gt", "desc": "Greater than", "version": "{age: {$gt: 18}}" },
+        { "property": "$gte", "desc": "Greater than or equal to", "version": "{age: {$gte: 18}}" },
+        { "property": "$lt", "desc": "Less than", "version": "{age: {$lt: 65}}" },
+        { "property": "$lte", "desc": "Less than or equal to", "version": "{age: {$lte: 30}}" },
+        { "property": "$in", "desc": "Matches any value in array", "version": "{country: {$in: ['US', 'UK']}}" },
+        { "property": "$nin", "desc": "Matches values not in array", "version": "{country: {$nin: ['US']}}" },
+        { "property": "$exists", "desc": "Matches documents where field exists/doesn't exist", "version": "{email: {$exists: true}}" },
+        { "property": "$type", "desc": "Matches documents where field is specified BSON type", "version": "{age: {$type: 'number'}}" },
+        { "property": "$regex", "desc": "Matches values using regular expression", "version": "{name: {$regex: /^dev/i}}" },
+        { "property": "$text", "desc": "Full-text search on indexed fields", "version": "{$text: {$search: 'coffee shop'}}" },
+        { "property": "$all", "desc": "Matches arrays containing all specified elements", "version": "{tags: {$all: ['js', 'node']}}" },
+        { "property": "$elemMatch", "desc": "Matches array element meeting all conditions", "version": "{scores: {$elemMatch: {$gt:80, $lt:100}}}" },
+        { "property": "$size", "desc": "Matches arrays of specified length", "version": "{tags: {$size: 3}}" },
+        { "property": "$where", "desc": "Matches using JavaScript expression (slow)", "version": "{$where: 'this.a + this.b > 100'}" }
+      ]
+    },
+    {
+      "id": "logical-operators",
+      "title": "Logical Operators",
+      "type": "table",
+      "columns": ["OPERATOR", "DESCRIPTION", "EXAMPLE"],
+      "rows": [
+        { "property": "$and", "desc": "Joins query clauses with logical AND", "version": "{$and: [{age: {$gt: 18}}, {active: true}]}" },
+        { "property": "$or", "desc": "Joins query clauses with logical OR", "version": "{$or: [{age: {$lt: 18}}, {age: {$gt: 65}}]}" },
+        { "property": "$not", "desc": "Inverts the effect of a query expression", "version": "{age: {$not: {$gt: 30}}}" },
+        { "property": "$nor", "desc": "Joins clauses with logical NOR (fails all conditions)", "version": "{$nor: [{active: false}, {age: {$lt: 18}}]}" },
+        { "property": "Implicit AND", "desc": "Multiple conditions on same field level = AND", "version": "{age: {$gt: 18}, active: true}" }
+      ]
+    },
+    {
+      "id": "update-operators",
+      "title": "Update Operators",
+      "type": "table",
+      "columns": ["OPERATOR", "DESCRIPTION", "EXAMPLE"],
+      "rows": [
+        { "property": "$set", "desc": "Sets the value of a field", "version": "{$set: {name: 'NewName'}}" },
+        { "property": "$unset", "desc": "Removes a field from document", "version": "{$unset: {tempField: ''}}" },
+        { "property": "$inc", "desc": "Increments field value by amount", "version": "{$inc: {views: 1}}" },
+        { "property": "$mul", "desc": "Multiplies field value", "version": "{$mul: {price: 1.1}}" },
+        { "property": "$min", "desc": "Updates only if new value is less than current", "version": "{$min: {lowScore: 50}}" },
+        { "property": "$max", "desc": "Updates only if new value is greater than current", "version": "{$max: {highScore: 99}}" },
+        { "property": "$rename", "desc": "Renames a field", "version": "{$rename: {oldName: 'newName'}}" },
+        { "property": "$currentDate", "desc": "Sets field to current date", "version": "{$currentDate: {updatedAt: true}}" },
+        { "property": "$setOnInsert", "desc": "Sets field value only on upsert insert", "version": "{$setOnInsert: {createdAt: new Date()}}" },
+        { "property": "$push", "desc": "Appends value to array field", "version": "{$push: {tags: 'new'}}" },
+        { "property": "$addToSet", "desc": "Adds value to array only if not present", "version": "{$addToSet: {tags: 'unique'}}" },
+        { "property": "$pop", "desc": "Removes first (-1) or last (1) element from array", "version": "{$pop: {tags: 1}}" },
+        { "property": "$pull", "desc": "Removes array elements matching condition", "version": "{$pull: {tags: 'obsolete'}}" },
+        { "property": "$pullAll", "desc": "Removes all matching values from array", "version": "{$pullAll: {tags: ['a', 'b']}}" },
+        { "property": "$each", "desc": "Used with $push/$addToSet to add multiple values", "version": "{$push: {tags: {$each: ['a','b']}}}" },
+        { "property": "$position", "desc": "Used with $push to insert at specific position", "version": "{$push: {arr: {$each: [1], $position: 0}}}" },
+        { "property": "$slice", "desc": "Used with $push to limit array size", "version": "{$push: {logs: {$each: [doc], $slice: -100}}}" },
+        { "property": "$sort", "desc": "Used with $push to sort array elements", "version": "{$push: {scores: {$each: [], $sort: -1}}}" }
+      ]
+    },
+    {
+      "id": "projection",
+      "title": "Projection & Cursor Methods",
+      "type": "table",
+      "columns": ["METHOD", "DESCRIPTION", "EXAMPLE"],
+      "rows": [
+        { "property": "find(q, projection)", "desc": "Include/exclude fields from results", "version": "db.users.find({}, {name:1, age:1, _id:0})" },
+        { "property": ".sort({field: 1/-1})", "desc": "Sorts results (1=ascending, -1=descending)", "version": "db.users.find().sort({age: -1})" },
+        { "property": ".limit(n)", "desc": "Limits number of returned documents", "version": "db.users.find().limit(10)" },
+        { "property": ".skip(n)", "desc": "Skips first n documents", "version": "db.users.find().skip(20).limit(10)" },
+        { "property": ".forEach(fn)", "desc": "Iterates through cursor results", "version": "db.users.find().forEach(u => print(u.name))" },
+        { "property": ".toArray()", "desc": "Converts cursor to array", "version": "db.users.find().toArray()" },
+        { "property": ".count()", "desc": "Returns count of matching documents", "version": "db.users.find({active:true}).count()" },
+        { "property": ".explain()", "desc": "Returns query execution plan", "version": "db.users.find({name:'Dev'}).explain()" },
+        { "property": "$slice (projection)", "desc": "Returns subset of array field", "version": "db.posts.find({}, {comments: {$slice: 5}})" },
+        { "property": "$elemMatch (projection)", "desc": "Returns first matching array element", "version": "db.orders.find({}, {items: {$elemMatch: {qty: {$gt:5}}}})" }
+      ]
+    },
+    {
+      "id": "aggregation",
+      "title": "Aggregation Pipeline",
+      "type": "table",
+      "columns": ["STAGE", "DESCRIPTION", "EXAMPLE"],
+      "rows": [
+        { "property": "$match", "desc": "Filters documents (like find query)", "version": "{$match: {status: 'active'}}" },
+        { "property": "$group", "desc": "Groups documents and applies accumulators", "version": "{$group: {_id: '$dept', total: {$sum: 1}}}" },
+        { "property": "$project", "desc": "Reshapes documents (include/exclude/compute fields)", "version": "{$project: {name: 1, fullName: {$concat: ['$first', ' ', '$last']}}}" },
+        { "property": "$sort", "desc": "Sorts documents", "version": "{$sort: {age: -1}}" },
+        { "property": "$limit", "desc": "Limits number of documents", "version": "{$limit: 10}" },
+        { "property": "$skip", "desc": "Skips documents", "version": "{$skip: 20}" },
+        { "property": "$unwind", "desc": "Deconstructs array field into separate documents", "version": "{$unwind: '$tags'}" },
+        { "property": "$lookup", "desc": "Performs left join with another collection", "version": "{$lookup: {from:'orders', localField:'_id', foreignField:'userId', as:'orders'}}" },
+        { "property": "$addFields", "desc": "Adds new computed fields to documents", "version": "{$addFields: {totalPrice: {$multiply: ['$qty', '$price']}}}" },
+        { "property": "$set", "desc": "Alias for $addFields", "version": "{$set: {fullName: {$concat: ['$first', ' ', '$last']}}}" },
+        { "property": "$count", "desc": "Returns count of documents", "version": "{$count: 'totalUsers'}" },
+        { "property": "$out", "desc": "Writes pipeline results to a collection", "version": "{$out: 'reportCollection'}" },
+        { "property": "$merge", "desc": "Merges pipeline results into a collection", "version": "{$merge: {into: 'results'}}" },
+        { "property": "$facet", "desc": "Processes multiple pipelines in single stage", "version": "{$facet: {byAge: [{$group:...}], byDept: [{$group:...}]}}" },
+        { "property": "$bucket", "desc": "Categorises documents into groups by boundaries", "version": "{$bucket: {groupBy:'$age', boundaries:[0,18,30,65]}}" },
+        { "property": "$replaceRoot", "desc": "Replaces document with specified embedded document", "version": "{$replaceRoot: {newRoot: '$profile'}}" },
+        { "property": "$sample", "desc": "Randomly selects specified number of documents", "version": "{$sample: {size: 5}}" },
+        { "property": "$graphLookup", "desc": "Recursive lookup for graph/tree data", "version": "{$graphLookup: {from:'employees', startWith:'$managerId',...}}" }
+      ]
+    },
+    {
+      "id": "accumulator-operators",
+      "title": "Accumulator Operators (in $group)",
+      "type": "table",
+      "columns": ["OPERATOR", "DESCRIPTION", "EXAMPLE"],
+      "rows": [
+        { "property": "$sum", "desc": "Returns sum of numeric values", "version": "{$sum: '$amount'} or {$sum: 1} for count" },
+        { "property": "$avg", "desc": "Returns average of numeric values", "version": "{$avg: '$score'}" },
+        { "property": "$min", "desc": "Returns minimum value", "version": "{$min: '$price'}" },
+        { "property": "$max", "desc": "Returns maximum value", "version": "{$max: '$price'}" },
+        { "property": "$first", "desc": "Returns first value in group", "version": "{$first: '$name'}" },
+        { "property": "$last", "desc": "Returns last value in group", "version": "{$last: '$name'}" },
+        { "property": "$push", "desc": "Returns array of all values in group", "version": "{$push: '$name'}" },
+        { "property": "$addToSet", "desc": "Returns array of unique values", "version": "{$addToSet: '$category'}" },
+        { "property": "$count", "desc": "Returns count of documents in group", "version": "{$count: {}}" },
+        { "property": "$stdDevPop", "desc": "Population standard deviation", "version": "{$stdDevPop: '$score'}" },
+        { "property": "$stdDevSamp", "desc": "Sample standard deviation", "version": "{$stdDevSamp: '$score'}" }
+      ]
+    },
+    {
+      "id": "indexes",
+      "title": "Indexes",
+      "type": "table",
+      "columns": ["COMMAND", "DESCRIPTION", "EXAMPLE"],
+      "rows": [
+        { "property": "createIndex({field: 1})", "desc": "Creates ascending index on field", "version": "db.users.createIndex({name: 1})" },
+        { "property": "createIndex({field: -1})", "desc": "Creates descending index", "version": "db.users.createIndex({createdAt: -1})" },
+        { "property": "Compound index", "desc": "Index on multiple fields", "version": "db.users.createIndex({name: 1, age: -1})" },
+        { "property": "Unique index", "desc": "Ensures no duplicate values for field", "version": "db.users.createIndex({email: 1}, {unique: true})" },
+        { "property": "Text index", "desc": "Enables full-text search", "version": "db.posts.createIndex({content: 'text'})" },
+        { "property": "TTL index", "desc": "Auto-deletes documents after specified seconds", "version": "db.sessions.createIndex({createdAt:1}, {expireAfterSeconds:3600})" },
+        { "property": "Partial index", "desc": "Indexes only documents matching a filter", "version": "db.users.createIndex({name:1}, {partialFilterExpression:{active:true}})" },
+        { "property": "Sparse index", "desc": "Skips documents where field doesn't exist", "version": "db.users.createIndex({email: 1}, {sparse: true})" },
+        { "property": "2dsphere index", "desc": "Geospatial index for GeoJSON data", "version": "db.places.createIndex({location: '2dsphere'})" },
+        { "property": "Hashed index", "desc": "Index on hash of field value (for sharding)", "version": "db.users.createIndex({userId: 'hashed'})" },
+        { "property": "getIndexes()", "desc": "Lists all indexes on collection", "version": "db.users.getIndexes()" },
+        { "property": "dropIndex(name)", "desc": "Removes a specific index", "version": "db.users.dropIndex('name_1')" },
+        { "property": "dropIndexes()", "desc": "Removes all non-_id indexes", "version": "db.users.dropIndexes()" },
+        { "property": "reIndex()", "desc": "Rebuilds all indexes on collection", "version": "db.users.reIndex()" }
+      ]
+    },
+    {
+      "id": "database-commands",
+      "title": "Database & Collection Commands",
+      "type": "table",
+      "columns": ["COMMAND", "DESCRIPTION", "EXAMPLE"],
+      "rows": [
+        { "property": "show dbs", "desc": "Lists all databases", "version": "show dbs" },
+        { "property": "use dbname", "desc": "Switches to database (creates if needed)", "version": "use myapp" },
+        { "property": "db", "desc": "Shows current database name", "version": "db" },
+        { "property": "db.dropDatabase()", "desc": "Drops the current database", "version": "db.dropDatabase()" },
+        { "property": "show collections", "desc": "Lists all collections in current database", "version": "show collections" },
+        { "property": "db.createCollection(name)", "desc": "Creates a new collection", "version": "db.createCollection('users')" },
+        { "property": "db.collection.drop()", "desc": "Drops a collection and its indexes", "version": "db.users.drop()" },
+        { "property": "db.collection.renameCollection(new)", "desc": "Renames a collection", "version": "db.users.renameCollection('members')" },
+        { "property": "db.stats()", "desc": "Returns database statistics", "version": "db.stats()" },
+        { "property": "db.collection.stats()", "desc": "Returns collection statistics", "version": "db.users.stats()" },
+        { "property": "db.serverStatus()", "desc": "Returns server status information", "version": "db.serverStatus()" },
+        { "property": "db.collection.validate()", "desc": "Validates collection data and indexes", "version": "db.users.validate()" },
+        { "property": "db.currentOp()", "desc": "Shows currently running operations", "version": "db.currentOp()" },
+        { "property": "db.killOp(opId)", "desc": "Kills a running operation", "version": "db.killOp(12345)" }
+      ]
+    },
+    {
+      "id": "expression-operators",
+      "title": "Expression Operators (Aggregation)",
+      "type": "table",
+      "columns": ["OPERATOR", "DESCRIPTION", "EXAMPLE"],
+      "rows": [
+        { "property": "$concat", "desc": "Concatenates strings", "version": "{$concat: ['$firstName', ' ', '$lastName']}" },
+        { "property": "$substr / $substrCP", "desc": "Returns substring", "version": "{$substr: ['$name', 0, 3]}" },
+        { "property": "$toUpper / $toLower", "desc": "Converts string case", "version": "{$toUpper: '$name'}" },
+        { "property": "$trim / $ltrim / $rtrim", "desc": "Trims whitespace", "version": "{$trim: {input: '$name'}}" },
+        { "property": "$split", "desc": "Splits string into array", "version": "{$split: ['$fullName', ' ']}" },
+        { "property": "$strLenCP", "desc": "Returns string length (code points)", "version": "{$strLenCP: '$name'}" },
+        { "property": "$add", "desc": "Adds numbers or date + milliseconds", "version": "{$add: ['$price', '$tax']}" },
+        { "property": "$subtract", "desc": "Subtracts numbers or dates", "version": "{$subtract: ['$total', '$discount']}" },
+        { "property": "$multiply", "desc": "Multiplies numbers", "version": "{$multiply: ['$qty', '$price']}" },
+        { "property": "$divide", "desc": "Divides numbers", "version": "{$divide: ['$total', '$count']}" },
+        { "property": "$mod", "desc": "Returns remainder", "version": "{$mod: ['$num', 2]}" },
+        { "property": "$abs / $ceil / $floor / $round", "desc": "Math operations", "version": "{$round: ['$price', 2]}" },
+        { "property": "$cond", "desc": "Conditional expression (if-then-else)", "version": "{$cond: {if: {$gte:['$age',18]}, then:'adult', else:'minor'}}" },
+        { "property": "$ifNull", "desc": "Returns first non-null value", "version": "{$ifNull: ['$nickname', '$name']}" },
+        { "property": "$switch", "desc": "Multi-case conditional", "version": "{$switch: {branches: [{case:..., then:...}], default:'other'}}" },
+        { "property": "$dateToString", "desc": "Formats date as string", "version": "{$dateToString: {format:'%Y-%m-%d', date:'$createdAt'}}" },
+        { "property": "$year / $month / $dayOfMonth", "desc": "Extracts date components", "version": "{$year: '$createdAt'}" },
+        { "property": "$arrayElemAt", "desc": "Returns array element at index", "version": "{$arrayElemAt: ['$arr', 0]}" },
+        { "property": "$filter", "desc": "Filters array elements", "version": "{$filter: {input:'$items', as:'item', cond:{$gte:['$$item.qty',5]}}}" },
+        { "property": "$map", "desc": "Transforms each array element", "version": "{$map: {input:'$arr', as:'x', in:{$multiply:['$$x',2]}}}" },
+        { "property": "$reduce", "desc": "Reduces array to single value", "version": "{$reduce: {input:'$arr', initialValue:0, in:{$add:['$$value','$$this']}}}" }
+      ]
+    }
+  ]
+}

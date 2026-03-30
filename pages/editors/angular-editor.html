@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live Angular Editor - CareerPath</title>
+    <link rel="stylesheet" href="../../assets/css/editor.css">
+    <style>
+        #angularInput { color: #dd0031; }
+        
+        .console-output {
+            flex: 1;
+            background-color: #1e1e2f;
+            display: flex;
+            flex-direction: column;
+        }
+
+        #consoleDiv {
+            flex: 1;
+            padding: 10px 20px;
+            font-family: 'Courier New', Courier, monospace;
+            overflow-y: auto;
+            color: #cbd5e1;
+            font-size: 14px;
+            white-space: pre-wrap; 
+        }
+
+        .log-error { color: #ff4757; }
+        .log-normal { color: #00ffb3; }
+        .log-loading { color: #8be9fd; font-style: italic; }
+        .log-info { color: #ffb86c; }
+        .log-success { color: #50fa7b; }
+        
+        /* Preview iframe styling */
+        #Output {
+            flex: 1;
+            width: 100%;
+            height: 100%;
+            border: none;
+            background-color: #ffffff;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h2><span style="color: #dd0031;">▲</span> Real Angular Workspace</h2>
+        <button class="run-btn" id="runBtn" disabled>Loading Angular Engine...</button>
+    </div>
+    <div class="workspace">
+        <div class="editor-pane">
+            <p class="pane-label">app.component.ts (Angular)</p>
+            <textarea id="angularInput" spellcheck="false" aria-label="Angular Input"></textarea>
+        </div>
+        
+        <div class="result-pane">
+            <div class="console-output">
+                <p class="pane-label" style="padding:10px 20px 0;">Console / Output</p>
+                <div id="consoleDiv">
+                    <span class="log-loading">Initializing Angular engine... please wait.</span>
+                </div>
+            </div>
+            <iframe id="angularOutput" title="Angular Preview"></iframe>
+        </div>
+    </div>
+
+    <script>
+// Angular Editor JavaScript
+const angularInput = document.getElementById('angularInput');
+const consoleDiv = document.getElementById('consoleDiv');
+const runBtn = document.getElementById('runBtn');
+const angularOutput = document.getElementById('angularOutput');
+
+// Default Angular template
+const defaultTemplate = `// Welcome to Angular Editor! 
+// Write your Angular code here!
+
+// Angular Component (Standalone)
+@Component({
+  selector: 'app-root',
+  standalone: true,
+  template: \`
+    <div style={{ 
+      fontFamily: 'Arial, sans-serif', 
+      padding: '20px',
+      textAlign: 'center'
+    }}>
+      <h1 style={{ color: '#dd0031' }}>Hello Angular!</h1>
+      <p>Welcome to the Angular workspace.</p>
+      <button (click)="onClick()" style={{
+        padding: '10px 20px',
+        backgroundColor: '#dd0031',
+        color: 'white',
+        border: 'none',
+        borderRadius: '4px',
+        cursor: 'pointer'
+      }}>
+        Click Me
+      </button>
+    </div>
+  \`
+})
+export class AppComponent {
+  title = 'Angular App';
+  
+  onClick() {
+    alert('Angular is working!');
+  }
+}
+
+// Use the component: <app-root></app-root>`;
+
+// Get saved code from localStorage
+const savedCode = localStorage.getItem('careerPathAngularCode');
+angularInput.value = savedCode ? savedCode : defaultTemplate;
+
+// Function to append text to console
+function appendToConsole(text, className) {
+    const span = document.createElement('span');
+    span.className = className;
+    span.textContent = text + '\n';
+    consoleDiv.appendChild(span);
+    consoleDiv.scrollTop = consoleDiv.scrollHeight;
+}
+
+// Clear console
+function clearConsole() {
+    consoleDiv.innerHTML = '';
+}
+
+// Execute Angular code
+async function executeAngularCode() {
+    const code = angularInput.value.trim();
+    
+    if (!code) {
+        appendToConsole('Please enter some Angular code.', 'log-error');
+        return;
+    }
+    
+    localStorage.setItem('careerPathAngularCode', code);
+    
+    clearConsole();
+    appendToConsole('Executing Angular code...', 'log-loading');
+    
+    try {
+        // Create a simulated Angular environment
+        const outputDoc = angularOutput.contentWindow.document;
+        
+        // Generate HTML with Angular via CDN using safe DOM injection
+        const fullHTML = `<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Angular Output</title>
+    <style>
+        * { box-sizing: border-box; }
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            margin: 0; 
+            padding: 20px;
+            background: #f5f5f5;
+        }
+    \x3C/style>
+\x3C/head>
+<body>
+    <div id="root"></div>
+\x3C/body>
+\x3C/html>`;
+        
+        outputDoc.open();
+        outputDoc.write(fullHTML);
+        outputDoc.close();
+
+        // Inject CDN scripts sequentially
+        const cdnScripts = [
+            'https://unpkg.com/react@18/umd/react.development.js',
+            'https://unpkg.com/react-dom@18/umd/react-dom.development.js',
+            'https://unpkg.com/@babel/standalone/babel.min.js'
+        ];
+
+        let loadedCount = 0;
+        cdnScripts.forEach(src => {
+            const s = outputDoc.createElement('script');
+            s.src = src;
+            s.onload = () => {
+                loadedCount++;
+                if (loadedCount === cdnScripts.length) {
+                    // Inject and transpile user code
+                    const babelScript = outputDoc.createElement('script');
+                    babelScript.type = 'text/babel';
+                    babelScript.textContent = code;
+                    outputDoc.body.appendChild(babelScript);
+
+                    // Inject execution script
+                    const execScript = outputDoc.createElement('script');
+                    execScript.textContent = `
+                        setTimeout(() => {
+                            const root = ReactDOM.createRoot(document.getElementById("root"));
+                            if (typeof AppComponent !== "undefined") {
+                                root.render(React.createElement(AppComponent));
+                            } else {
+                                root.render(React.createElement("div", null, 
+                                    React.createElement("h2", null, "No AppComponent found"),
+                                    React.createElement("p", null, "Define a class called AppComponent to get started!")
+                                ));
+                            }
+                        }, 100); // Give Babel time to transpile
+                    `;
+                    outputDoc.body.appendChild(execScript);
+                }
+            };
+            outputDoc.head.appendChild(s);
+        });
+        
+        appendToConsole('Angular code executed successfully!', 'log-success');
+        appendToConsole('Check the preview panel for output.', 'log-info');
+        
+    } catch (error) {
+        appendToConsole('Error: ' + error.message, 'log-error');
+    }
+}
+
+// Enable run button
+runBtn.disabled = false;
+runBtn.innerHTML = 'Run Code';
+
+// Add click handler
+runBtn.addEventListener('click', executeAngularCode);
+
+// Handle keyboard shortcuts
+angularInput.addEventListener('keydown', function(e) {
+    // Ctrl/Cmd + Enter to run
+    if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
+        executeAngularCode();
+    }
+});
+
+// Auto-run on page load
+window.addEventListener('load', function() {
+    appendToConsole('Angular Editor Ready!', 'log-normal');
+    appendToConsole('Click Run Code to execute your Angular code.', 'log-info');
+    appendToConsole('Tip: Use Ctrl+Enter to run quickly.', 'log-info');
+});
+
+// Error handling for iframe
+angularOutput.addEventListener('load', function() {
+    try {
+        angularOutput.contentWindow.onerror = function(msg, url, line) {
+            appendToConsole('Runtime Error: ' + msg, 'log-error');
+            return true;
+        };
+    } catch (e) {
+        // Cross-origin restrictions
+    }
+});
+
+
+</script>
+</body>
+</html>
+

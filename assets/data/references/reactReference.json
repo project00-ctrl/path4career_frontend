@@ -1,0 +1,1638 @@
+{
+  "sections": [
+    {
+      "title": "Core Hooks & APIs",
+      "desc": "React hooks, DOM APIs, top-level APIs, and custom hook patterns.",
+      "type": "grouped-list",
+      "groups": [
+        {
+          "title": "State Hooks",
+          "items": [
+            {
+              "code": "useState(initialValue)",
+              "desc": "Returns [state, setter] pair; triggers re-render on update"
+            },
+            {
+              "code": "useReducer(reducer, initialState)",
+              "desc": "Manages complex state with a reducer function; returns [state, dispatch]"
+            },
+            {
+              "code": "useFormStatus()",
+              "desc": "Returns pending status of a parent form (React 19+)"
+            },
+            {
+              "code": "useActionState(action, initial)",
+              "desc": "Manages state updated by form actions (React 19+)"
+            },
+            {
+              "code": "useOptimistic(state, updateFn)",
+              "desc": "Shows optimistic UI while async action completes (React 19+)"
+            }
+          ]
+        },
+        {
+          "title": "Effect Hooks",
+          "items": [
+            {
+              "code": "useEffect(fn, deps)",
+              "desc": "Runs side effects after render; dep array controls when it re-runs"
+            },
+            {
+              "code": "useLayoutEffect(fn, deps)",
+              "desc": "Fires synchronously after DOM mutations, before browser paint"
+            },
+            {
+              "code": "useInsertionEffect(fn)",
+              "desc": "Fires before DOM mutations; intended for CSS-in-JS libraries"
+            }
+          ]
+        },
+        {
+          "title": "Ref Hooks",
+          "items": [
+            {
+              "code": "useRef(initialValue)",
+              "desc": "Returns mutable ref object (.current) — does not trigger re-render"
+            },
+            {
+              "code": "useImperativeHandle(ref, fn)",
+              "desc": "Customises the instance value exposed to parent via forwardRef"
+            }
+          ]
+        },
+        {
+          "title": "Context Hooks",
+          "items": [
+            {
+              "code": "useContext(MyContext)",
+              "desc": "Reads and subscribes to a context value from nearest Provider"
+            }
+          ]
+        },
+        {
+          "title": "Performance Hooks",
+          "items": [
+            {
+              "code": "useMemo(fn, deps)",
+              "desc": "Memoises expensive computed value; recomputes only when deps change"
+            },
+            {
+              "code": "useCallback(fn, deps)",
+              "desc": "Memoises function reference; prevents unnecessary child re-renders"
+            },
+            {
+              "code": "useTransition()",
+              "desc": "Returns [isPending, startTransition]; marks updates as non-urgent"
+            },
+            {
+              "code": "useDeferredValue(value)",
+              "desc": "Defers re-rendering a non-urgent part of the UI"
+            }
+          ]
+        },
+        {
+          "title": "Other Built-in Hooks",
+          "items": [
+            {
+              "code": "useId()",
+              "desc": "Generates unique IDs stable across server and client renders"
+            },
+            {
+              "code": "useSyncExternalStore(sub, get)",
+              "desc": "Subscribe to external stores safely in concurrent mode"
+            },
+            {
+              "code": "useDebugValue(value)",
+              "desc": "Displays a label for custom hooks in React DevTools"
+            }
+          ]
+        },
+        {
+          "title": "React DOM APIs",
+          "items": [
+            {
+              "code": "ReactDOM.createRoot(container)",
+              "desc": "Creates a React root for concurrent rendering (React 18+)"
+            },
+            {
+              "code": "ReactDOM.createPortal(child, container)",
+              "desc": "Renders child into a different DOM node (e.g. modals)"
+            },
+            {
+              "code": "ReactDOM.flushSync(fn)",
+              "desc": "Forces synchronous state updates inside fn"
+            },
+            {
+              "code": "ReactDOM.hydrateRoot(container, element)",
+              "desc": "Hydrates server-rendered HTML for SSR apps"
+            },
+            {
+              "code": "ReactDOM.render(element, node)",
+              "desc": "Legacy: renders element into DOM node (pre-React 18)"
+            },
+            {
+              "code": "ReactDOM.unmountComponentAtNode(node)",
+              "desc": "Legacy: removes mounted React component from node"
+            }
+          ]
+        },
+        {
+          "title": "React Top-Level APIs",
+          "items": [
+            {
+              "code": "React.createElement(type, props, ...children)",
+              "desc": "Creates a React element (JSX compiles to this)"
+            },
+            {
+              "code": "React.cloneElement(element, props)",
+              "desc": "Clones and returns a new element with merged props"
+            },
+            {
+              "code": "React.createContext(defaultValue)",
+              "desc": "Creates a Context object with Provider and Consumer"
+            },
+            {
+              "code": "React.forwardRef((props, ref) => JSX)",
+              "desc": "Lets a component forward ref to a child DOM node"
+            },
+            {
+              "code": "React.memo(Component)",
+              "desc": "Higher-order component; skips re-render if props unchanged"
+            },
+            {
+              "code": "React.lazy(() => import('./Comp'))",
+              "desc": "Dynamically imports a component for code splitting"
+            },
+            {
+              "code": "React.startTransition(fn)",
+              "desc": "Marks state updates inside fn as non-urgent transitions"
+            },
+            {
+              "code": "React.Children.map(children, fn)",
+              "desc": "Maps over opaque children prop safely"
+            },
+            {
+              "code": "React.Children.toArray(children)",
+              "desc": "Converts children to a flat, keyed array"
+            },
+            {
+              "code": "React.isValidElement(object)",
+              "desc": "Returns true if the object is a valid React element"
+            }
+          ]
+        },
+        {
+          "title": "Custom Hook Pattern",
+          "items": [
+            {
+              "code": "function useName() { … }",
+              "desc": "Custom hook — name must start with 'use'; can call other hooks"
+            },
+            {
+              "code": "return [value, setter]",
+              "desc": "Common return pattern: tuple of state value and setter"
+            },
+            {
+              "code": "return { data, loading, error }",
+              "desc": "Common return pattern for async data-fetching hooks"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Component & Data Types",
+      "desc": "Renderable types in JSX, component types, and key data structures.",
+      "type": "grouped-list",
+      "groups": [
+        {
+          "title": "Renderable Types in JSX",
+          "items": [
+            {
+              "code": "string",
+              "desc": "Rendered as a text node in JSX"
+            },
+            {
+              "code": "number",
+              "desc": "Rendered as a text node in JSX"
+            },
+            {
+              "code": "boolean",
+              "desc": "true/false — not rendered visually; used for conditional rendering"
+            },
+            {
+              "code": "null",
+              "desc": "Renders nothing; useful for conditional rendering"
+            },
+            {
+              "code": "undefined",
+              "desc": "Renders nothing"
+            },
+            {
+              "code": "array",
+              "desc": "Each element is rendered; array items need a unique key prop"
+            },
+            {
+              "code": "object",
+              "desc": "Cannot be rendered directly as JSX child — causes error"
+            },
+            {
+              "code": "React element",
+              "desc": "Plain object returned by JSX or React.createElement()"
+            },
+            {
+              "code": "React node",
+              "desc": "Anything renderable: element, string, number, array, null"
+            }
+          ]
+        },
+        {
+          "title": "Component Types",
+          "items": [
+            {
+              "code": "Function Component",
+              "desc": "Plain JS function returning JSX — primary modern style"
+            },
+            {
+              "code": "Class Component",
+              "desc": "ES6 class extending React.Component — legacy style"
+            },
+            {
+              "code": "Higher-Order Component (HOC)",
+              "desc": "Function that takes a component and returns an enhanced component"
+            },
+            {
+              "code": "Controlled Component",
+              "desc": "Form element whose value is driven by React state"
+            },
+            {
+              "code": "Uncontrolled Component",
+              "desc": "Form element whose value is read via ref, not state"
+            },
+            {
+              "code": "Pure Component",
+              "desc": "Class component with shallow prop/state comparison in shouldComponentUpdate"
+            },
+            {
+              "code": "Server Component",
+              "desc": "Renders on the server only; cannot use hooks or browser APIs"
+            },
+            {
+              "code": "Client Component",
+              "desc": "Uses 'use client' directive; runs in the browser with hooks"
+            }
+          ]
+        },
+        {
+          "title": "Key Data Structures",
+          "items": [
+            {
+              "code": "props",
+              "desc": "Immutable object passed from parent to child component"
+            },
+            {
+              "code": "state",
+              "desc": "Mutable data managed inside a component via useState/useReducer"
+            },
+            {
+              "code": "context value",
+              "desc": "Data shared across the component tree without prop drilling"
+            },
+            {
+              "code": "ref.current",
+              "desc": "Mutable value stored in ref object; persists across renders"
+            },
+            {
+              "code": "key",
+              "desc": "Special string prop helping React identify and track list items"
+            },
+            {
+              "code": "children",
+              "desc": "Special prop containing nested JSX content passed to a component"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "JSX & Props",
+      "desc": "JSX expression syntax, props patterns, and event handling.",
+      "type": "grouped-list",
+      "groups": [
+        {
+          "title": "JSX Expression Syntax",
+          "items": [
+            {
+              "code": "{expression}",
+              "desc": "Embeds any JS expression in JSX — must return a renderable type"
+            },
+            {
+              "code": "{condition && <JSX />}",
+              "desc": "Short-circuit: renders right side only if condition is truthy"
+            },
+            {
+              "code": "{condition ? <A /> : <B />}",
+              "desc": "Ternary: choose between two JSX elements"
+            },
+            {
+              "code": "{list.map(item => <Li key={item.id} />)}",
+              "desc": "List rendering — key prop required on each item"
+            },
+            {
+              "code": "className",
+              "desc": "JSX attribute for CSS class (replaces HTML class)"
+            },
+            {
+              "code": "htmlFor",
+              "desc": "JSX attribute for label association (replaces HTML for)"
+            },
+            {
+              "code": "style={{ color: 'red', fontSize: 14 }}",
+              "desc": "Inline styles as camelCase JS object (double braces)"
+            },
+            {
+              "code": "<>…</>",
+              "desc": "Fragment shorthand — groups elements without extra DOM node"
+            },
+            {
+              "code": "<React.Fragment key={k}>",
+              "desc": "Fragment with key prop — required when mapping"
+            }
+          ]
+        },
+        {
+          "title": "Props Patterns",
+          "items": [
+            {
+              "code": "<Comp {...props} />",
+              "desc": "Spread all props onto a component"
+            },
+            {
+              "code": "children",
+              "desc": "Special prop for nested content between opening and closing tags"
+            },
+            {
+              "code": "Component.defaultProps",
+              "desc": "Default prop values applied when props are not provided"
+            },
+            {
+              "code": "Component.propTypes",
+              "desc": "Runtime prop type checking in development mode"
+            },
+            {
+              "code": "key",
+              "desc": "Required on list items; not accessible as a prop inside component"
+            },
+            {
+              "code": "ref",
+              "desc": "Forwarded to DOM node or child component via forwardRef"
+            }
+          ]
+        },
+        {
+          "title": "Event Handling",
+          "items": [
+            {
+              "code": "onClick={handler}",
+              "desc": "Click event"
+            },
+            {
+              "code": "onChange={handler}",
+              "desc": "Input/select/textarea value change"
+            },
+            {
+              "code": "onSubmit={handler}",
+              "desc": "Form submission"
+            },
+            {
+              "code": "onKeyDown={handler}",
+              "desc": "Key pressed down"
+            },
+            {
+              "code": "onKeyUp={handler}",
+              "desc": "Key released"
+            },
+            {
+              "code": "onMouseEnter={handler}",
+              "desc": "Mouse enters element"
+            },
+            {
+              "code": "onMouseLeave={handler}",
+              "desc": "Mouse leaves element"
+            },
+            {
+              "code": "onFocus={handler}",
+              "desc": "Element gains focus"
+            },
+            {
+              "code": "onBlur={handler}",
+              "desc": "Element loses focus"
+            },
+            {
+              "code": "onScroll={handler}",
+              "desc": "Element is scrolled"
+            },
+            {
+              "code": "e.preventDefault()",
+              "desc": "Prevents default browser behaviour (e.g. form submit)"
+            },
+            {
+              "code": "e.stopPropagation()",
+              "desc": "Stops event bubbling up the component tree"
+            },
+            {
+              "code": "e.target.value",
+              "desc": "Current value of input element"
+            },
+            {
+              "code": "e.target.checked",
+              "desc": "Checked state of checkbox input"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "State Patterns",
+      "desc": "useState, useEffect, useRef, and useReducer patterns.",
+      "type": "grouped-list",
+      "groups": [
+        {
+          "title": "useState Patterns",
+          "items": [
+            {
+              "code": "const [val, setVal] = useState(init)",
+              "desc": "Declare state variable with initial value"
+            },
+            {
+              "code": "setVal(newValue)",
+              "desc": "Replace state with a new value"
+            },
+            {
+              "code": "setVal(prev => prev + 1)",
+              "desc": "Functional update based on previous state"
+            },
+            {
+              "code": "setVal(prev => ({ ...prev, key: v }))",
+              "desc": "Immutably update a key in object state"
+            },
+            {
+              "code": "setVal(prev => [...prev, newItem])",
+              "desc": "Immutably add item to array state"
+            },
+            {
+              "code": "setVal(prev => prev.filter(x => x.id !== id))",
+              "desc": "Remove item from array state"
+            },
+            {
+              "code": "setVal(prev => prev.map(x => x.id===id ? {...x,...changes} : x))",
+              "desc": "Update specific item in array state"
+            }
+          ]
+        },
+        {
+          "title": "useEffect Patterns",
+          "items": [
+            {
+              "code": "useEffect(() => { … }, [])",
+              "desc": "Run once on mount (empty deps array)"
+            },
+            {
+              "code": "useEffect(() => { … }, [dep])",
+              "desc": "Run when dep changes"
+            },
+            {
+              "code": "useEffect(() => { … })",
+              "desc": "Run after every render (no deps array)"
+            },
+            {
+              "code": "useEffect(() => { return () => { … } }, [])",
+              "desc": "Cleanup function runs on unmount"
+            },
+            {
+              "code": "useEffect(() => { let ignore=false; fetch(url).then(d => { if(!ignore) setData(d); }); return () => { ignore=true; }; }, [id])",
+              "desc": "Safe async fetch pattern with race-condition cleanup"
+            }
+          ]
+        },
+        {
+          "title": "useRef Patterns",
+          "items": [
+            {
+              "code": "const ref = useRef(null)",
+              "desc": "Create ref initialised to null"
+            },
+            {
+              "code": "<input ref={ref} />",
+              "desc": "Attach ref to a DOM element"
+            },
+            {
+              "code": "ref.current.focus()",
+              "desc": "Imperatively focus input element"
+            },
+            {
+              "code": "ref.current = value",
+              "desc": "Store mutable value without triggering re-render"
+            },
+            {
+              "code": "ref.current",
+              "desc": "Access the stored ref value"
+            }
+          ]
+        },
+        {
+          "title": "useReducer Patterns",
+          "items": [
+            {
+              "code": "const [state, dispatch] = useReducer(reducer, init)",
+              "desc": "Set up reducer-based state management"
+            },
+            {
+              "code": "dispatch({ type: 'ACTION', payload: … })",
+              "desc": "Dispatch an action to the reducer"
+            },
+            {
+              "code": "function reducer(state, action) { switch(action.type) { … } }",
+              "desc": "Reducer function shape"
+            },
+            {
+              "code": "return { ...state, key: newValue }",
+              "desc": "Return new state immutably from reducer"
+            },
+            {
+              "code": "useReducer(reducer, {}, initFn)",
+              "desc": "Lazy initialisation with init function"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Context & Portals",
+      "desc": "Context API, ref forwarding, portals, and suspense.",
+      "type": "grouped-list",
+      "groups": [
+        {
+          "title": "Context API",
+          "items": [
+            {
+              "code": "const Ctx = React.createContext(defaultValue)",
+              "desc": "Create a Context object with a default value"
+            },
+            {
+              "code": "<Ctx.Provider value={…}>",
+              "desc": "Provide context value to all descendant consumers"
+            },
+            {
+              "code": "const value = useContext(Ctx)",
+              "desc": "Consume context in a function component"
+            },
+            {
+              "code": "<Ctx.Consumer>{value => JSX}</Ctx.Consumer>",
+              "desc": "Legacy render-prop consumer pattern"
+            },
+            {
+              "code": "Ctx.displayName = 'MyContext'",
+              "desc": "Set display name shown in React DevTools"
+            }
+          ]
+        },
+        {
+          "title": "Ref Forwarding",
+          "items": [
+            {
+              "code": "const Comp = React.forwardRef((props, ref) => JSX)",
+              "desc": "Let parent access a child DOM node via ref"
+            },
+            {
+              "code": "useImperativeHandle(ref, () => ({ focus, reset }))",
+              "desc": "Expose only specific methods to parent ref"
+            }
+          ]
+        },
+        {
+          "title": "Portals",
+          "items": [
+            {
+              "code": "ReactDOM.createPortal(child, document.getElementById('modal-root'))",
+              "desc": "Render child outside current DOM hierarchy — useful for modals and tooltips"
+            }
+          ]
+        },
+        {
+          "title": "Suspense & Lazy Loading",
+          "items": [
+            {
+              "code": "const Comp = React.lazy(() => import('./Comp'))",
+              "desc": "Dynamically import component for code splitting"
+            },
+            {
+              "code": "<Suspense fallback={<Spinner />}>",
+              "desc": "Show fallback UI while lazy component loads"
+            },
+            {
+              "code": "<Suspense fallback={null}>",
+              "desc": "No visual fallback — silently wait for load"
+            },
+            {
+              "code": "import('./module').then(m => m.default)",
+              "desc": "Manual dynamic import pattern"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Performance",
+      "desc": "Performance optimization APIs and patterns.",
+      "type": "grouped-list",
+      "groups": [
+        {
+          "title": "Performance APIs",
+          "items": [
+            {
+              "code": "React.memo(Component)",
+              "desc": "Skips re-render when props are shallowly equal"
+            },
+            {
+              "code": "React.memo(Comp, (prev, next) => prev.id === next.id)",
+              "desc": "Custom comparison function for memo"
+            },
+            {
+              "code": "useMemo(() => compute(a, b), [a, b])",
+              "desc": "Memoises expensive computed value"
+            },
+            {
+              "code": "useCallback(fn, [deps])",
+              "desc": "Memoises function reference to prevent child re-renders"
+            },
+            {
+              "code": "const [isPending, startTransition] = useTransition()",
+              "desc": "Mark updates as non-urgent to keep UI responsive"
+            },
+            {
+              "code": "startTransition(() => setState(v))",
+              "desc": "Wrap non-urgent state update in a transition"
+            },
+            {
+              "code": "useDeferredValue(value)",
+              "desc": "Defers expensive renders — shows stale value while updating"
+            },
+            {
+              "code": "React.PureComponent",
+              "desc": "Class component with automatic shallow shouldComponentUpdate"
+            },
+            {
+              "code": "shouldComponentUpdate(nextProps, nextState)",
+              "desc": "Return false to manually bail out of class component render"
+            },
+            {
+              "code": "React.StrictMode",
+              "desc": "Detects side effects by double-invoking functions in dev mode"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "React Router",
+      "desc": "React Router v6 hooks, components, and patterns.",
+      "type": "grouped-list",
+      "groups": [
+        {
+          "title": "React Router v6 Hooks",
+          "items": [
+            {
+              "code": "useNavigate()",
+              "desc": "Returns navigate function for programmatic navigation"
+            },
+            {
+              "code": "useParams()",
+              "desc": "Returns URL params object matched by the current route"
+            },
+            {
+              "code": "useLocation()",
+              "desc": "Returns current location object (pathname, search, hash)"
+            },
+            {
+              "code": "useSearchParams()",
+              "desc": "Read and write URL query string parameters"
+            },
+            {
+              "code": "useMatch(pattern)",
+              "desc": "Returns match object if current URL matches given pattern"
+            },
+            {
+              "code": "useOutletContext()",
+              "desc": "Access context value passed through the nearest Outlet"
+            },
+            {
+              "code": "useRoutes(routesArr)",
+              "desc": "Programmatically define routes as a JS array"
+            }
+          ]
+        },
+        {
+          "title": "React Router v6 Components",
+          "items": [
+            {
+              "code": "<BrowserRouter>",
+              "desc": "Router using HTML5 history API — wrap entire app"
+            },
+            {
+              "code": "<Routes>",
+              "desc": "Container for Route elements; renders first match"
+            },
+            {
+              "code": "<Route path='/x' element={<C />} />",
+              "desc": "Maps URL path to a component"
+            },
+            {
+              "code": "<Route index element={<Home />} />",
+              "desc": "Default child route when parent path matches"
+            },
+            {
+              "code": "<Route path='*' element={<NotFound />} />",
+              "desc": "Catch-all 404 route"
+            },
+            {
+              "code": "<Link to='/path'>",
+              "desc": "Client-side navigation link"
+            },
+            {
+              "code": "<NavLink to='/path'>",
+              "desc": "Link with automatic active class/style support"
+            },
+            {
+              "code": "<Outlet />",
+              "desc": "Renders the currently matched child route"
+            },
+            {
+              "code": "<Navigate to='/path' replace />",
+              "desc": "Declarative redirect component"
+            },
+            {
+              "code": "navigate('/path')",
+              "desc": "Imperative redirect via useNavigate hook"
+            },
+            {
+              "code": "navigate(-1)",
+              "desc": "Go back one step in browser history"
+            }
+          ]
+        },
+        {
+          "title": "Router Patterns",
+          "items": [
+            {
+              "code": "<Route path='/user/:id' element={<User />} />",
+              "desc": "Dynamic URL parameter in route path"
+            },
+            {
+              "code": "loader: async ({ params }) => fetchUser(params.id)",
+              "desc": "Route loader for data fetching (React Router 6.4+)"
+            },
+            {
+              "code": "action: async ({ request }) => handleForm(request)",
+              "desc": "Route action for form mutations (React Router 6.4+)"
+            },
+            {
+              "code": "<MemoryRouter>",
+              "desc": "Router storing history in memory — useful for tests and native"
+            },
+            {
+              "code": "<HashRouter>",
+              "desc": "Router using URL hash — for static file hosting"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Lifecycle Methods",
+      "desc": "Class component lifecycle and hook equivalents.",
+      "type": "grouped-list",
+      "groups": [
+        {
+          "title": "Class Component Lifecycle",
+          "items": [
+            {
+              "code": "constructor(props)",
+              "desc": "Initialise state and bind methods before first render"
+            },
+            {
+              "code": "static getDerivedStateFromProps(props, state)",
+              "desc": "Sync state from props before render — return partial state or null"
+            },
+            {
+              "code": "render()",
+              "desc": "Returns JSX to display — only required lifecycle method"
+            },
+            {
+              "code": "componentDidMount()",
+              "desc": "Runs after component mounts — ideal for data fetching and subscriptions"
+            },
+            {
+              "code": "shouldComponentUpdate(nextProps, nextState)",
+              "desc": "Return false to skip re-render — manual performance optimisation"
+            },
+            {
+              "code": "getSnapshotBeforeUpdate(prevProps, prevState)",
+              "desc": "Capture DOM info (e.g. scroll position) before update"
+            },
+            {
+              "code": "componentDidUpdate(prevProps, prevState, snapshot)",
+              "desc": "Runs after every update — compare prev vs current props"
+            },
+            {
+              "code": "componentWillUnmount()",
+              "desc": "Cleanup subscriptions and timers before removal"
+            },
+            {
+              "code": "componentDidCatch(error, info)",
+              "desc": "Log errors caught from child components"
+            },
+            {
+              "code": "static getDerivedStateFromError(error)",
+              "desc": "Update state to show fallback UI when child throws"
+            }
+          ]
+        },
+        {
+          "title": "Lifecycle Hook Equivalents",
+          "items": [
+            {
+              "code": "useEffect(() => {}, [])",
+              "desc": "Equivalent to componentDidMount"
+            },
+            {
+              "code": "useEffect(() => {}, [dep])",
+              "desc": "Equivalent to componentDidUpdate for dep"
+            },
+            {
+              "code": "useEffect(() => () => cleanup(), [])",
+              "desc": "Equivalent to componentWillUnmount"
+            },
+            {
+              "code": "useState / useReducer",
+              "desc": "Equivalent to this.state / this.setState"
+            },
+            {
+              "code": "useRef",
+              "desc": "Equivalent to instance variables on this"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "React Keywords",
+      "desc": "JSX keywords, directives, JS patterns, and React-specific identifiers.",
+      "type": "grouped-list",
+      "groups": [
+        {
+          "title": "JSX Keywords & Directives",
+          "items": [
+            {
+              "code": "import",
+              "desc": "Import modules, components, and hooks"
+            },
+            {
+              "code": "export default",
+              "desc": "Export a single component as the module default"
+            },
+            {
+              "code": "export",
+              "desc": "Named export of functions, components, or constants"
+            },
+            {
+              "code": "'use client'",
+              "desc": "React 18+ directive: marks file as a Client Component"
+            },
+            {
+              "code": "'use server'",
+              "desc": "React 18+ directive: marks function as a Server Action"
+            },
+            {
+              "code": "return",
+              "desc": "Return JSX from a component or computed value from a hook"
+            },
+            {
+              "code": "null",
+              "desc": "Return null to render nothing from a component"
+            },
+            {
+              "code": "key",
+              "desc": "Required prop for items in a list to help React reconcile"
+            },
+            {
+              "code": "ref",
+              "desc": "Special prop to attach a ref to a DOM element or component"
+            },
+            {
+              "code": "children",
+              "desc": "Built-in prop containing nested JSX passed between open/close tags"
+            }
+          ]
+        },
+        {
+          "title": "JS Patterns Used in React",
+          "items": [
+            {
+              "code": "const",
+              "desc": "Declare components, state, and ref variables"
+            },
+            {
+              "code": "arrow function",
+              "desc": "() => {} — standard for components and event handlers"
+            },
+            {
+              "code": "destructuring",
+              "desc": "const { name } = props — extract props cleanly"
+            },
+            {
+              "code": "spread operator",
+              "desc": "{ ...obj } — spread props or immutably copy state"
+            },
+            {
+              "code": "optional chaining",
+              "desc": "obj?.prop — safely access nested properties"
+            },
+            {
+              "code": "nullish coalescing",
+              "desc": "value ?? fallback — use fallback only for null/undefined"
+            },
+            {
+              "code": "template literal",
+              "desc": "`Hello ${name}` — string interpolation"
+            },
+            {
+              "code": "async / await",
+              "desc": "Used inside useEffect or event handlers for async operations"
+            },
+            {
+              "code": "Array.map()",
+              "desc": "Primary method for rendering lists of items in JSX"
+            },
+            {
+              "code": "Array.filter()",
+              "desc": "Filter items before rendering — returns new array"
+            },
+            {
+              "code": "Array.reduce()",
+              "desc": "Aggregate list data into computed values"
+            },
+            {
+              "code": "Promise",
+              "desc": "Returned by fetch() and async functions"
+            }
+          ]
+        },
+        {
+          "title": "React-Specific Identifiers",
+          "items": [
+            {
+              "code": "React",
+              "desc": "Core library namespace (auto-imported in React 17+)"
+            },
+            {
+              "code": "ReactDOM",
+              "desc": "DOM-specific rendering methods library"
+            },
+            {
+              "code": "Fragment",
+              "desc": "<React.Fragment> or <> — group without extra DOM wrapper"
+            },
+            {
+              "code": "StrictMode",
+              "desc": "<React.StrictMode> — highlights potential issues in development"
+            },
+            {
+              "code": "Suspense",
+              "desc": "Wraps lazy components; shows fallback while loading"
+            },
+            {
+              "code": "ErrorBoundary",
+              "desc": "Class component that catches render errors in its subtree"
+            },
+            {
+              "code": "createRoot",
+              "desc": "ReactDOM.createRoot() — entry point for React 18 apps"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Operators & Patterns",
+      "desc": "Conditional rendering, spread/rest, optional chaining, propTypes.",
+      "type": "grouped-list",
+      "groups": [
+        {
+          "title": "Conditional Rendering Operators",
+          "items": [
+            {
+              "code": "&&",
+              "desc": "Short-circuit: renders right side only if left is truthy"
+            },
+            {
+              "code": "? :",
+              "desc": "Ternary: choose between two JSX elements"
+            },
+            {
+              "code": "||",
+              "desc": "Fallback: renders right side if left is falsy"
+            },
+            {
+              "code": "??",
+              "desc": "Nullish coalescing: fallback only for null or undefined"
+            }
+          ]
+        },
+        {
+          "title": "Spread & Rest Operators",
+          "items": [
+            {
+              "code": "...props",
+              "desc": "Spread all props onto a component: <Comp {...props} />"
+            },
+            {
+              "code": "{ ...state, key: v }",
+              "desc": "Immutably update object in state"
+            },
+            {
+              "code": "[...arr, newItem]",
+              "desc": "Immutably add item to array state"
+            },
+            {
+              "code": "({ name, ...rest })",
+              "desc": "Destructure and collect remaining props"
+            }
+          ]
+        },
+        {
+          "title": "Optional Chaining & Nullish",
+          "items": [
+            {
+              "code": "obj?.prop",
+              "desc": "Safe property access — returns undefined if obj is null/undefined"
+            },
+            {
+              "code": "arr?.[0]",
+              "desc": "Safe array index access"
+            },
+            {
+              "code": "fn?.(args)",
+              "desc": "Safe function call — only calls if fn is defined"
+            },
+            {
+              "code": "value ?? default",
+              "desc": "Use default only if value is null or undefined"
+            }
+          ]
+        },
+        {
+          "title": "Comparison Operators in JSX",
+          "items": [
+            {
+              "code": "===",
+              "desc": "Strict equality — preferred in React conditions"
+            },
+            {
+              "code": "!==",
+              "desc": "Strict inequality"
+            },
+            {
+              "code": "!",
+              "desc": "Negation — toggle boolean state or hide elements"
+            },
+            {
+              "code": ">",
+              "desc": "Greater than — e.g. items.length > 0 guard"
+            },
+            {
+              "code": ">=",
+              "desc": "Greater than or equal"
+            }
+          ]
+        },
+        {
+          "title": "Common JSX Patterns",
+          "items": [
+            {
+              "code": "isLoading && <Spinner />",
+              "desc": "Show spinner while loading"
+            },
+            {
+              "code": "!isLoading && <Content />",
+              "desc": "Show content when loaded"
+            },
+            {
+              "code": "error ? <Error /> : <Content />",
+              "desc": "Render error or content based on state"
+            },
+            {
+              "code": "items.length > 0 && <List />",
+              "desc": "Guard against rendering empty list"
+            },
+            {
+              "code": "data ?? 'Loading…'",
+              "desc": "Show placeholder until data arrives"
+            }
+          ]
+        },
+        {
+          "title": "PropTypes Type Checking",
+          "items": [
+            {
+              "code": "PropTypes.string",
+              "desc": "Expects a string prop"
+            },
+            {
+              "code": "PropTypes.number",
+              "desc": "Expects a number prop"
+            },
+            {
+              "code": "PropTypes.bool",
+              "desc": "Expects a boolean prop"
+            },
+            {
+              "code": "PropTypes.func",
+              "desc": "Expects a function prop"
+            },
+            {
+              "code": "PropTypes.array",
+              "desc": "Expects an array prop"
+            },
+            {
+              "code": "PropTypes.object",
+              "desc": "Expects an object prop"
+            },
+            {
+              "code": "PropTypes.node",
+              "desc": "Expects any renderable value"
+            },
+            {
+              "code": "PropTypes.element",
+              "desc": "Expects a React element"
+            },
+            {
+              "code": "PropTypes.oneOf(['a','b'])",
+              "desc": "Expects one of the listed values"
+            },
+            {
+              "code": "PropTypes.shape({…})",
+              "desc": "Expects object with a specific shape"
+            },
+            {
+              "code": ".isRequired",
+              "desc": "Marks prop as required; warns if missing"
+            }
+          ]
+        },
+        {
+          "title": "Operator Precedence in JSX",
+          "items": [
+            {
+              "code": "()",
+              "desc": "Grouping — highest precedence"
+            },
+            {
+              "code": "?.",
+              "desc": "Optional chaining"
+            },
+            {
+              "code": "!",
+              "desc": "Logical NOT"
+            },
+            {
+              "code": "* / %",
+              "desc": "Multiplicative"
+            },
+            {
+              "code": "+ -",
+              "desc": "Additive"
+            },
+            {
+              "code": "> >= < <=",
+              "desc": "Relational comparison"
+            },
+            {
+              "code": "=== !==",
+              "desc": "Strict equality"
+            },
+            {
+              "code": "&&",
+              "desc": "Logical AND — short-circuit render"
+            },
+            {
+              "code": "||",
+              "desc": "Logical OR — fallback render"
+            },
+            {
+              "code": "??",
+              "desc": "Nullish coalescing"
+            },
+            {
+              "code": "? :",
+              "desc": "Ternary — right-associative"
+            },
+            {
+              "code": "=",
+              "desc": "Assignment — lowest precedence"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Key Packages",
+      "desc": "Popular packages commonly used with React.",
+      "type": "module",
+      "modules": [
+        {
+          "name": "react-router-dom",
+          "desc": "Declarative routing for React web apps (v6).",
+          "groups": [
+            {
+              "title": null,
+              "items": [
+                {
+                  "code": "BrowserRouter",
+                  "desc": "Top-level router using HTML5 history API"
+                },
+                {
+                  "code": "Routes / Route",
+                  "desc": "Route matching container and route definition"
+                },
+                {
+                  "code": "Link / NavLink",
+                  "desc": "Client-side navigation link elements"
+                },
+                {
+                  "code": "useNavigate",
+                  "desc": "Programmatic navigation hook"
+                },
+                {
+                  "code": "useParams",
+                  "desc": "Access dynamic URL parameters"
+                },
+                {
+                  "code": "useLocation",
+                  "desc": "Access current pathname, search, and hash"
+                },
+                {
+                  "code": "useSearchParams",
+                  "desc": "Read and set URL query parameters"
+                },
+                {
+                  "code": "Outlet",
+                  "desc": "Renders matched nested child route"
+                },
+                {
+                  "code": "Navigate",
+                  "desc": "Declarative redirect component"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "redux / @reduxjs/toolkit",
+          "desc": "Predictable global state container; Toolkit reduces boilerplate.",
+          "groups": [
+            {
+              "title": null,
+              "items": [
+                {
+                  "code": "configureStore({})",
+                  "desc": "Create Redux store with reducers and middleware"
+                },
+                {
+                  "code": "createSlice({name, initialState, reducers})",
+                  "desc": "Generates action creators and reducer automatically"
+                },
+                {
+                  "code": "createAsyncThunk(type, fn)",
+                  "desc": "Creates thunk action for async operations"
+                },
+                {
+                  "code": "useSelector(selector)",
+                  "desc": "Read and subscribe to a slice of Redux state"
+                },
+                {
+                  "code": "useDispatch()",
+                  "desc": "Get the dispatch function from the store"
+                },
+                {
+                  "code": "<Provider store={store}>",
+                  "desc": "Makes Redux store available to component tree"
+                },
+                {
+                  "code": "createEntityAdapter()",
+                  "desc": "Normalised CRUD operations for collections"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "@tanstack/react-query",
+          "desc": "Server state management: fetching, caching, and synchronising data.",
+          "groups": [
+            {
+              "title": null,
+              "items": [
+                {
+                  "code": "useQuery({ queryKey, queryFn })",
+                  "desc": "Fetch, cache, and subscribe to server data"
+                },
+                {
+                  "code": "useMutation(mutationFn)",
+                  "desc": "Perform create, update, or delete operations"
+                },
+                {
+                  "code": "useQueryClient()",
+                  "desc": "Access query client for cache manipulation"
+                },
+                {
+                  "code": "QueryClient",
+                  "desc": "Central manager for queries and cache"
+                },
+                {
+                  "code": "QueryClientProvider",
+                  "desc": "Provides QueryClient to component tree"
+                },
+                {
+                  "code": "queryClient.invalidateQueries()",
+                  "desc": "Mark queries stale and trigger refetch"
+                },
+                {
+                  "code": "queryClient.prefetchQuery()",
+                  "desc": "Prefetch data before component renders"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "axios",
+          "desc": "Promise-based HTTP client; widely used in React data fetching.",
+          "groups": [
+            {
+              "title": null,
+              "items": [
+                {
+                  "code": "axios.get(url)",
+                  "desc": "HTTP GET request"
+                },
+                {
+                  "code": "axios.post(url, data)",
+                  "desc": "HTTP POST request"
+                },
+                {
+                  "code": "axios.put(url, data)",
+                  "desc": "HTTP PUT request"
+                },
+                {
+                  "code": "axios.patch(url, data)",
+                  "desc": "HTTP PATCH request"
+                },
+                {
+                  "code": "axios.delete(url)",
+                  "desc": "HTTP DELETE request"
+                },
+                {
+                  "code": "axios.create({ baseURL })",
+                  "desc": "Create a pre-configured instance"
+                },
+                {
+                  "code": "instance.interceptors.request.use(fn)",
+                  "desc": "Add request interceptor (e.g. attach auth token)"
+                },
+                {
+                  "code": "instance.interceptors.response.use(fn)",
+                  "desc": "Handle global response errors"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "react-hook-form",
+          "desc": "Performant, minimal-re-render form state management.",
+          "groups": [
+            {
+              "title": null,
+              "items": [
+                {
+                  "code": "useForm()",
+                  "desc": "Initialise form — returns register, handleSubmit, formState"
+                },
+                {
+                  "code": "register('fieldName')",
+                  "desc": "Register an input field with validation rules"
+                },
+                {
+                  "code": "handleSubmit(fn)",
+                  "desc": "Wraps submit handler; validates before calling fn"
+                },
+                {
+                  "code": "formState.errors",
+                  "desc": "Object containing all field validation errors"
+                },
+                {
+                  "code": "watch('field')",
+                  "desc": "Watch and react to a field value in real time"
+                },
+                {
+                  "code": "setValue('field', v)",
+                  "desc": "Programmatically set a field value"
+                },
+                {
+                  "code": "reset()",
+                  "desc": "Reset form fields to default values"
+                },
+                {
+                  "code": "Controller",
+                  "desc": "Wrapper component for controlled third-party inputs"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "zustand",
+          "desc": "Lightweight, scalable state management with minimal boilerplate.",
+          "groups": [
+            {
+              "title": null,
+              "items": [
+                {
+                  "code": "create((set, get) => ({}))",
+                  "desc": "Create a store with state and actions"
+                },
+                {
+                  "code": "set({ key: value })",
+                  "desc": "Update state values in the store"
+                },
+                {
+                  "code": "get()",
+                  "desc": "Read current state values inside actions"
+                },
+                {
+                  "code": "useStore(selector)",
+                  "desc": "Subscribe to a slice of store state in a component"
+                },
+                {
+                  "code": "persist(storeCreator)",
+                  "desc": "Persist store state to localStorage"
+                },
+                {
+                  "code": "immer(storeCreator)",
+                  "desc": "Enable immer-based mutable state updates"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "styled-components / emotion",
+          "desc": "CSS-in-JS libraries for component-scoped styling.",
+          "groups": [
+            {
+              "title": null,
+              "items": [
+                {
+                  "code": "styled.div`css`",
+                  "desc": "Create a styled div component with tagged template literal"
+                },
+                {
+                  "code": "styled(Component)`css`",
+                  "desc": "Extend an existing component with additional styles"
+                },
+                {
+                  "code": "css`…`",
+                  "desc": "Tagged template for reusable interpolated CSS"
+                },
+                {
+                  "code": "ThemeProvider",
+                  "desc": "Provide a theme object to all styled components in tree"
+                },
+                {
+                  "code": "useTheme()",
+                  "desc": "Access the current theme inside a function component"
+                },
+                {
+                  "code": "createGlobalStyle`css`",
+                  "desc": "Inject global CSS styles into the document"
+                },
+                {
+                  "code": "keyframes`from{} to{}`",
+                  "desc": "Define CSS keyframe animations"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Error Handling",
+      "desc": "Common React errors, warnings, and how to fix them.",
+      "type": "grouped-list",
+      "groups": [
+        {
+          "title": "Core Errors",
+          "items": [
+            {
+              "code": "Error Boundary",
+              "desc": "Class component that catches render errors in its subtree"
+            },
+            {
+              "code": "React.StrictMode warning",
+              "desc": "Development-only warnings from double-invoking functions"
+            },
+            {
+              "code": "Invariant Violation",
+              "desc": "React internal assertion failure"
+            },
+            {
+              "code": "Hydration Error",
+              "desc": "Mismatch between server and client render output"
+            }
+          ]
+        },
+        {
+          "title": "Common Warnings & Errors",
+          "items": [
+            {
+              "code": "Each child in a list should have a unique 'key' prop",
+              "desc": "Missing key prop on mapped list items"
+            },
+            {
+              "code": "Too many re-renders",
+              "desc": "Infinite state update loop — often setState in render body"
+            },
+            {
+              "code": "Cannot update a component while rendering a different component",
+              "desc": "setState called during another component's render"
+            },
+            {
+              "code": "Cannot read properties of null (reading 'useState')",
+              "desc": "Hooks called outside a React function component"
+            },
+            {
+              "code": "Rendered more hooks than during the previous render",
+              "desc": "Hooks called conditionally or in loops"
+            },
+            {
+              "code": "Invalid hook call",
+              "desc": "Hook used outside function component or another hook"
+            },
+            {
+              "code": "Objects are not valid as a React child",
+              "desc": "Object passed directly as JSX child — use JSON.stringify or extract value"
+            },
+            {
+              "code": "Adjacent JSX elements must be wrapped in an enclosing tag",
+              "desc": "Return multiple root elements without Fragment"
+            },
+            {
+              "code": "Warning: Can't perform a React state update on an unmounted component",
+              "desc": "Async setState after component unmounts — add cleanup"
+            },
+            {
+              "code": "Warning: React does not recognize the prop on a DOM element",
+              "desc": "Custom prop leaked to a DOM element — prefix with $ or filter"
+            },
+            {
+              "code": "Maximum update depth exceeded",
+              "desc": "useEffect dependency causes infinite update loop"
+            },
+            {
+              "code": "act() warning",
+              "desc": "State update in test occurred outside act() wrapper"
+            },
+            {
+              "code": "Failed prop type",
+              "desc": "PropTypes validation failure — wrong type passed"
+            },
+            {
+              "code": "ChunkLoadError",
+              "desc": "React.lazy() dynamic import chunk failed to load"
+            },
+            {
+              "code": "Minified React error #310",
+              "desc": "Hook called conditionally or in wrong order (production)"
+            },
+            {
+              "code": "useEffect missing dependency",
+              "desc": "ESLint exhaustive-deps rule — dependency not listed in array"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

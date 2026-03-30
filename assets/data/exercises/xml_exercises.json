@@ -1,0 +1,143 @@
+{
+    "language": "XML",
+    "icon": "</>",
+    "color": "#F9A825",
+    "exercises": [
+        {
+            "id": 1,
+            "title": "Root Element",
+            "difficulty": "basic",
+            "description": "Create an XML document with a root element <code>&lt;bookstore&gt;</code>.",
+            "starterCode": "<?xml version=\"1.0\"?>",
+            "validationType": "containsAll",
+            "validationValue": [
+                "<bookstore",
+                "</bookstore>"
+            ],
+            "hint": "<bookstore></bookstore>",
+            "solutionCode": "/* Solution for Root Element */\n"
+        },
+        {
+            "id": 2,
+            "title": "Child Elements",
+            "difficulty": "basic",
+            "description": "Add a <code>&lt;book&gt;</code> element with <code>&lt;title&gt;</code> set to <strong>XML Guide</strong>.",
+            "starterCode": "<?xml version=\"1.0\"?>\n<bookstore>\n</bookstore>",
+            "validationType": "containsAll",
+            "validationValue": [
+                "title",
+                "XML Guide"
+            ],
+            "hint": "<book><title>XML Guide</title></book>",
+            "solutionCode": "/* Solution for Child Elements */\n"
+        },
+        {
+            "id": 3,
+            "title": "Attributes",
+            "difficulty": "basic",
+            "description": "Add a <code>category</code> attribute to the book element with value <strong>web</strong>.",
+            "starterCode": "<book>\n  <title>XML Guide</title>\n</book>",
+            "validationType": "containsAll",
+            "validationValue": [
+                "category",
+                "web"
+            ],
+            "hint": "<book category=\"web\">",
+            "solutionCode": "/* Solution for Attributes */\n"
+        },
+        {
+            "id": 4,
+            "title": "Nested Elements",
+            "difficulty": "basic",
+            "description": "Add <code>&lt;author&gt;</code> and <code>&lt;price&gt;</code> elements to the book.",
+            "starterCode": "<book category=\"web\">\n  <title>XML Guide</title>\n</book>",
+            "validationType": "containsAll",
+            "validationValue": [
+                "author",
+                "price"
+            ],
+            "hint": "<author>Name</author><price>29.99</price>",
+            "solutionCode": "/* Solution for Nested Elements */\n"
+        },
+        {
+            "id": 5,
+            "title": "Multiple Books",
+            "difficulty": "basic",
+            "description": "Add a second book with title <strong>HTML Basics</strong>.",
+            "starterCode": "<bookstore>\n  <book><title>XML Guide</title></book>\n</bookstore>",
+            "validationType": "containsAll",
+            "validationValue": [
+                "XML Guide",
+                "HTML Basics"
+            ],
+            "hint": "Add another <book> element",
+            "solutionCode": "/* Solution for Multiple Books */\n"
+        },
+        {
+            "id": 6,
+            "title": "CDATA Section",
+            "difficulty": "intermediate",
+            "description": "Add a CDATA section containing special characters.",
+            "starterCode": "<note>\n</note>",
+            "validationType": "containsAll",
+            "validationValue": [
+                "CDATA"
+            ],
+            "hint": "Use <![CDATA[content]]>",
+            "solutionCode": "/* Solution for CDATA Section */\n"
+        },
+        {
+            "id": 7,
+            "title": "XML Namespace",
+            "difficulty": "intermediate",
+            "description": "Add an <code>xmlns</code> namespace to the root element.",
+            "starterCode": "<root>\n  <child>data</child>\n</root>",
+            "validationType": "containsAll",
+            "validationValue": [
+                "xmlns"
+            ],
+            "hint": "<root xmlns=\"http://example.com\">",
+            "solutionCode": "/* Solution for XML Namespace */\n"
+        },
+        {
+            "id": 8,
+            "title": "Comments",
+            "difficulty": "intermediate",
+            "description": "Add an XML comment explaining the document purpose.",
+            "starterCode": "<data></data>",
+            "validationType": "containsAll",
+            "validationValue": [
+                "<!--"
+            ],
+            "hint": "<!-- This is a comment -->",
+            "solutionCode": "/* Solution for Comments */\n"
+        },
+        {
+            "id": 9,
+            "title": "Processing Instruction",
+            "difficulty": "intermediate",
+            "description": "Add an XML stylesheet processing instruction.",
+            "starterCode": "<catalog></catalog>",
+            "validationType": "containsAll",
+            "validationValue": [
+                "xml-stylesheet"
+            ],
+            "hint": "<?xml-stylesheet type=\"text/xsl\" href=\"style.xsl\"?>",
+            "solutionCode": "/* Solution for Processing Instruction */\n"
+        },
+        {
+            "id": 10,
+            "title": "Well-Formed XML",
+            "difficulty": "intermediate",
+            "description": "Create a complete well-formed XML document with declaration, root, and child elements.",
+            "starterCode": "<!-- Create complete XML -->",
+            "validationType": "containsAll",
+            "validationValue": [
+                "<?xml",
+                "version"
+            ],
+            "hint": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>",
+            "solutionCode": "/* Solution for Well-Formed XML */\n"
+        }
+    ]
+}

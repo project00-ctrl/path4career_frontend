@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live Bootstrap Editor - CareerPath</title>
+    <link rel="stylesheet" href="../../assets/css/editor.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+    
+    <nav class="editor-nav">
+        <div class="logo-area">
+            <img class="logo-icon" src="../../assets/images/path4career-icon.png" alt="Path4Career" style="width:32px;height:32px;border-radius:8px;">
+            <div class="logo-text">Path4Career</div>
+            <div class="title-badge"><span>🅱️</span> Bootstrap Workspace</div>
+        </div>
+        <button class="run-btn" id="runBtn">▶ Force Refresh</button>
+    </nav>
+
+    <div class="workspace">
+        <div class="editor-pane">
+            <p class="pane-label">
+                <span>bootstrap.html</span>
+                <span class="status-text">v5.3.0 Loaded</span>
+            </p>
+            <textarea id="bootstrapInput" spellcheck="false" aria-label="Bootstrap Input"></textarea>
+        </div>
+        
+        <div class="result-pane">
+            <p class="pane-label">
+                <span>Live Browser Output</span>
+                <span class="status-text">● Auto-updating</span>
+            </p>
+            <iframe id="outputIframe" title="Bootstrap Preview"></iframe>
+        </div>
+    </div>
+
+    <!-- Editor logic loaded from external file to avoid parser bugs -->
+    <script src="bootstrap-editor-engine.js"></script>
+</body>
+</html>

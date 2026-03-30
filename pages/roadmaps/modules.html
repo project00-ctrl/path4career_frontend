@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modules | Path4Career</title>
+    <link rel="stylesheet" href="../../assets/css/navbar.css">
+    <link rel="stylesheet" href="../../assets/css/modules.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- SHARED NAVBAR (injected by navbar.js) -->
+    <div id="navbar-root"></div>
+
+    <!-- MODULE CONTENT -->
+    <a href="roadmaps.html" class="back-link">← Back to Roadmaps</a>
+    <h1 id="courseTitle" class="page-title"></h1>
+    <div id="modulesContainer" class="modules-container"></div>
+
+    <script src="../../assets/js/navbar.js"></script>
+    <script>
+        const API_BASE = "https://path4career-backend.onrender.com";
+        const params = new URLSearchParams(window.location.search);
+        const roadmapId = params.get("roadmapId");
+        const container = document.getElementById("modulesContainer");
+        const titleEl = document.getElementById("courseTitle");
+
+        let completedModuleIds = [];
+        let completedSkillIds = [];
+
+        if (!roadmapId) {
+            titleEl.textContent = "No Roadmap Selected";
+            container.innerHTML = "<p style='color:#aaa; text-align:center; padding:40px;'>Go back to <a href='roadmaps.html' style='color:#4A6CF7'>Roadmaps</a> and select one.</p>";
+        } else {
+            init();
+        }
+
+        async function init() {
+            await loadCompletedModules();
+            await loadCompletedSkills();
+            await loadRoadmapDetail();
+        }
+
+        function getAuthToken() {
+            const cookies = document.cookie.split(';');
+            for (const cookie of cookies) {
+                const [name, value] = cookie.trim().split('=');
+                if (name === 'AUTH_TOKEN') return value;
+            }
+            return localStorage.getItem('AUTH_TOKEN') || localStorage.getItem('token');
+        }
+
+        async function loadCompletedModules() {
+            const token = getAuthToken();
+            if (!token) return;
+
+            try {
+                const res = await fetch(`${API_BASE}/api/v1/modules/completed`, {
+                    headers: { 'Authorization': `Bearer ${token}` }
+                });
+                if (res.ok) {
+                    completedModuleIds = await res.json();
+                }
+            } catch (err) {
+                console.warn("Could not load completed modules:", err);
+            }
+        }
+
+        async function loadCompletedSkills() {
+            const token = getAuthToken();
+            if (!token) return;
+
+            try {
+                const res = await fetch(`${API_BASE}/api/v1/tutorials/completed`, {
+                    headers: { 'Authorization': `Bearer ${token}` }
+                });
+                if (res.ok) {
+                    completedSkillIds = await res.json();
+                }
+            } catch (err) {
+                console.warn("Could not load completed skills:", err);
+            }
+        }
+
+        async function loadRoadmapDetail() {
+            try {
+                const res = await fetch(`${API_BASE}/api/user/roadmaps/${roadmapId}`);
+                if (!res.ok) throw new Error("Roadmap not found");
+                const data = await res.json();
+
+                titleEl.textContent = data.title + " Modules";
+
+                const duration = data.durationValue
+                    ? `${data.durationValue} ${(data.durationUnit || "").toLowerCase()}`
+                    : "-";
+
+                container.innerHTML = `
+                    <div class="course-meta">
+                        <p><strong>Level:</strong> ${data.difficulty || "-"}</p>
+                        <p><strong>Duration:</strong> ${duration}</p>
+                        <p><strong>Role:</strong> ${data.jobRole || "-"}</p>
+                    </div>
+                `;
+
+                if (!data.modules || data.modules.length === 0) {
+                    container.innerHTML += "<p style='color:#aaa; text-align:center; padding:20px;'>No modules added to this roadmap yet.</p>";
+                    return;
+                }
+
+                data.modules.forEach((mod, index) => {
+                    const modDuration = mod.durationValue
+                        ? `${mod.durationValue} ${(mod.durationUnit || "").toLowerCase()}`
+                        : "";
+
+                    const isCompleted = completedModuleIds.includes(mod.moduleId);
+
+                    let progress = 0;
+                    if (isCompleted) {
+                        progress = 100;
+                    } else if (mod.skillIds && mod.skillIds.length > 0) {
+                        const completedForModule = mod.skillIds.filter(id => completedSkillIds.includes(id)).length;
+                        progress = Math.round((completedForModule / mod.skillIds.length) * 100);
+                    }
+
+                    const completedHtml = isCompleted
+                        ? `<span style="background:var(--accent); color:#111; padding:4px 8px; border-radius:4px; font-size:12px; font-weight:700; margin-left:10px;">✅ COMPLETED</span>`
+                        : "";
+
+                    const headerColor = isCompleted ? "color: var(--accent);" : "";
+
+                    container.innerHTML += `
+                        <div class="module-card" onclick="goToSkills(${mod.moduleId})" style="${isCompleted ? 'border-color: var(--accent); background: rgba(21, 128, 61, 0.05);' : ''}">
+                            <div class="module-header">
+                                <h3 style="${headerColor}">Module ${mod.orderIndex}: ${mod.moduleName} ${completedHtml}</h3>
+                                <span style="${headerColor}">${modDuration}</span>
+                            </div>
+                            <div class="progress-container">
+                                <div class="progress-bar" id="bar${index}" style="width:${progress}%; ${isCompleted ? 'background: var(--accent);' : ''}"></div>
+                            </div>
+                            <div class="progress-text" style="font-size: 13px; color: #888; margin-top: 8px;">${progress}% Completed</div>
+                        </div>
+                    `;
+                });
+
+            } catch (err) {
+                console.error(err);
+                titleEl.textContent = "Roadmap Not Found";
+                container.innerHTML = "<p style='color:#f66; text-align:center; padding:40px;'>Failed to load roadmap. Is the backend running?</p>";
+            }
+        }
+
+        function goToSkills(moduleId) {
+            window.location.href = `skills.html?courseId=${moduleId}`;
+        }
+
+        // ===========================
+        // DETECT COMPLETION ON RETURN
+        // ===========================
+        document.addEventListener("visibilitychange", async () => {
+            if (document.visibilityState === "visible") {
+                await init();
+            }
+        });
+
+        window.addEventListener("storage", async (e) => {
+            if (e.key && e.key.startsWith("skill_completed_")) {
+                await init();
+            }
+        });
+    </script>
+</body>
+
+</html>

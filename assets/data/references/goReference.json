@@ -1,0 +1,143 @@
+{
+  "sections": [
+    {
+      "title": "Data Types & Variables",
+      "desc": "Go basic types, variable declarations, and constants.",
+      "type": "table",
+      "columns": ["TYPE / KEYWORD", "DESCRIPTION", "EXAMPLE"],
+      "rows": [
+        { "property": "int / int8 / int16 / int32 / int64", "desc": "Signed integers of various sizes", "version": "var x int = 42" },
+        { "property": "uint / uint8 / uint16 / uint32 / uint64", "desc": "Unsigned integers", "version": "var n uint = 10" },
+        { "property": "float32 / float64", "desc": "Floating-point numbers", "version": "var pi float64 = 3.14" },
+        { "property": "string", "desc": "Immutable string of bytes (UTF-8)", "version": "name := \"Go\"" },
+        { "property": "bool", "desc": "Boolean true or false", "version": "active := true" },
+        { "property": "byte", "desc": "Alias for uint8", "version": "var b byte = 'A'" },
+        { "property": "rune", "desc": "Alias for int32 — represents Unicode code point", "version": "var r rune = '€'" },
+        { "property": "var name type = value", "desc": "Explicit variable declaration", "version": "var count int = 0" },
+        { "property": "name := value", "desc": "Short variable declaration (type inferred)", "version": "msg := \"hello\"" },
+        { "property": "const name = value", "desc": "Constant declaration (compile-time)", "version": "const Pi = 3.14159" },
+        { "property": "iota", "desc": "Auto-incrementing constant generator", "version": "const (A = iota; B; C) // 0, 1, 2" },
+        { "property": "nil", "desc": "Zero value for pointers, interfaces, maps, slices, channels", "version": "var p *int = nil" }
+      ]
+    },
+    {
+      "title": "Data Structures",
+      "desc": "Arrays, slices, maps, and structs in Go.",
+      "type": "table",
+      "columns": ["STRUCTURE", "DESCRIPTION", "EXAMPLE"],
+      "rows": [
+        { "property": "[n]T (array)", "desc": "Fixed-size array of type T", "version": "var arr [5]int = [5]int{1,2,3,4,5}" },
+        { "property": "[]T (slice)", "desc": "Dynamic-size array backed by array", "version": "s := []int{1, 2, 3}" },
+        { "property": "make([]T, len, cap)", "desc": "Create slice with length and capacity", "version": "s := make([]int, 0, 10)" },
+        { "property": "append(slice, elems...)", "desc": "Append elements to slice", "version": "s = append(s, 4, 5)" },
+        { "property": "slice[low:high]", "desc": "Sub-slice (half-open range)", "version": "s[1:3]" },
+        { "property": "len(x)", "desc": "Length of array, slice, map, string, channel", "version": "len(s)" },
+        { "property": "cap(x)", "desc": "Capacity of slice", "version": "cap(s)" },
+        { "property": "map[K]V", "desc": "Hash map key-value store", "version": "m := map[string]int{\"a\": 1}" },
+        { "property": "make(map[K]V)", "desc": "Create empty map", "version": "m := make(map[string]int)" },
+        { "property": "delete(map, key)", "desc": "Delete key from map", "version": "delete(m, \"a\")" },
+        { "property": "struct { fields }", "desc": "Custom composite type", "version": "type User struct { Name string; Age int }" },
+        { "property": "type Name = Type", "desc": "Type alias", "version": "type ID = int" }
+      ]
+    },
+    {
+      "title": "Control Flow",
+      "desc": "Conditional statements, loops, and control keywords.",
+      "type": "table",
+      "columns": ["STATEMENT", "DESCRIPTION", "EXAMPLE"],
+      "rows": [
+        { "property": "if condition { }", "desc": "Conditional execution", "version": "if x > 0 { fmt.Println(\"positive\") }" },
+        { "property": "if init; condition { }", "desc": "If with initialization statement", "version": "if err := doSomething(); err != nil { }" },
+        { "property": "for i := 0; i < n; i++ { }", "desc": "Classic for loop", "version": "for i := 0; i < 10; i++ { }" },
+        { "property": "for condition { }", "desc": "While-style loop", "version": "for count < 100 { count++ }" },
+        { "property": "for { }", "desc": "Infinite loop", "version": "for { break }" },
+        { "property": "for i, v := range slice { }", "desc": "Range over slice/array/map/string", "version": "for i, v := range items { }" },
+        { "property": "for k, v := range map { }", "desc": "Range over map keys and values", "version": "for k, v := range m { }" },
+        { "property": "switch expr { case v: }", "desc": "Switch statement (no fallthrough by default)", "version": "switch day { case \"Mon\": ... }" },
+        { "property": "select { case <-ch: }", "desc": "Select on multiple channel operations", "version": "select { case msg := <-ch: ... }" },
+        { "property": "break / continue", "desc": "Exit loop / skip to next iteration", "version": "if x == 0 { continue }" },
+        { "property": "defer func()", "desc": "Defer execution until surrounding function returns", "version": "defer file.Close()" },
+        { "property": "go func()", "desc": "Launch goroutine (concurrent execution)", "version": "go processData(data)" }
+      ]
+    },
+    {
+      "title": "Functions & Methods",
+      "desc": "Function declarations, methods, interfaces, and error handling.",
+      "type": "table",
+      "columns": ["SYNTAX", "DESCRIPTION", "EXAMPLE"],
+      "rows": [
+        { "property": "func name(params) return { }", "desc": "Function declaration", "version": "func add(a, b int) int { return a + b }" },
+        { "property": "Multiple return values", "desc": "Functions can return multiple values", "version": "func div(a, b int) (int, error) { }" },
+        { "property": "Named return values", "desc": "Name return values for clarity", "version": "func calc(x int) (result int, err error) { }" },
+        { "property": "Variadic function", "desc": "Accept variable number of arguments", "version": "func sum(nums ...int) int { }" },
+        { "property": "func(params) return { }(args)", "desc": "Anonymous function (closure)", "version": "func() { fmt.Println(\"anon\") }()" },
+        { "property": "func (r Receiver) method()", "desc": "Method with value receiver", "version": "func (u User) String() string { }" },
+        { "property": "func (r *Receiver) method()", "desc": "Method with pointer receiver (can modify)", "version": "func (u *User) SetName(n string) { u.Name = n }" },
+        { "property": "interface { methods }", "desc": "Define interface (set of method signatures)", "version": "type Reader interface { Read([]byte) (int, error) }" },
+        { "property": "error", "desc": "Built-in error interface", "version": "if err != nil { return err }" },
+        { "property": "errors.New(msg)", "desc": "Create new error", "version": "errors.New(\"something went wrong\")" },
+        { "property": "fmt.Errorf()", "desc": "Create formatted error (supports %w for wrapping)", "version": "fmt.Errorf(\"parse failed: %w\", err)" },
+        { "property": "panic(v) / recover()", "desc": "Panic stops execution; recover catches it in defer", "version": "defer func() { if r := recover(); r != nil { } }()" }
+      ]
+    },
+    {
+      "title": "Concurrency",
+      "desc": "Goroutines, channels, and sync primitives.",
+      "type": "table",
+      "columns": ["FEATURE", "DESCRIPTION", "EXAMPLE"],
+      "rows": [
+        { "property": "go func()", "desc": "Launch lightweight concurrent goroutine", "version": "go worker(ch)" },
+        { "property": "make(chan T)", "desc": "Create unbuffered channel", "version": "ch := make(chan int)" },
+        { "property": "make(chan T, n)", "desc": "Create buffered channel with capacity n", "version": "ch := make(chan int, 10)" },
+        { "property": "ch <- value", "desc": "Send value to channel", "version": "ch <- 42" },
+        { "property": "value := <-ch", "desc": "Receive value from channel", "version": "msg := <-ch" },
+        { "property": "close(ch)", "desc": "Close channel (no more sends)", "version": "close(ch)" },
+        { "property": "for v := range ch { }", "desc": "Receive from channel until closed", "version": "for msg := range ch { process(msg) }" },
+        { "property": "select { case ... }", "desc": "Multiplex channel operations", "version": "select { case v := <-ch1: ... case ch2 <- x: ... }" },
+        { "property": "sync.WaitGroup", "desc": "Wait for group of goroutines to finish", "version": "var wg sync.WaitGroup; wg.Add(1); wg.Wait()" },
+        { "property": "sync.Mutex", "desc": "Mutual exclusion lock", "version": "var mu sync.Mutex; mu.Lock(); mu.Unlock()" },
+        { "property": "sync.RWMutex", "desc": "Read-write mutex (multiple readers, single writer)", "version": "mu.RLock(); mu.RUnlock()" },
+        { "property": "sync.Once", "desc": "Execute function exactly once", "version": "once.Do(func() { init() })" },
+        { "property": "context.Context", "desc": "Carry deadlines, cancellation, values across goroutines", "version": "ctx, cancel := context.WithTimeout(ctx, 5*time.Second)" }
+      ]
+    },
+    {
+      "title": "Standard Library",
+      "desc": "Commonly used Go standard library packages.",
+      "type": "table",
+      "columns": ["PACKAGE", "DESCRIPTION", "KEY FUNCTIONS"],
+      "rows": [
+        { "property": "fmt", "desc": "Formatted I/O (print, scan, format)", "version": "Println, Printf, Sprintf, Errorf" },
+        { "property": "net/http", "desc": "HTTP client and server", "version": "http.ListenAndServe, http.Get, http.HandleFunc" },
+        { "property": "encoding/json", "desc": "JSON encoding and decoding", "version": "json.Marshal, json.Unmarshal, json.NewDecoder" },
+        { "property": "os", "desc": "OS interaction — files, env vars, processes", "version": "os.Open, os.Getenv, os.Exit" },
+        { "property": "io", "desc": "I/O primitives — Reader, Writer interfaces", "version": "io.ReadAll, io.Copy" },
+        { "property": "strings", "desc": "String manipulation functions", "version": "strings.Contains, Split, Join, Replace, TrimSpace" },
+        { "property": "strconv", "desc": "String-number conversions", "version": "strconv.Atoi, strconv.Itoa, strconv.ParseFloat" },
+        { "property": "time", "desc": "Time and duration handling", "version": "time.Now, time.Sleep, time.Since" },
+        { "property": "log", "desc": "Simple logging", "version": "log.Println, log.Fatal, log.Printf" },
+        { "property": "testing", "desc": "Unit testing framework", "version": "func TestAdd(t *testing.T) { }" },
+        { "property": "database/sql", "desc": "Generic SQL database interface", "version": "sql.Open, db.Query, db.Exec" },
+        { "property": "sort", "desc": "Sorting slices and user-defined collections", "version": "sort.Ints, sort.Strings, sort.Slice" }
+      ]
+    },
+    {
+      "title": "CLI & Module Commands",
+      "desc": "Go toolchain commands for building and managing projects.",
+      "type": "table",
+      "columns": ["COMMAND", "DESCRIPTION", "EXAMPLE"],
+      "rows": [
+        { "property": "go mod init module", "desc": "Initialize a new Go module", "version": "go mod init github.com/user/project" },
+        { "property": "go run file.go", "desc": "Compile and run Go program", "version": "go run main.go" },
+        { "property": "go build", "desc": "Compile package into binary", "version": "go build -o myapp" },
+        { "property": "go test ./...", "desc": "Run all tests in project", "version": "go test -v ./..." },
+        { "property": "go get package@version", "desc": "Add dependency to module", "version": "go get github.com/gin-gonic/gin@latest" },
+        { "property": "go mod tidy", "desc": "Add missing and remove unused dependencies", "version": "go mod tidy" },
+        { "property": "go fmt ./...", "desc": "Format all Go source files", "version": "go fmt ./..." },
+        { "property": "go vet ./...", "desc": "Check for suspicious code", "version": "go vet ./..." },
+        { "property": "go install", "desc": "Compile and install binary to $GOPATH/bin", "version": "go install" },
+        { "property": "go doc package", "desc": "View documentation for a package", "version": "go doc fmt.Println" }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,137 @@
+{
+    "language": "React",
+    "icon": "\u269b\ufe0f",
+    "color": "#61DAFB",
+    "exercises": [
+        {
+            "id": 1,
+            "title": "Hello Component",
+            "difficulty": "basic",
+            "description": "Create a React component <code>Hello</code> that renders <code>&lt;h1&gt;Hello, React!&lt;/h1&gt;</code>.",
+            "starterCode": "// Create a Hello component\nfunction Hello() {\n  // Return an h1 element\n}\n\nReactDOM.render(<Hello />, document.getElementById('root'));",
+            "expectedOutput": "<h1>Hello, React!</h1>",
+            "validationType": "domContains",
+            "validationValue": "Hello, React!",
+            "hint": "Return <h1>Hello, React!</h1> from the function.",
+            "solutionCode": "export default function App() { return <h1>Hello, React!</h1>; }"
+        },
+        {
+            "id": 2,
+            "title": "Props",
+            "difficulty": "basic",
+            "description": "Create a <code>Greeting</code> component that accepts a <code>name</code> prop and renders <strong>Hello, {name}!</strong> inside a <code>p</code> tag. Render it with name <strong>\"Alice\"</strong>.",
+            "starterCode": "// Create Greeting component with props\nfunction Greeting(props) {\n  // Use props.name\n}\n\nReactDOM.render(<Greeting name=\"Alice\" />, document.getElementById('root'));",
+            "expectedOutput": "Hello, Alice!",
+            "validationType": "domContains",
+            "validationValue": "Hello, Alice!",
+            "hint": "Return <p>Hello, {props.name}!</p>",
+            "solutionCode": "import { useState } from 'react'; export default function Counter() { const [count, setCount] = useState(0); return <button onClick={() => setCount(count + 1)}>Count: {count}</button>; }"
+        },
+        {
+            "id": 3,
+            "title": "JSX Expressions",
+            "difficulty": "basic",
+            "description": "Create a component <code>MathResult</code> that displays the result of <strong>5 * 8</strong> inside a <code>h2</code> tag, like: <strong>Result: 40</strong>.",
+            "starterCode": "// Create MathResult component\nfunction MathResult() {\n  // Calculate and display 5 * 8\n}\n\nReactDOM.render(<MathResult />, document.getElementById('root'));",
+            "expectedOutput": "Result: 40",
+            "validationType": "domContains",
+            "validationValue": "40",
+            "hint": "Use JSX expressions: <h2>Result: {5 * 8}</h2>",
+            "solutionCode": "export default function Greeting({ name }) { return <h2>Hello, {name}!</h2>; }"
+        },
+        {
+            "id": 4,
+            "title": "Conditional Rendering",
+            "difficulty": "basic",
+            "description": "Create a <code>Status</code> component that takes an <code>isOnline</code> prop. If true, render <strong>\ud83d\udfe2 Online</strong>, otherwise <strong>\ud83d\udd34 Offline</strong>.",
+            "starterCode": "// Create Status component\nfunction Status(props) {\n  // Check isOnline prop\n}\n\nReactDOM.render(<Status isOnline={true} />, document.getElementById('root'));",
+            "expectedOutput": "\ud83d\udfe2 Online",
+            "validationType": "domContains",
+            "validationValue": "Online",
+            "hint": "Use a ternary: props.isOnline ? '\ud83d\udfe2 Online' : '\ud83d\udd34 Offline'",
+            "solutionCode": "export default function List() { const items = ['Apple', 'Banana', 'Cherry']; return <ul>{items.map(item => <li key={item}>{item}</li>)}</ul>; }"
+        },
+        {
+            "id": 5,
+            "title": "List Rendering",
+            "difficulty": "basic",
+            "description": "Create a <code>FruitList</code> component that renders an array <code>[\"Apple\", \"Banana\", \"Cherry\"]</code> as a <code>ul</code> list.",
+            "starterCode": "// Create FruitList component\nfunction FruitList() {\n  const fruits = [\"Apple\", \"Banana\", \"Cherry\"];\n  // Render as a <ul> list\n}\n\nReactDOM.render(<FruitList />, document.getElementById('root'));",
+            "expectedOutput": "<ul><li>Apple</li>...</ul>",
+            "validationType": "domContainsAll",
+            "validationValue": [
+                "Apple",
+                "Banana",
+                "Cherry"
+            ],
+            "hint": "Use fruits.map((fruit, i) => <li key={i}>{fruit}</li>) inside a <ul>.",
+            "solutionCode": "import { useEffect, useState } from 'react'; export default function DataFetcher() { const [data, setData] = useState(null); useEffect(() => { setData('Loaded'); }, []); return <div>{data}</div>; }"
+        },
+        {
+            "id": 6,
+            "title": "Event Handling",
+            "difficulty": "basic",
+            "description": "Create a <code>ClickCounter</code> component with a button. Use <code>React.useState</code> to track clicks. Display <strong>Clicked: X times</strong>.",
+            "starterCode": "// Create ClickCounter component\nfunction ClickCounter() {\n  // Use useState for count\n}\n\nReactDOM.render(<ClickCounter />, document.getElementById('root'));",
+            "expectedOutput": "Clicked: 0 times",
+            "validationType": "domContains",
+            "validationValue": "Clicked:",
+            "hint": "const [count, setCount] = React.useState(0); then onClick={() => setCount(count + 1)}",
+            "solutionCode": "export default function Button({ onClick, children }) { return <button onClick={onClick}>{children}</button>; }"
+        },
+        {
+            "id": 7,
+            "title": "useState Hook",
+            "difficulty": "basic",
+            "description": "Create a <code>NameInput</code> component with a text input. Use <code>useState</code> to display what the user types in real-time below the input as <strong>Hello, {name}!</strong>.",
+            "starterCode": "// Create NameInput component\nfunction NameInput() {\n  // Use useState for the name\n}\n\nReactDOM.render(<NameInput />, document.getElementById('root'));",
+            "expectedOutput": "Hello, !",
+            "validationType": "domContains",
+            "validationValue": "Hello,",
+            "hint": "Use onChange={(e) => setName(e.target.value)} on the input.",
+            "solutionCode": "import { useState } from 'react'; export default function Form() { const [text, setText] = useState(''); return <input value={text} onChange={(e) => setText(e.target.value)} />; }"
+        },
+        {
+            "id": 8,
+            "title": "Component Composition",
+            "difficulty": "intermediate",
+            "description": "Create a <code>Card</code> component that takes <code>title</code> and <code>children</code> props. Render a <code>UserCard</code> component that uses <code>Card</code> with title <strong>\"User Profile\"</strong> and content <strong>\"Name: Alice\"</strong>.",
+            "starterCode": "// Create Card and UserCard components\nfunction Card(props) {\n  // Render title and children\n}\n\nfunction UserCard() {\n  // Use Card component\n}\n\nReactDOM.render(<UserCard />, document.getElementById('root'));",
+            "expectedOutput": "User Profile\nName: Alice",
+            "validationType": "domContainsAll",
+            "validationValue": [
+                "User Profile",
+                "Name: Alice"
+            ],
+            "hint": "Card renders {props.title} in h2 and {props.children} for nested content.",
+            "solutionCode": "import { createContext, useContext } from 'react'; const ThemeContext = createContext('light'); export default function App() { return <ThemeContext.Provider value=\"dark\"><Child /></ThemeContext.Provider>; } function Child() { const theme = useContext(ThemeContext); return <div>{theme}</div>; }"
+        },
+        {
+            "id": 9,
+            "title": "useEffect Hook",
+            "difficulty": "intermediate",
+            "description": "Create a <code>Timer</code> component that uses <code>useEffect</code> to update a counter every second. Display <strong>Seconds: X</strong>.",
+            "starterCode": "// Create Timer component with useEffect\nfunction Timer() {\n  // Use useState and useEffect\n}\n\nReactDOM.render(<Timer />, document.getElementById('root'));",
+            "expectedOutput": "Seconds: 0",
+            "validationType": "domContains",
+            "validationValue": "Seconds:",
+            "hint": "Use useEffect with setInterval and return a cleanup function.",
+            "solutionCode": "import { useRef } from 'react'; export default function FocusInput() { const inputRef = useRef(null); return <><input ref={inputRef} /><button onClick={() => inputRef.current.focus()}>Focus</button></>; }"
+        },
+        {
+            "id": 10,
+            "title": "Todo List App",
+            "difficulty": "intermediate",
+            "description": "Build a simple <code>TodoApp</code> with: an input to type a task, an \"Add\" button, and a list that displays added tasks. Use <code>useState</code> for both the input value and the todo array.",
+            "starterCode": "// Build a TodoApp component\nfunction TodoApp() {\n  // Use useState for todos and input\n}\n\nReactDOM.render(<TodoApp />, document.getElementById('root'));",
+            "expectedOutput": "Todo App",
+            "validationType": "domContainsAll",
+            "validationValue": [
+                "Add",
+                "input"
+            ],
+            "hint": "Use two useState hooks: one for todos array and one for current input text.",
+            "solutionCode": "import { useReducer } from 'react'; function reducer(state, action) { return action.type === 'inc' ? state + 1 : state; } export default function Counter() { const [count, dispatch] = useReducer(reducer, 0); return <button onClick={() => dispatch({type: 'inc'})}>{count}</button>; }"
+        }
+    ]
+}

@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live MySQL Editor</title>
+    <link rel="stylesheet" href="../../assets/css/editor.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.8.0/sql-wasm.js"></script>
+</head>
+<body>
+    
+    <nav class="editor-nav">
+        <div class="logo-area">
+            <img class="logo-icon" src="../../assets/images/path4career-icon.png" alt="Path4Career" style="width:32px;height:32px;border-radius:8px;">
+            <div class="logo-text">Path4Career</div>
+            <div class="title-badge">🐬 MySQL Workspace</div>
+        </div>
+        <div class="nav-actions">
+            <button class="reset-btn" onclick="resetDatabase()">↻ Reset DB</button>
+            <button class="run-btn" id="runBtn" disabled>⏳ Booting Engine...</button>
+        </div>
+    </nav>
+
+    <div class="workspace">
+        <div class="editor-pane">
+            <p class="pane-label">
+                <span>query.sql</span>
+                <span class="status-text">MySQL Engine (WASM)</span>
+            </p>
+            <textarea id="sqlInput" spellcheck="false" aria-label="SQL Input"></textarea>
+        </div>
+        
+        <div class="result-pane">
+            <div id="consoleDiv">
+                <span class="log-system">Initializing Database...</span>
+            </div>
+            
+            <div class="db-explorer">
+                <div class="explorer-title">Live Database Tables</div>
+                <div id="tablesContainer">
+                    <span style="color: #ff5555;">No tables found. The database is currently empty.</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+const sqlInput = document.getElementById('sqlInput');
+        const consoleDiv = document.getElementById('consoleDiv');
+        const tablesContainer = document.getElementById('tablesContainer');
+        const runBtn = document.getElementById('runBtn');
+
+        let db = null;
+        let SQL = null;
+
+        // 1. Set Default Editor Code
+        const savedCode = localStorage.getItem('learningMysqlCode');
+        const defaultCode = `-- Welcome to the Live MySQL Editor!
+-- The database comes pre-loaded with an 'Employees' table.
+
+SELECT * FROM Employees;
+
+-- You can add new data like this:
+-- INSERT INTO Employees (FirstName, LastName, Department) 
+-- VALUES ('Alice', 'Wonderland', 'Design');
+`;
+        sqlInput.value = savedCode ? savedCode : defaultCode;
+
+        // 2. Initialize WebAssembly SQL Engine
+        async function initSQLEngine() {
+            try {
+                SQL = await initSqlJs({
+                    locateFile: file => `https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.8.0/${file}`
+                });
+                
+                seedDefaultDatabase();
+                
+                runBtn.disabled = false;
+                runBtn.innerHTML = "▶ Run MySQL";
+            } catch (err) {
+                consoleDiv.innerHTML = `<span class="log-error">Failed to load MySQL engine: ${err.message}</span>`;
+            }
+        }
+
+        // 3. Create the Database and Inject the Default Table
+        function seedDefaultDatabase() {
+            // Create a fresh, empty database
+            db = new SQL.Database();
+            
+            // Define the default seed query
+            const seedQuery = `
+                CREATE TABLE Employees (
+                    EmpID INTEGER PRIMARY KEY AUTOINCREMENT,
+                    FirstName VARCHAR(50),
+                    LastName VARCHAR(50),
+                    Department VARCHAR(50)
+                );
+                INSERT INTO Employees (FirstName, LastName, Department) VALUES ('John', 'Doe', 'Engineering');
+                INSERT INTO Employees (FirstName, LastName, Department) VALUES ('Jane', 'Smith', 'Marketing');
+            `;
+            
+            try {
+                db.run(seedQuery);
+                consoleDiv.innerHTML = '<span class="log-normal">✔ MySQL Engine initialized. Default table loaded!</span>';
+                renderLiveExplorer();
+            } catch (e) {
+                consoleDiv.innerHTML = `<span class="log-error">Seed Error: ${e.message}</span>`;
+            }
+        }
+
+        // 4. Reset Button Action
+        function resetDatabase() {
+            if (!SQL) return;
+            seedDefaultDatabase();
+            consoleDiv.innerHTML = '<span class="log-normal">✔ Database successfully wiped and reset to default state.</span>';
+        }
+
+        // 5. Execute User Queries
+        function executeSQL() {
+            if (!db) return;
+            
+            // Grab the code, and silently replace MySQL's AUTO_INCREMENT with SQLite's AUTOINCREMENT to prevent crashes
+            let rawCode = sqlInput.value.trim();
+            const safeCode = rawCode.replace(/AUTO_INCREMENT/gi, 'AUTOINCREMENT');
+            
+            if (!safeCode) {
+                consoleDiv.innerHTML = '<span class="log-error">Please enter a valid SQL query.</span>';
+                return;
+            }
+
+            try {
+                // Execute the query
+                db.run(safeCode);
+                consoleDiv.innerHTML = '<span class="log-normal">✔ Query executed successfully.</span>';
+                
+                // Immediately refresh the Live Explorer to show new tables/data
+                renderLiveExplorer();
+            } catch (err) {
+                consoleDiv.innerHTML = `<span class="log-error">✖ Error: ${err.message}</span>`;
+            }
+        }
+
+        // 6. Live Database Explorer (Renders actual HTML tables)
+        function renderLiveExplorer() {
+            tablesContainer.innerHTML = '';
+            
+            // Query the system to find all existing tables
+            const findTablesQuery = "SELECT name FROM sqlite_master WHERE type='table' AND name NOT LIKE 'sqlite_%';";
+            const tablesResult = db.exec(findTablesQuery);
+
+            if (tablesResult.length === 0) {
+                tablesContainer.innerHTML = '<span style="color: #ff5555;">No tables found. The database is currently empty.</span>';
+                return;
+            }
+
+            // Loop through each table and fetch its data
+            const tableNames = tablesResult[0].values.map(row => row[0]);
+            
+            tableNames.forEach(tableName => {
+                try {
+                    const dataResult = db.exec(`SELECT * FROM ${tableName}`);
+                    
+                    const wrapper = document.createElement('div');
+                    wrapper.className = 'sql-table-wrapper';
+                    
+                    const header = document.createElement('div');
+                    header.className = 'sql-table-name';
+                    header.innerText = `🗄️ Table: ${tableName}`;
+                    wrapper.appendChild(header);
+
+                    if (dataResult.length > 0) {
+                        const table = document.createElement('table');
+                        const thead = document.createElement('thead');
+                        const tbody = document.createElement('tbody');
+                        
+                        // Render Headers (Columns)
+                        const columns = dataResult[0].columns;
+                        const headerRow = document.createElement('tr');
+                        columns.forEach(col => {
+                            const th = document.createElement('th');
+                            th.innerText = col;
+                            headerRow.appendChild(th);
+                        });
+                        thead.appendChild(headerRow);
+                        
+                        // Render Data Rows
+                        const values = dataResult[0].values;
+                        values.forEach(rowData => {
+                            const tr = document.createElement('tr');
+                            rowData.forEach(cellData => {
+                                const td = document.createElement('td');
+                                td.innerText = cellData === null ? 'NULL' : cellData;
+                                tr.appendChild(td);
+                            });
+                            tbody.appendChild(tr);
+                        });
+                        
+                        table.appendChild(thead);
+                        table.appendChild(tbody);
+                        wrapper.appendChild(table);
+                    } else {
+                        // Table exists, but has no rows
+                        const emptyMsg = document.createElement('div');
+                        emptyMsg.style.padding = '15px';
+                        emptyMsg.style.color = '#94a3b8';
+                        emptyMsg.style.fontStyle = 'italic';
+                        emptyMsg.style.fontSize = '14px';
+                        emptyMsg.innerText = 'Table is empty.';
+                        wrapper.appendChild(emptyMsg);
+                    }
+                    
+                    tablesContainer.appendChild(wrapper);
+                } catch (e) {
+                    console.error("Error rendering table", tableName, e);
+                }
+            });
+        }
+
+        // Smart Indentation
+        sqlInput.addEventListener('keydown', function(e) {
+            if (e.key === 'Tab') {
+                e.preventDefault();
+                const start = this.selectionStart;
+                const end = this.selectionEnd;
+                const spaces = "    ";
+                this.value = this.value.substring(0, start) + spaces + this.value.substring(end);
+                this.selectionStart = this.selectionEnd = start + spaces.length;
+            }
+        });
+
+        // Auto-Save
+        sqlInput.addEventListener('input', () => {
+            localStorage.setItem('learningMysqlCode', sqlInput.value);
+        });
+
+        runBtn.addEventListener('click', executeSQL);
+
+        // Boot it up!
+        initSQLEngine();
+</script>
+</body>
+</html>

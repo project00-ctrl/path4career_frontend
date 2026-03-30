@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live PostgreSQL Editor - CareerPath</title>
+    
+    <link rel="stylesheet" href="../../assets/css/editor.css">
+    <style>
+    .result-pane { padding: 20px; }
+    .result-header { margin-top: 0; margin-bottom: 15px; color: #222; border-bottom: 1px solid #ccc; padding-bottom: 10px; }
+    table { width: 100%; border-collapse: collapse; margin-bottom: 20px; }
+    th, td { border: 1px solid #ddd; padding: 10px 12px; text-align: left; }
+    th { background-color: #336791; font-weight: bold; color: #fff; } /* Postgres Blue */
+    .status-success { color: #28a745; font-weight: bold; margin-top: 10px; }
+    .status-warning { color: #f39c12; font-weight: bold; margin-top: 10px; }
+    .status-error { color: #dc3545; font-weight: bold; }
+    .loading { color: #666; font-style: italic; }
+</style>
+</head>
+<body>
+    <div class="header" style="border-bottom: 2px solid #336791;">
+        <h2><span style="color: #336791;">🐘</span> Real PostgreSQL Workspace</h2>
+        <div class="header-actions">
+            <button class="run-btn" id="resetBtn" style="background-color: #dc3545; border-color: #dc3545; margin-right: 10px;" title="Reset database to initial state">Reset DB</button>
+            <button class="run-btn" id="clearBtn" style="background-color: #6c757d; border-color: #6c757d; margin-right: 10px;">Clear Results</button>
+            <button class="run-btn" id="runBtn" disabled style="background-color: #336791; border-color: #336791;">Loading Engine...</button>
+        </div>
+    </div>
+    <div class="workspace">
+        <div class="editor-pane">
+            <textarea id="sqlInput" spellcheck="false" aria-label="PostgreSQL Input"></textarea>
+        </div>
+        <div class="result-pane" id="sqlOutput">
+            <h3 class="result-header">Database Result</h3>
+            <div id="outputContent">
+                <p class="loading">Initializing WebAssembly Database Engine...</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.12.0/sql-wasm.js"></script>
+    <script>
+const sqlInput = document.getElementById('sqlInput');
+        const outputContent = document.getElementById('outputContent');
+        const runBtn = document.getElementById('runBtn');
+        const clearBtn = document.getElementById('clearBtn');
+        const resetBtn = document.getElementById('resetBtn');
+        let db = null; 
+        let cachedSQL = null; // Store the SQL library for resetting
+
+        // 1. Fetch the code passed from the main app's memory
+        const savedCode = localStorage.getItem('careerPathPostgresCode');
+        sqlInput.value = savedCode ? savedCode : "-- Welcome to the PostgreSQL Simulator!\nSELECT 'Hello, Postgres!' AS message;";
+
+        // 2. Initialize the sql.js WebAssembly Engine
+        const config = {
+            locateFile: filename => `https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.12.0/${filename}`
+        };
+
+        // Initialize SQL.js
+        if (typeof initSqlJs !== 'undefined') {
+            initSqlJs(config).then(initApp).catch(handleInitError);
+        } else {
+            // Fallback if the script loaded but initSqlJs is not global (rare with cdnjs)
+            window.onload = () => {
+                if (typeof initSqlJs !== 'undefined') {
+                    initSqlJs(config).then(initApp).catch(handleInitError);
+                } else {
+                    handleInitError(new Error("SQL.js library failed to initialize."));
+                }
+            };
+        }
+
+        function handleInitError(err) {
+            outputContent.innerHTML = `<p class="status-error">Error loading database engine: ${err.message}. Please check your internet connection or try refreshing.</p>`;
+        }
+
+        function initApp(SQL) {
+            cachedSQL = SQL;
+            setupDB();
+        }
+
+        function setupDB() {
+            if (!cachedSQL) return;
+            try {
+                // Create a brand new database in the browser's memory
+                db = new cachedSQL.Database();
+
+                // Pre-fill the database with our tutorial tables!
+                db.run(`
+                    DROP TABLE IF EXISTS users;
+                    CREATE TABLE users (id INTEGER PRIMARY KEY, name TEXT, username TEXT, email TEXT, preferences TEXT, status TEXT DEFAULT 'active');
+                    INSERT INTO users VALUES (1, 'John Doe', 'johndoe', 'john@example.com', '{"theme": "dark"}', 'active');
+                    INSERT INTO users VALUES (2, 'Alice Smith', 'alicesmith', 'alice@example.com', '{"theme": "light"}', 'active');
+                    INSERT INTO users VALUES (3, 'Bob Wilson', 'bobw', 'bob@example.com', '{"theme": "dark"}', 'inactive');
+
+                    DROP TABLE IF EXISTS employees;
+                    CREATE TABLE employees (id INTEGER PRIMARY KEY, name TEXT, salary INTEGER, department TEXT);
+                    INSERT INTO employees VALUES (1, 'Sarah', 85000, 'Engineering');
+                    INSERT INTO employees VALUES (2, 'Mark', 95000, 'Engineering');
+                    INSERT INTO employees VALUES (3, 'David', 75000, 'Marketing');
+                    INSERT INTO employees VALUES (4, 'Emily', 90000, 'Engineering');
+
+                    DROP TABLE IF EXISTS articles;
+                    CREATE TABLE articles (id INTEGER PRIMARY KEY, title TEXT, tags TEXT, content TEXT);
+                    INSERT INTO articles VALUES (1, 'Learning Postgres', '["sql", "postgres"]', 'Postgres is amazing...');
+                    INSERT INTO articles VALUES (2, 'Web Dev Basics', '["html", "css"]', 'HTML is the structure...');
+                    INSERT INTO articles VALUES (3, 'Advanced SQL', '["sql", "optimization"]', 'Indexes can speed up...');
+
+                    DROP TABLE IF EXISTS user_logins;
+                    CREATE TABLE user_logins (user_id INTEGER PRIMARY KEY, login_count INTEGER DEFAULT 0);
+                    INSERT INTO user_logins VALUES (1, 5);
+                    INSERT INTO user_logins VALUES (2, 12);
+
+                    DROP TABLE IF EXISTS orders;
+                    CREATE TABLE orders (id INTEGER PRIMARY KEY, user_id INTEGER, amount DECIMAL(10,2), status TEXT);
+                    INSERT INTO orders VALUES (101, 1, 150.00, 'shipped');
+                    INSERT INTO orders VALUES (102, 1, 45.50, 'pending');
+                    INSERT INTO orders VALUES (103, 2, 200.00, 'shipped');
+                `);
+
+                // Enable the Run button now that the DB is ready
+                runBtn.innerText = "Run Query ❯";
+                runBtn.disabled = false;
+                
+                // Auto-run the initial code
+                executeSQL();
+            } catch (err) {
+                handleInitError(err);
+            }
+        }
+
+        // 3. The Execution Function
+        function executeSQL() {
+            if (!db) return;
+            let rawQuery = sqlInput.value.trim();
+            outputContent.innerHTML = '<p class="loading">Executing query...</p>'; 
+
+            if (rawQuery === '') {
+                outputContent.innerHTML = '<p class="status-error">Please enter a SQL query.</p>';
+                return;
+            }
+
+            // Handle fake CLI commands from the tutorial gracefully
+            if (rawQuery.match(/^(psql|\\)/) || rawQuery.includes('\n\\') || rawQuery.includes('\npsql')) {
+                const firstLine = rawQuery.split('\n')[0];
+                outputContent.innerHTML = `<p class="status-warning">⚠️ Note: <code>${firstLine}</code> is a command-line instruction, not a SQL query! This editor executes standard SQL commands (like SELECT, CREATE, INSERT). Try copying a standard SQL block!</p>`;
+                return;
+            }
+
+            // --- SYNTAX SHIMS ---
+            let processedQuery = rawQuery
+                .replace(/\bSERIAL\s+PRIMARY\s+KEY\b/gi, "INTEGER PRIMARY KEY AUTOINCREMENT")
+                .replace(/\bSERIAL\b/gi, "INTEGER") 
+                .replace(/\bJSONB\b/gi, "JSON")
+                .replace(/\bVARCHAR\(\d+\)\[\]\b/gi, "TEXT") 
+                .replace(/\bTEXT\[\]\b/gi, "TEXT");
+
+            // Use a short timeout to allow the "Executing query..." message to render
+            setTimeout(() => {
+                try {
+                    const results = db.exec(processedQuery);
+                    outputContent.innerHTML = ''; // Clear loading message
+
+                    if (results.length === 0) {
+                        outputContent.innerHTML = '<p class="status-success">✔ Query executed successfully. No rows to display.</p>';
+                        return;
+                    }
+
+                    results.forEach((res, index) => {
+                        if (results.length > 1) {
+                            const h4 = document.createElement('h4');
+                            h4.innerText = `Result Set ${index + 1}`;
+                            h4.style.margin = "15px 0 5px 0";
+                            h4.style.color = "#336791";
+                            outputContent.appendChild(h4);
+                        }
+
+                        let tableHTML = '<table><thead><tr>';
+                        res.columns.forEach(col => {
+                            tableHTML += `<th>${col}</th>`;
+                        });
+                        tableHTML += '</tr></thead><tbody>';
+
+                        res.values.forEach(row => {
+                            tableHTML += '<tr>';
+                            row.forEach(val => {
+                                if (val === null) {
+                                    tableHTML += '<td><em>NULL</em></td>';
+                                } else if (typeof val === 'object') {
+                                    tableHTML += `<td><code>${JSON.stringify(val)}</code></td>`;
+                                } else {
+                                    tableHTML += `<td>${val}</td>`;
+                                }
+                            });
+                            tableHTML += '</tr>';
+                        });
+                        
+                        tableHTML += '</tbody></table>';
+                        outputContent.innerHTML += tableHTML;
+                        outputContent.innerHTML += `<p class="status-success" style="margin-bottom:25px;">✔ ${res.values.length} rows returned.</p>`;
+                    });
+
+                } catch (err) {
+                    console.error("SQL Error:", err);
+                    let advancedNotice = '';
+                    const lowerQuery = rawQuery.toLowerCase();
+                    
+                    const unsupportedTerms = [
+                        { kw: "->>", msg: "JSON operators (->>)" },
+                        { kw: "@>", msg: "Array containment (@>)" },
+                        { kw: "ARRAY[", msg: "Array constructors" },
+                        { kw: "GIN", msg: "GIN indexes" },
+                        { kw: "RETURNING", msg: "RETURNING clause" },
+                        { kw: "ON CONFLICT", msg: "UPSERT (ON CONFLICT)" },
+                        { kw: "MATERIALIZED VIEW", msg: "Materialized Views" },
+                        { kw: "REFRESH", msg: "REFRESH commands" },
+                        { kw: "CREATE ROLE", msg: "Role management" },
+                        { kw: "GRANT", msg: "Permissions (GRANT)" },
+                        { kw: "ROW LEVEL SECURITY", msg: "Row-Level Security" },
+                        { kw: "tsvector", msg: "Full-Text Search (tsvector)" },
+                        { kw: "pg_advisory", msg: "Advisory Locks" }
+                    ];
+
+                    const found = unsupportedTerms.filter(t => lowerQuery.includes(t.kw.toLowerCase()));
+                    
+                    if (err.message.includes("syntax error") && found.length > 0) {
+                        const featureList = found.map(f => f.msg).join(', ');
+                        advancedNotice = `<p class="status-warning">⚠️ Note: Our browser SQL engine is powered by SQLite. Highly advanced Postgres-specific features (like ${featureList}) might trigger syntax errors here, but they work perfectly in a real PostgreSQL server!</p>`;
+                    } else if (err.message.includes("no such table")) {
+                        advancedNotice = '<p class="status-warning">⚠️ Tip: Make sure the table exists. Common practice is to <code>CREATE TABLE</code> before <code>INSERT</code> or <code>SELECT</code>.</p>';
+                    } else if (err.message.includes("already exists")) {
+                        advancedNotice = '<p class="status-warning">⚠️ Tip: The table already exists in this session. You can use <code>DROP TABLE IF EXISTS ...</code> at the top of your query, or click the <strong>Reset DB</strong> button above to clear the database.</p>';
+                    }
+
+                    outputContent.innerHTML = `<p class="status-error">✖ Error: ${err.message}</p> ${advancedNotice}`;
+                }
+            }, 10);
+        }
+
+        // Run when the button is clicked
+        runBtn.addEventListener('click', executeSQL);
+        
+        // Clear result
+        clearBtn.addEventListener('click', () => {
+            outputContent.innerHTML = '<p class="loading">Results cleared. Ready for next query.</p>';
+        });
+
+        // Reset database
+        resetBtn.addEventListener('click', () => {
+            if (confirm("Reset the database to its initial state? All your created tables and inserts will be lost.")) {
+                setupDB();
+                outputContent.innerHTML = '<p class="status-success">✔ Database has been reset to its initial state.</p>';
+            }
+        });
+
+        // Keyboard shortcut: Ctrl + Enter to run
+        sqlInput.addEventListener('keydown', function(e) {
+            if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
+                e.preventDefault();
+                runBtn.click();
+            }
+            // Simple tab indenting
+            if (e.key === 'Tab') {
+                e.preventDefault();
+                const start = this.selectionStart;
+                const end = this.selectionEnd;
+                this.value = this.value.substring(0, start) + "  " + this.value.substring(end);
+                this.selectionStart = this.selectionEnd = start + 2;
+            }
+        });
+</script>
+</body>
+</html>

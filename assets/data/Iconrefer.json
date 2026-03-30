@@ -1,0 +1,76 @@
+{
+ "wikiLinks": [
+  { "word": "icon" },
+  { "word": "font" },
+  { "word": "vector" },
+  { "word": "SVG" },
+  { "word": "glyph" },
+  { "word": "Material" },
+  { "word": "Bootstrap" },
+  { "word": "pixel" },
+  { "word": "CSS" },
+  { "word": "HTML" },
+  { "word": "clipboard" },
+  { "word": "grid" },
+  { "word": "color" },
+  { "word": "typography" },
+  { "word": "library" },
+  { "word": "rendering" },
+  { "word": "Unicode" },
+  { "word": "cursor" },
+  { "word": "database" },
+  { "word": "terminal" }
+],
+
+  "courses": [
+    "HTML","CSS","JAVASCRIPT","SQL","PYTHON","JAVA","PHP","C","C++","C#",
+    "BOOTSTRAP","REACT","MYSQL","JQUERY","EXCEL","XML","DJANGO","NUMPY",
+    "PANDAS","NODEJS","DSA","TYPESCRIPT","MANGODB","GIT","ANGULAR","DATASCIENCE"
+  ],
+
+  "nav": {
+    "tutorials": {
+      "frontend": [
+        { "label": "HTML",        "href": "./reference/htmlreference.html", "note": "tutorial" },
+        { "label": "CSS",         "href": "./reference/cssreference.html",  "note": "tutorial" },
+        { "label": "JAVASCRIPT",  "href": "./reference/jsreference.html",   "note": "tutorial" },
+        { "label": "REACT",       "href": "",                               "note": "Reference" },
+        { "label": "ICONS",       "href": "./reference/iconrefer.html",     "note": "tutorial" },
+        { "label": "UTF-8",       "href": "./reference/utf-8refer.html",    "note": "tutorial" },
+        { "label": "COLOR NAMES", "href": "./reference/colors.html",        "note": "tutorial" }
+      ],
+      "backend": [
+        { "label": "PYTHON", "href": "./reference/pythonrefer.html", "note": "tutorial" },
+        { "label": "JAVA",   "href": "",                             "note": "tutorial" },
+        { "label": "C",      "href": "",                             "note": "tutorial" },
+        { "label": "C++",    "href": "",                             "note": "tutorial" }
+      ]
+    },
+    "references": {
+      "frontend": [
+        { "label": "HTML",        "href": "./reference/htmlreference.html", "note": "Reference" },
+        { "label": "CSS",         "href": "./reference/cssreference.html",  "note": "Reference" },
+        { "label": "JAVASCRIPT",  "href": "./reference/jsreference.html",   "note": "Reference" },
+        { "label": "REACT",       "href": "",                               "note": "Reference" },
+        { "label": "ICONS",       "href": "./reference/iconrefer.html",     "note": "Reference" },
+        { "label": "UTF-8",       "href": "./reference/utf-8refer.html",    "note": "Reference" },
+        { "label": "COLOR NAMES", "href": "./reference/colors.html",        "note": "Reference" },
+        { "label": "HTML DOM",    "href": "#",                              "note": "Reference" }
+      ],
+      "backend": [
+        { "label": "PYTHON",  "href": "./reference/pythonrefer.html", "note": "Reference" },
+        { "label": "JAVA",    "href": "",                             "note": "Reference" },
+        { "label": "C",       "href": "",                             "note": "Reference" },
+        { "label": "C++",     "href": "",                             "note": "Reference" },
+        { "label": "jQuery",  "href": "",                             "note": "Reference" },
+        { "label": "Angular", "href": "",                             "note": "Reference" }
+      ]
+    }
+  },
+
+  "icons": {
+    "fa":  ["house","user","gear","envelope","check","star","heart","bell","camera","image","magnifying-glass","folder","pen","link","comment","share","eye","lock","key","print","laptop","mobile","headphones","video","clock","calendar","map","bolt","leaf","fire","water","sun","moon","wind","snowflake","bicycle","car","plane","ship","ghost","robot","bug","code","terminal","database","wifi","battery-full","shield","trophy","gift","coffee","flask","smile","plus","minus","xmark","bars","arrow-right","arrow-left","circle-info","earth-americas","palette","music","film","gamepad","trash","anchor","umbrella","briefcase","book","bookmark","compass","globe","calculator","microchip","credit-card","money-bill","chart-line","cart-shopping","bag-shopping","medal","graduation-cap","flask-vial","dna","atom","brain","hippo","crow","dog","cat","fish","dragon","spider","hammer","wrench","screwdriver","truck","helicopter","rocket","paper-plane"],
+    "mat": ["home","search","settings","done","favorite","info","account_circle","delete","visibility","lock","face","schedule","language","help","event","shopping_cart","description","work","build","camera_alt","verified_user","thumb_up","print","explore","assignment","dashboard","room","book","grade","autorenew","extension","announcement","backup","credit_card","fingerprint","loyalty","receipt","tab","today","update","accessibility","alarm","aspect_ratio","bug_report","change_history","copyright","dns","euro_symbol","gavel","history"],
+    "bs":  ["alarm","apple","arrow-up-circle","bag","bank","basket","battery","bell","bicycle","book","box","briefcase","bug","calculator","calendar","camera","cart","chat","cloud","code","compass","controller","cpu","credit-card","cup","database","display","ear","envelope","eye","file","fingerprint","flag","folder","gear","gem","gift","globe","graph-up","hammer","hand-thumbs-up","heart","house","image","infinity","key","lamp","laptop","layers","lightning"]
+  }
+}

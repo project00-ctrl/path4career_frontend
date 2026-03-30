@@ -1,0 +1,166 @@
+{
+    "language": "Bootstrap",
+    "icon": "B",
+    "color": "#7952B3",
+    "exercises": [
+        {
+            "id": 1,
+            "title": "Container",
+            "difficulty": "basic",
+            "description": "Create a Bootstrap <code>.container</code> with a <code>&lt;h1&gt;</code> that says <strong>Hello Bootstrap!</strong>.",
+            "starterCode": "<!-- Use Bootstrap container -->\n<div>\n  <h1>Hello Bootstrap!</h1>\n</div>",
+            "expectedOutput": "",
+            "validationType": "containsAll",
+            "validationValue": [
+                "container",
+                "Hello Bootstrap!"
+            ],
+            "hint": "Add class=\"container\" to the div.",
+            "solutionCode": "<div class=\"container\">\n  <h1 class=\"text-center\">Bootstrap Page</h1>\n</div>"
+        },
+        {
+            "id": 2,
+            "title": "Buttons",
+            "difficulty": "basic",
+            "description": "Create two buttons using <code>btn btn-primary</code> and <code>btn btn-danger</code> classes.",
+            "starterCode": "<!-- Create Bootstrap buttons -->\n<button>Primary</button>\n<button>Danger</button>",
+            "expectedOutput": "",
+            "validationType": "containsAll",
+            "validationValue": [
+                "btn-primary",
+                "btn-danger"
+            ],
+            "hint": "Add class=\"btn btn-primary\" and class=\"btn btn-danger\".",
+            "solutionCode": "<button class=\"btn btn-primary\">Click Me</button>"
+        },
+        {
+            "id": 3,
+            "title": "Alert Box",
+            "difficulty": "basic",
+            "description": "Create a success alert using <code>alert alert-success</code> with the text <strong>Operation completed!</strong>.",
+            "starterCode": "<!-- Create an alert -->\n<div>Operation completed!</div>",
+            "expectedOutput": "",
+            "validationType": "containsAll",
+            "validationValue": [
+                "alert-success",
+                "Operation completed!"
+            ],
+            "hint": "Add class=\"alert alert-success\" to the div.",
+            "solutionCode": "<div class=\"alert alert-success\">Success!</div>"
+        },
+        {
+            "id": 4,
+            "title": "Grid System",
+            "difficulty": "basic",
+            "description": "Create a row with two equal columns using <code>col-6</code>. Put <strong>Left</strong> and <strong>Right</strong> in them.",
+            "starterCode": "<!-- Create a 2-column grid -->\n<div class=\"row\">\n  <div>Left</div>\n  <div>Right</div>\n</div>",
+            "expectedOutput": "",
+            "validationType": "containsAll",
+            "validationValue": [
+                "row",
+                "col-6",
+                "Left",
+                "Right"
+            ],
+            "hint": "Add class=\"col-6\" to each inner div.",
+            "solutionCode": "<div class=\"card\">\n  <div class=\"card-body\">Card Content</div>\n</div>"
+        },
+        {
+            "id": 5,
+            "title": "Card Component",
+            "difficulty": "basic",
+            "description": "Create a Bootstrap <code>.card</code> with a <code>.card-body</code> containing a <code>.card-title</code> saying <strong>My Card</strong>.",
+            "starterCode": "<!-- Create a card -->\n<div>\n  <div>\n    <h5>My Card</h5>\n  </div>\n</div>",
+            "expectedOutput": "",
+            "validationType": "containsAll",
+            "validationValue": [
+                "card",
+                "card-body",
+                "card-title",
+                "My Card"
+            ],
+            "hint": "Add class=\"card\", class=\"card-body\", class=\"card-title\" to the respective elements.",
+            "solutionCode": "<div class=\"row\">\n  <div class=\"col-6\">Half</div>\n  <div class=\"col-6\">Half</div>\n</div>"
+        },
+        {
+            "id": 6,
+            "title": "Navbar",
+            "difficulty": "basic",
+            "description": "Create a <code>navbar navbar-dark bg-dark</code> with a brand link saying <strong>CareerPath</strong>.",
+            "starterCode": "<!-- Create a navbar -->\n<nav>\n  <a href=\"#\">CareerPath</a>\n</nav>",
+            "expectedOutput": "",
+            "validationType": "containsAll",
+            "validationValue": [
+                "navbar",
+                "navbar-dark",
+                "bg-dark",
+                "CareerPath"
+            ],
+            "hint": "Add class=\"navbar navbar-dark bg-dark\" and class=\"navbar-brand\".",
+            "solutionCode": "<nav class=\"navbar navbar-light bg-light\">\n  <a class=\"navbar-brand\" href=\"#\">Navbar</a>\n</nav>"
+        },
+        {
+            "id": 7,
+            "title": "Table",
+            "difficulty": "basic",
+            "description": "Create a Bootstrap <code>.table</code> with columns <strong>Name</strong> and <strong>Age</strong>, and one row with <strong>John</strong> and <strong>25</strong>.",
+            "starterCode": "<!-- Create a styled table -->\n<table>\n  <thead><tr><th>Name</th><th>Age</th></tr></thead>\n  <tbody><tr><td>John</td><td>25</td></tr></tbody>\n</table>",
+            "expectedOutput": "",
+            "validationType": "containsAll",
+            "validationValue": [
+                "table",
+                "John",
+                "25"
+            ],
+            "hint": "Add class=\"table\" to the table element.",
+            "solutionCode": "<span class=\"badge bg-secondary\">New</span>"
+        },
+        {
+            "id": 8,
+            "title": "Badge",
+            "difficulty": "intermediate",
+            "description": "Create a heading with a <code>badge bg-secondary</code> showing <strong>New</strong>.",
+            "starterCode": "<!-- Create a badge -->\n<h2>Notifications <span>New</span></h2>",
+            "expectedOutput": "",
+            "validationType": "containsAll",
+            "validationValue": [
+                "badge",
+                "bg-secondary",
+                "New"
+            ],
+            "hint": "Add class=\"badge bg-secondary\" to the span.",
+            "solutionCode": "<div class=\"progress\">\n  <div class=\"progress-bar\" style=\"width: 50%\"></div>\n</div>"
+        },
+        {
+            "id": 9,
+            "title": "Form Controls",
+            "difficulty": "intermediate",
+            "description": "Create a form with a <code>form-control</code> input and a <code>btn btn-primary</code> submit button.",
+            "starterCode": "<!-- Create a styled form -->\n<form>\n  <input type=\"text\" placeholder=\"Enter name\">\n  <button type=\"submit\">Submit</button>\n</form>",
+            "expectedOutput": "",
+            "validationType": "containsAll",
+            "validationValue": [
+                "form-control",
+                "btn-primary"
+            ],
+            "hint": "Add class=\"form-control\" to input and class=\"btn btn-primary\" to button.",
+            "solutionCode": "<ul class=\"list-group\">\n  <li class=\"list-group-item\">Item 1</li>\n</ul>"
+        },
+        {
+            "id": 10,
+            "title": "Modal Trigger",
+            "difficulty": "intermediate",
+            "description": "Create a button with <code>data-bs-toggle=\"modal\"</code> and <code>data-bs-target=\"#myModal\"</code>.",
+            "starterCode": "<!-- Create a modal trigger button -->\n<button>Open Modal</button>",
+            "expectedOutput": "",
+            "validationType": "containsAll",
+            "validationValue": [
+                "data-bs-toggle",
+                "modal",
+                "data-bs-target"
+            ],
+            "hint": "Add data-bs-toggle=\"modal\" data-bs-target=\"#myModal\" to the button.",
+            "solutionCode": "<div class=\"spinner-border\" role=\"status\">\n  <span class=\"visually-hidden\">Loading...</span>\n</div>"
+        }
+    ]
+}

@@ -1,0 +1,39 @@
+{
+  "title": "Seaborn Reference",
+  "description": "Seaborn statistical plotting, themes, and visualization reference.",
+  "sections": [
+    {
+      "title": "Distribution Plots",
+      "items": [
+        { "name": "sns.histplot()", "description": "Histogram for univariate distributions.", "code": "import seaborn as sns\nsns.histplot(data=df, x='age', bins=20)" },
+        { "name": "sns.kdeplot()", "description": "Kernel density estimate plot.", "code": "sns.kdeplot(data=df, x='score', fill=True)" },
+        { "name": "sns.boxplot()", "description": "Box plot for distributions across categories.", "code": "sns.boxplot(data=df, x='category', y='value')" },
+        { "name": "sns.violinplot()", "description": "Violin plot combining box and KDE.", "code": "sns.violinplot(data=df, x='group', y='score')" }
+      ]
+    },
+    {
+      "title": "Relational Plots",
+      "items": [
+        { "name": "sns.scatterplot()", "description": "Scatter plot for two variables.", "code": "sns.scatterplot(data=df, x='height', y='weight', hue='gender')" },
+        { "name": "sns.lineplot()", "description": "Line plot for trends over time.", "code": "sns.lineplot(data=df, x='date', y='sales')" },
+        { "name": "sns.heatmap()", "description": "Heatmap for matrix data.", "code": "sns.heatmap(df.corr(), annot=True, cmap='coolwarm')" }
+      ]
+    },
+    {
+      "title": "Categorical Plots",
+      "items": [
+        { "name": "sns.barplot()", "description": "Bar plot with confidence intervals.", "code": "sns.barplot(data=df, x='category', y='value')" },
+        { "name": "sns.countplot()", "description": "Count of observations per category.", "code": "sns.countplot(data=df, x='status')" },
+        { "name": "sns.stripplot()", "description": "Scatter plot for categorical data.", "code": "sns.stripplot(data=df, x='day', y='tip')" }
+      ]
+    },
+    {
+      "title": "Themes & Styling",
+      "items": [
+        { "name": "sns.set_theme()", "description": "Set the overall visual theme.", "code": "sns.set_theme(style='whitegrid', palette='pastel')" },
+        { "name": "sns.set_palette()", "description": "Change the color palette.", "code": "sns.set_palette('husl')" },
+        { "name": "Available styles", "description": "Built-in style options.", "code": "darkgrid, whitegrid, dark, white, ticks" }
+      ]
+    }
+  ]
+}

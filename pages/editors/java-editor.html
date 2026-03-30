@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live Java Editor - CareerPath</title>
+    <link rel="stylesheet" href="../../assets/css/editor.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+    
+    <nav class="editor-nav">
+        <div class="logo-area">
+            <img class="logo-icon" src="../../assets/images/path4career-icon.png" alt="Path4Career" style="width:32px;height:32px;border-radius:8px;">
+            <div class="logo-text">Path4Career</div>
+            <div class="title-badge">☕ Java Workspace</div>
+        </div>
+        <button class="run-btn" id="runBtn" onclick="executeJava()">▶ Compile & Run</button>
+    </nav>
+
+    <div class="workspace">
+        <div class="editor-pane">
+            <p class="pane-label">
+                <span>Main.java</span>
+                <span class="status-text">Virtual JVM Simulator</span>
+            </p>
+            <textarea id="javaInput" spellcheck="false" aria-label="Java Input"></textarea>
+        </div>
+        
+        <div class="result-pane">
+            <p class="pane-label">Terminal Output</p>
+            <div id="consoleDiv">
+                <span class="log-system">Virtual JVM Ready. Click "Compile & Run" to execute instantly in the browser.</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+const javaInput = document.getElementById('javaInput');
+        const consoleDiv = document.getElementById('consoleDiv');
+        const runBtn = document.getElementById('runBtn');
+
+        // 1. Fetch saved code or use default Java template
+        const savedCode = localStorage.getItem('careerPathJavaCode');
+        const defaultCode = `public class Main {
+    public static void main(String[] args) {
+        System.out.println("Hello from the serverless Java engine! 🚀");
+        
+        int a = 15;
+        int b = 25;
+        System.out.println("The sum of " + a + " and " + b + " is: " + (a + b));
+        
+        String role = "Developer";
+        System.out.println("Role: " + role);
+        
+        for(int i = 1; i <= 3; i++) {
+            System.out.println("Loop count: " + i);
+        }
+    }
+}`;
+
+        javaInput.value = savedCode ? savedCode : defaultCode;
+
+        // 2. Smart Indentation Engine (Upgraded for Java '{' Brackets)
+        javaInput.addEventListener('keydown', function(e) {
+            
+            // Handle the 'Tab' Key
+            if (e.key === 'Tab') {
+                e.preventDefault(); 
+                const start = this.selectionStart;
+                const end = this.selectionEnd;
+                const spaces = "    "; // 4 spaces
+                
+                this.value = this.value.substring(0, start) + spaces + this.value.substring(end);
+                this.selectionStart = this.selectionEnd = start + spaces.length;
+                this.dispatchEvent(new Event('input'));
+            }
+            
+            // Handle the 'Enter' Key
+            if (e.key === 'Enter') {
+                e.preventDefault(); 
+                
+                const start = this.selectionStart;
+                const end = this.selectionEnd;
+                
+                const textBeforeCursor = this.value.substring(0, start);
+                const lines = textBeforeCursor.split(/\r?\n/);
+                const currentLine = lines[lines.length - 1] || "";
+                
+                const leadingSpacesMatch = currentLine.match(/^(\s*)/);
+                let indentSpaces = leadingSpacesMatch ? leadingSpacesMatch[1] : '';
+                
+                // MAGIC: If the line ends with an opening bracket '{', add 4 MORE spaces!
+                if (currentLine.trim().endsWith('{')) {
+                    indentSpaces += "    ";
+                }
+                
+                const insertText = "\n" + indentSpaces;
+                
+                this.value = this.value.substring(0, start) + insertText + this.value.substring(end);
+                this.selectionStart = this.selectionEnd = start + insertText.length;
+                this.dispatchEvent(new Event('input'));
+            }
+        });
+
+        // 3. Auto-Save
+        javaInput.addEventListener('input', () => {
+            localStorage.setItem('careerPathJavaCode', javaInput.value);
+        });
+
+        // Helper to format output to the terminal
+        function appendToConsole(text, className) {
+            const span = document.createElement('span');
+            span.className = className;
+            span.textContent = text + '\n';
+            consoleDiv.appendChild(span);
+            consoleDiv.scrollTop = consoleDiv.scrollHeight;
+        }
+
+        // 4. The Engine: Serverless Java to JS Transpiler
+        function executeJava() {
+            const code = javaInput.value.trim();
+            
+            if (!code) {
+                consoleDiv.innerHTML = '<span class="log-error">Please enter some Java code.</span>';
+                return;
+            }
+
+            consoleDiv.innerHTML = '<span class="log-loading">>>> Compiling in Virtual JVM...</span>\n';
+
+            try {
+                // --- JAVA SYNTAX PARSER --- //
+                
+                // 1. Locate and isolate the main method body
+                const mainHeader = "public static void main";
+                const mainIndex = code.indexOf(mainHeader);
+                if (mainIndex === -1) {
+                    throw new Error("Execution Error: Could not find 'public static void main(String[] args)' method.");
+                }
+                
+                const openBrace = code.indexOf('{', mainIndex);
+                let braceCount = 1;
+                let closeBrace = -1;
+                
+                for (let i = openBrace + 1; i < code.length; i++) {
+                    if (code[i] === '{') braceCount++;
+                    if (code[i] === '}') braceCount--;
+                    if (braceCount === 0) {
+                        closeBrace = i;
+                        break;
+                    }
+                }
+                
+                if (closeBrace === -1) {
+                    throw new Error("Syntax Error: Mismatched braces inside the main method.");
+                }
+                
+                let coreCode = code.substring(openBrace + 1, closeBrace);
+
+                // 2. Transpile Java Syntax to Native JavaScript
+                
+                // Transpile Prints
+                coreCode = coreCode.replace(/System\.out\.println\s*\((.*?)\)\s*;/g, 'console.log($1);');
+                coreCode = coreCode.replace(/System\.out\.print\s*\((.*?)\)\s*;/g, 'console.log($1);');
+                
+                // Transpile Variable Declarations (int, String, double, boolean -> let)
+                coreCode = coreCode.replace(/\b(int|double|float|boolean|String|char|long|short|byte)\s+([a-zA-Z0-9_]+)\s*=/g, 'let $2 =');
+                coreCode = coreCode.replace(/\b(int|double|float|boolean|String|char|long|short|byte)\s+([a-zA-Z0-9_]+)\s*;/g, 'let $2;');
+                
+                // Transpile Arrays (int[] arr = {1, 2}; -> let arr = [1, 2];)
+                coreCode = coreCode.replace(/\b(int|double|float|boolean|String|char|long|short|byte)\s*\[\]\s+([a-zA-Z0-9_]+)\s*=\s*\{([^}]*)\}\s*;/g, 'let $2 = [$3];');
+
+                // Transpile basic String methods
+                coreCode = coreCode.replace(/\.length\(\)/g, '.length');
+                coreCode = coreCode.replace(/\.equals\((.*?)\)/g, '=== $1');
+
+                // 3. Create a safe console interceptor
+                const customConsole = {
+                    log: function(...args) {
+                        const message = args.map(arg => typeof arg === 'object' ? JSON.stringify(arg) : String(arg)).join(' ');
+                        appendToConsole(message, 'log-normal');
+                    }
+                };
+
+                // 4. Execute the translated code instantly in the browser
+                const executeFn = new Function('console', `"use strict";\n${coreCode}`);
+                executeFn(customConsole);
+                
+                appendToConsole('\n--- Execution Finished ---', 'log-system');
+
+            } catch (err) {
+                appendToConsole('\n' + err.message, 'log-error');
+            }
+        }
+</script>
+</body>
+</html>

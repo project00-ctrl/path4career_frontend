@@ -1,0 +1,130 @@
+{
+  "sections": [
+    {
+      "title": "Data Types & Structures",
+      "desc": "R basic data types and fundamental data structures.",
+      "type": "table",
+      "columns": ["TYPE / STRUCTURE", "DESCRIPTION", "EXAMPLE"],
+      "rows": [
+        { "property": "numeric", "desc": "Real numbers (double precision by default)", "version": "x <- 3.14" },
+        { "property": "integer", "desc": "Integer values (append L)", "version": "x <- 5L" },
+        { "property": "character", "desc": "String / text values", "version": "name <- 'Hello'" },
+        { "property": "logical", "desc": "Boolean TRUE or FALSE", "version": "flag <- TRUE" },
+        { "property": "complex", "desc": "Complex numbers", "version": "z <- 3 + 2i" },
+        { "property": "vector", "desc": "1D ordered collection of same type", "version": "v <- c(1, 2, 3, 4, 5)" },
+        { "property": "list", "desc": "Ordered collection of mixed types", "version": "l <- list(name='R', ver=4.3)" },
+        { "property": "matrix", "desc": "2D array of same type", "version": "m <- matrix(1:6, nrow=2, ncol=3)" },
+        { "property": "data.frame", "desc": "Tabular data — columns can be different types", "version": "df <- data.frame(name=c('A','B'), age=c(25,30))" },
+        { "property": "factor", "desc": "Categorical data with levels", "version": "f <- factor(c('low','mid','high'))" },
+        { "property": "array", "desc": "Multi-dimensional data of same type", "version": "a <- array(1:24, dim=c(2,3,4))" },
+        { "property": "tibble", "desc": "Modern data frame (tidyverse)", "version": "library(tibble); tb <- tibble(x=1:5)" },
+        { "property": "NULL", "desc": "Empty/absent object", "version": "x <- NULL" },
+        { "property": "NA", "desc": "Missing value", "version": "x <- c(1, NA, 3)" }
+      ]
+    },
+    {
+      "title": "Base R Functions",
+      "desc": "Commonly used built-in R functions.",
+      "type": "table",
+      "columns": ["FUNCTION", "DESCRIPTION", "EXAMPLE"],
+      "rows": [
+        { "property": "c()", "desc": "Combine values into a vector", "version": "c(1, 2, 3)" },
+        { "property": "length(x)", "desc": "Number of elements", "version": "length(v)" },
+        { "property": "class(x)", "desc": "Get the class/type of object", "version": "class(df)" },
+        { "property": "str(x)", "desc": "Display structure of object", "version": "str(df)" },
+        { "property": "summary(x)", "desc": "Statistical summary", "version": "summary(df)" },
+        { "property": "head(x, n) / tail(x, n)", "desc": "First/last n elements", "version": "head(df, 10)" },
+        { "property": "seq(from, to, by)", "desc": "Generate sequence of numbers", "version": "seq(1, 10, by=2)" },
+        { "property": "rep(x, times)", "desc": "Repeat values", "version": "rep(0, 5)" },
+        { "property": "paste() / paste0()", "desc": "Concatenate strings", "version": "paste('Hello', 'World', sep=' ')" },
+        { "property": "print(x)", "desc": "Print value to console", "version": "print(result)" },
+        { "property": "cat()", "desc": "Print without quotes or indices", "version": "cat('Value:', x, '\\n')" },
+        { "property": "which(condition)", "desc": "Indices where condition is TRUE", "version": "which(v > 3)" },
+        { "property": "ifelse(test, yes, no)", "desc": "Vectorized conditional", "version": "ifelse(x > 0, 'positive', 'negative')" },
+        { "property": "sapply(X, FUN)", "desc": "Apply function to each element", "version": "sapply(1:5, function(x) x^2)" },
+        { "property": "lapply(X, FUN)", "desc": "Apply function, return list", "version": "lapply(df, mean)" }
+      ]
+    },
+    {
+      "title": "Data Manipulation (dplyr)",
+      "desc": "Tidyverse dplyr verbs for data transformation.",
+      "type": "table",
+      "columns": ["FUNCTION", "DESCRIPTION", "EXAMPLE"],
+      "rows": [
+        { "property": "filter()", "desc": "Filter rows by condition", "version": "df %>% filter(age > 25)" },
+        { "property": "select()", "desc": "Select specific columns", "version": "df %>% select(name, age)" },
+        { "property": "mutate()", "desc": "Create or modify columns", "version": "df %>% mutate(age_group = ifelse(age>30,'senior','junior'))" },
+        { "property": "arrange()", "desc": "Sort rows by column", "version": "df %>% arrange(desc(salary))" },
+        { "property": "summarise() / summarize()", "desc": "Reduce to summary statistics", "version": "df %>% summarise(avg=mean(salary))" },
+        { "property": "group_by()", "desc": "Group rows for aggregation", "version": "df %>% group_by(dept) %>% summarise(avg=mean(salary))" },
+        { "property": "rename()", "desc": "Rename columns", "version": "df %>% rename(full_name = name)" },
+        { "property": "distinct()", "desc": "Remove duplicate rows", "version": "df %>% distinct(city)" },
+        { "property": "count()", "desc": "Count rows per group", "version": "df %>% count(dept)" },
+        { "property": "left_join()", "desc": "Left join two data frames", "version": "left_join(df1, df2, by='id')" },
+        { "property": "inner_join()", "desc": "Inner join two data frames", "version": "inner_join(df1, df2, by='id')" },
+        { "property": "pivot_longer()", "desc": "Wide to long format (tidyr)", "version": "df %>% pivot_longer(cols=c(q1,q2), names_to='qtr')" },
+        { "property": "pivot_wider()", "desc": "Long to wide format (tidyr)", "version": "df %>% pivot_wider(names_from=qtr, values_from=sales)" },
+        { "property": "%>% (pipe)", "desc": "Chain operations left to right", "version": "df %>% filter(x>0) %>% select(name)" }
+      ]
+    },
+    {
+      "title": "Data Visualization (ggplot2)",
+      "desc": "Grammar of Graphics visualization with ggplot2.",
+      "type": "table",
+      "columns": ["FUNCTION / LAYER", "DESCRIPTION", "EXAMPLE"],
+      "rows": [
+        { "property": "ggplot(data, aes(x, y))", "desc": "Initialize plot with data and aesthetics", "version": "ggplot(df, aes(x=age, y=salary))" },
+        { "property": "geom_point()", "desc": "Scatter plot", "version": "ggplot(df, aes(x,y)) + geom_point()" },
+        { "property": "geom_line()", "desc": "Line chart", "version": "+ geom_line()" },
+        { "property": "geom_bar(stat='identity')", "desc": "Bar chart with given heights", "version": "+ geom_bar(stat='identity')" },
+        { "property": "geom_histogram(bins=30)", "desc": "Histogram", "version": "+ geom_histogram(bins=30)" },
+        { "property": "geom_boxplot()", "desc": "Box plot", "version": "+ geom_boxplot()" },
+        { "property": "geom_smooth(method='lm')", "desc": "Add trend line", "version": "+ geom_smooth(method='lm')" },
+        { "property": "facet_wrap(~var)", "desc": "Small multiples by variable", "version": "+ facet_wrap(~category)" },
+        { "property": "labs(title, x, y)", "desc": "Add labels and title", "version": "+ labs(title='Sales', x='Month', y='Revenue')" },
+        { "property": "theme_minimal()", "desc": "Apply minimal theme", "version": "+ theme_minimal()" },
+        { "property": "scale_fill_brewer()", "desc": "Color palette for fills", "version": "+ scale_fill_brewer(palette='Set2')" },
+        { "property": "ggsave('plot.png')", "desc": "Save plot to file", "version": "ggsave('plot.png', width=10, height=6)" }
+      ]
+    },
+    {
+      "title": "Statistical Functions",
+      "desc": "Built-in statistical functions and tests in R.",
+      "type": "table",
+      "columns": ["FUNCTION", "DESCRIPTION", "EXAMPLE"],
+      "rows": [
+        { "property": "mean(x)", "desc": "Arithmetic mean", "version": "mean(v, na.rm=TRUE)" },
+        { "property": "median(x)", "desc": "Median value", "version": "median(v)" },
+        { "property": "sd(x)", "desc": "Standard deviation", "version": "sd(v)" },
+        { "property": "var(x)", "desc": "Variance", "version": "var(v)" },
+        { "property": "cor(x, y)", "desc": "Correlation coefficient", "version": "cor(df$x, df$y)" },
+        { "property": "t.test(x, y)", "desc": "T-test for comparing means", "version": "t.test(group1, group2)" },
+        { "property": "chisq.test(table)", "desc": "Chi-squared test of independence", "version": "chisq.test(table(df$a, df$b))" },
+        { "property": "lm(y ~ x, data)", "desc": "Linear regression model", "version": "model <- lm(salary ~ age + exp, data=df)" },
+        { "property": "glm(y ~ x, family)", "desc": "Generalized linear model", "version": "glm(result ~ x1 + x2, family=binomial, data=df)" },
+        { "property": "anova(model)", "desc": "Analysis of variance", "version": "anova(model)" },
+        { "property": "predict(model, newdata)", "desc": "Make predictions from model", "version": "predict(model, newdata=test_df)" },
+        { "property": "quantile(x, probs)", "desc": "Compute quantiles", "version": "quantile(v, c(0.25, 0.5, 0.75))" }
+      ]
+    },
+    {
+      "title": "File I/O & Packages",
+      "desc": "Reading/writing data and package management.",
+      "type": "table",
+      "columns": ["FUNCTION / COMMAND", "DESCRIPTION", "EXAMPLE"],
+      "rows": [
+        { "property": "read.csv(file)", "desc": "Read CSV file into data frame", "version": "df <- read.csv('data.csv')" },
+        { "property": "read_csv(file)", "desc": "Read CSV with readr (tidyverse)", "version": "df <- read_csv('data.csv')" },
+        { "property": "write.csv(df, file)", "desc": "Write data frame to CSV", "version": "write.csv(df, 'output.csv', row.names=FALSE)" },
+        { "property": "readRDS(file)", "desc": "Read R serialized object", "version": "obj <- readRDS('model.rds')" },
+        { "property": "saveRDS(obj, file)", "desc": "Save R object to file", "version": "saveRDS(model, 'model.rds')" },
+        { "property": "read_excel(file)", "desc": "Read Excel file (readxl)", "version": "library(readxl); df <- read_excel('data.xlsx')" },
+        { "property": "install.packages('pkg')", "desc": "Install package from CRAN", "version": "install.packages('ggplot2')" },
+        { "property": "library(pkg)", "desc": "Load installed package", "version": "library(dplyr)" },
+        { "property": "require(pkg)", "desc": "Load package (returns TRUE/FALSE)", "version": "if(!require(ggplot2)) install.packages('ggplot2')" },
+        { "property": "getwd()", "desc": "Get current working directory", "version": "getwd()" },
+        { "property": "setwd(path)", "desc": "Set working directory", "version": "setwd('/path/to/data')" }
+      ]
+    }
+  ]
+}

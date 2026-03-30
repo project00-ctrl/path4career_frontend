@@ -1,0 +1,362 @@
+[
+    {
+        "id": "excel-1",
+        "question": "What is Microsoft Excel primarily used for?",
+        "options": [
+            "Word processing and writing letters.",
+            "Creating presentations and slideshows.",
+            "Organizing data, calculations, and analysis using spreadsheets.",
+            "Editing photos and videos."
+        ],
+        "correctAnswer": 2,
+        "explanation": "Excel is the world's most used spreadsheet program, specifically designed for data organization, formulas, and analytical reporting."
+    },
+    {
+        "id": "excel-2",
+        "question": "How are individual locations referenced in an Excel sheet?",
+        "options": [
+            "By page numbers",
+            "By row and column coordinates (e.g., C4)",
+            "By paragraph structures",
+            "By unique ID tags"
+        ],
+        "correctAnswer": 1,
+        "explanation": "The intersection of a column (letter) and a row (number) creates a cell reference like C4."
+    },
+    {
+        "id": "excel-3",
+        "question": "Which character must be typed first to begin an Excel formula or function?",
+        "options": [
+            "+ (Plus sign)",
+            "@ (At symbol)",
+            "# (Hash symbol)",
+            "= (Equal sign)"
+        ],
+        "correctAnswer": 3,
+        "explanation": "In Excel, typing an equal sign (=) tells the cell to expect a mathematical calculation or function rather than plain text."
+    },
+    {
+        "id": "excel-4",
+        "question": "If you want to add the values of cell A1 and A2, what is the correct formula?",
+        "options": [
+            "ADD(A1, A2)",
+            "=A1+A2",
+            "=SUM:A1:A2",
+            "A1 + A2 ="
+        ],
+        "correctAnswer": 1,
+        "explanation": "The simplest way to add two specific cells is to use the standard addition operator (+) inside a formula."
+    },
+    {
+        "id": "excel-5",
+        "question": "Which built-in function returns the total of all values inside the range A1 through A5?",
+        "options": [
+            "=TOTAL(A1:A5)",
+            "=ADD(A1:A5)",
+            "=SUM(A1:A5)",
+            "=COUNT(A1:A5)"
+        ],
+        "correctAnswer": 2,
+        "explanation": "The SUM function takes a range of cells and adds all their numerical values together."
+    },
+    {
+        "id": "excel-6",
+        "question": "What happens to a formula if you change the value in one of the cells it references?",
+        "options": [
+            "You must press a 'recalculate' button.",
+            "The formula breaks.",
+            "Excel updates the result automatically.",
+            "The formula converts to text."
+        ],
+        "correctAnswer": 2,
+        "explanation": "Excel spreadsheets are dynamic; formulas automatically recalculate whenever dependent cell values alter."
+    },
+    {
+        "id": "excel-7",
+        "question": "What is the purpose of Data Sorting in Excel?",
+        "options": [
+            "To hide irrelevant rows.",
+            "To perform complex mathematical modeling.",
+            "To arrange data in ascending (A-Z) or descending (Z-A) order.",
+            "To apply colors to specific cells."
+        ],
+        "correctAnswer": 2,
+        "explanation": "Sorting reorganizes rows of data sequentially based on the values in one or more selected columns."
+    },
+    {
+        "id": "excel-8",
+        "question": "What does Excel Filtering allow you to do?",
+        "options": [
+            "Hide or display only the data that meets certain criteria.",
+            "Delete rows you don't need permanently.",
+            "Format the font automatically.",
+            "Translate data into different languages."
+        ],
+        "correctAnswer": 0,
+        "explanation": "Filtering temporarily hides rows you don't want to see, letting you focus only on the data that matters."
+    },
+    {
+        "id": "excel-9",
+        "question": "What is an advantage of converting a range into an Excel 'Table'?",
+        "options": [
+            "It turns data into a Microsoft Word document.",
+            "It provides structured formatting, built-in sorting, filtering, and consistent styles.",
+            "It password-protects the data.",
+            "It converts text to numbers."
+        ],
+        "correctAnswer": 1,
+        "explanation": "Excel Tables treat a block of data as a single entity, applying banded rows and adding filter dropdowns automatically."
+    },
+    {
+        "id": "excel-10",
+        "question": "Which feature changes a cell's appearance (like its background color) automatically based on the value it contains?",
+        "options": [
+            "Data Validation",
+            "Conditional Formatting",
+            "VLOOKUP",
+            "Goal Seek"
+        ],
+        "correctAnswer": 1,
+        "explanation": "Conditional formatting applies visual rules (like color scales or icons) to cells dynamically, depending on whether their values meet defined conditions."
+    },
+    {
+        "id": "excel-11",
+        "question": "What is a 'Pivot Table' primarily used for?",
+        "options": [
+            "Creating 3D graphic models.",
+            "Quickly organizing, summarizing, and analyzing large sets of tabular data without complex formulas.",
+            "Locking cells to prevent editing.",
+            "Connecting to external internet databases."
+        ],
+        "correctAnswer": 1,
+        "explanation": "Pivot Tables allow you to drag and drop fields into rows and columns to generate instant summary reports (like totals or counts)."
+    },
+    {
+        "id": "excel-12",
+        "question": "Which function searches for a value in the first column of a table and returns a value from another column in the same row?",
+        "options": [
+            "INDEX",
+            "MATCH",
+            "VLOOKUP",
+            "SEARCH"
+        ],
+        "correctAnswer": 2,
+        "explanation": "VLOOKUP (Vertical Lookup) scans down the first column for a match, then moves across the row to a specified column index to return a value."
+    },
+    {
+        "id": "excel-13",
+        "question": "What does the IF function do?",
+        "options": [
+            "Checks if a file exists on the hard drive.",
+            "Counts the number of cells that contain letters instead of numbers.",
+            "Returns one value if a logical condition is TRUE, and another value if FALSE.",
+            "Returns a random number between two limits."
+        ],
+        "correctAnswer": 2,
+        "explanation": "The IF function (=IF(condition, true_result, false_result)) checks a logical test and branches the output accordingly."
+    },
+    {
+        "id": "excel-14",
+        "question": "By default, when you copy a formula in Excel, cell references like 'A1' change automatically. What are these called?",
+        "options": [
+            "Absolute References",
+            "Relative References",
+            "Dynamic References",
+            "Floating References"
+        ],
+        "correctAnswer": 1,
+        "explanation": "Relative references adjust their position automatically when pasted down or across rows and columns."
+    },
+    {
+        "id": "excel-15",
+        "question": "Which character is used to create an Absolute Reference (e.g., locking the cell to $A$1)?",
+        "options": [
+            "& (Ampersand)",
+            "@ (At symbol)",
+            "# (Hash)",
+            "$ (Dollar sign)"
+        ],
+        "correctAnswer": 3,
+        "explanation": "The dollar sign ($) \"anchors\" a row or column, preventing it from changing when a formula is copied."
+    },
+    {
+        "id": "excel-16",
+        "question": "What is the benefit of using 'Named Ranges' (e.g., =SUM(Sales) instead of =SUM(A1:A100))?",
+        "options": [
+            "It encrypts the data.",
+            "It saves file space.",
+            "It improves readability and makes complex formulas easier to understand.",
+            "It makes the formula run faster."
+        ],
+        "correctAnswer": 2,
+        "explanation": "Naming a range allows you to use descriptive human-readable words instead of obscure alpha-numeric cell coordinates."
+    },
+    {
+        "id": "excel-17",
+        "question": "Which feature restricts the type of data users can enter into a cell, such as creating a dropdown list?",
+        "options": [
+            "Conditional Formatting",
+            "Data Validation",
+            "Goal Seek",
+            "Pivot Table"
+        ],
+        "correctAnswer": 1,
+        "explanation": "Data Validation prevents invalid entries by enforcing rules, such as requiring whole numbers, dates, or forcing selection from a dropdown list."
+    },
+    {
+        "id": "excel-18",
+        "question": "What does the 'Goal Seek' What-If Analysis tool do?",
+        "options": [
+            "Finds duplicate values in a column.",
+            "Schedules calendar reminders.",
+            "Calculates the exact input value needed to achieve a specific desired formula result.",
+            "Translates languages."
+        ],
+        "correctAnswer": 2,
+        "explanation": "Goal Seek reverse-engineers a formula. If you know the final total you want, it calculates what a specific input cell must be changed to in order to hit that target."
+    },
+    {
+        "id": "excel-19",
+        "question": "Which two functions are frequently combined to perform flexible lookups that overcome the limitations of VLOOKUP?",
+        "options": [
+            "SUM and AVERAGE",
+            "INDEX and MATCH",
+            "IF and AND",
+            "COUNT and ROW"
+        ],
+        "correctAnswer": 1,
+        "explanation": "MATCH finds the relative position (row number), and INDEX retrieves the value at that position. Together they can look up data in any direction."
+    },
+    {
+        "id": "excel-20",
+        "question": "What is the primary advantage of the INDEX function?",
+        "options": [
+            "It formats cells with colors.",
+            "It returns the value of a cell in a specified row and column position within a range.",
+            "It deletes blank rows.",
+            "It creates Pivot Tables automatically."
+        ],
+        "correctAnswer": 1,
+        "explanation": "INDEX simply looks at a grid of data and pulls out the value sitting at a specific (x, y) coordinate you provide."
+    },
+    {
+        "id": "excel-21",
+        "question": "What does the MATCH function return?",
+        "options": [
+            "True or False",
+            "The actual cell value",
+            "The relative numerical position of an item in a range",
+            "A formatted text string"
+        ],
+        "correctAnswer": 2,
+        "explanation": "MATCH does not return the cell's contents; it tells you exactly where (e.g., the 5th item) that content is located within an array."
+    },
+    {
+        "id": "excel-22",
+        "question": "Which modern Excel function is designed to replace both VLOOKUP and HLOOKUP, allowing searches in any direction?",
+        "options": [
+            "SUPERLOOKUP",
+            "ZLOOKUP",
+            "XLOOKUP",
+            "OMNILOOKUP"
+        ],
+        "correctAnswer": 2,
+        "explanation": "XLOOKUP vastly simplifies lookups. You select the lookup array and the return array separately, unbinding it from left-to-right limitations."
+    },
+    {
+        "id": "excel-23",
+        "question": "In a Pivot Table, what does 'Grouping Data' commonly allow you to do?",
+        "options": [
+            "Summarize individual daily dates into broader months, quarters, or years.",
+            "Merge cells together permanently.",
+            "Convert numbers into text.",
+            "Lock the spreadsheet with a password."
+        ],
+        "correctAnswer": 0,
+        "explanation": "Grouping is a powerful analytical feature that rolls up granular data (like daily sales) into macro categories (like yearly revenue)."
+    },
+    {
+        "id": "excel-24",
+        "question": "What is a Pivot Chart?",
+        "options": [
+            "A chart drawn using the shapes tool.",
+            "A visual representation linked directly to Pivot Table data that updates interactively.",
+            "A chart that only shows percentages.",
+            "A static picture of a chart."
+        ],
+        "correctAnswer": 1,
+        "explanation": "Pivot Charts reflect the exact structure and filters applied to a Pivot Table, updating dynamically as the table changes."
+    },
+    {
+        "id": "excel-25",
+        "question": "Which function allows you to add up numbers based on multiple criteria (e.g., Region = 'North' AND Product = 'Shoes')?",
+        "options": [
+            "SUM",
+            "SUMIF",
+            "SUMIFS",
+            "SUMALL"
+        ],
+        "correctAnswer": 2,
+        "explanation": "SUMIFS supports evaluating multiple conditions across different columns before deciding to include a number in the final total."
+    },
+    {
+        "id": "excel-26",
+        "question": "If you want to count how many employees are in 'Sales' AND have over '5' years of experience, which function should you use?",
+        "options": [
+            "COUNT",
+            "COUNTA",
+            "COUNTBLANK",
+            "COUNTIFS"
+        ],
+        "correctAnswer": 3,
+        "explanation": "COUNTIFS evaluates multiple criteria ranges simultaneously and only tallies rows where all conditions are met."
+    },
+    {
+        "id": "excel-27",
+        "question": "What is the benefit of the IFS function compared to the standard IF function?",
+        "options": [
+            "It calculates faster.",
+            "It simplifies complex 'nested' IF statements by checking multiple conditions sequentially.",
+            "It works on text instead of numbers.",
+            "It creates Pivot Tables."
+        ],
+        "correctAnswer": 1,
+        "explanation": "Instead of burying IFs inside of IFs, the modern IFS function allows you to list pairs of conditions and results in one clean string."
+    },
+    {
+        "id": "excel-28",
+        "question": "In an Excel Dashboard context, what is the purpose of a 'Slicer'?",
+        "options": [
+            "To cut long text strings into shorter pieces.",
+            "To crop images.",
+            "To provide interactive, visual buttons for quickly filtering Pivot Tables and Charts.",
+            "To divide a worksheet into multiple pages for printing."
+        ],
+        "correctAnswer": 2,
+        "explanation": "Slicers are essentially user-friendly, clickable filter menus that make dashboards highly interactive for end-users."
+    },
+    {
+        "id": "excel-29",
+        "question": "What defines an Excel 'Dashboard'?",
+        "options": [
+            "A screen that shows only the file size and properties.",
+            "A visual display of key metrics and summaries using organized charts, tables, and KPIs.",
+            "The Start Screen when Excel first opens.",
+            "An error checking tool."
+        ],
+        "correctAnswer": 1,
+        "explanation": "A dashboard consolidates critical data points into a single, cohesive interface designed to track performance and trends."
+    },
+    {
+        "id": "excel-30",
+        "question": "Which of the following describes the difference between COUNT and COUNTA?",
+        "options": [
+            "COUNT adds numbers; COUNTA subtracts them.",
+            "COUNT only tallies cells containing numbers; COUNTA tallies any cell that is not empty (including text).",
+            "COUNT works on rows; COUNTA works on columns.",
+            "There is no difference."
+        ],
+        "correctAnswer": 1,
+        "explanation": "While COUNT strictly counts numeric values, COUNTA counts cells with alphanumeric characters, symbols, or errors—anything that isn't a blank cell."
+    }
+]

@@ -1,0 +1,362 @@
+[
+    {
+        "id": "django-1",
+        "question": "What is Django?",
+        "options": [
+            "A JavaScript frontend library.",
+            "A high-level Python web framework.",
+            "A SQL database engine.",
+            "A server operating system."
+        ],
+        "correctAnswer": 1,
+        "explanation": "Django is an open-source Python web framework that encourages clean design and rapid development."
+    },
+    {
+        "id": "django-2",
+        "question": "Which architectural pattern does Django strictly follow?",
+        "options": [
+            "MVC (Model-View-Controller)",
+            "MVT (Model-View-Template)",
+            "MVVM (Model-View-ViewModel)",
+            "MVP (Model-View-Presenter)"
+        ],
+        "correctAnswer": 1,
+        "explanation": "Django follows the Model-View-Template (MVT) architecture for building web applications."
+    },
+    {
+        "id": "django-3",
+        "question": "Why use a Python Virtual Environment before installing Django?",
+        "options": [
+            "To connect to the database.",
+            "To speed up python execution.",
+            "To provide package isolation and prevent library conflicts.",
+            "To create Python variables."
+        ],
+        "correctAnswer": 2,
+        "explanation": "A virtual environment (venv) isolates your project's dependencies from other projects on your computer."
+    },
+    {
+        "id": "django-4",
+        "question": "Which command installs the Django framework?",
+        "options": [
+            "python install django",
+            "django-install",
+            "npm install django",
+            "pip install django"
+        ],
+        "correctAnswer": 3,
+        "explanation": "Python's built-in package manager (pip) is used to download and install Django."
+    },
+    {
+        "id": "django-5",
+        "question": "Which command creates a brand new Django project?",
+        "options": [
+            "django-admin startproject my_project",
+            "python startproject my_project",
+            "django create my_project",
+            "manage.py new_project"
+        ],
+        "correctAnswer": 0,
+        "explanation": "The 'django-admin startproject' command generates the core directory and settings needed."
+    },
+    {
+        "id": "django-6",
+        "question": "What is the difference between a Django Project and an App?",
+        "options": [
+            "An App is the entire website; a Project is a specific component.",
+            "A Project is the entire website; an App is a specific encapsulated feature.",
+            "They are the exact same thing.",
+            "Apps are written in JavaScript, Projects in Python."
+        ],
+        "correctAnswer": 1,
+        "explanation": "A Project holds configuration for the whole site. It can contain multiple Apps (like blog, forum, store)."
+    },
+    {
+        "id": "django-7",
+        "question": "Which command is used to start the local development server in Django?",
+        "options": [
+            "python run",
+            "django-admin start_server",
+            "python manage.py runserver",
+            "server.start()"
+        ],
+        "correctAnswer": 2,
+        "explanation": "'manage.py runserver' spins up a local web server (usually at http://127.0.0.1:8000) for testing."
+    },
+    {
+        "id": "django-8",
+        "question": "In Django MVT architecture, what does a View typically return?",
+        "options": [
+            "A SQL query.",
+            "A web response (like an HttpResponse).",
+            "A database migration.",
+            "An error 500."
+        ],
+        "correctAnswer": 1,
+        "explanation": "A view function takes a web request and must return a valid web response."
+    },
+    {
+        "id": "django-9",
+        "question": "What is the primary function of the urls.py file?",
+        "options": [
+            "To design the database.",
+            "To write HTML code.",
+            "To map incoming web request paths to specific view functions.",
+            "To style the website using CSS."
+        ],
+        "correctAnswer": 2,
+        "explanation": "The URLs configuration routes user requests to the correct Python logic based on the requested path."
+    },
+    {
+        "id": "django-10",
+        "question": "How do you output the value of a Python variable inside a Django HTML template?",
+        "options": [
+            "<?php echo variable; ?>",
+            "<% variable %>",
+            "{{ variable }}",
+            "[[ variable ]]"
+        ],
+        "correctAnswer": 2,
+        "explanation": "Django uses double curly braces {{ }} to interpolate variables passed from the view."
+    },
+    {
+        "id": "django-11",
+        "question": "What does a Django Model represent?",
+        "options": [
+            "A single HTML page.",
+            "A single database table.",
+            "A CSS stylesheet.",
+            "An API endpoint."
+        ],
+        "correctAnswer": 1,
+        "explanation": "Each Model class represents exactly one database table, mapping class attributes to database columns."
+    },
+    {
+        "id": "django-12",
+        "question": "After changing models.py, what two commands must you run to update the database?",
+        "options": [
+            "make models AND run models",
+            "makemigrations AND migrate",
+            "dbupdate AND commit",
+            "create AND apply"
+        ],
+        "correctAnswer": 1,
+        "explanation": "makemigrations creates the SQL instructions, and migrate actually applies them to the database."
+    },
+    {
+        "id": "django-13",
+        "question": "How do you save a new record to the database using the Django ORM?",
+        "options": [
+            "record.commit()",
+            "db.add(record)",
+            "record.save()",
+            "record.insert()"
+        ],
+        "correctAnswer": 2,
+        "explanation": "Calling the .save() method on a newly instantiated model object writes it to the database table."
+    },
+    {
+        "id": "django-14",
+        "question": "How do you permanently remove a record from the database in Django?",
+        "options": [
+            "record.destroy()",
+            "record.remove()",
+            "record.delete()",
+            "record.drop()"
+        ],
+        "correctAnswer": 2,
+        "explanation": "The .delete() method instantly removes the specific model instance from the database."
+    },
+    {
+        "id": "django-15",
+        "question": "What is the main benefit of the Django Admin Interface?",
+        "options": [
+            "It runs the local server.",
+            "It manages user passwords.",
+            "It automatically provides a ready-to-use GUI for performing CRUD operations on your models.",
+            "It creates HTML templates."
+        ],
+        "correctAnswer": 2,
+        "explanation": "By registering your models, the Admin panel instantly gives you a powerful dashboard to manage database records."
+    },
+    {
+        "id": "django-16",
+        "question": "What is a QuerySet in Django?",
+        "options": [
+            "A collection of data retrieved from the database via the ORM.",
+            "A set of HTTP requests.",
+            "A folder that holds templates.",
+            "A security setting."
+        ],
+        "correctAnswer": 0,
+        "explanation": "A QuerySet represents a collection of database queries. It can be filtered, ordered, or iterated over."
+    },
+    {
+        "id": "django-17",
+        "question": "Which ORM method fetches ALL records from a particular database table?",
+        "options": [
+            "Model.get_all()",
+            "Model.fetch()",
+            "Model.objects.all()",
+            "Model.query_all()"
+        ],
+        "correctAnswer": 2,
+        "explanation": ".objects.all() is the standard Django syntax to grab every instance of a model."
+    },
+    {
+        "id": "django-18",
+        "question": "Which ORM method is used to retrieve only records matching a specific condition?",
+        "options": [
+            "Model.objects.find()",
+            "Model.objects.filter()",
+            "Model.objects.where()",
+            "Model.objects.search()"
+        ],
+        "correctAnswer": 1,
+        "explanation": ".filter(condition) narrows down a QuerySet to only matching records."
+    },
+    {
+        "id": "django-19",
+        "question": "Before linking to a CSS or JS file in a template, what tag must be at the top of the HTML file?",
+        "options": [
+            "{% load static %}",
+            "{% import css %}",
+            "{{ include_static }}",
+            "{% use assets %}"
+        ],
+        "correctAnswer": 0,
+        "explanation": "The {% load static %} tag tells Django's template engine to process the {% static %} path generators."
+    },
+    {
+        "id": "django-20",
+        "question": "Where should an app's specific CSS and image files be placed?",
+        "options": [
+            "In the 'templates' folder.",
+            "In the 'static' folder.",
+            "In the 'media' folder.",
+            "In the 'assets' folder."
+        ],
+        "correctAnswer": 1,
+        "explanation": "Django looks inside an app's 'static' directory by default for static assets."
+    },
+    {
+        "id": "django-21",
+        "question": "What is the purpose of the WhiteNoise package in Django?",
+        "options": [
+            "To generate random numbers.",
+            "To serve static files efficiently directly from the Django app in production.",
+            "To encrypt passwords.",
+            "To speed up database queries."
+        ],
+        "correctAnswer": 1,
+        "explanation": "WhiteNoise is middleware that simplifies static file serving in environments where you cannot easily configure Nginx or Apache."
+    },
+    {
+        "id": "django-22",
+        "question": "Which setting defines the master directory where all collected static files will be placed for production?",
+        "options": [
+            "STATIC_URL",
+            "STATIC_ROOT",
+            "STATICFILES_DIRS",
+            "MEDIA_ROOT"
+        ],
+        "correctAnswer": 1,
+        "explanation": "The STATIC_ROOT setting tells the collectstatic command exactly where to dump all gathered assets."
+    },
+    {
+        "id": "django-23",
+        "question": "What command gathers all static assets from various apps into one central folder?",
+        "options": [
+            "python manage.py gather",
+            "python manage.py collectstatic",
+            "python manage.py build",
+            "django-admin merge"
+        ],
+        "correctAnswer": 1,
+        "explanation": "collectstatic is crucial for preparing a Django site for a production server release."
+    },
+    {
+        "id": "django-24",
+        "question": "Which setting variable allows you to define custom directories for global project-wide static files?",
+        "options": [
+            "GLOBAL_STATIC",
+            "STATICFILES_DIRS",
+            "ROOT_ASSETS",
+            "PROJECT_STATIC"
+        ],
+        "correctAnswer": 1,
+        "explanation": "Adding paths to STATICFILES_DIRS allows Django to pull assets from folders outside of individual app directories."
+    },
+    {
+        "id": "django-25",
+        "question": "Which database is highly recommended and natively supported by Django for production deployments?",
+        "options": [
+            "SQLite",
+            "MongoDB",
+            "PostgreSQL",
+            "Redis"
+        ],
+        "correctAnswer": 2,
+        "explanation": "While SQLite is great for local development, PostgreSQL is the robust relational database standard for Django production."
+    },
+    {
+        "id": "django-26",
+        "question": "Where do you configure connection details like DB Name, User, and Password?",
+        "options": [
+            "In views.py",
+            "In models.py",
+            "In the DATABASES dictionary inside settings.py",
+            "In urls.py"
+        ],
+        "correctAnswer": 2,
+        "explanation": "Django reads database configuration securely from the DATABASES variable in settings.py."
+    },
+    {
+        "id": "django-27",
+        "question": "When switching from SQLite to PostgreSQL, do you need to rewrite your Django database queries?",
+        "options": [
+            "Yes, you must write raw SQL.",
+            "No, the Django ORM handles the SQL translation automatically.",
+            "Yes, but only for complex queries.",
+            "Sometimes."
+        ],
+        "correctAnswer": 1,
+        "explanation": "The ORM abstracts the database engine. Your Python query code remains exactly the same regardless of the backend."
+    },
+    {
+        "id": "django-28",
+        "question": "What AWS service is described as allowing you to deploy web applications without managing underlying EC2 servers manually?",
+        "options": [
+            "AWS Lambda",
+            "AWS S3",
+            "AWS Elastic Beanstalk",
+            "AWS RDS"
+        ],
+        "correctAnswer": 2,
+        "explanation": "Elastic Beanstalk handles capacity provisioning, load balancing, scaling, and application health monitoring automatically."
+    },
+    {
+        "id": "django-29",
+        "question": "What file is required by Elastic Beanstalk to know which Python packages your app needs?",
+        "options": [
+            "package.json",
+            "dependencies.txt",
+            "requirements.txt",
+            "config.yaml"
+        ],
+        "correctAnswer": 2,
+        "explanation": "requirements.txt lists all pip installed packages (like django, psycopg2) so EB can install them."
+    },
+    {
+        "id": "django-30",
+        "question": "What is the purpose of the django.config file placed in the .ebextensions folder?",
+        "options": [
+            "To connect to the database.",
+            "To configure the WSGI application entry point for the Elastic Beanstalk server.",
+            "To store passwords.",
+            "To define URL routing."
+        ],
+        "correctAnswer": 1,
+        "explanation": "This tells AWS exactly how to execute your Python code on the live server."
+    }
+]
