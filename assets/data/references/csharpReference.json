@@ -1,39 +1,193 @@
 {
   "title": "C# Reference",
-  "description": "C# language features, LINQ, async programming, and .NET classes reference.",
+  "description": "C# language features, LINQ, async programming, OOP, and .NET classes reference.",
   "sections": [
     {
       "title": "Data Types",
-      "items": [
-        { "name": "int", "description": "32-bit signed integer.", "code": "int age = 25;" },
-        { "name": "string", "description": "Sequence of Unicode characters.", "code": "string name = \"Alice\";" },
-        { "name": "bool", "description": "Boolean true/false.", "code": "bool isActive = true;" },
-        { "name": "double", "description": "64-bit floating-point.", "code": "double price = 19.99;" },
-        { "name": "var", "description": "Implicitly typed local variable.", "code": "var items = new List<string>();" }
+      "desc": "C# value types, reference types, and type conversions.",
+      "type": "table",
+      "columns": ["TYPE", "DESCRIPTION", "EXAMPLE"],
+      "rows": [
+        { "property": "int", "desc": "32-bit signed integer", "version": "int age = 25;" },
+        { "property": "long", "desc": "64-bit signed integer", "version": "long population = 8000000000L;" },
+        { "property": "float", "desc": "32-bit floating point (suffix f)", "version": "float temp = 36.6f;" },
+        { "property": "double", "desc": "64-bit floating point", "version": "double pi = 3.14159265;" },
+        { "property": "decimal", "desc": "128-bit high-precision (suffix m)", "version": "decimal price = 19.99m;" },
+        { "property": "bool", "desc": "Boolean true/false", "version": "bool isActive = true;" },
+        { "property": "char", "desc": "Single 16-bit Unicode character", "version": "char grade = 'A';" },
+        { "property": "string", "desc": "Sequence of Unicode characters", "version": "string name = \"Alice\";" },
+        { "property": "byte", "desc": "8-bit unsigned integer (0–255)", "version": "byte b = 255;" },
+        { "property": "var", "desc": "Implicitly typed local variable", "version": "var items = new List<string>();" },
+        { "property": "dynamic", "desc": "Type resolved at runtime", "version": "dynamic obj = \"hello\";" },
+        { "property": "object", "desc": "Base type of all types", "version": "object o = 42;" },
+        { "property": "int?", "desc": "Nullable value type", "version": "int? age = null;" },
+        { "property": "enum", "desc": "Named constants", "version": "enum Color { Red, Green, Blue }" },
+        { "property": "const", "desc": "Compile-time constant", "version": "const double Pi = 3.14;" }
       ]
     },
     {
-      "title": "OOP",
-      "items": [
-        { "name": "class", "description": "Define a class with properties and methods.", "code": "public class Person {\n  public string Name { get; set; }\n  public int Age { get; set; }\n}" },
-        { "name": "interface", "description": "Define a contract that classes must implement.", "code": "public interface IAnimal {\n  void Speak();\n}" },
-        { "name": "inheritance", "description": "Derive a class from a base class.", "code": "public class Dog : Animal, IAnimal {\n  public void Speak() => Console.WriteLine(\"Woof\");\n}" }
+      "title": "String Methods",
+      "desc": "Common string manipulation methods in C#.",
+      "type": "table",
+      "columns": ["METHOD", "DESCRIPTION", "EXAMPLE"],
+      "rows": [
+        { "property": "Length", "desc": "Returns the number of characters", "version": "\"hello\".Length // 5" },
+        { "property": "ToUpper()", "desc": "Converts to uppercase", "version": "\"hello\".ToUpper() // \"HELLO\"" },
+        { "property": "ToLower()", "desc": "Converts to lowercase", "version": "\"HELLO\".ToLower() // \"hello\"" },
+        { "property": "Trim()", "desc": "Removes leading/trailing whitespace", "version": "\" hi \".Trim() // \"hi\"" },
+        { "property": "Contains()", "desc": "Checks if substring exists", "version": "\"hello\".Contains(\"ell\") // true" },
+        { "property": "StartsWith()", "desc": "Checks prefix", "version": "\"hello\".StartsWith(\"he\") // true" },
+        { "property": "EndsWith()", "desc": "Checks suffix", "version": "\"hello\".EndsWith(\"lo\") // true" },
+        { "property": "IndexOf()", "desc": "First index of substring (-1 if not found)", "version": "\"hello\".IndexOf(\"ll\") // 2" },
+        { "property": "Substring()", "desc": "Extract portion of string", "version": "\"hello\".Substring(1, 3) // \"ell\"" },
+        { "property": "Replace()", "desc": "Replace occurrences", "version": "\"hello\".Replace(\"l\", \"r\") // \"herro\"" },
+        { "property": "Split()", "desc": "Split into array by delimiter", "version": "\"a,b,c\".Split(',') // [\"a\",\"b\",\"c\"]" },
+        { "property": "string.Join()", "desc": "Join array into string", "version": "string.Join(\", \", arr)" },
+        { "property": "$\"...{expr}\"", "desc": "String interpolation", "version": "$\"Name: {name}, Age: {age}\"" },
+        { "property": "@\"...\"", "desc": "Verbatim string (no escape processing)", "version": "@\"C:\\Users\\file.txt\"" }
+      ]
+    },
+    {
+      "title": "OOP — Classes & Objects",
+      "desc": "Object-oriented programming fundamentals in C#.",
+      "type": "table",
+      "columns": ["FEATURE", "DESCRIPTION", "EXAMPLE"],
+      "rows": [
+        { "property": "class", "desc": "Define a reference type with fields and methods", "version": "public class Person { public string Name { get; set; } }" },
+        { "property": "new", "desc": "Create instance of a class", "version": "var p = new Person();" },
+        { "property": "constructor", "desc": "Initialize object state", "version": "public Person(string name) { Name = name; }" },
+        { "property": "property", "desc": "Auto-implemented property with getter/setter", "version": "public int Age { get; set; }" },
+        { "property": "readonly", "desc": "Field can only be set in constructor", "version": "public readonly string Id;" },
+        { "property": "static", "desc": "Belongs to the class, not instances", "version": "public static int Count { get; set; }" },
+        { "property": "inheritance", "desc": "Derive class from a base class", "version": "public class Dog : Animal { }" },
+        { "property": "override", "desc": "Override virtual/abstract method", "version": "public override string ToString() => Name;" },
+        { "property": "virtual", "desc": "Allow method to be overridden in derived class", "version": "public virtual void Speak() { }" },
+        { "property": "abstract class", "desc": "Cannot be instantiated, must be inherited", "version": "public abstract class Shape { abstract double Area(); }" },
+        { "property": "sealed", "desc": "Prevent class from being inherited", "version": "public sealed class Singleton { }" },
+        { "property": "interface", "desc": "Contract — method signatures without implementation", "version": "public interface IAnimal { void Speak(); }" },
+        { "property": "record", "desc": "Immutable reference type with value equality", "version": "public record User(string Name, int Age);" },
+        { "property": "struct", "desc": "Value type (stack-allocated)", "version": "public struct Point { public int X; public int Y; }" }
+      ]
+    },
+    {
+      "title": "Collections",
+      "desc": "Common collection types in System.Collections.Generic.",
+      "type": "table",
+      "columns": ["TYPE", "DESCRIPTION", "EXAMPLE"],
+      "rows": [
+        { "property": "List<T>", "desc": "Dynamic array — most common collection", "version": "var list = new List<int> { 1, 2, 3 };" },
+        { "property": "Add()", "desc": "Add element to end of list", "version": "list.Add(4);" },
+        { "property": "Remove()", "desc": "Remove first occurrence", "version": "list.Remove(2);" },
+        { "property": "Count", "desc": "Number of elements", "version": "list.Count // 3" },
+        { "property": "Contains()", "desc": "Check if element exists", "version": "list.Contains(1) // true" },
+        { "property": "Dictionary<K,V>", "desc": "Key-value pair collection", "version": "var dict = new Dictionary<string, int>();" },
+        { "property": "dict[key] = value", "desc": "Add or update entry", "version": "dict[\"age\"] = 25;" },
+        { "property": "TryGetValue()", "desc": "Safe value retrieval", "version": "dict.TryGetValue(\"age\", out int val);" },
+        { "property": "HashSet<T>", "desc": "Unique elements, fast lookup", "version": "var set = new HashSet<string>();" },
+        { "property": "Queue<T>", "desc": "FIFO — Enqueue / Dequeue", "version": "var q = new Queue<int>(); q.Enqueue(1);" },
+        { "property": "Stack<T>", "desc": "LIFO — Push / Pop", "version": "var s = new Stack<int>(); s.Push(1);" },
+        { "property": "T[]", "desc": "Fixed-size array", "version": "int[] nums = { 1, 2, 3 };" },
+        { "property": "Array.Sort()", "desc": "Sort array in-place", "version": "Array.Sort(nums);" },
+        { "property": "Array.Reverse()", "desc": "Reverse array in-place", "version": "Array.Reverse(nums);" }
       ]
     },
     {
       "title": "LINQ",
-      "items": [
-        { "name": "Where", "description": "Filter elements.", "code": "var adults = people.Where(p => p.Age >= 18);" },
-        { "name": "Select", "description": "Project elements.", "code": "var names = people.Select(p => p.Name);" },
-        { "name": "OrderBy", "description": "Sort elements.", "code": "var sorted = people.OrderBy(p => p.Name);" },
-        { "name": "GroupBy", "description": "Group elements by key.", "code": "var groups = people.GroupBy(p => p.City);" }
+      "desc": "Language Integrated Query — query collections with SQL-like syntax.",
+      "type": "table",
+      "columns": ["METHOD", "DESCRIPTION", "EXAMPLE"],
+      "rows": [
+        { "property": "Where()", "desc": "Filter elements by condition", "version": "people.Where(p => p.Age >= 18)" },
+        { "property": "Select()", "desc": "Project/transform elements", "version": "people.Select(p => p.Name)" },
+        { "property": "OrderBy()", "desc": "Sort ascending", "version": "people.OrderBy(p => p.Name)" },
+        { "property": "OrderByDescending()", "desc": "Sort descending", "version": "people.OrderByDescending(p => p.Age)" },
+        { "property": "GroupBy()", "desc": "Group elements by key", "version": "people.GroupBy(p => p.City)" },
+        { "property": "First() / FirstOrDefault()", "desc": "Get first element (or default)", "version": "people.FirstOrDefault(p => p.Age > 30)" },
+        { "property": "Any()", "desc": "Check if any element matches", "version": "people.Any(p => p.Age > 18)" },
+        { "property": "All()", "desc": "Check if all elements match", "version": "people.All(p => p.Age > 0)" },
+        { "property": "Count()", "desc": "Count elements (optionally filtered)", "version": "people.Count(p => p.Age > 18)" },
+        { "property": "Sum() / Average() / Max() / Min()", "desc": "Aggregate operations", "version": "orders.Sum(o => o.Total)" },
+        { "property": "Distinct()", "desc": "Remove duplicates", "version": "names.Distinct()" },
+        { "property": "Take() / Skip()", "desc": "Pagination", "version": "items.Skip(10).Take(5)" },
+        { "property": "ToList() / ToArray()", "desc": "Materialize query result", "version": "results.ToList()" },
+        { "property": "ToDictionary()", "desc": "Convert to dictionary", "version": "people.ToDictionary(p => p.Id, p => p.Name)" },
+        { "property": "SelectMany()", "desc": "Flatten nested collections", "version": "orders.SelectMany(o => o.Items)" },
+        { "property": "Join()", "desc": "SQL-style inner join", "version": "customers.Join(orders, c => c.Id, o => o.CustId, (c, o) => ...)" }
       ]
     },
     {
-      "title": "Async/Await",
-      "items": [
-        { "name": "async/await", "description": "Asynchronous method pattern.", "code": "public async Task<string> FetchDataAsync() {\n  var result = await httpClient.GetStringAsync(url);\n  return result;\n}" },
-        { "name": "Task", "description": "Represents an asynchronous operation.", "code": "Task.Run(() => HeavyWork());" }
+      "title": "Control Flow",
+      "desc": "Conditional statements, loops, and pattern matching.",
+      "type": "table",
+      "columns": ["STATEMENT", "DESCRIPTION", "EXAMPLE"],
+      "rows": [
+        { "property": "if / else if / else", "desc": "Conditional branching", "version": "if (x > 0) { } else if (x == 0) { } else { }" },
+        { "property": "switch", "desc": "Multi-way branch", "version": "switch (day) { case \"Mon\": break; default: break; }" },
+        { "property": "switch expression", "desc": "Concise pattern-based switch (C# 8+)", "version": "var msg = status switch { 200 => \"OK\", 404 => \"Not Found\", _ => \"Error\" };" },
+        { "property": "for", "desc": "Classic counting loop", "version": "for (int i = 0; i < 10; i++) { }" },
+        { "property": "foreach", "desc": "Iterate over collection", "version": "foreach (var item in list) { }" },
+        { "property": "while", "desc": "Loop while condition is true", "version": "while (count < 100) { count++; }" },
+        { "property": "do-while", "desc": "Execute at least once", "version": "do { count++; } while (count < 100);" },
+        { "property": "break / continue", "desc": "Exit loop / skip iteration", "version": "if (x == 0) continue;" },
+        { "property": "ternary ?:", "desc": "Inline conditional", "version": "var label = age >= 18 ? \"Adult\" : \"Minor\";" },
+        { "property": "?? (null coalescing)", "desc": "Default value if null", "version": "var name = input ?? \"Unknown\";" },
+        { "property": "?. (null conditional)", "desc": "Safe member access", "version": "var len = name?.Length;" },
+        { "property": "is / as", "desc": "Type checking and casting", "version": "if (obj is string s) { Console.WriteLine(s); }" }
+      ]
+    },
+    {
+      "title": "Async / Await",
+      "desc": "Asynchronous programming patterns in C#.",
+      "type": "table",
+      "columns": ["FEATURE", "DESCRIPTION", "EXAMPLE"],
+      "rows": [
+        { "property": "async", "desc": "Mark method as asynchronous", "version": "public async Task<string> GetDataAsync() { }" },
+        { "property": "await", "desc": "Asynchronously wait for task completion", "version": "var result = await httpClient.GetStringAsync(url);" },
+        { "property": "Task", "desc": "Represents an asynchronous operation (no result)", "version": "public async Task SaveAsync() { }" },
+        { "property": "Task<T>", "desc": "Async operation that returns a value", "version": "public async Task<int> CountAsync() { return 42; }" },
+        { "property": "Task.Run()", "desc": "Run work on a thread pool thread", "version": "await Task.Run(() => HeavyComputation());" },
+        { "property": "Task.WhenAll()", "desc": "Wait for all tasks to complete", "version": "await Task.WhenAll(task1, task2, task3);" },
+        { "property": "Task.WhenAny()", "desc": "Wait for first task to complete", "version": "var first = await Task.WhenAny(task1, task2);" },
+        { "property": "Task.Delay()", "desc": "Asynchronous wait (non-blocking)", "version": "await Task.Delay(1000); // 1 second" },
+        { "property": "CancellationToken", "desc": "Cooperative cancellation for async ops", "version": "async Task Work(CancellationToken ct) { ct.ThrowIfCancellationRequested(); }" },
+        { "property": "ValueTask<T>", "desc": "Lightweight alternative to Task<T>", "version": "public async ValueTask<int> GetCachedAsync() { }" },
+        { "property": "IAsyncEnumerable<T>", "desc": "Async stream (C# 8+)", "version": "await foreach (var item in GetItemsAsync()) { }" }
+      ]
+    },
+    {
+      "title": "Exception Handling",
+      "desc": "Try-catch-finally and custom exceptions.",
+      "type": "table",
+      "columns": ["FEATURE", "DESCRIPTION", "EXAMPLE"],
+      "rows": [
+        { "property": "try / catch", "desc": "Handle exceptions", "version": "try { } catch (Exception ex) { Console.WriteLine(ex.Message); }" },
+        { "property": "catch (specific)", "desc": "Catch specific exception type", "version": "catch (FileNotFoundException ex) { }" },
+        { "property": "finally", "desc": "Always executed block", "version": "try { } catch { } finally { Cleanup(); }" },
+        { "property": "throw", "desc": "Throw exception", "version": "throw new ArgumentException(\"Invalid\");" },
+        { "property": "throw;", "desc": "Re-throw preserving stack trace", "version": "catch (Exception) { Log(); throw; }" },
+        { "property": "when (filter)", "desc": "Exception filter in catch", "version": "catch (HttpException ex) when (ex.StatusCode == 404) { }" },
+        { "property": "Custom Exception", "desc": "Create your own exception class", "version": "public class AppException : Exception { public AppException(string msg) : base(msg) { } }" },
+        { "property": "using statement", "desc": "Auto-dispose IDisposable resource", "version": "using var stream = File.OpenRead(\"data.txt\");" }
+      ]
+    },
+    {
+      "title": "Common .NET Classes",
+      "desc": "Frequently used classes from the .NET framework.",
+      "type": "table",
+      "columns": ["CLASS / NAMESPACE", "DESCRIPTION", "KEY METHODS"],
+      "rows": [
+        { "property": "Console", "desc": "Standard input/output", "version": "Console.WriteLine(), Console.ReadLine()" },
+        { "property": "Math", "desc": "Mathematical functions", "version": "Math.Max(), Math.Min(), Math.Abs(), Math.Pow(), Math.Sqrt()" },
+        { "property": "DateTime", "desc": "Date and time", "version": "DateTime.Now, DateTime.Parse(), .AddDays(), .ToString(\"yyyy-MM-dd\")" },
+        { "property": "TimeSpan", "desc": "Duration between two times", "version": "TimeSpan.FromHours(2), ts.TotalMinutes" },
+        { "property": "File", "desc": "File read/write operations", "version": "File.ReadAllText(), File.WriteAllText(), File.Exists()" },
+        { "property": "Path", "desc": "File path manipulation", "version": "Path.Combine(), Path.GetExtension(), Path.GetFileName()" },
+        { "property": "StringBuilder", "desc": "Efficient mutable string building", "version": "var sb = new StringBuilder(); sb.Append(\"hello\");" },
+        { "property": "Regex", "desc": "Regular expressions", "version": "Regex.IsMatch(input, @\"^\\d+$\")" },
+        { "property": "Convert", "desc": "Type conversion utilities", "version": "Convert.ToInt32(), Convert.ToDouble(), Convert.ToString()" },
+        { "property": "HttpClient", "desc": "Send HTTP requests", "version": "var client = new HttpClient(); await client.GetAsync(url);" },
+        { "property": "JsonSerializer", "desc": "JSON serialization (System.Text.Json)", "version": "JsonSerializer.Serialize(obj), JsonSerializer.Deserialize<T>(json)" },
+        { "property": "Environment", "desc": "System environment info", "version": "Environment.GetEnvironmentVariable(), Environment.NewLine" }
       ]
     }
   ]

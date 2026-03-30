@@ -71,10 +71,14 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
     min-height: 100vh;
     animation: pageFade 0.6s ease;
     background: var(--bg-main);
     font-family: 'Inter', sans-serif;
+    overflow-x: hidden;
 }
 
 @keyframes pageFade {
@@ -451,6 +455,7 @@ ul {
 header:not(.navbar-header),
 section {
     margin: 0 50px;
+    max-width: 100%;
 }
 
 section {
@@ -987,6 +992,7 @@ nav>ul {
 
 .hero {
     padding: 0;
+    margin: 0;
 }
 
 .hero-wrapper {
@@ -2267,7 +2273,7 @@ p {
     }
 
 
-    header,
+    header:not(.navbar-header),
     section {
         margin: 0 16px;
     }
@@ -3028,5 +3034,21 @@ p {
     .filter-tab {
         padding: 6px 14px;
         font-size: 0.82rem;
+    }
+}
+
+/* ---- MOBILE LAYOUT FIX ---- */
+@media (max-width: 768px) {
+    header:not(.navbar-header),
+    section {
+        margin: 0 16px;
+    }
+
+    section {
+        padding: 80px 0;
+    }
+
+    .hero {
+        margin: 0;
     }
 }
