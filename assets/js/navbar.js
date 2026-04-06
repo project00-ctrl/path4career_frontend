@@ -8,54 +8,65 @@
     'use strict';
 
     // ==========================================
-    // PATH DETECTION — supports multiple depths
+    // PATH DETECTION – dynamic & robust
+    // Uses the script's own location to find the project root
     // ==========================================
-    const pathname = window.location.pathname.replace(/\\/g, '/');
-
-    // Calculate depth: how many /subfolders/ are between project root and this page
-    // Root (index.html)             → ROOT = './', PAGES = './pages/', REFS = './pages/references/'
-    // pages/ (tutorial.html)        → ROOT = '../', PAGES = './',      REFS = './references/'
-    // pages/references/ (html*.html)→ ROOT = '../../', PAGES = '../',  REFS = './'
-    // pages/roadmaps/               → ROOT = '../../', PAGES = '../',  REFS = '../references/'
-
     let ROOT, PAGES, REFS, AUTH;
 
-    if (pathname.includes('/pages/auth/')) {
-        ROOT = '../../';
-        PAGES = '../';
-        REFS = '../references/';
-        AUTH = './';
-    } else if (pathname.includes('/pages/references/')) {
-        ROOT = '../../';
-        PAGES = '../';
-        REFS = './';
-        AUTH = '../auth/';
-    } else if (pathname.includes('/pages/roadmaps/')) {
-        ROOT = '../../';
-        PAGES = '../';
-        REFS = '../references/';
-        AUTH = '../auth/';
-    } else if (
-        pathname.includes('/pages/jobs/') || 
-        pathname.includes('/pages/bootcamp-hub/') || 
-        pathname.includes('/pages/path4career-simulator/') || 
-        pathname.includes('/pages/ai-career-shield/')
-    ) {
-        ROOT = '../../';
-        PAGES = '../';
-        REFS = '../references/';
-        AUTH = '../auth/';
-    } else if (pathname.includes('/pages/')) {
-        ROOT = '../';
-        PAGES = './';
-        REFS = './references/';
-        AUTH = './auth/';
-    } else {
-        ROOT = './';
-        PAGES = './pages/';
-        REFS = './pages/references/';
-        AUTH = './pages/auth/';
+    function detectPaths() {
+        const scriptTag = document.currentScript;
+        if (scriptTag && scriptTag.src.includes('/assets/js/')) {
+            // Absolute root is the URL up to the "assets/" folder
+            // e.g. "https://domain.com/path/assets/js/navbar.js" -> "https://domain.com/path/"
+            ROOT = scriptTag.src.split('assets/js/')[0];
+            PAGES = ROOT + 'pages/';
+            REFS = PAGES + 'references/';
+            AUTH = PAGES + 'auth/';
+            console.log('[Navbar] Dynamic Root Detected:', ROOT);
+        } else {
+            // Fallback to pathname-based logic if currentScript is unavailable
+            console.warn('[Navbar] Fallback to pathname detection');
+            const pathname = window.location.pathname.replace(/\\/g, '/');
+            if (pathname.includes('/pages/auth/')) {
+                ROOT = '../../';
+                PAGES = '../';
+                REFS = '../references/';
+                AUTH = './';
+            } else if (pathname.includes('/pages/references/')) {
+                ROOT = '../../';
+                PAGES = '../';
+                REFS = './';
+                AUTH = '../auth/';
+            } else if (pathname.includes('/pages/roadmaps/')) {
+                ROOT = '../../';
+                PAGES = '../';
+                REFS = '../references/';
+                AUTH = '../auth/';
+            } else if (
+                pathname.includes('/pages/jobs/') || 
+                pathname.includes('/pages/bootcamp-hub/') || 
+                pathname.includes('/pages/path4career-simulator/') || 
+                pathname.includes('/pages/ai-career-shield/')
+            ) {
+                ROOT = '../../';
+                PAGES = '../';
+                REFS = '../references/';
+                AUTH = '../auth/';
+            } else if (pathname.includes('/pages/')) {
+                ROOT = '../';
+                PAGES = './';
+                REFS = './references/';
+                AUTH = './auth/';
+            } else {
+                ROOT = './';
+                PAGES = './pages/';
+                REFS = './pages/references/';
+                AUTH = './pages/auth/';
+            }
+        }
     }
+    detectPaths();
+
 
     // ==========================================
     // REFERENCES DATA (dynamic reference page)
@@ -120,7 +131,18 @@
     // ==========================================
     // DEPENDENCIES (FontAwesome)
     // ==========================================
+    // DEPENDENCIES (CSS + FontAwesome)
+    // ==========================================
     function injectDependencies() {
+        // 1. Inject Navbar CSS automatically
+        if (!document.querySelector('link[href*="navbar.css"]')) {
+            const link = document.createElement('link');
+            link.rel = 'stylesheet';
+            link.href = `${ROOT}assets/css/navbar.css`;
+            document.head.appendChild(link);
+        }
+
+        // 2. Inject FontAwesome
         if (!document.querySelector('link[href*="font-awesome"]')) {
             const fa = document.createElement('link');
             fa.rel = 'stylesheet';
