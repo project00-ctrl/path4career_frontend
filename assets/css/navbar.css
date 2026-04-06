@@ -1208,7 +1208,8 @@
     }
 
     .navbar-header .header-container {
-        gap: 8px;
+        gap: 12px;
+        flex-wrap: wrap;
     }
 
     .navbar-logo {
@@ -1230,14 +1231,15 @@
         order: 5;
     }
 
-    /* Compact always-visible search in header (mobile) */
+    /* Move search to a full-width second row */
     .navbar-search {
         display: flex;
-        width: auto;
-        flex: 1 1 120px;
-        max-width: 220px;
-        height: 38px;
-        margin: 0 4px;
+        width: 100%;
+        flex: 1 1 100%;
+        max-width: 100%;
+        height: 42px;
+        margin: 0;
+        order: 20;
     }
 
     .navbar-search input {

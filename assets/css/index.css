@@ -2008,7 +2008,7 @@ p {
 .ai-simulator-card:hover {
     transform: translateY(-4px);
     box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
-    border-color: rgba(0, 184, 148, 0.3); /* Green glow */
+    border-color: rgba(33, 78, 165, 0.3); /* Brand blue glow */
 }
 
 .ai-card-glow {
@@ -2087,8 +2087,8 @@ p {
 }
 
 .ai-simulator-card .ai-check {
-    background: rgba(108, 92, 231, 0.1);
-    color: #6c5ce7;
+    background: rgba(33, 78, 165, 0.1);
+    color: var(--primary);
 }
 
 .ai-card-btn {
@@ -2122,12 +2122,12 @@ p {
 }
 
 .ai-btn-purple {
-    background: linear-gradient(135deg, #6c5ce7, #00B894);
-    box-shadow: 0 4px 15px rgba(108, 92, 231, 0.3);
+    background: var(--primary-gradient);
+    box-shadow: 0 4px 15px rgba(33, 78, 165, 0.3);
 }
 
 .ai-btn-purple:hover {
-    box-shadow: 0 8px 25px rgba(108, 92, 231, 0.4);
+    box-shadow: 0 8px 25px rgba(33, 78, 165, 0.4);
 }
 
 
@@ -2415,6 +2415,9 @@ p {
 }
 
 @media (max-width: 640px) {
+    .p4c-footer {
+        padding-bottom: 100px;
+    }
     .p4c-footer-inner {
         flex-direction: column;
         align-items: flex-start;
@@ -3321,15 +3324,6 @@ p {
 
 /* ---- MOBILE LAYOUT FIX ---- */
 @media (max-width: 768px) {
-    header:not(.navbar-header),
-    section {
-        margin: 0 16px;
-    }
-
-    section {
-        padding: 80px 0;
-    }
-
     .hero {
         margin: 0;
     }

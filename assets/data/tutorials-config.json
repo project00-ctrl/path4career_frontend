@@ -56,8 +56,6 @@
     { "file": "gitPages.json", "name": "Git", "category": "Tools", "icon": "🔀", "desc": "Version control system for source code" },
     { "file": "dockerPages.json", "name": "Docker", "category": "DevOps", "icon": "🐳", "desc": "Platform for containerized applications" },
     { "file": "kubernetesPages.json", "name": "Kubernetes", "category": "DevOps", "icon": "☸️", "desc": "Container orchestration at scale" },
-    { "file": "awsPages.json", "name": "AWS", "category": "DevOps", "icon": "☁️", "desc": "Amazon Web Services cloud platform" },
-
-    { "file": "tutorialPages.json", "name": "Web Tutorial", "category": "Frontend", "icon": "📖", "desc": "Comprehensive web development tutorial" }
+    { "file": "awsPages.json", "name": "AWS", "category": "DevOps", "icon": "☁️", "desc": "Amazon Web Services cloud platform" }
   ]
 }
