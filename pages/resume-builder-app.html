@@ -8,6 +8,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 <link rel="stylesheet" href="../assets/css/navbar.css">
+<script src="../assets/js/navbar.js" defer></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.6.0/mammoth.browser.min.js"></script>
@@ -254,6 +255,52 @@ html,body{min-height:100%;font-family:'Inter',system-ui,-apple-system,'Segoe UI'
 .dfc-can{background:var(--bg);color:var(--t2);border:1px solid var(--bdr);padding:7px 18px;border-radius:7px;font-size:.8rem;cursor:pointer;transition:.3s;font-family:inherit}
 .dfc-can:hover{background:var(--bg2);color:var(--t1)}
 @keyframes spin{to{transform:rotate(360deg)}}
+
+.ats-res-sec {
+  border-top: 1px solid var(--bdr);
+  padding-top: 1.5rem;
+  margin-top: 1.5rem;
+}
+.ats-res-sec h3 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: var(--t1);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.ats-res-sec h3 i { color: #f59e0b; }
+.ats-sugg-list {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.ats-sugg-item {
+  display: flex;
+  gap: 12px;
+  padding: 12px;
+  background: #fff;
+  border: 1px solid var(--bdr);
+  border-radius: 10px;
+  align-items: flex-start;
+}
+.ats-sugg-item i {
+  color: #f59e0b;
+  margin-top: 3px;
+}
+.ats-sugg-content h5 {
+  font-size: 0.85rem;
+  font-weight: 700;
+  margin-bottom: 2px;
+}
+.ats-sugg-content p {
+  font-size: 0.78rem;
+  color: var(--t2);
+  line-height: 1.4;
+}
 .toast{position:fixed;bottom:25px;right:25px;padding:11px 18px;border-radius:8px;font-size:.82rem;font-weight:500;z-index:9999;transform:translateY(80px);opacity:0;transition:all .38s;display:flex;align-items:center;gap:6px}
 .toast.show{transform:translateY(0);opacity:1}
 .ts{background:rgba(0,184,148,.95);color:#fff;box-shadow:0 5px 18px rgba(0,184,148,.25)}
@@ -262,6 +309,9 @@ html,body{min-height:100%;font-family:'Inter',system-ui,-apple-system,'Segoe UI'
 .sf{background:var(--P);border-top:1px solid rgba(255,255,255,.1);padding:2rem;text-align:center;margin-top:2rem}
 .sf p{color:rgba(255,255,255,.7);font-size:.85rem}
 .fb{color:#fff;font-weight:700}
+/* ATS modal styles are now globally defined in navbar.css — no local overrides */
+.bats {background:rgba(139, 92, 246, .1);color:#8b5cf6;border:1px solid rgba(139, 92, 246, .28)!important;}
+.bats:hover {background:#8b5cf6;color:#fff;}
 @media(max-width:768px){.hero h1{font-size:1.75rem}.tgrid{grid-template-columns:repeat(auto-fill,minmax(210px,1fr))}.tabs{flex-wrap:wrap;max-width:300px}.mhr{gap:3px}.mbb{padding:5px 8px;font-size:.68rem}}
 </style>
 </head>
@@ -273,6 +323,7 @@ html,body{min-height:100%;font-family:'Inter',system-ui,-apple-system,'Segoe UI'
 <section class="hero">
   <h1>Build Your <span class="gt">Perfect Resume</span></h1>
   <p>90 professionally designed templates. Upload your resume and watch it transform instantly.</p>
+
   <div class="stats">
     <div class="stat"><div class="n">90</div><div class="l">Templates</div></div>
     <div class="stat"><div class="n">3</div><div class="l">Categories</div></div>
@@ -308,6 +359,7 @@ html,body{min-height:100%;font-family:'Inter',system-ui,-apple-system,'Segoe UI'
         <button class="mbb bcn" id="bCancel" onclick="cancelTemplate()"><i class="fas fa-undo"></i>Cancel</button>
         <button class="mbb be" id="bEdit" onclick="toggleEM()"><i class="fas fa-edit"></i>Edit</button>
         <button class="mbb bas" id="bAS" onclick="toggleASP()"><i class="fas fa-plus"></i>Add Section</button>
+        <button class="mbb bats" onclick="window.openGlobalATS(RD)"><i class="fas fa-robot"></i>ATS Score</button>
         <button class="mbb bub" id="bUpload" onclick="trigUpload()"><i class="fas fa-upload"></i>Upload Resume</button>
         <button class="mbb bdl" onclick="openDL()"><i class="fas fa-download"></i>Download</button>
         <button class="mcl" onclick="closeModal()"><i class="fas fa-times"></i></button>
@@ -355,6 +407,10 @@ html,body{min-height:100%;font-family:'Inter',system-ui,-apple-system,'Segoe UI'
     <div class="ust" id="ust">Processing…</div>
   </div>
 </div>
+  </div>
+</div>
+
+
 <div class="toast" id="toast"></div>
 <input type="file" id="ruF" accept=".txt,.pdf,.doc,.docx" style="display:none">
 <input type="file" id="phF" accept="image/*" style="display:none">
@@ -737,6 +793,69 @@ document.getElementById('ruF').addEventListener('change',async function(e){
     else{showT('Use PDF, DOCX, DOC, or TXT','w');return;}
   }catch(err){console.error(err);hideUP();showT('Could not read file – try TXT or DOCX','w');}
 });
+
+let isATSOnly = false;
+async function handleATSStandaloneUpload(input) {
+  const f = input.files[0]; if(!f) return;
+  const fn = f.name.toLowerCase();
+  isATSOnly = true;
+  document.getElementById('atsUploadZone').style.display = 'none';
+  document.getElementById('atsLoading').style.display = 'block';
+  
+  try {
+    let text = "";
+    if(fn.endsWith('.txt')) text = await new Promise((res)=>{const r=new FileReader();r.onload=e=>res(e.target.result);r.readAsText(f);});
+    else if(fn.endsWith('.pdf')) text = await extractPDFText(f);
+    else if(fn.endsWith('.docx')) text = await extractDOCXText(f);
+    else if(fn.endsWith('.doc')) text = await extractDOCText(f);
+    
+    if(text) {
+      const data = parseR(text, true);
+      analyzeATSData(data, text, 'S');
+    }
+  } catch(e) {
+    console.error(e);
+    showT("Failed to parse file", "w");
+    resetATSStandalone();
+  }
+}
+
+async function extractPDFText(f) {
+  const ab=await f.arrayBuffer();
+  const pdf=await pdfjsLib.getDocument({data:new Uint8Array(ab)}).promise;
+  let txt='';
+  for(let i=1;i<=pdf.numPages;i++){
+    const pg=await pdf.getPage(i);
+    const tc=await pg.getTextContent();
+    let ly=null,pt='';
+    for(const item of tc.items){
+      const y=item.transform?item.transform[5]:null;
+      if(ly!==null&&y!==null&&Math.abs(y-ly)>5)pt+='\n';
+      pt+=item.str;ly=y;
+    }
+    txt+=pt+'\n';
+  }
+  return txt;
+}
+async function extractDOCXText(f) {
+  const ab=await f.arrayBuffer();
+  const r=await mammoth.extractRawText({arrayBuffer:ab});
+  return r.value;
+}
+async function extractDOCText(f) {
+  return new Promise((res,rej)=>{
+    const r=new FileReader();
+    r.onload=ev=>{
+      let txt='';const arr=new Uint8Array(ev.target.result);
+      for(let i=0;i<arr.length;i++){
+        const c=arr[i];if((c>=32&&c<=126)||c===10||c===13)txt+=String.fromCharCode(c);
+      }
+      res(txt.split('\n').map(l=>l.replace(/[^\x20-\x7E]/g,' ').replace(/\s{3,}/g,' ').trim()).filter(l=>l.length>2).join('\n'));
+    };
+    r.onerror=rej;r.readAsArrayBuffer(f);
+  });
+}
+
 async function doTXT(f){showUP('Reading TXT…');setUP(30,'Parsing…');return new Promise((res,rej)=>{const r=new FileReader();r.onload=ev=>{setUP(70,'Extracting…');parseR(ev.target.result);setUP(100,'Done!');setTimeout(()=>{hideUP();showT('Resume loaded!','s');if(curUT)openPrev(curUT.templateId,curUT.category);renderAll();res();},350);};r.onerror=rej;r.readAsText(f);});}
 async function doPDF(f){
   showUP('Reading PDF…');setUP(15,'Loading…');
@@ -747,7 +866,7 @@ async function doPDF(f){
 async function doDOCX(f){showUP('Reading DOCX…');setUP(25,'Loading…');const ab=await f.arrayBuffer();setUP(55,'Extracting…');if(typeof mammoth==='undefined'){hideUP();showT('DOCX lib unavailable','w');return;}const r=await mammoth.extractRawText({arrayBuffer:ab});setUP(85,'Parsing…');parseR(r.value);setUP(100,'Done!');setTimeout(()=>{hideUP();showT('DOCX loaded!','s');if(curUT)openPrev(curUT.templateId,curUT.category);renderAll();},350);}
 async function doDOC_(f){showUP('Reading DOC…');setUP(30,'Extracting…');return new Promise((res,rej)=>{const r=new FileReader();r.onload=ev=>{let txt='';const arr=new Uint8Array(ev.target.result);for(let i=0;i<arr.length;i++){const c=arr[i];if((c>=32&&c<=126)||c===10||c===13)txt+=String.fromCharCode(c);}txt=txt.split('\n').map(l=>l.replace(/[^\x20-\x7E]/g,' ').replace(/\s{3,}/g,' ').trim()).filter(l=>l.length>2).join('\n');setUP(80,'Parsing…');if(txt.trim().length>50)parseR(txt);else showT('Limited DOC support – use DOCX','w');setUP(100,'Done!');setTimeout(()=>{hideUP();showT('DOC loaded!','s');if(curUT)openPrev(curUT.templateId,curUT.category);renderAll();res();},350);};r.onerror=rej;r.readAsArrayBuffer(f);});}
 
-function parseR(text){
+function parseR(text, returnOnly = false){
   const lines=text.split('\n').map(l=>l.trim()).filter(l=>l.length>1);
   let d={name:'',title:'',email:'',phone:'',location:'',linkedin:'',summary:'',experience:[],education:[],skills:[],certifications:[],extraSections:[]};
   const SK={summary:['summary','objective','profile','about me','professional summary','career objective','career summary'],experience:['experience','work history','employment','professional experience','career history','work experience'],education:['education','academic','qualification','academics','academic background'],skills:['skills','technical skills','competencies','key skills','core competencies','technologies','tools','technical expertise'],certifications:['certification','certifications','licenses','awards','achievements','certificate','licenses & certifications']};
@@ -771,13 +890,13 @@ function parseR(text){
   d.skills=[...new Set(d.skills.map(s=>s.trim()).filter(s=>s.length>0&&s.length<35))];
   d.education=d.education.filter(e=>e.school||e.degree).map(e=>({school:e.school||e.degree||'',degree:e.degree||'',dates:e.dates||''}));
   d.experience=d.experience.filter(e=>e.role||e.company).map(e=>({role:e.role||'Professional Role',company:e.company||'Company',dates:e.dates||'',bullets:e.bullets&&e.bullets.length?e.bullets:['Key contributions in this role']}));
-  // Save parsed resume ONLY to the chosen template, not globally
-  if(curTid){
+  if(curTid && !returnOnly){
     RDMap[curTid]=JSON.parse(JSON.stringify(d));
-    RD=d; // also set global so preview of current template works immediately
-  } else {
+    RD=d; 
+  } else if(!returnOnly) {
     RD=d;
   }
+  if(returnOnly) return d;
 }
 
 document.getElementById('previewModal').addEventListener('click',e=>{if(e.target===document.getElementById('previewModal'))closeModal();});
@@ -788,6 +907,7 @@ document.addEventListener('keydown',e=>{
     if(document.getElementById('dlModal').classList.contains('active'))closeDL();
     else if(document.getElementById('lpo').classList.contains('active'))closeLp();
     else if(document.getElementById('previewModal').classList.contains('active'))closeModal();
+    else if(window.closeGlobalATS) window.closeGlobalATS();
   }
 });
 function handlePending(){
@@ -796,8 +916,10 @@ function handlePending(){
   localStorage.removeItem('pendingAction');
   if(a&&a.type==='download'&&a.templateId&&a.category)setTimeout(()=>doSave(a.templateId,a.category),500);
 }
+
+
+
 renderAll();handlePending();
 </script>
-<script src="../assets/js/navbar.js"></script>
 </body>
 </html>

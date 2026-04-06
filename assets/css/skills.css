@@ -596,7 +596,7 @@ nav>ul {
 .skill-timeline {
     max-width: 900px;
     margin: 0 auto;
-    padding: 0 24px;
+    padding: 20px 24px 20px 60px;
     position: relative;
 }
 
@@ -604,13 +604,14 @@ nav>ul {
 .skill-timeline::before {
     content: "";
     position: absolute;
-    left: 52px;
-    top: 0;
-    bottom: 0;
-    width: 2px;
-    background: linear-gradient(180deg, var(--primary), var(--accent));
-    opacity: 0.25;
-    border-radius: 999px;
+    left: 28px;
+    top: 30px;
+    bottom: 30px;
+    width: 4px;
+    background-image: linear-gradient(var(--text-muted) 50%, transparent 50%);
+    background-size: 4px 16px;
+    border-radius: 4px;
+    z-index: 0;
 }
 
 /* ============================= */
@@ -621,31 +622,54 @@ nav>ul {
     display: flex;
     align-items: center;
     gap: 20px;
-    padding: 22px 28px 22px 22px;
+    padding: 24px;
     background: var(--card-bg);
-    border: 1px solid var(--border);
-    border-radius: 16px;
-    margin-bottom: 18px;
-    transition: all 0.35s ease;
+    border: 3px solid var(--text-heading);
+    border-radius: 8px;
+    margin-bottom: 24px;
+    transition: all 0.3s ease;
     backdrop-filter: blur(12px);
     position: relative;
     z-index: 1;
+    box-shadow: 6px 6px 0px rgba(11, 25, 44, 0.15);
     animation: fadeSlideIn 0.4s ease both;
 }
 
+/* Connector from line to card */
+.skill-row::before {
+    content: '';
+    position: absolute;
+    left: -32px;
+    top: 50%;
+    width: 32px;
+    height: 4px;
+    background: var(--text-muted);
+    transform: translateY(-50%);
+    z-index: -1;
+    transition: .3s ease;
+}
+
 .skill-row:hover {
-    border-color: rgba(74, 108, 247, 0.45);
-    box-shadow: 0 8px 32px rgba(74, 108, 247, 0.12);
-    transform: translateY(-3px);
+    border-color: var(--primary);
+    box-shadow: 10px 10px 0px var(--primary);
+    transform: translate(-3px, -3px);
+}
+
+.skill-row:hover::before {
+    background: var(--primary);
 }
 
 .skill-row.completed {
-    border-color: rgba(21, 128, 61, 0.35);
+    border-color: var(--success);
     background: linear-gradient(135deg, rgba(21, 128, 61, 0.04), var(--card-bg));
 }
 
+.skill-row.completed::before {
+    background: var(--success);
+}
+
 .skill-row.completed:hover {
-    box-shadow: 0 8px 32px rgba(21, 128, 61, 0.12);
+    box-shadow: 10px 10px 0px var(--success);
 }
 
 @keyframes fadeSlideIn {
@@ -664,10 +688,13 @@ nav>ul {
 /* ============================= */
 
 .skill-checkbox-wrap {
-    flex-shrink: 0;
+    position: absolute;
+    left: -51px; /* 32px to line + 19px half width */
+    top: 50%;
+    transform: translateY(-50%);
     width: 38px;
     height: 38px;
-    position: relative;
+    z-index: 10;
 }
 
 .skill-checkbox-wrap input[type="checkbox"] {
@@ -675,18 +702,19 @@ nav>ul {
     -webkit-appearance: none;
     width: 38px;
     height: 38px;
-    border: 2px solid var(--border);
+    border: 3px solid var(--text-heading);
     border-radius: 50%;
-    background: var(--surface);
+    background: var(--card-bg);
     cursor: default;
     transition: all 0.35s ease;
     position: relative;
+    box-shadow: 4px 4px 0px rgba(11, 25, 44, 0.15);
 }
 
 .skill-checkbox-wrap input[type="checkbox"]:checked {
-    background: linear-gradient(135deg, #15803D, #00A86B);
-    border-color: #15803D;
-    box-shadow: 0 0 0 2px rgba(21, 128, 61, 0.2);
+    background: var(--success);
+    border-color: var(--success);
+    box-shadow: 4px 4px 0px var(--text-heading);
 }
 
 .skill-checkbox-wrap input[type="checkbox"]:checked::after {

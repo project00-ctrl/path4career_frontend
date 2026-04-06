@@ -49,14 +49,61 @@ function App() {
     window.scrollTo(0, 0);
   }, []);
 
-  const extractTextFromFile = useCallback((file: File) => {
+  const extractTextFromFile = useCallback(async (file: File) => {
     setFileName(file.name);
-    const reader = new FileReader();
-    reader.onload = (e) => {
-      const text = e.target?.result as string;
-      setResumeText(text);
-    };
-    reader.readAsText(file);
+    const fn = file.name.toLowerCase();
+    
+    try {
+      if (fn.endsWith('.pdf')) {
+        const pdfjsLib = await import('pdfjs-dist');
+        pdfjsLib.GlobalWorkerOptions.workerSrc = `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjsLib.version}/pdf.worker.min.js`;
+        const arrayBuffer = await file.arrayBuffer();
+        const pdf = await pdfjsLib.getDocument({ data: new Uint8Array(arrayBuffer) }).promise;
+        let text = '';
+        for (let i = 1; i <= pdf.numPages; i++) {
+          const page = await pdf.getPage(i);
+          const content = await page.getTextContent();
+          let lastY = null;
+          let pageText = '';
+          for (const item of content.items as any[]) {
+            const y = item.transform ? item.transform[5] : null;
+            if (lastY !== null && y !== null && Math.abs(y - lastY) > 5) pageText += '\n';
+            pageText += item.str;
+            lastY = y;
+          }
+          text += pageText + '\n';
+        }
+        setResumeText(text);
+      } else if (fn.endsWith('.docx')) {
+        const mammoth = await import('mammoth');
+        const arrayBuffer = await file.arrayBuffer();
+        const result = await mammoth.extractRawText({ arrayBuffer });
+        setResumeText(result.value);
+      } else if (fn.endsWith('.doc')) {
+        const arrayBuffer = await file.arrayBuffer();
+        const arr = new Uint8Array(arrayBuffer);
+        let txt = '';
+        for(let i=0; i<arr.length; i++) {
+          const c = arr[i];
+          if((c>=32 && c<=126) || c===10 || c===13) txt+=String.fromCharCode(c);
+        }
+        txt = txt.split('\n').map(l=>l.replace(/[^\x20-\x7E]/g,' ').replace(/\s{3,}/g,' ').trim()).filter(l=>l.length>2).join('\n');
+        setResumeText(txt);
+      } else {
+        const reader = new FileReader();
+        reader.onload = (e) => {
+          setResumeText((e.target?.result as string) || "");
+        };
+        reader.readAsText(file);
+      }
+    } catch (err) {
+      console.error("Error reading file:", err);
+      if(!fn.endsWith('.pdf') && !fn.endsWith('.docx')) {
+        const reader = new FileReader();
+        reader.onload = (e) => setResumeText((e.target?.result as string) || "");
+        reader.readAsText(file);
+      }
+    }
   }, []);
 
   const handleDrop = useCallback(
@@ -528,7 +575,7 @@ PROJECTS
               <input
                 ref={fileInputRef}
                 type="file"
-                accept=".txt,.md,.csv"
+                accept=".txt,.md,.pdf,.doc,.docx"
                 onChange={handleFileInput}
                 className="hidden"
               />
@@ -536,7 +583,7 @@ PROJECTS
               <p className="text-sm" style={{ color: '#64748b' }}>
                 <span className="font-medium" style={{ color: '#2563eb' }}>Click to upload</span> or drag & drop
               </p>
-              <p className="text-xs mt-1" style={{ color: '#94a3b8' }}>Supports .txt, .md files</p>
+              <p className="text-xs mt-1" style={{ color: '#94a3b8' }}>Supports PDF, DOCX, DOC, TXT</p>
               {fileName && (
                 <div className="mt-3 inline-flex items-center gap-2 px-3 py-1.5 rounded-lg" style={{ background: '#eff6ff', border: '1px solid #bfdbfe' }}>
                   <FileText className="w-4 h-4" style={{ color: '#2563eb' }} />

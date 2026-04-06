@@ -85,6 +85,17 @@
             const container = document.getElementById("cardContainer");
             container.innerHTML = "";
 
+            const iconMap = {
+                "frontend": "💻",
+                "backend": "⚙️",
+                "full stack": "🌐",
+                "data science": "📊",
+                "devops": "🚀",
+                "mobile": "📱",
+                "cyber": "🛡️",
+                "cloud": "☁️"
+            };
+
             data.forEach(roadmap => {
                 let progress = 0;
                 let isCompleted = false;
@@ -101,8 +112,13 @@
                 const card = document.createElement("div");
                 card.classList.add("card");
 
-                if (isCompleted) {
-                    card.style.borderColor = "var(--accent)";
+                const titleLower = roadmap.title.toLowerCase();
+                let icon = "🎯"; // Default
+                for (const key in iconMap) {
+                    if (titleLower.includes(key)) {
+                        icon = iconMap[key];
+                        break;
+                    }
                 }
 
                 const duration = roadmap.durationValue
@@ -110,32 +126,26 @@
                     : "-";
 
                 const badgeHtml = isCompleted
-                    ? `<span style="background:var(--accent); color:#111; padding:4px 8px; border-radius:4px; font-size:12px; font-weight:700; display:inline-block; margin-top:8px;">✅ COMPLETED</span>`
+                    ? `<span class="module-badge completed" style="background:var(--accent-gradient); color:#fff; padding:4px 12px; border-radius:100px; font-size:0.7rem; font-weight:700; margin-left:10px; box-shadow: 0 4px 12px rgba(5, 150, 105, 0.2);">✅ COMPLETED</span>`
                     : "";
 
                 card.innerHTML = `
-                <div class="card-inner">
-                    <div class="card-front" style="${isCompleted ? 'background: rgba(21, 128, 61, 0.05);' : ''}">
-                        <h2>${roadmap.title}</h2>
-                        <p>${roadmap.jobRole || ""}</p>
-                        ${badgeHtml}
-                        <div class="meta" style="margin-top: 15px;">
-                            <p><strong>Level:</strong> ${roadmap.difficulty || "-"}</p>
-                            <p><strong>Role:</strong> ${roadmap.jobRole || "-"}</p>
-                            <p><strong>Duration:</strong> ${duration}</p>
-                        </div>
-                        <div class="progress-container">
-                            <div class="progress-bar" style="width:${progress}%; ${isCompleted ? 'background: var(--accent);' : ''}"></div>
-                        </div>
-                        <div class="progress-text">${progress}% Completed</div>
-                        <a href="modules.html?roadmapId=${roadmap.id}" class="mobile-learn-btn">Learn More →</a>
+                    <div class="card-icon">${icon}</div>
+                    <h2>${roadmap.title} ${badgeHtml}</h2>
+                    <p>${roadmap.jobRole || "Master the essential skills for this career path with our structured learning journey."}</p>
+                    
+                    <div class="meta">
+                        <p><span>📊</span> ${roadmap.difficulty || "-"}</p>
+                        <p><span>⏳</span> ${duration}</p>
                     </div>
-                    <div class="card-back">
-                        <h3>${roadmap.title}</h3>
-                        <a href="modules.html?roadmapId=${roadmap.id}" class="learn-btn">Learn More →</a>
-                    </div>
-                </div>`;
 
+                    <div class="progress-container">
+                        <div class="progress-bar" style="width:${progress}%; ${isCompleted ? 'background: var(--accent-gradient);' : ''}"></div>
+                    </div>
+                    <div class="progress-text">${progress}% Completed</div>
+                    
+                    <a href="modules.html?roadmapId=${roadmap.id}" class="learn-btn">View Roadmap →</a>
+                `;
 
                 container.appendChild(card);
             });

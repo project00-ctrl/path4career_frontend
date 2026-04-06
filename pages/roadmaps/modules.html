@@ -33,18 +33,13 @@
 
         let completedModuleIds = [];
         let completedSkillIds = [];
+        let tutorialFileMap = {};
 
         if (!roadmapId) {
             titleEl.textContent = "No Roadmap Selected";
             container.innerHTML = "<p style='color:#aaa; text-align:center; padding:40px;'>Go back to <a href='roadmaps.html' style='color:#4A6CF7'>Roadmaps</a> and select one.</p>";
         } else {
             init();
-        }
-
-        async function init() {
-            await loadCompletedModules();
-            await loadCompletedSkills();
-            await loadRoadmapDetail();
         }
 
         function getAuthToken() {
@@ -54,6 +49,26 @@
                 if (name === 'AUTH_TOKEN') return value;
             }
             return localStorage.getItem('AUTH_TOKEN') || localStorage.getItem('token');
+        }
+
+        async function init() {
+            await loadTutorialConfig();
+            await loadCompletedModules();
+            await loadCompletedSkills();
+            await loadRoadmapDetail();
+        }
+
+        async function loadTutorialConfig() {
+            try {
+                const res = await fetch("../../assets/data/tutorials-config.json");
+                if (!res.ok) throw new Error("Config not found");
+                const config = await res.json();
+                config.tutorials.forEach(t => {
+                    tutorialFileMap[t.name.toLowerCase()] = t.file;
+                });
+            } catch (err) {
+                console.warn("Could not load tutorials-config.json:", err);
+            }
         }
 
         async function loadCompletedModules() {
@@ -100,18 +115,21 @@
                     ? `${data.durationValue} ${(data.durationUnit || "").toLowerCase()}`
                     : "-";
 
-                container.innerHTML = `
+                let htmlContent = `
                     <div class="course-meta">
-                        <p><strong>Level:</strong> ${data.difficulty || "-"}</p>
-                        <p><strong>Duration:</strong> ${duration}</p>
-                        <p><strong>Role:</strong> ${data.jobRole || "-"}</p>
+                        <p><span>📊</span> <strong>Level:</strong> ${data.difficulty || "-"}</p>
+                        <p><span>⏳</span> <strong>Duration:</strong> ${duration}</p>
+                        <p><span>🎯</span> <strong>Role:</strong> ${data.jobRole || "-"}</p>
                     </div>
                 `;
 
                 if (!data.modules || data.modules.length === 0) {
-                    container.innerHTML += "<p style='color:#aaa; text-align:center; padding:20px;'>No modules added to this roadmap yet.</p>";
+                    htmlContent += "<p style='color:#aaa; text-align:center; padding:20px;'>No modules added to this roadmap yet.</p>";
+                    container.innerHTML = htmlContent;
                     return;
                 }
+
+                htmlContent += `<div class="roadmap-timeline">`;
 
                 data.modules.forEach((mod, index) => {
                     const modDuration = mod.durationValue
@@ -129,24 +147,28 @@
                     }
 
                     const completedHtml = isCompleted
-                        ? `<span style="background:var(--accent); color:#111; padding:4px 8px; border-radius:4px; font-size:12px; font-weight:700; margin-left:10px;">✅ COMPLETED</span>`
+                        ? `<span class="module-badge completed">✅ COMPLETED</span>`
                         : "";
 
-                    const headerColor = isCompleted ? "color: var(--accent);" : "";
-
-                    container.innerHTML += `
-                        <div class="module-card" onclick="goToSkills(${mod.moduleId})" style="${isCompleted ? 'border-color: var(--accent); background: rgba(21, 128, 61, 0.05);' : ''}">
-                            <div class="module-header">
-                                <h3 style="${headerColor}">Module ${mod.orderIndex}: ${mod.moduleName} ${completedHtml}</h3>
-                                <span style="${headerColor}">${modDuration}</span>
+                    htmlContent += `
+                        <div class="timeline-node ${index % 2 !== 0 ? 'node-right' : 'node-left'}">
+                            <div class="module-card" onclick="toggleSkills(${mod.moduleId})" style="${isCompleted ? 'border-color: var(--accent); background: rgba(21, 128, 61, 0.05);' : ''}">
+                                <div class="module-header">
+                                    <h3>Module ${mod.orderIndex}: ${mod.moduleName} ${completedHtml}</h3>
+                                    <span>${modDuration}</span>
+                                </div>
+                                <div class="progress-container">
+                                    <div class="progress-bar" id="bar${index}" style="width:${progress}%; ${isCompleted ? 'background: var(--accent);' : ''}"></div>
+                                </div>
+                                <div class="progress-text" style="font-size: 13px; color: var(--text-muted); margin-top: 8px;">${progress}% Completed (Click to expand skills)</div>
                             </div>
-                            <div class="progress-container">
-                                <div class="progress-bar" id="bar${index}" style="width:${progress}%; ${isCompleted ? 'background: var(--accent);' : ''}"></div>
-                            </div>
-                            <div class="progress-text" style="font-size: 13px; color: #888; margin-top: 8px;">${progress}% Completed</div>
+                            <div class="skills-wrapper" id="skills-wrap-${mod.moduleId}" style="display:none;"></div>
                         </div>
                     `;
                 });
+
+                htmlContent += `</div>`;
+                container.innerHTML = htmlContent;
 
             } catch (err) {
                 console.error(err);
@@ -155,8 +177,159 @@
             }
         }
 
-        function goToSkills(moduleId) {
-            window.location.href = `skills.html?courseId=${moduleId}`;
+        async function toggleSkills(moduleId) {
+            const wrap = document.getElementById(`skills-wrap-${moduleId}`);
+            if (wrap.style.display === "block") {
+                wrap.style.display = "none";
+                return;
+            }
+            try {
+                wrap.style.display = "block";
+                wrap.innerHTML = `<p style="padding: 10px; color: var(--text-muted); font-size: 0.9rem;">Loading skills network...</p>`;
+                
+                const res = await fetch(`${API_BASE}/api/user/modules/${moduleId}`);
+                if (!res.ok) throw new Error("Module not found");
+                const data = await res.json();
+                
+                if (!data.skills || data.skills.length === 0) {
+                     wrap.innerHTML = "<p class='skill-empty'>No mapped skills in this module yet.</p>";
+                     return;
+                }
+                
+                let skillsHtml = `<div class="skill-timeline-mini">`;
+                
+                // Skill icon mapping for popular technologies
+                const skillIcons = {
+                    'html': '🌐', 'css': '🎨', 'javascript': '⚡', 'typescript': '🔷',
+                    'react': '⚛️', 'vue': '💚', 'angular': '🅰️', 'node': '🟢', 'node.js': '🟢',
+                    'python': '🐍', 'java': '☕', 'c++': '⚙️', 'c#': '🟪', 'c': '💻',
+                    'sql': '🗃️', 'mongodb': '🍃', 'mysql': '🐬', 'postgresql': '🐘',
+                    'docker': '🐳', 'kubernetes': '☸️', 'git': '🔀', 'aws': '☁️',
+                    'bootstrap': '🅱️', 'tailwind': '🌊', 'jquery': '📦',
+                    'express': '🚂', 'django': '🎸', 'flask': '🧪', 'spring': '🍃',
+                    'next.js': '▲', 'nextjs': '▲', 'go': '🐹', 'rust': '🦀',
+                    'php': '🐘', 'ruby': '💎', 'swift': '🍎', 'kotlin': '🟣',
+                    'numpy': '🔢', 'pandas': '🐼', 'pytorch': '🔥', 'tensorflow': '🧠',
+                    'excel': '📊', 'power bi': '📊', 'r': '📈', 'dsa': '🧮',
+                    'data structures': '🧮', 'algorithms': '🧮', 'oop': '🧱',
+                    'rest': '🔌', 'graphql': '◈', 'api': '🔌', 'linux': '🐧',
+                    'sass': '💅', 'webpack': '📦', 'vite': '⚡', 'figma': '🎨'
+                };
+
+                function getSkillIcon(name) {
+                    const lower = name.toLowerCase();
+                    for (const [key, icon] of Object.entries(skillIcons)) {
+                        if (lower.includes(key)) return icon;
+                    }
+                    return '📘';
+                }
+
+                data.skills.forEach((skill, index) => {
+                    const tutorialFile = skill.tutorialId ? tutorialFileMap[skill.tutorialId] : null;
+                    const completed = completedSkillIds.includes(skill.id);
+                    const levelClass = (skill.level || "").toLowerCase().replace(/\s/g, "");
+                    const icon = getSkillIcon(skill.name);
+
+                    const tutorialHref = tutorialFile
+                        ? `../tutorial.html?course=${tutorialFile}&skillId=${skill.id}&moduleId=${moduleId}`
+                        : null;
+                    
+                    const cardTag = tutorialHref ? 'a' : 'div';
+                    const hrefAttr = tutorialHref ? `href="${tutorialHref}"` : '';
+                    const clickHandler = tutorialHref
+                        ? `onclick="handleTutorialOpen(event, ${skill.id}, '${tutorialFile}', ${moduleId})"`
+                        : '';
+                    const statusLabel = completed 
+                        ? '<span class="skill-status-pill completed-pill">✓ Done</span>' 
+                        : (tutorialHref ? '<span class="skill-status-pill start-pill">Start →</span>' : '<span class="skill-status-pill unlinked-pill">Coming Soon</span>');
+
+                    skillsHtml += `
+                        <${cardTag} ${hrefAttr} ${clickHandler}
+                            class="skill-row mini-row ${completed ? 'completed' : ''} ${tutorialHref ? 'clickable' : 'no-link'}" 
+                            id="skill-row-${skill.id}" 
+                            style="animation-delay: ${index * 0.08}s">
+                            <div class="skill-icon-badge">${icon}</div>
+                            <div class="skill-info">
+                                <h4>${skill.name}</h4>
+                            </div>
+                            ${statusLabel}
+                        </${cardTag}>
+                    `;
+                });
+                
+                skillsHtml += `</div>`;
+                
+                // Add Quiz Prompt if 100%
+                const done = data.skills.filter(s => completedSkillIds.includes(s.id)).length;
+                const pct = Math.round((done / data.skills.length) * 100);
+                
+                let quizHtml = "";
+                if (pct >= 100) {
+                    quizHtml = await getQuizPromptHtml(moduleId);
+                }
+                
+                wrap.innerHTML = skillsHtml + quizHtml;
+            } catch (err) {
+                console.error(err);
+                wrap.innerHTML = "<p style='color:#f66; font-size:0.9rem;'>Failed to connect skill network.</p>";
+            }
+        }
+
+        function handleTutorialOpen(event, skillId, tutorialFile, moduleId) {
+            localStorage.setItem(`skill_started_${moduleId}_${skillId}`, "true");
+        }
+        
+        async function getQuizPromptHtml(moduleId) {
+            const token = getAuthToken();
+            let hasPassed = false;
+            let bestScore = null;
+
+            if (token) {
+                try {
+                    const res = await fetch(`${API_BASE}/api/v1/modules/${moduleId}/quiz-eligibility`, {
+                        headers: { 'Authorization': 'Bearer ' + token }
+                    });
+                    if (res.ok) {
+                        const data = await res.json();
+                        hasPassed = data.bestPassed || false;
+                        bestScore = data.bestScore || null;
+                    }
+                } catch (err) {
+                    console.warn('Could not check quiz eligibility:', err);
+                }
+            }
+
+            let buttonText = '🎓 Take Certification Quiz';
+            let subtitleText = "You've completed all skills! Take the quiz to earn your certificate.";
+
+            if (hasPassed) {
+                buttonText = '🔄 Retake Certification Quiz';
+                subtitleText = `You passed with ${bestScore}%! Want to try for a higher score?`;
+            } else if (bestScore !== null) {
+                buttonText = '🔄 Retake Certification Quiz';
+                subtitleText = `Previous best: ${bestScore}%. You need 60% to pass.`;
+            }
+
+            const certButton = hasPassed
+                ? `<a href="../certificate.html?moduleId=${moduleId}" class="quiz-prompt-btn cert-download-btn" style="background: linear-gradient(135deg, #15803D, #00A86B); border-color: #15803D;">
+                       📜 View Certificate
+                   </a>`
+                : '';
+
+            return `
+                <div class="quiz-prompt-card mini-quiz" style="margin-top: 16px; padding: 16px; border: 3px solid var(--text-heading); border-radius: 8px; box-shadow: 6px 6px 0px rgba(11, 25, 44, 0.15); background: var(--card-bg);">
+                    <div class="quiz-prompt-content">
+                        <h4 style="margin-bottom:6px; color: var(--accent); font-family: 'Inter', sans-serif;">Module Certification</h4>
+                        <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom:12px;">${subtitleText}</p>
+                    </div>
+                    <div class="quiz-prompt-actions" style="display:flex; gap:10px; flex-wrap:wrap;">
+                        ${certButton}
+                        <a href="../quiz.html?moduleId=${moduleId}" class="quiz-prompt-btn" style="padding: 10px 14px; background: var(--primary); color: white; border-radius: 6px; text-decoration:none; font-size:0.85rem; font-weight:600;">
+                            ${buttonText}
+                        </a>
+                    </div>
+                </div>
+            `;
         }
 
         // ===========================

@@ -53,65 +53,232 @@ body {
     color: var(--text-main);
 }
 
-/* ── PAGE HEADER ── */
-.cert-page-header {
-    background: var(--bg-secondary);
-    border-bottom: 1px solid var(--border);
-    padding: 28px 60px;
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
-}
-
-.cert-ph-inner {
+/* ── VIEW TABS ── */
+.cert-view-tabs {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    padding: 24px 20px 0;
     max-width: 1200px;
     margin: 0 auto;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 20px;
-    flex-wrap: wrap;
 }
 
-.cert-ph-left {
+@media (min-width: 768px) {
+    .cert-view-tabs { padding: 24px 60px 0; }
+}
+
+.cert-tab {
+    background: transparent;
+    border: none;
+    padding: 12px 24px;
+    font-size: 1.05rem;
+    font-weight: 600;
+    font-family: 'Inter', sans-serif;
+    color: var(--text-secondary);
+    border-bottom: 3px solid transparent;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.cert-tab:hover {
+    color: var(--accent);
+}
+
+.cert-tab.active {
+    color: var(--accent);
+    border-bottom-color: var(--accent);
+}
+
+/* ── BUNDLES VIEW ── */
+.bundles-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.bundles-header h2 {
+    font-size: 2rem;
+    color: var(--text-main);
+    margin-bottom: 12px;
+}
+
+.bundles-header p {
+    color: var(--text-secondary);
+    font-size: 1.05rem;
+}
+
+.bundles-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: 24px;
+}
+
+.bundle-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: var(--shadow-soft);
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.bundle-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-hover);
+}
+
+.bundle-complete {
+    border: 1px solid #10b981;
+    box-shadow: 0 4px 20px rgba(16, 185, 129, 0.15);
+}
+
+.bundle-card-header {
+    padding: 24px;
+    color: white;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    position: relative;
+}
+
+.bundle-card-icon {
+    font-size: 2.2rem;
+}
+
+.bundle-card-title {
+    flex: 1;
+}
+
+.bundle-card-title h3 {
+    margin: 0 0 4px 0;
+    font-size: 1.25rem;
+    font-weight: 700;
+}
+
+.bundle-card-count {
+    font-size: 0.85rem;
+    opacity: 0.9;
+    font-weight: 500;
+}
+
+.bundle-unlocked-badge {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    background: rgba(255, 255, 255, 0.2);
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 0.7rem;
+    font-weight: 800;
+    letter-spacing: 1px;
+}
+
+.bundle-card-body {
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    flex: 1;
+}
+
+.bundle-card-desc {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+.bundle-progress {
     display: flex;
     align-items: center;
     gap: 12px;
 }
 
+.bundle-progress-bar {
+    flex: 1;
+    height: 8px;
+    background: var(--surface);
+    border-radius: 4px;
+    overflow: hidden;
+}
 
-.cert-ph-brand {
-    display: block;
-    font-family: 'Poppins', sans-serif;
-    font-weight: 800;
-    font-size: 1.4rem;
+.bundle-progress-fill {
+    height: 100%;
+    border-radius: 4px;
+    transition: width 0.5s ease;
+}
+
+.bundle-progress-text {
+    font-size: 0.85rem;
+    font-weight: 600;
     color: var(--text-main);
-    line-height: 1;
+    min-width: 32px;
 }
 
-.cert-ph-sub {
-    display: block;
-    font-size: 0.68rem;
-    color: var(--accent);
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    margin-top: 4px;
-    font-weight: 700;
+.bundle-modules-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: auto;
 }
 
-.cert-ph-tagline {
-    font-size: 0.88rem;
-    color: var(--text-muted);
-    font-style: italic;
+.bundle-mod-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.9rem;
+    padding: 8px 12px;
+    border-radius: 8px;
+    background: var(--surface);
+    border: 1px solid var(--border);
 }
+
+.bundle-mod-item.earned {
+    background: rgba(16, 185, 129, 0.05);
+    border-color: rgba(16, 185, 129, 0.2);
+}
+
+.bundle-mod-status {
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-size: 0.75rem;
+    font-weight: bold;
+}
+
+.bundle-mod-status.earned {
+    background: #10b981;
+    color: white;
+}
+
+.bundle-mod-status.locked {
+    background: transparent;
+    border: 2px solid var(--text-disabled);
+    color: transparent;
+}
+
+.bundle-mod-name {
+    color: var(--text-main);
+    font-weight: 500;
+}
+
 
 /* ── CONTROLS BAR ── */
 .controls-bar {
     background: #FFFFFF;
     border-bottom: 1px solid var(--border);
-    padding: 16px 60px;
+    padding: 16px 20px;
     position: sticky;
     top: 0;
     z-index: 100;
     box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+}
+
+@media (min-width: 768px) {
+    .controls-bar { padding: 16px 60px; }
 }
 
 .controls-inner {
@@ -270,7 +437,11 @@ body {
 .catalog-section {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 40px 60px 80px;
+    padding: 40px 20px 80px;
+}
+
+@media (min-width: 768px) {
+    .catalog-section { padding: 40px 60px 80px; }
 }
 
 .catalog-grid {
@@ -993,8 +1164,29 @@ body {
 }
 
 @media (max-width:600px) {
-    .catalog-grid {
+    .catalog-grid, .bundles-grid {
         grid-template-columns: 1fr;
+    }
+
+    .cert-view-tabs {
+        flex-direction: column;
+        padding-left: 20px;
+        padding-right: 20px;
+        gap: 10px;
+    }
+    
+    .cert-tab {
+        width: 100%;
+        border-bottom: none;
+        border-left: 3px solid transparent;
+        padding: 10px 15px;
+        text-align: left;
+    }
+    
+    .cert-tab.active {
+        border-bottom: none;
+        border-left-color: var(--accent);
+        background: rgba(33, 78, 165, 0.05);
     }
 
     .cert-info-row {

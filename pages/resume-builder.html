@@ -127,13 +127,12 @@ section { position: relative; z-index: 1; }
 .tier-card.intermediate:hover { border-color: #FFA500; box-shadow: 0 16px 48px rgba(255, 165, 0, 0.2); }
 .tier-card.premium { background: linear-gradient(135deg, rgba(33, 78, 165, 0.1), rgba(0, 184, 148, 0.08)); }
 .tier-card.premium:hover { border-color: #FFD700; box-shadow: 0 16px 48px rgba(255, 215, 0, 0.2); }
-.tier-card.premium::before { content: ''; position: absolute; top: -2px; left: -2px; right: -2px; bottom: -2px; background: linear-gradient(135deg, #FFD700, #FFA500, #FFD700); border-radius: 21px; z-index: -1; opacity: 0; transition: opacity 0.4s; }
-.tier-card.premium:hover::before { opacity: 0.5; }
+
 .tier-header { padding: 2rem 2rem 1.5rem; }
 .tier-badge { display: inline-flex; align-items: center; gap: 6px; padding: 5px 14px; border-radius: 100px; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 1.2rem; }
 .badge-basic-t { background: rgba(74, 108, 247, 0.15); color: var(--primary); border: 1px solid rgba(74, 108, 247, 0.3); }
 .badge-inter-t { background: rgba(255, 165, 0, 0.12); color: #FFA500; border: 1px solid rgba(255, 165, 0, 0.3); }
-.badge-prem-t { background: linear-gradient(135deg, rgba(255, 215, 0, 0.2), rgba(255, 140, 0, 0.15)); color: #FFD700; border: 1px solid rgba(255, 215, 0, 0.3); }
+.badge-prem-t { background: linear-gradient(135deg, rgba(255, 215, 0, 0.2), rgba(255, 140, 0, 0.15)); color: #b7791f; border: 1px solid rgba(255, 215, 0, 0.4); }
 .tier-card h3 { font-size: 1.4rem; font-weight: 800; margin-bottom: 0.5rem; letter-spacing: -0.5px; }
 .tier-card .tier-sub { color: var(--text-secondary); font-size: 0.875rem; line-height: 1.6; margin-bottom: 1.2rem; }
 .tier-count { display: flex; align-items: center; gap: 8px; font-size: 0.8rem; color: var(--text-muted); margin-bottom: 1.5rem; }
@@ -151,7 +150,7 @@ section { position: relative; z-index: 1; }
 .tier-btn-prem { background: var(--gradient); color: white; border: none; }
 .tier-btn-prem:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(33, 78, 165, 0.3); }
 .tier-preview { margin: 0 2rem 1.5rem; border-radius: 10px; overflow: hidden; border: 1px solid rgba(255, 255, 255, 0.08); height: 140px; position: relative; }
-.tier-preview-inner { background: white; width: 200%; height: 200%; transform: scale(0.5) translate(-50%, -50%); transform-origin: top left; padding: 1.2rem; font-family: 'Inter', sans-serif; }
+.tier-preview-inner { background: white; width: 200%; height: 200%; transform: scale(0.5); transform-origin: top left; padding: 1.2rem; font-family: 'Inter', sans-serif; }
 .mock-line { height: 8px; border-radius: 3px; margin-bottom: 5px; }
 .mock-line.name { width: 45%; background: #1a1a2e; }
 .mock-line.contact { width: 65%; height: 5px; background: #ccc; }
@@ -337,29 +336,74 @@ section { position: relative; z-index: 1; }
 @keyframes cardPop { from { opacity: 0; transform: translateY(20px) scale(0.97); } to { opacity: 1; transform: translateY(0) scale(1); } }
 .testimonial-card.animate-in { animation: cardPop 0.45s cubic-bezier(0.34, 1.56, 0.64, 1) both; }
 
+.ats-section { padding: 6rem 1.5rem; background: var(--bg-main); overflow: hidden; position: relative; }
+
+@media (max-width: 1150px) {
+  .ats-inner, .features-showcase { grid-template-columns: 1fr; gap: 3rem; text-align: center; }
+  .ats-content .section-sub, .features-header .section-sub { margin: 0 auto; }
+  .feature-big, .feature-small { max-width: 500px; margin: 0 auto; width: 100%; }
+}
+
 @media (max-width: 1024px) {
   .footer-main { grid-template-columns: 1fr 1fr; }
   .footer-brand { grid-column: 1/-1; }
-  .ats-inner { grid-template-columns: 1fr; gap: 3rem; }
-  .features-showcase { grid-template-columns: 1fr; }
-  .feature-big { grid-row: span 1; }
+  .feature-big { grid-row: span 1; padding: 2rem; }
 }
+
 @media (max-width: 768px) {
+  .ats-section { padding: 4rem 1rem; }
+  .section-title { font-size: 1.8rem; line-height: 1.2; }
+  .mesh-orb { opacity: 0.3; filter: blur(80px); }
+  .mesh-orb-1 { width: 300px; height: 300px; left: -100px; }
+  .mesh-orb-2 { width: 300px; height: 300px; right: -100px; }
+  .ats-score-ring { width: 120px; height: 120px; margin-bottom: 1.5rem; }
+  .ats-score-ring .score-num { font-size: 1.6rem; }
   nav { display: none; }
   .mobile-menu-btn { display: block; }
-  .hero { padding: 5rem 1.5rem 4rem; }
-  .hero h1 { letter-spacing: -1px; }
+  .hero { padding: 4rem 1rem 3rem; }
+  .hero h1 { font-size: 2.2rem; letter-spacing: -1px; }
+  .hero p { font-size: 1rem; padding: 0 10px; }
   .steps-timeline::before { display: none; }
   .steps-timeline { grid-template-columns: 1fr; gap: 1.5rem; }
   .tiers-grid { grid-template-columns: 1fr; }
   .footer-main { grid-template-columns: 1fr; gap: 2rem; }
   .footer-bottom { flex-direction: column; text-align: center; }
-  .cta-inner { padding: 2.5rem 1.5rem; }
+  .cta-inner { padding: 2.5rem 1rem; }
   .floating-badge { display: none; }
   .why-grid { grid-template-columns: 1fr; }
   .form-row { grid-template-columns: 1fr; }
-  .modal-box { padding: 1.8rem 1.4rem; }
+  .modal-box { padding: 1.5rem; }
 }
+
+/* ATS Hero Button Styles */
+.ats-hero-btn {
+  background: linear-gradient(135deg, #8b5cf6, #6366f1);
+  color: #fff;
+  border: none;
+  padding: 14px 32px;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  box-shadow: 0 4px 15px rgba(139, 92, 246, 0.3);
+  text-decoration: none;
+}
+.ats-hero-btn:hover {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 12px 32px rgba(139, 92, 246, 0.45);
+  filter: brightness(1.1);
+}
+.ats-hero-btn i { font-size: 1.1rem; }
+
+@media (max-width: 480px) {
+  .ats-hero-btn, .btn-primary, .btn-outline { width: 100%; justify-content: center; }
+}
+
 </style>
 </head>
 <body>
@@ -380,6 +424,7 @@ section { position: relative; z-index: 1; }
   <p>Path4Career gives you 90 professionally crafted templates, AI-powered editing, and one-click downloads in PDF, DOCX &amp; TXT — built to beat every ATS scanner.</p>
   <div class="hero-actions">
     <a href="./resume-builder-app.html" class="btn-primary"><i class="fas fa-rocket"></i> Build My Resume Free</a>
+    <button class="ats-hero-btn" onclick="window.openGlobalATS()"><i class="fas fa-robot"></i> Check ATS Score</button>
     <a href="#templates" class="btn-outline"><i class="fas fa-eye"></i> Browse Templates</a>
   </div>
   <div class="hero-stats">
@@ -749,8 +794,8 @@ section { position: relative; z-index: 1; }
       <h4>Company</h4>
       <a href="#">About Us</a>
       <a href="#">Blog</a>
-      <a href="#">Privacy Policy</a>
-      <a href="#">Terms of Service</a>
+      <a href="auth/privacy.html">Privacy Policy</a>
+      <a href="auth/terms.html">Terms of Service</a>
     </div>
   </div>
   <div class="footer-bottom">

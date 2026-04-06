@@ -118,6 +118,17 @@
     // ==========================================
     // BUILD HTML
     // ==========================================
+    // DEPENDENCIES (FontAwesome)
+    // ==========================================
+    function injectDependencies() {
+        if (!document.querySelector('link[href*="font-awesome"]')) {
+            const fa = document.createElement('link');
+            fa.rel = 'stylesheet';
+            fa.href = 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css';
+            document.head.appendChild(fa);
+        }
+    }
+
     // Encode current page URL for redirect after login
     const CURRENT_URL = encodeURIComponent(window.location.href);
 
@@ -155,8 +166,7 @@
 
                 <!-- Desktop Nav -->
                 <ul class="navbar-nav-items">
-                    <li><a href="${PAGES}ai-career-shield/index.html">AI Career Shield</a></li>
-                    <li><a href="${PAGES}path4career-simulator/index.html">AI Career Simulator</a></li>
+                    <li><a href="${ROOT}index.html#ai-features">AI Features</a></li>
                     <li><a href="${PAGES}jobs/jobs-listing.html">Jobs</a></li>
                     <li><a href="${PAGES}resume-builder.html">Resume Builder</a></li>
                     <li><a href="${PAGES}bootcamp.html">Boot Camp</a></li>
@@ -203,8 +213,7 @@
 
             <a href="#" class="navbar-tutor-btn" id="navbarMobileTutorBtn">Tutorials</a>
             <a href="#" class="navbar-refer-btn" id="navbarMobileReferBtn">References</a>
-            <a href="${PAGES}ai-career-shield/index.html">AI Career Shield</a>
-            <a href="${PAGES}path4career-simulator/index.html">AI Career Simulator</a>
+            <a href="${ROOT}index.html#ai-features">AI Features</a>
             <a href="${PAGES}jobs/jobs-listing.html">Jobs</a>
             <a href="${PAGES}resume-builder.html">Resume Builder</a>
             <a href="${PAGES}bootcamp.html">Boot Camp</a>
@@ -261,8 +270,79 @@
         </div>
 
         <!-- Spacer -->
-        <div class="navbar-spacer"></div>
+        <div class="navbar-spacer"></div>`;
+    }
+
+    function buildGlobalToolsHTML() {
+        return `
+        <!-- ════ GLOBAL ATS HUD (Unique Mini-AI Console) ════ -->
+        <div class="ats-hud-widget" id="atsGlobalFab" onclick="window.openGlobalATS()">
+            <div class="ats-hud-scanner">
+                <i class="fas fa-file-circle-check"></i>
+                <div class="ats-hud-scan-line"></div>
+            </div>
+            <div class="ats-hud-info">
+                <span class="ats-hud-tag">AI OPTIMIZER</span>
+                <span class="ats-hud-label">ATS RESUME SCAN</span>
+            </div>
+            <div class="ats-hud-glow"></div>
+        </div>
+
+        <!-- ════ GLOBAL ATS MODAL (v2 Modernized) ════ -->
+        <div class="ats-mo v2-glass" id="atsModalV2" style="display: none;">
+            <div class="ats-mc v2-card">
+                <header class="ats-hdr v2-mesh">
+                    <button class="ats-cx" onclick="window.closeGlobalATS()">✕</button>
+                    <h2>ATS Resume Checker</h2>
+                    <p>AI-Powered Optimization</p>
+                </header>
+                <div class="ats-body">
+                    <!-- Upload Zone -->
+                    <div id="atsUploadZone" class="ats-uz v2-zone" onclick="document.getElementById('atsFileIn').click()">
+                        <i class="fas fa-cloud-upload-alt"></i>
+                        <p>Click to upload or drag & drop</p>
+                        <small>PDF, DOCX, DOC, TXT (Max 5MB)</small>
+                        <input type="file" id="atsFileIn" hidden accept=".pdf,.docx,.doc,.txt">
+                    </div>
+
+                    <!-- Loading State -->
+                    <div id="atsLoading" style="display:none; text-align:center; padding:2rem;">
+                        <i class="fas fa-circle-notch fa-spin" style="font-size:2rem; color:#6366f1;"></i>
+                        <p style="margin-top:1rem; color:#64748b;">Analysing...</p>
+                    </div>
+
+                    <!-- Results -->
+                    <div id="atsRes" style="display:none;">
+                        <div class="ats-score-box">
+                            <div class="ats-circle v2-circle" id="atsCircleS" data-score="poor">
+                                <div class="ats-score-inner">
+                                    <span id="atsScoreTxtS">0</span>
+                                    <small>Score</small>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="ats-chk v2-chk" id="atsChkS"></div>
+
+                        <div class="ats-res-sec">
+                            <h3><i class="fas fa-lightbulb"></i> Suggestions</h3>
+                            <div class="ats-sugg-list" id="atsSuggestions"></div>
+                        </div>
+
+                        <button class="ats-btn-primary v2-btn" onclick="window.resetATSStandalone()">
+                            <i class="fas fa-redo"></i> Check Another
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
         `;
+    }
+
+    function injectGlobalTools() {
+        if (document.getElementById('atsModalV2')) return;
+        document.body.insertAdjacentHTML('beforeend', buildGlobalToolsHTML());
+        attachATSGlobalEvents();
     }
 
     // ==========================================
@@ -270,11 +350,16 @@
     // ==========================================
     function injectNavbar() {
         const root = document.getElementById('navbar-root');
+        const navHtml = buildNavbarHTML();
+
         if (!root) {
-            document.body.insertAdjacentHTML('afterbegin', buildNavbarHTML());
+            document.body.insertAdjacentHTML('afterbegin', navHtml);
         } else {
-            root.innerHTML = buildNavbarHTML();
+            root.innerHTML = navHtml;
         }
+
+        // Global tools injected separately at the end of body
+        injectGlobalTools();
     }
 
     // ==========================================
@@ -434,7 +519,9 @@
 
         // Add site pages
         const sitePages = [
+            { name: 'AI Features', desc: 'AI Career Shield & Simulator — resume analysis and career trajectory', icon: '🤖', url: `${ROOT}index.html#ai-features` },
             { name: 'AI Career Simulator', desc: 'Simulate career trajectory, connect with mentors, analyze risks', icon: '🚀', url: `${PAGES}path4career-simulator/index.html` },
+            { name: 'AI Career Shield', desc: 'Upload resume for AI safety score and learning roadmap', icon: '🛡️', url: `${PAGES}ai-career-shield/index.html` },
             { name: 'Jobs', desc: 'Browse and apply for tech jobs', icon: '💼', url: `${PAGES}jobs/jobs-listing.html` },
             { name: 'Resume Builder', desc: 'Build a professional resume with AI', icon: '📄', url: `${PAGES}resume-builder.html` },
             { name: 'Boot Camp', desc: 'Intensive coding bootcamps', icon: '🏕️', url: `${PAGES}bootcamp.html` },
@@ -872,16 +959,313 @@
     }
 
     // ==========================================
+    // GLOBAL ATS LOGIC
+    // ==========================================
+    window.openGlobalATS = function(data = null) {
+        console.log('Opening Global ATS V2...', data);
+        const modal = document.getElementById('atsModalV2');
+        if (modal) {
+            modal.style.display = 'flex';
+            modal.classList.add('active');
+            if (data) {
+                // Direct analysis (from Builder)
+                document.getElementById('atsUploadZone').style.display = 'none';
+                document.getElementById('atsLoading').style.display = 'block';
+                document.getElementById('atsRes').style.display = 'none';
+                setTimeout(() => {
+                    analyzeATSDataGlobal(data, JSON.stringify(data));
+                }, 800);
+            } else {
+                window.resetATSStandalone();
+            }
+        } else {
+            console.error('ATS Modal not found in DOM');
+        }
+    };
+    window.closeGlobalATS = function() {
+        const modal = document.getElementById('atsModalV2');
+        if (modal) {
+            modal.classList.remove('active');
+            modal.style.display = 'none';
+        }
+    };
+    window.resetATSStandalone = function() {
+        const uz = document.getElementById('atsUploadZone');
+        const ld = document.getElementById('atsLoading');
+        const rs = document.getElementById('atsRes');
+        const fi = document.getElementById('atsFileIn');
+        if (uz) uz.style.display = 'block';
+        if (ld) ld.style.display = 'none';
+        if (rs) rs.style.display = 'none';
+        if (fi) fi.value = '';
+    };
+
+    function attachATSGlobalEvents() {
+        const fileIn = document.getElementById('atsFileIn');
+        const uz = document.getElementById('atsUploadZone');
+        if (!fileIn || !uz) return;
+
+        fileIn.addEventListener('change', (e) => handleATSStandaloneUpload(e.target.files[0]));
+
+        uz.addEventListener('dragover', (e) => { e.preventDefault(); uz.style.borderColor = '#8b5cf6'; });
+        uz.addEventListener('dragleave', (e) => { e.preventDefault(); uz.style.borderColor = '#E2E8F0'; });
+        uz.addEventListener('drop', (e) => {
+            e.preventDefault();
+            uz.style.borderColor = '#E2E8F0';
+            const f = e.dataTransfer.files[0];
+            if (f) handleATSStandaloneUpload(f);
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeGlobalATS();
+        });
+    }
+
+    async function handleATSStandaloneUpload(f) {
+        if (!f) return;
+        const uz = document.getElementById('atsUploadZone');
+        const ld = document.getElementById('atsLoading');
+        const fi = document.getElementById('atsFileIn');
+
+        uz.style.display = 'none';
+        ld.style.display = 'block';
+
+        try {
+            let text = '';
+            const ext = f.name.split('.').pop().toLowerCase();
+            if (ext === 'pdf') text = await extractPDFText(f);
+            else if (ext === 'docx') text = await extractDOCXText(f);
+            else if (ext === 'doc') text = await extractDOCText(f);
+            else if (ext === 'txt') text = await f.text();
+            else throw new Error('Unsupported format');
+
+            if (!text || text.trim().length < 50) throw new Error('Could not read enough text.');
+
+            const data = parseRGlobal(text);
+            analyzeATSDataGlobal(data, text);
+        } catch (err) {
+            alert('Error: ' + err.message);
+            resetATSStandalone();
+        }
+    }
+
+    async function extractPDFText(f) {
+        if (typeof pdfjsLib === 'undefined') {
+            const s = document.createElement('script');
+            s.src = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.4.120/pdf.min.js';
+            document.head.appendChild(s);
+            await new Promise(r => s.onload = r);
+            pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.4.120/pdf.worker.min.js';
+        }
+        const arr = await f.arrayBuffer();
+        const pdf = await pdfjsLib.getDocument({ data: arr }).promise;
+        let txt = '';
+        for (let i = 1; i <= pdf.numPages; i++) {
+            const pg = await pdf.getPage(i);
+            const content = await pg.getTextContent();
+            txt += content.items.map(it => it.str).join(' ') + '\n';
+        }
+        return txt;
+    }
+
+    async function extractDOCXText(f) {
+        if (typeof mammoth === 'undefined') {
+            const s = document.createElement('script');
+            s.src = 'https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.4.21/mammoth.browser.min.js';
+            document.head.appendChild(s);
+            await new Promise(r => s.onload = r);
+        }
+        const arr = await f.arrayBuffer();
+        const res = await mammoth.extractRawText({ arrayBuffer: arr });
+        return res.value;
+    }
+
+    async function extractDOCText(f) {
+        const b = await f.arrayBuffer();
+        const arr = new Uint8Array(b);
+        let txt = '';
+        for (let i = 0; i < arr.length; i++) {
+            const c = arr[i];
+            if ((c >= 32 && c <= 126) || c === 10 || c === 13) txt += String.fromCharCode(c);
+        }
+        return txt.replace(/[^\x20-\x7E]/g, ' ').replace(/\s{3,}/g, ' ').trim();
+    }
+
+    function parseRGlobal(text) {
+        const lines = text.split('\n').map(l => l.trim()).filter(l => l.length > 1);
+        let d = { name: '', title: '', email: '', phone: '', summary: '', experience: [], education: [], skills: [] };
+        const kws = { summary: ['summary', 'profile', 'about'], experience: ['experience', 'work', 'history'], education: ['education', 'academic'], skills: ['skills', 'technologies', 'tools'] };
+        
+        let cur = '';
+        for (let l of lines) {
+            const low = l.toLowerCase();
+            let found = false;
+            for (let [k, list] of Object.entries(kws)) {
+                if (list.some(w => low.includes(w) && l.length < 30)) { cur = k; found = true; break; }
+            }
+            if (found) continue;
+
+            if (low.includes('@') && !d.email) { d.email = l.match(/[\w.+-]+@[\w-]+\.[a-zA-Z]{2,}/)?.[0] || ''; }
+            if ((low.includes('linkedin.com') || low.includes('github.com')) && !d.summary.includes(l)) d.summary += ' ' + l;
+
+            if (cur === 'summary' && l.length > 10) d.summary += ' ' + l;
+            else if (cur === 'experience' && l.length > 5) d.experience.push({ role: l });
+            else if (cur === 'education' && l.length > 5) d.education.push({ school: l });
+            else if (cur === 'skills') {
+                const s = l.split(/[,|•·;]/).map(x => x.trim()).filter(x => x.length > 2 && x.length < 30);
+                d.skills.push(...s);
+            }
+        }
+        return d;
+    }
+
+    function analyzeATSDataGlobal(data, rawText) {
+        const txt = (rawText || JSON.stringify(data)).toLowerCase();
+        let score = 35;
+        let checks = [];
+        let suggests = [];
+
+        if (data.summary && data.summary.length > 80) { score += 15; checks.push({ p: true, t: 'Summary', d: 'Well-defined professional intro.' }); }
+        else { checks.push({ p: false, t: 'Brief Summary', d: 'Expand your bio for better keyword hits.' }); suggests.push({ t: 'Career Overview', d: 'Add 2-3 sentences about your expertise.' }); }
+
+        if (data.experience.length >= 2) { score += 15; checks.push({ p: true, t: 'Experience', d: 'Solid work history detected.' }); }
+        else { checks.push({ p: false, w: true, t: 'Experience', d: 'Only one role found. Consider adding more details.' }); suggests.push({ t: 'Quantify Work', d: 'Add specific bullet points for each previous role.' }); }
+
+        if (data.skills.length >= 8) { score += 15; checks.push({ p: true, t: 'Skills', d: 'Strong technical baseline.' }); }
+        else { checks.push({ p: false, t: 'Skills', d: 'Add at least 8-10 industry-specific keywords.' }); suggests.push({ t: 'Keywords', d: 'Look at job descriptions and add missing technical tools.' }); }
+
+        const verbs = ['led', 'developed', 'managed', 'created', 'designed', 'improved', 'increased', 'reduced', 'built', 'launched', 'optimized'];
+        let vc = 0; verbs.forEach(v => { if (txt.includes(v)) vc++; });
+        if (vc >= 4) { score += 15; checks.push({ p: true, t: 'Action Verbs', d: 'Good use of dynamic language.' }); }
+        else { checks.push({ p: false, t: 'Passive Tone', d: 'Use more action-oriented verbs.' }); suggests.push({ t: 'Strong Verbs', d: 'Start bullets with "Spearheaded", "Optimized", etc.' }); }
+
+        if (/\d+%|\$\d|\d+x/i.test(txt)) { score += 20; checks.push({ p: true, t: 'Impact Metrics', d: 'Great job quantifying achievements.' }); }
+        else { checks.push({ p: false, w: true, t: 'Impact', d: 'Missing numbers to prove results.' }); suggests.push({ t: 'Add Stats', d: 'Example: "Increased sales by 30%" instead of "Helped sales".' }); }
+
+        score = Math.floor(Math.min(100, score));
+        
+        const circ = document.getElementById('atsCircleS');
+        const stxt = document.getElementById('atsScoreTxtS');
+        const chk = document.getElementById('atsChkS');
+        const sugEl = document.getElementById('atsSuggestions');
+
+        if (circ) { circ.style.setProperty('--p', `${score}%`); circ.dataset.score = score > 80 ? 'excellent' : score > 60 ? 'good' : 'poor'; }
+        if (stxt) stxt.textContent = score;
+        if (chk) { chk.innerHTML = checks.map(c => `<div class="ats-item ${c.p ? 'pass' : (c.w ? 'warn' : 'fail')}"><i class="fas ${c.p ? 'fa-check-circle' : (c.w ? 'fa-exclamation-triangle' : 'fa-times-circle')}"></i><div class="ats-itxt"><h4>${c.t}</h4><p>${c.d}</p></div></div>`).join(''); }
+        if (sugEl) { sugEl.innerHTML = suggests.map(s => `<div class="ats-sugg-item"><i class="fas fa-lightbulb"></i><div class="ats-sugg-content"><h5>${s.t}</h5><p>${s.d}</p></div></div>`).join(''); }
+
+        document.getElementById('atsLoading').style.display = 'none';
+        document.getElementById('atsRes').style.display = 'block';
+    }
+
+    // ==========================================
+    // BUTTON CLICK TRACKING
+    // Tracks clicks on: tutorials, ai_features,
+    // resume_builder, ats_resume_checker, jobs
+    // ==========================================
+    const TRACKING_API = 'https://path4career-backend.onrender.com/api/v1/analytics/click';
+
+    /**
+     * Fire-and-forget click tracking.
+     * Uses sendBeacon for reliability (works even if user navigates away).
+     * Falls back to fetch if sendBeacon is unavailable.
+     * @param {string} buttonName - one of: tutorials, ai_features, resume_builder, ats_resume_checker, jobs
+     */
+    function trackButtonClick(buttonName) {
+        try {
+            const payload = JSON.stringify({ buttonName: buttonName });
+            const token = localStorage.getItem('AUTH_TOKEN');
+            const headers = { 'Content-Type': 'application/json' };
+            if (token) headers['Authorization'] = 'Bearer ' + token;
+
+            // Prefer sendBeacon (survives page navigation)
+            if (navigator.sendBeacon) {
+                const blob = new Blob([payload], { type: 'application/json' });
+                navigator.sendBeacon(TRACKING_API, blob);
+            } else {
+                // Fallback: fetch fire-and-forget
+                fetch(TRACKING_API, {
+                    method: 'POST',
+                    headers: headers,
+                    body: payload,
+                    keepalive: true
+                }).catch(() => { /* silent */ });
+            }
+            console.log('[Analytics] Tracked click:', buttonName);
+        } catch (e) {
+            // Never block user interaction for analytics
+        }
+    }
+
+    // Expose globally so inline onclick handlers (e.g., ATS hero button) can use it
+    window.trackButtonClick = trackButtonClick;
+
+    /**
+     * Attach click listeners to all tracked nav buttons.
+     * Called once from init() after navbar HTML is injected.
+     */
+    function attachClickTracking() {
+        // ── TUTORIALS ──
+        document.querySelectorAll('#navbarTutorBtn, #navbarMobileTutorBtn').forEach(btn => {
+            btn.addEventListener('click', () => trackButtonClick('tutorials'));
+        });
+
+        // ── AI FEATURES ──
+        // Desktop navbar link + mobile nav link — match by text content
+        document.querySelectorAll('.navbar-nav-items a, .navbar-mobile-nav a').forEach(link => {
+            if (link.textContent.trim() === 'AI Features') {
+                link.addEventListener('click', () => trackButtonClick('ai_features'));
+            }
+        });
+
+        // ── RESUME BUILDER ──
+        document.querySelectorAll('.navbar-nav-items a, .navbar-mobile-nav a').forEach(link => {
+            if (link.textContent.trim() === 'Resume Builder') {
+                link.addEventListener('click', () => trackButtonClick('resume_builder'));
+            }
+        });
+
+        // ── ATS RESUME CHECKER ──
+        // The floating action button
+        const atsFab = document.getElementById('atsGlobalFab');
+        if (atsFab) {
+            atsFab.addEventListener('click', () => trackButtonClick('ats_resume_checker'));
+        }
+        // Any ATS hero buttons on pages (class-based)
+        document.querySelectorAll('.ats-hero-btn').forEach(btn => {
+            btn.addEventListener('click', () => trackButtonClick('ats_resume_checker'));
+        });
+
+        // ── JOBS ──
+        document.querySelectorAll('.navbar-nav-items a, .navbar-mobile-nav a').forEach(link => {
+            if (link.textContent.trim() === 'Jobs') {
+                link.addEventListener('click', () => trackButtonClick('jobs'));
+            }
+        });
+
+        // ── EXPLORE COURSES ──
+        document.querySelectorAll('a, button').forEach(link => {
+            if (link.textContent && link.textContent.trim().toLowerCase().includes('explore courses')) {
+                link.addEventListener('click', () => trackButtonClick('explore_courses'));
+            }
+        });
+
+        console.log('[Analytics] Click tracking attached to: tutorials, ai_features, resume_builder, ats_resume_checker, jobs, explore_courses');
+    }
+
+    // ==========================================
     // INIT
     // ==========================================
     function init() {
+        injectDependencies();
         injectNavbar();
-        // Remove white background in provided logo (simple chroma-key)
         makeLogoTransparent();
         attachEvents();
+        attachATSGlobalEvents(); // New global ATS events
         loadTutorialsConfig();
         populateReferPopup();
         checkAuthState();
+        attachClickTracking(); // Button click analytics
     }
 
     function makeLogoTransparent() {

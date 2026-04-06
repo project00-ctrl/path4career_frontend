@@ -18,19 +18,6 @@
     <!-- SHARED NAVBAR -->
     <div id="navbar-root"></div>
 
-    <!-- ══ PAGE HEADER ══ -->
-    <header class="cert-page-header">
-        <div class="cert-ph-inner">
-            <div class="cert-ph-left">
-                <div>
-                    <span class="cert-ph-brand">Path4Career</span>
-                    <span class="cert-ph-sub">Certificate Catalog</span>
-                </div>
-            </div>
-            <p class="cert-ph-tagline">Earn verified certificates. Prove your expertise.</p>
-        </div>
-    </header>
-
     <!-- ══ CONTROLS ══ -->
     <div class="controls-bar">
         <div class="controls-inner">
@@ -49,6 +36,12 @@
         </div>
     </div>
 
+    <!-- ══ VIEW TABS ══ -->
+    <div class="cert-view-tabs">
+        <button class="cert-tab active" data-view="individual" id="tabIndividual">🎓 Individual Certificates</button>
+        <button class="cert-tab" data-view="bundles" id="tabBundles">📦 Course Bundles</button>
+    </div>
+
     <!-- ══ LOADING STATE ══ -->
     <div class="cert-loading" id="certLoading">
         <div class="loader-spinner"></div>
@@ -63,9 +56,18 @@
         <button class="btn-retry" onclick="loadCatalogData()">🔄 Retry</button>
     </div>
 
-    <!-- ══ CATALOG ══ -->
-    <main class="catalog-section">
+    <!-- ══ INDIVIDUAL CERTIFICATES CATALOG ══ -->
+    <main class="catalog-section" id="individualView">
         <div class="catalog-grid" id="catalogGrid"></div>
+    </main>
+
+    <!-- ══ COURSE BUNDLES VIEW ══ -->
+    <main class="catalog-section" id="bundlesView" style="display:none;">
+        <div class="bundles-header">
+            <h2>🏆 Course Bundle Certificates</h2>
+            <p>Complete all required quiz certificates to unlock course-level credentials</p>
+        </div>
+        <div class="bundles-grid" id="bundlesGrid"></div>
     </main>
 
     <!-- ══ CERTIFICATE PREVIEW MODAL ══ -->

@@ -41,6 +41,7 @@
         </div>
     </section>
 
+    <!-- Legacy Chatbot Trigger restored per user request -->
     <div class="chat" id="chatMsg">
         <div class="container">
             <img src="./assets/images/chatbot-walle.png" alt="Chat Bot"
@@ -96,24 +97,28 @@
 
 
     <!-- Log in and sign up -->
-    <section class="signup-section reveal">
-        <h2>Join Path4Career</h2>
-        <p>Sign up to track your progress, earn certificates, and access personalized tutorials.</p>
-
-        <div class="signup-content">
-            <ul class="signup-benefits">
-                <li>📈 Track your learning progress</li>
-                <li>🎓 Earn certificates to boost your resume</li>
-                <li>🤝 Join a community of learners</li>
-            </ul>
-            <div class="signup-buttons">
-                <button class="btn-log"><a href="./pages/auth/login.html"
-                        style="text-decoration:none;color:inherit;">Login</a></button>
-                <button class="btn-sign"><a href="./pages/auth/register.html"
-                        style="text-decoration:none;color:inherit;">Sign Up</a></button>
+    <section class="signup-banner reveal" id="join-section">
+        <div class="signup-banner-inner">
+            <div class="signup-banner-text">
+                <h2>Join Path4Career</h2>
+                <p>Sign up to track your progress, earn verified certificates, and access personalized tutorials all in one place.</p>
+            </div>
+            <div class="signup-banner-actions">
+                <a href="./pages/auth/login.html" class="btn-banner-login">Log In</a>
+                <a href="./pages/auth/register.html" class="btn-banner-signup">Create Free Account</a>
             </div>
         </div>
     </section>
+
+    <script>
+        // Automatically hide this section if the user is already authenticated
+        if (localStorage.getItem('AUTH_TOKEN') || localStorage.getItem('path4careerUser')) {
+            const joinSection = document.getElementById('join-section');
+            if (joinSection) {
+                joinSection.style.display = 'none';
+            }
+        }
+    </script>
 
     <!-- editor section -->
     <section class="code-editor-section reveal">
@@ -169,21 +174,63 @@
         </div>
     </section>
 
-    <!-- AI Career Shield section -->
-    <section class="ai-shield-section reveal" style="background: linear-gradient(135deg, rgba(74, 108, 247, 0.05), rgba(0, 201, 133, 0.05)); padding: 60px 0; text-align: center; border-top: 1px solid rgba(255,255,255,0.05); border-bottom: 1px solid rgba(255,255,255,0.05); margin: 40px 0;">
+    <!-- AI Features Section -->
+    <section class="ai-features-section reveal" id="ai-features">
         <div class="container">
-            <h2 style="color: #E5EDFF; margin-bottom: 15px;"><span style="color: #4A6CF7;">AI Career Shield</span></h2>
-            <p style="color: #9AA4B2; max-width: 600px; margin: 0 auto 30px; line-height: 1.6;">Is your career AI-proof? Upload your resume to get an instant AI Career Safety Score, discover vulnerabilities, and receive a personalized learning roadmap.</p>
-            <a href="./pages/ai-career-shield/index.html" style="display: inline-block; background: linear-gradient(135deg, #4A6CF7, #00C985); color: #fff; padding: 12px 28px; border-radius: 30px; font-weight: 600; text-decoration: none; box-shadow: 0 4px 15px rgba(74, 108, 247, 0.3); transition: transform 0.2s;">Analyze My Resume</a>
-        </div>
-    </section>
-
-    <!-- AI Career Simulator section -->
-    <section class="ai-simulator-section reveal" style="background: linear-gradient(135deg, rgba(108, 92, 231, 0.05), rgba(0, 184, 148, 0.05)); padding: 60px 0; text-align: center; border-top: 1px solid rgba(255,255,255,0.05); border-bottom: 1px solid rgba(255,255,255,0.05); margin: 40px 0;">
-        <div class="container">
-            <h2 style="color: #E5EDFF; margin-bottom: 15px;"><span style="color: #6c5ce7;">AI Career Simulator</span></h2>
-            <p style="color: #9AA4B2; max-width: 600px; margin: 0 auto 30px; line-height: 1.6;">Simulate your 10-year career trajectory, connect with mentors, analyze career risks, and build your digital twin — all powered by advanced AI intelligence.</p>
-            <a href="./pages/path4career-simulator/index.html" style="display: inline-block; background: linear-gradient(135deg, #6c5ce7, #00B894); color: #fff; padding: 12px 28px; border-radius: 30px; font-weight: 600; text-decoration: none; box-shadow: 0 4px 15px rgba(108, 92, 231, 0.3); transition: transform 0.2s;">Launch AI Career Simulator</a>
+            <div class="ai-features-header">
+                <span class="ai-features-badge">✨ Powered by AI</span>
+                <h2>AI-Powered Career Tools</h2>
+                <p>Leverage cutting-edge artificial intelligence to analyze, simulate, and future-proof your career journey.</p>
+            </div>
+            <div class="ai-features-grid">
+                <!-- AI Career Shield Card -->
+                <div class="ai-feature-card ai-shield-card">
+                    <div class="ai-card-glow ai-glow-blue"></div>
+                    <div class="ai-card-icon">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="url(#shieldGrad)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                            <defs><linearGradient id="shieldGrad" x1="0" y1="0" x2="24" y2="24"><stop stop-color="#4A6CF7"/><stop offset="1" stop-color="#00C985"/></linearGradient></defs>
+                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                            <polyline points="9 12 11 14 15 10"/>
+                        </svg>
+                    </div>
+                    <h3>AI Career Shield</h3>
+                    <p class="ai-card-desc">Upload your resume and get an instant AI Career Safety Score with actionable insights.</p>
+                    <ul class="ai-card-features">
+                        <li><span class="ai-check">✓</span> AI-Powered Resume Analysis</li>
+                        <li><span class="ai-check">✓</span> Career Vulnerability Detection</li>
+                        <li><span class="ai-check">✓</span> Personalized Learning Roadmap</li>
+                        <li><span class="ai-check">✓</span> Industry Risk Assessment</li>
+                    </ul>
+                    <a href="./pages/ai-career-shield/index.html" class="ai-card-btn ai-btn-blue">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                        Analyze My Resume
+                    </a>
+                </div>
+                <!-- AI Career Simulator Card -->
+                <div class="ai-feature-card ai-simulator-card">
+                    <div class="ai-card-glow ai-glow-purple"></div>
+                    <div class="ai-card-icon">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="url(#simGrad)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                            <defs><linearGradient id="simGrad" x1="0" y1="0" x2="24" y2="24"><stop stop-color="#6c5ce7"/><stop offset="1" stop-color="#00B894"/></linearGradient></defs>
+                            <circle cx="12" cy="12" r="10"/>
+                            <polyline points="12 6 12 12 16 14"/>
+                            <path d="M16 16l2 2"/>
+                        </svg>
+                    </div>
+                    <h3>AI Career Simulator</h3>
+                    <p class="ai-card-desc">Simulate your 10-year career trajectory and make smarter career decisions today.</p>
+                    <ul class="ai-card-features">
+                        <li><span class="ai-check">✓</span> 10-Year Career Simulation</li>
+                        <li><span class="ai-check">✓</span> AI Mentor Matching</li>
+                        <li><span class="ai-check">✓</span> Career Risk Analysis</li>
+                        <li><span class="ai-check">✓</span> Digital Twin Builder</li>
+                    </ul>
+                    <a href="./pages/path4career-simulator/index.html" class="ai-card-btn ai-btn-purple">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                        Launch Simulator
+                    </a>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -225,65 +272,37 @@
             <div class="career-wrapper">
                 <div class="student-card">
                     <div>
-                        <img src="" alt="">
+                        <div class="career-card-icon">🎓</div>
                         <h4>Students</h4>
                         <p>
-                            <span>Explore career-focused learning paths designed to take you from fundamentals to
-                                job-ready</span>
-                            <span>skills. Learn through structured courses, hands-on projects, real-world assessments,
-                                and</span>
-                            <span>guided road maps aligned with industry roles. Track your progress, build a strong
-                                portfolio,</span>
-                            <span>and gain clarity on what to learn, when to learn, and why it matters for your future
-                                career.</span>
+                            Master in-demand skills through structured courses, hands-on coding exercises, and guided roadmaps. Track your progress, earn certificates, and build a portfolio that proves your expertise to future employers.
                         </p>
                     </div>
                 </div>
                 <div class="jobseeker-card">
                     <div>
-                        <img src="" alt="">
+                        <div class="career-card-icon">🚀</div>
                         <h4>Job Seekers</h4>
                         <p>
-                            <span>Explore career-focused learning paths designed to take you from fundamentals to
-                                job-ready</span>
-                            <span>skills. Learn through structured courses, hands-on projects, real-world assessments,
-                                and</span>
-                            <span>guided road maps aligned with industry roles. Track your progress, build a strong
-                                portfolio,</span>
-                            <span>and gain clarity on what to learn, when to learn, and why it matters for your future
-                                career.</span>
+                            Build a standout resume with our AI-powered Resume Builder, discover matching job opportunities on our Job Board, and use AI Career Shield to identify skill gaps — everything you need to land your next role.
                         </p>
                     </div>
                 </div>
                 <div class="hirers-card">
                     <div>
-                        <img src="" alt="">
+                        <div class="career-card-icon">💼</div>
                         <h4>Hirers</h4>
                         <p>
-                            <span>Explore career-focused learning paths designed to take you from fundamentals to
-                                job-ready</span>
-                            <span>skills. Learn through structured courses, hands-on projects, real-world assessments,
-                                and</span>
-                            <span>guided road maps aligned with industry roles. Track your progress, build a strong
-                                portfolio,</span>
-                            <span>and gain clarity on what to learn, when to learn, and why it matters for your future
-                                career.</span>
+                            Post open positions, access a pool of verified candidates with certified skills, and review quiz-based assessments. Find talent that's job-ready from day one with skill-validated profiles.
                         </p>
                     </div>
                 </div>
                 <div class="mentor-card">
                     <div>
-                        <img src="" alt="">
+                        <div class="career-card-icon">🧭</div>
                         <h4>Mentors</h4>
                         <p>
-                            <span>Explore career-focused learning paths designed to take you from fundamentals to
-                                job-ready</span>
-                            <span>skills. Learn through structured courses, hands-on projects, real-world assessments,
-                                and</span>
-                            <span>guided road maps aligned with industry roles. Track your progress, build a strong
-                                portfolio,</span>
-                            <span>and gain clarity on what to learn, when to learn, and why it matters for your future
-                                career.</span>
+                            Guide the next generation of developers through structured bootcamps, curate learning paths, and share industry expertise. Make an impact while building your professional brand as a mentor.
                         </p>
                     </div>
                 </div>

@@ -34,6 +34,13 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
+  const urlParams = new URLSearchParams(window.location.search);
+  const requestedRole = urlParams.get('role');
+  if (requestedRole) {
+    mainRole.value = requestedRole;
+    mainRole.dispatchEvent(new Event('change'));
+  }
+
 
   studentType.addEventListener("change", () => {
     schoolForm.classList.add("hide");

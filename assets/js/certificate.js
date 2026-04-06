@@ -36,6 +36,84 @@ function getModuleColor(module) {
     return FALLBACK_COLORS[module.id % FALLBACK_COLORS.length];
 }
 
+// ──────────────────────────────────────────
+// COURSE BUNDLES — predefined groupings
+// ──────────────────────────────────────────
+const COURSE_BUNDLES = [
+    {
+        id: 'frontend',
+        name: 'Frontend Development',
+        icon: '🖥️',
+        color: '#2563EB',
+        gradient: 'linear-gradient(135deg, #1e3a5f, #2563EB)',
+        description: 'Master the essential technologies for building modern web interfaces.',
+        requiredModuleNames: ['HTML', 'CSS', 'JavaScript']
+    },
+    {
+        id: 'react-dev',
+        name: 'React Developer',
+        icon: '⚛️',
+        color: '#06b6d4',
+        gradient: 'linear-gradient(135deg, #164e63, #06b6d4)',
+        description: 'Build dynamic single-page applications with React.',
+        requiredModuleNames: ['HTML', 'CSS', 'JavaScript', 'React']
+    },
+    {
+        id: 'python-dev',
+        name: 'Python Developer',
+        icon: '🐍',
+        color: '#3B82F6',
+        gradient: 'linear-gradient(135deg, #1e3a5f, #3B82F6)',
+        description: 'Master Python programming and its data science ecosystem.',
+        requiredModuleNames: ['Python', 'NumPy', 'Pandas']
+    },
+    {
+        id: 'fullstack',
+        name: 'Full Stack Development',
+        icon: '🚀',
+        color: '#7c3aed',
+        gradient: 'linear-gradient(135deg, #4c1d95, #7c3aed)',
+        description: 'End-to-end web development from frontend to backend.',
+        requiredModuleNames: ['HTML', 'CSS', 'JavaScript', 'Node.js']
+    },
+    {
+        id: 'database',
+        name: 'Database Specialist',
+        icon: '🗄️',
+        color: '#059669',
+        gradient: 'linear-gradient(135deg, #065f46, #059669)',
+        description: 'Master relational and NoSQL database management.',
+        requiredModuleNames: ['SQL', 'MySQL', 'MongoDB']
+    },
+    {
+        id: 'java-dev',
+        name: 'Java Developer',
+        icon: '☕',
+        color: '#d97706',
+        gradient: 'linear-gradient(135deg, #92400e, #d97706)',
+        description: 'Enterprise application development with Java.',
+        requiredModuleNames: ['Java']
+    },
+    {
+        id: 'data-science',
+        name: 'Data Science',
+        icon: '📊',
+        color: '#dc2626',
+        gradient: 'linear-gradient(135deg, #991b1b, #dc2626)',
+        description: 'Analyze and visualize data with Python libraries.',
+        requiredModuleNames: ['Python', 'NumPy', 'Pandas', 'Excel']
+    },
+    {
+        id: 'bootstrap-dev',
+        name: 'Bootstrap Developer',
+        icon: '🅱️',
+        color: '#7952b3',
+        gradient: 'linear-gradient(135deg, #4c1d95, #7952b3)',
+        description: 'Build responsive websites with Bootstrap framework.',
+        requiredModuleNames: ['HTML', 'CSS', 'Bootstrap']
+    }
+];
+
 function getCardIconForCert(name) {
     const t = (name || '').toLowerCase();
     if (/web|html|css/.test(t)) return '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10A15.3 15.3 0 0 1 12 2z"/></svg>';
@@ -94,7 +172,38 @@ function getUserData() {
 // ──────────────────────────────────────────
 document.addEventListener('DOMContentLoaded', () => {
     loadCatalogData();
+    setupTabs();
 });
+
+// ──────────────────────────────────────────
+// TAB SWITCHING
+// ──────────────────────────────────────────
+function setupTabs() {
+    const tabIndividual = document.getElementById('tabIndividual');
+    const tabBundles = document.getElementById('tabBundles');
+    const individualView = document.getElementById('individualView');
+    const bundlesView = document.getElementById('bundlesView');
+    const controlsBar = document.querySelector('.controls-bar');
+
+    if (!tabIndividual || !tabBundles) return;
+
+    tabIndividual.addEventListener('click', () => {
+        tabIndividual.classList.add('active');
+        tabBundles.classList.remove('active');
+        individualView.style.display = '';
+        bundlesView.style.display = 'none';
+        if (controlsBar) controlsBar.style.display = '';
+    });
+
+    tabBundles.addEventListener('click', () => {
+        tabBundles.classList.add('active');
+        tabIndividual.classList.remove('active');
+        individualView.style.display = 'none';
+        bundlesView.style.display = '';
+        if (controlsBar) controlsBar.style.display = 'none';
+        renderBundles();
+    });
+}
 
 async function loadCatalogData() {
     showLoading(true);
@@ -547,4 +656,62 @@ async function refreshCertificates() {
 
 function retryLoad() {
     loadCatalogData();
+}
+
+// ──────────────────────────────────────────
+// COURSE BUNDLES RENDERING
+// ──────────────────────────────────────────
+function renderBundles() {
+    const grid = document.getElementById('bundlesGrid');
+    if (!grid) return;
+
+    grid.innerHTML = COURSE_BUNDLES.map(bundle => {
+        // Find matching modules for this bundle
+        const matchedModules = bundle.requiredModuleNames.map(name => {
+            return allModules.find(m => m.name && m.name.toLowerCase() === name.toLowerCase());
+        });
+
+        const totalRequired = bundle.requiredModuleNames.length;
+        let completedCount = 0;
+
+        const moduleItemsHtml = bundle.requiredModuleNames.map((name, i) => {
+            const mod = matchedModules[i];
+            const isEarned = mod && earnedCertificates[mod.id];
+            if (isEarned) completedCount++;
+            const statusIcon = isEarned
+                ? '<span class="bundle-mod-status earned">✓</span>'
+                : '<span class="bundle-mod-status locked">○</span>';
+            return `<div class="bundle-mod-item ${isEarned ? 'earned' : 'locked'}">
+                ${statusIcon}
+                <span class="bundle-mod-name">${escapeHtml(name)}</span>
+            </div>`;
+        }).join('');
+
+        const progress = totalRequired > 0 ? Math.round((completedCount / totalRequired) * 100) : 0;
+        const isComplete = completedCount === totalRequired;
+
+        return `
+        <div class="bundle-card ${isComplete ? 'bundle-complete' : ''}">
+            <div class="bundle-card-header" style="background: ${bundle.gradient}">
+                <span class="bundle-card-icon">${bundle.icon}</span>
+                <div class="bundle-card-title">
+                    <h3>${escapeHtml(bundle.name)}</h3>
+                    <span class="bundle-card-count">${completedCount}/${totalRequired} Completed</span>
+                </div>
+                ${isComplete ? '<span class="bundle-unlocked-badge">🏆 UNLOCKED</span>' : ''}
+            </div>
+            <div class="bundle-card-body">
+                <p class="bundle-card-desc">${escapeHtml(bundle.description)}</p>
+                <div class="bundle-progress">
+                    <div class="bundle-progress-bar">
+                        <div class="bundle-progress-fill" style="width: ${progress}%; background: ${bundle.gradient}"></div>
+                    </div>
+                    <span class="bundle-progress-text">${progress}%</span>
+                </div>
+                <div class="bundle-modules-list">
+                    ${moduleItemsHtml}
+                </div>
+            </div>
+        </div>`;
+    }).join('');
 }

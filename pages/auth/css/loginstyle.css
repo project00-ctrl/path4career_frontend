@@ -218,6 +218,20 @@ a:hover {
         padding: 16px;
     }
 
+    .back-link {
+        position: fixed;
+        top: 16px;
+        left: 16px;
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(8px);
+        padding: 8px 16px;
+        border-radius: 20px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        border: 1px solid var(--border);
+        font-size: 14px;
+        z-index: 100;
+    }
+
     .container {
         flex-direction: column;
         max-width: 480px;
