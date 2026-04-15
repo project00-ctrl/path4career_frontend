@@ -1001,11 +1001,17 @@ nav>ul {
     max-width: 100% !important;
 }
 
+body, html {
+    overflow-x: hidden;
+    width: 100%;
+}
+
 .hero-wrapper {
     width: 100%;
-    padding: 100px 20px 50px;
+    padding: 90px 12px 50px; /* Adjusted padding to match header/strip and prevent overflow */
     text-align: center;
     background: #EBF2FA; /* Light blue/grey tint */
+    box-sizing: border-box;
 }
 
 .hero-inner {
@@ -1944,7 +1950,7 @@ p {
 
 .feature-wrapper {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
     gap: 20px;
 
 }
@@ -2201,7 +2207,7 @@ p {
 
 .ai-features-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr));
     gap: 32px;
     max-width: 960px;
     margin: 0 auto;
@@ -2379,7 +2385,7 @@ p {
 
 .career-wrapper {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
     gap: 20px;
 }
 
@@ -3223,7 +3229,7 @@ p {
     }
 
     .hero-wrapper {
-        padding: 92px 14px 46px;
+        padding: 86px 12px 30px; /* Match new standardized mobile padding */
     }
 
     .logo h3 {
@@ -3396,7 +3402,7 @@ p {
 /* Tutorial Cards Grid */
 .tutorials-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
     gap: 18px;
 }
 
