@@ -470,36 +470,69 @@ body {
 }
 
 /* ── RESPONSIVE ── */
+/* ──────────────────────────────────────────────────────────────────────────
+   COMPREHENSIVE RESPONSIVE SYSTEM (Standardized)
+   ────────────────────────────────────────────────────────────────────────── */
+
+/* 1. Ultra Wide Screens (2XL) > 1281px */
+@media (min-width: 1281px) {
+    .container {
+        max-width: 1440px;
+    }
+}
+
+/* 2. Standard Laptops (XL) 1025px – 1280px */
+@media (min-width: 1025px) and (max-width: 1280px) {
+    .container {
+        max-width: 1200px;
+    }
+}
+
+/* 3. Tablets / Small Laptops (LG) 769px – 1024px */
+@media (max-width: 1024px) {
+    .quizzes-hero h1 {
+        font-size: 2.8rem;
+    }
+}
+
+/* 4. Large Mobile / Small Tablets (MD) 641px – 768px */
 @media (max-width: 768px) {
     .quizzes-hero {
         padding: 80px 16px 40px;
     }
-
     .quizzes-grid {
         grid-template-columns: 1fr;
     }
-
     .quiz-card {
         padding: 22px;
     }
+}
 
+/* 5. Mobile Devices (SM) 481px – 640px */
+@media (max-width: 640px) {
+    .quiz-filters {
+        gap: 6px;
+    }
+    .filter-tab {
+        padding: 8px 16px;
+        font-size: 0.8rem;
+    }
+}
+
+/* 6. Small Mobile (XS) < 480px */
+@media (max-width: 480px) {
+    .quizzes-hero h1 {
+        font-size: 2rem;
+    }
+    .hero-subtitle {
+        font-size: 0.95rem;
+    }
     .quiz-card-stats {
         grid-template-columns: repeat(3, 1fr);
         gap: 8px;
     }
-
     .login-modal {
-        padding: 28px;
-    }
-}
-
-@media (max-width: 480px) {
-    .quiz-filters {
-        gap: 6px;
-    }
-
-    .filter-tab {
-        padding: 8px 16px;
-        font-size: 0.8rem;
+        padding: 24px;
+        width: 95%;
     }
 }

@@ -3516,114 +3516,114 @@ p {
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.5px;
-    background: rgba(74, 108, 247, 0.1);
-    color: #214EA5;
+   /* ──────────────────────────────────────────────────────────────────────────
+   COMPREHENSIVE RESPONSIVE SYSTEM (Standardized)
+   ────────────────────────────────────────────────────────────────────────── */
+
+/* 1. Ultra Wide Screens (2XL) > 1281px */
+@media (min-width: 1281px) {
+    .container {
+        max-width: 1440px;
+    }
+    .hero-wrapper h1 {
+        font-size: 4.2rem;
+    }
 }
 
-.tutorial-card-arrow {
-    font-size: 1.3rem;
-    color: #334155;
-    transition: color 0.2s, transform 0.2s;
-    flex-shrink: 0;
+/* 2. Standard Laptops (XL) 1025px – 1280px */
+@media (min-width: 1025px) and (max-width: 1280px) {
+    .container {
+        max-width: 1200px;
+    }
+    .hero-wrapper h1 {
+        font-size: 3.5rem;
+    }
 }
 
-.tutorial-card-item:hover .tutorial-card-arrow {
-    color: #15803D;
-    transform: translateX(3px);
-}
-
-/* ---- GLOBAL RESPONSIVE REFINEMENTS ---- */
-
-/* Tablets / iPads (MD) */
-@media (max-width: 992px) {
+/* 3. Tablets / Small Laptops (LG) 769px – 1024px */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .container {
+        max-width: 960px;
+    }
+    .hero-wrapper h1 {
+        font-size: 3rem;
+    }
     .premium-join-container {
         flex-direction: column;
         text-align: center;
         gap: 40px;
     }
-    
     .join-content {
         max-width: 600px;
         margin: 0 auto;
     }
-    
     .join-actions {
         justify-content: center;
     }
-
-    .join-visual {
-        width: 100%;
-        max-width: 600px;
-    }
 }
 
-/* Phones (SM) */
-@media (max-width: 768px) {
+/* 4. Large Mobile / Small Tablets (MD) 641px – 768px */
+@media (min-width: 641px) and (max-width: 768px) {
     section {
-        padding: 40px 16px;
+        padding: 50px 20px;
     }
-
+    .hero-wrapper h1 {
+        font-size: 2.6rem;
+    }
     .ai-features-grid, .career-wrapper, .feature-wrapper {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
         gap: 20px;
     }
-
-    .ai-features-header h2 {
-        font-size: 2rem;
-    }
-
-    .join-title {
-        font-size: 2.2rem;
-    }
-
-    .glass-card {
-        transform: none !important;
-        max-width: 100%;
-    }
-
     .practice-cards {
         flex-direction: column;
         align-items: center;
     }
+}
 
-    .card {
-        width: 100%;
-        max-width: 100%;
+/* 5. Mobile Devices (SM) 481px – 640px */
+@media (min-width: 481px) and (max-width: 640px) {
+    section {
+        padding: 40px 16px;
     }
-
-    .code-editor-section h2 {
-        font-size: 1.8rem;
-    }
-
     .hero-wrapper h1 {
         font-size: 2.2rem;
     }
+    .ai-features-grid, .career-wrapper, .feature-wrapper {
+        grid-template-columns: 1fr;
+    }
+    .join-title {
+        font-size: 2rem;
+    }
 }
 
-/* Small Phones (XS) */
+/* 6. Small Mobile (XS) < 480px */
 @media (max-width: 480px) {
+    section {
+        padding: 30px 14px;
+    }
     .hero-wrapper h1 {
         font-size: 1.8rem;
     }
-
     .join-title {
         font-size: 1.85rem;
     }
-
-    .join-subtitle {
-        font-size: 1rem;
-    }
-
-    .join-actions {
-        flex-direction: column;
-    }
-
     .btn-glow-signup, .btn-outline-login {
         width: 100%;
         justify-content: center;
     }
-
+    .join-actions {
+        flex-direction: column;
+        gap: 12px;
+    }
     .tutorials-subtitle {
+        font-size: 0.9rem;
+    }
+    .tutorial-card-item {
+        padding: 16px;
+        gap: 12px;
+    }
+}
+ {
         font-size: 0.95rem;
     }
 

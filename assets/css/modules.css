@@ -1043,499 +1043,103 @@ nav>ul {
 
 /* ======= MODULES PAGE MOBILE ======= */
 
-@media (max-width: 768px) {
-    .page-title {
-        font-size: 1.7rem;
-        margin: 80px 0 16px;
-        padding: 0 16px;
-    }
+/* ──────────────────────────────────────────────────────────────────────────
+   COMPREHENSIVE RESPONSIVE SYSTEM (Standardized)
+   ────────────────────────────────────────────────────────────────────────── */
 
+/* 1. Ultra Wide Screens (2XL) > 1281px */
+@media (min-width: 1281px) {
     .modules-container {
-        padding: 0 16px 60px;
-        gap: 14px;
-    }
-
-    .course-meta {
-        padding: 16px;
-    }
-
-    .course-meta p strong {
-        font-size: 1rem;
-    }
-
-    .course-meta p {
-        font-size: 0.85rem;
-        margin: 6px 0;
-    }
-
-    .module-card {
-        padding: 18px 16px;
-        border-radius: 14px;
-    }
-
-    .module-header {
-        flex-direction: column;
-        gap: 6px;
-    }
-
-    .module-header h3 {
-        font-size: 0.95rem;
-    }
-
-    .module-header span {
-        font-size: 0.8rem;
-    }
-
-    .progress-container {
-        height: 6px;
-    }
-
-    .back-link {
-        margin: 80px 0 0 16px;
-        font-size: 0.85rem;
+        max-width: 1200px;
     }
 }
 
-@media (max-width: 480px) {
-    .page-title {
-        font-size: 1.4rem;
-        margin: 75px 0 12px;
-    }
-
+/* 2. Standard Laptops (XL) 1025px – 1280px */
+@media (min-width: 1025px) and (max-width: 1280px) {
     .modules-container {
-        padding: 0 12px 50px;
-        gap: 12px;
-    }
-
-    .module-card {
-        padding: 16px 14px;
-    }
-
-    .module-header h3 {
-        font-size: 0.9rem;
-    }
-
-    .back-link {
-        margin: 75px 0 0 12px;
+        max-width: 1000px;
     }
 }
 
-/*  MOBILE & TABLET FIXES */
-
+/* 3. Tablets / Small Laptops (LG) 769px – 1024px */
 @media (max-width: 1024px) {
-
-
-    .reference-close {
-        position: fixed;
-        top: 70px;
-        right: 120px;
-        z-index: 999;
-    }
-
-    /* Header spacing */
-    header {
-        padding-left: 20px;
-    }
-
-    /* Profile name hidden */
-    .profile span {
-        display: none;
-    }
-
-    header,
-    section {
-        margin: 0 24px;
-    }
-
-    .search {
-        width: 100%;
-        max-width: 300px;
-    }
-
-
-
-    /* Reference card responsive */
     .reference-card {
         width: 90%;
         margin-left: 5%;
         height: 85vh;
     }
-
-    .reference-contents {
-        padding: 60px 30px;
-    }
-
-    .reference-row .container {
-        flex-direction: column;
-        gap: 30px;
-    }
-
-
-}
-
-@media (max-width: 992px) {
-    .search {
-        display: none;
-    }
-
-    .hero-search>.search {
-        display: flex;
-        margin: 100px 300px;
-    }
-
-    .reference-close {
-        position: fixed;
-        top: 70px;
-        right: 120px;
-        z-index: 999;
-    }
-
-    /* reference-card */
-    .reference-card {
-        width: 90%;
-        margin-left: 0;
-        margin-top: 100px;
-        left: 50%;
-        transform: translateX(-50%);
-    }
-
-    .reference-contents {
-        padding: 60px 40px;
-    }
-
-    .reference-row .container {
-        gap: 30px;
-    }
-
-    /* Top search */
-    .top-search {
+    .profile span {
         display: none;
     }
 }
 
-/* MOBILE ONLY */
-
+/* 4. Large Mobile / Small Tablets (MD) 641px – 768px */
 @media (max-width: 768px) {
-
-
-    .header {
-        padding: 0 20px 0px 20px;
+    .page-title {
+        font-size: 1.7rem;
+        margin: 80px 0 16px;
     }
-
-    .header>.container {
-        justify-content: start;
-        align-items: center;
-        gap: 2rem;
-        padding: 0px 10px 15px 10px;
+    .modules-container {
+        padding: 0 16px 60px;
+        gap: 14px;
     }
-
-
-
-    /* HEADER & NAV */
-
-    .logo .refer {
-        display: none;
-    }
-
-    .search {
-        display: none;
-    }
-
-    .top {
-        display: block;
-
-    }
-
-    nav {
-        display: none;
-    }
-
-    .hamburger {
-        display: block;
-    }
-
-    .mobile-nav.open {
-        display: flex;
-        right: 0;
-        opacity: 1;
-        gap: 40px;
-        padding-top: 80px;
-    }
-
-    /* logo,tutor,refer */
-    .desk-refer,
-    .desk-tutor {
-        display: none;
-    }
-
-    .search {
-        width: 300px;
-    }
-
-    .logos {
-        display: none;
-    }
-
-    /* reference-card */
-    .reference-card {
-        width: 95%;
-        height: auto;
-        max-height: 90vh;
-        overflow-y: auto;
-        margin: 0;
-        top: 80px;
-        left: 50%;
-        transform: translateX(-50%);
-        border-radius: 12px;
-    }
-
-    .reference-contents {
-        width: 95%;
-        height: 90vh;
-        padding: 30px 20px;
-    }
-
-    .reference-row .container {
+    .course-meta {
         flex-direction: column;
-        gap: 40px;
-        text-align: center;
         align-items: center;
-    }
-
-    .frontend-col h3,
-    .backend-col h3 {
-        margin: 10px 0;
-    }
-
-
-    .reference-top {
-        justify-content: start;
-        padding: 20px 0;
-        margin-top: 20px;
-    }
-
-    .reference-row .container {
-        flex-direction: column;
-        gap: 40px;
-        align-items: flex-start;
-    }
-
-    .frontend-col h3,
-    .backend-col h3 {
-        margin: 10px 0;
-    }
-
-    .reference-close {
-        top: 0px;
-        right: 385px;
-    }
-
-    /* tutorial-card */
-    .tutor-card {
-        width: 95%;
-        height: auto;
-        max-height: 90vh;
-        overflow-y: auto;
-        margin: 0;
-        top: 80px;
-        left: 50%;
-        transform: translateX(-50%);
-        border-radius: 12px;
-    }
-
-    .tutor-contents {
-        width: 95%;
-        height: 90vh;
-        padding: 90px 20px;
-    }
-
-    .tutor-row .container {
-        flex-direction: column;
-        gap: 40px;
-        text-align: center;
-        align-items: center;
-    }
-
-    .tutor-frontend-col h3,
-    .tutor-backend-col h3 {
-        margin: 10px 0;
-    }
-
-    .tutor-top {
-        justify-content: start;
-        padding: 10px 0;
-    }
-
-    .tutor-row .container {
-        flex-direction: column;
-        gap: 40px;
-        align-items: flex-start;
-    }
-
-    .tutor-frontend-col h3,
-    .tutor-backend-col h3 {
-        margin: 10px 0;
-    }
-
-    .tutor-close {
-        top: 15px;
-        right: 385px;
-    }
-
-    .search {
-        width: 300px;
-    }
-
-    .profile span {
-        display: block;
-    }
-
-    .profile-menu.open {
-        display: flex;
-        flex-direction: column;
-        transform: scale(1);
-        opacity: 1;
-        pointer-events: auto;
-        gap: 20px;
-    }
-
-    header,
-    section {
-        margin: 0 16px;
-    }
-
-    section {
-        padding: 80px 0;
-    }
-
-
-    .initial {
-        display: block;
-    }
-
-    .profile span {
-        display: block;
-    }
-
-    .profile-menu.open {
-        display: block;
-    }
-
-
-    body {
-        overflow-x: hidden;
-    }
-
-
-    /* HERO / HEADINGS */
-    .timeline-heading h1 {
-        font-size: 2.4rem;
-        margin-bottom: 30px;
-    }
-
-    .timeline-heading p {
-        font-size: 1.1rem;
-        line-height: 1.8rem;
-    }
-
-
-
-
-}
-
-@media (max-width: 600px) {
-    .hero-search>.search {
-        display: flex;
-        margin: 100px 100px;
-    }
-
-    .header {
-        padding: 0 20px 0px 20px;
-    }
-
-    .header>.container {
-        justify-content: start;
-        align-items: center;
-        gap: 2rem;
-        padding: 0px 10px 15px 10px;
-    }
-}
-
-
-
-/* SMALL PHONES */
-
-@media (max-width: 480px) {
-
-
-
-    .header {
-        padding: 0 20px 0px 20px;
-    }
-
-    .header>.container {
-        justify-content: start;
-        align-items: center;
-        gap: 2rem;
-        padding: 0px 10px 15px 10px;
-    }
-
-    .profile {
-        gap: 3px;
-    }
-
-    .top-bar h1 {
-        font-size: 1.6rem;
-    }
-
-    /* Top search */
-    .top-search {
-        display: none;
-    }
-
-
-    /* Logo */
-    .logo h3 {
-        font-size: 1.5rem;
-    }
-
-    .logos {
-        display: none;
-    }
-
-    .logos a {
-        font-size: 1rem;
-    }
-
-    .search {
-        display: none;
-    }
-
-    .reference-search,
-    .search {
-        width: 260px;
-    }
-
-    .tutorial {
-        display: none;
-    }
-
-
-    .hero-search>.search {
-        display: flex;
-        margin: 100px 50px;
-    }
-
-    .timeline-heading h1 {
-        font-size: 2rem;
-    }
-
-
-    .card {
+        gap: 10px;
         padding: 16px;
     }
-
-    .card p {
-        font-size: 0.9rem;
+    .module-card {
+        padding: 18px 16px;
+    }
+    .roadmap-timeline::before {
+        left: 20px;
+    }
+    .timeline-node {
+        width: 100%;
+        padding-left: 50px;
+        padding-right: 0;
+        left: 0 !important;
+    }
+    .timeline-node::before {
+        left: 8px !important;
+        right: auto !important;
+    }
+    .timeline-node::after {
+        left: 10px !important;
+        right: auto !important;
+    }
+    .skills-wrapper {
+        max-width: 100%;
+        float: none !important;
+        padding: 0 !important;
+        border: none !important;
     }
 }
+
+/* 5. Mobile Devices (SM) 481px – 640px */
+@media (max-width: 640px) {
+    .page-title {
+        font-size: 1.5rem;
+    }
+    .course-meta p {
+        font-size: 0.85rem;
+    }
+}
+
+/* 6. Small Mobile (XS) < 480px */
+@media (max-width: 480px) {
+    .page-title {
+        font-size: 1.4rem;
+        margin: 75px 0 12px;
+    }
+    .modules-container {
+        padding: 0 12px 50px;
+    }
+    .module-header h3 {
+        font-size: 0.9rem;
+    }
+    .back-link {
+        margin: 75px 0 0 12px;
+    }
+}

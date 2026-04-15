@@ -946,73 +946,72 @@ nav>div a:hover {
    RESPONSIVE
 ========================================= */
 
-@media (max-width: 1024px) {
-    .courses-grid {
-        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+/* ──────────────────────────────────────────────────────────────────────────
+   COMPREHENSIVE RESPONSIVE SYSTEM (Standardized)
+   ────────────────────────────────────────────────────────────────────────── */
+
+/* 1. Ultra Wide Screens (2XL) > 1281px */
+@media (min-width: 1281px) {
+    .main-wrapper .container {
+        max-width: 1440px;
     }
 }
 
+/* 2. Standard Laptops (XL) 1025px – 1280px */
+@media (min-width: 1025px) and (max-width: 1280px) {
+    .main-wrapper .container {
+        max-width: 1200px;
+    }
+}
+
+/* 3. Tablets / Small Laptops (LG) 769px – 1024px */
+@media (max-width: 1024px) {
+    .course-grid {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    }
+    .main-wrapper {
+        padding: 40px 30px;
+    }
+}
+
+/* 4. Large Mobile / Small Tablets (MD) 641px – 768px */
 @media (max-width: 768px) {
-    .header {
+    .header-wrapper {
         flex-direction: column;
         align-items: flex-start;
         gap: 16px;
-        padding: 16px 24px;
-        height: auto;
     }
-
     .top-input {
         width: 100%;
         margin-left: 0;
     }
-
     .top-input input {
         width: 100%;
     }
-
-    .header-icons {
-        align-self: flex-end;
-    }
-
-    .sidebar {
-        display: none;
-    }
-
-    .main-content {
-        margin-left: 0;
-    }
-
-    .courses-grid {
-        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-        gap: 16px;
+    .course-filters {
+        margin: 20px;
+        flex-direction: column;
     }
 }
 
+/* 5. Mobile Devices (SM) 481px – 640px */
+@media (max-width: 640px) {
+    .collection-title {
+        font-size: 1.5rem;
+    }
+    .course-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* 6. Small Mobile (XS) < 480px */
 @media (max-width: 480px) {
-    .course-filters {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 16px;
+    .main-wrapper {
+        padding: 20px 16px;
     }
-
-    .search-filter {
-        width: 100%;
-    }
-
-    .search-filter input {
-        width: 100%;
-    }
-
-    .course-links {
-        overflow-x: auto;
-        padding-bottom: 8px;
-        width: 100%;
-    }
-
     .course-card {
         width: 100%;
     }
-
     .course-image img {
         padding-left: 0;
         margin: 0 auto;

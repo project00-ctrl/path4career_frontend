@@ -693,109 +693,79 @@ body.bootcamp-page {
   font-weight: 600;
 }
 
-/* ===== RESPONSIVE ===== */
+/* ──────────────────────────────────────────────────────────────────────────
+   COMPREHENSIVE RESPONSIVE SYSTEM (Standardized)
+   ────────────────────────────────────────────────────────────────────────── */
+
+/* 1. Ultra Wide Screens (2XL) > 1281px */
+@media (min-width: 1281px) {
+  .bc-container {
+    max-width: 1440px;
+    margin: 0 auto;
+  }
+}
+
+/* 2. Standard Laptops (XL) 1025px – 1280px */
+@media (min-width: 1025px) and (max-width: 1280px) {
+  .bc-container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+}
+
+/* 3. Tablets / Small Laptops (LG) 769px – 1024px */
 @media (max-width: 1024px) {
-  .bc-features-grid {
+  .bc-features-grid, .bc-tracks-grid {
     grid-template-columns: repeat(2, 1fr);
   }
-
-  .bc-tracks-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
   .bc-banner-title {
     font-size: 3rem;
   }
 }
 
+/* 4. Large Mobile / Small Tablets (MD) 641px – 768px */
 @media (max-width: 768px) {
   .bc-coming-soon-banner {
     min-height: 70vh;
     padding: 100px 16px 60px;
   }
-
   .bc-banner-title {
     font-size: 2.4rem;
   }
-
-  .bc-banner-subtitle {
-    font-size: 1rem;
-  }
-
   .bc-countdown {
     gap: 10px;
   }
-
-  .bc-countdown-item {
-    padding: 14px 16px;
-    min-width: 60px;
+  .bc-features-grid, .bc-why-grid, .bc-tracks-grid {
+    grid-template-columns: 1fr;
   }
-
-  .bc-countdown-num {
-    font-size: 1.6rem;
-  }
-
   .bc-notify-form {
     flex-direction: column;
   }
+}
 
-  .bc-features-grid {
-    grid-template-columns: 1fr;
+/* 5. Mobile Devices (SM) 481px – 640px */
+@media (max-width: 640px) {
+  .bc-banner-title {
+    font-size: 2.1rem;
   }
-
-  .bc-why-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .bc-tracks-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .bc-what-header h2,
-  .bc-why-container h2,
-  .bc-planned-container h2,
-  .bc-faq-container h2,
-  .bc-cta-container h2 {
-    font-size: 1.8rem;
-  }
-
-  .bc-what-section,
-  .bc-why-section,
-  .bc-planned-section,
-  .bc-faq-section,
-  .bc-cta-section {
+  .bc-what-section, .bc-why-section {
     padding: 60px 16px;
-  }
-
-  .bc-stats-container {
-    gap: 20px;
-  }
-
-  .bc-stat-item h2 {
-    font-size: 1.8rem;
   }
 }
 
+/* 6. Small Mobile (XS) < 480px */
 @media (max-width: 480px) {
   .bc-banner-title {
-    font-size: 1.9rem;
+    font-size: 1.8rem;
   }
-
   .bc-countdown-item {
     padding: 10px 12px;
     min-width: 50px;
   }
-
   .bc-countdown-num {
     font-size: 1.3rem;
   }
-
-  .bc-countdown-label {
-    font-size: 0.65rem;
-  }
-
   .bc-cta-buttons {
     flex-direction: column;
-    align-items: center;
   }
 }

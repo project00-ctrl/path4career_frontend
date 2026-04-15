@@ -277,32 +277,61 @@ body {
     font-size: 0.88rem;
 }
 
+/* ──────────────────────────────────────────────────────────────────────────
+   COMPREHENSIVE RESPONSIVE SYSTEM (Standardized)
+   ────────────────────────────────────────────────────────────────────────── */
+
+/* 1. Ultra Wide Screens (2XL) > 1281px */
+@media (min-width: 1281px) {
+    .whereto-container {
+        max-width: 1440px;
+    }
+}
+
+/* 2. Standard Laptops (XL) 1025px – 1280px */
+@media (min-width: 1025px) and (max-width: 1280px) {
+    .whereto-container {
+        max-width: 1200px;
+    }
+}
+
+/* 3. Tablets / Small Laptops (LG) 769px – 1024px */
 @media (max-width: 1024px) {
     .whereto-grid {
         grid-template-columns: repeat(2, 1fr);
     }
-
     .whereto-split {
         grid-template-columns: 1fr;
     }
 }
 
-@media (max-width: 640px) {
+/* 4. Large Mobile / Small Tablets (MD) 641px – 768px */
+@media (max-width: 768px) {
     .whereto-hero {
         padding: 40px 0 20px;
     }
+    .whereto-grid, .whereto-grid-2 {
+        grid-template-columns: 1fr;
+    }
+}
 
+/* 5. Mobile Devices (SM) 481px – 640px */
+@media (max-width: 640px) {
     .whereto-title {
         font-size: 2.2rem;
     }
-
-    .whereto-grid,
-    .whereto-grid-2 {
-        grid-template-columns: 1fr;
-    }
-
     .whereto-btn {
         width: 100%;
+    }
+}
+
+/* 6. Small Mobile (XS) < 480px */
+@media (max-width: 480px) {
+    .whereto-page {
+        padding: 20px 0 40px;
+    }
+    .whereto-title {
+        font-size: 1.8rem;
     }
 }
 

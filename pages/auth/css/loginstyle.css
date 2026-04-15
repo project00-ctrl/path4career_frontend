@@ -213,11 +213,36 @@ a:hover {
 }
 
 /* ========== MOBILE RESPONSIVENESS ========== */
+/* ──────────────────────────────────────────────────────────────────────────
+   COMPREHENSIVE RESPONSIVE SYSTEM (Standardized)
+   ────────────────────────────────────────────────────────────────────────── */
+
+/* 1. Ultra Wide Screens (2XL) > 1281px */
+@media (min-width: 1281px) {
+    .container {
+        max-width: 1100px;
+    }
+}
+
+/* 2. Standard Laptops (XL) 1025px – 1280px */
+@media (min-width: 1025px) and (max-width: 1280px) {
+    .container {
+        max-width: 1000px;
+    }
+}
+
+/* 3. Tablets / Small Laptops (LG) 769px – 1024px */
+@media (max-width: 1024px) {
+    .container {
+        max-width: 900px;
+    }
+}
+
+/* 4. Large Mobile / Small Tablets (MD) 641px – 768px */
 @media (max-width: 768px) {
     body {
         padding: 16px;
     }
-
     .back-link {
         position: fixed;
         top: 16px;
@@ -231,24 +256,47 @@ a:hover {
         font-size: 14px;
         z-index: 100;
     }
-
     .container {
         flex-direction: column;
         max-width: 480px;
     }
-
     .left-panel {
         padding: 48px 32px;
         text-align: center;
         border-bottom-left-radius: 0;
         border-top-right-radius: 24px;
+        min-height: 240px;
     }
-
+    .left-panel .brand {
+        font-size: 36px;
+    }
     .right-panel {
         padding: 48px 32px;
     }
+}
 
+/* 5. Mobile Devices (SM) 481px – 640px */
+@media (max-width: 640px) {
     .login-box h2 {
         font-size: 28px;
+    }
+}
+
+/* 6. Small Mobile (XS) < 480px */
+@media (max-width: 480px) {
+    .left-panel {
+        padding: 40px 20px;
+    }
+    .left-panel .brand {
+        font-size: 32px;
+    }
+    .left-panel .tagline {
+        font-size: 16px;
+    }
+    .right-panel {
+        padding: 40px 20px;
+    }
+    .login-box h2 {
+        font-size: 24px;
     }
 }

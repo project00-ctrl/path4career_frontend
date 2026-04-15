@@ -617,184 +617,118 @@ body {
     100% { background: transparent; }
 }
 
-/* =========================================
-   RESPONSIVE — TABLET (≤1024px)
-========================================= */
-@media (max-width: 1024px) {
-    .main-layout {
-        flex-direction: row;
-    }
+/* ──────────────────────────────────────────────────────────────────────────
+   COMPREHENSIVE RESPONSIVE SYSTEM (Standardized)
+   ────────────────────────────────────────────────────────────────────────── */
 
+/* 1. Ultra Wide Screens (2XL) > 1281px */
+@media (min-width: 1281px) {
+    .content-area {
+        max-width: 1000px;
+        margin: 0 auto;
+    }
+}
+
+/* 2. Standard Laptops (XL) 1025px – 1280px */
+@media (min-width: 1025px) and (max-width: 1280px) {
+    .content-area {
+        max-width: 900px;
+        margin: 0 auto;
+    }
+}
+
+/* 3. Tablets / Small Laptops (LG) 769px – 1024px */
+@media (max-width: 1024px) {
     .right-sidebar {
         width: 240px;
         min-width: 240px;
-        padding: 16px 12px;
     }
-
     .content-area {
         padding: 30px 24px;
     }
-
     .tech-nav {
         gap: 15px;
         font-size: 13px;
     }
 }
 
-/* =========================================
-   RESPONSIVE — MOBILE & TABLET PORTRAIT (≤768px)
-========================================= */
+/* 4. Large Mobile / Small Tablets (MD) 641px – 768px */
 @media (max-width: 768px) {
     body {
         overflow: auto;
         height: auto;
     }
-
     .main-layout {
         flex-direction: column;
-        height: auto;
     }
-
-    /* Show sidebar toggle button */
     .sidebar-toggle {
         display: flex;
     }
-
-    /* Left sidebar becomes a slide-in overlay */
     .left-sidebar {
         position: fixed;
         top: 0;
         left: 0;
         width: 260px;
-        min-width: 260px;
         height: 100vh;
         z-index: 9001;
         transform: translateX(-100%);
-        border-right: 1px solid var(--border);
-        border-bottom: none;
-        max-height: none;
-        padding: 0;
-        background-color: var(--bg-secondary);
         box-shadow: var(--shadow-hover);
-        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
-
     .left-sidebar.open {
         transform: translateX(0);
     }
-
     .sidebar-close-wrap {
         display: block;
     }
-
-    /* Content area full width */
-    .content-area {
-        padding: 20px 16px;
-        margin-top: 48px;
-        width: 100%;
-    }
-
-    .content-area h1 {
-        font-size: 24px;
-        margin-bottom: 20px;
-    }
-
-    .text-block {
-        font-size: 14px;
-        line-height: 1.7;
-    }
-
-    /* Right sidebar becomes bottom suggestions on mobile */
     .right-sidebar {
-        display: block;
         width: 100%;
         min-width: 0;
         border-left: none;
         border-top: 1px solid var(--border);
-        background-color: var(--bg-secondary);
-        padding: 18px 14px 24px;
-        overflow-x: auto;
-        overflow-y: hidden;
         white-space: nowrap;
+        overflow-x: auto;
+        padding-bottom: 24px;
     }
-
-    .right-sidebar-title {
-        margin-bottom: 12px;
-    }
-
     .right-sidebar .course-card {
         display: inline-block;
-        vertical-align: top;
         width: 260px;
-        margin: 0 12px 0 0;
+        margin-right: 12px;
         white-space: normal;
     }
-
-    /* Syntax box */
-    .syntax-wrapper {
-        max-width: 100%;
+    .content-area {
+        padding: 20px 16px;
+        margin-top: 48px;
     }
+}
 
-    /* Nav buttons stack */
+/* 5. Mobile Devices (SM) 481px – 640px */
+@media (max-width: 640px) {
+    .content-area h1 {
+        font-size: 24px;
+    }
     .page-nav-buttons {
         flex-wrap: wrap;
         gap: 10px;
     }
-
-    .btn-primary, .btn-secondary {
-        padding: 10px 16px;
-        font-size: 13px;
-    }
-
-    /* Editor modal */
-    .editor-content {
-        width: 95%;
-        height: 90%;
-    }
 }
 
-/* =========================================
-   RESPONSIVE — SMALL MOBILE (≤480px)
-========================================= */
+/* 6. Small Mobile (XS) < 480px */
 @media (max-width: 480px) {
-    .content-area {
-        padding: 16px 12px;
-        margin-top: 48px;
-    }
-
     .content-area h1 {
         font-size: 20px;
     }
-
-    .syntax-wrapper {
-        border-radius: 6px;
+    .text-block {
+        font-size: 14px;
     }
-
-    .code-editor pre {
-        font-size: 12px;
-    }
-
-    .btn-try-it {
-        padding: 10px 20px;
-        font-size: 13px;
+    .btn-try-it, .btn-primary, .btn-secondary {
         width: 100%;
     }
-
-    .btn-primary, .btn-secondary {
-        width: 100%;
-        text-align: center;
-    }
-
     .sidebar-toggle {
         top: 74px;
         left: 8px;
-        padding: 6px 10px;
-        font-size: 12px;
     }
-    
     .tech-nav {
         height: 40px;
         padding: 0 12px;
-        gap: 15px;
     }
 }

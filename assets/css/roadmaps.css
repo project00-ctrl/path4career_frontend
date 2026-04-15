@@ -818,75 +818,82 @@ nav>ul {
 
 /* ================= RESPONSIVE ================= */
 
+/* ──────────────────────────────────────────────────────────────────────────
+   COMPREHENSIVE RESPONSIVE SYSTEM (Standardized)
+   ────────────────────────────────────────────────────────────────────────── */
+
+/* 1. Ultra Wide Screens (2XL) > 1281px */
+@media (min-width: 1281px) {
+    .card-container {
+        max-width: 1440px;
+        margin: 0 auto;
+    }
+    .main-title {
+        font-size: 3.8rem;
+    }
+}
+
+/* 2. Standard Laptops (XL) 1025px – 1280px */
+@media (min-width: 1025px) and (max-width: 1280px) {
+    .card-container {
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+    .main-title {
+        font-size: 3.2rem;
+    }
+}
+
+/* 3. Tablets / Small Laptops (LG) 769px – 1024px */
 @media (max-width: 1024px) {
     .main-title {
         font-size: 2.8rem;
         margin-top: 100px;
     }
-    
     .card-container {
         padding: 0 30px 80px;
-        gap: 24px;
         grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
     }
 }
 
+/* 4. Large Mobile / Small Tablets (MD) 641px – 768px */
 @media (max-width: 768px) {
     .main-title {
         font-size: 2.2rem;
     }
-
-    .course-filters {
-        flex-direction: column;
-        gap: 12px;
-        margin-bottom: 30px;
-        padding: 0 20px;
-    }
-
-    .course-filters input,
-    .course-filters select {
-        width: 100%;
-        min-width: 0;
-    }
-
     .card-container {
         grid-template-columns: 1fr;
         padding: 0 20px 60px;
-        max-width: 100%;
     }
-
-    .card {
-        padding: 24px;
-        border-radius: 24px;
-    }
-
-    .card h2 {
-        font-size: 1.25rem;
+    .course-filters {
+        flex-direction: column;
+        gap: 12px;
     }
 }
 
-@media (max-width: 576px) {
+/* 5. Mobile Devices (SM) 481px – 640px */
+@media (max-width: 640px) {
     .main-title {
         font-size: 1.8rem;
-        letter-spacing: -1px;
-        margin-top: 80px;
-        padding: 0 10px;
     }
-
-    .card-icon {
-        font-size: 2rem;
-    }
-
     .card {
         padding: 20px;
     }
-
-    .meta {
-        gap: 8px;
-    }
-
     .meta p {
-        padding: 4px 10px;
         font-size: 0.75rem;
+    }
+}
+
+/* 6. Small Mobile (XS) < 480px */
+@media (max-width: 480px) {
+    .main-title {
+        font-size: 1.6rem;
+        margin-top: 80px;
+    }
+    .card-icon {
+        font-size: 1.8rem;
+    }
+    .card h2 {
+        font-size: 1.15rem;
     }
 }

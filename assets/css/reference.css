@@ -499,103 +499,92 @@ body {
 /* =========================================
    RESPONSIVE
 ========================================= */
+/* ──────────────────────────────────────────────────────────────────────────
+   COMPREHENSIVE RESPONSIVE SYSTEM (Standardized)
+   ────────────────────────────────────────────────────────────────────────── */
+
+/* 1. Ultra Wide Screens (2XL) > 1281px */
+@media (min-width: 1281px) {
+    .content-area {
+        max-width: 1440px;
+        margin: 0 auto;
+    }
+}
+
+/* 2. Standard Laptops (XL) 1025px – 1280px */
+@media (min-width: 1025px) and (max-width: 1280px) {
+    .left-sidebar {
+        width: 260px;
+    }
+}
+
+/* 3. Tablets / Small Laptops (LG) 769px – 1024px */
+@media (max-width: 1024px) {
+    .left-sidebar {
+        width: 240px;
+    }
+    .content-area {
+        padding: 40px 30px;
+    }
+    .ref-landing-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* 4. Large Mobile / Small Tablets (MD) 641px – 768px */
 @media (max-width: 768px) {
-    /* Show sidebar toggle button */
     .ref-sidebar-toggle {
         display: flex;
     }
-
-    /* Left sidebar becomes slide-in overlay */
     .left-sidebar {
         position: fixed;
         top: 0;
         left: 0;
-        width: 260px;
+        width: 280px;
         height: 100vh;
         z-index: 9001;
         transform: translateX(-100%);
         transition: transform 0.3s ease;
-        border-right: 1px solid rgba(0, 0, 0, 0.08);
         background-color: #FDFAF6;
         box-shadow: 4px 0 24px rgba(0, 0, 0, 0.12);
         padding: 0;
     }
-
     .left-sidebar.open {
         transform: translateX(0);
     }
-
     .ref-sidebar-close-wrap {
         display: block;
     }
-
-    body {
-        overflow-x: hidden;
-    }
-
     .main-layout {
         flex-direction: column;
-        height: auto;
     }
-
     .content-area {
         padding: 24px 16px;
         margin-top: 48px;
     }
-
-    .ref-landing-grid {
-        grid-template-columns: 1fr 1fr;
-    }
-
-    .ref-table-wrap {
-        overflow-x: auto;
-        -webkit-overflow-scrolling: touch;
-    }
-
-    .ref-table {
-        font-size: 13px;
-        min-width: 500px;
-    }
-
-    .ref-table thead th,
-    .ref-table tbody td {
-        padding: 8px 10px;
-    }
-
-    .page-nav-buttons {
-        flex-wrap: wrap;
-        gap: 10px;
-    }
-
-    .btn-primary, .btn-secondary {
-        padding: 10px 16px;
-        font-size: 13px;
-    }
-
     .content-area h1 {
         font-size: 22px;
     }
 }
 
-@media (max-width: 480px) {
+/* 5. Mobile Devices (SM) 481px – 640px */
+@media (max-width: 640px) {
     .ref-landing-grid {
         grid-template-columns: 1fr;
     }
-
-    .content-area {
-        padding: 16px 12px;
-        margin-top: 48px;
+    .page-nav-buttons {
+        flex-direction: column;
+        gap: 12px;
     }
+}
 
+/* 6. Small Mobile (XS) < 480px */
+@media (max-width: 480px) {
     .ref-sidebar-toggle {
         top: 70px;
         left: 8px;
-        padding: 6px 10px;
-        font-size: 12px;
     }
-
-    .btn-primary, .btn-secondary {
-        width: 100%;
-        text-align: center;
+    .content-area {
+        padding: 16px 12px;
     }
 }

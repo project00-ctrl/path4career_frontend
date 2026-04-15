@@ -1186,62 +1186,94 @@ body {
     }
 }
 
-/* ── RESPONSIVE ── */
-@media (max-width:900px) {
+/* ──────────────────────────────────────────────────────────────────────────
+   COMPREHENSIVE RESPONSIVE SYSTEM (Standardized)
+   ────────────────────────────────────────────────────────────────────────── */
 
-    .cert-page-header,
-    .controls-bar,
-    .catalog-section {
-        padding-left: 20px;
-        padding-right: 20px;
-    }
-
-    .modal-body {
-        padding: 12px;
+/* 1. Ultra Wide Screens (2XL) > 1281px */
+@media (min-width: 1281px) {
+    .hub-container {
+        max-width: 1440px;
+        margin: 0 auto;
     }
 }
 
-@media (max-width:600px) {
-    .catalog-grid, .bundles-grid {
-        grid-template-columns: 1fr;
+/* 2. Standard Laptops (XL) 1025px – 1280px */
+@media (min-width: 1025px) and (max-width: 1280px) {
+    .hub-container {
+        max-width: 1200px;
+        margin: 0 auto;
     }
+}
 
+/* 3. Tablets / Small Laptops (LG) 769px – 1024px */
+@media (max-width: 1024px) {
+    .hub-hero { 
+        grid-template-columns: 1fr; 
+        text-align: center; 
+        gap: 80px; 
+    }
+    .hub-hero-visual { order: -1; }
+    .anatomy-item { justify-content: center; }
+    .bento-grid { grid-template-columns: repeat(2, 1fr); }
+    .hub-title { font-size: 3rem; }
+}
+
+/* 4. Large Mobile / Small Tablets (MD) 641px – 768px */
+@media (max-width: 768px) {
     .cert-view-tabs {
-        flex-direction: column;
-        padding-left: 20px;
-        padding-right: 20px;
-        gap: 10px;
+        padding: 16px 10px 0;
+        gap: 8px;
+        overflow-x: auto;
+        justify-content: flex-start;
+        -webkit-overflow-scrolling: touch;
     }
-    
     .cert-tab {
-        width: 100%;
-        border-bottom: none;
-        border-left: 3px solid transparent;
-        padding: 10px 15px;
-        text-align: left;
+        padding: 10px 16px;
+        font-size: 0.95rem;
+        white-space: nowrap;
     }
-    
-    .cert-tab.active {
-        border-bottom: none;
-        border-left-color: var(--accent);
-        background: rgba(33, 78, 165, 0.05);
+    .catalog-grid, .bundles-grid, .bento-grid { 
+        grid-template-columns: 1fr; 
     }
-
+    .bento-card.wide { grid-column: span 1; }
+    .modal-shell {
+        max-width: 100%;
+        border-radius: 0;
+        max-height: 100vh;
+    }
     .cert-info-row {
         flex-direction: column;
         align-items: center;
         gap: 10px;
     }
+}
 
-    .cert-sig-line {
-        margin: 0 auto;
+/* 5. Mobile Devices (SM) 481px – 640px */
+@media (max-width: 640px) {
+    .controls-inner {
+        flex-direction: column;
+        align-items: stretch;
     }
-
+    .cert-tab {
+        width: 100%;
+        text-align: left;
+    }
     .cert-verify {
         position: static;
         margin-top: 8px;
         text-align: center;
     }
+}
+
+/* 6. Small Mobile (XS) < 480px */
+@media (max-width: 480px) {
+    .catalog-section { padding: 20px 16px 60px; }
+    .course-card { padding: 16px; }
+    .card-title { font-size: 1rem; }
+    .card-actions-dual { flex-direction: column; }
+    .modal-body { padding: 10px; }
+    .hub-title { font-size: 2.2rem; }
 }
 /* ── ACHIEVEMENT HUB ── */
 .achievement-hub {
@@ -1483,6 +1515,8 @@ body {
 .footer-links a:hover { color: var(--gold-dark); }
 
 /* ── HUB RESPONSIVE ── */
+@media (max-width: 1440px) {}
+@media (max-width: 1280px) {}
 @media (max-width: 1024px) {
     .hub-hero { grid-template-columns: 1fr; text-align: center; gap: 80px; }
     .hub-hero-visual { order: -1; }
@@ -1490,63 +1524,20 @@ body {
     .bento-grid { grid-template-columns: repeat(2, 1fr); }
     .hub-title { font-size: 3rem; }
 }
-
-@media (max-width: 900px) {
-    .controls-inner {
-        flex-direction: column;
-        align-items: stretch;
-    }
-    
-    .search-wrap {
-        max-width: 100%;
-    }
-    
-    .course-counter {
-        margin-left: 0;
-        text-align: center;
-    }
-}
-
 @media (max-width: 768px) {
-    .cert-view-tabs {
-        padding: 16px 10px 0;
-        gap: 8px;
-        overflow-x: auto;
-        justify-content: flex-start;
-        -webkit-overflow-scrolling: touch;
-    }
-
-    .cert-tab {
-        padding: 10px 16px;
-        font-size: 0.95rem;
-        white-space: nowrap;
-    }
-
+    .controls-inner { flex-direction: column; align-items: stretch; }
+    .search-wrap { max-width: 100%; }
+    .course-counter { margin-left: 0; text-align: center; }
+    .cert-view-tabs { padding: 16px 10px 0; gap: 8px; overflow-x: auto; justify-content: flex-start; -webkit-overflow-scrolling: touch; }
+    .cert-tab { padding: 10px 16px; font-size: 0.95rem; white-space: nowrap; }
     .bundles-header h2 { font-size: 1.6rem; }
-    
-    .bundles-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .catalog-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .bento-grid { grid-template-columns: 1fr; }
+    .bundles-grid, .catalog-grid, .bento-grid { grid-template-columns: 1fr; }
     .bento-card.wide { grid-column: span 1; }
     .footer-bottom { flex-direction: column; text-align: center; }
-
-    .modal-shell {
-        max-width: 100%;
-        border-radius: 0;
-        max-height: 100vh;
-    }
+    .modal-shell { max-width: 100%; border-radius: 0; max-height: 100vh; }
 }
-
 @media (max-width: 480px) {
     .catalog-section { padding: 20px 16px 60px; }
-    
-    .course-card {
         padding: 16px;
     }
 

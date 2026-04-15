@@ -1204,112 +1204,69 @@
     height: 65px; /* Default desktop height */
 }
 
-/* ---- RESPONSIVE BREAKPOINTS ---- */
+/* ──────────────────────────────────────────────────────────────────────────
+   COMPREHENSIVE RESPONSIVE SYSTEM (Standardized)
+   ────────────────────────────────────────────────────────────────────────── */
 
-/* 1. Large Laptops / Desktops (LG/XL) - Default styles cover > 1100px */
-
-/* 2. Medium Laptops / Tablets (MD) - < 1100px */
-@media (max-width: 1100px) {
-    .navbar-nav-items {
-        display: none;
+/* 1. Ultra Wide Screens (2XL) > 1281px */
+@media (min-width: 1281px) {
+    .navbar-header .header-container {
+        max-width: 1440px;
+        margin: 0 auto;
     }
+}
 
-    .navbar-desk-only {
+/* 2. Standard Laptops (XL) 1025px – 1280px */
+@media (min-width: 1025px) and (max-width: 1280px) {
+    .navbar-header .header-container {
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+}
+
+/* 3. Tablets / Small Laptops (LG) 769px – 1024px */
+@media (max-width: 1024px) {
+    .navbar-nav-items, .navbar-desk-only {
         display: none;
     }
 
     .navbar-hamburger {
-        display: block;
+        display: block !important;
     }
 
-    .navbar-search {
-        width: 180px;
-    }
-}
-
-/* 3. Small Tablets / Large Phones (SM) - < 850px */
-@media (max-width: 850px) {
     .navbar-header {
-        padding: 0 16px 8px 16px;
-    }
-    
-    .navbar-search {
-        display: none;
+        height: 60px;
+        padding: 0 20px;
     }
 
-    .navbar-mobile-search-btn {
-        display: flex;
-        order: 5;
-    }
-
-    .navbar-profile {
-        order: 6;
-    }
-
-    .navbar-hamburger {
-        order: 10;
+    .navbar-logo h3 {
+        font-size: 1rem;
     }
 }
 
-/* 4. Phones (S/XS) - < 768px */
+/* 4. Large Mobile / Small Tablets (MD) 641px – 768px */
 @media (max-width: 768px) {
     .navbar-header {
-        padding: 0 12px 6px 12px; /* Match strip padding */
         height: 56px;
-        display: flex;
-        align-items: center;
-        overflow-x: hidden; /* Prevent header itself from contributing to overflow */
+        padding: 0 12px;
     }
 
-    .navbar-header .header-container {
-        gap: 12px; /* Increased from 8px for better icon spacing */
-        flex-wrap: nowrap;
-        justify-content: space-between;
-    }
-
-    .navbar-logo {
-        flex: 1;
-        min-width: 0;
-    }
-    
     .navbar-logo h3 {
-        display: block;
         font-size: 0.95rem;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-    }
-
-    .navbar-logo-img {
-        width: 30px;
-        height: 30px;
     }
 
     .navbar-mobile-search-btn {
         display: flex !important;
-        width: 34px;
-        height: 34px;
         order: 5;
-        flex-shrink: 0;
     }
 
     .navbar-profile {
         order: 8;
-        flex-shrink: 0;
-    }
-
-    .navbar-avatar {
-        width: 34px;
-        height: 34px;
-        font-size: 0.9rem;
     }
 
     .navbar-hamburger {
         display: block !important;
         order: 10;
-        font-size: 1.4rem;
-        padding: 6px;
-        flex-shrink: 0;
     }
 
     .navbar-search {
@@ -1319,24 +1276,9 @@
     .navbar-mobile-searchbar {
         top: 56px;
     }
-    
-    .navbar-mobile-searchbar.open {
-        display: block !important;
-    }
 
     .navbar-course-strip {
         top: 56px;
-    }
-
-    .navbar-course-strip .strip-inner {
-        gap: 12px;
-        padding: 6px 12px;
-    }
-
-    .navbar-course-strip a {
-        font-size: 0.78rem;
-        padding: 3px 8px;
-        background: rgba(255, 255, 255, 0.08);
     }
 
     .navbar-mobile-nav {
@@ -1344,55 +1286,35 @@
         height: calc(100vh - 56px);
     }
 
-    .navbar-mobile-overlay {
-        inset: 56px 0 0 0;
-    }
-
     .navbar-spacer {
         height: 92px;
     }
-
-    .navbar-profile-menu {
-        top: 60px;
-        right: 10px;
-        width: 180px;
-    }
 }
 
-/* 5. Small Phones (XS) - < 576px */
-@media (max-width: 576px) {
+/* 5. Mobile Devices (SM) 481px – 640px */
+@media (max-width: 640px) {
     .navbar-logo h3 {
-        max-width: 100px; /* Truncate text on small screens */
-    }
-    
-    .navbar-profile span {
-        display: none !important; /* Force hide name */
+        max-width: 150px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
 }
 
-/* 6. Tiny Mobile - < 480px */
+/* 6. Small Mobile (XS) < 480px */
 @media (max-width: 480px) {
     .navbar-logo h3 {
-        font-size: 0.82rem;
-    }
-    
-    .navbar-logo-link {
-        gap: 4px;
-    }
-
-    .navbar-mobile-brand-text {
         font-size: 0.85rem;
+        max-width: 110px;
     }
-}
 
-/* 7. Extremely Tiny - < 360px */
-@media (max-width: 360px) {
-    .navbar-logo h3 {
-        display: none;
+    .navbar-avatar {
+        width: 32px;
+        height: 32px;
     }
 
     .navbar-header .header-container {
-        gap: 4px;
+        gap: 8px;
     }
 }
 

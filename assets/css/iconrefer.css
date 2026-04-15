@@ -758,443 +758,94 @@ main {
     opacity: 0.75;
 }
 
-/* RESPONSIVE 1024px */
+/* ──────────────────────────────────────────────────────────────────────────
+   COMPREHENSIVE RESPONSIVE SYSTEM (Standardized)
+   ────────────────────────────────────────────────────────────────────────── */
+
+/* 1. Ultra Wide Screens (2XL) > 1281px */
+@media (min-width: 1281px) {
+    main {
+        max-width: 1440px;
+        margin-left: 320px;
+    }
+}
+
+/* 2. Standard Laptops (XL) 1025px – 1280px */
+@media (min-width: 1025px) and (max-width: 1280px) {
+    main {
+        max-width: 1200px;
+        margin-left: 300px;
+    }
+}
+
+/* 3. Tablets / Small Laptops (LG) 769px – 1024px */
 @media (max-width: 1024px) {
-    .reference-close {
-        position: fixed;
-        top: 40px;
-        right: 150px;
-        z-index: 999;
-    }
-     .tutor-close {
-        position: fixed;
-        top: 100px;
-        right: 150px;
-        z-index: 999;
-    }
-
-    header {
-        padding-left: 20px;
-    }
-
-    .profile span {
-        display: none;
-    }
-
     .side-content {
         transform: translateX(-100%);
         position: fixed;
         z-index: 2000;
+        top: 80px;
     }
-
     .side-content.open {
         transform: translateX(0);
     }
-
     main {
         margin-left: 0;
-        padding: 40px 30px;
+        width: 100%;
+        padding: 30px 20px;
     }
-
+    .profile span {
+        display: none;
+    }
     .top-bar {
         flex-direction: column;
         gap: 20px;
-        padding: 20px;
         text-align: center;
     }
-
-    .search-field {
-        width: 100%;
-        max-width: 400px;
-    }
-
     .reference-card {
         width: 90%;
         margin-left: 5%;
         height: 85vh;
     }
-
-    .reference-contents {
-        padding: 60px 30px;
-    }
-
-    .reference-row .container {
-        flex-direction: column;
-        gap: 30px;
-    }
 }
 
-/* RESPONSIVE 992px */
-@media (max-width: 992px) {
-    .reference-close {
-        position: fixed;
-        top: 70px;
-        right: 120px;
-        z-index: 999;
-    }
-
-    .reference-card {
-        width: 90%;
-        margin-left: 0;
-        margin-top: 100px;
-        left: 50%;
-        transform: translateX(-50%);
-    }
-
-    .reference-contents {
-        padding: 60px 40px;
-    }
-
-    .reference-row .container {
-        gap: 30px;
-    }
-
-    .tutor-card {
-        width: 90%;
-        margin-left: 0;
-        margin-top: 100px;
-        left: 50%;
-        transform: translateX(-50%);
-    }
-
-    .tutor-contents {
-        padding: 60px 40px;
-    }
-
-    .tutor-row .container {
-        gap: 30px;
-    }
-
-    .side-content {
-        width: 240px;
-    }
-
-    section {
-        margin-left: 240px;
-        padding: 60px 40px;
-    }
-
-    .top-search {
-        display: none;
-    }
-
+/* 4. Large Mobile / Small Tablets (MD) 641px – 768px */
+@media (max-width: 768px) {
     .top-bar h1 {
-        margin-top: 20px;
-    }
-
-    .reference-search,
-    .search {
-        width: 260px;
-    }
-
-    h1 {
         font-size: 2.2rem;
     }
-
-    h2 {
-        font-size: 1.9rem;
+    .forge-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    .side-close button {
+        left: 160px;
     }
 }
 
-/* RESPONSIVE 768px */
-@media (max-width: 768px) {
-    header {
-        padding-left: 0px;
-    }
-
+/* 5. Mobile Devices (SM) 481px – 640px */
+@media (max-width: 640px) {
     .header>.container {
-        display: flex;
-        align-items: center;
-        justify-content: space-around;
-        gap: 10px;
-    }
-
-    .desk-refer {
-        display: none;
-    }
-
-    .initial {
-        display: block;
-    }
-
-    .profile span {
-        display: block;
-    }
-
-    .profile-menu.open {
-        display: flex;
-        flex-direction: column;
-        transform: scale(1);
-        opacity: 1;
-        pointer-events: auto;
-        gap: 20px;
-    }
-
-    .top-search {
-        display: none;
-    }
-
-    .reference-search,
-    .search {
-        width: 260px;
-    }
-
-    body {
-        overflow-x: hidden;
-    }
-
-    .logo .refer {
-        display: none;
-    }
-
-    .top {
-        display: block;
-    }
-
-    nav {
-        display: none;
-    }
-
-    .hamburger {
-        display: block;
-    }
-
-    .side-close {
-        display: block;
-    }
-
-    .side-close button {
-        position: absolute;
-        top: -180px;
-        left: 160px;
-    }
-
-    .mobile-nav.open {
-        display: flex;
-        right: 0;
-        opacity: 1;
-        gap: 40px;
-    }
-
-    .search {
-        width: 300px;
-    }
-
-    .reference-card {
-        width: 95%;
-        height: auto;
-        max-height: 90vh;
-        overflow-y: auto;
-        margin: 0;
-        top: 80px;
-        left: 50%;
-        transform: translateX(-50%);
-        border-radius: 12px;
-    }
-
-    .reference-contents {
-        width: 95%;
-        height: 90vh;
-        padding: 30px 20px;
-    }
-
-    .reference-row .container {
-        flex-direction: column;
-        gap: 40px;
-        text-align: center;
-        align-items: center;
-    }
-
-    .frontend-col h3,
-    .backend-col h3 {
-        margin: 10px 0;
-    }
-
-    .reference-top {
         justify-content: start;
-        padding: 20px 0;
+        gap: 1rem;
     }
-
-    .reference-close {
-        top: 5px;
-        right: 600px;
-    }
-
-    .tutor-card {
-        width: 95%;
-        height: auto;
-        max-height: 90vh;
-        overflow-y: auto;
-        margin: 0;
-        top: 80px;
-        left: 50%;
-        transform: translateX(-50%);
-        border-radius: 12px;
-    }
-
-    .tutor-contents {
-        width: 95%;
-        height: 90vh;
-        padding: 90px 20px;
-    }
-
-    .tutor-row .container {
-        flex-direction: column;
-        gap: 40px;
-        text-align: center;
-        align-items: center;
-    }
-
-    .tutor-frontend-col h3,
-    .tutor-backend-col h3 {
-        margin: 10px 0;
-    }
-
-    .tutor-top {
-        justify-content: start;
-        padding: 10px 0;
-    }
-
-    .tutor-close {
-        top: 5px;
-        right: 600px;
-    }
-
-    .top-nav {
-        overflow-x: auto;
-    }
-
-    .top-bar h1 {
-        margin-top: 20px;
-        font-size: 2rem;
-    }
-
-    .forge-grid {
-        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-    }
-
-    .side-content {
-        position: fixed;
-        top: 0;
-        left: -280px;
-        width: 260px;
-        height: 100vh;
-        z-index: 999;
-        transition: 0.3s ease;
-    }
-
-    .side-content.open {
-        left: 0;
-    }
-
-    .brand {
-        font-size: 1.5rem;
-        padding: 20px;
-    }
-
-    .reference-top {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-
-    .reference-search {
+    .search-field {
         width: 100%;
     }
 }
 
-/* RESPONSIVE 640px */
-@media (max-width: 640px) {
-    .header {
-        padding: 0 20px 0px 20px;
-    }
-
-    .header>.container {
-        justify-content: start;
-        align-items: center;
-        gap: 2rem;
-        padding: 0px 10px 15px 10px;
-    }
-
-    .reference-close {
-        top: 5px;
-        right: 500px;
-    }
-
-    .tutor-close {
-        top: 15px;
-        right: 500px;
-    }
-}
-
-/* RESPONSIVE 480px */
+/* 6. Small Mobile (XS) < 480px */
 @media (max-width: 480px) {
-    .header {
-        padding: 0 20px 0px 20px;
-    }
-
-    .header>.container {
-        justify-content: start;
-        align-items: center;
-        gap: 2rem;
-        padding: 0px 10px 15px 10px;
-    }
-
     .top-bar h1 {
-        font-size: 1.6rem;
+        font-size: 1.8rem;
     }
-
-    .search-field {
-        padding: 12px 18px;
-        font-size: 0.9rem;
-    }
-
-    .tutorial {
-        display: none;
-    }
-
-    .logos {
-        display: none;
-    }
-
-    .logo h3 {
-        font-size: 1.5rem;
-    }
-
-    .logos {
-        width: 40px;
-        height: 40px;
-        border-radius: 14px;
-    }
-
     .forge-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(2, 1fr);
     }
-
     .forge-card {
         padding: 20px 10px;
     }
-
-    .reference-card {
-        width: 95%;
-        margin-left: 2.5%;
-        height: 90vh;
-    }
-
-    .reference-contents {
-        padding: 30px 15px;
-    }
-
-    .side-content {
-        width: 230px;
-    }
-
     .reference-close {
         top: 15px;
-        right: 330px;
+        right: 15px;
     }
-
-    .tutor-close {
-        top: 15px;
-        right: 350px;
-    }
-}
+}

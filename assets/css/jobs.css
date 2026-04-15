@@ -569,58 +569,87 @@ body {
   grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr));
 }
 
+/* ──────────────────────────────────────────────────────────────────────────
+   COMPREHENSIVE RESPONSIVE SYSTEM (Standardized)
+   ────────────────────────────────────────────────────────────────────────── */
+
+/* 1. Ultra Wide Screens (2XL) > 1281px */
+@media (min-width: 1281px) {
+  .container {
+    max-width: 1440px;
+  }
+}
+
+/* 2. Standard Laptops (XL) 1025px – 1280px */
+@media (min-width: 1025px) and (max-width: 1280px) {
+  .container {
+    max-width: 1200px;
+  }
+}
+
+/* 3. Tablets / Small Laptops (LG) 769px – 1024px */
 @media (max-width: 1024px) {
   .hero-modern h2 {
     font-size: 2rem;
   }
 }
 
+/* 4. Large Mobile / Small Tablets (MD) 641px – 768px */
 @media (max-width: 768px) {
   .job-list-header {
     flex-direction: column;
     align-items: flex-start;
     gap: 1rem;
   }
-  
-  /* Stack the search filters */
   .search-bar {
     flex-direction: column;
     border-radius: 20px;
     padding: 10px;
     gap: 10px;
   }
-
-  .search-bar input,
-  .search-bar select {
+  .search-bar input, .search-bar select {
     width: 100%;
-    border-radius: 12px;
-    background: var(--surface);
-    border: 1px solid var(--border);
   }
-
   .search-bar .nav-divider {
     display: none;
   }
-
   .search-bar .search-btn {
     width: 100%;
     border-radius: 12px;
     height: 48px;
   }
+  .job-details-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
+/* 5. Mobile Devices (SM) 481px – 640px */
+@media (max-width: 640px) {
+  .hero-stats {
+    gap: 1.5rem;
+  }
+  .hero h2 {
+    font-size: 1.8rem;
+  }
+}
+
+/* 6. Small Mobile (XS) < 480px */
 @media (max-width: 480px) {
   .hero {
     padding: 3rem 1rem;
   }
-  
   .hero h2 {
     font-size: 1.75rem;
   }
-
   .hero-stats {
     flex-direction: column;
-    gap: 1.5rem;
+  }
+  .job-card {
+    padding: 1rem;
+  }
+  .job-card-header {
+    flex-direction: column;
+    align-items: flex-start;
   }
 }
 
@@ -1293,27 +1322,6 @@ footer {
   align-items: flex-start;
 }
 
-@media (max-width: 900px) {
-  .job-details-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .job-details-grid aside .sidebar-card {
-    position: static !important;
-  }
-}
-
-/* Recruiter dashboard main grid */
-@media (max-width: 900px) {
-  .dashboard-header {
-    flex-direction: column;
-    align-items: flex-start !important;
-  }
-
-  main .container > div[style*="grid-template-columns: 1fr 1.5fr"] {
-    grid-template-columns: 1fr !important;
-  }
-}
 
 .feature-card {
   background: var(--surface);

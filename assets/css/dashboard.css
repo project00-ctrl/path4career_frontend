@@ -1187,122 +1187,89 @@ a {
     box-shadow: 0 18px 45px rgba(74, 108, 247, .55);
 }
 
-/* ================= RESPONSIVE ================= */
-@media (max-width: 1024px) {
-    header {
-        padding: 0 20px;
-    }
+/* ──────────────────────────────────────────────────────────────────────────
+   COMPREHENSIVE RESPONSIVE SYSTEM (Standardized)
+   ────────────────────────────────────────────────────────────────────────── */
 
-    .grid {
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+/* 1. Ultra Wide Screens (2XL) > 1281px */
+@media (min-width: 1281px) {
+    .container {
+        max-width: 1440px;
     }
-
     .hero h1 {
-        font-size: 32px;
+        font-size: 42px;
     }
 }
 
+/* 2. Standard Laptops (XL) 1025px – 1280px */
+@media (min-width: 1025px) and (max-width: 1280px) {
+    .container {
+        max-width: 1200px;
+    }
+    .hero h1 {
+        font-size: 36px;
+    }
+}
+
+/* 3. Tablets / Small Laptops (LG) 769px – 1024px */
+@media (max-width: 1024px) {
+    .hero h1 {
+        font-size: 32px;
+    }
+    .grid {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    }
+}
+
+/* 4. Large Mobile / Small Tablets (MD) 641px – 768px */
 @media (max-width: 768px) {
-    header {
-        height: 64px;
-        padding: 0 16px;
-    }
-
-    .brand {
-        font-size: 18px;
-    }
-
-    .logo {
-        width: 36px;
-        height: 36px;
-    }
-
-    .search {
-        display: none; /* Let the shared navbar handle search on mobile */
-    }
-
-    .hero-wrapper {
-        padding: 80px 16px 40px;
-    }
-
     .hero h1 {
         font-size: 24px;
     }
-
     .grid {
         grid-template-columns: 1fr;
     }
-
     .kpis {
         grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
         gap: 16px;
     }
-
     .progress-wrap {
         flex-direction: column;
         align-items: center;
         text-align: center;
-        gap: 16px;
     }
-
-    .ring {
-        width: 110px;
-        height: 110px;
-    }
-
-    .ring span {
-        width: 80px;
-        height: 80px;
-        font-size: 18px;
-    }
-
     .fab {
         right: 16px;
         bottom: 85px;
-        gap: 10px;
-    }
-
-    .fab button {
-        padding: 12px 20px;
-        font-size: 0.85rem;
     }
 }
 
-@media (max-width: 576px) {
-    .kpis {
-        grid-template-columns: 1fr;
-    }
-
+/* 5. Mobile Devices (SM) 481px – 640px */
+@media (max-width: 640px) {
     .hero h1 {
         font-size: 20px;
     }
-
-    .card {
-        padding: 24px 20px;
+    .kpis {
+        grid-template-columns: 1fr;
     }
-
     .badges {
         justify-content: center;
     }
-
-    .badge {
-        font-size: 0.8rem;
-        padding: 8px 16px;
-    }
-
-    .personal .container, .account .container {
-        width: calc(100% - 32px);
-        margin: 20px auto;
-        padding: 20px;
-    }
 }
 
-@media (max-width: 400px) {
+/* 6. Small Mobile (XS) < 480px */
+@media (max-width: 480px) {
     .hero h1 {
         font-size: 18px;
     }
-
+    .card {
+        padding: 24px 16px;
+    }
     .kpi h2 {
         font-size: 24px;
+    }
+    .personal .container, .account .container {
+        width: calc(100% - 24px);
+        padding: 16px;
     }
 }

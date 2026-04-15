@@ -386,120 +386,83 @@ iframe {
 }
 
 /* --- MOBILE: CODE / OUTPUT TABS --- */
+/* ──────────────────────────────────────────────────────────────────────────
+   COMPREHENSIVE RESPONSIVE SYSTEM (Standardized)
+   ────────────────────────────────────────────────────────────────────────── */
+
+/* 1. Ultra Wide Screens (2XL) > 1281px */
+@media (min-width: 1281px) {
+    .workspace {
+        max-width: 1600px;
+        margin: 0 auto;
+    }
+}
+
+/* 2. Standard Laptops (XL) 1025px – 1280px */
+@media (min-width: 1025px) and (max-width: 1280px) {
+    .editor-pane, .result-pane {
+        min-width: 400px;
+    }
+}
+
+/* 3. Tablets / Small Laptops (LG) 769px – 1024px */
+@media (max-width: 1024px) {
+    .editor-pane, .result-pane {
+        min-width: 350px;
+    }
+}
+
+/* 4. Large Mobile / Small Tablets (MD) 641px – 768px */
 @media (max-width: 768px) {
     .workspace {
         flex-direction: column;
         overflow-y: auto;
     }
-
-    .editor-nav,
-    .header {
+    .editor-nav, .header {
         padding: 10px 16px;
         flex-direction: column;
         gap: 12px;
         text-align: center;
     }
-
-    .editor-nav h2,
-    .header h2 {
-        font-size: 18px;
-    }
-
-    .run-btn {
-        padding: 8px 14px;
-        font-size: 14px;
-        width: 100%;
-    }
-
-    .editor-pane {
-        padding: 12px;
-        border-right: none;
-        border-bottom: 1px solid var(--editor-border-strong);
+    .editor-pane, .result-pane {
         flex: none;
         height: 50vh;
         min-width: unset;
     }
-
-    .result-pane {
-        flex: none;
-        height: 50vh;
-        min-width: unset;
-    }
-
-    .pane-label {
-        font-size: 11px;
-        margin-bottom: 6px;
-    }
-
-    textarea {
-        font-size: 14px;
-    }
-
     .mobile-editor-tabs {
         display: flex;
         border-bottom: 1px solid var(--editor-border-strong);
     }
-
-    .mobile-editor-tab-btn {
-        flex: 1;
-        padding: 10px 12px;
-        background: var(--editor-label-bg);
-        border: none;
-        color: var(--editor-label-text);
-        font-size: 13px;
-        font-weight: 600;
-        text-transform: uppercase;
-        letter-spacing: 0.05em;
-        cursor: pointer;
-        transition: all 0.2s;
+    .nav-actions {
+        width: 100%;
+        flex-direction: column;
     }
-
-    .mobile-editor-tab-btn.active {
-        background: var(--editor-pane-bg);
-        color: var(--editor-text-heading);
-        border-bottom: 2px solid var(--editor-accent);
-    }
-
-    .mobile-hidden {
-        display: none !important;
-    }
-
-    /* Console / output adjustments */
-    #consoleDiv,
-    #outputDiv {
-        font-size: 13px;
-        padding: 8px 14px;
+    .nav-actions .run-btn, .nav-actions .reset-btn {
+        width: 100%;
     }
 }
 
-/* --- VERY SMALL MOBILE (≤480px) --- */
-@media (max-width: 480px) {
-    .editor-nav,
-    .header {
-        padding: 8px 12px;
+/* 5. Mobile Devices (SM) 481px – 640px */
+@media (max-width: 640px) {
+    .editor-nav h2, .header h2 {
+        font-size: 18px;
     }
+    .run-btn {
+        padding: 8px 14px;
+        font-size: 14px;
+    }
+}
 
-    .editor-nav h2,
-    .header h2 {
+/* 6. Small Mobile (XS) < 480px */
+@media (max-width: 480px) {
+    .editor-nav h2, .header h2 {
         font-size: 15px;
     }
-
-    .run-btn {
-        padding: 6px 10px;
-        font-size: 13px;
-    }
-
-    .editor-pane {
+    .editor-pane, .result-pane {
         padding: 8px;
     }
-
     textarea {
         font-size: 13px;
-    }
-
-    .mobile-editor-tab-btn {
-        padding: 8px 8px;
-        font-size: 12px;
     }
 }
 
@@ -615,17 +578,4 @@ pre code,
     color: var(--editor-accent);
     font-size: 11px;
     font-weight: 500;
-}
-
-/* --- Mobile: Nav Actions --- */
-@media (max-width: 768px) {
-    .nav-actions {
-        width: 100%;
-        flex-direction: column;
-    }
-
-    .nav-actions .run-btn,
-    .nav-actions .reset-btn {
-        width: 100%;
-    }
 }

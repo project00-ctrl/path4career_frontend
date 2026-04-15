@@ -866,56 +866,98 @@ body::before {
 }
 
 /* ─── RESPONSIVE ─────────────────────────── */
+/* ──────────────────────────────────────────────────────────────────────────
+   COMPREHENSIVE RESPONSIVE SYSTEM (Standardized)
+   ────────────────────────────────────────────────────────────────────────── */
+
+/* 1. Ultra Wide Screens (2XL) > 1281px */
+@media (min-width: 1281px) {
+    .exercise-container {
+        max-width: 1440px;
+        margin: 0 auto;
+    }
+}
+
+/* 2. Standard Laptops (XL) 1025px – 1280px */
+@media (min-width: 1025px) and (max-width: 1280px) {
+    .exercise-container {
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+}
+
+/* 3. Tablets / Small Laptops (LG) 769px – 1024px */
+@media (max-width: 1024px) {
+    .exercise-container {
+        padding: 100px 24px 40px;
+    }
+}
+
+/* 4. Large Mobile / Small Tablets (MD) 641px – 768px */
 @media (max-width: 768px) {
     .exercise-container {
         padding: 80px 16px 40px;
     }
-
     .workspace {
         flex-direction: column;
         height: auto;
     }
-
-    .workspace iframe {
-        height: 65vh !important;
-    }
-
     .editor-pane {
         border-right: none;
         border-bottom: 1px solid var(--border);
     }
-
-    .language-grid {
-        grid-template-columns: 1fr;
+    .workspace iframe {
+        height: 60vh !important;
     }
-
-    .exercise-hero h1 {
-        font-size: 24px;
-    }
-
     .editor-top-bar {
         flex-direction: column;
         align-items: flex-start;
         gap: 8px;
     }
-
-    .editor-actions-bar {
-        flex-direction: column;
+    .language-grid {
+        grid-template-columns: 1fr;
     }
-
-    /* Show mobile toggle */
     .mobile-panel-toggle {
         display: flex;
     }
-
-    /* Hidden panel class */
     .mobile-hidden {
         display: none !important;
     }
+}
 
-    .question-panel {
-        max-height: 60vh;
-        overflow-y: auto;
+/* 5. Mobile Devices (SM) 481px – 640px */
+@media (max-width: 640px) {
+    .exercise-hero h1 {
+        font-size: 24px;
+    }
+    .editor-actions-bar {
+        flex-direction: column;
+    }
+}
+
+/* 6. Small Mobile (XS) < 480px */
+@media (max-width: 480px) {
+    .exercise-hero-icon {
+        width: 60px;
+        height: 60px;
+        font-size: 28px;
+    }
+    .exercise-hero h1 {
+        font-size: 20px;
+    }
+    .chatbot-widget {
+        right: 12px;
+        left: 12px;
+        bottom: 90px;
+        width: auto;
+        max-height: 70vh;
+    }
+    .chatbot-toggle {
+        bottom: 18px;
+        right: 18px;
+        width: 52px;
+        height: 52px;
+        font-size: 24px;
     }
 }
 
@@ -1233,20 +1275,22 @@ body::before {
 }
 
 /* ─── Chatbot Responsive ─────────────────── */
+@media (max-width: 320px) {
+    .chatbot-widget { right: 5px; left: 5px; }
+}
 @media (max-width: 480px) {
-    .chatbot-widget {
-        right: 12px;
-        left: 12px;
-        bottom: 90px;
-        width: auto;
-        max-height: 70vh;
-    }
-
-    .chatbot-toggle {
-        bottom: 18px;
-        right: 18px;
-        width: 52px;
-        height: 52px;
-        font-size: 24px;
-    }
+    .chatbot-widget { right: 12px; left: 12px; bottom: 90px; width: auto; max-height: 70vh; }
+    .chatbot-toggle { bottom: 18px; right: 18px; width: 52px; height: 52px; font-size: 24px; }
+}
+@media (max-width: 768px) {
+    .chatbot-widget { max-width: 90vw; }
+}
+@media (max-width: 1024px) {
+    .chatbot-widget { transform-origin: bottom right; }
+}
+@media (max-width: 1280px) {
+    .chatbot-widget { font-size: 0.95rem; }
+}
+@media (max-width: 1440px) {
+    .chatbot-widget { transition: all 0.2s ease; }
 }

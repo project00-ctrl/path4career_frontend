@@ -897,7 +897,42 @@ nav>ul {
 }
 
 /* ================= RESPONSIVE ================= */
+/* ──────────────────────────────────────────────────────────────────────────
+   COMPREHENSIVE RESPONSIVE SYSTEM (Standardized)
+   ────────────────────────────────────────────────────────────────────────── */
 
+/* 1. Ultra Wide Screens (2XL) > 1281px */
+@media (min-width: 1281px) {
+    header, section {
+        max-width: 1440px;
+        margin: 0 auto;
+    }
+}
+
+/* 2. Standard Laptops (XL) 1025px – 1280px */
+@media (min-width: 1025px) and (max-width: 1280px) {
+    header, section {
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+}
+
+/* 3. Tablets / Small Laptops (LG) 769px – 1024px */
+@media (max-width: 1024px) {
+    .reference-card {
+        width: 90%;
+        margin-left: 5%;
+        height: 85vh;
+    }
+    .reference-contents {
+        padding: 60px 30px;
+    }
+    .profile span {
+        display: none;
+    }
+}
+
+/* 4. Large Mobile / Small Tablets (MD) 641px – 768px */
 @media (max-width: 768px) {
     .skill-row {
         flex-direction: column;
@@ -905,569 +940,61 @@ nav>ul {
         gap: 14px;
         padding: 18px;
     }
-
     .skill-checkbox-wrap {
         position: absolute;
         top: 18px;
         right: 18px;
     }
-
-    .skill-tutorial-btn,
-    .skill-no-tutorial {
+    .skill-tutorial-btn, .skill-no-tutorial {
         width: 100%;
         justify-content: center;
-        text-align: center;
     }
-
-    .skill-timeline::before {
-        display: none;
-    }
-
     .skill-progress-summary {
         flex-direction: column;
-        align-items: stretch;
         gap: 8px;
     }
-}
-
-@media (max-width: 480px) {
-    .modules-section {
-        padding: 100px 0 60px;
-    }
-
-    .title {
-        font-size: 1.8rem;
-    }
-
-    .skill-info h3 {
-        font-size: 1rem;
-    }
-
-    .skill-tutorial-btn {
-        font-size: 0.82rem;
-        padding: 10px 16px;
-    }
-}
-
-
-
-/*  MOBILE & TABLET FIXES */
-
-@media (max-width: 1024px) {
-
-
-    .reference-close {
-        position: fixed;
-        top: 70px;
-        right: 120px;
-        z-index: 999;
-    }
-
-    /* Header spacing */
-    header {
-        padding-left: 20px;
-    }
-
-    /* Profile name hidden */
-    .profile span {
-        display: none;
-    }
-
-    header,
-    section {
-        margin: 0 24px;
-    }
-
-    .search {
-        width: 100%;
-        max-width: 300px;
-    }
-
-
-
-    /* Reference card responsive */
-    .reference-card {
-        width: 90%;
-        margin-left: 5%;
-        height: 85vh;
-    }
-
-    .reference-contents {
-        padding: 60px 30px;
-    }
-
-    .reference-row .container {
-        flex-direction: column;
-        gap: 30px;
-    }
-
-
-}
-
-@media (max-width: 992px) {
-    .search {
-        display: none;
-    }
-
-    .hero-search>.search {
-        display: flex;
-        margin: 100px 300px;
-    }
-
-    .reference-close {
-        position: fixed;
-        top: 70px;
-        right: 120px;
-        z-index: 999;
-    }
-
-    /* reference-card */
-    .reference-card {
-        width: 90%;
-        margin-left: 0;
-        margin-top: 100px;
-        left: 50%;
-        transform: translateX(-50%);
-    }
-
-    .reference-contents {
-        padding: 60px 40px;
-    }
-
-    .reference-row .container {
-        gap: 30px;
-    }
-
-    /* Top search */
-    .top-search {
-        display: none;
-    }
-}
-
-/* MOBILE ONLY */
-
-@media (max-width: 768px) {
-
-
-    .header {
-        padding: 0 20px 0px 20px;
-    }
-
-    .header>.container {
-        justify-content: start;
-        align-items: center;
-        gap: 2rem;
-        padding: 0px 10px 15px 10px;
-    }
-
-
-
-    /* HEADER & NAV */
-
-    .logo .refer {
-        display: none;
-    }
-
-    .search {
-        display: none;
-    }
-
-    .top {
-        display: block;
-
-    }
-
-    nav {
-        display: none;
-    }
-
-    .hamburger {
-        display: block;
-    }
-
-    .mobile-nav.open {
-        display: flex;
-        right: 0;
-        opacity: 1;
-        gap: 40px;
-        padding-top: 80px;
-    }
-
-    /* logo,tutor,refer */
-    .desk-refer,
-    .desk-tutor {
-        display: none;
-    }
-
-    .search {
-        width: 300px;
-    }
-
-    .logos {
-        display: none;
-    }
-
-    /* reference-card */
-    .reference-card {
-        width: 95%;
-        height: auto;
-        max-height: 90vh;
-        overflow-y: auto;
-        margin: 0;
-        top: 80px;
-        left: 50%;
-        transform: translateX(-50%);
-        border-radius: 12px;
-    }
-
-    .reference-contents {
-        width: 95%;
-        height: 90vh;
-        padding: 30px 20px;
-    }
-
-    .reference-row .container {
-        flex-direction: column;
-        gap: 40px;
-        text-align: center;
-        align-items: center;
-    }
-
-    .frontend-col h3,
-    .backend-col h3 {
-        margin: 10px 0;
-    }
-
-
-    .reference-top {
-        justify-content: start;
-        padding: 20px 0;
-        margin-top: 20px;
-    }
-
-    .reference-row .container {
-        flex-direction: column;
-        gap: 40px;
-        align-items: flex-start;
-    }
-
-    .frontend-col h3,
-    .backend-col h3 {
-        margin: 10px 0;
-    }
-
-    .reference-close {
-        top: 0px;
-        right: 385px;
-    }
-
-    /* tutorial-card */
-    .tutor-card {
-        width: 95%;
-        height: auto;
-        max-height: 90vh;
-        overflow-y: auto;
-        margin: 0;
-        top: 80px;
-        left: 50%;
-        transform: translateX(-50%);
-        border-radius: 12px;
-    }
-
-    .tutor-contents {
-        width: 95%;
-        height: 90vh;
-        padding: 90px 20px;
-    }
-
-    .tutor-row .container {
-        flex-direction: column;
-        gap: 40px;
-        text-align: center;
-        align-items: center;
-    }
-
-    .tutor-frontend-col h3,
-    .tutor-backend-col h3 {
-        margin: 10px 0;
-    }
-
-    .tutor-top {
-        justify-content: start;
-        padding: 10px 0;
-    }
-
-    .tutor-row .container {
-        flex-direction: column;
-        gap: 40px;
-        align-items: flex-start;
-    }
-
-    .tutor-frontend-col h3,
-    .tutor-backend-col h3 {
-        margin: 10px 0;
-    }
-
-    .tutor-close {
-        top: 15px;
-        right: 385px;
-    }
-
-    .search {
-        width: 300px;
-    }
-
-    .profile span {
-        display: block;
-    }
-
-    .profile-menu.open {
-        display: flex;
-        flex-direction: column;
-        transform: scale(1);
-        opacity: 1;
-        pointer-events: auto;
-        gap: 20px;
-    }
-
-    header,
-    section {
-        margin: 0 16px;
-    }
-
-    section {
-        padding: 80px 0;
-    }
-
-
-    .initial {
-        display: block;
-    }
-
-    .profile span {
-        display: block;
-    }
-
-    .profile-menu.open {
-        display: block;
-    }
-
-
-    body {
-        overflow-x: hidden;
-    }
-
-
-    /* HERO / HEADINGS */
-    .timeline-heading h1 {
-        font-size: 2.4rem;
-        margin-bottom: 30px;
-    }
-
-    .timeline-heading p {
-        font-size: 1.1rem;
-        line-height: 1.8rem;
-    }
-
-
-
-
-}
-
-@media (max-width: 600px) {
-    .hero-search>.search {
-        display: flex;
-        margin: 100px 100px;
-    }
-
-    .header {
-        padding: 0 20px 0px 20px;
-    }
-
-    .header>.container {
-        justify-content: start;
-        align-items: center;
-        gap: 2rem;
-        padding: 0px 10px 15px 10px;
-    }
-}
-
-
-
-/* SMALL PHONES */
-
-@media (max-width: 480px) {
-
-
-
-    .header {
-        padding: 0 20px 0px 20px;
-    }
-
-    .header>.container {
-        justify-content: start;
-        align-items: center;
-        gap: 2rem;
-        padding: 0px 10px 15px 10px;
-    }
-
-    .profile {
-        gap: 3px;
-    }
-
-    .top-bar h1 {
-        font-size: 1.6rem;
-    }
-
-    /* Top search */
-    .top-search {
-        display: none;
-    }
-
-
-    /* Logo */
-    .logo h3 {
-        font-size: 1.5rem;
-    }
-
-    .logos {
-        display: none;
-    }
-
-    .logos a {
-        font-size: 1rem;
-    }
-
-    .search {
-        display: none;
-    }
-
-    .reference-search,
-    .search {
-        width: 260px;
-    }
-
-    .tutorial {
-        display: none;
-    }
-
-
-    .hero-search>.search {
-        display: flex;
-        margin: 100px 50px;
-    }
-
-    .timeline-heading h1 {
-        font-size: 2rem;
-    }
-
-
-    .card {
-        padding: 16px;
-    }
-
-    .card p {
-        font-size: 0.9rem;
-    }
-}
-
-/* ============================= */
-/* QUIZ PROMPT CARD              */
-/* ============================= */
-
-.quiz-prompt-card {
-    max-width: 900px;
-    margin: 0 auto 32px;
-    padding: 28px 32px;
-    background: linear-gradient(135deg, rgba(74, 108, 247, 0.1), rgba(21, 128, 61, 0.08));
-    border: 1px solid rgba(74, 108, 247, 0.3);
-    border-radius: 18px;
-    display: flex;
-    align-items: center;
-    gap: 20px;
-    backdrop-filter: blur(12px);
-    animation: fadeSlideIn 0.5s ease both;
-    transition: all 0.3s ease;
-}
-
-.quiz-prompt-card:hover {
-    border-color: rgba(74, 108, 247, 0.5);
-    box-shadow: 0 12px 40px rgba(74, 108, 247, 0.15);
-    transform: translateY(-2px);
-}
-
-.quiz-prompt-icon {
-    font-size: 2.4rem;
-    flex-shrink: 0;
-    width: 56px;
-    height: 56px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 14px;
-    background: linear-gradient(135deg, rgba(74, 108, 247, 0.2), rgba(21, 128, 61, 0.15));
-}
-
-.quiz-prompt-content {
-    flex: 1;
-    min-width: 0;
-}
-
-.quiz-prompt-content h3 {
-    font-size: 1.15rem;
-    font-weight: 700;
-    color: var(--text-main);
-    font-family: 'Inter', sans-serif;
-    margin: 0 0 6px;
-}
-
-.quiz-prompt-content p {
-    font-size: 0.9rem;
-    color: var(--text-secondary);
-    font-family: 'Inter', sans-serif;
-    margin: 0;
-    line-height: 1.5;
-}
-
-.quiz-prompt-btn {
-    flex-shrink: 0;
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 12px 28px;
-    border: none;
-    border-radius: 30px;
-    background: var(--primary-gradient);
-    color: #fff !important;
-    font-family: 'Inter', sans-serif;
-    font-size: 0.92rem;
-    font-weight: 600;
-    cursor: pointer;
-    text-decoration: none !important;
-    transition: all 0.3s ease;
-    white-space: nowrap;
-    box-shadow: 0 4px 20px rgba(74, 108, 247, 0.3);
-}
-
-.quiz-prompt-btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 28px rgba(74, 108, 247, 0.4);
-}
-
-.quiz-prompt-btn:active {
-    transform: scale(0.97);
-}
-
-@media (max-width: 700px) {
     .quiz-prompt-card {
         flex-direction: column;
         text-align: center;
         padding: 24px 20px;
-        gap: 14px;
     }
-
     .quiz-prompt-btn {
         width: 100%;
         justify-content: center;
     }
+}
+
+/* 5. Mobile Devices (SM) 481px – 640px */
+@media (max-width: 640px) {
+    .timeline-heading h1 {
+        font-size: 2.4rem;
+    }
+    .search {
+        display: none;
+    }
+}
+
+/* 6. Small Mobile (XS) < 480px */
+@media (max-width: 480px) {
+    .modules-section {
+        padding: 80px 0 40px;
+    }
+    .title {
+        font-size: 1.8rem;
+    }
+    .timeline-heading h1 {
+        font-size: 2rem;
+    }
+    .skill-info h3 {
+        font-size: 1rem;
+    }
+    .profile {
+        gap: 3px;
+    }
+    .login-modal {
+        padding: 24px;
+        width: 95%;
+    }
+}
+
 }

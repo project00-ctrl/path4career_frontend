@@ -182,45 +182,66 @@ button:hover {
     font-size: 12px;
 }
 
-/* =========================================
-   RESPONSIVE
-========================================= */
-@media (max-width: 800px) {
+/* ──────────────────────────────────────────────────────────────────────────
+   COMPREHENSIVE RESPONSIVE SYSTEM (Standardized)
+   ────────────────────────────────────────────────────────────────────────── */
+
+/* 1. Ultra Wide Screens (2XL) > 1281px */
+@media (min-width: 1281px) {
+    .page {
+        max-width: 1440px;
+        margin: 0 auto;
+    }
+}
+
+/* 2. Standard Laptops (XL) 1025px – 1280px */
+@media (min-width: 1025px) and (max-width: 1280px) {
+    .page {
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+}
+
+/* 3. Tablets / Small Laptops (LG) 769px – 1024px */
+@media (max-width: 1024px) {
+    .title>h2 {
+        font-size: 28px;
+    }
+}
+
+/* 4. Large Mobile / Small Tablets (MD) 641px – 768px */
+@media (max-width: 768px) {
     .page {
         flex-direction: column;
         height: auto;
         padding: 40px 20px;
     }
-
     .career-card, .form-card {
         width: 100%;
         max-width: 400px;
-        margin: 0 auto;
     }
-
     .career-card {
         height: auto;
         padding: 30px 20px;
     }
+}
 
-    .career-card>.bg-hat {
-        margin: 20px auto 0;
-        display: block;
+/* 5. Mobile Devices (SM) 481px – 640px */
+@media (max-width: 640px) {
+    .title>h2 {
+        font-size: 24px;
     }
 }
 
+/* 6. Small Mobile (XS) < 480px */
 @media (max-width: 480px) {
     .page {
         padding: 20px 16px;
     }
-    .career-card, .form-card {
-        padding: 20px 16px;
-    }
-    .title>h2 {
-        font-size: 26px;
-        text-align: center;
-    }
     .career-card>p {
         font-size: 16px;
+    }
+    .register>span {
+        padding-left: 20px;
     }
 }
