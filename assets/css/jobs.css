@@ -603,20 +603,25 @@ body {
   }
   .search-bar {
     flex-direction: column;
-    border-radius: 20px;
-    padding: 10px;
-    gap: 10px;
+    border-radius: 16px;
+    padding: 16px;
+    gap: 12px;
   }
   .search-bar input, .search-bar select {
     width: 100%;
+    border-radius: 8px;
+    padding: 12px;
+    background: var(--surface);
+    border: 1px solid var(--border);
   }
   .search-bar .nav-divider {
     display: none;
   }
   .search-bar .search-btn {
     width: 100%;
-    border-radius: 12px;
+    border-radius: 8px;
     height: 48px;
+    margin-left: 0;
   }
   .job-details-grid {
     grid-template-columns: 1fr;
@@ -636,10 +641,10 @@ body {
 /* 6. Small Mobile (XS) < 480px */
 @media (max-width: 480px) {
   .hero {
-    padding: 3rem 1rem;
+    padding: 2.5rem 1rem;
   }
   .hero h2 {
-    font-size: 1.75rem;
+    font-size: 1.6rem;
   }
   .hero-stats {
     flex-direction: column;

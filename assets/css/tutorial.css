@@ -673,6 +673,8 @@ body {
         z-index: 9001;
         transform: translateX(-100%);
         box-shadow: var(--shadow-hover);
+        transition: transform 0.3s ease;
+        background-color: #FDFAF6;
     }
     .left-sidebar.open {
         transform: translateX(0);

@@ -349,6 +349,12 @@ select {
 .verify-group {
     display: flex;
     gap: 10px;
+    flex-wrap: wrap;
+}
+
+.verify-group input {
+    flex: 1;
+    min-width: 150px;
 }
 
 .verify-group button {
@@ -1269,7 +1275,10 @@ a {
         font-size: 24px;
     }
     .personal .container, .account .container {
-        width: calc(100% - 24px);
+        width: 100%;
+        max-width: min(400px, 92vw);
         padding: 16px;
+        margin: 30px auto;
+        box-sizing: border-box;
     }
 }

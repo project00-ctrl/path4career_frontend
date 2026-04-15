@@ -748,26 +748,17 @@
 
 /* Ensure strip scrollbar visibility on all pages (including landing) */
 #navbarStripInner {
-    scrollbar-width: thin;
-    scrollbar-color: rgba(148, 163, 184, 0.45) transparent;
+    scrollbar-width: none !important;
 }
 
 #navbarStripInner::-webkit-scrollbar {
-    height: 6px;
-}
-
-#navbarStripInner::-webkit-scrollbar-thumb {
-    background: rgba(148, 163, 184, 0.25);
-    border-radius: 999px;
+    display: none !important;
+    height: 0;
 }
 
 .navbar-course-strip .strip-inner::-webkit-scrollbar {
-    height: 6px;
-}
-
-.navbar-course-strip .strip-inner::-webkit-scrollbar-thumb {
-    background: rgba(148, 163, 184, 0.25);
-    border-radius: 999px;
+    display: none !important;
+    height: 0;
 }
 
 .navbar-course-strip a {
