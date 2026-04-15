@@ -100,6 +100,11 @@ const JobsAPI = (() => {
         return request('GET', '/api/job-roles/public');
     }
 
+    // ===== Adzuna Endpoints =====
+    async function fetchAdzunaJobs(keyword, country = 'in', page = 1) {
+        return request('GET', `/api/adzuna-jobs/search?keyword=${encodeURIComponent(keyword)}&country=${country}&page=${page}`);
+    }
+
     // ===== Auth Check =====
     async function checkAuth() {
         try {
@@ -167,6 +172,7 @@ const JobsAPI = (() => {
     return {
         fetchJobs,
         fetchJobById,
+        fetchAdzunaJobs,
         applyToJob,
         getMyApplications,
         getApplicationsByEmail,

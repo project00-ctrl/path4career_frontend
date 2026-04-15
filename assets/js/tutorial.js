@@ -319,7 +319,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (!token) {
             alert('Please log in to mark this tutorial as completed.');
-            window.location.href = '../pages/login.html';
+            window.location.href = '../pages/auth/login.html';
             return;
         }
 
@@ -348,7 +348,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             if (res.status === 401 || res.status === 403) {
                 alert('Session expired. Please log in again.');
-                window.location.href = '../pages/login.html';
+                window.location.href = '../pages/auth/login.html';
                 return;
             }
 

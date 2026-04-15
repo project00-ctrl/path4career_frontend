@@ -399,9 +399,36 @@ const dashSearch = document.getElementById("search");
 const dashSearchBtn = document.getElementById("search-btn");
 
 function handleDashSearch() {
-    const q = dashSearch.value.trim();
+    const q = dashSearch.value.trim().toLowerCase();
     if (!q) return;
-    window.location.href = `../../index.html?search=${encodeURIComponent(q)}`;
+
+    // Correspondance Map – Redirect directly to relevant sections
+    const SECTION_MAP = {
+        'react': 'tutorial.html?course=reactPages.json',
+        'html': 'tutorial.html?course=htmlPages.json',
+        'css': 'tutorial.html?course=cssPages.json',
+        'javascript': 'tutorial.html?course=jsPages.json',
+        'js': 'tutorial.html?course=jsPages.json',
+        'python': 'tutorial.html?course=pythonPages.json',
+        'java': 'tutorial.html?course=javaPages.json',
+        'resume': 'resume-builder.html',
+        'builder': 'resume-builder.html',
+        'job': 'jobs/jobs-listing.html',
+        'jobs': 'jobs/jobs-listing.html',
+        'bootcamp': 'bootcamp.html',
+        'certificate': 'certificate.html',
+        'roadmap': 'roadmaps/roadmaps.html',
+        'roadmaps': 'roadmaps/roadmaps.html',
+        'course': 'roadmaps/courses.html',
+        'courses': 'roadmaps/courses.html'
+    };
+
+    if (SECTION_MAP[q]) {
+        window.location.href = `../${SECTION_MAP[q]}`;
+    } else {
+        // Fallback to courses search
+        window.location.href = `../roadmaps/courses.html?search=${encodeURIComponent(q)}`;
+    }
 }
 
 if (dashSearch) {

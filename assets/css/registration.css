@@ -208,3 +208,19 @@ button:hover {
         display: block;
     }
 }
+
+@media (max-width: 480px) {
+    .page {
+        padding: 20px 16px;
+    }
+    .career-card, .form-card {
+        padding: 20px 16px;
+    }
+    .title>h2 {
+        font-size: 26px;
+        text-align: center;
+    }
+    .career-card>p {
+        font-size: 16px;
+    }
+}

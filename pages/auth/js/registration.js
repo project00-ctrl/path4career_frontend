@@ -1,4 +1,10 @@
 document.addEventListener("DOMContentLoaded", () => {
+  // If user is already logged in, redirect to dashboard
+  const token = localStorage.getItem('AUTH_TOKEN');
+  if (token) {
+    window.location.href = "dashboard.html";
+    return;
+  }
 
   const mainRole = document.getElementById("mainRole");
   const studentTypeBox = document.getElementById("studentTypeBox");
@@ -181,7 +187,8 @@ document.addEventListener("DOMContentLoaded", () => {
       try {
         await registerUser(payload);
         alert("Registration Successful 🎉");
-        window.location.href = "login.html";
+        // Explicitly redirect to login with a destination to avoid falling back to register.html
+        window.location.href = "login.html?redirect=dashboard.html";
       } catch (err) {
         alert(err.message);
       }

@@ -622,7 +622,7 @@ nav>ul {
 
 .card-container {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr));
     gap: 32px;
     margin: 0 auto;
     max-width: 1200px;
@@ -827,6 +827,7 @@ nav>ul {
     .card-container {
         padding: 0 30px 80px;
         gap: 24px;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     }
 }
 
@@ -839,6 +840,7 @@ nav>ul {
         flex-direction: column;
         gap: 12px;
         margin-bottom: 30px;
+        padding: 0 20px;
     }
 
     .course-filters input,
@@ -850,6 +852,7 @@ nav>ul {
     .card-container {
         grid-template-columns: 1fr;
         padding: 0 20px 60px;
+        max-width: 100%;
     }
 
     .card {
@@ -862,11 +865,12 @@ nav>ul {
     }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 576px) {
     .main-title {
         font-size: 1.8rem;
         letter-spacing: -1px;
         margin-top: 80px;
+        padding: 0 10px;
     }
 
     .card-icon {
@@ -875,6 +879,10 @@ nav>ul {
 
     .card {
         padding: 20px;
+    }
+
+    .meta {
+        gap: 8px;
     }
 
     .meta p {

@@ -306,9 +306,7 @@ html,body{min-height:100%;font-family:'Inter',system-ui,-apple-system,'Segoe UI'
 .ts{background:rgba(0,184,148,.95);color:#fff;box-shadow:0 5px 18px rgba(0,184,148,.25)}
 .tw{background:rgba(255,165,0,.95);color:#fff;box-shadow:0 5px 18px rgba(255,165,0,.2)}
 .ti{background:rgba(33,78,165,.95);color:#fff;box-shadow:0 5px 18px rgba(33,78,165,.2)}
-.sf{background:var(--P);border-top:1px solid rgba(255,255,255,.1);padding:2rem;text-align:center;margin-top:2rem}
-.sf p{color:rgba(255,255,255,.7);font-size:.85rem}
-.fb{color:#fff;font-weight:700}
+/* Footer handled by global navbar.css */
 /* ATS modal styles are now globally defined in navbar.css — no local overrides */
 .bats {background:rgba(139, 92, 246, .1);color:#8b5cf6;border:1px solid rgba(139, 92, 246, .28)!important;}
 .bats:hover {background:#8b5cf6;color:#fff;}
@@ -347,7 +345,7 @@ html,body{min-height:100%;font-family:'Inter',system-ui,-apple-system,'Segoe UI'
   <div class="cat-hdr"><h2><i class="fas fa-crown" style="color:#FFD700;margin-right:6px"></i>Premium Templates</h2><p>Rich colours + photo support — every template now includes a photo slot</p></div>
   <div class="tgrid" id="pg"></div>
 </section>
-<footer class="sf"><p>&copy; 2025 <span class="fb">Path4Career</span>. All rights reserved.</p></footer>
+<div id="footer-root"></div>
 
 <!-- PREVIEW MODAL -->
 <div class="mo" id="previewModal">
@@ -480,15 +478,15 @@ const hdrBdyIds=new Set(['b16','b21','i9','i20','p1','p3','p5','p7','p8','p9','p
 const photoIds=new Set(['p1','p2','p3','p4','p5','p6','p7','p8','p9','p10','p11','p12','p13','p14','p15','p16','p17','p18','p19','p20','p21','p22','p23','p24','p25','p26','p27','p28','p29','p30']);
 
 function getPhoto(tid){return uPhotoMap[tid]||null;}
-function ph(tid){const p=getPhoto(tid);return p?`<img src="${p}" class="rphoto" alt="Photo">`:`<div class="pph" onclick="trigPh('${tid}')"><i class="fas fa-camera"></i></div>`;}
-function phDark(tid){const p=getPhoto(tid);return p?`<img src="${p}" class="rphoto" alt="Photo" style="border:2px solid rgba(255,255,255,.3)">`:`<div class="pph-dark" onclick="trigPh('${tid}')"><i class="fas fa-camera"></i></div>`;}
-function phCyber(tid){const p=getPhoto(tid);return p?`<img src="${p}" class="rphoto-cyber" alt="Photo">`:`<div class="pph-cyber" onclick="trigPh('${tid}')"><i class="fas fa-camera"></i></div>`;}
-function phNeon(tid){const p=getPhoto(tid);return p?`<img src="${p}" class="rphoto-neon" alt="Photo">`:`<div class="pph-neon" onclick="trigPh('${tid}')"><i class="fas fa-camera"></i></div>`;}
-function phFire(tid){const p=getPhoto(tid);return p?`<img src="${p}" class="rphoto-fire" alt="Photo">`:`<div class="pph-fire" onclick="trigPh('${tid}')"><i class="fas fa-camera"></i></div>`;}
-function phMid(tid){const p=getPhoto(tid);return p?`<img src="${p}" class="rphoto-mid" alt="Photo">`:`<div class="pph-mid" onclick="trigPh('${tid}')"><i class="fas fa-camera"></i></div>`;}
-function phMarble(tid){const p=getPhoto(tid);return p?`<img src="${p}" class="rphoto-marble" alt="Photo">`:`<div class="pph-marble" onclick="trigPh('${tid}')"><i class="fas fa-camera"></i></div>`;}
-function phIce(tid){const p=getPhoto(tid);return p?`<img src="${p}" class="rphoto-ice" alt="Photo">`:`<div class="pph-ice" onclick="trigPh('${tid}')"><i class="fas fa-camera"></i></div>`;}
-function phEmber(tid){const p=getPhoto(tid);return p?`<img src="${p}" class="rphoto-ember" alt="Photo">`:`<div class="pph-ember" onclick="trigPh('${tid}')"><i class="fas fa-camera"></i></div>`;}
+function ph(tid){const p=getPhoto(tid);return p?`<img src="${p}" class="rphoto" alt="Photo" onclick="trigPh('${tid}')" title="Click to change photo" style="cursor:pointer;">`:`<div class="pph" onclick="trigPh('${tid}')"><i class="fas fa-camera"></i></div>`;}
+function phDark(tid){const p=getPhoto(tid);return p?`<img src="${p}" class="rphoto" alt="Photo" onclick="trigPh('${tid}')" title="Click to change photo" style="border:2px solid rgba(255,255,255,.3);cursor:pointer;">`:`<div class="pph-dark" onclick="trigPh('${tid}')"><i class="fas fa-camera"></i></div>`;}
+function phCyber(tid){const p=getPhoto(tid);return p?`<img src="${p}" class="rphoto-cyber" alt="Photo" onclick="trigPh('${tid}')" title="Click to change photo" style="cursor:pointer;">`:`<div class="pph-cyber" onclick="trigPh('${tid}')"><i class="fas fa-camera"></i></div>`;}
+function phNeon(tid){const p=getPhoto(tid);return p?`<img src="${p}" class="rphoto-neon" alt="Photo" onclick="trigPh('${tid}')" title="Click to change photo" style="cursor:pointer;">`:`<div class="pph-neon" onclick="trigPh('${tid}')"><i class="fas fa-camera"></i></div>`;}
+function phFire(tid){const p=getPhoto(tid);return p?`<img src="${p}" class="rphoto-fire" alt="Photo" onclick="trigPh('${tid}')" title="Click to change photo" style="cursor:pointer;">`:`<div class="pph-fire" onclick="trigPh('${tid}')"><i class="fas fa-camera"></i></div>`;}
+function phMid(tid){const p=getPhoto(tid);return p?`<img src="${p}" class="rphoto-mid" alt="Photo" onclick="trigPh('${tid}')" title="Click to change photo" style="cursor:pointer;">`:`<div class="pph-mid" onclick="trigPh('${tid}')"><i class="fas fa-camera"></i></div>`;}
+function phMarble(tid){const p=getPhoto(tid);return p?`<img src="${p}" class="rphoto-marble" alt="Photo" onclick="trigPh('${tid}')" title="Click to change photo" style="cursor:pointer;">`:`<div class="pph-marble" onclick="trigPh('${tid}')"><i class="fas fa-camera"></i></div>`;}
+function phIce(tid){const p=getPhoto(tid);return p?`<img src="${p}" class="rphoto-ice" alt="Photo" onclick="trigPh('${tid}')" title="Click to change photo" style="cursor:pointer;">`:`<div class="pph-ice" onclick="trigPh('${tid}')"><i class="fas fa-camera"></i></div>`;}
+function phEmber(tid){const p=getPhoto(tid);return p?`<img src="${p}" class="rphoto-ember" alt="Photo" onclick="trigPh('${tid}')" title="Click to change photo" style="cursor:pointer;">`:`<div class="pph-ember" onclick="trigPh('${tid}')"><i class="fas fa-camera"></i></div>`;}
 
 function expH(d){return d.experience.map(e=>`<div style="margin-bottom:10px"><div class="jt"><h3>${e.role} — ${e.company}</h3><span class="dt">${e.dates}</span></div><ul>${e.bullets.map(b=>`<li>${b}</li>`).join('')}</ul></div>`).join('');}
 function eduH(d){return d.education.map(e=>`<div class="jt"><h3>${e.degree} — ${e.school}</h3><span class="dt">${e.dates}</span></div>`).join('');}
@@ -679,7 +677,7 @@ function openDL(){if(!iLI()){showLp('Sign in to download.');return;}if(!curTid)r
 function closeDL(){document.getElementById('dlModal').classList.remove('active');dlTid=null;dlCat=null;}
 async function doDL(fmt){
   const tid=dlTid,cat=dlCat;if(!tid||!cat)return;const t=fTpl(tid,cat);if(!t)return;
-  const fn=`Resume_${Math.floor(10000+Math.random()*90000)}`;
+  const fn=`Path4Career_free_resume_builder_${Math.floor(10000+Math.random()*90000)}`;
   document.getElementById('dfog').style.display='none';document.getElementById('dfp').classList.add('active');
   try{
     if(fmt==='pdf')await dlPDF(tid,t,fn);

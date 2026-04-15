@@ -129,7 +129,7 @@ document.querySelectorAll("form").forEach((form) => {
       alert("Registration Successfully 🎉");
 
       setTimeout(() => {
-        window.location.href = "login.html";
+        window.location.href = "./auth/login.html";
       }, 800);
     }
   });

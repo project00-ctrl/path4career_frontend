@@ -72,12 +72,13 @@ document.addEventListener('DOMContentLoaded', async () => {
         });
     }
 
-    function filterAndRender() {
+    async function filterAndRender() {
         const query = searchInput.value.trim().toLowerCase();
         const loc = locationFilter.value;
         const type = typeFilter.value;
 
-        filteredJobs = allJobs.filter(job => {
+        // 1. Filter local database jobs
+        let localMatches = allJobs.filter(job => {
             const matchesQuery = !query ||
                 (job.title || '').toLowerCase().includes(query) ||
                 (job.company || '').toLowerCase().includes(query) ||
@@ -87,6 +88,35 @@ document.addEventListener('DOMContentLoaded', async () => {
             const matchesType = !type || (job.jobType || '').toLowerCase() === type.toLowerCase();
             return matchesQuery && matchesLocation && matchesType;
         });
+
+        // 2. Fetch from Adzuna if there's a search query
+        let adzunaMatches = [];
+        if (query.length > 2) {
+            try {
+                jobCount.textContent = 'Searching live jobs...';
+                const adzunaData = await JobsAPI.fetchAdzunaJobs(query);
+                if (adzunaData && adzunaData.results) {
+                    adzunaMatches = adzunaData.results.map(aj => ({
+                        id: 'az-' + aj.id,
+                        title: aj.title.replace(/<\/?[^>]+(>|$)/g, ""), // strip tags
+                        company: aj.company.display_name,
+                        location: aj.location.display_name,
+                        description: aj.description.replace(/<\/?[^>]+(>|$)/g, ""),
+                        applyUrl: aj.redirect_url,
+                        jobType: aj.contract_type || 'Full-time',
+                        salary: aj.salary_max ? 'Up to ₹' + aj.salary_max : null,
+                        source: 'ADZUNA',
+                        createdAt: aj.created,
+                        isExternal: true
+                    }));
+                }
+            } catch (err) {
+                console.error('Adzuna fetch failed:', err);
+            }
+        }
+
+        // 3. Merge: Local results first (preferred), then Adzuna
+        filteredJobs = [...localMatches, ...adzunaMatches];
 
         renderFilterChips(query, loc, type);
         renderJobs();
@@ -125,17 +155,31 @@ document.addEventListener('DOMContentLoaded', async () => {
         jobCount.textContent = `${filteredJobs.length} Jobs Found`;
 
         if (pageJobs.length === 0) {
-            jobBoard.innerHTML = `<div class="empty-state"><h4>No jobs found</h4><p>Try adjusting your search or filters.</p></div>`;
+            const hasQuery = searchInput.value.trim().length > 0;
+            jobBoard.innerHTML = `
+                <div class="empty-state">
+                    <h4>${hasQuery ? 'No matching jobs found' : 'Start your search'}</h4>
+                    <p>${hasQuery ? 'Try broader keywords or different locations.' : 'Use the search bar above to discover thousands of live opportunities from Adzuna.'}</p>
+                    ${!hasQuery ? `<button class="btn btn-primary" style="margin-top:1rem;" onclick="document.getElementById('searchInput').focus()">🔍 Start Searching</button>` : ''}
+                </div>`;
             return;
         }
 
-        jobBoard.innerHTML = pageJobs.map((job, i) => `
+        jobBoard.innerHTML = pageJobs.map((job, i) => {
+            const isExternal = job.isExternal || job.source === 'ADZUNA';
+            const detailsLink = isExternal ? job.applyUrl : `job-details.html?id=${job.id}`;
+            const target = isExternal ? '_blank' : '_self';
+
+            return `
             <div class="job-card" style="animation-delay: ${i * 0.1}s">
                 <div class="job-card-header">
-                    <div class="job-card-logo-placeholder">💼</div>
+                    <div class="job-card-logo-placeholder">${isExternal ? '🌐' : '💼'}</div>
                     <div>
                         <div class="job-card-title">${job.title || 'Untitled'}</div>
-                        <div class="job-card-company">${job.company || 'Unknown Company'} ${job.location ? '· 📍 ' + job.location : ''}</div>
+                        <div class="job-card-company">
+                            ${job.company || 'Unknown Company'} ${job.location ? '· 📍 ' + job.location : ''}
+                            ${isExternal ? `<span class="badge badge-adzuna" style="background:var(--primary-light); color:var(--primary); padding: 2px 6px; border-radius: 4px; font-size: 0.75rem; margin-left: 8px;">Live</span>` : ''}
+                        </div>
                     </div>
                 </div>
                 <div class="job-card-body">
@@ -144,20 +188,24 @@ document.addEventListener('DOMContentLoaded', async () => {
                         ${job.jobRoleName ? `<span class="tag">🏷️ ${job.jobRoleName}</span>` : ''}
                         ${job.salary ? `<span class="tag">💰 ${job.salary}</span>` : ''}
                     </div>
-                    <div class="job-card-description">${JobsAPI.truncate(job.description, 120)}</div>
+                    <div class="job-card-description">${JobsAPI.truncate(job.description, 160)}</div>
                 </div>
                 <div class="job-card-footer">
                     <div class="job-card-meta">
-                        <span>📅 ${JobsAPI.timeAgo(job.createdAt)}</span>
+                        <span>📅 ${isExternal ? 'Recently' : JobsAPI.timeAgo(job.createdAt)}</span>
                         <span>👁️ ${job.viewCount || 0} views</span>
                     </div>
                     <div style="display: flex; gap: 0.5rem;">
-                        <button class="btn btn-outline" onclick="viewJobModal(${job.id})" style="flex:1;">Quick View</button>
-                        <a href="job-details.html?id=${job.id}" class="btn btn-primary" style="flex:1; text-decoration:none; text-align:center;">View Details</a>
+                        <button class="btn btn-outline" onclick="${isExternal ? `window.open('${job.applyUrl}', '_blank')` : `viewJobModal(${job.id})`}" style="flex:1;">
+                            ${isExternal ? 'View on Adzuna' : 'Quick View'}
+                        </button>
+                        <a href="${detailsLink}" target="${target}" class="btn btn-primary" style="flex:1; text-decoration:none; text-align:center;">
+                            ${isExternal ? 'Apply Now →' : 'View Details'}
+                        </a>
                     </div>
                 </div>
             </div>
-        `).join('');
+        `;}).join('');
     }
 
     function renderPagination() {

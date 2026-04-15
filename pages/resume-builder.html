@@ -289,23 +289,8 @@ section { position: relative; z-index: 1; }
 .cta-actions { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
 .cta-trust { display: flex; align-items: center; justify-content: center; gap: 1.5rem; margin-top: 2rem; flex-wrap: wrap; }
 .cta-trust-item { display: flex; align-items: center; gap: 6px; font-size: 0.78rem; color: var(--text-muted); }
-.cta-trust-item i { color: var(--accent); }
-
-.site-footer { background: var(--primary); border-top: 1px solid rgba(255, 255, 255, 0.1); color: white; }
-.footer-main { max-width: 1200px; margin: 0 auto; padding: 4rem 2rem 3rem; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem; }
-.footer-brand .logo { font-size: 1.4rem; margin-bottom: 1rem; -webkit-text-fill-color: white; background: none; color: white !important; }
-.footer-brand p { color: rgba(255, 255, 255, 0.7); line-height: 1.7; margin-top: 1.2rem; font-size: 0.95rem; }
-.footer-social { display: flex; gap: 1rem; margin-top: 2rem; }
-.footer-social a { width: 40px; height: 40px; border-radius: 50%; background: rgba(255, 255, 255, 0.1); display: flex; align-items: center; justify-content: center; color: white; transition: all 0.3s ease; text-decoration: none; }
-.footer-social a:hover { background: white; color: var(--primary); transform: translateY(-3px); }
-.footer-col h4 { color: white; font-size: 1.1rem; font-weight: 700; margin-bottom: 1.8rem; }
-.footer-col a { display: block; color: rgba(255, 255, 255, 0.7); text-decoration: none; margin-bottom: 0.8rem; font-size: 0.9rem; transition: all 0.2s; }
-.footer-col a:hover { color: white; padding-left: 4px; }
-.footer-bottom { max-width: 1200px; margin: 0 auto; padding: 2rem 0; border-top: 1px solid rgba(255, 255, 255, 0.1); display: flex; justify-content: space-between; align-items: center; }
-.footer-bottom p { color: rgba(255, 255, 255, 0.5); font-size: 0.85rem; }
-.footer-brand-name { color: white; font-weight: 700; }
-.footer-badges { display: flex; gap: 1.5rem; }
-.footer-badge { display: flex; align-items: center; gap: 8px; font-size: 0.75rem; color: rgba(255, 255, 255, 0.8); background: rgba(255, 255, 255, 0.1); padding: 6px 12px; border-radius: 100px; }
+.cta-trust-item i { color: var(--accent); }/* Footer handled by global navbar.css */
+ }
 
 .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.6s ease, transform 0.6s ease; }
 .reveal.visible { opacity: 1; transform: translateY(0); }
@@ -437,6 +422,147 @@ section { position: relative; z-index: 1; }
     <div class="hero-stat"><div class="num">100%</div><div class="lbl">ATS Friendly</div></div>
   </div>
 </section>
+
+<!-- COMING SOON — Aptitude & Interview Practice -->
+<section class="coming-soon-section" id="coming-soon">
+  <div class="cs-bg-effects">
+    <div class="cs-grid-overlay"></div>
+    <div class="cs-orb cs-orb-1"></div>
+    <div class="cs-orb cs-orb-2"></div>
+  </div>
+  
+  <div class="cs-glass-panel">
+    <div class="cs-panel-header">
+      <span class="cs-badge"><span class="cs-badge-dot"></span> EARLY SNEAK PEEK</span>
+    </div>
+    
+    <h2 class="cs-title">Crack the Interview. <br><span class="cs-gradient-text">Master Your Next Role.</span></h2>
+    <p class="cs-subtitle">We are bringing a full-scale aptitude, coding, and interview prep sandbox directly into Path4Career. Practice smarter, not harder.</p>
+
+    <div class="cs-features-grid">
+      <div class="cs-bento-card">
+        <div class="cs-icon" style="color: #214EA5;"><i class="fas fa-brain"></i></div>
+        <h3>Aptitude & Logic</h3>
+        <p>Interactive questions for quantitative and verbal mastery.</p>
+      </div>
+      <div class="cs-bento-card">
+        <div class="cs-icon" style="color: #15803D;"><i class="fas fa-code"></i></div>
+        <h3>Coding Engine</h3>
+        <p>Cloud-based compiler for algorithmic challenge practice.</p>
+      </div>
+      <div class="cs-bento-card">
+        <div class="cs-icon" style="color: #3b82f6;"><i class="fas fa-robot"></i></div>
+        <h3>AI Feedback</h3>
+        <p>Real-time suggestions and code-review directly from AI.</p>
+      </div>
+      <div class="cs-bento-card">
+        <div class="cs-icon" style="color: #d97706;"><i class="fas fa-chart-pie"></i></div>
+        <h3>Deep Analytics</h3>
+        <p>Pinpoint weaknesses and track your improvement speeds.</p>
+      </div>
+    </div>
+
+    <div class="cs-cta-wrap">
+      <a href="./aptitude-practice.html" class="cs-btn-glow" style="text-decoration:none;">
+        <i class="fas fa-lock-open"></i> See Preview & Join Waitlist
+      </a>
+      <p class="cs-early-note"><i class="fas fa-gift"></i> Secure lifetime premium access by joining early.</p>
+    </div>
+  </div>
+</section>
+
+<style>
+/* ─────────────── CLEAN LIGHT COMING SOON SECTION (Resume Builder) ─────────────── */
+.coming-soon-section {
+    position: relative;
+    padding: 6rem 1rem;
+    background: #f8fafc; /* Very soft light background */
+    display: flex; justify-content: center;
+    overflow: hidden;
+}
+.cs-bg-effects { position: absolute; inset: 0; pointer-events: none; z-index: 0; }
+.cs-grid-overlay {
+    position: absolute; inset: 0;
+    background-image: radial-gradient(rgba(0,0,0,0.03) 1px, transparent 1px);
+    background-size: 32px 32px;
+    mask-image: radial-gradient(circle at center, black 0%, transparent 80%);
+    -webkit-mask-image: radial-gradient(circle at center, black 0%, transparent 80%);
+}
+.cs-orb { position: absolute; border-radius: 50%; filter: blur(120px); opacity: 0.5; mix-blend-mode: multiply; }
+.cs-orb-1 { width: 600px; height: 600px; background: rgba(33, 78, 165, 0.15); top: -100px; left: -100px; animation: floatOrb 25s infinite alternate ease-in-out; }
+.cs-orb-2 { width: 500px; height: 500px; background: rgba(21, 128, 61, 0.1); bottom: -100px; right: -50px; animation: floatOrb 30s infinite alternate-reverse ease-in-out; }
+@keyframes floatOrb { 0% { transform: translate(0, 0); } 100% { transform: translate(100px, 50px); } }
+
+.cs-glass-panel {
+    max-width: 1000px; width: 100%;
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 32px;
+    padding: 4.5rem 3.5rem;
+    text-align: center;
+    position: relative; z-index: 1;
+    box-shadow: 0 40px 100px rgba(0,0,0,0.05); /* Extremely soft shadow */
+}
+
+.cs-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: #f1f5f9;
+    border: 1px solid #cbd5e1;
+    color: #214EA5; font-size: 0.8rem; font-weight: 700;
+    letter-spacing: 1.5px; padding: 8px 24px; border-radius: 100px;
+    margin-bottom: 2rem; position: relative; z-index: 2;
+}
+.cs-badge-dot { width: 8px; height: 8px; border-radius: 50%; background: #15803D; box-shadow: 0 0 10px #15803D; animation: csPulse 2s infinite; }
+@keyframes csPulse { 0%, 100% { transform: scale(1); opacity:1;} 50% { transform: scale(1.5); opacity: 0.4; } }
+
+.cs-title {
+    font-size: clamp(2rem, 5vw, 3.5rem); font-family: 'Poppins', sans-serif;
+    font-weight: 800; letter-spacing: -1.5px; line-height: 1.15;
+    margin-bottom: 1.2rem; color: #0f172a; position: relative; z-index: 2;
+}
+.cs-gradient-text {
+    background: linear-gradient(135deg, #214EA5, #15803D);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+}
+
+.cs-subtitle {
+    color: #475569; font-size: 1.15rem; line-height: 1.7; font-weight: 500;
+    max-width: 650px; margin: 0 auto 3.5rem; position: relative; z-index: 2;
+}
+
+.cs-features-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem; margin-bottom: 4rem; position: relative; z-index: 2;
+}
+.cs-bento-card {
+    background: #f8fafc; border: 1px solid #f1f5f9;
+    border-radius: 20px; padding: 2.5rem 1.5rem; text-align: left;
+    transition: all 0.4s cubic-bezier(0.4,0,0.2,1);
+}
+.cs-bento-card:hover { transform: translateY(-5px); box-shadow: 0 20px 40px rgba(0,0,0,0.06); background: white; border-color: #e2e8f0; }
+.cs-icon { font-size: 1.8rem; margin-bottom: 1.2rem; }
+.cs-bento-card h3 { color: #1e293b; font-size: 1.1rem; margin-bottom: 0.6rem; font-family: 'Poppins', sans-serif; font-weight: 700; }
+.cs-bento-card p { color: #64748b; font-size: 0.9rem; line-height: 1.6; }
+
+.cs-cta-wrap { display: flex; flex-direction: column; align-items: center; gap: 1rem; position: relative; z-index: 2; }
+.cs-btn-glow {
+    background: #214EA5; color: white;
+    font-size: 1.1rem; font-weight: 800; padding: 18px 45px;
+    border-radius: 100px; cursor: pointer; transition: all 0.3s ease;
+    display: inline-flex; align-items: center; gap: 10px; font-family: 'Poppins', sans-serif;
+    box-shadow: 0 10px 25px rgba(33, 78, 165, 0.25);
+}
+.cs-btn-glow:hover { transform: translateY(-3px); box-shadow: 0 15px 35px rgba(33, 78, 165, 0.35); color: white; }
+
+.cs-early-note { font-size: 0.9rem; color: #64748b; font-weight: 600; }
+.cs-early-note i { color: #15803D; margin-right: 4px; }
+
+@media (max-width: 768px) {
+    .cs-glass-panel { padding: 3rem 1.5rem; border-radius: 24px; }
+    .cs-title { font-size: 2rem; }
+    .cs-btn-glow { width: 100%; justify-content: center; }
+}
+</style>
 
 <!-- WHY Path4Career -->
 <section class="why-section" id="why">
@@ -744,6 +870,8 @@ section { position: relative; z-index: 1; }
   </div>
 </section>
 
+
+
 <!-- CTA BANNER -->
 <section class="cta-section">
   <div class="cta-inner reveal">
@@ -775,38 +903,7 @@ section { position: relative; z-index: 1; }
         <a href="#"><i class="fab fa-github"></i></a>
         <a href="#"><i class="fab fa-instagram"></i></a>
       </div>
-    </div>
-    <div class="footer-col">
-      <h4>Templates</h4>
-      <a href="./resume-builder-app.html" onclick="goToCategory('basic')">Basic (30)</a>
-      <a href="./resume-builder-app.html" onclick="goToCategory('intermediate')">Intermediate (30)</a>
-      <a href="./resume-builder-app.html" onclick="goToCategory('premium')">Premium (30)</a>
-      <a href="./resume-builder-app.html">All Templates</a>
-    </div>
-    <div class="footer-col">
-      <h4>Features</h4>
-      <a href="#features">Resume Upload</a>
-      <a href="#features">Inline Editing</a>
-      <a href="#features">PDF Download</a>
-      <a href="#features">ATS Checker</a>
-    </div>
-    <div class="footer-col">
-      <h4>Company</h4>
-      <a href="#">About Us</a>
-      <a href="#">Blog</a>
-      <a href="auth/privacy.html">Privacy Policy</a>
-      <a href="auth/terms.html">Terms of Service</a>
-    </div>
-  </div>
-  <div class="footer-bottom">
-    <p>© 2025 <span class="footer-brand-name">Path4Career</span>. All rights reserved.</p>
-    <div class="footer-badges">
-      <div class="footer-badge"><i class="fas fa-shield-alt"></i> ATS Safe</div>
-      <div class="footer-badge"><i class="fas fa-lock"></i> Secure</div>
-      <div class="footer-badge"><i class="fas fa-star"></i> Free</div>
-    </div>
-  </div>
-</footer>
+<div id="footer-root"></div>
 
 
 

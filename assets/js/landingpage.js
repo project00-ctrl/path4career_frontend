@@ -539,3 +539,104 @@ function renderEditorCards(editors, container) {
       </a>`;
   }).join('');
 }
+
+// ==========================================
+// LANDING PAGE TRY-IT-YOURSELF EDITOR
+// ==========================================
+document.addEventListener("DOMContentLoaded", () => {
+    const btnFrontend = document.getElementById('btn-frontend');
+    const btnBackend = document.getElementById('btn-backend');
+    const codeEditor = document.getElementById('code-editor');
+    const iframeOutput = document.getElementById('output-box');
+
+    const frontendCode = `<!DOCTYPE html>
+<html>
+<head>
+<style>
+  body { 
+      font-family: 'Inter', sans-serif; 
+      background: #0f172a; 
+      color: white; 
+      display: flex; 
+      align-items: center; 
+      justify-content: center; 
+      height: 100vh; 
+      margin: 0; 
+  }
+  h1 { 
+      font-size: 2.5rem; 
+      background: linear-gradient(90deg, #38bdf8, #818cf8); 
+      -webkit-background-clip: text; 
+      color: transparent; 
+  }
+</style>
+</head>
+<body>
+  <h1>Hello Frontend! 🚀</h1>
+</body>
+</html>`;
+
+    const backendCode = `// Node.js Express Server Example
+const express = require('express');
+const app = express();
+
+app.get('/api/users', (req, res) => {
+    res.json({
+        status: "success",
+        data: [
+            { id: 1, name: "Alice", role: "Developer" },
+            { id: 2, name: "Bob", role: "Designer" }
+        ]
+    });
+});
+
+app.listen(3000, () => {
+    console.log("🚀 Server running on port 3000");
+    console.log("GET /api/users -> 200 OK");
+});`;
+
+    let currentMode = 'frontend';
+
+    if (btnFrontend && btnBackend && codeEditor) {
+        btnFrontend.addEventListener('click', () => {
+            btnFrontend.classList.add('active');
+            btnBackend.classList.remove('active');
+            codeEditor.value = frontendCode;
+            currentMode = 'frontend';
+            if(iframeOutput) iframeOutput.srcdoc = ""; // clear output on switch
+        });
+
+        btnBackend.addEventListener('click', () => {
+            btnBackend.classList.add('active');
+            btnFrontend.classList.remove('active');
+            codeEditor.value = backendCode;
+            currentMode = 'backend';
+            if(iframeOutput) iframeOutput.srcdoc = ""; // clear output on switch
+        });
+    }
+
+    // Bind to window so the onclick="runCode()" works
+    window.runCode = function() {
+        if (!codeEditor || !iframeOutput) return;
+        
+        if (currentMode === 'frontend') {
+            iframeOutput.srcdoc = codeEditor.value;
+        } else {
+            // Simulate backend terminal output for demonstration
+            const simulatedTerminal = `
+                <!DOCTYPE html>
+                <html>
+                    <body style="background:#020617; color:#10b981; font-family: 'Fira Code', monospace; padding: 20px; font-size: 14px;">
+                        <div>$ node server.js</div>
+                        <div style="color: #38bdf8; margin-top: 10px;">🚀 Server running on port 3000</div>
+                        <div style="color: #a855f7;">[Express] Listening for API requests...</div>
+                        <div style="color: #4ade80; margin-top: 5px;">GET /api/users -> 200 OK</div>
+                        <br>
+                        <div style="color: #64748b; font-style: italic;">// Simulated backend execution on landing page</div>
+                    </body>
+                </html>
+            `;
+            iframeOutput.srcdoc = simulatedTerminal;
+        }
+    }
+});

@@ -55,7 +55,17 @@
         document.addEventListener("DOMContentLoaded", () => {
             const loginForm = document.getElementById("loginForm");
             const params = new URLSearchParams(window.location.search);
-            const redirectUrl = params.get('redirect') || document.referrer || '../../index.html';
+            let redirectUrl = params.get('redirect');
+
+            if (!redirectUrl) {
+                const referrer = document.referrer;
+                // If referrer is signup/login, ignore it and go to dashboard
+                if (referrer && !referrer.includes('register.html') && !referrer.includes('login.html')) {
+                    redirectUrl = referrer;
+                } else {
+                    redirectUrl = 'dashboard.html';
+                }
+            }
 
             const existingToken = localStorage.getItem('AUTH_TOKEN');
             if (existingToken) {

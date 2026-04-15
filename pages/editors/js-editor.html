@@ -45,40 +45,38 @@ const jsInput = document.getElementById('jsInput');
         const runBtn = document.getElementById('runBtn');
 
         // 1. Fetch saved code or use default example
-        const savedCode = localStorage.getItem('careerPathJsCode');
+        const savedCode = localStorage.getItem('path4careerJSCode');
         const defaultCode = `// 1. Log a message to the console below!
 console.log("Hello from CareerPath JavaScript!");
 
-// 2. Do some math
-let a = 10;
-let b = 20;
-console.log("The sum of a and b is:", a + b);
+// 2. Select an element and change its text
+const heading = document.getElementById('my-heading');
+heading.textContent = "JavaScript is Awesome! 🚀";
 
-// 3. Manipulate the visual webpage above!
-document.body.innerHTML = "<h1>JavaScript successfully manipulated the DOM! 🎉</h1>";
-document.body.style.color = "#0f172a";
-document.body.style.textAlign = "center";
-document.body.style.fontFamily = "sans-serif";
-document.body.style.paddingTop = "20px";`;
+// 3. Create a new element and add it to the page
+const newPara = document.createElement('p');
+newPara.textContent = "This paragraph was created dynamically.";
+document.body.appendChild(newPara);
+`;
+        jsInput.value = savedCode || defaultCode;
 
-        jsInput.value = savedCode ? savedCode : defaultCode;
-
-        // 2. Smart Indentation
+        // 2. Handle Tab Key for Indentation
         jsInput.addEventListener('keydown', function(e) {
             if (e.key === 'Tab') {
                 e.preventDefault();
                 const start = this.selectionStart;
                 const end = this.selectionEnd;
+                // Set textarea value to: text before caret + 4 spaces + text after caret
                 const spaces = "    "; 
                 this.value = this.value.substring(0, start) + spaces + this.value.substring(end);
                 this.selectionStart = this.selectionEnd = start + spaces.length;
-                localStorage.setItem('careerPathJsCode', this.value);
+                localStorage.setItem('path4careerJSCode', this.value);
             }
         });
 
         // 3. Auto-Save
         jsInput.addEventListener('input', () => {
-            localStorage.setItem('careerPathJsCode', jsInput.value);
+            localStorage.setItem('path4careerJSCode', jsInput.value);
         });
 
         // ✨ Direct Terminal Link
@@ -98,18 +96,13 @@ document.body.style.paddingTop = "20px";`;
             
             // SMART DETECTOR: Pure JS vs HTML
             const isHTML = rawCode.includes('<script') || rawCode.trim().startsWith('<');
-            const bodyContent = isHTML ? rawCode : "";
 
-            const injectedHTML = `<!DOCTYPE html><html><head>\x3C/head><body>${bodyContent}\x3C/body>\x3C/html>`;
-            
             const iframeDoc = htmlOutput.contentWindow.document;
             iframeDoc.open();
-            iframeDoc.write(injectedHTML);
-            iframeDoc.close();
-
-            // Inject console interceptor via DOM (avoids template literal parsing bugs)
-            const interceptor = iframeDoc.createElement('script');
-            interceptor.textContent = `
+            
+            // 🚀 Write interceptor inside the initial HTML write so it executes FIRST!
+            iframeDoc.write(`<!DOCTYPE html><html><head>
+                <script>
                 function safeStringify(obj) {
                     try {
                         return typeof obj === 'object' ? JSON.stringify(obj, null, 2) : String(obj);
@@ -135,14 +128,17 @@ document.body.style.paddingTop = "20px";`;
                 };
                 window.onerror = function(msg, url, line) {
                     if(window.parent && window.parent.logToTerminal) {
-                        window.parent.logToTerminal('error', msg);
+                        window.parent.logToTerminal('error', msg + ' (Line: ' + line + ')');
                     }
                     return false;
                 };
-            `;
-            iframeDoc.head.appendChild(interceptor);
+                <\\/script>
+            </head><body>
+                ${isHTML ? rawCode : '<h3 id="my-heading" style="color: #475569; font-family: sans-serif;">Waiting for JS...</h3>'}
+            </body></html>`);
+            iframeDoc.close();
 
-            // Safely inject Pure JS as a DOM node
+            // Safely inject Pure JS as a DOM node at the end
             if (!isHTML) {
                 const scriptEl = iframeDoc.createElement('script');
                 scriptEl.textContent = rawCode;

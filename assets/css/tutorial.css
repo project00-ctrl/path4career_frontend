@@ -22,11 +22,6 @@
     --surface: #FFFFFF;
 }
 
-html,
-body {
-    height: 100%;
-}
-
 body {
     background-color: #FDFAF6;
     color: #111827;
@@ -34,7 +29,6 @@ body {
     flex-direction: column;
     min-height: 100vh;
     overflow-x: hidden;
-    overflow-y: auto;
 }
 
 /* Scrollbar (make it visible on mobile too) */
@@ -289,12 +283,13 @@ body {
 .main-layout {
     display: flex;
     flex: 1;
-    min-height: 0;
-    height: auto;
 }
 
 /* --- Left Sidebar --- */
 .left-sidebar {
+    position: sticky;
+    top: 110px; /* Aligns below the sticky navbar */
+    height: calc(100vh - 110px);
     width: 200px;
     min-width: 200px;
     padding: 20px 0;
@@ -336,11 +331,9 @@ body {
 .content-area {
     flex: 1;
     padding: 40px 50px;
-    overflow-y: auto;
     background-color: #FDFAF6;
     color: #111827;
     min-width: 0;
-    -webkit-overflow-scrolling: touch;
 }
 
 .content-area h1,
@@ -412,6 +405,9 @@ body {
 
 /* --- Right Sidebar (Dynamic Course Cards) --- */
 .right-sidebar {
+    position: sticky;
+    top: 110px;
+    height: calc(100vh - 110px);
     width: 300px;
     min-width: 300px;
     padding: 24px 16px;
@@ -638,47 +634,15 @@ body {
     .content-area {
         padding: 30px 24px;
     }
-}
 
-/* =========================================
-   RESPONSIVE — SMALL TABLET (≤900px)
-========================================= */
-@media (max-width: 900px) {
-    .main-layout {
-        flex-direction: column;
-        height: auto;
-        overflow-y: auto;
-    }
-
-    body {
-        overflow: auto;
-        height: auto;
-    }
-
-    .left-sidebar {
-        width: 100%;
-        min-width: 100%;
-        border-right: none;
-        border-bottom: 1px solid var(--border);
-        max-height: 200px;
-        padding: 10px 0;
-    }
-
-    .right-sidebar {
-        width: 100%;
-        min-width: 100%;
-        border-left: none;
-        border-top: 1px solid var(--border);
-        padding: 20px 16px;
-    }
-
-    .content-area {
-        padding: 24px 20px;
+    .tech-nav {
+        gap: 15px;
+        font-size: 13px;
     }
 }
 
 /* =========================================
-   RESPONSIVE — MOBILE (≤768px)
+   RESPONSIVE — MOBILE & TABLET PORTRAIT (≤768px)
 ========================================= */
 @media (max-width: 768px) {
     body {
@@ -712,6 +676,7 @@ body {
         padding: 0;
         background-color: var(--bg-secondary);
         box-shadow: var(--shadow-hover);
+        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
     .left-sidebar.open {
@@ -726,16 +691,7 @@ body {
     .content-area {
         padding: 20px 16px;
         margin-top: 48px;
-    }
-
-    /* Slightly smaller reading sizes on mobile */
-    .content-area h1 {
-        font-size: 22px;
-    }
-
-    .text-block {
-        font-size: 14px;
-        line-height: 1.7;
+        width: 100%;
     }
 
     .content-area h1 {
@@ -743,8 +699,9 @@ body {
         margin-bottom: 20px;
     }
 
-    .content-area h3 {
-        font-size: 16px;
+    .text-block {
+        font-size: 14px;
+        line-height: 1.7;
     }
 
     /* Right sidebar becomes bottom suggestions on mobile */
@@ -789,28 +746,10 @@ body {
         font-size: 13px;
     }
 
-    /* Example card */
-    .example-card {
-        padding: 16px;
-    }
-
     /* Editor modal */
     .editor-content {
-        width: 98%;
+        width: 95%;
         height: 90%;
-    }
-
-    .editor-workspace {
-        flex-direction: column;
-    }
-
-    .editor-pane {
-        border-right: none;
-        border-bottom: 1px solid var(--border);
-    }
-
-    .editor-pane:last-child {
-        border-bottom: none;
     }
 }
 
@@ -831,25 +770,14 @@ body {
         border-radius: 6px;
     }
 
-    .code-editor {
-        padding: 12px;
-    }
-
     .code-editor pre {
-        font-size: 12px;
-    }
-
-    .example-code {
-        padding: 12px 14px;
-    }
-
-    .example-code pre {
         font-size: 12px;
     }
 
     .btn-try-it {
         padding: 10px 20px;
         font-size: 13px;
+        width: 100%;
     }
 
     .btn-primary, .btn-secondary {
@@ -862,5 +790,11 @@ body {
         left: 8px;
         padding: 6px 10px;
         font-size: 12px;
+    }
+    
+    .tech-nav {
+        height: 40px;
+        padding: 0 12px;
+        gap: 15px;
     }
 }

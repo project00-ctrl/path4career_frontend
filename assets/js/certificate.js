@@ -41,76 +41,582 @@ function getModuleColor(module) {
 // ──────────────────────────────────────────
 const COURSE_BUNDLES = [
     {
-        id: 'frontend',
-        name: 'Frontend Development',
-        icon: '🖥️',
-        color: '#2563EB',
-        gradient: 'linear-gradient(135deg, #1e3a5f, #2563EB)',
-        description: 'Master the essential technologies for building modern web interfaces.',
-        requiredModuleNames: ['HTML', 'CSS', 'JavaScript']
+        "id": "frontend-dev",
+        "name": "Frontend Development Professional",
+        "icon": "\ud83d\udda5\ufe0f",
+        "color": "#2563EB",
+        "gradient": "linear-gradient(135deg, #1e3a5f, #2563EB)",
+        "description": "Master HTML, CSS, and JavaScript for modern web interfaces.",
+        "requiredModuleNames": [
+            "HTML",
+            "CSS",
+            "JavaScript"
+        ]
     },
     {
-        id: 'react-dev',
-        name: 'React Developer',
-        icon: '⚛️',
-        color: '#06b6d4',
-        gradient: 'linear-gradient(135deg, #164e63, #06b6d4)',
-        description: 'Build dynamic single-page applications with React.',
-        requiredModuleNames: ['HTML', 'CSS', 'JavaScript', 'React']
+        "id": "fullstack-master",
+        "name": "Full Stack Mastery",
+        "icon": "\ud83d\ude80",
+        "color": "#7c3aed",
+        "gradient": "linear-gradient(135deg, #4c1d95, #7c3aed)",
+        "description": "End-to-end development mastery from frontend to backend.",
+        "requiredModuleNames": [
+            "HTML",
+            "CSS",
+            "JavaScript",
+            "Node.js",
+            "SQL"
+        ]
     },
     {
-        id: 'python-dev',
-        name: 'Python Developer',
-        icon: '🐍',
-        color: '#3B82F6',
-        gradient: 'linear-gradient(135deg, #1e3a5f, #3B82F6)',
-        description: 'Master Python programming and its data science ecosystem.',
-        requiredModuleNames: ['Python', 'NumPy', 'Pandas']
+        "id": "html",
+        "name": "HTML Mastery Certificate",
+        "icon": "\ud83c\udf10",
+        "color": "#2563EB",
+        "gradient": "linear-gradient(135deg, #1e3a5f, #2563EB)",
+        "description": "Official certification program for HTML. The language for building web pages.",
+        "requiredModuleNames": [
+            "HTML"
+        ]
     },
     {
-        id: 'fullstack',
-        name: 'Full Stack Development',
-        icon: '🚀',
-        color: '#7c3aed',
-        gradient: 'linear-gradient(135deg, #4c1d95, #7c3aed)',
-        description: 'End-to-end web development from frontend to backend.',
-        requiredModuleNames: ['HTML', 'CSS', 'JavaScript', 'Node.js']
+        "id": "css",
+        "name": "CSS Mastery Certificate",
+        "icon": "\ud83c\udfa8",
+        "color": "#2563EB",
+        "gradient": "linear-gradient(135deg, #1e3a5f, #2563EB)",
+        "description": "Official certification program for CSS. The language for styling web pages.",
+        "requiredModuleNames": [
+            "CSS"
+        ]
     },
     {
-        id: 'database',
-        name: 'Database Specialist',
-        icon: '🗄️',
-        color: '#059669',
-        gradient: 'linear-gradient(135deg, #065f46, #059669)',
-        description: 'Master relational and NoSQL database management.',
-        requiredModuleNames: ['SQL', 'MySQL', 'MongoDB']
+        "id": "javascript",
+        "name": "JavaScript Mastery Certificate",
+        "icon": "\u26a1",
+        "color": "#2563EB",
+        "gradient": "linear-gradient(135deg, #1e3a5f, #2563EB)",
+        "description": "Official certification program for JavaScript. The programming language of the web.",
+        "requiredModuleNames": [
+            "JavaScript"
+        ]
     },
     {
-        id: 'java-dev',
-        name: 'Java Developer',
-        icon: '☕',
-        color: '#d97706',
-        gradient: 'linear-gradient(135deg, #92400e, #d97706)',
-        description: 'Enterprise application development with Java.',
-        requiredModuleNames: ['Java']
+        "id": "bootstrap",
+        "name": "Bootstrap Mastery Certificate",
+        "icon": "\ud83c\udd71\ufe0f",
+        "color": "#7c3aed",
+        "gradient": "linear-gradient(135deg, #4c1d95, #7c3aed)",
+        "description": "Official certification program for Bootstrap. Popular CSS framework for responsive design.",
+        "requiredModuleNames": [
+            "Bootstrap"
+        ]
     },
     {
-        id: 'data-science',
-        name: 'Data Science',
-        icon: '📊',
-        color: '#dc2626',
-        gradient: 'linear-gradient(135deg, #991b1b, #dc2626)',
-        description: 'Analyze and visualize data with Python libraries.',
-        requiredModuleNames: ['Python', 'NumPy', 'Pandas', 'Excel']
+        "id": "tailwind-css",
+        "name": "Tailwind CSS Mastery Certificate",
+        "icon": "\ud83c\udf0a",
+        "color": "#7c3aed",
+        "gradient": "linear-gradient(135deg, #4c1d95, #7c3aed)",
+        "description": "Official certification program for Tailwind CSS. Utility-first CSS framework for rapid UI development.",
+        "requiredModuleNames": [
+            "Tailwind CSS"
+        ]
     },
     {
-        id: 'bootstrap-dev',
-        name: 'Bootstrap Developer',
-        icon: '🅱️',
-        color: '#7952b3',
-        gradient: 'linear-gradient(135deg, #4c1d95, #7952b3)',
-        description: 'Build responsive websites with Bootstrap framework.',
-        requiredModuleNames: ['HTML', 'CSS', 'Bootstrap']
+        "id": "react",
+        "name": "React Mastery Certificate",
+        "icon": "\u269b\ufe0f",
+        "color": "#7c3aed",
+        "gradient": "linear-gradient(135deg, #4c1d95, #7c3aed)",
+        "description": "Official certification program for React. JavaScript library for building user interfaces.",
+        "requiredModuleNames": [
+            "React"
+        ]
+    },
+    {
+        "id": "angular",
+        "name": "Angular Mastery Certificate",
+        "icon": "\ud83c\udd70\ufe0f",
+        "color": "#7c3aed",
+        "gradient": "linear-gradient(135deg, #4c1d95, #7c3aed)",
+        "description": "Official certification program for Angular. TypeScript-based platform for web applications.",
+        "requiredModuleNames": [
+            "Angular"
+        ]
+    },
+    {
+        "id": "vuejs",
+        "name": "Vue.js Mastery Certificate",
+        "icon": "\ud83d\udc9a",
+        "color": "#7c3aed",
+        "gradient": "linear-gradient(135deg, #4c1d95, #7c3aed)",
+        "description": "Official certification program for Vue.js. Progressive JavaScript framework for UIs.",
+        "requiredModuleNames": [
+            "Vue.js"
+        ]
+    },
+    {
+        "id": "nextjs",
+        "name": "Next.js Mastery Certificate",
+        "icon": "\u25b2",
+        "color": "#7c3aed",
+        "gradient": "linear-gradient(135deg, #4c1d95, #7c3aed)",
+        "description": "Official certification program for Next.js. React framework for production-ready web apps.",
+        "requiredModuleNames": [
+            "Next.js"
+        ]
+    },
+    {
+        "id": "jquery",
+        "name": "jQuery Mastery Certificate",
+        "icon": "\ud83d\udce6",
+        "color": "#2563EB",
+        "gradient": "linear-gradient(135deg, #1e3a5f, #2563EB)",
+        "description": "Official certification program for jQuery. Fast and feature-rich JavaScript library.",
+        "requiredModuleNames": [
+            "jQuery"
+        ]
+    },
+    {
+        "id": "typescript",
+        "name": "TypeScript Mastery Certificate",
+        "icon": "\ud83d\udcdc",
+        "color": "#2563EB",
+        "gradient": "linear-gradient(135deg, #1e3a5f, #2563EB)",
+        "description": "Official certification program for TypeScript. Typed superset of JavaScript for large apps.",
+        "requiredModuleNames": [
+            "TypeScript"
+        ]
+    },
+    {
+        "id": "xml",
+        "name": "XML Mastery Certificate",
+        "icon": "\ud83d\udcc4",
+        "color": "#2563EB",
+        "gradient": "linear-gradient(135deg, #1e3a5f, #2563EB)",
+        "description": "Official certification program for XML. Markup language for structured data.",
+        "requiredModuleNames": [
+            "XML"
+        ]
+    },
+    {
+        "id": "python",
+        "name": "Python Mastery Certificate",
+        "icon": "\ud83d\udc0d",
+        "color": "#059669",
+        "gradient": "linear-gradient(135deg, #065f46, #059669)",
+        "description": "Official certification program for Python. Versatile language for backend and data science.",
+        "requiredModuleNames": [
+            "Python"
+        ]
+    },
+    {
+        "id": "java",
+        "name": "Java Mastery Certificate",
+        "icon": "\u2615",
+        "color": "#059669",
+        "gradient": "linear-gradient(135deg, #065f46, #059669)",
+        "description": "Official certification program for Java. Enterprise-grade object-oriented language.",
+        "requiredModuleNames": [
+            "Java"
+        ]
+    },
+    {
+        "id": "php",
+        "name": "PHP Mastery Certificate",
+        "icon": "\ud83d\udc18",
+        "color": "#059669",
+        "gradient": "linear-gradient(135deg, #065f46, #059669)",
+        "description": "Official certification program for PHP. Server-side scripting language for the web.",
+        "requiredModuleNames": [
+            "PHP"
+        ]
+    },
+    {
+        "id": "c",
+        "name": "C Mastery Certificate",
+        "icon": "\ud83d\udcbb",
+        "color": "#059669",
+        "gradient": "linear-gradient(135deg, #065f46, #059669)",
+        "description": "Official certification program for C. Low-level language for system programming.",
+        "requiredModuleNames": [
+            "C"
+        ]
+    },
+    {
+        "id": "c++",
+        "name": "C++ Mastery Certificate",
+        "icon": "\u2699\ufe0f",
+        "color": "#059669",
+        "gradient": "linear-gradient(135deg, #065f46, #059669)",
+        "description": "Official certification program for C++. Powerful language for high-performance apps.",
+        "requiredModuleNames": [
+            "C++"
+        ]
+    },
+    {
+        "id": "c#",
+        "name": "C# Mastery Certificate",
+        "icon": "\ud83d\udd37",
+        "color": "#059669",
+        "gradient": "linear-gradient(135deg, #065f46, #059669)",
+        "description": "Official certification program for C#. Modern language for Windows and game dev.",
+        "requiredModuleNames": [
+            "C#"
+        ]
+    },
+    {
+        "id": "go",
+        "name": "Go Mastery Certificate",
+        "icon": "\ud83d\udc39",
+        "color": "#059669",
+        "gradient": "linear-gradient(135deg, #065f46, #059669)",
+        "description": "Official certification program for Go. Fast, reliable language built by Google.",
+        "requiredModuleNames": [
+            "Go"
+        ]
+    },
+    {
+        "id": "r",
+        "name": "R Mastery Certificate",
+        "icon": "\ud83d\udcca",
+        "color": "#059669",
+        "gradient": "linear-gradient(135deg, #065f46, #059669)",
+        "description": "Official certification program for R. Statistical computing and graphics language.",
+        "requiredModuleNames": [
+            "R"
+        ]
+    },
+    {
+        "id": "nodejs",
+        "name": "Node.js Mastery Certificate",
+        "icon": "\ud83d\udfe2",
+        "color": "#d97706",
+        "gradient": "linear-gradient(135deg, #92400e, #d97706)",
+        "description": "Official certification program for Node.js. JavaScript runtime for server-side development.",
+        "requiredModuleNames": [
+            "Node.js"
+        ]
+    },
+    {
+        "id": "deno",
+        "name": "Deno Mastery Certificate",
+        "icon": "\ud83e\udd95",
+        "color": "#d97706",
+        "gradient": "linear-gradient(135deg, #92400e, #d97706)",
+        "description": "Official certification program for Deno. Modern runtime for JavaScript and TypeScript.",
+        "requiredModuleNames": [
+            "Deno"
+        ]
+    },
+    {
+        "id": "django",
+        "name": "Django Mastery Certificate",
+        "icon": "\ud83c\udfb8",
+        "color": "#7c3aed",
+        "gradient": "linear-gradient(135deg, #4c1d95, #7c3aed)",
+        "description": "Official certification program for Django. High-level Python web framework.",
+        "requiredModuleNames": [
+            "Django"
+        ]
+    },
+    {
+        "id": "flask",
+        "name": "Flask Mastery Certificate",
+        "icon": "\ud83e\uddea",
+        "color": "#7c3aed",
+        "gradient": "linear-gradient(135deg, #4c1d95, #7c3aed)",
+        "description": "Official certification program for Flask. Lightweight Python web microframework.",
+        "requiredModuleNames": [
+            "Flask"
+        ]
+    },
+    {
+        "id": "fastapi",
+        "name": "FastAPI Mastery Certificate",
+        "icon": "\ud83d\ude80",
+        "color": "#7c3aed",
+        "gradient": "linear-gradient(135deg, #4c1d95, #7c3aed)",
+        "description": "Official certification program for FastAPI. Modern high-performance Python API framework.",
+        "requiredModuleNames": [
+            "FastAPI"
+        ]
+    },
+    {
+        "id": "nestjs",
+        "name": "NestJS Mastery Certificate",
+        "icon": "\ud83d\udc08",
+        "color": "#7c3aed",
+        "gradient": "linear-gradient(135deg, #4c1d95, #7c3aed)",
+        "description": "Official certification program for NestJS. Progressive Node.js framework for server apps.",
+        "requiredModuleNames": [
+            "NestJS"
+        ]
+    },
+    {
+        "id": "spring-boot",
+        "name": "Spring Boot Mastery Certificate",
+        "icon": "\ud83c\udf43",
+        "color": "#7c3aed",
+        "gradient": "linear-gradient(135deg, #4c1d95, #7c3aed)",
+        "description": "Official certification program for Spring Boot. Java framework for production-ready apps.",
+        "requiredModuleNames": [
+            "Spring Boot"
+        ]
+    },
+    {
+        "id": "aspnet",
+        "name": "ASP.NET Mastery Certificate",
+        "icon": "\ud83d\udfe6",
+        "color": "#7c3aed",
+        "gradient": "linear-gradient(135deg, #4c1d95, #7c3aed)",
+        "description": "Official certification program for ASP.NET. Microsoft web framework for building APIs.",
+        "requiredModuleNames": [
+            "ASP.NET"
+        ]
+    },
+    {
+        "id": "graphql",
+        "name": "GraphQL Mastery Certificate",
+        "icon": "\u25c8",
+        "color": "#7c3aed",
+        "gradient": "linear-gradient(135deg, #4c1d95, #7c3aed)",
+        "description": "Official certification program for GraphQL. Query language for flexible APIs.",
+        "requiredModuleNames": [
+            "GraphQL"
+        ]
+    },
+    {
+        "id": "rest-api",
+        "name": "REST API Mastery Certificate",
+        "icon": "\ud83d\udd17",
+        "color": "#7c3aed",
+        "gradient": "linear-gradient(135deg, #4c1d95, #7c3aed)",
+        "description": "Official certification program for REST API. Architectural style for web services.",
+        "requiredModuleNames": [
+            "REST API"
+        ]
+    },
+    {
+        "id": "sql",
+        "name": "SQL Mastery Certificate",
+        "icon": "\ud83d\uddc3\ufe0f",
+        "color": "#db2777",
+        "gradient": "linear-gradient(135deg, #831843, #db2777)",
+        "description": "Official certification program for SQL. Standard language for managing databases.",
+        "requiredModuleNames": [
+            "SQL"
+        ]
+    },
+    {
+        "id": "mysql",
+        "name": "MySQL Mastery Certificate",
+        "icon": "\ud83d\udc2c",
+        "color": "#db2777",
+        "gradient": "linear-gradient(135deg, #831843, #db2777)",
+        "description": "Official certification program for MySQL. Popular open-source relational database.",
+        "requiredModuleNames": [
+            "MySQL"
+        ]
+    },
+    {
+        "id": "postgresql",
+        "name": "PostgreSQL Mastery Certificate",
+        "icon": "\ud83d\udc18",
+        "color": "#db2777",
+        "gradient": "linear-gradient(135deg, #831843, #db2777)",
+        "description": "Official certification program for PostgreSQL. Advanced open-source relational database.",
+        "requiredModuleNames": [
+            "PostgreSQL"
+        ]
+    },
+    {
+        "id": "mongodb",
+        "name": "MongoDB Mastery Certificate",
+        "icon": "\ud83c\udf43",
+        "color": "#db2777",
+        "gradient": "linear-gradient(135deg, #831843, #db2777)",
+        "description": "Official certification program for MongoDB. NoSQL database for modern applications.",
+        "requiredModuleNames": [
+            "MongoDB"
+        ]
+    },
+    {
+        "id": "clickhouse",
+        "name": "ClickHouse Mastery Certificate",
+        "icon": "\ud83c\udfe0",
+        "color": "#db2777",
+        "gradient": "linear-gradient(135deg, #831843, #db2777)",
+        "description": "Official certification program for ClickHouse. OLAP database for real-time analytics.",
+        "requiredModuleNames": [
+            "ClickHouse"
+        ]
+    },
+    {
+        "id": "numpy",
+        "name": "NumPy Mastery Certificate",
+        "icon": "\ud83d\udd22",
+        "color": "#0891B2",
+        "gradient": "linear-gradient(135deg, #164e63, #0891B2)",
+        "description": "Official certification program for NumPy. Python library for numerical computing.",
+        "requiredModuleNames": [
+            "NumPy"
+        ]
+    },
+    {
+        "id": "pandas",
+        "name": "Pandas Mastery Certificate",
+        "icon": "\ud83d\udc3c",
+        "color": "#0891B2",
+        "gradient": "linear-gradient(135deg, #164e63, #0891B2)",
+        "description": "Official certification program for Pandas. Data manipulation and analysis library.",
+        "requiredModuleNames": [
+            "Pandas"
+        ]
+    },
+    {
+        "id": "matplotlib",
+        "name": "Matplotlib Mastery Certificate",
+        "icon": "\ud83d\udcc8",
+        "color": "#0891B2",
+        "gradient": "linear-gradient(135deg, #164e63, #0891B2)",
+        "description": "Official certification program for Matplotlib. Python library for data visualization.",
+        "requiredModuleNames": [
+            "Matplotlib"
+        ]
+    },
+    {
+        "id": "seaborn",
+        "name": "Seaborn Mastery Certificate",
+        "icon": "\ud83c\udfa8",
+        "color": "#0891B2",
+        "gradient": "linear-gradient(135deg, #164e63, #0891B2)",
+        "description": "Official certification program for Seaborn. Statistical data visualization in Python.",
+        "requiredModuleNames": [
+            "Seaborn"
+        ]
+    },
+    {
+        "id": "data-science",
+        "name": "Data Science Mastery Certificate",
+        "icon": "\ud83d\udd2c",
+        "color": "#0891B2",
+        "gradient": "linear-gradient(135deg, #164e63, #0891B2)",
+        "description": "Official certification program for Data Science. Foundations of data science and analytics.",
+        "requiredModuleNames": [
+            "Data Science"
+        ]
+    },
+    {
+        "id": "pytorch",
+        "name": "PyTorch Mastery Certificate",
+        "icon": "\ud83d\udd25",
+        "color": "#0891B2",
+        "gradient": "linear-gradient(135deg, #164e63, #0891B2)",
+        "description": "Official certification program for PyTorch. Deep learning framework by Meta.",
+        "requiredModuleNames": [
+            "PyTorch"
+        ]
+    },
+    {
+        "id": "apache-spark",
+        "name": "Apache Spark Mastery Certificate",
+        "icon": "\u26a1",
+        "color": "#0891B2",
+        "gradient": "linear-gradient(135deg, #164e63, #0891B2)",
+        "description": "Official certification program for Apache Spark. Big data processing engine.",
+        "requiredModuleNames": [
+            "Apache Spark"
+        ]
+    },
+    {
+        "id": "power-bi",
+        "name": "Power BI Mastery Certificate",
+        "icon": "\ud83d\udcca",
+        "color": "#0891B2",
+        "gradient": "linear-gradient(135deg, #164e63, #0891B2)",
+        "description": "Official certification program for Power BI. Business intelligence and reporting tool.",
+        "requiredModuleNames": [
+            "Power BI"
+        ]
+    },
+    {
+        "id": "ai",
+        "name": "AI Mastery Certificate",
+        "icon": "\ud83e\udd16",
+        "color": "#0891B2",
+        "gradient": "linear-gradient(135deg, #164e63, #0891B2)",
+        "description": "Official certification program for AI. Artificial intelligence fundamentals.",
+        "requiredModuleNames": [
+            "AI"
+        ]
+    },
+    {
+        "id": "dsa",
+        "name": "DSA Mastery Certificate",
+        "icon": "\ud83e\uddee",
+        "color": "#4F46E5",
+        "gradient": "linear-gradient(135deg, #312e81, #4F46E5)",
+        "description": "Official certification program for DSA. Data Structures and Algorithms essentials.",
+        "requiredModuleNames": [
+            "DSA"
+        ]
+    },
+    {
+        "id": "excel",
+        "name": "Excel Mastery Certificate",
+        "icon": "\ud83d\udcca",
+        "color": "#4b5563",
+        "gradient": "linear-gradient(135deg, #1f2937, #4b5563)",
+        "description": "Official certification program for Excel. Spreadsheet tool for data analysis.",
+        "requiredModuleNames": [
+            "Excel"
+        ]
+    },
+    {
+        "id": "git",
+        "name": "Git Mastery Certificate",
+        "icon": "\ud83d\udd00",
+        "color": "#4b5563",
+        "gradient": "linear-gradient(135deg, #1f2937, #4b5563)",
+        "description": "Official certification program for Git. Version control system for source code.",
+        "requiredModuleNames": [
+            "Git"
+        ]
+    },
+    {
+        "id": "docker",
+        "name": "Docker Mastery Certificate",
+        "icon": "\ud83d\udc33",
+        "color": "#ea580c",
+        "gradient": "linear-gradient(135deg, #7c2d12, #ea580c)",
+        "description": "Official certification program for Docker. Platform for containerized applications.",
+        "requiredModuleNames": [
+            "Docker"
+        ]
+    },
+    {
+        "id": "kubernetes",
+        "name": "Kubernetes Mastery Certificate",
+        "icon": "\u2638\ufe0f",
+        "color": "#ea580c",
+        "gradient": "linear-gradient(135deg, #7c2d12, #ea580c)",
+        "description": "Official certification program for Kubernetes. Container orchestration at scale.",
+        "requiredModuleNames": [
+            "Kubernetes"
+        ]
+    },
+    {
+        "id": "aws",
+        "name": "AWS Mastery Certificate",
+        "icon": "\u2601\ufe0f",
+        "color": "#ea580c",
+        "gradient": "linear-gradient(135deg, #7c2d12, #ea580c)",
+        "description": "Official certification program for AWS. Amazon Web Services cloud platform.",
+        "requiredModuleNames": [
+            "AWS"
+        ]
     }
 ];
 
@@ -315,16 +821,28 @@ function renderCatalog(list) {
         let actionHtml;
         if (isEarned) {
             actionHtml = `
-                <button class="btn-view-cert" onclick="openCertificate(${module.id})">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
-                    View Certificate
-                </button>`;
+                <div class="card-actions-dual">
+                    <button class="btn-view-cert" onclick="openCertificate(${module.id})">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+                        View Certificate
+                    </button>
+                    <button class="btn-view-demo" onclick="openDemoCertificate(${module.id})">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                        View Demo
+                    </button>
+                </div>`;
         } else {
             actionHtml = `
-                <a href="quiz.html?moduleId=${module.id}" class="btn-take-quiz">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
-                    Take Quiz →
-                </a>`;
+                <div class="card-actions-dual">
+                    <a href="quiz.html?moduleId=${module.id}" class="btn-take-quiz">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+                        Take Quiz →
+                    </a>
+                    <button class="btn-view-demo" onclick="openDemoCertificate(${module.id})">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                        View Demo
+                    </button>
+                </div>`;
         }
 
         card.innerHTML =
@@ -342,6 +860,7 @@ function renderCatalog(list) {
             actionHtml;
 
         catalogGrid.appendChild(card);
+
     });
 }
 
@@ -410,11 +929,11 @@ function buildBadge(color) {
 // ──────────────────────────────────────────
 // BUILD CERTIFICATE HTML
 // ──────────────────────────────────────────
-function buildCertHTML(cert) {
+function buildCertHTML(cert, isDemo = false) {
     const module = allModules.find(m => m.id === cert.moduleId) || {};
     const color = getModuleColor(module);
     const courseName = cert.moduleName || module.name || 'Course';
-    const recipientName = cert.issuedToName || 'Student';
+    const recipientName = isDemo ? 'Demo Candidate' : (cert.issuedToName || 'Student');
     const certId = cert.certificateId || 'CP-0000-00000';
     const verifyUrl = 'verify.path4career.com/' + certId;
     const difficulty = cert.difficulty || module.difficulty || 'Intermediate';
@@ -426,6 +945,7 @@ function buildCertHTML(cert) {
     const issuedDate = cert.issuedAt
         ? new Date(cert.issuedAt).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })
         : new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
+
 
     return (
         '<div class="certificate" id="printArea" style="--cert-color:' + color + '">' +
@@ -518,12 +1038,10 @@ function buildCertHTML(cert) {
 
                 '<div class="cert-sig-block">' +
                     '<div class="cert-sig-scribble">' +
-                        '<svg viewBox="0 0 140 36" fill="none" stroke="' + color + '" stroke-width="2" stroke-linecap="round">' +
-                            '<path d="M8 26 C20 6,36 32,54 16 C66 4,82 28,100 12 C112 2,126 24,136 16"/>' +
-                        '</svg>' +
+                        '<img src="../assets/images/sakthivel-signature.jpeg" alt="Signature" style="height: 60px;">' +
                     '</div>' +
                     '<div class="cert-sig-line"></div>' +
-                    '<div class="cert-sig-name">Thomas Howard</div>' +
+                    '<div class="cert-sig-name">Sakthivel</div>' +
                     '<div class="cert-sig-role">Director of Path4Career</div>' +
                 '</div>' +
 
@@ -550,6 +1068,28 @@ function openCertificate(moduleId) {
 
     modal.dataset.active = moduleId;
     certContainer.innerHTML = buildCertHTML(cert);
+    modal.classList.add('open');
+    document.body.style.overflow = 'hidden';
+}
+
+function openDemoCertificate(moduleId) {
+    const module = allModules.find(m => m.id === moduleId);
+    if (!module) return;
+
+    const mockCert = {
+        moduleId: module.id,
+        moduleName: module.name,
+        issuedToName: 'Demo Candidate',
+        certificateId: 'CP-DEMO-2024',
+        issuedAt: new Date().toISOString(),
+        difficulty: module.difficulty,
+        durationValue: module.durationValue,
+        durationUnit: module.durationUnit,
+        skillCount: module.skillIds ? module.skillIds.length : 0
+    };
+
+    modal.dataset.active = moduleId;
+    certContainer.innerHTML = buildCertHTML(mockCert, true);
     modal.classList.add('open');
     document.body.style.overflow = 'hidden';
 }

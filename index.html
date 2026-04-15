@@ -97,15 +97,72 @@
 
 
     <!-- Log in and sign up -->
-    <section class="signup-banner reveal" id="join-section">
-        <div class="signup-banner-inner">
-            <div class="signup-banner-text">
-                <h2>Join Path4Career</h2>
-                <p>Sign up to track your progress, earn verified certificates, and access personalized tutorials all in one place.</p>
+    <section class="premium-join-section reveal" id="join-section">
+        <div class="premium-join-container">
+            <div class="join-content">
+                <span class="join-badge">Unlock Your Career</span>
+                <h2 class="join-title">Your Future Starts Here.</h2>
+                <p class="join-subtitle">Join thousands of learners building real-world skills. A single free account gives you the ultimate competitive edge.</p>
+                
+                <div class="join-perks">
+                    <div class="perk-item">
+                        <div class="perk-icon-wrap"><i class="fas fa-rocket"></i></div>
+                        <div class="perk-text">
+                            <strong>Personalized Tracking</strong>
+                            <span>Save roadmap progress and learning streaks.</span>
+                        </div>
+                    </div>
+                    <div class="perk-item">
+                        <div class="perk-icon-wrap"><i class="fas fa-certificate"></i></div>
+                        <div class="perk-text">
+                            <strong>Verified Certificates</strong>
+                            <span>Earn credentials for completing modules.</span>
+                        </div>
+                    </div>
+                    <div class="perk-item">
+                        <div class="perk-icon-wrap"><i class="fas fa-robot"></i></div>
+                        <div class="perk-text">
+                            <strong>AI Career Tools</strong>
+                            <span>Access smart resume scanning & interview simulation.</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="join-actions">
+                    <a href="./pages/auth/register.html" class="btn-glow-signup">Create Free Account <i class="fas fa-arrow-right"></i></a>
+                    <a href="./pages/auth/login.html" class="btn-outline-login">Log In</a>
+                </div>
             </div>
-            <div class="signup-banner-actions">
-                <a href="./pages/auth/login.html" class="btn-banner-login">Log In</a>
-                <a href="./pages/auth/register.html" class="btn-banner-signup">Create Free Account</a>
+            
+            <div class="join-visual">
+                <div class="visual-glow"></div>
+                <!-- Premium glassmorphic faux dashboard preview -->
+                <div class="glass-card main-glass">
+                    <div class="glass-header">
+                        <div class="dots"><span style="background:#ef4444"></span><span style="background:#eab308"></span><span style="background:#22c55e"></span></div>
+                        <span class="glass-title">Path4Career Dashboard</span>
+                    </div>
+                    <div class="glass-body">
+                        <div class="faux-stat">
+                            <div class="stat-icon" style="background: rgba(16,185,129,0.2); color:#10b981;"><i class="fas fa-fire"></i></div>
+                            <div>
+                                <h5>14 Day Streak</h5>
+                                <span>Top 5% of learners</span>
+                            </div>
+                        </div>
+                        <div class="faux-stat">
+                            <div class="stat-icon" style="background: rgba(56,189,248,0.2); color:#38bdf8;"><i class="fas fa-file-alt"></i></div>
+                            <div>
+                                <h5>ATS Resume Score</h5>
+                                <span>94/100 - Excellent</span>
+                            </div>
+                        </div>
+                        <div class="faux-progress">
+                            <div class="prog-info"><span>React Bootcamp</span> <span>85%</span></div>
+                            <div class="prog-bar"><div class="prog-fill" style="width: 85%;"></div></div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -174,6 +231,147 @@
         </div>
     </section>
 
+    <!-- COMING SOON — Aptitude & Interview Practice -->
+    <section class="coming-soon-section reveal" id="coming-soon">
+        <div class="cs-bg-effects">
+            <div class="cs-grid-overlay"></div>
+            <div class="cs-orb cs-orb-1"></div>
+            <div class="cs-orb cs-orb-2"></div>
+        </div>
+        
+        <div class="cs-glass-panel">
+            <div class="cs-panel-header">
+                <span class="cs-badge"><span class="cs-badge-dot"></span> EARLY SNEAK PEEK</span>
+            </div>
+            
+            <h2 class="cs-title">Crack the Interview. <br><span class="cs-gradient-text">Master Your Next Role.</span></h2>
+            <p class="cs-subtitle">We are bringing a full-scale aptitude, coding, and interview prep sandbox directly into Path4Career. Practice smarter, not harder.</p>
+
+            <div class="cs-features-grid">
+                <div class="cs-bento-card">
+                    <div class="cs-icon" style="color: #214EA5;"><i class="fas fa-brain"></i></div>
+                    <h3>Aptitude & Logic</h3>
+                    <p>Interactive questions for quantitative and verbal mastery.</p>
+                </div>
+                <div class="cs-bento-card">
+                    <div class="cs-icon" style="color: #15803D;"><i class="fas fa-code"></i></div>
+                    <h3>Coding Engine</h3>
+                    <p>Cloud-based compiler for algorithmic challenge practice.</p>
+                </div>
+                <div class="cs-bento-card">
+                    <div class="cs-icon" style="color: #3b82f6;"><i class="fas fa-robot"></i></div>
+                    <h3>AI Feedback</h3>
+                    <p>Real-time suggestions and code-review directly from AI.</p>
+                </div>
+                <div class="cs-bento-card">
+                    <div class="cs-icon" style="color: #d97706;"><i class="fas fa-chart-pie"></i></div>
+                    <h3>Deep Analytics</h3>
+                    <p>Pinpoint weaknesses and track your improvement speeds.</p>
+                </div>
+            </div>
+
+            <div class="cs-cta-wrap">
+                <a href="./pages/aptitude-practice.html" class="cs-btn-glow" style="text-decoration:none;">
+                    <i class="fas fa-lock-open"></i> See Preview & Join Waitlist
+                </a>
+                <p class="cs-early-note"><i class="fas fa-gift"></i> Secure lifetime premium access by joining early.</p>
+            </div>
+        </div>
+    </section>
+
+    <style>
+    /* ─────────────── CLEAN LIGHT COMING SOON SECTION (Landing Page) ─────────────── */
+    .coming-soon-section {
+        position: relative;
+        padding: 6rem 1rem;
+        background: #f8fafc; /* Very soft light background */
+        display: flex; justify-content: center;
+        overflow: hidden;
+    }
+    .cs-bg-effects { position: absolute; inset: 0; pointer-events: none; z-index: 0; }
+    .cs-grid-overlay {
+        position: absolute; inset: 0;
+        background-image: radial-gradient(rgba(0,0,0,0.03) 1px, transparent 1px);
+        background-size: 32px 32px;
+        mask-image: radial-gradient(circle at center, black 0%, transparent 80%);
+        -webkit-mask-image: radial-gradient(circle at center, black 0%, transparent 80%);
+    }
+    .cs-orb { position: absolute; border-radius: 50%; filter: blur(120px); opacity: 0.5; mix-blend-mode: multiply; }
+    .cs-orb-1 { width: 600px; height: 600px; background: rgba(33, 78, 165, 0.15); top: -100px; left: -100px; animation: floatOrb 25s infinite alternate ease-in-out; }
+    .cs-orb-2 { width: 500px; height: 500px; background: rgba(21, 128, 61, 0.1); bottom: -100px; right: -50px; animation: floatOrb 30s infinite alternate-reverse ease-in-out; }
+    @keyframes floatOrb { 0% { transform: translate(0, 0); } 100% { transform: translate(100px, 50px); } }
+
+    .cs-glass-panel {
+        max-width: 1000px; width: 100%;
+        background: #ffffff;
+        border: 1px solid #e2e8f0;
+        border-radius: 32px;
+        padding: 4.5rem 3.5rem;
+        text-align: center;
+        position: relative; z-index: 1;
+        box-shadow: 0 40px 100px rgba(0,0,0,0.05); /* Extremely soft shadow */
+    }
+
+    .cs-badge {
+        display: inline-flex; align-items: center; gap: 8px;
+        background: #f1f5f9;
+        border: 1px solid #cbd5e1;
+        color: #214EA5; font-size: 0.8rem; font-weight: 700;
+        letter-spacing: 1.5px; padding: 8px 24px; border-radius: 100px;
+        margin-bottom: 2rem; position: relative; z-index: 2;
+    }
+    .cs-badge-dot { width: 8px; height: 8px; border-radius: 50%; background: #15803D; box-shadow: 0 0 10px #15803D; animation: csPulse 2s infinite; }
+    @keyframes csPulse { 0%, 100% { transform: scale(1); opacity:1;} 50% { transform: scale(1.5); opacity: 0.4; } }
+
+    .cs-title {
+        font-size: clamp(2rem, 5vw, 3.5rem); font-family: 'Poppins', sans-serif;
+        font-weight: 800; letter-spacing: -1.5px; line-height: 1.15;
+        margin-bottom: 1.2rem; color: #0f172a; position: relative; z-index: 2;
+    }
+    .cs-gradient-text {
+        background: linear-gradient(135deg, #214EA5, #15803D);
+        -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    
+    .cs-subtitle {
+        color: #475569; font-size: 1.15rem; line-height: 1.7; font-weight: 500;
+        max-width: 650px; margin: 0 auto 3.5rem; position: relative; z-index: 2;
+    }
+
+    .cs-features-grid {
+        display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 1.5rem; margin-bottom: 4rem; position: relative; z-index: 2;
+    }
+    .cs-bento-card {
+        background: #f8fafc; border: 1px solid #f1f5f9;
+        border-radius: 20px; padding: 2.5rem 1.5rem; text-align: left;
+        transition: all 0.4s cubic-bezier(0.4,0,0.2,1);
+    }
+    .cs-bento-card:hover { transform: translateY(-5px); box-shadow: 0 20px 40px rgba(0,0,0,0.06); background: white; border-color: #e2e8f0; }
+    .cs-icon { font-size: 1.8rem; margin-bottom: 1.2rem; }
+    .cs-bento-card h3 { color: #1e293b; font-size: 1.1rem; margin-bottom: 0.6rem; font-family: 'Poppins', sans-serif; font-weight: 700; }
+    .cs-bento-card p { color: #64748b; font-size: 0.9rem; line-height: 1.6; }
+
+    .cs-cta-wrap { display: flex; flex-direction: column; align-items: center; gap: 1rem; position: relative; z-index: 2; }
+    .cs-btn-glow {
+        background: #214EA5; color: white;
+        font-size: 1.1rem; font-weight: 800; padding: 18px 45px;
+        border-radius: 100px; cursor: pointer; transition: all 0.3s ease;
+        display: inline-flex; align-items: center; gap: 10px; font-family: 'Poppins', sans-serif;
+        box-shadow: 0 10px 25px rgba(33, 78, 165, 0.25);
+    }
+    .cs-btn-glow:hover { transform: translateY(-3px); box-shadow: 0 15px 35px rgba(33, 78, 165, 0.35); color: white; }
+    
+    .cs-early-note { font-size: 0.9rem; color: #64748b; font-weight: 600; }
+    .cs-early-note i { color: #15803D; margin-right: 4px; }
+
+    @media (max-width: 768px) {
+        .cs-glass-panel { padding: 3rem 1.5rem; border-radius: 24px; }
+        .cs-title { font-size: 2rem; }
+        .cs-btn-glow { width: 100%; justify-content: center; }
+    }
+    </style>
+
     <!-- AI Features Section -->
     <section class="ai-features-section reveal" id="ai-features">
         <div class="container">
@@ -230,8 +428,34 @@
                         Launch Simulator
                     </a>
                 </div>
+
+                <!-- ATS Resume Checker Card -->
+                <div class="ai-feature-card ai-ats-card">
+                    <div class="ai-card-glow ai-glow-green"></div>
+                    <div class="ai-card-icon">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="url(#atsGrad)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                            <defs><linearGradient id="atsGrad" x1="0" y1="0" x2="24" y2="24"><stop stop-color="#15803D"/><stop offset="1" stop-color="#214EA5"/></linearGradient></defs>
+                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                            <polyline points="14 2 14 8 20 8"/>
+                            <line x1="9" y1="15" x2="15" y2="15"/>
+                            <line x1="9" y1="19" x2="15" y2="19"/>
+                            <line x1="9" y1="11" x2="11" y2="11"/>
+                        </svg>
+                    </div>
+                    <h3>ATS Resume Checker</h3>
+                    <p class="ai-card-desc">Scan your resume against Applicant Tracking Systems to identify missing keywords.</p>
+                    <ul class="ai-card-features">
+                        <li><span class="ai-check">✓</span> Intelligent Keyword Extraction</li>
+                        <li><span class="ai-check">✓</span> Resume Pass-Rate Scoring</li>
+                        <li><span class="ai-check">✓</span> Formatting & Style Audit</li>
+                        <li><span class="ai-check">✓</span> Tailored Improvement Tips</li>
+                    </ul>
+                    <a href="./pages/resume-builder.html" class="ai-card-btn ai-btn-green">
+                        <i class="fas fa-file-circle-check"></i>
+                        Optimise Resume
+                    </a>
+                </div>
             </div>
-        </div>
     </section>
 
     <!-- featured courses -->
@@ -321,26 +545,7 @@
         </div>
     </section>
 
-    <footer class="p4c-footer">
-        <div class="p4c-footer-inner">
-            <a class="p4c-footer-brand" href="./index.html" aria-label="Path4Career Home">
-                <span class="p4c-footer-logo" aria-hidden="true">
-                    <img src="./assets/images/path4career-icon.png" alt="Path4Career logo"
-                        style="width:34px;height:34px;object-fit:contain;display:block;">
-                </span>
-                <span class="p4c-footer-name">Path4Career</span>
-            </a>
-
-            <nav class="p4c-footer-links" aria-label="Footer">
-                <a href="./pages/tutorial.html">Tutorials</a>
-                <a href="./pages/reference.html">References</a>
-                <a href="./pages/roadmaps/roadmaps.html">Roadmaps</a>
-                <a href="./pages/roadmaps/courses.html">Courses</a>
-            </nav>
-
-            <p class="p4c-footer-copy">© 2026 Path4Career. Learn · Build · Grow</p>
-        </div>
-    </footer>
+    <div id="footer-root"></div>
 
     <script src="./assets/js/navbar.js"></script>
     <script src="./assets/js/landingpage.js"></script>

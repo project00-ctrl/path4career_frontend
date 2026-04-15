@@ -298,7 +298,7 @@
     function buildGlobalToolsHTML() {
         return `
         <!-- ════ GLOBAL ATS HUD (Unique Mini-AI Console) ════ -->
-        <div class="ats-hud-widget" id="atsGlobalFab" onclick="window.openGlobalATS()">
+        <div class="ats-hud-widget" id="atsGlobalFab" onclick="window.openGlobalATS()" style="display: none;">
             <div class="ats-hud-scanner">
                 <i class="fas fa-file-circle-check"></i>
                 <div class="ats-hud-scan-line"></div>
@@ -319,6 +319,42 @@
                     <p>AI-Powered Optimization</p>
                 </header>
                 <div class="ats-body">
+                    <!-- Info Section -->
+                    <div class="ats-info-pane" style="background: rgba(99, 102, 241, 0.05); padding: 1.2rem; border-radius: 12px; margin-bottom: 1.5rem; border: 1px solid rgba(99, 102, 241, 0.2);">
+                        <h3 style="font-size: 1.05rem; color: #1e293b; margin-top: 0; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 8px;">
+                            <i class="fas fa-robot" style="color: #6366f1;"></i> What is an ATS?
+                        </h3>
+                        <p style="font-size: 0.85rem; color: #475569; margin-bottom: 1rem; line-height: 1.5;">
+                            An <strong>Applicant Tracking System (ATS)</strong> is a software used by recruiters to automatically scan, filter, and rank resumes based on keywords and formatting before a human ever sees them.
+                        </p>
+                        
+                        <h3 style="font-size: 1.05rem; color: #1e293b; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 8px;">
+                            <i class="fas fa-bullseye" style="color: #6366f1;"></i> Why use this ATS Checker?
+                        </h3>
+                        <p style="font-size: 0.85rem; color: #475569; margin-bottom: 1rem; line-height: 1.5;">
+                            Over 75% of resumes are rejected by ATS bots. This tool simulates an ATS scan to ensure your resume contains the right keywords, structure, and formatting to pass the filter.
+                        </p>
+
+                        <h3 style="font-size: 1.05rem; color: #1e293b; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 8px;">
+                            <i class="fas fa-check-circle" style="color: #6366f1;"></i> How to use
+                        </h3>
+                        <ol style="font-size: 0.85rem; color: #475569; margin-bottom: 0; padding-left: 1.2rem; line-height: 1.5;">
+                            <li><strong>Upload</strong> your current resume (PDF, DOCX, or TXT).</li>
+                            <li><strong>Review</strong> your ATS pass rate and parsed skills.</li>
+                            <li><strong>Improve</strong> your resume using our AI suggestions.</li>
+                        </ol>
+                    </div>
+
+                    <!-- Job Description Input -->
+                    <div id="atsJDSection" style="margin-bottom: 1.5rem;">
+                        <h3 style="font-size: 1.05rem; color: #1e293b; margin-top: 0; margin-bottom: 0.8rem; display: flex; align-items: center; gap: 8px;">
+                            <i class="fas fa-file-alt" style="color: #6366f1;"></i> Paste Job Description
+                        </h3>
+                        <textarea id="atsJDIn" placeholder="Paste the job description here to analyze compatibility..." 
+                            style="width: 100%; height: 120px; padding: 1rem; border-radius: 12px; border: 1px solid #e2e8f0; font-family: inherit; font-size: 0.9rem; resize: none; outline: none; transition: border-color 0.2s;"
+                            onfocus="this.style.borderColor='#6366f1'" onblur="this.style.borderColor='#e2e8f0'"></textarea>
+                    </div>
+
                     <!-- Upload Zone -->
                     <div id="atsUploadZone" class="ats-uz v2-zone" onclick="document.getElementById('atsFileIn').click()">
                         <i class="fas fa-cloud-upload-alt"></i>
@@ -326,6 +362,14 @@
                         <small>PDF, DOCX, DOC, TXT (Max 5MB)</small>
                         <input type="file" id="atsFileIn" hidden accept=".pdf,.docx,.doc,.txt">
                     </div>
+
+                    <!-- Action Button (Analyze) -->
+                    <div id="atsActionArea" style="margin-top: 1.5rem; text-align: center;">
+                        <button id="atsAnalyzeBtn" class="ats-btn-primary v2-btn" style="margin-top: 0; display: none;" onclick="window.triggerATSContextualAnalysis()">
+                            <i class="fas fa-wand-magic-sparkles"></i> Analyze Resume
+                        </button>
+                    </div>
+
 
                     <!-- Loading State -->
                     <div id="atsLoading" style="display:none; text-align:center; padding:2rem;">
@@ -361,10 +405,163 @@
         `;
     }
 
+    function buildFooterHTML() {
+        return `
+        <footer class="p4c-footer-rich">
+            <div class="p4c-footer-rich-inner">
+                <!-- Brand Column -->
+                <div class="p4c-footer-col p4c-footer-brand-col">
+                    <a class="p4c-footer-name" href="${ROOT}index.html" aria-label="Path4Career Home">
+                        <div class="p4c-footer-logo">
+                            <img src="${ROOT}assets/images/path4career-icon.png" alt="Path4Career logo" style="width:34px;height:34px;object-fit:contain;display:block;">
+                        </div>
+                        <span>Path4Career</span>
+                    </a>
+                    <p class="p4c-footer-tagline">Learn skills that build real careers. Tutorials, roadmaps, and AI tools — all in one platform.</p>
+                    <div class="p4c-footer-social">
+                        <a href="${AUTH}register.html" class="navbar-auth-btn" id="footerAuthBtn" style="text-decoration:none; display:inline-block; margin-top:10px;">Get Started Free →</a>
+                    </div>
+                </div>
+
+                <!-- Tutorials Column -->
+                <div class="p4c-footer-col">
+                    <h4 class="p4c-footer-col-title">📚 Tutorials</h4>
+                    <ul class="p4c-footer-list">
+                        <li><a href="${PAGES}tutorial.html?course=htmlPages.json">HTML</a></li>
+                        <li><a href="${PAGES}tutorial.html?course=cssPages.json">CSS</a></li>
+                        <li><a href="${PAGES}tutorial.html?course=jsPages.json">JavaScript</a></li>
+                        <li><a href="${PAGES}tutorial.html?course=pythonPages.json">Python</a></li>
+                        <li><a href="${PAGES}tutorial.html?course=reactPages.json">React</a></li>
+                        <li><a href="${PAGES}tutorial.html?course=javaPages.json">Java</a></li>
+                        <li><a href="${PAGES}tutorial.html?course=cppPages.json">C++</a></li>
+                        <li><a href="${PAGES}tutorial.html?course=sqlPages.json">SQL</a></li>
+                        <li><a href="${PAGES}tutorial.html?course=nodejsPages.json">Node.js</a></li>
+                        <li><a href="${PAGES}tutorial.html?course=dsaPages.json">DSA</a></li>
+                    </ul>
+                </div>
+
+                <!-- References Column -->
+                <div class="p4c-footer-col">
+                    <h4 class="p4c-footer-col-title">📖 References</h4>
+                    <ul class="p4c-footer-list">
+                        <li><a href="${PAGES}references/htmlReference.html">HTML</a></li>
+                        <li><a href="${PAGES}references/cssReference.html">CSS</a></li>
+                        <li><a href="${PAGES}references/jsReference.html">JavaScript</a></li>
+                        <li><a href="${PAGES}references/sqlReference.html">SQL</a></li>
+                        <li><a href="${PAGES}references/pythonReference.html">Python</a></li>
+                        <li><a href="${PAGES}references/reactReference.html">React</a></li>
+                        <li><a href="${PAGES}references/javaReference.html">Java</a></li>
+                        <li><a href="${PAGES}references/cppReference.html">C++</a></li>
+                        <li><a href="${PAGES}references/mongodbReference.html">MongoDB</a></li>
+                        <li><a href="${PAGES}references/expressReference.html">ExpressJS</a></li>
+                    </ul>
+                </div>
+
+                <!-- Roadmaps Column -->
+                <div class="p4c-footer-col">
+                    <h4 class="p4c-footer-col-title">🚀 Roadmaps</h4>
+                    <ul class="p4c-footer-list">
+                        <li><a href="${PAGES}roadmaps/roadmaps.html">Frontend Developer</a></li>
+                        <li><a href="${PAGES}roadmaps/roadmaps.html">Backend Developer</a></li>
+                        <li><a href="${PAGES}roadmaps/roadmaps.html">Full-Stack Dev</a></li>
+                        <li><a href="${PAGES}roadmaps/roadmaps.html">Data Scientist</a></li>
+                        <li><a href="${PAGES}roadmaps/roadmaps.html">AI Engineer</a></li>
+                        <li><a href="${PAGES}roadmaps/roadmaps.html">DevOps Engineer</a></li>
+                        <li><a href="${PAGES}roadmaps/roadmaps.html">Cyber Security</a></li>
+                        <li><a href="${PAGES}roadmaps/roadmaps.html">Android Developer</a></li>
+                        <li><a href="${PAGES}roadmaps/roadmaps.html">iOS Developer</a></li>
+                        <li><a href="${PAGES}roadmaps/roadmaps.html">Cloud Native</a></li>
+                    </ul>
+                </div>
+
+                <!-- Platform & Tools Column -->
+                <div class="p4c-footer-col">
+                    <h4 class="p4c-footer-col-title">🛠️ Platform</h4>
+                    <ul class="p4c-footer-list">
+                        <li><a href="${PAGES}resume-builder.html">Resume Builder</a></li>
+                        <li><a href="${PAGES}jobs/jobs-listing.html">Job Board</a></li>
+                        <li><a href="${PAGES}exercise.html">Exercises</a></li>
+                        <li><a href="${PAGES}quizzes.html">Quizzes</a></li>
+                        <li><a href="${PAGES}roadmaps/courses.html">All Courses</a></li>
+                        <li><a href="${PAGES}roadmaps/whereto.html">Where to Start</a></li>
+                        <li><a href="${PAGES}ai-career-shield/index.html">AI Career Shield</a></li>
+                        <li><a href="${PAGES}path4career-simulator/index.html">Interview Simulator</a></li>
+                        <li><a href="${PAGES}bootcamp.html">Bootcamp Hub</a></li>
+                        <li><a href="${PAGES}dashboard.html">Dashboard</a></li>
+                    </ul>
+                </div>
+
+                <!-- Feedback Column -->
+                <div class="p4c-footer-col">
+                    <div class="footer-feedback-box">
+                        <h4 class="p4c-footer-col-title">💬 Feedback</h4>
+                        <form id="footerFeedbackForm" class="footer-feedback-form">
+                            <input type="email" id="feedbackEmail" placeholder="Your Email" required>
+                            <select id="feedbackCategory" required>
+                                <option value="" disabled selected>Category</option>
+                                <option value="Suggestion">Suggestion</option>
+                                <option value="Bug">Bug Report</option>
+                                <option value="Other">Other</option>
+                            </select>
+                            <textarea id="feedbackMessage" placeholder="Your feedback or suggestions..." required></textarea>
+                            <button type="submit" class="feedback-submit-btn" id="feedbackSubmitBtn">Send Feedback</button>
+                            <p id="feedbackSuccess" class="feedback-success-msg">Thanks! Your feedback was received. 🚀</p>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer Bottom -->
+            <div class="p4c-footer-bottom">
+                <div class="p4c-footer-rich-inner" style="padding-top:0; padding-bottom:0; display:flex; justify-content:space-between; align-items:center; width:100%;">
+                    <p>© 2026 Path4Career. Learn · Build · Grow</p>
+                    <div class="p4c-footer-bottom-links">
+                        <a href="${AUTH}privacy.html">Privacy</a>
+                        <a href="${AUTH}terms.html">Terms</a>
+                        <a href="${PAGES}certificate.html">Certificates</a>
+                        <a href="${ROOT}index.html">Home</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        `;
+    }
+
+    function injectFooter() {
+        if (document.querySelector('.p4c-footer-rich')) return;
+
+        // Remove ALL old hardcoded <footer> elements from any page
+        // (e.g. .bc-footer, .site-footer, .p4c-footer, plain <footer> tags)
+        document.querySelectorAll('footer:not(.p4c-footer-rich)').forEach(oldFooter => {
+            oldFooter.remove();
+        });
+
+        const footerHtml = buildFooterHTML();
+        const root = document.getElementById('footer-root');
+        if (root) {
+            root.innerHTML = footerHtml;
+        } else {
+            document.body.insertAdjacentHTML('beforeend', footerHtml);
+        }
+    }
+
     function injectGlobalTools() {
         if (document.getElementById('atsModalV2')) return;
         document.body.insertAdjacentHTML('beforeend', buildGlobalToolsHTML());
         attachATSGlobalEvents();
+
+        // Ensure the FAB is ONLY on Resume Builder pages
+        const isResumePage = window.location.pathname.includes('resume-builder.html') || 
+                            window.location.pathname.includes('resume-builder-app.html');
+        
+        const fab = document.getElementById('atsGlobalFab');
+        if (fab) {
+            if (isResumePage) {
+                fab.style.setProperty('display', 'flex', 'important');
+            } else {
+                fab.remove(); // Completely remove from DOM to prevent !important CSS overrides
+            }
+        }
     }
 
     // ==========================================
@@ -379,6 +576,9 @@
         } else {
             root.innerHTML = navHtml;
         }
+
+        // Shared rich footer
+        injectFooter();
 
         // Global tools injected separately at the end of body
         injectGlobalTools();
@@ -682,6 +882,32 @@
         input.addEventListener('keydown', (e) => {
             if (e.key === 'Enter') {
                 e.preventDefault();
+                const q = input.value.trim().toLowerCase();
+                
+                // Smart Redirect logic
+                const SECTION_MAP = {
+                    'react': 'tutorial.html?course=reactPages.json',
+                    'html': 'tutorial.html?course=htmlPages.json',
+                    'css': 'tutorial.html?course=cssPages.json',
+                    'javascript': 'tutorial.html?course=jsPages.json',
+                    'python': 'tutorial.html?course=pythonPages.json',
+                    'java': 'tutorial.html?course=javaPages.json',
+                    'resume': 'resume-builder.html',
+                    'builder': 'resume-builder.html',
+                    'job': 'jobs/jobs-listing.html',
+                    'jobs': 'jobs/jobs-listing.html',
+                    'bootcamp': 'bootcamp.html',
+                    'certificate': 'certificate.html',
+                    'courses': 'roadmaps/courses.html',
+                    'roadmap': 'roadmaps/roadmaps.html',
+                    'dashboard': 'dashboard.html'
+                };
+
+                if (SECTION_MAP[q]) {
+                    window.location.href = PAGES + SECTION_MAP[q];
+                    return;
+                }
+
                 const firstResult = resultsBox.querySelector('.navbar-search-item');
                 if (firstResult) {
                     window.location.href = firstResult.href;
@@ -823,6 +1049,16 @@
             });
         }
 
+        // Helper to close all popups/menus
+        function closeAllActivePopups() {
+            if (tutorPopup) tutorPopup.classList.remove('open');
+            if (referPopup) referPopup.classList.remove('open');
+            if (mobileNav) mobileNav.classList.remove('open');
+            if (hamburger) hamburger.classList.remove('active');
+            if (mobileOverlay) mobileOverlay.classList.remove('open');
+            if (profileMenu) profileMenu.classList.remove('open');
+        }
+
         // Tutorials popup
         const tutorPopup = document.getElementById('navbarTutorPopup');
         const tutorClose = document.getElementById('navbarTutorClose');
@@ -831,17 +1067,17 @@
             btn.addEventListener('click', (e) => {
                 e.preventDefault();
                 e.stopPropagation();
-                if (tutorPopup) tutorPopup.classList.add('open');
-                if (mobileNav) mobileNav.classList.remove('open');
-                if (hamburger) hamburger.classList.remove('active');
-                if (mobileOverlay) mobileOverlay.classList.remove('open');
+                
+                // If it's already open, close it (toggle behavior)
+                const isOpening = tutorPopup && !tutorPopup.classList.contains('open');
+                closeAllActivePopups();
+                if (isOpening && tutorPopup) tutorPopup.classList.add('open');
             });
         });
 
         if (tutorClose && tutorPopup) {
             tutorClose.addEventListener('click', () => tutorPopup.classList.remove('open'));
             tutorPopup.addEventListener('click', (e) => {
-                // Mobile overlay: close when clicking outside inner panel
                 if (e.target === tutorPopup) tutorPopup.classList.remove('open');
             });
         }
@@ -854,10 +1090,11 @@
             btn.addEventListener('click', (e) => {
                 e.preventDefault();
                 e.stopPropagation();
-                if (referPopup) referPopup.classList.add('open');
-                if (mobileNav) mobileNav.classList.remove('open');
-                if (hamburger) hamburger.classList.remove('active');
-                if (mobileOverlay) mobileOverlay.classList.remove('open');
+                
+                // If it's already open, close it (toggle behavior)
+                const isOpening = referPopup && !referPopup.classList.contains('open');
+                closeAllActivePopups();
+                if (isOpening && referPopup) referPopup.classList.add('open');
             });
         });
 
@@ -933,6 +1170,12 @@
                 if (avatarEl) avatarEl.textContent = initial;
                 if (usernameEl) usernameEl.textContent = name;
 
+                // Hide footer auth button and pre-fill feedback email
+                const footerAuthBtn = document.getElementById('footerAuthBtn');
+                const feedbackEmail = document.getElementById('feedbackEmail');
+                if (footerAuthBtn) footerAuthBtn.style.display = 'none';
+                if (feedbackEmail && profile.email) feedbackEmail.value = profile.email;
+
                 // Show logged-in menu items, hide guest items
                 document.querySelectorAll('.navbar-guest-link').forEach(el => el.style.display = 'none');
                 document.querySelectorAll('.navbar-user-link').forEach(el => el.style.display = 'block');
@@ -989,13 +1232,25 @@
         if (modal) {
             modal.style.display = 'flex';
             modal.classList.add('active');
+            
+            // Show JD section initially
+            const jdSec = document.getElementById('atsJDSection');
+            if (jdSec) jdSec.style.display = 'block';
+            
             if (data) {
-                // Direct analysis (from Builder)
+                // Store data globally for contextual analysis if needed
+                window.currentATSResumeData = data;
+                window.currentATSResumeText = JSON.stringify(data);
+
+                // Direct analysis (from Builder) - Still allow JD entry
                 document.getElementById('atsUploadZone').style.display = 'none';
                 document.getElementById('atsLoading').style.display = 'block';
                 document.getElementById('atsRes').style.display = 'none';
+                document.getElementById('atsAnalyzeBtn').style.display = 'none';
+                
                 setTimeout(() => {
-                    analyzeATSDataGlobal(data, JSON.stringify(data));
+                    const jd = document.getElementById('atsJDIn')?.value || "";
+                    analyzeATSDataGlobal(data, window.currentATSResumeText, jd);
                 }, 800);
             } else {
                 window.resetATSStandalone();
@@ -1016,10 +1271,22 @@
         const ld = document.getElementById('atsLoading');
         const rs = document.getElementById('atsRes');
         const fi = document.getElementById('atsFileIn');
+        const info = document.querySelector('.ats-info-pane');
+        const jdSec = document.getElementById('atsJDSection');
+        const analyzeBtn = document.getElementById('atsAnalyzeBtn');
+        const jdIn = document.getElementById('atsJDIn');
+
+        if (info) info.style.display = 'block';
         if (uz) uz.style.display = 'block';
         if (ld) ld.style.display = 'none';
         if (rs) rs.style.display = 'none';
+        if (jdSec) jdSec.style.display = 'block';
+        if (analyzeBtn) analyzeBtn.style.display = 'none';
+        if (jdIn) jdIn.value = '';
         if (fi) fi.value = '';
+        
+        window.currentATSResumeText = '';
+        window.currentATSResumeData = null;
     };
 
     function attachATSGlobalEvents() {
@@ -1047,8 +1314,10 @@
         if (!f) return;
         const uz = document.getElementById('atsUploadZone');
         const ld = document.getElementById('atsLoading');
-        const fi = document.getElementById('atsFileIn');
+        const analyzeBtn = document.getElementById('atsAnalyzeBtn');
+        const info = document.querySelector('.ats-info-pane');
 
+        if (info) info.style.display = 'none';
         uz.style.display = 'none';
         ld.style.display = 'block';
 
@@ -1063,13 +1332,52 @@
 
             if (!text || text.trim().length < 50) throw new Error('Could not read enough text.');
 
-            const data = parseRGlobal(text);
-            analyzeATSDataGlobal(data, text);
+            window.currentATSResumeText = text;
+            window.currentATSResumeData = parseRGlobal(text);
+
+            // Successfully uploaded - show Analyze button instead of immediate result
+            ld.style.display = 'none';
+            if (analyzeBtn) {
+                analyzeBtn.style.display = 'inline-flex';
+                analyzeBtn.innerHTML = '<i class="fas fa-wand-magic-sparkles"></i> Analyze for Match';
+            }
+            
+            // Helpful feedback on zone
+            uz.innerHTML = `<i class="fas fa-check-circle" style="color:#10b981;"></i><p>${f.name}</p><small>Resume Loaded. Ready to analyze.</small>`;
+            uz.style.display = 'block';
+            uz.style.borderColor = '#10b981';
+            uz.onclick = () => document.getElementById('atsFileIn').click();
+
         } catch (err) {
             alert('Error: ' + err.message);
-            resetATSStandalone();
+            window.resetATSStandalone();
         }
     }
+
+    window.triggerATSContextualAnalysis = function() {
+        if (!window.currentATSResumeText) {
+            alert("Please upload a resume first.");
+            return;
+        }
+
+        const jdIn = document.getElementById('atsJDIn');
+        const jd = jdIn ? jdIn.value.trim() : "";
+        const ld = document.getElementById('atsLoading');
+        const res = document.getElementById('atsRes');
+        const uz = document.getElementById('atsUploadZone');
+        const jdSec = document.getElementById('atsJDSection');
+        const analyzeBtn = document.getElementById('atsAnalyzeBtn');
+
+        if (ld) ld.style.display = 'block';
+        if (res) res.style.display = 'none';
+        if (uz) uz.style.display = 'none';
+        if (jdSec) jdSec.style.display = 'none';
+        if (analyzeBtn) analyzeBtn.style.display = 'none';
+
+        setTimeout(() => {
+            analyzeATSDataGlobal(window.currentATSResumeData, window.currentATSResumeText, jd);
+        }, 600);
+    };
 
     async function extractPDFText(f) {
         if (typeof pdfjsLib === 'undefined') {
@@ -1141,31 +1449,68 @@
         return d;
     }
 
-    function analyzeATSDataGlobal(data, rawText) {
+    function analyzeATSDataGlobal(data, rawText, jdText = "") {
         const txt = (rawText || JSON.stringify(data)).toLowerCase();
-        let score = 35;
+        const jd = (jdText || "").toLowerCase();
+        const hasJD = jd.length > 50;
+        
+        let score = 0;
+        let qualityScore = 30; // Base for just existing
+        let matchScore = 0;
         let checks = [];
         let suggests = [];
 
-        if (data.summary && data.summary.length > 80) { score += 15; checks.push({ p: true, t: 'Summary', d: 'Well-defined professional intro.' }); }
+        // 1. QUALITY CHECKS (General Best Practices)
+        if (data.summary && data.summary.length > 80) { qualityScore += 10; checks.push({ p: true, t: 'Summary', d: 'Well-defined professional intro.' }); }
         else { checks.push({ p: false, t: 'Brief Summary', d: 'Expand your bio for better keyword hits.' }); suggests.push({ t: 'Career Overview', d: 'Add 2-3 sentences about your expertise.' }); }
 
-        if (data.experience.length >= 2) { score += 15; checks.push({ p: true, t: 'Experience', d: 'Solid work history detected.' }); }
+        if (data.experience.length >= 2) { qualityScore += 10; checks.push({ p: true, t: 'Experience', d: 'Solid work history detected.' }); }
         else { checks.push({ p: false, w: true, t: 'Experience', d: 'Only one role found. Consider adding more details.' }); suggests.push({ t: 'Quantify Work', d: 'Add specific bullet points for each previous role.' }); }
 
-        if (data.skills.length >= 8) { score += 15; checks.push({ p: true, t: 'Skills', d: 'Strong technical baseline.' }); }
+        if (data.skills.length >= 8) { qualityScore += 10; checks.push({ p: true, t: 'Skills', d: 'Strong technical baseline.' }); }
         else { checks.push({ p: false, t: 'Skills', d: 'Add at least 8-10 industry-specific keywords.' }); suggests.push({ t: 'Keywords', d: 'Look at job descriptions and add missing technical tools.' }); }
 
         const verbs = ['led', 'developed', 'managed', 'created', 'designed', 'improved', 'increased', 'reduced', 'built', 'launched', 'optimized'];
         let vc = 0; verbs.forEach(v => { if (txt.includes(v)) vc++; });
-        if (vc >= 4) { score += 15; checks.push({ p: true, t: 'Action Verbs', d: 'Good use of dynamic language.' }); }
+        if (vc >= 4) { qualityScore += 10; checks.push({ p: true, t: 'Action Verbs', d: 'Good use of dynamic language.' }); }
         else { checks.push({ p: false, t: 'Passive Tone', d: 'Use more action-oriented verbs.' }); suggests.push({ t: 'Strong Verbs', d: 'Start bullets with "Spearheaded", "Optimized", etc.' }); }
 
-        if (/\d+%|\$\d|\d+x/i.test(txt)) { score += 20; checks.push({ p: true, t: 'Impact Metrics', d: 'Great job quantifying achievements.' }); }
+        if (/\d+%|\$\d|\d+x/i.test(txt)) { qualityScore += 10; checks.push({ p: true, t: 'Impact Metrics', d: 'Great job quantifying achievements.' }); }
         else { checks.push({ p: false, w: true, t: 'Impact', d: 'Missing numbers to prove results.' }); suggests.push({ t: 'Add Stats', d: 'Example: "Increased sales by 30%" instead of "Helped sales".' }); }
 
-        score = Math.floor(Math.min(100, score));
-        
+        // 2. CONTEXTUAL MATCH (JD Alignment)
+        if (hasJD) {
+            const commonTech = ["javascript", "typescript", "react", "node", "express", "python", "django", "flask", "java", "spring", "aws", "docker", "kubernetes", "sql", "nosql", "cloud", "agile", "scrum", "api"];
+            let jdKeywords = [];
+            commonTech.forEach(kw => { if (jd.includes(kw)) jdKeywords.push(kw); });
+            
+            // Extract some important words from JD (simple method)
+            const jdWords = jd.replace(/[^a-z\s]/g, '').split(/\s+/).filter(w => w.length > 4);
+            const uniqueJD = [...new Set(jdWords)];
+            
+            let matched = [];
+            jdKeywords.forEach(kw => { if (txt.includes(kw)) matched.push(kw); });
+            
+            const matchRate = jdKeywords.length > 0 ? (matched.length / jdKeywords.length) : 0.5;
+            matchScore = Math.floor(matchRate * 30);
+            
+            if (matchRate > 0.7) checks.push({ p: true, t: 'JD Alignment', d: 'Strong keyword overlap with the job description.' });
+            else if (matchRate > 0.4) checks.push({ p: false, w: true, t: 'Partial Match', d: 'You have some matching skills, but missing key requirements.' });
+            else checks.push({ p: false, t: 'Low Compatibility', d: 'Few keywords matched the JD. Consider tailoring your resume.' });
+
+            // Missing from JD
+            const missing = jdKeywords.filter(kw => !matched.includes(kw));
+            if (missing.length > 0) {
+                suggests.push({ t: 'Missing JD Keywords', d: `Consider adding: ${missing.slice(0, 5).join(', ')} if you have experience with them.` });
+            }
+            
+            score = Math.min(100, qualityScore + matchScore);
+        } else {
+            // No JD - scale quality score to 100
+            score = Math.floor(Math.min(100, qualityScore * 1.25));
+            checks.push({ p: false, w: true, t: 'No JD Context', d: 'Analyze against a specific JD for a more accurate match score.' });
+        }
+
         const circ = document.getElementById('atsCircleS');
         const stxt = document.getElementById('atsScoreTxtS');
         const chk = document.getElementById('atsChkS');
@@ -1179,6 +1524,7 @@
         document.getElementById('atsLoading').style.display = 'none';
         document.getElementById('atsRes').style.display = 'block';
     }
+
 
     // ==========================================
     // BUTTON CLICK TRACKING
@@ -1275,6 +1621,46 @@
         console.log('[Analytics] Click tracking attached to: tutorials, ai_features, resume_builder, ats_resume_checker, jobs, explore_courses');
     }
 
+    function attachFooterEvents() {
+        const form = document.getElementById('footerFeedbackForm');
+        if (!form) return;
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const btn = document.getElementById('feedbackSubmitBtn');
+            const success = document.getElementById('feedbackSuccess');
+            const email = document.getElementById('feedbackEmail').value;
+            const category = document.getElementById('feedbackCategory').value;
+            const message = document.getElementById('feedbackMessage').value;
+
+            btn.disabled = true;
+            btn.textContent = 'Sending...';
+
+            try {
+                // Using the specific backend endpoint we just created
+                const resp = await fetch('https://path4career-backend.onrender.com/api/v1/feedback', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email, category, message, name: 'User' })
+                });
+
+                if (resp.ok) {
+                    form.reset();
+                    success.style.display = 'block';
+                    setTimeout(() => { success.style.display = 'none'; }, 5000);
+                } else {
+                    throw new Error('Failed to send feedback');
+                }
+            } catch (err) {
+                console.error('Feedback error:', err);
+                alert('Oops! Could not send feedback. Please try again later.');
+            } finally {
+                btn.disabled = false;
+                btn.textContent = 'Send Feedback';
+            }
+        });
+    }
+
     // ==========================================
     // INIT
     // ==========================================
@@ -1284,6 +1670,7 @@
         makeLogoTransparent();
         attachEvents();
         attachATSGlobalEvents(); // New global ATS events
+        attachFooterEvents();   // Feedback form logic
         loadTutorialsConfig();
         populateReferPopup();
         checkAuthState();
