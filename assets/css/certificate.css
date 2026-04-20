@@ -265,6 +265,67 @@ body {
     font-weight: 500;
 }
 
+/* ── BUNDLE ACTION BUTTONS ── */
+.bundle-card-actions {
+    display: flex;
+    gap: 8px;
+    margin-top: 8px;
+    padding-top: 16px;
+    border-top: 1px solid var(--border);
+}
+
+.bundle-card-actions > * {
+    flex: 1;
+}
+
+/* ── CLICKABLE MODULE ITEMS ── */
+.bundle-mod-link {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    text-decoration: none;
+    color: inherit;
+    transition: all 0.2s ease;
+}
+
+.bundle-mod-link:hover {
+    color: var(--primary);
+}
+
+.bundle-mod-item:has(.bundle-mod-link):hover {
+    border-color: var(--primary);
+    background: rgba(33, 78, 165, 0.04);
+    transform: translateX(3px);
+    transition: all 0.2s ease;
+}
+
+.bundle-mod-item.earned:has(.bundle-mod-link):hover {
+    border-color: #10b981;
+    background: rgba(16, 185, 129, 0.08);
+}
+
+.bundle-mod-link .bundle-mod-name {
+    flex: 1;
+}
+
+.bundle-mod-arrow {
+    font-size: 0.8rem;
+    color: var(--text-disabled);
+    margin-left: auto;
+    transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.bundle-mod-link:hover .bundle-mod-arrow {
+    color: var(--primary);
+    transform: translateX(3px);
+}
+
+.earned-link:hover .bundle-mod-arrow {
+    color: #10b981;
+    transform: scale(1.15);
+}
+
 
 /* ── CONTROLS BAR ── */
 .controls-bar {

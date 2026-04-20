@@ -12,6 +12,11 @@
     // Uses the script's own location to find the project root
     // ==========================================
     let ROOT, PAGES, REFS, AUTH;
+    
+    // Global API Configuration
+    const API_BASE = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' 
+        ? 'http://localhost:8080' 
+        : 'https://path4career-backend.onrender.com';
 
     function detectPaths() {
         const scriptTag = document.currentScript;
@@ -1136,7 +1141,6 @@
     // AUTH STATE — check if user is logged in
     // ==========================================
     function checkAuthState() {
-        const API_BASE = 'https://path4career-backend.onrender.com';
         const token = localStorage.getItem('AUTH_TOKEN');
 
         // No token in localStorage → user is guest
@@ -1531,7 +1535,7 @@
     // Tracks clicks on: tutorials, ai_features,
     // resume_builder, ats_resume_checker, jobs
     // ==========================================
-    const TRACKING_API = 'https://path4career-backend.onrender.com/api/v1/analytics/click';
+    const TRACKING_API = API_BASE + '/api/v1/analytics/click';
 
     /**
      * Fire-and-forget click tracking.
@@ -1633,15 +1637,18 @@
             const category = document.getElementById('feedbackCategory').value;
             const message = document.getElementById('feedbackMessage').value;
 
+            // Extract username if logged in
+            const nameEl = document.getElementById('navbarUsername');
+            const name = (nameEl && nameEl.textContent !== 'User') ? nameEl.textContent : 'Anonymous';
+
             btn.disabled = true;
             btn.textContent = 'Sending...';
 
             try {
-                // Using the specific backend endpoint we just created
-                const resp = await fetch('https://path4career-backend.onrender.com/api/v1/feedback', {
+                const resp = await fetch(`${API_BASE}/api/v1/feedback`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ email, category, message, name: 'User' })
+                    body: JSON.stringify({ email, category, message, name })
                 });
 
                 if (resp.ok) {

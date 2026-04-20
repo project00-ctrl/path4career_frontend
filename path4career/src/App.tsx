@@ -114,7 +114,7 @@ export function App() {
   };
 
   return (
-    <ThemeProvider defaultTheme="system">
+    <ThemeProvider defaultTheme="light">
       <div className="animated-bg" />
       <div className="global-grid" />
       
