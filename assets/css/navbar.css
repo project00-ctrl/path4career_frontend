@@ -33,6 +33,13 @@
     gap: 16px;
 }
 
+.navbar-right-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-shrink: 0;
+}
+
 /* Hamburger */
 .navbar-hamburger {
     display: none;
@@ -43,6 +50,7 @@
     user-select: none;
     padding: 8px; /* Added padding for better touch target */
     border-radius: 8px;
+    flex-shrink: 0;
 }
 
 .navbar-hamburger:hover {
@@ -72,6 +80,7 @@
     justify-content: center;
     font-size: 0.95rem;
     transition: all 0.2s ease;
+    flex-shrink: 0;
 }
 
 .navbar-mobile-search-btn:hover {
@@ -157,7 +166,8 @@
     display: flex;
     align-items: center;
     gap: 12px; /* Reduced from 20px */
-    flex-shrink: 0;
+    flex-shrink: 1;
+    min-width: 0;
 }
 
 .navbar-logo-icon {
@@ -199,6 +209,10 @@
     color: #020617;
     display: flex;
     align-items: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    min-width: 0;
 }
 
 .navbar-logo-link {
@@ -206,6 +220,8 @@
     align-items: center;
     gap: 12px; /* Increased from 10px */
     text-decoration: none;
+    flex-shrink: 1;
+    min-width: 0;
 }
 
 #navbarTutorBtn,
@@ -1248,16 +1264,11 @@
 
     .navbar-mobile-search-btn {
         display: flex !important;
-        order: 5;
     }
-
     .navbar-profile {
-        order: 8;
     }
-
     .navbar-hamburger {
         display: block !important;
-        order: 10;
     }
 
     .navbar-search {
@@ -1285,18 +1296,41 @@
 /* 5. Mobile Devices (SM) 481px – 640px */
 @media (max-width: 640px) {
     .navbar-logo h3 {
-        max-width: 150px;
+        max-width: calc(100vw - 180px);
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
+    }
+    
+    .navbar-header .header-container {
+        gap: 8px;
+    }
+    
+    .navbar-right-actions {
+        gap: 8px;
     }
 }
 
 /* 6. Small Mobile (XS) < 480px */
 @media (max-width: 480px) {
+    .navbar-logo {
+        gap: 8px;
+    }
+
+    .navbar-logo-link {
+        gap: 8px;
+    }
+
+    .navbar-logo-icon,
+    .navbar-logo-icon svg,
+    .navbar-logo-img {
+        width: 28px;
+        height: 28px;
+    }
+
     .navbar-logo h3 {
-        font-size: 0.85rem;
-        max-width: 110px;
+        font-size: 0.9rem;
+        max-width: calc(100vw - 140px);
     }
 
     .navbar-avatar {
@@ -1305,7 +1339,20 @@
     }
 
     .navbar-header .header-container {
+        gap: 6px;
+    }
+
+    .navbar-right-actions {
         gap: 8px;
+    }
+    
+    .navbar-mobile-search-btn {
+        width: 32px;
+        height: 32px;
+    }
+    
+    .navbar-hamburger {
+        padding: 6px;
     }
 }
 

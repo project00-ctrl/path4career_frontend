@@ -164,8 +164,6 @@
         <!-- NAVBAR HEADER -->
         <header class="navbar-header" id="navbarHeader">
             <div class="header-container">
-                <!-- Hamburger -->
-                <div class="navbar-hamburger" id="navbarHamburger">☰</div>
 
                 <!-- Logo + Tutorials + References -->
                 <div class="navbar-logo">
@@ -186,11 +184,6 @@
                     <div class="navbar-search-results" id="navbarSearchResults"></div>
                 </div>
 
-                <!-- Mobile search toggle (opens dropdown search) -->
-                <button class="navbar-mobile-search-btn" id="navbarMobileSearchToggle" aria-label="Search">
-                    🔍
-                </button>
-
                 <!-- Desktop Nav -->
                 <ul class="navbar-nav-items">
                     <li><a href="${ROOT}index.html#ai-features">AI Features</a></li>
@@ -206,10 +199,21 @@
                     </li>
                 </ul>
 
-                <!-- Profile (shown when logged in) -->
-                <div class="navbar-profile" id="navbarProfile" style="display:none;">
-                    <div class="navbar-avatar" id="navbarAvatar">U</div>
-                    <span id="navbarUsername">User</span>
+                <!-- Desktop/Mobile Right Actions -->
+                <div class="navbar-right-actions">
+                    <!-- Mobile search toggle (opens dropdown search) -->
+                    <button class="navbar-mobile-search-btn" id="navbarMobileSearchToggle" aria-label="Search">
+                        🔍
+                    </button>
+
+                    <!-- Profile (shown when logged in) -->
+                    <div class="navbar-profile" id="navbarProfile" style="display:none;">
+                        <div class="navbar-avatar" id="navbarAvatar">U</div>
+                        <span id="navbarUsername">User</span>
+                    </div>
+
+                    <!-- Hamburger -->
+                    <div class="navbar-hamburger" id="navbarHamburger">☰</div>
                 </div>
             </div>
         </header>
