@@ -2162,4 +2162,13 @@ body:has(.chat-widget.open) #atsGlobalFab {
     }
 }
 
-
+
+
+/* --- GLOBAL NAVBAR OFFSET FIX --- */
+body {
+    padding-top: 105px !important;
+    box-sizing: border-box !important;
+}
+
+
+

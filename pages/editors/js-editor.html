@@ -11,14 +11,7 @@
 </head>
 <body>
     
-    <nav class="editor-nav">
-        <div class="logo-area">
-            <img class="logo-icon" src="../../assets/images/path4career-icon.png" alt="Path4Career" style="width:32px;height:32px;border-radius:8px;">
-            <div class="logo-text">Path4Career</div>
-            <div class="title-badge">⚡ JS Workspace</div>
-        </div>
-        <button class="run-btn" id="runBtn" onclick="executeJS()">▶ Run Code</button>
-    </nav>
+    <div id="navbar-root"></div>
 
     <div class="workspace">
         <div class="editor-pane">
@@ -135,7 +128,8 @@ document.body.appendChild(newPara);
                 <\\/script>
             </head><body>
                 ${isHTML ? rawCode : '<h3 id="my-heading" style="color: #475569; font-family: sans-serif;">Waiting for JS...</h3>'}
-            </body></html>`);
+            <script src="../../assets/js/navbar.js"></script>
+</body></html>`);
             iframeDoc.close();
 
             // Safely inject Pure JS as a DOM node at the end
@@ -149,5 +143,7 @@ document.body.appendChild(newPara);
     runBtn.addEventListener('click', executeJS);
     executeJS();
 </script>
+<script src="../../assets/js/navbar.js"></script>
 </body>
 </html>
+

@@ -464,7 +464,7 @@ section {
 @media (min-width: 768px) {
     header:not(.navbar-header),
     section {
-        padding: 80px 24px; /* Professional spacing for desktop */
+        padding: 0px 24px; /* Professional spacing for desktop */
     }
 }
 
@@ -756,7 +756,7 @@ nav>ul {
     max-width: 900px;
     height: 85vh;
     border-radius: 16px;
-    padding: 40px 30px;
+    padding: 0px 30px;
     overflow-y: auto;
     position: relative;
 }
@@ -896,7 +896,7 @@ nav>ul {
     max-width: 900px;
     height: 85vh;
     border-radius: 16px;
-    padding: 40px 30px;
+    padding: 0px 30px;
     overflow-y: auto;
     position: relative;
 }
@@ -1008,7 +1008,7 @@ body, html {
 
 .hero-wrapper {
     width: 100%;
-    padding: 90px 12px 50px; /* Adjusted padding to match header/strip and prevent overflow */
+    padding: 0px 12px 50px; /* Adjusted padding to match header/strip and prevent overflow */
     text-align: center;
     background: #EBF2FA; /* Light blue/grey tint */
     box-sizing: border-box;
@@ -1130,7 +1130,7 @@ body, html {
 
 @media (max-width: 768px) {
     .hero-wrapper {
-        padding: 80px 16px 40px;
+        padding: 0px 16px 40px;
     }
     
     .hero-wrapper h1 {
@@ -2220,7 +2220,7 @@ p {
     position: relative;
     background: #0f172a; /* Sleek black card */
     border-radius: 20px;
-    padding: 40px 32px;
+    padding: 0px 32px;
     border: 1px solid rgba(0, 0, 0, 0.1);
     box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
     transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
@@ -2515,7 +2515,7 @@ p {
 
 /* CERTIFICATE */
 .certificate {
-    padding: 40px 40px;
+    padding: 0px 40px;
     margin: 30px auto;
     background: #FFFFFF;
     color: #111;
@@ -2795,7 +2795,7 @@ p {
 
     .hero-wrapper {
         margin: 0;
-        padding: 40px 16px 30px;
+        padding: 0px 16px 30px;
         text-align: center;
     }
 
@@ -2894,7 +2894,7 @@ p {
     .reference-contents {
         width: 95%;
         height: 90vh;
-        padding: 90px 20px;
+        padding: 0px 20px;
     }
 
     .reference-row .container {
@@ -2949,7 +2949,7 @@ p {
     .tutor-contents {
         width: 95%;
         height: 90vh;
-        padding: 90px 20px;
+        padding: 0px 20px;
     }
 
     .tutor-row .container {
@@ -3229,7 +3229,7 @@ p {
     }
 
     .hero-wrapper {
-        padding: 86px 12px 30px; /* Match new standardized mobile padding */
+        padding: 0px 12px 30px; /* Match new standardized mobile padding */
     }
 
     .logo h3 {
@@ -3339,7 +3339,7 @@ p {
    ========================================== */
 
 .tutorials-showcase {
-    padding: 40px 0 40px;
+    padding: 0px 0 40px;
 }
 
 .tutorials-showcase>.container {
@@ -3583,7 +3583,7 @@ p {
 /* 5. Mobile Devices (SM) 481px – 640px */
 @media (min-width: 481px) and (max-width: 640px) {
     section {
-        padding: 40px 16px;
+        padding: 0px 16px;
     }
     .hero-wrapper h1 {
         font-size: 2.2rem;

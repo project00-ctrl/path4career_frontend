@@ -13,14 +13,7 @@
 </head>
 <body>
     
-    <nav class="editor-nav">
-        <div class="logo-area">
-            <img class="logo-icon" src="../../assets/images/path4career-icon.png" alt="Path4Career" style="width:32px;height:32px;border-radius:8px;">
-            <div class="logo-text">Path4Career</div>
-            <div class="title-badge">💾 SQL Workspace</div>
-        </div>
-        <button class="run-btn" id="runBtn" onclick="executeSQL()" disabled>⏳ Loading Database...</button>
-    </nav>
+    <div id="navbar-root"></div>
 
     <div class="workspace">
         <div class="editor-pane">
@@ -228,5 +221,7 @@ DELETE FROM Customers WHERE CustomerID = 3;
         // Start initialization on page load
         window.addEventListener('load', initDatabase);
 </script>
+<script src="../../assets/js/navbar.js"></script>
 </body>
 </html>
+

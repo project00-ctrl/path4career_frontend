@@ -11,17 +11,7 @@
 </head>
 <body>
     
-    <nav class="editor-nav">
-        <div class="logo-area">
-            <img class="logo-icon" src="../../assets/images/path4career-icon.png" alt="Path4Career" style="width:32px;height:32px;border-radius:8px;">
-            <div class="logo-text">Path4Career</div>
-            <div class="title-badge">🍃 MongoDB Workspace</div>
-        </div>
-        <div class="nav-actions">
-            <button class="reset-btn" onclick="resetDatabase()">↻ Reset DB</button>
-            <button class="run-btn" id="runBtn" onclick="executeMongoQuery()">▶ Run Query</button>
-        </div>
-    </nav>
+    <div id="navbar-root"></div>
 
     <div class="workspace">
         <div class="editor-pane">
@@ -319,5 +309,7 @@ db.users.find()
         // Start initialization
         initializeDatabase();
 </script>
+<script src="../../assets/js/navbar.js"></script>
 </body>
 </html>
+
